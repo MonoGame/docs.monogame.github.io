@@ -3,7 +3,6 @@
     {
       "src": [
         {
-          "src": "../",
           "files": [
             "external/MonoGame/MonoGame.Framework/MonoGame.Framework.DesktopGL.csproj",
             "external/MonoGame/MonoGame.Framework.Content.Pipeline/MonoGame.Framework.Content.Pipeline.csproj"
