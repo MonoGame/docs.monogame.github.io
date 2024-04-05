@@ -33,7 +33,8 @@
           "articles/**/*.yml",
           "foundation/**/*.md",
           "toc.yml",
-          "*.md"
+          "*.md",
+          "CNAME"
         ]
       }
     ],
