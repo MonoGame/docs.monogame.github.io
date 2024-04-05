@@ -1,4 +1,4 @@
-# doc.monoGame.github.io
+# docs.monoGame.github.io
 
 This repository contains the documentation for MonoGame.
 
