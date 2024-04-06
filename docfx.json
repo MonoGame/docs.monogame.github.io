@@ -55,11 +55,6 @@
       "_description": "One framework for creating powerful cross-platform games.",
       "_appTitle": "MonoGame"
     },
-    "fileMetadata": {
-      "_layout": {
-        "*.md": "landing"
-      }
-    },
     "template": [
       "default",
       "modern",
