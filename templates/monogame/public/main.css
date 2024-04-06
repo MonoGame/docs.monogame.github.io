@@ -40,6 +40,10 @@ body {
 font-family: 'Inter', sans-serif;
 }
 
+body[data-layout="landing"] > main {
+  max-width: 1320px !important;
+}
+
 
 /*******************************************************************************
 *** Section: Bootstrap Overrides
@@ -97,4 +101,79 @@ box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 .mg-social-link:hover,
 .mg-social-link:focus {
   filter: brightness(120%);
+}
+
+.mg-card {
+  border: 1px solid;
+  border-color: var(--bs-body-color);
+  border-radius: .5rem;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.mg-card-thumbnail {
+  aspect-ratio: 16/9;
+  filter: brightness(100%);
+  border-radius: 7px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--bs-body);
+  -webkit-transition: filter 0.1s ease-in-out, transform 0.25s ease-in-out;
+  -moz-transition: filter 0.1s ease-in-out, transform 0.25s ease-in-out;
+  -ms-transition: filter 0.1s ease-in-out, transform 0.25s ease-in-out;
+  -o-transition: filter 0.1s ease-in-out, transform 0.25s ease-in-out;
+  transition: filter 0.1s ease-in-out, transform 0.25s ease-in-out;
+
+}
+
+.mg-card-thumbnail-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-repeat: no-repeat;
+  background-position: center center;
+  filter: drop-shadow(6px 6px 6px #000C);
+}
+
+.mg-card:hover .mg-card-thumbnail,
+.mg-card:focus .mg-card-thumbnail {
+  filter: brightness(110%);
+  transform: scale(1.1);
+}
+
+@media (prefers-reduced-motion) {
+    .mg-card:hover .mg-card-thumbnail,
+    .mg-card:focus .mg-card-thumbnail {
+        transform: none;
+    }
+}
+
+.mg-card-body {
+  padding-inline: 2rem;
+  padding-block: 1rem;
+}
+
+.mg-card-title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.mg-card-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-style: italic;
+}
+
+.mg-no-link {
+  text-decoration: none;
+  color: var(--bs-body-color);
 }

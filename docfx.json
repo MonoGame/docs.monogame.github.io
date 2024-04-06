@@ -1,6 +1,32 @@
 {
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "external/MonoGame/MonoGame.Framework/MonoGame.Framework.DesktopGL.csproj",
+            "external/MonoGame/MonoGame.Framework.Content.Pipeline/MonoGame.Framework.Content.Pipeline.csproj"
+          ]
+        }
+      ],
+      "dest": "api",
+      "includePrivateMembers": false,
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false,
+      "noRestore": false,
+      "namespaceLayout": "flattened",
+      "memberLayout": "samePage",
+      "EnumSortOrder": "alphabetic"
+    }
+  ],
   "build": {
     "content": [
+      {
+        "files": [
+          "api/**/*.yml",
+          "api/**/*.md"
+        ]
+      },
       {
         "files": [
           "articles/**/*.md",
@@ -14,24 +40,21 @@
     "resource": [
       {
         "files": [
-          "**/images/**"
+          "**/images/**",
+          "CNAME"
         ]
       }
     ],
     "output": "_site",
     "globalMetadata": {
-      "_appFaviconPath": "/favicon.png",
+      "_appLogoUrl": "https://monogame.net",
+      "_appFaviconPath": "/images/favicon.png",
       "_disableBreadcrumb": "true",
       "_appFooter": "Copyright © 2009-2024 MonoGame Foundation, Inc.",
       "_hostname": "monogame.net",
       "_openGraphImage": "images/social_embed_image.png",
       "_description": "One framework for creating powerful cross-platform games.",
       "_appTitle": "MonoGame"
-    },
-    "fileMetadata": {
-      "_layout": {
-        "*.md": "landing"
-      }
     },
     "template": [
       "default",
