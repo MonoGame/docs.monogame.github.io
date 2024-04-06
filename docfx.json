@@ -33,15 +33,15 @@
           "articles/**/*.yml",
           "foundation/**/*.md",
           "toc.yml",
-          "*.md",
-          "CNAME"
+          "*.md"
         ]
       }
     ],
     "resource": [
       {
         "files": [
-          "**/images/**"
+          "**/images/**",
+          "CNAME"
         ]
       }
     ],
