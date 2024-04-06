@@ -40,6 +40,10 @@ body {
 font-family: 'Inter', sans-serif;
 }
 
+body[data-layout="landing"] > main {
+  max-width: 1320px !important;
+}
+
 
 /*******************************************************************************
 *** Section: Bootstrap Overrides
