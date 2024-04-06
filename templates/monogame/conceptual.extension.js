@@ -3,6 +3,11 @@
  */
 exports.preTransform = function (model) {
 
+    
+    //  For layout pages, ignore injecting title and description as header and
+    //  first paragraph
+    if(model.layout && model.layout === 'landing') { return model; }
+    
     //  The model.conceptual property has all of the generated HTMl that's used
     //  by docfx for the article. For each HTML tag, there is a `sourcestartlinenumber`
     //  value that defines the line within the article that markdown was at.
