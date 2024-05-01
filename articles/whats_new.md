@@ -20,6 +20,8 @@ MonoGame 3.8.1 now comes with an optional Visual Studio extension which will ins
 
 This extension is available for Visual Studio 2022, and Visual Studio 2022 for Mac.
 
+If you are migrating from 3.8.0 it is recommended to uninstall the existing global MGCB .NET tools. It would be a good idea to review the [Migrating from 3.8.0](migrate_38.md) documentation, as there are changes to how 3.8.1 works with the .NET tools and the new extension.
+
 ## Visual Studio 2019 and prior are no longer supported
 
 Since .NET 6 is not supported by Visual Studio 2019, starting with MonoGame 3.8.1 it will no longer be possible to build games with it.

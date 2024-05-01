@@ -9,7 +9,7 @@ Migrating from 3.8.0 should be straightforward for most platforms.
 
 The major difference is that 3.8.1 now requires .NET 6 and Visual Studio 2022. You can follow the [environment setup tutorial](getting_started/index.md) to make sure that you are not missing any components.
 
-The MGCB Editor is no longer a global .NET tool and we recommend that you use the new Visual Studio 2022 extension which helps accessing it without the need of CLI commands.
+The MGCB Editor is no longer a global .NET tool and we recommend that you use the new Visual Studio 2022 extension which helps with accessing it without the need of CLI commands. It is also recommended that you uninstall the older global versions of the .NET tools as described below.
 
 ## WindowsDX, DesktopGL, and UWP
 
@@ -30,9 +30,16 @@ Then edit your MonoGame ```PackageReference``` to point to 3.8.1:
 
 ### Accessing MGCB and MCGB Editor without a global tool
 
-MGCB Editor is no longer a .NET global tool, and doesn't need to be installed or registered.
+The MGCB Editor is no longer a .NET global tool, and doesn't need to be installed or registered. When migrating from 3.8.0, it is recommended that you uninstall the global versions of the tools. You can accomplish that with these commands:
 
-However, if you are migrating from 3.8.0, you will need to setup a configuration file. Next to your ```.csproj```, create a folder nammed ```.config``` and a file within it nammed ```dotnet-tools.json``` with this content:
+```
+dotnet tool uninstall dotnet-mgcb -g
+dotnet tool uninstall dotnet-2mgfx -g
+dotnet tool uninstall dotnet-mgcb-editor -g
+```
+**Do not** run the ``` dotnet tool install ``` on 3.8.1, as it would break 3.8.1.
+
+You will also need to setup a dotnet-tools configuration file. Next to your ```.csproj```, create a folder named ```.config``` and a file within it named ```dotnet-tools.json``` with this content:
 
 ```json
 {
@@ -40,31 +47,31 @@ However, if you are migrating from 3.8.0, you will need to setup a configuration
   "isRoot": true,
   "tools": {
     "dotnet-mgcb": {
-      "version": "3.8.1.263",
+      "version": "3.8.1.303",
       "commands": [
         "mgcb"
       ]
     },
     "dotnet-mgcb-editor": {
-      "version": "3.8.1.263",
+      "version": "3.8.1.303",
       "commands": [
         "mgcb-editor"
       ]
     },
     "dotnet-mgcb-editor-linux": {
-      "version": "3.8.1.263",
+      "version": "3.8.1.303",
       "commands": [
         "mgcb-editor-linux"
       ]
     },
     "dotnet-mgcb-editor-windows": {
-      "version": "3.8.1.263",
+      "version": "3.8.1.303",
       "commands": [
         "mgcb-editor-windows"
       ]
     },
     "dotnet-mgcb-editor-mac": {
-      "version": "3.8.1.263",
+      "version": "3.8.1.303",
       "commands": [
         "mgcb-editor-mac"
       ]
