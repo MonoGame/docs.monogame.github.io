@@ -13,7 +13,8 @@ The example is very basic but the principles are the same, when drawing to a Ren
 5. Draw your game as normal.
 6. Draw the Render Texture to the screen in the position we desire (e.g. in the lower corner for a mini-map), most likely on top of your game graphics.
 
-The technique is very useful, especially if you are doing split-screen gaming and need to draw multiple camera views.
+> TIP
+> The technique is very useful, especially if you are doing split-screen gaming and need to draw multiple camera views.
 
 ## Requirements
 
@@ -28,21 +29,13 @@ Download the `Grid` texture and add it to your `Content Project` for this exampl
 1. Declare variables for a render target using the [RenderTarget2D](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D) class, for this example we will also be using a [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D) for the "grid" texture we will output to the `Render Target`.
 
     ```csharp
-    SpriteBatch spriteBatch;
-    Texture2D grid;
-    RenderTarget2D renderTarget;
+    private GraphicsDeviceManager graphics;
+    private SpriteBatch spriteBatch;
+    private Texture2D grid;
+    private RenderTarget2D renderTarget;
     ```
 
-2. Create the render target, giving it the same size as the back buffer, ideally in the [Game.LoadContent](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_LoadContent) method or later.
-
-    ```csharp
-    renderTarget = new RenderTarget2D(
-        GraphicsDevice,
-        GraphicsDevice.PresentationParameters.BackBufferWidth,
-        GraphicsDevice.PresentationParameters.BackBufferHeight);
-    ```
-
-3. Load the "grid" texture, which contains vertical and horizontal lines.
+2. Load the "grid" texture, which contains vertical and horizontal lines.
 
     ```csharp
     protected override void LoadContent()
@@ -55,6 +48,15 @@ Download the `Grid` texture and add it to your `Content Project` for this exampl
     }
     ```
 
+3. Create the render target, giving it the same size as either the Texture (shown below) or the display back buffer (if you are rendering full screen), ideally in the [Game.LoadContent](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_LoadContent) method or later.
+
+    ```csharp
+    renderTarget = new RenderTarget2D(
+        GraphicsDevice,
+        grid.Width,
+        grid.Height);
+    ```
+
 4. Render the "grid" texture to the render target.
 
     Rendering to a [RenderTarget2D](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D) changes the Graphics Device output to write to a `texture` instead of the screen.  Once you have finished rendering to the [RenderTarget2D](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D) you **MUST** reset the [GraphicsDevice](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice) Render Target to `null` to return to drawing to the screen / back buffer.
@@ -65,10 +67,10 @@ Download the `Grid` texture and add it to your `Content Project` for this exampl
     private void DrawRenderTarget()
     {
         // Set the device to the render target
-        graphicsDeviceManager.GraphicsDevice.SetRenderTarget(renderTarget);
+        graphics.GraphicsDevice.SetRenderTarget(renderTarget);
     
         // Clear the graphics buffer to a solid color
-        graphicsDeviceManager.GraphicsDevice.Clear(Color.Black);
+        graphics.GraphicsDevice.Clear(Color.Black);
     
         // Draw the "grid" texture to the graphics buffer, currently outputting to the Render Texture.
         spriteBatch.Begin();
@@ -77,7 +79,7 @@ Download the `Grid` texture and add it to your `Content Project` for this exampl
         spriteBatch.End();
     
         // Reset the device to the back buffer
-        graphicsDeviceManager.GraphicsDevice.SetRenderTarget(null);
+        graphics.GraphicsDevice.SetRenderTarget(null);
     }
     ```
 
@@ -92,11 +94,11 @@ Download the `Grid` texture and add it to your `Content Project` for this exampl
         DrawRenderTarget();
  
         // Clear the screen
-        graphicsDeviceManager.GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.CornflowerBlue);
         
         // Draw the contents of the Render Target texture
         spriteBatch.Begin();
-        spriteBatch.Draw((Texture2D)renderTarget,
+        spriteBatch.Draw(renderTarget,
             new Vector2(200, 50),          // x,y position
             new Rectangle(0, 0, 32, 32),   // just one grid
             Color.White                    // no color scaling
