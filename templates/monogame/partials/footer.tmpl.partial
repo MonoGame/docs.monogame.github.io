@@ -11,10 +11,10 @@
                         <a href="/api/" class="p-0">API Reference</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="/showcase/" class="p-0">Showcase</a>
+                        <a href="https://monogame.net/showcase/" class="p-0">Showcase</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="/about/" class="p-0">About</a>
+                        <a href="https://monogame.net/about/" class="p-0">About</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="/foundation/" class="p-0">Foundation Bylaws</a>
@@ -44,18 +44,18 @@
                 <h5>Public Relations</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2">
-                        <a href="/blog/" class="p-0">Blog</a>
+                        <a href="https://monogame.net/blog/" class="p-0">Blog</a>
                     </li>
                     <li class="nav-item mb-2">
                         <a href="https://community.monogame.net" class="p-0">Community</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="/presskit/" class="p-0">Press Kit</a>
+                        <a href="https://monogame.net/presskit/" class="p-0">Press Kit</a>
                     </li>
                 </ul>
             </div>
             <div class="col-6 col-lg-3 mb-3">
-                <h3 class="fw-bold"><a href="/about/#contact-us">Contact Us</a></h1>
+                <h3 class="fw-bold"><a href="https://monogame.net/about/#contact-us">Contact Us</a></h1>
             </div>
         </div>
 
