@@ -12,9 +12,8 @@ The major difference is that 3.8.1 now requires .NET 6 and Visual Studio 2022. Y
 The MGCB Editor is no longer a global .NET tool and we recommend that you use the new Visual Studio 2022 extension which helps with accessing it without the need of CLI commands.
 
 
-::: note
-It is also recommended that you uninstall the older global versions of the .NET tools as described below.
-:::
+> [!NOTE]
+> It is also recommended that you uninstall the older global versions of the .NET tools as described below.
 
 ## WindowsDX, DesktopGL, and UWP
 
