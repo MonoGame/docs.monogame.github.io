@@ -9,7 +9,12 @@ Migrating from 3.8.0 should be straightforward for most platforms.
 
 The major difference is that 3.8.1 now requires .NET 6 and Visual Studio 2022. You can follow the [environment setup tutorial](getting_started/index.md) to make sure that you are not missing any components.
 
-The MGCB Editor is no longer a global .NET tool and we recommend that you use the new Visual Studio 2022 extension which helps with accessing it without the need of CLI commands. It is also recommended that you uninstall the older global versions of the .NET tools as described below.
+The MGCB Editor is no longer a global .NET tool and we recommend that you use the new Visual Studio 2022 extension which helps with accessing it without the need of CLI commands.
+
+
+::: note
+It is also recommended that you uninstall the older global versions of the .NET tools as described below.
+:::
 
 ## WindowsDX, DesktopGL, and UWP
 
@@ -30,16 +35,22 @@ Then edit your MonoGame ```PackageReference``` to point to 3.8.1:
 
 ### Accessing MGCB and MCGB Editor without a global tool
 
-The MGCB Editor is no longer a .NET global tool, and doesn't need to be installed or registered. When migrating from 3.8.0, it is recommended that you uninstall the global versions of the tools. You can accomplish that with these commands:
+The MGCB Editor is no longer a .NET global tool, and does not need to be installed or registered. When migrating from 3.8.0, it is recommended that you **uninstall** the global versions of the tools. You can accomplish that with these commands:
 
 ```
 dotnet tool uninstall dotnet-mgcb -g
 dotnet tool uninstall dotnet-2mgfx -g
 dotnet tool uninstall dotnet-mgcb-editor -g
 ```
-**Do not** run the ``` dotnet tool install ``` on 3.8.1, as it would break 3.8.1.
 
-You will also need to setup a dotnet-tools configuration file. Next to your ```.csproj```, create a folder named ```.config``` and a file within it named ```dotnet-tools.json``` with this content:
+::: tip
+**Do not** run the ``` dotnet tool install ``` on 3.8.1, as it would break 3.8.1.
+:::
+
+You will also need to setup a dotnet-tools configuration file. 
+
+- Next to your ```.csproj```create a folder named ```.config```
+- Add a file within the folder named ```dotnet-tools.json``` with the following content:
 
 ```json
 {
@@ -80,7 +91,7 @@ You will also need to setup a dotnet-tools configuration file. Next to your ```.
 }
 ```
 
-Please note that you can't use the ```3.8.1.*``` wildcard in the ```dotnet-tools.json``` file (tool versions have to be fully qualified). We strongly recommand that the versions match the MonoGame version referenced in your ```.csproj``` (if you're using the ```*``` wildcard, make sure that they don't end up mismatching if the nugets are updated without you noticing).
+Please note that you cannot use the ```3.8.1.*``` wildcard in the ```dotnet-tools.json``` file (tool versions have to be fully qualified). We strongly recommand that the versions match the MonoGame version referenced in your ```.csproj``` (if you are using the ```*``` wildcard, make sure that they do not end up mismatching if the nugets are updated without you noticing).
 
 You will also need to add this to your ```.csproj```:
 
