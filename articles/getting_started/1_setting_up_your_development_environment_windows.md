@@ -18,14 +18,15 @@ Before using MonoGame, you will need to install [Visual Studio 2022](https://vis
 When installing Visual Studio, the following workloads are required depending on your desired [target platform(s)](../platforms.md):
 
 * Mandatory for all platforms:
-    * **.Net desktop development**
+  * **.Net desktop development**
 * Optional
-    * **.Net Multi-platform App UI Development** if you wish to target Android, iOS, or iPadOS.
-    * **Universal Windows Platform development** if you wish to build for Windows store or Xbox.
+  * **.Net Multi-platform App UI Development** if you wish to target Android, iOS, or iPadOS.
+  * **Universal Windows Platform development** if you wish to build for Windows store or Xbox.
 
 ![Visual Studio optional components](images/1_installer_vs_components.png)
 
-> [!WARNING] Targeting Windows
+> [!WARNING]
+> Targeting Windows
 > If you are targeting the standard Windows DirectX backend, you will also need [the DirectX June 2010 runtime](https://www.microsoft.com/en-us/download/details.aspx?id=8109) for audio and gamepads to work properly.
 
 ### Install MonoGame extension for Visual Studio 2022
@@ -44,7 +45,6 @@ To create new MonoGame projects from within Visual Studio 2022, you will need to
 4. Use the search box in the top-right corner of the Manage Extensions dialog window to search for **MonoGame**, then click the **MonoGame Framework C# project templates** extension as shown below and download it to install it.
 
 ![Visual Studio Extension Manager](images/1_visual_studio_extension_manager.png)
-
 
 5. After it is downloaded, an alert will appear at the bottom of the Manage Extensions window that states "Your changes will be scheduled.  The modifications will begin when all Microsoft Visual Studio windows are closed."  Click the **Close** button, then close Visual Studio 2022.
 
