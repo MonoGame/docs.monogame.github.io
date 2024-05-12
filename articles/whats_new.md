@@ -1,9 +1,9 @@
 ---
-title: What's New
-description: What's new with the release of MonoGame 3.8.1
+title: Whats New
+description: Whats new with the release of MonoGame 3.8.1
 ---
 
-# What's New
+# Whats New
 
 The MonoGame 3.8.1 release marks some big changes since 3.8.0 in how we build and distribute.
 
@@ -19,6 +19,8 @@ We now support [.NET 6](https://docs.microsoft.com/en-us/dotnet/core/introductio
 MonoGame 3.8.1 now comes with an optional Visual Studio extension which will install all the MonoGame project templates and will allow for quick access to the [MGCB Editor](./tools/mgcb_editor.md).
 
 This extension is available for Visual Studio 2022, and Visual Studio 2022 for Mac.
+
+If you are migrating from 3.8.0 it is recommended to uninstall the existing global MGCB .NET tools. It would be a good idea to review the [Migrating from 3.8.0](migrate_38.md) documentation, as there are changes to how 3.8.1 works with the .NET tools and the new extension.
 
 ## Visual Studio 2019 and prior are no longer supported
 
