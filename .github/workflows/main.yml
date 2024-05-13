@@ -1,10 +1,10 @@
 name: Build Documentation
 on:
-    push:
-        branches:
-            - 'main'
+  push:
+    branches:
+      - 'main'
 
-    workflow_dispatch:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -18,36 +18,42 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-    build:
-        environment:
-          name: github-pages
-          url: ${{ steps.deployment.outputs.page_url }}
-        runs-on: ubuntu-latest
-        steps:
-            - name: Clone Repository
-              uses: actions/checkout@v4
-              with:
-                submodules: recursive
+  build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-            - name: Setup .NET SDK
-              uses: actions/setup-dotnet@v4
-              with:
-                dotnet-version: '8.0.x'
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
 
-            - name: Restore dotnet tools
-              run: dotnet tool restore
+      - name: Restore dotnet tools
+        run: dotnet tool restore
 
-            - name: Run Build
-              run: dotnet docfx docfx.json
+      - name: Run Build
+        run: dotnet docfx docfx.json
 
-            - name: Setup Pages
-              uses: actions/configure-pages@v5
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-            - name: Upload artifact
-              uses: actions/upload-pages-artifact@v3
-              with:
-                path: '_site'
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
 
-            - name: Deploy to GitHub Pages
-              id: deployment
-              uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  complete:
+    runs-on: ubuntu-latest
+    name: Build completion task
+    steps:
+      - run: echo "Build Complete"

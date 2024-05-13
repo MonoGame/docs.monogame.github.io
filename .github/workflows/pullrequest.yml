@@ -1,0 +1,43 @@
+name: Build Documentation
+on:
+  pull_request:
+    branches:
+      - 'main'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write           
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+    test:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Clone Repository
+          uses: actions/checkout@v4
+          with:
+            submodules: recursive
+
+        - name: Setup .NET SDK
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: '8.0.x'
+
+        - name: Restore dotnet tools
+          run: dotnet tool restore
+
+        - name: Run Build
+          run: dotnet docfx docfx.json
+    complete:
+      runs-on: ubuntu-latest
+      name: Build completion task
+      steps:
+        - run: echo "Tests Complete"
