@@ -38,6 +38,7 @@ jobs:
           run: dotnet docfx docfx.json
     complete:
       runs-on: ubuntu-latest
+      needs: test
       name: Build completion task
       steps:
         - run: echo "Tests Complete"
