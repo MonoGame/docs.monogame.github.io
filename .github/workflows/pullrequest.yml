@@ -1,4 +1,5 @@
-name: Build Documentation
+name: Test Build Documentation
+
 on:
   pull_request:
     branches:
@@ -18,27 +19,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-    test:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Clone Repository
-          uses: actions/checkout@v4
-          with:
-            submodules: recursive
+  test:
+    runs-on: ubuntu-latest
+    concurrency: ci-${{ github.ref }}
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v4
 
-        - name: Setup .NET SDK
-          uses: actions/setup-dotnet@v4
-          with:
-            dotnet-version: '8.0.x'
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
 
-        - name: Restore dotnet tools
-          run: dotnet tool restore
+      - name: Restore dotnet tools
+        run: dotnet tool restore
 
-        - name: Run Build
-          run: dotnet docfx docfx.json
-    complete:
-      runs-on: ubuntu-latest
-      needs: test
-      name: Test completion task
-      steps:
-        - run: echo "Tests Complete"
+      - name: Run Build
+        run: dotnet docfx docfx.json
+
+  complete:
+    runs-on: ubuntu-latest
+    needs: test
+    name: Test completion task
+    steps:
+      - run: echo "Tests Complete"

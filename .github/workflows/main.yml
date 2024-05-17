@@ -1,4 +1,4 @@
-name: Build Documentation
+name: Build and Deploy Documentation
 on:
   push:
     branches:
@@ -51,10 +51,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  complete:
-    runs-on: ubuntu-latest
-    needs: build
-    name: Build completion task
-    steps:
-      - run: echo "Build Complete"
