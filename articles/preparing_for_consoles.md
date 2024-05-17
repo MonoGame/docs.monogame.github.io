@@ -108,5 +108,5 @@ If you consider all your I/O and system operations as asynchronous, you will lik
 
 ## Suggestions
 
-If you have other tips or suggestions when building for consoles, then let us know by raising an issue and we will improve this article even further over time.
+If you have other tips or suggestions when building for consoles, then let the MonoGame team know by raising an issue and we will improve this article even further over time.
 
