@@ -47,7 +47,7 @@ Another way to make sure that everything is safe is to enable `<EnableTrimAnalyz
 
 Generating code at runtime is a scenario that is also not supported in AOT contexts, it is also forbidden by console manufacturers.
 
-Like reflection, trying to make a `PublishAot` build if a good way to verify that your game is compliant because any use of IL emit will crash.
+Like reflection, trying to make a `PublishAot` build is a good way to verify that your game is compliant because any use of IL emit will crash.
 
 ## No use of dynamic assembly loading
 
@@ -91,8 +91,8 @@ In order to avoid garbage, here are some best practices:
 - Avoid allocating anything with the `new` keyword during your game loop, e.g. pre-allocate everything ahead of using them during gameplay.
 - Pool your dynamic objects, e.g. do not destroy your projectiles or particles, instead place them into another "unused" list and reuse them instead of creating new instances when needed.
 - Avoid using LINQ.
-- If you are using collections, initialize them with a large enough capacity to avoid their internal data structure bring silently recreated.
-- Mind your foreach loops, depending on the data your looping on, the loop might create garbage when duplicating an item.  Or better yet, use a for loop for tigher control.
+- If you are using collections, initialize them with a large enough capacity to avoid their internal data structure being silently recreated.
+- Mind your foreach loops, depending on the data you are looping on, the loop might create garbage when duplicating an item.  Or better yet, use a for loop for tigher control.
 
 ## Do not rely on system calls
 
