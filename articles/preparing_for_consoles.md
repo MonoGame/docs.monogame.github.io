@@ -33,7 +33,7 @@ From there, you can try running this executable. If it does not start or crashes
 
 Native executables can debugged by:
 
-- Atarting an empty Visual Studio with no code.
+- Starting an empty Visual Studio with no code.
 - Opening the compiled exe.
 - Then hitting "Start debugging".
 
@@ -63,7 +63,7 @@ The best way to make sure if they will work, is to search if they are **"AOT-com
 
 ## Native libraries
 
-If you are using native libraries, make sure that they propose builds for consoles, or make sure that you can compile and run them on consoles yourself.
+If you are using native libraries, make sure that they provide builds for consoles, or make sure that you can compile and run them on consoles yourself.
 
 Even though a library might be open-source, it is unlikely they will just compile and run on consoles.
 
