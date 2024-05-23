@@ -55,11 +55,18 @@ Loading assemblies at runtime with `Assembly.Load()` is not supported.
 
 ## Third party libraries
 
-Many third party libraries heavily rely on using reflection or IL emit, this is a common practice for JSON or XML parsers for example.
+Many third party libraries heavily rely on using reflection or IL emit, this is a common practice for JSON or XML parsers for example (and they are the most common source of third party incompatibilities).
 
 It is advised to choose very carefully the libraries that you are using when porting to consoles. If you do not select them with this in mind, you might run into a situation in which you will have to rewrite entire chunks of data handling.
 
 The best way to make sure if they will work, is to search if they are **"AOT-compatible"**, or try to compile with the `<EnableTrimAnalyzer>true</EnableTrimAnalyzer>` setting in your `.csproj` and check if there are any warnings related to those libraries.
+
+For example, here are some parsing libraries known for their compliance with AOT compilation and good handling of memrory:
+
+- [TurboXML](https://github.com/xoofx/TurboXml)
+- [TinyJSON](https://github.com/zanders3/json)
+
+On the contrary, Newtonsoft JSON is known to be unsupported (there are modified forks around, but we overall recommend to not use it for games).
 
 ## Native libraries
 
