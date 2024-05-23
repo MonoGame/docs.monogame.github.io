@@ -39,7 +39,8 @@
           "foundation/**/*.md",
           "toc.yml",
           "*.md"
-        ]
+        ],
+        "exclude": [ "_site/**", "README.md" ]
       }
     ],
     "resource": [
