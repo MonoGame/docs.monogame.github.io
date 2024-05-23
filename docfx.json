@@ -21,6 +21,7 @@
   ],
   "rules": {
     "InvalidFileLink": "error",
+    "InvalidBookmark": "error",
     "UidNotFound": "error",
     "ReferencedXrefPropertyNotString": "error"
   },  
