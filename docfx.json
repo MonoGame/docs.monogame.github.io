@@ -19,6 +19,12 @@
       "EnumSortOrder": "alphabetic"
     }
   ],
+  "rules": {
+    "InvalidFileLink": "error",
+    "InvalidBookmark": "error",
+    "UidNotFound": "error",
+    "ReferencedXrefPropertyNotString": "error"
+  },  
   "build": {
     "content": [
       {
@@ -34,7 +40,8 @@
           "foundation/**/*.md",
           "toc.yml",
           "*.md"
-        ]
+        ],
+        "exclude": [ "_site/**", "README.md" ]
       }
     ],
     "resource": [
