@@ -4,8 +4,6 @@ description: Describes how to add custom game data as an XML file through the Co
 requireMSLicense: true
 ---
 
-## Adding XML files to game content
-
 Custom game data that is expressed in an XML format can be easily integrated into your game through the MonoGame Content Pipeline.
 
 This example demonstrates the procedure for integrating custom XML data into the content project of a simple game for the Windows platform.
@@ -17,7 +15,7 @@ Within the MonoGame solution, you create a new Windows Game Library project.
 1. Right-click the solution node, point to `Add`, click `New Project`, and then select the `MonoGame Game Library` template.
 
     > [!TIP]
-    > A `MonoGame Game Library` project is created instead of a Content Pipeline Extension Library project so that the class we will define can be used by both the [Content Importer](xref:Microsoft.Xna.Framework.Content.Pipeline.ContentImporter-1) that runs at build-time and the [Content Loader](xref:Microsoft.Xna.Framework.Content.ContentManager#Microsoft_Xna_Framework_Content_ContentManager_Load__1_System_String_) at game runtime.
+    > A `MonoGame Game Library` project is created instead of a Content Pipeline Extension Library project so that the class we will define can be used by both the [Content Importer](https://docs.monogame.net/api/Microsoft.Xna.Framework.Content.Pipeline.ContentImporter-1.html) that runs at build-time and the [Content Loader](xref:Microsoft.Xna.Framework.Content.ContentManager#Microsoft_Xna_Framework_Content_ContentManager_Load__1_System_String_) at game runtime.
 
 2. In the `Name` box, type `MyDataTypes`, and then click `OK`.
 

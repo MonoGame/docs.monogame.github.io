@@ -1,9 +1,8 @@
 ---
 title: How to adjust Pitch and Volume
 description: Demonstrates how to manipulate the pitch and volume of sound effects as they play.
+requireMSLicense: true
 ---
-
-# Adjusting Pitch and Volume
 
 The **[SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)** method allows you to specify the pitch and volume of a sound to play. However, after you call **[Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)**, you cannot modify the sound. Using **[SoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance)** for a given **[SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect)** allows you to change the **pitch** and **volume** of a sound at any time during playback.
 
@@ -12,7 +11,7 @@ The **[SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)** 
 
 ## Change Pitch and Volume of Sound
 
-1. Declare a **[SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect)** and a [Stream](http://msdn.microsoft.com/en-us/library/system.io.stream.aspx) file by using the method shown in [Playing a Sound](HowTo_PlayASound.md). In addition to the method described in [Playing a Sound](HowTo_PlayASound.md), declare a **[SoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance)**, we also add a **Sound Effect** field member. We also create two float fields for **pitch** and **volume** to store the pitch and volume of the sound effect and assign initial values to them.
+1. Declare a **[SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect)** and a [Stream](http://msdn.microsoft.com/en-us/library/system.io.stream.aspx) file by using the method shown in [Playing a Sound](HowTo_PlayASound.md). In addition to the method described in [Playing a Sound](HowTo_PlayASound.md), declare a **[SoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance)** and a **Sound Effect** field member. We also create two float fields for **pitch** and **volume** to store the pitch and volume of the sound effect and assign initial values to them.
 
     ```csharp
     // place these usings at the top of the file
@@ -29,12 +28,12 @@ The **[SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)** 
     private float volume = 0.5f;
     ```
 
-> [!NOTE]
-> Usings are declared at the top of the file to ensure that the necessary namespaces are available to the class. The fields are declared at the top of the class to ensure that they are accessible to all methods in the class.
+    > [!NOTE]
+    > Usings are declared at the top of the file to ensure that the necessary namespaces are available to the class. The fields are declared at the top of the class to ensure that they are accessible to all methods in the class.
 
-2. In the [Game.LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent) method, set the SoundEffectInstance object to the return value of [SoundEffect.CreateInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance).
+2. In the [Game.LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent) method, set the **SoundEffectInstance** object to the return value of [SoundEffect.CreateInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance).
 
-2. In the **[Game.LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent)** method, set the **SoundEffectInstance** object to the return value of **[SoundEffect.CreateInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance)**. We also optionally define a variable **soundFile** to store the location of the sound file being used with the **[TitleContainer.OpenStream](xref:Microsoft.Xna.Framework.TitleContainer.OpenStream)** method, which is accessed with the  **using** keyword, and include a field member variable called **soundEffect**, to hold the stream.
+3. In the **[Game.LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent)** method, set the **SoundEffectInstance** object to the return value of **[SoundEffect.CreateInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance)**. We also optionally define a variable **soundFile** to store the location of the sound file being used with the **[TitleContainer.OpenStream](xref:Microsoft.Xna.Framework.TitleContainer#Microsoft_Xna_Framework_TitleContainer_OpenStream_System_String_)** method, which is accessed with the  **using** keyword, and include a field member variable called **soundEffect**, to hold the stream.
 
     ```csharp
     using Stream soundfile = TitleContainer.OpenStream(@"Content\Sound__FileName.wav");
@@ -42,30 +41,31 @@ The **[SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)** 
     soundInstance = soundEffect.CreateInstance();
     ```
 
-3. Adjust the sound to the desired level using the [SoundEffectInstance.Pitch](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch) and [SoundEffectInstance.Volume](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume) properties.
+4. Adjust the sound to the desired level using the [SoundEffectInstance.Pitch](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch) and [SoundEffectInstance.Volume](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume) properties.
 
     ```csharp
     // Play Sound
     soundEffectInstance.Play();
     ```
 
- > [!NOTE]
- > An instance will play once, to loop the sound, you can use the **[SoundEffectInstance.IsLooped](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped)** property to set the sound to loop. Also note that the sound will not repeat until the sound has finished playing. You can utilise the **[SoundEffectInstance.State](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State)** property to check if the sound is playing, paused or stopped. Use the **[SoundEffectInstance.Stop](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop)** method to stop the sound.
+     > [!NOTE]
+     > An instance will play once, to loop the sound, you can use the **[SoundEffectInstance.IsLooped](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped)** property to set the sound to loop. Also note that the sound will not repeat until the sound has finished playing. You can utilise the **[SoundEffectInstance.State](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State)** property to check if the sound is playing, paused or stopped. Use the **[SoundEffectInstance.Stop](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop)** method to stop the sound.
 
- ## An Extended Example
+## An Extended Example
 
- 5. Below the **[Game.Draw](xref:Microsoft.Xna.Framework.Game.Draw)** method, create a new method called **IsKeyPressed**, which will check if a specified key is pressed and return a boolean value of true if it has been pressed.
+ 1. Below the **[Game.Draw](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_Draw_Microsoft_Xna_Framework_GameTime_)** method, create a new method called **IsKeyPressed**, which will check if a specified key is pressed and return a boolean value of true if it has been pressed.
 
     ```csharp
     private bool IsKeyPressed(Keys key)
     {
         return Keyboard.GetState().IsKeyDown(key);
     }
-	```
 
- 6. In the **[Game.Update](xref:Microsoft.Xna.Framework.Game.Update)** method, check if the **Space** key is pressed and adjust the pitch and volume of the sound effect accordingly. The pitch and volume values are adjusted by +0.1f each time the **Space key** is pressed. The pitch values are clamped to a minimum value of -1.0f and a maximum value of 1.0f, and the volume values are then clamped to a minimum value of 0f and a maximum value of 1.0f. This is done to ensure that the pitch and volume values are within  valid ranges.
+     ```
 
-	```csharp
+ 2. In the **[Game.Update](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_Update_Microsoft_Xna_Framework_GameTime_)** method, check if the **Space** key is pressed and adjust the pitch and volume of the sound effect accordingly. The pitch and volume values are adjusted by +0.1f each time the **Space key** is pressed. The pitch values are clamped to a minimum value of -1.0f and a maximum value of 1.0f, and the volume values are then clamped to a minimum value of 0f and a maximum value of 1.0f. This is done to ensure that the pitch and volume values are within  valid ranges.
+
+ ```csharp
     // Check if the SpaceKey is pressed and play the instance
     if (IsKeyPressed(Keys.Space))
         {
@@ -77,7 +77,7 @@ The **[SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)** 
          soundEffectInstance.Volume = volume;
          soundEffectInstance.Play();
         }
-	```
+ ```
 
  > [!NOTE]
  > The **MathHelper.Clamp** method is used to ensure that the pitch and volume values are within the valid range. The pitch value is clamped between -1 and 1, while the volume value is clamped between 0 and 1.
@@ -108,9 +108,3 @@ Provides a loaded sound resource.
 [SoundEffectInstance Class](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance)
 
 Provides a single playing, paused, or stopped instance of a [SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect) sound.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2024 The MonoGame Foundation.
