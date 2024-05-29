@@ -52,7 +52,7 @@ The **[SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)** 
  > [!NOTE]
  > An instance will play once, to loop the sound, you can use the **[SoundEffectInstance.IsLooped](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped)** property to set the sound to loop. Also note that the sound will not repeat until the sound has finished playing. You can utilise the **[SoundEffectInstance.State](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State)** property to check if the sound is playing, paused or stopped. Use the **[SoundEffectInstance.Stop](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop)** method to stop the sound.
 
- ## An extended example
+ ## An Extended Example
 
  5. Below the **[Game.Draw](xref:Microsoft.Xna.Framework.Game.Draw)** method, create a new method called **IsKeyPressed**, which will check if a specified key is pressed and return a boolean value of true if it has been pressed.
 
