@@ -17,10 +17,10 @@ With your environment setup properly, the following explains how to build from s
     git clone https://github.com/MonoGame/monogame.github.io.git
     ```
 
-2. Install npm dependencies
+2. Install DotNet dependencies
 
     ```sh
-    npm install
+    dotnet tool restore
     ```
 
 3. Optional Steps
@@ -29,9 +29,12 @@ With your environment setup properly, the following explains how to build from s
 
    `git submodule update --init --recursive`
 
-4. Run a local build and serve it with hot reloading.  The site is full DocFX now so a single build command will do:
+4. Run a local build and serve it. The site is full DocFX now so a single build command will do:
 
   `dotnet docfx docfx.json --serve`
+
+> [!NOTE]
+> Docfx hosting does not support hot reload, so to refresh the hosted site you will need to stop the agent (ctrl-c) and run the above command again to refresh pages
 
 ## Document styling
 
@@ -52,6 +55,9 @@ The use of DocFX with the updated MonoGame docs site has afforded the use of som
   [DocFX Markdown style guide](https://dotnet.github.io/docfx/docs/markdown.html?tabs=linux%2Cdotnet#alerts)
 
 As an example of a document written using the above notes, please refer to the [HowTo: Create a Render Target tutorial](https://github.com/MonoGame/docs.monogame.github.io/blob/feature/docsmigration/articles/monogame/howto/graphics/HowTo_Create_a_RenderTarget.md)
+
+> [!TIP]
+> No additional text is needed at the bottom of document pages as the licenses and requirements are automatically added by the DocFX build system
 
 ## LICENSE
 
