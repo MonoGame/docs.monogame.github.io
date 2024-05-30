@@ -4,10 +4,9 @@ This repository contains the documentation for MonoGame.
 
 ## Building Form Source
 
-The MonoGame website is built using the .NET tool [DocFX](https://dotnet.github.io/docfx/) to generate the API reference documentation and the static site generator [11ty](https://www.11ty.dev/) to generate the full website.  This means you will need the following prerequisites to build locally from source
+The MonoGame website is built using the .NET tool [DocFX](https://dotnet.github.io/docfx/) to generate the base MonoGame documentation and the API reference documentation.  This means you will need the following prerequisites to build locally from source
 
-1. .NET SDK version 6.0 or higher installed ([download](https://dotnet.microsoft.com/en-us/download))
-2. Node.js and NPM installed ([download](https://nodejs.org/en))
+1. .NET SDK version 6.0 or higher installed ([download](https://dotnet.microsoft.com/en-us/download)) (recommended 8.0+)
 
 With your environment setup properly, the following explains how to build from source
 
