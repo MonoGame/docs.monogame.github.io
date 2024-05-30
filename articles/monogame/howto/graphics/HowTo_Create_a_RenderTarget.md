@@ -13,7 +13,7 @@ The example is very basic but the principles are the same, when drawing to a Ren
 5. Draw your game as normal.
 6. Draw the Render Texture to the screen in the position we desire (e.g. in the lower corner for a mini-map), most likely on top of your game graphics.
 
-> TIP
+> [!TIP]
 > The technique is very useful, especially if you are doing split-screen gaming and need to draw multiple camera views.
 
 ## Requirements

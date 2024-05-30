@@ -1,11 +1,8 @@
 ---
 title: What is the Content pipeline?
-description: The basics of the content pipeline for MonoGame!
+description: The topics in this section describe how to add and load content such as textures, meshes, sounds, and data in your game.
+requireMSLicense: true
 ---
-
-# Adding Content to a Game
-
-The topics in this section describe how to add and load content such as textures, meshes, sounds, and data in your game.
 
 ## In This Section
 
@@ -13,7 +10,7 @@ The topics in this section describe how to add and load content such as textures
 
 Describes the purpose of the MonoGame Content Pipeline and how it helps you add art and data assets to your game.
 
-[Loading Content](../../howto/Content_Pipeline/HowTo_LoadContent.md)
+[Loading Content](../../howto/Content_Pipeline/HowTo_GameContent_Add.md)
 
 Demonstrates how to load content such as models, textures, sounds, and effects.
 
@@ -54,9 +51,3 @@ Describes the valid tags and values for Sprite-Font (.spritefont) XML files used
 [What are the XML Elements for XMLImporter?](CP_XML_Elements.md)
 
 The base elements that are recognized by XmlImporter Class.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
