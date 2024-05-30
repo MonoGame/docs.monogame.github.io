@@ -58,7 +58,7 @@ sudo apt install wine64 p7zip-full curl
 Create wine prefix:
 
 ```sh
-wget -qO- https://raw.githubusercontent.com/MonoGame/MonoGame/master/Tools/MonoGame.Effect.Compiler/mgfxc_wine_setup.sh | bash
+wget -qO- https://monogame.net/downloads/net6_mgfxc_wine_setup.sh | bash
 ```
 
 If you ever need to undo the script, simply delete the `.winemonogame` folder in your home directory.

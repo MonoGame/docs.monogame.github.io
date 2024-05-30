@@ -58,6 +58,8 @@
   href: migrate_xna.md
 - name: Packaging
   href: packaging_games.md
+- name: Preparing for consoles
+  href: preparing_for_consoles.md
 - name: Samples and Demos
   href: samples.md
 - name: Community Tutorials
@@ -65,6 +67,6 @@
 - name: Help and Support
   href: help_and_support.md
 - name: Contributing to documentation
-  href: contributing
+  href: contributing.md
 - name: MonoGame
   href: monogame/Index.md
