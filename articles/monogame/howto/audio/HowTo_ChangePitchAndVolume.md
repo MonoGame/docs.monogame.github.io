@@ -105,7 +105,7 @@ The **[SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)** 
  > The **MathHelper.Clamp** method is used to ensure that the pitch and volume values are within the valid range. The pitch value is clamped between -1 and 1, while the volume value is clamped between 0 and 1.
 
  > [!NOTE]
- > The check for the keypress does not prevent the call to the method repeating so any value entered may peak the value in a singe key press. To prevent this, you can add a delay to the key press check, or use a boolean value to check if the key has been pressed and released.
+ > The check for the keypress does not prevent the call to the method repeating so any value entered may peak the value in a single key press. To prevent this, you can add a delay to the key press check, or use a boolean value to check if the key has been pressed and released.
 
 ## Concepts
 
