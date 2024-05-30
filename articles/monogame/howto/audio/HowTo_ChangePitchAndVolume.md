@@ -66,15 +66,15 @@ The **[SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)** 
 
 4. Still in the **Game.LoadContent** method, call the **SoundEffectInstance.Play** method to play the sound effect.
 
-	```csharp
+    ```csharp
     // Play the sound effect instance
-	soundEffectInstance.Play();
-	```
+    soundEffectInstance.Play();
+    ```
 
 > [!NOTE]
 > An instance will play once, to loop the sound, you can use the **[SoundEffectInstance.IsLooped](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped)** property to set the sound to loop. Also note that the sound will not repeat until the sound has finished playing. You can utilise the **[SoundEffectInstance.State](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State)** property to check if the sound is playing, paused or stopped. Use the **[SoundEffectInstance.Stop](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop)** method to stop the sound.
 
- ## An Extended Example
+## An Extended Example
 
 5. Below the **[Game.Draw](xref:Microsoft.Xna.Framework.Game.Draw)** method, create a new method called **IsKeyPressed**, which will check if a specified key is pressed and return a boolean value of true if it has been pressed.
 
@@ -83,11 +83,11 @@ The **[SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)** 
     {
         return Keyboard.GetState().IsKeyDown(key);
     }
-	```
+    ```
 
 6. In the **[Game.Update](xref:Microsoft.Xna.Framework.Game.Update)** method, check if the **Space** key is pressed and adjust the pitch and volume of the sound effect accordingly. The pitch and volume values are adjusted by +0.1f each time the **Space key** is pressed. The pitch values are clamped to a minimum value of -1.0f and a maximum value of 1.0f, and the volume values are then clamped to a minimum value of 0f and a maximum value of 1.0f. This is done to ensure that the pitch and volume values are within  valid ranges.
 
-	```csharp
+    ```csharp
     // Check if the SpaceKey is pressed and play the instance
     if (IsKeyPressed(Keys.Space))
         {
@@ -99,7 +99,7 @@ The **[SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play)** 
          soundEffectInstance.Volume = volume;
          soundEffectInstance.Play();
         }
-	```
+    ```
 
  > [!NOTE]
  > The **MathHelper.Clamp** method is used to ensure that the pitch and volume values are within the valid range. The pitch value is clamped between -1 and 1, while the volume value is clamped between 0 and 1.
