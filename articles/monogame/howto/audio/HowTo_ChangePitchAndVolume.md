@@ -33,12 +33,33 @@ The [SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play) meth
 4. Play the sound using [SoundEffectInstance.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Play).
 
     ```csharp
-    // Pitch takes values from -1 to 1
-    soundInstance.Pitch = pitch;
-    
-    // Volume only takes values from 0 to 1
-    soundInstance.Volume = volume;
-    ```
+    private bool IsKeyPressed(Keys key)
+    {
+        return Keyboard.GetState().IsKeyDown(key);
+    }
+	```
+
+ 6. In the **[Game.Update](xref:Microsoft.Xna.Framework.Game.Update)** method, check if the **Space** key is pressed and adjust the pitch and volume of the sound effect accordingly. The pitch and volume values are adjusted by +0.1f each time the **Space key** is pressed. The pitch values are clamped to a minimum value of -1.0f and a maximum value of 1.0f, and the volume values are then clamped to a minimum value of 0f and a maximum value of 1.0f. This is done to ensure that the pitch and volume values are within  valid ranges.
+
+	```csharp
+    // Check if the SpaceKey is pressed and play the instance
+    if (IsKeyPressed(Keys.Space))
+        {
+         pitch += 0.1f;
+         volume += 0.1f;
+         pitch = MathHelper.Clamp(pitch, -1.0f, 1.0f);
+         volume = MathHelper.Clamp(volume, 0f, 1.0f);
+         soundEffectInstance.Pitch = pitch;
+         soundEffectInstance.Volume = volume;
+         soundEffectInstance.Play();
+        }
+	```
+
+ > [!NOTE]
+ > The **MathHelper.Clamp** method is used to ensure that the pitch and volume values are within the valid range. The pitch value is clamped between -1 and 1, while the volume value is clamped between 0 and 1.
+
+ > [!NOTE]
+ > The check for the keypress does not prevent the call to the method repeating so any value entered may peak the value in a singe key press. To prevent this, you can add a delay to the key press check, or use a boolean value to check if the key has been pressed and released.
 
 ## Concepts
 
@@ -68,4 +89,4 @@ Provides a single playing, paused, or stopped instance of a [SoundEffect](xref:M
 
 © 2012 Microsoft Corporation. All rights reserved.  
 
-© 2023 The MonoGame Foundation.
+© 2024 The MonoGame Foundation.
