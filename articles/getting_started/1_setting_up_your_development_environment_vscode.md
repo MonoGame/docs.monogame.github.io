@@ -5,7 +5,7 @@ description: A step-by-step guide for setting up your development environment us
 
 # Setting up your development environment for VSCode
 
-This section provides a step-by-step guide for setting up your development environment on Windows, macOS, and Linux using VSCode as your editor.
+This is a guide on setting up your development environment for creating games with MonoGame using Visual Studio Code. By following this guide, you will learn how to install the necessary .NET SDK for developing C# applications, set up MonoGame C# templates for new projects, and configure Visual Studio Code with recommended extensions for C# development. By the end, you'll be fully equipped to start creating games with MonoGame using Visual Studio code. 
 
 > [!NOTE]
 > The only development environment that MonoGame officially supports on Linux is [Visual Studio Code](https://code.visualstudio.com/).
