@@ -106,7 +106,7 @@ dotnet new install MonoGame.Templates.CSharp
 
 
 > [!NOTE]
-> When installing the templates, you will see an error about the UWP template failing to install.  You can ignore this error, the UWP templates are deprecated and will be removed in a future MonoGame release.
+> When installing the templates, an error message may appear regarding the UWP template failing to install. This error can be safely ignored, as the UWP templates are deprecated and will be removed in a future MonoGame release.
 
 ## Install Visual Studio Code
 
