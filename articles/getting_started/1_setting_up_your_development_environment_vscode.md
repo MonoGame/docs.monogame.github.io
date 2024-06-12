@@ -160,6 +160,10 @@ To transform Visual Studio Code from a simple text editor into a powerful develo
 ## Setup Wine For Effect Compilation - MacOS/Linux Only
 Effect (shader) compilation requires access to DirectX.  This means it will not work natively on macOS and Linux systems, but it can be used through [Wine](https://www.winehq.org/).
 
+# [Windows](#tab/windows)
+> [!NOTE]
+> Windows users do not require an additional setup for effect compilation and can skip this section.
+
 # [macOS](#tab/macos)
 MonoGame
 MonoGame provides a setup script that can be executed to setup the Wine environment for Effect (shader) compilation.  However, this script has the following prerequisites that must first be setup
@@ -223,6 +227,7 @@ wget -qO- https://monogame.net/downloads/net6_mgfxc_wine_setup.sh | bash
 ```
 
 This will create new directory called `.winemonogame` in your home directory.  If you ever wish to undo the setup this script performed, just simply delete that directory.
+
 
 ---
 
