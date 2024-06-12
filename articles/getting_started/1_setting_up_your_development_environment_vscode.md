@@ -300,5 +300,5 @@ sudo ln -s /opt/homebrew/lib/libfreetype.6.dylib /usr/local/lib/libfreetype.6.dy
 sudo ln -s /opt/homebrew/lib/libfreeimage.3.18.0.dylib /usr/local/lib/libfreeimage.dylib
 ```
 
-## Next Up
-Visual Studio Code does not have an option within the UI to create a new MonoGame project like you would have in Visual Studio.  In the [Creating a New Project With VSCode](2_creating_a_new_project_netcore.md), we'll go over the steps to create a new MonoGame project when using Visual Studio Code.
+## Conclusion
+By following this guide, you have successfully set up your development environment for game development with MonoGame using Visual Studio Code. You've installed the .NET SDK, added MonoGame project templates, and configured Visual Studio Code with the necessary C# extensions. Now, you're ready to start creating your games! [Continue to the next section to create your first project and begin development](2_creating_a_new_project_netcore.md).
