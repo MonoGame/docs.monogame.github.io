@@ -121,7 +121,7 @@ dotnet new install MonoGame.Templates.CSharp
 # [macOS](#tab/macos)
 1. Open your web browser and navigate to [https://code.visualstudio.com/](https://code.visualstudio.com/).
 
-![Download VSCode](./images/1_setting_up_your_development_environment/vscode/windows/download-vscode.png)
+![Download VSCode](./images/1_setting_up_your_development_environment/vscode/mac/download-vscode.png)
 
 2. Click the **Download Mac Universal** button.  This will redirect you to the page where the application archive (.zip) file will begin downloading.
 3. Extract the contents of the VSCode archive that downloaded by double-clicking it inside a Finder window.  This will extract the **Visual Studio Code.app** file.
