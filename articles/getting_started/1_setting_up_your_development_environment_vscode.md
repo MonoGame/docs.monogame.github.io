@@ -96,34 +96,14 @@ export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 ## Install MonoGame Templates
 The .NET SDK installation provides the default C# project templates but does not include the MonoGame templates. These templates must be installed manually.
 
-# [Windows](#tab/windows)
-1. Open a new  **Command Prompt** window and run the following command
+1. Open a new terminal window (**Command Prompt** on Windows).
 
 ```sh
 dotnet new install MonoGame.Templates.CSharp
 ```
 
-![Install MonoGame Templates](./images/1_setting_up_your_development_environment/vscode/windows/install-templates.png)
+![Install MonoGame Templates](./images/1_setting_up_your_development_environment/vscode/install-templates.png)
 
-# [macOS](#tab/macos)
-1. Open a new terminal window an run the following command:
-
-```sh
-dotnet new install MonoGame.Templates.CSharp
-```
-
-![Install MonoGame Templates](./images/1_setting_up_your_development_environment/vscode/mac/install-templates.png)
-
-# [Linux](#tab/linux)
-1. Open a new terminal window and run the following command
-
-```sh
-dotnet new install MonoGame.Templates.CSharp
-```
-
-![Install MonoGame Templates](./images/1_setting_up_your_development_environment/vscode/linux/install-templates.png)
-
----
 
 > [!NOTE]
 > When installing the templates, you will see an error about the UWP template failing to install.  You can ignore this error, the UWP templates are deprecated and will be removed in a future MonoGame release.
