@@ -157,12 +157,8 @@ To transform Visual Studio Code from a simple text editor into a powerful develo
 
 ---
 
-## Setup Wine For Effect Compilation
+## Setup Wine For Effect Compilation - MacOS/Linux Only
 Effect (shader) compilation requires access to DirectX.  This means it will not work natively on macOS and Linux systems, but it can be used through [Wine](https://www.winehq.org/).
-
-# [Windows](#tab/windows)
-> [!NOTE]
-> Windows users do not require an additional setup for effect compilation and can skip this section.
 
 # [macOS](#tab/macos)
 MonoGame
@@ -184,7 +180,7 @@ brew install --cask wine-stable
 > [!CAUTION]
 > It is recommended that you use `wine-stable` and not `wine-staging`.
 
-3. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://raw.githubusercontent.com/MonoGame/MonoGame/master/Tools/MonoGame.Effect.Compiler/mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
+3. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net6_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
 
 ```sh
 wget -qO- https://monogame.net/downloads/net6_mgfxc_wine_setup.sh | bash
@@ -220,7 +216,7 @@ sudo apt install curl p7zip-full wine64
 > [!CAUTION]
 > If you plan to install Wine using the `winehq-*` package instead, it is recommended that you use the `winehq-stable` package and not `-staging`.
 
-3. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://raw.githubusercontent.com/MonoGame/MonoGame/master/Tools/MonoGame.Effect.Compiler/mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
+3. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net6_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
 
 ```sh
 wget -qO- https://monogame.net/downloads/net6_mgfxc_wine_setup.sh | bash
