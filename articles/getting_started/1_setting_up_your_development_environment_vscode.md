@@ -163,40 +163,17 @@ There are also individual guides below based on your Linux distribution if you d
 ---
 
 ## Install Visual Studio Code C# Extensions
-Visual Studio Code by itself is just a text editor.  In order to code and build C# projects, you will need to install the Visual Studio Code C# extension.  This extension will provide syntax highlighting, code analysis, intellisense, and other quality of life features when developing with C# in Visual Studio Code.
+To transform Visual Studio Code from a simple text editor into a powerful development environment for C# projects, you must install the Visual Studio Code C# extension. This extension enhances the editor by providing syntax highlighting, code analysis, IntelliSense, and other features that significantly improve the development experience and productivity when working with C#.
 
-# [Windows](#tab/windows)
 1. Open Visual Studio Code.
 2. Click the **Extensions** icon in the **Activity Bar** on the left.
 
-![Click Extensions](./images/1_setting_up_your_development_environment/vscode/windows/click-extensions.png)
+![Click Extensions](./images/1_setting_up_your_development_environment/vscode/click-extensions.png)
 
 3. In the **Search Box** type `C#`.
 4. Click **Install** for the **C# Dev Kit** extension.  Installing this will also install the base **C#** extension.
 
-![Install C# DevKit Extension](./images/1_setting_up_your_development_environment/vscode/windows/install-devkit.png)
-
-# [macOS](#tab/macos)
-1. Open Visual Studio Code
-2. Click the **Extensions** icon in the **Activity Bar** on the left.
-
-![Click Extensions](./images/1_setting_up_your_development_environment/vscode/mac/click-extensions.png)
-
-3. In the **Search Box** type `C#`
-4. Click **Install** for the **C# Dev Kit** extension.  Installing this will also install the base **C#** extension.
-
-![Install C# DevKit Extension](./images/1_setting_up_your_development_environment/vscode/mac/install-devkit.png)
-
-# [Linux](#tab/linux)
-1. Open Visual Studio Code.
-2. Click the **Extensions** icon in the **Activity Bar** on the left.
-
-![Click Extensions](./images/1_setting_up_your_development_environment/vscode/linux/click-extensions.png)
-
-3. In the **Search Box** type `C#`.
-4. Click the **Install** button for the **C# Dev Kit** extension.  Installing this will also install the base **C#** extension.
-
-![Install C# DevKit Extension](./images/1_setting_up_your_development_environment/vscode/linux/install-devkit.png)
+![Install C# DevKit Extension](./images/1_setting_up_your_development_environment/vscode/install-devkit.png)
 
 ---
 
