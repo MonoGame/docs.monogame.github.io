@@ -94,7 +94,7 @@ export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 > ```
 
 ## Install MonoGame Templates
-The .NET SDK installation comes with the default C# project templates, but it does not include the MonoGame templates.  These will need to be installed manually.
+The .NET SDK installation provides the default C# project templates but does not include the MonoGame templates. These templates must be installed manually.
 
 # [Windows](#tab/windows)
 1. Open a new  **Command Prompt** window and run the following command
