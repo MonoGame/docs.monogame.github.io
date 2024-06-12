@@ -169,7 +169,7 @@ Visual Studio Code by itself is just a text editor.  In order to code and build 
 1. Open Visual Studio Code.
 2. Click the **Extensions** icon in the **Activity Bar** on the left.
 
-![Click Extensions](./images/1_setting_up_your_development_environment_vscode/click-extensions-windows.png)
+![Click Extensions](./images/1_setting_up_your_development_environment/vscode/windows/click-extensions.png)
 
 3. In the **Search Box** type `C#`.
 4. Click **Install** for the **C# Dev Kit** extension.  Installing this will also install the base **C#** extension.
