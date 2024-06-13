@@ -236,26 +236,30 @@ There is currently a two known issue when building content on an Apple Silicon (
 
 1. **Building Textures**: An exception occurs stating that the **freeimage** lib could not be found.
 2. **Building SpriteFonts**: An exception occurs stating that the **freetype** lib could not be found.
+3. **Building Models**: An exception occurs starting that the **assimp** lib could not be found.
 
 These issue occur due to needing compiled versions of these libs for the M1/M2 architecture.  [There is currently work being done to resolve this](https://github.com/MonoGame/MonoGame/issues/8124), however in the meantime you can use the following workaround that has been provided by community members.
 
-1. Open a terminal and install **freeimage** and **freetype** using **brew**
+1. Download and install the x64 version of [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0). This will place an x64 version of .NET 6 in a `/usr/local/share/dotnet/x64` directory.
+NOTE: It MUST be the x64 version in order for this to work. This will allow the x64 native libraries that the MonoGame Content Pipeline uses to function on the Apple Silicon device.
+Currently it also needs to be .NET 6 for the 3.8.1 Release of MonoGame.
 
-```sh
-brew install freeimage freetype
+3. Open your .csproj and add the following lines to the first `<PropertyGroup>` section.
+
+```xml
+<DotnetCommand>/usr/local/share/dotnet/x64/dotnet</DotnetCommand>
 ```
 
-2. (Optional) Create the `/usr/local/lib/` directory if it does not exist
+3. (Alternative) The directory above is not in the path. But we do not want the system to be confused on which .NET is should be using. So rather thatn putting the x64 verison in the path we should instead create a symlink named `dotnet64`.
 
 ```sh
-mkdir /usr/local/lib/
+sudo ln -s /usr/local/share/dotnet/x64/dotnet /usr/local/share/dotnet/dotnet64
 ```
 
-3. Symlink both **freeimage** and **freetype** to the `/usr/local/lib/` directory
+We can then use this value as the value for `DotnetCommand`
 
-```sh
-sudo ln -s /opt/homebrew/lib/libfreetype.6.dylib /usr/local/lib/libfreetype.6.dylib
-sudo ln -s /opt/homebrew/lib/libfreeimage.3.18.0.dylib /usr/local/lib/libfreeimage.dylib
+```xml
+<DotnetCommand>dotnet64</DotnetCommand>
 ```
 
 ## Conclusion
