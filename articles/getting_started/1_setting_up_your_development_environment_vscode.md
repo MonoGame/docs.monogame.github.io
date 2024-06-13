@@ -244,7 +244,7 @@ These issue occur due to needing compiled versions of these libs for the M1/M2 a
 NOTE: It MUST be the x64 version in order for this to work. This will allow the x64 native libraries that the MonoGame Content Pipeline uses to function on the Apple Silicon device.
 Currently it also needs to be .NET 6 for the 3.8.1 Release of MonoGame.
 
-3. Open your .csproj and add the following lines to the first `<PropertyGroup>` section.
+2. Open your .csproj and add the following lines to the first `<PropertyGroup>` section.
 
 ```xml
 <DotnetCommand>/usr/local/share/dotnet/x64/dotnet</DotnetCommand>
