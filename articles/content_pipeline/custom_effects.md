@@ -47,23 +47,23 @@ These are some tips for writing or converting effects for use with MonoGame.
 
 | The supported shader models when targeting DX are the following:|
 |---|
-|  * `vs_4_0_level_9_1` and `ps_4_0_level_9_1`|
-|  * `vs_4_0_level_9_3` and `ps_4_0_level_9_3`|
-|  * `vs_4_0` and `ps_4_0` (requires `HiDef` `GraphicsProfile` at runtime)|
-|  * `vs_4_1` and `ps_4_1` (requires `HiDef` `GraphicsProfile` at runtime)|
-|  * `vs_5_0` and `ps_5_0` (requires `HiDef` `GraphicsProfile` at runtime)|
----
+|  `vs_4_0_level_9_1` and `ps_4_0_level_9_1`|
+|  `vs_4_0_level_9_3` and `ps_4_0_level_9_3`|
+|  `vs_4_0` and `ps_4_0` (requires `HiDef` `GraphicsProfile` at runtime)|
+|  `vs_4_1` and `ps_4_1` (requires `HiDef` `GraphicsProfile` at runtime)|
+|  `vs_5_0` and `ps_5_0` (requires `HiDef` `GraphicsProfile` at runtime)|
+
 |When targeting GL platforms we automatically translate FX files to GLSL using a library called [MojoShader](http://icculus.org/mojoshader/).  The supported feature levels are the following:|
 |---|
-|  * `vs_2_0` and `ps_2_0`|
-|  * `vs_3_0` and `ps_3_0`|
----
+|  `vs_2_0` and `ps_2_0`|
+|  `vs_3_0` and `ps_3_0`|
+
 |You can use preprocessor checks to add conditional code or compilation depending on defined symbols. MonoGame defines the following symbols when compiling effects:|
 |---|
-|  * `2MGFX`                        |
-|  * `HLSL` and `SM4` for DirectX   |
-|  * `OpenGL` and `GLSL` for OpenGL |
----
+|  `2MGFX`                        |
+|  `HLSL` and `SM4` for DirectX   |
+|  `OpenGL` and `GLSL` for OpenGL |
+
   
 As an example, you can conditionally set shader models depending on the platform with the following code:
 
