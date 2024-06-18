@@ -42,6 +42,7 @@ To use a custom effect with MonoGame you must do one of the following:
 * Process your effect file with the [MGFXC tool](../tools/mgfxc.md) and load them yourself at runtime.
 
 ## Effect Writing Tips
+
 These are some tips for writing or converting effects for use with MonoGame.
 
 | The supported shader models when targeting DX are the following:|
