@@ -4,9 +4,11 @@ description: Demonstrates how to create a custom vertex declaration and use it t
 requireMSLicense: true
 ---
 
-![Custom Vertex Example](../images/graphics_custom_vertex.png)
+## Overview
 
-Game Studio includes a few predefined classes for common vertex buffer declarations such as [VertexPositionColor](xref:Microsoft.Xna.Framework.Graphics.VertexPositionColor) and [VertexPositionColorTexture](xref:Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture). If you need to create a vertex buffer declaration that includes additional user-defined types, create a custom vertex declaration.
+MonoGame includes a few predefined classes for common vertex buffer declarations such as [VertexPositionColor](xref:Microsoft.Xna.Framework.Graphics.VertexPositionColor) and [VertexPositionColorTexture](xref:Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture). If you need to create a vertex buffer declaration that includes additional user-defined types, create a custom vertex declaration.
+
+![Custom Vertex Example](../images/graphics_custom_vertex.png)
 
 A custom vertex declaration is a class that implements fully customizable per-vertex data. Furthermore, if you derive the class from [IVertexType](xref:Microsoft.Xna.Framework.Graphics.IVertexType), you will not need to create a vertex declaration when creating your vertex buffer or drawing the geometry.
 
@@ -136,9 +138,3 @@ A custom vertex declaration is a class that implements fully customizable per-ve
         );
     }
     ```
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.

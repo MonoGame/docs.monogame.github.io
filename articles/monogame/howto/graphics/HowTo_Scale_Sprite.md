@@ -4,6 +4,8 @@ description: Demonstrates how to scale a sprite using a uniform scale.
 requireMSLicense: true
 ---
 
+## Overview
+
 ## Drawing a Scaled Sprite with a uniform scale
 
 1. Follow the procedures of [Drawing a Sprite](HowTo_Draw_A_Sprite.md).
@@ -127,22 +129,14 @@ requireMSLicense: true
 
 ## See Also
 
-### Tasks
-
 [Drawing a Sprite](HowTo_Draw_A_Sprite.md)
 
-#### Concepts
+### Concepts
 
 [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
-#### Reference
+### Reference
 
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)  
+[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
 [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
-[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)

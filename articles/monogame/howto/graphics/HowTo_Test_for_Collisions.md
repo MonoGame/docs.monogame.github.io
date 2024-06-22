@@ -4,9 +4,9 @@ description: Demonstrates how to use the BoundingSphere class to check whether t
 requireMSLicense: true
 ---
 
-## Detecting Whether Two Models Collide
+## Overview
 
-### To check whether two objects are colliding
+## Detecting Whether Two Models Collide
 
 1. Track the position of a model as it moves about the game world.
 
@@ -76,12 +76,8 @@ requireMSLicense: true
 
 ## See Also
 
-[Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)  
+[Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)
 
 ### Concepts
 
-[Bounding Volumes and Collisions](../HowTo_CollisionDetectionOverview.md)  
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.
+[Bounding Volumes and Collisions](../HowTo_CollisionDetectionOverview.md)

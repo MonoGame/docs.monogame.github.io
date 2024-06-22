@@ -4,9 +4,13 @@ description: Demonstrates how to draw a sprite repeatedly in the x and y directi
 requireMSLicense: true
 ---
 
-![Tiled Sprite](../images/graphics_sprite_tiled.jpg)
+## Overview
 
 This sample uses a texture addressing mode to duplicate a texture across the area defined by [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_). Other address modes, such as mirroring, can create interesting results.
+
+## Requirements
+
+![Tiled Sprite](../images/graphics_sprite_tiled.jpg)
 
 ## Drawing a Tiled a Sprite
 
@@ -35,23 +39,15 @@ This sample uses a texture addressing mode to duplicate a texture across the are
 
 ## See Also
 
-### Tasks
-
 [Drawing a Sprite](HowTo_Draw_A_Sprite.md)
 
-#### Concepts
+### Concepts
 
 [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
-#### Reference
+### Reference
 
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)  
+[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
 [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
 [SpriteSortMode](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode)
-[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)

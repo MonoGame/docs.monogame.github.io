@@ -4,11 +4,11 @@ description: Demonstrates how to create a state object using any of the state ob
 requireMSLicense: true
 ---
 
-## Creating a State Object
+## Overview
 
 In this example, we will demonstrate how to create a state object using any of the state object classes: [BlendState](xref:Microsoft.Xna.Framework.Graphics.BlendState), [DepthStencilState](xref:Microsoft.Xna.Framework.Graphics.DepthStencilState), [RasterizerState](xref:Microsoft.Xna.Framework.Graphics.RasterizerState), or [SamplerState](xref:Microsoft.Xna.Framework.Graphics.SamplerState).
 
-### To create a state object
+## To create a state object
 
 1. Declare three state object variables as fields in your game.
 
@@ -51,9 +51,3 @@ In this example, we will demonstrate how to create a state object using any of t
     ```
 
 > The example contains two triangles. The first one is rendered if you select clockwise winding order; the second triangle is rendered if you select counterclockwise winding order; both triangles are rendered if you select no culling.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.

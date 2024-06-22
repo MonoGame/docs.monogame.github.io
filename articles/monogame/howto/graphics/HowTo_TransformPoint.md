@@ -4,9 +4,9 @@ description: This example demonstrates how to use the Vector3 and Matrix classes
 requireMSLicense: true
 ---
 
-## Transforming a Point with a Matrix
+## Overview
 
-### To transform a point
+## Transforming a Point with a Matrix
 
 1. Create a [Matrix](xref:Microsoft.Xna.Framework.Matrix) by using **CreateRotationY** or one of the other **Create** methods.
 2. Pass the point and the [Matrix](xref:Microsoft.Xna.Framework.Matrix) to the [Vector3.Transform](xref:Microsoft.Xna.Framework.Vector3) method.
@@ -35,9 +35,3 @@ static Vector3 RotatePointOnYAxis(Vector3 point, float angle)
 * CreateRotationZ
 * CreateScale
 * CreateTranslation
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.

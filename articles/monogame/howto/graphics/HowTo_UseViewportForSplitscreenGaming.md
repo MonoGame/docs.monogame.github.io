@@ -4,6 +4,8 @@ description: Demonstrates how to use viewports to display different scenes simul
 requireMSLicense: true
 ---
 
+## Overview
+
 ![A Split screen Example](../images/graphics_split_screen.png)
 
 ## To create multiple screens
@@ -76,15 +78,9 @@ requireMSLicense: true
 
 ### Concepts
 
-[What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)  
+[What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)
 
-#### Reference
+### Reference
 
-[GraphicsDevice.Viewport](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice)  
-[Viewport Structure](xref:Microsoft.Xna.Framework.Graphics.Viewport)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+[GraphicsDevice.Viewport](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice)
+[Viewport Structure](xref:Microsoft.Xna.Framework.Graphics.Viewport)

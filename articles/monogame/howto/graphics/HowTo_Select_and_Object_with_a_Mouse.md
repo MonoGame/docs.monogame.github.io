@@ -4,12 +4,12 @@ description: Demonstrates how to check whether the mouse is positioned over a 3D
 requireMSLicense: true
 ---
 
+## Overview
+
 > [!NOTE]
 > This example applies only to Desktop or mobile development. The [Mouse](xref:Microsoft.Xna.Framework.Input.Mouse) and [MouseState](xref:Microsoft.Xna.Framework.Input.MouseState) objects are not supported on consoles.
 
 ## Detecting Whether a User Clicked a 3D Object
-
-### To check whether the mouse is positioned over a 3D object
 
 1. Get the current state of the mouse by using [GetState](xref:Microsoft.Xna.Framework.Input.Mouse).
 
@@ -63,7 +63,3 @@ requireMSLicense: true
 ## See Also
 
 [Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.

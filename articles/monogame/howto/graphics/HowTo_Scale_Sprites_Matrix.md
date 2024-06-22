@@ -4,6 +4,8 @@ description: Demonstrates how to scale sprites using a matrix that is created ba
 requireMSLicense: true
 ---
 
+## Overview
+
 ## Scaling Sprites Based on Screen Size
 
 1. Use the [PreferredBackBufferHeight](xref:Microsoft.Xna.Framework.GraphicsDeviceManager.PreferredBackBufferHeight) and [PreferredBackBufferWidth](xref:Microsoft.Xna.Framework.GraphicsDeviceManager.PreferredBackBufferWidth) properties of [GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) during your game's [Initialize](xref:Microsoft.Xna.Framework.Game.Initialize) to set the default screen size of your game.
@@ -98,23 +100,15 @@ requireMSLicense: true
 
 ## See Also
 
-### Tasks
-
 [Drawing a Sprite](HowTo_Draw_A_Sprite.md)
 
-#### Concepts
+### Concepts
 
 [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
-#### Reference
+### Reference
 
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)  
+[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
 [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
-[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)  
-[Matrix.CreateScale](xref:Microsoft.Xna.Framework.Matrix#Microsoft_Xna_Framework_Matrix_CreateScale_System_Single_)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
+[Matrix.CreateScale](xref:Microsoft.Xna.Framework.Matrix#Microsoft_Xna_Framework_Matrix_CreateScale_System_Single_)

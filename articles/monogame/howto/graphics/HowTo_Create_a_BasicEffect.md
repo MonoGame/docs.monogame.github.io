@@ -4,11 +4,11 @@ description: Demonstrates how to create and initialize an instance of the BasicE
 requireMSLicense: true
 ---
 
+## Overview
+
 > The steps described here apply to effects created with the [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) class. Use the [Effect](xref:Microsoft.Xna.Framework.Graphics.Effect) class to write a custom effect. The example draws aliased geometry. To see an example that draws smoother edges because it also applies anti-aliasing, see [Enabling Anti-aliasing (Multi-sampling)](HowTo_Enable_Anti_Aliasing.md).
 
-## Using BasicEffect
-
-### To use BasicEffect
+## To use BasicEffect
 
 Using the basic effect class requires a set of world, view, and projection matrices, a vertex buffer, a vertex declaration, and an instance of the [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) class.
 
@@ -181,9 +181,3 @@ Using the basic effect class requires a set of world, view, and projection matri
     
     base.Draw(gameTime);
     ```
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.

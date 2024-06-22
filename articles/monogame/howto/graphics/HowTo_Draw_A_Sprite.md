@@ -4,6 +4,8 @@ description: Demonstrates how to draw a sprite by using the SpriteBatch class
 requireMSLicense: true
 ---
 
+## Overview
+
 ## To draw a sprite on screen
 
 1. Derive a class from [Game](xref:Microsoft.Xna.Framework.Game).
@@ -51,12 +53,6 @@ requireMSLicense: true
 
 ### Reference
 
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)  
+[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
 [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
-[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.
+[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)

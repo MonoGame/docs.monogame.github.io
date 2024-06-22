@@ -4,9 +4,9 @@ description: Demonstrates how to use a custom effect and a texture to render a 3
 requireMSLicense: true
 ---
 
-## Using a custom effect and a texture
+## Overview
 
-### To use a custom effect and a texture
+## To use a custom effect and a texture
 
 1. Create a vertex declaration that contains a position and a texture coordinate.
 
@@ -78,7 +78,3 @@ requireMSLicense: true
 ### Concepts
 
 [3D Pipeline Basics](../../whatis/graphics/WhatIs_3DRendering.md)
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.

@@ -4,9 +4,10 @@ description: Demonstrates how to position the camera so that all objects in a sc
 requireMSLicense: true
 ---
 
-## Positioning the Camera to View All Objects in a Scene
 
-### To position the camera to view all objects in a scene
+## Overview
+
+## To position the camera to view all objects in a scene
 
 1. Create a [BoundingSphere](xref:Microsoft.Xna.Framework.BoundingSphere) class that contains all of the objects in the scene. To create the sphere, loop through all of the objects in the scene, merging the [BoundingSphere](xref:Microsoft.Xna.Framework.BoundingSphere) classes that contain them with **CreateMerged**.
 
@@ -68,10 +69,4 @@ requireMSLicense: true
 
 ## See Also
 
-[Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+[Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)

@@ -4,6 +4,8 @@ description: Demonstrates how to animate a sprite from a texture using a custom 
 requireMSLicense: true
 ---
 
+## Overview
+
 The example assumes the texture you are loading contains four frames of the same size in a texture whose size is 256×64 pixels, and uses a class named **AnimatedTexture**, which is included with the sample.
 
 ## Drawing an Animated Sprite
@@ -115,22 +117,14 @@ The example assumes the texture you are loading contains four frames of the same
 
 ## See Also
 
-### Tasks
-
 [Drawing a Sprite](HowTo_Draw_A_Sprite.md)
 
-#### Concepts
+### Concepts
 
 [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
-#### Reference
+### Reference
 
 [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
 [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
 [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.

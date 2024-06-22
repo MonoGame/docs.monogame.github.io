@@ -4,15 +4,16 @@ description: Demonstrates how to enable anti-aliasing for your game.
 requireMSLicense: true
 ---
 
+
+## Overview
+
 **Figure 1.  Anti-aliasing the edges of a cube: multi-sampling is disabled on the left, and enabled on the right.**
 
 ![Anti-aliasing the edges of a cube: multi-sampling is disabled on the left, and enabled on the right](../images/graphics_aa.jpg)
 
 Anti-aliasing is a technique for minimizing distortion artifacts caused by aliasing when rendering a high-resolution signal (such as a sharp edge) at a low resolution (such as in a render target with a fixed number of pixel locations). anti-aliasing smooths sharp edges by partially rendering to neighboring pixels. This technique is also called multi-sampling because each pixel value can be the result of multiple samples.
 
-## Enabling Anti-aliasing
-
-### To enable anti-aliasing in your game
+## To enable anti-aliasing in your game
 
 * Render 3D geometry. One way to do this is by creating a BasicEffect using the [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) class. For more detail, see [Creating a Basic Effect](HowTo_Create_a_BasicEffect.md).
 
@@ -58,17 +59,11 @@ Anti-aliasing is a technique for minimizing distortion artifacts caused by alias
 
 ### Concepts
 
-[3D Pipeline Basics](../../whatis/graphics/WhatIs_3DRendering.md)  
-[What Is anti-aliasing?](../../whatis/graphics/WhatIs_antialiasing.md)  
+[3D Pipeline Basics](../../whatis/graphics/WhatIs_3DRendering.md)
+[What Is anti-aliasing?](../../whatis/graphics/WhatIs_antialiasing.md)
 
-#### Reference
+### Reference
 
-[GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager)  
-[PreparingDeviceSettings](/api/Microsoft.Xna.Framework.GraphicsDeviceManager.html#Microsoft_Xna_Framework_GraphicsDeviceManager_PreparingDeviceSettings)  
-[PresentationParameters](xref:Microsoft.Xna.Framework.Graphics.PresentationParameters)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+[GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager)
+[PreparingDeviceSettings](/api/Microsoft.Xna.Framework.GraphicsDeviceManager.html#Microsoft_Xna_Framework_GraphicsDeviceManager_PreparingDeviceSettings)
+[PresentationParameters](xref:Microsoft.Xna.Framework.Graphics.PresentationParameters)

@@ -4,9 +4,9 @@ description: Demonstrates how to create a custom GraphicsDeviceManager that only
 requireMSLicense: true
 ---
 
-## Restricting Graphics Devices
+## Overview
 
-### To restrict graphics devices to widescreen aspect ratios in full-screen mode
+## To restrict graphics devices to widescreen aspect ratios in full-screen mode
 
 1. Create a class that derives from [GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager).
 
@@ -113,9 +113,3 @@ requireMSLicense: true
                 graphics.ApplyChanges();
             }
     ```
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.

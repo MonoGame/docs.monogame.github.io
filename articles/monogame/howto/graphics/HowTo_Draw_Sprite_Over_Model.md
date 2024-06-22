@@ -4,6 +4,8 @@ description: Demonstrates how to draw a sprite so that it obscures a model. In t
 requireMSLicense: true
 ---
 
+## Overview
+
 For this sample, the camera is a standard arc ball camera, implemented by camera.cs. The 3D model file is a simple ring, implemented by ring16b.x. The animated explosion sprite is implemented by explosion.dds. These files can be found in the complete sample. See [Animating a Sprite](HowTo_Animate_Sprite.md) for an example of the **AnimatedTexture** class.
 
 ## Drawing a Sprite Over a 3D Model
@@ -115,9 +117,3 @@ For this sample, the camera is a standard arc ball camera, implemented by camera
 
 [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 [What Is Color Blending?](../../whatis/graphics/WhatIs_ColorBlending.md)
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
