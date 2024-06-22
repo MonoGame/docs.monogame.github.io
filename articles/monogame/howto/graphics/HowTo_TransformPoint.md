@@ -1,11 +1,8 @@
 ---
 title: How to transform a Point
 description: This example demonstrates how to use the Vector3 and Matrix classes to transform a point. A matrix transform can include scaling, rotating, and translating information.
+requireMSLicense: true
 ---
-
-# Transforming a Point
-
-This example demonstrates how to use the [Vector3](xref:Microsoft.Xna.Framework.Vector3) and [Matrix](xref:Microsoft.Xna.Framework.Matrix) classes to transform a point. A matrix transform can include scaling, rotating, and translating information.
 
 ## Transforming a Point with a Matrix
 

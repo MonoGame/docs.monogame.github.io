@@ -1,11 +1,8 @@
 ---
 title: How to rotate and move the Camera
 description: Demonstrates how to rotate and move a camera in a 3D environment. You can rotate the camera about its y-axis, and move it forward and backward. You control the camera's position and orientation by using the directional keys on your keyboard or by using the D-pad of your gamepad.
+requireMSLicense: true
 ---
-
-# Rotating and Moving the Camera
-
-Demonstrates how to rotate and move a camera in a 3D environment. You can rotate the camera about its y-axis, and move it forward and backward. You control the camera's position and orientation by using the directional keys on your keyboard or by using the D-pad of your gamepad.
 
 ## Overview
 

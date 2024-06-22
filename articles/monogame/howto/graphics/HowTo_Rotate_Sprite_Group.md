@@ -1,11 +1,8 @@
 ---
 title: Rotating a Group of Sprites
 description: Demonstrates how to rotate a group of sprites around a single point.
+requireMSLicense: true
 ---
-
-# Rotating a Group of Sprites
-
-Demonstrates how to rotate a group of sprites around a single point.
 
 ## Drawing a Rotated Group of Sprites
 

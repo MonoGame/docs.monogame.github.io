@@ -1,11 +1,8 @@
 ---
 title: How to restrict Aspect Ratio on a Graphics Device
 description: Demonstrates how to create a custom GraphicsDeviceManager that only selects graphics devices with widescreen aspect ratios in full-screen mode.
+requireMSLicense: true
 ---
-
-# Restricting Aspect Ratio on a Graphics Device
-
-Demonstrates how to create a custom [GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) that only selects graphics devices with widescreen aspect ratios in full-screen mode.
 
 ## Restricting Graphics Devices
 

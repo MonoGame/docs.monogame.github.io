@@ -1,11 +1,8 @@
 ---
 title: Testing for Collisions
 description: Demonstrates how to use the BoundingSphere class to check whether two models are colliding.
+requireMSLicense: true
 ---
-
-# Testing for Collisions
-
-Demonstrates how to use the [BoundingSphere](xref:Microsoft.Xna.Framework.BoundingSphere) class to check whether two models are colliding.
 
 ## Detecting Whether Two Models Collide
 

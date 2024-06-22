@@ -1,11 +1,8 @@
 ---
 title: How to position the Camera
 description: Demonstrates how to position the camera so that all objects in a scene are within the view frustum while maintaining the camera's original orientation.
+requireMSLicense: true
 ---
-
-# Positioning the Camera
-
-Demonstrates how to position the camera so that all objects in a scene are within the view frustum while maintaining the camera's original orientation.
 
 ## Positioning the Camera to View All Objects in a Scene
 

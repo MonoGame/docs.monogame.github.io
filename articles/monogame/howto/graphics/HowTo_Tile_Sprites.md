@@ -1,11 +1,8 @@
 ---
 title: Tiling a Sprite
 description: Demonstrates how to draw a sprite repeatedly in the x and y directions in one Draw call
+requireMSLicense: true
 ---
-
-# Tiling a Sprite
-
-Demonstrates how to draw a sprite repeatedly in the x and y directions in one [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_) call.
 
 ![Tiled Sprite](../images/graphics_sprite_tiled.jpg)
 

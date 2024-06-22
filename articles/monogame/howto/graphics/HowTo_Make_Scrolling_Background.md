@@ -1,11 +1,8 @@
 ---
 title: Making a Scrolling Background
 description: Demonstrates how to draw a scrolling background sprite using the SpriteBatch class
+requireMSLicense: true
 ---
-
-# Making a Scrolling Background
-
-Demonstrates how to draw a scrolling background sprite using the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) class.
 
 ## Drawing a Scrolling Background Sprite
 

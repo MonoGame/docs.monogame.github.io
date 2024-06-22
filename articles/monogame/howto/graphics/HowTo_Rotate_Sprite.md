@@ -1,11 +1,8 @@
 ---
 title: Rotating a Sprite
 description: Demonstrates how to rotate a sprite around its center.
+requireMSLicense: true
 ---
-
-# Rotating a Sprite
-
-Demonstrates how to rotate a sprite around its center.
 
 ## Drawing a Rotated Sprite
 

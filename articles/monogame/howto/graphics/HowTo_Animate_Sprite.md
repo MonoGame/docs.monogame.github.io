@@ -1,11 +1,8 @@
 ---
 title: Animating a Sprite
 description: Demonstrates how to animate a sprite from a texture using a custom class.
+requireMSLicense: true
 ---
-
-# Animating a Sprite
-
-Demonstrates how to animate a sprite from a texture using a custom class.
 
 The example assumes the texture you are loading contains four frames of the same size in a texture whose size is 256×64 pixels, and uses a class named **AnimatedTexture**, which is included with the sample.
 

@@ -1,11 +1,8 @@
 ---
 title: How to create a Custom Vertex Declaration
 description: Demonstrates how to create a custom vertex declaration and use it to render a 3D object.
+requireMSLicense: true
 ---
-
-# Creating a Custom Vertex Declaration
-
-Demonstrates how to create a custom vertex declaration and use it to render a 3D object.
 
 ![Custom Vertex Example](../images/graphics_custom_vertex.png)
 

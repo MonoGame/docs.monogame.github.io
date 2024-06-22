@@ -1,11 +1,8 @@
 ---
 title: How to enable anti-aliasing
 description: Demonstrates how to enable anti-aliasing for your game.
+requireMSLicense: true
 ---
-
-# Enabling Anti-aliasing (Multisampling)
-
-Demonstrates how to enable anti-aliasing for your game.
 
 **Figure 1.  Anti-aliasing the edges of a cube: multi-sampling is disabled on the left, and enabled on the right.**
 

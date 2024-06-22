@@ -1,9 +1,8 @@
 ---
 title: How to Dynamically Update Vertex Data
 description: Describes techniques for dynamically updating vertex data in an MonoGame game.
+requireMSLicense: true
 ---
-
-# Dynamically Updating Vertex Data
 
 Geometry in a 3D game is defined by vertex data. Sometimes, a game needs to modify vertex data or even generate new vertex data dynamically (at run time). Here are some solutions for dynamically updating vertex data.
 

@@ -1,11 +1,8 @@
 ---
 title: Creating a Custom Effect with Texturing
 description: Demonstrates how to use a custom effect and a texture to render a 3D object.
+requireMSLicense: true
 ---
-
-# Creating a Custom Effect with Texturing
-
-Demonstrates how to use a custom effect and a texture to render a 3D object.
 
 ## Using a custom effect and a texture
 

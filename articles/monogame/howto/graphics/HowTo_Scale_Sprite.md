@@ -1,11 +1,8 @@
 ---
 title: Scaling a Sprite
 description: Demonstrates how to scale a sprite using a uniform scale.
+requireMSLicense: true
 ---
-
-# Scaling a Sprite
-
-Demonstrates how to scale a sprite using a uniform scale.
 
 ## Drawing a Scaled Sprite with a uniform scale
 

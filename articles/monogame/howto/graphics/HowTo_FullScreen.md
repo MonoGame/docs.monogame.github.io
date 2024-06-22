@@ -1,11 +1,8 @@
 ---
 title: How to create a Full-Screen Game
 description: Demonstrates how to start a game in full-screen mode.
+requireMSLicense: true
 ---
-
-# Creating a Full-Screen Game
-
-Demonstrates how to start a game in full-screen mode.
 
 ## Creating a Full-Screen Game
 

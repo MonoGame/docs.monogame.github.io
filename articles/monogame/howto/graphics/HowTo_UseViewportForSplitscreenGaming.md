@@ -1,11 +1,8 @@
 ---
 title: How to display Multiple Screens with Viewports
 description: Demonstrates how to use viewports to display different scenes simultaneously using two cameras.
+requireMSLicense: true
 ---
-
-# Displaying Multiple Screens with Viewports
-
-Demonstrates how to use viewports to display different scenes simultaneously using two cameras.
 
 ![A Split screen Example](../images/graphics_split_screen.png)
 

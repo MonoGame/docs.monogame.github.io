@@ -1,14 +1,11 @@
 ---
 title: Selecting an Object with a Mouse
 description: Demonstrates how to check whether the mouse is positioned over a 3D object by creating a ray starting at the camera's near clipping plane and ending at its far clipping plane.
+requireMSLicense: true
 ---
 
-# Selecting an Object with a Mouse
-
-Demonstrates how to check whether the mouse is positioned over a 3D object by creating a ray starting at the camera's near clipping plane and ending at its far clipping plane.
-
 > [!NOTE]
-> This example applies only to Windows or mobile development. The [Mouse](xref:Microsoft.Xna.Framework.Input.Mouse) and [MouseState](xref:Microsoft.Xna.Framework.Input.MouseState) objects are not supported on consoles.
+> This example applies only to Desktop or mobile development. The [Mouse](xref:Microsoft.Xna.Framework.Input.Mouse) and [MouseState](xref:Microsoft.Xna.Framework.Input.MouseState) objects are not supported on consoles.
 
 ## Detecting Whether a User Clicked a 3D Object
 
