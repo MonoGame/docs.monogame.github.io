@@ -78,9 +78,9 @@ requireMSLicense: true
 
 ### Concepts
 
-[What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)
+- [What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)
 
 ### Reference
 
-[GraphicsDevice.Viewport](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice)
-[Viewport Structure](xref:Microsoft.Xna.Framework.Graphics.Viewport)
+- [GraphicsDevice.Viewport](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice)
+- [Viewport Structure](xref:Microsoft.Xna.Framework.Graphics.Viewport)

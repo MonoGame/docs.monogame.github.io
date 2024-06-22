@@ -39,15 +39,15 @@ This sample uses a texture addressing mode to duplicate a texture across the are
 
 ## See Also
 
-[Drawing a Sprite](HowTo_Draw_A_Sprite.md)
+- [Drawing a Sprite](HowTo_Draw_A_Sprite.md)
 
 ### Concepts
 
-[What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
+- [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
 ### Reference
 
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
-[SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
-[SpriteSortMode](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode)
-[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
+- [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
+- [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
+- [SpriteSortMode](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode)
+- [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)

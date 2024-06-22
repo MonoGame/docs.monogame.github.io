@@ -62,4 +62,4 @@ requireMSLicense: true
 
 ## See Also
 
-[Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)
+- [Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)

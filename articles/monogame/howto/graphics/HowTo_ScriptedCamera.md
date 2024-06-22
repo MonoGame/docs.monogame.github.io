@@ -131,4 +131,4 @@ Using [Curve](xref:Microsoft.Xna.Framework.Curve)s allows a path to be defined b
 
 ## See Also
 
-[Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)
+- [Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)

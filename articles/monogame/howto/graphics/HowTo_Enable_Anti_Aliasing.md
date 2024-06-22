@@ -15,15 +15,15 @@ Anti-aliasing is a technique for minimizing distortion artifacts caused by alias
 
 ## To enable anti-aliasing in your game
 
-* Render 3D geometry. One way to do this is by creating a BasicEffect using the [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) class. For more detail, see [Creating a Basic Effect](HowTo_Create_a_BasicEffect.md).
+1. Render 3D geometry. One way to do this is by creating a BasicEffect using the [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) class. For more detail, see [Creating a Basic Effect](HowTo_Create_a_BasicEffect.md).
 
-* Set [PreferMultiSampling](/api/Microsoft.Xna.Framework.GraphicsDeviceManager.html#Microsoft_Xna_Framework_GraphicsDeviceManager_PreferMultiSampling) to **true** in your [Game](xref:Microsoft.Xna.Framework.Game) class constructor.
+2. Set [PreferMultiSampling](/api/Microsoft.Xna.Framework.GraphicsDeviceManager.html#Microsoft_Xna_Framework_GraphicsDeviceManager_PreferMultiSampling) to **true** in your [Game](xref:Microsoft.Xna.Framework.Game) class constructor.
 
     ```csharp
     graphics.PreferMultiSampling = true;
     ```
 
-* Set the view matrix to place the camera close to the object so you can more clearly see the smoothed, anti-aliased edges.
+3. Set the view matrix to place the camera close to the object so you can more clearly see the smoothed, anti-aliased edges.
 
     ```csharp
     worldMatrix = Matrix.CreateRotationX(tilt) * Matrix.CreateRotationY(tilt);
@@ -37,7 +37,7 @@ Anti-aliasing is a technique for minimizing distortion artifacts caused by alias
         1.0f, 100.0f);
     ```
 
-* Draw the geometry by calling [GraphicsDevice.DrawPrimitives](/api/Microsoft.Xna.Framework.Graphics.GraphicsDevice.html#Microsoft_Xna_Framework_Graphics_GraphicsDevice_DrawPrimitives_Microsoft_Xna_Framework_Graphics_PrimitiveType_System_Int32_System_Int32_).
+4. Draw the geometry by calling [GraphicsDevice.DrawPrimitives](/api/Microsoft.Xna.Framework.Graphics.GraphicsDevice.html#Microsoft_Xna_Framework_Graphics_GraphicsDevice_DrawPrimitives_Microsoft_Xna_Framework_Graphics_PrimitiveType_System_Int32_System_Int32_).
 
     ```csharp
     RasterizerState rasterizerState1 = new RasterizerState();
@@ -59,11 +59,11 @@ Anti-aliasing is a technique for minimizing distortion artifacts caused by alias
 
 ### Concepts
 
-[3D Pipeline Basics](../../whatis/graphics/WhatIs_3DRendering.md)
-[What Is anti-aliasing?](../../whatis/graphics/WhatIs_antialiasing.md)
+- [3D Pipeline Basics](../../whatis/graphics/WhatIs_3DRendering.md)
+- [What Is anti-aliasing?](../../whatis/graphics/WhatIs_antialiasing.md)
 
 ### Reference
 
-[GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager)
-[PreparingDeviceSettings](/api/Microsoft.Xna.Framework.GraphicsDeviceManager.html#Microsoft_Xna_Framework_GraphicsDeviceManager_PreparingDeviceSettings)
-[PresentationParameters](xref:Microsoft.Xna.Framework.Graphics.PresentationParameters)
+- [GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager)
+- [PreparingDeviceSettings](/api/Microsoft.Xna.Framework.GraphicsDeviceManager.html#Microsoft_Xna_Framework_GraphicsDeviceManager_PreparingDeviceSettings)
+- [PresentationParameters](xref:Microsoft.Xna.Framework.Graphics.PresentationParameters)

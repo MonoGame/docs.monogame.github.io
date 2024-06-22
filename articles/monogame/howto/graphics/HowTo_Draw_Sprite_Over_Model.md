@@ -115,5 +115,5 @@ For this sample, the camera is a standard arc ball camera, implemented by camera
 
 ### Concepts
 
-[What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
-[What Is Color Blending?](../../whatis/graphics/WhatIs_ColorBlending.md)
+- [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
+- [What Is Color Blending?](../../whatis/graphics/WhatIs_ColorBlending.md)

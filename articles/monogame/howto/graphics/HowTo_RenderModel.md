@@ -153,5 +153,5 @@ Development is complete so you are ready to build and run the game. Control the 
 
 ## See Also
 
-[Adding Content to a Game](../Content_Pipeline/HowTo_GameContent_Add.md)
-[Using Input](../input/index.md)
+- [Adding Content to a Game](../Content_Pipeline/HowTo_GameContent_Add.md)
+- [Using Input](../input/index.md)

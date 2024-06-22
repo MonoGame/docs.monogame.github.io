@@ -77,4 +77,4 @@ requireMSLicense: true
 
 ### Concepts
 
-[3D Pipeline Basics](../../whatis/graphics/WhatIs_3DRendering.md)
+- [3D Pipeline Basics](../../whatis/graphics/WhatIs_3DRendering.md)

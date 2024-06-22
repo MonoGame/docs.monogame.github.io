@@ -100,15 +100,15 @@ requireMSLicense: true
 
 ## See Also
 
-[Drawing a Sprite](HowTo_Draw_A_Sprite.md)
+- [Drawing a Sprite](HowTo_Draw_A_Sprite.md)
 
 ### Concepts
 
-[What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
+- [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
 ### Reference
 
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
-[SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
-[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
-[Matrix.CreateScale](xref:Microsoft.Xna.Framework.Matrix#Microsoft_Xna_Framework_Matrix_CreateScale_System_Single_)
+- [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
+- [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
+- [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
+- [Matrix.CreateScale](xref:Microsoft.Xna.Framework.Matrix#Microsoft_Xna_Framework_Matrix_CreateScale_System_Single_)

@@ -76,8 +76,8 @@ requireMSLicense: true
 
 ## See Also
 
-[Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)
+- [Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)
 
 ### Concepts
 
-[Bounding Volumes and Collisions](../HowTo_CollisionDetectionOverview.md)
+- [Bounding Volumes and Collisions](../HowTo_CollisionDetectionOverview.md)

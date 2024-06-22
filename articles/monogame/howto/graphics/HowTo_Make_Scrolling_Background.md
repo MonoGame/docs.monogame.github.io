@@ -118,15 +118,15 @@ requireMSLicense: true
 
 ## See Also
 
-[Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
-[Drawing a Masked Sprite over a Background](HowTo_Draw_Sprite_Background.md)  
+- [Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
+- [Drawing a Masked Sprite over a Background](HowTo_Draw_Sprite_Background.md)  
 
 ### Concepts
 
-[What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
+- [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
 ### Reference
 
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
-[SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
-[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
+- [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
+- [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
+- [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
