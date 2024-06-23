@@ -10,7 +10,7 @@ In this example, you will draw a sprite to the screen and then
 
 ## Requirements
 
-The example assumes the texture you are loading contains multiple frames of the same size in a texture whose size is uniform (also known as a spritesheet), for example, the following spritesheet contains 6 Images of a character in different phases of motion, when player together it looks like it is animated.
+The example assumes the texture you are loading contains multiple frames of the same size in a texture whose size is uniform (also known as a spritesheet), for example, the following spritesheet contains 8 Images of a character in different phases of motion, when player together it looks like it is animated.
 
 ![Trooper Spritesheet](../images/HowTo_SpriteAnimate_Spritesheet.PNG)
 
@@ -20,13 +20,10 @@ The sample also uses a class named **AnimatedTexture**, which is included with t
 
 The `AnimatedTexture.cs` is a helper to simplify the loading and drawing of a texture that contains multiple frames of animation.
 
-> [!NOTE]
-> The tutorial assumes you have already [created a new MonoGame project](https://docs.monogame.net/articles/getting_started/index.html#2-creating-a-new-project) using one of the standard templates.
-
 ## Drawing an Animated Sprite
 
 1. Follow the steps of [How To: Draw a Sprite](HowTo_Draw_A_Sprite.md).
-   A good first step to understanding the loading and drawing of textures.
+   A good first step to understanding the loading and drawing of textures and setting up your project.
 
 2. Create a new class called `AnimatedTexture.cs` in your project and replace its contents with the following:
 
@@ -123,7 +120,7 @@ The `AnimatedTexture.cs` is a helper to simplify the loading and drawing of a te
     ```
 
 3. In your game's constructor, create an instance of the **AnimatedTexture** class.
-   This example uses (0,0) as the origin of the texture, no rotation, a scale of 2, and a depth of 0.5.
+   This example uses `(0,0)` as the origin of the texture, `no rotation`, a scale of `2`, and a depth of `0.5`.
 
     ```csharp
     // The reference to the AnimatedTexture for the character
@@ -142,7 +139,7 @@ The `AnimatedTexture.cs` is a helper to simplify the loading and drawing of a te
     ```
 
 4. Load the texture to provide the image data for the animation.
-   In this example, the **AnimatedTexture** class loads a single texture and divides it into frames of animation. It uses the last parameter to determine how many frames to draw each second. In this case, it draws four frames at two frames per second (fps).
+   In this example, the **AnimatedTexture** class loads a single texture and divides it into frames of animation. It uses the last parameter to determine how many frames to draw each second. In this case, it draws eight frames at three frames per second (fps).
 
     ```csharp
     // The game visible area
@@ -150,7 +147,7 @@ The `AnimatedTexture.cs` is a helper to simplify the loading and drawing of a te
     // The position to draw the character
     private Vector2 characterPos;
     // How many frames/images are included in the animation
-    private const int frames = 6;
+    private const int frames = 8;
     // How many frames should be drawn each section, how fast does the animation run
     private const int framesPerSec = 3;
 

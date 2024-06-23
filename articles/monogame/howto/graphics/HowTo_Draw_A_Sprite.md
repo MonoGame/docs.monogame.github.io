@@ -33,16 +33,13 @@ Save it to your content project and name it "**Character**" (which will used to 
     private Texture2D spriteTexture;
     // The position to draw the sprite
     private Vector2 spritePosition;
-    // The game visible area
-    private Viewport viewport;
 
     protected override void LoadContent()
     {
         // Create a new SpriteBatch, which can be used to draw textures.
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         spriteTexture = Content.Load<Texture2D>("Character");
-        viewport = _graphics.GraphicsDevice.Viewport;
-        spritePosition = new Vector2(viewport.Width / 2, viewport.Height / 2);
+        spritePosition = Vector2.Zero;
     }
     ```
 
@@ -71,17 +68,52 @@ Save it to your content project and name it "**Character**" (which will used to 
     }
     ```
 
-When run, you should now see the character drawn in the center of the screen.
+When run, you should now see the character drawn in the top-left of the screen.
 
 > [!NOTE]
-> Actually, what you should see is the character drawn to the right and below the actual center of the screen.  This is because (by default) the Top-Left corner of the sprite is the origin and the sprite is drawn from that position.  The [Animated Sprite](HowTo_Animate_Sprite.md) example shows a simple way of offsetting the drawing of a sprite so that its middle is used as its origin instead.
+> Actually, what you should see is the character drawn from the top-left of the screen.  This is because (by default) the Top-Left corner of the sprite is the origin and the sprite is drawn from that position.  The [Animated Sprite](HowTo_Animate_Sprite.md) example shows a simple way of offsetting the drawing of a sprite so that its middle is used as its origin instead.
+
+## Moving the sprite
+
+To move the sprite, simply update the `spritePosition` to a new location, a quick and easy way to do this would be to detect when the arrow keys are pressed and change the position, like so:
+
+```csharp
+    protected override void Update(GameTime gameTime)
+    {
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
+
+        // TODO: Add your update logic here
+        KeyboardState state = Keyboard.GetState();
+        if (state.IsKeyDown(Keys.Right))
+        {
+            spritePosition.X += 1;
+        }
+        if (state.IsKeyDown(Keys.Left))
+        {
+            spritePosition.X -= 1;
+        }
+        if (state.IsKeyDown(Keys.Up))
+        {
+            spritePosition.Y -= 1;
+        }
+        if (state.IsKeyDown(Keys.Down))
+        {
+            spritePosition.Y += 1;
+        }
+
+        base.Update(gameTime);
+    }
+```
+
+See [How to detect input](../input/index.md) for more information on working with the various inputs that MonoGame supports.
 
 ## See Also
 
-- [How to animate a sprite](HowTo_Animate_Sprite.md)
+- [How to tint a sprite](HowTo_Tint_Sprite.md)
 - [How to rotate a sprite](HowTo_Rotate_Sprite.md)
 - [How to scale a sprite](HowTo_Scale_Sprite.md)
-- [How to tint a sprite](HowTo_Tint_Sprite.md)
+- [How to animate a sprite](HowTo_Animate_Sprite.md)
 
 ### Concepts
 
@@ -92,3 +124,5 @@ When run, you should now see the character drawn in the center of the screen.
 - [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
 - [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
 - [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
+
+(Character by `upklyak` from [FreePik](https://www.freepik.com/free-vector/cartoon-alien-character-animation-sprite-sheet_33397951.htm))
