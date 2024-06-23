@@ -12,3 +12,9 @@
     href: HowTo_Scale_Sprite.md
   - name: How To Animate a Sprite
     href: HowTo_Animate_Sprite.md
+  - name: How To Rotate a Sprite Group
+    href: HowTo_Rotate_Sprite_Group.md
+- name: Tips
+  items:
+  - name: Scaling Sprites Based on Screen Size
+    href: HowTo_Scale_Sprites_Matrix.md
