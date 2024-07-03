@@ -25,6 +25,10 @@ The `3.8.2` is currently in a stabilization phase and its development has been a
 * Updated Mac/Linux support.
 * Stabilized content pipeline dependencies (moving to open source and linked libraries)
 
+#### Deprecation notices
+
+The **Windows UWP** platform is being retired as this is not a desired publishing platform with Microsoft.  It will be replaced with an updated **DesktopDX** platform that will support current Microsoft deployments in a future release. 
+
 There is a lot of other work going on behind the scenes including **MANY** of the PR's and community submissions to improve the over all framework.  Stay tuned.
 
 ### [Release 3.8.3](https://github.com/MonoGame/MonoGame/milestone/21) (Provisional fast track maintenance release)
@@ -42,6 +46,11 @@ The primary focus for this release will be to further ratify any outstanding com
 * Vulcan support.
 * DX 12 support.
 * Updated GDK integration for Xbox Consoles (only available to registered ID@Xbox developers)
+
+> [!IMPORTANT]
+> Please note that the move to the new native backend will effectively **deprecate the DesktopGL project type**, this will be replaced with the newer **DesktopVulkan** platform.
+>
+> The **WindowsDX** platform is also under review to include support for DX12 and the [Microsoft GDK](https://github.com/microsoft/GDK) (Game Development Kit), once the results ar epublished the Roadmap will be updated to reflect the plans.
 
 ### [Release 4.0](https://github.com/MonoGame/MonoGame/milestone/10) (Provisional)
 
