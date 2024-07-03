@@ -1,5 +1,7 @@
 - name: Introduction
   href: index.md
+- name: Roadmap
+  href: roadmap.md
 - name: What's New
   href: whats_new.md
 - name: Getting Started
