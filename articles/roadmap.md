@@ -134,7 +134,7 @@ This is a list of all known bounties currently [being worked on](https://github.
     With so many great GUI systems available for MonoGame, we could do with a tutorial showing how to integrate or build on teh best of them, such as IMGUI, NEX and so on.
 
 * **Texture Compression Content Pipeline**
-    The current texture compression systems to not work on arm based machines like the Apple M1/M2/M3. This boundy will upgrade the system to use [Basis Universal](https://github.com/BinomialLLC/basis_universal) which works across all supported Desktop plaforms.
+    The current texture compression systems does not work on `arm` based machines like the Apple M1/M2/M3. This bounty will upgrade the system to use [Basis Universal](https://github.com/BinomialLLC/basis_universal) which works across all supported Desktop plaforms.
 
 > [!NOTE]
 > Have an idea for another bounty / sample or something that can make MonoGame even better, or a guide that you feel the community needs, then let us know on GitHub by raising a [Feature Request](https://github.com/MonoGame/MonoGame/issues/new?assignees=&labels=Feature+Request&projects=&template=02_feature_request.yml) and give us the details.
