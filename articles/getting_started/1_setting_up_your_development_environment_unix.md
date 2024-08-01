@@ -61,6 +61,23 @@ Create wine prefix:
 wget -qO- https://monogame.net/downloads/net6_mgfxc_wine_setup.sh | bash
 ```
 
+> [!NOTE]
+> For Linux Mint 22 Wilma and potentially other Linux Distributions it could be necessary to make the `wine64` binary available first before running the script if it fails to find the wine64 binary either by adding the correct installation directory to the `$PATH` variable or by adding a symlink to a folder which is already part of the `$PATH` variable.
+
+Option 1: Add the installation directory to the `$PATH` variable:
+
+```sh
+echo 'export PATH=$PATH:/usr/lib/wine' >> ~/.bashrc && source ~/.bashrc
+wine64 --version
+```
+
+Option 2: Add a symlink to an already existing folder of the `$PATH` variable:
+
+```sh
+sudo ln -s /usr/lib/wine/wine64 /usr/bin/wine64
+wine64 --version
+```
+
 If you ever need to undo the script, simply delete the `.winemonogame` folder in your home directory.
 
 **Next up:** [Creating a new project](2_creating_a_new_project_netcore.md)
