@@ -1,5 +1,7 @@
 - name: Documentation
   href: /
+- name: Roadmap
+  href: articles/roadmap.md
 - name: Community
   href: https://monogame.net/community/
 - name: Showcase
