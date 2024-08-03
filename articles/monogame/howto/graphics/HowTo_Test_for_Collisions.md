@@ -1,15 +1,12 @@
 ---
 title: Testing for Collisions
 description: Demonstrates how to use the BoundingSphere class to check whether two models are colliding.
+requireMSLicense: true
 ---
 
-# Testing for Collisions
-
-Demonstrates how to use the [BoundingSphere](xref:Microsoft.Xna.Framework.BoundingSphere) class to check whether two models are colliding.
+## Overview
 
 ## Detecting Whether Two Models Collide
-
-### To check whether two objects are colliding
 
 1. Track the position of a model as it moves about the game world.
 
@@ -79,12 +76,8 @@ Demonstrates how to use the [BoundingSphere](xref:Microsoft.Xna.Framework.Boundi
 
 ## See Also
 
-[Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)  
+- [Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)
 
 ### Concepts
 
-[Bounding Volumes and Collisions](../HowTo_CollisionDetectionOverview.md)  
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.
+- [Bounding Volumes and Collisions](../HowTo_CollisionDetectionOverview.md)

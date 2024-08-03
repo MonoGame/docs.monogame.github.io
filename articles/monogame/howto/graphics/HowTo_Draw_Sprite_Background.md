@@ -1,11 +1,12 @@
 ---
 title: Drawing a Masked Sprite over a Background
 description: Demonstrates how to draw a foreground and background sprite using the SpriteBatch class, where only part of the foreground sprite masks the background.
+requireMSLicense: true
 ---
 
-# Drawing a Masked Sprite over a Background
+## Overview
 
-Demonstrates how to draw a foreground and background sprite using the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) class, where only part of the foreground sprite masks the background.
+## Requirements
 
 The foreground sprite in this example must include masking information.
 
@@ -72,22 +73,14 @@ The foreground sprite in this example must include masking information.
 
 ## See Also
 
-### Tasks
+- [Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
 
-[Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
+### Concepts
 
-#### Concepts
+- [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
-[What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
+### Reference
 
-#### Reference
-
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)  
-[SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
-[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+- [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
+- [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
+- [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)

@@ -1,30 +1,31 @@
 ---
 title: Tinting a Sprite
 description: Demonstrates how to tint a sprite using a Color value.
+requireMSLicense: true
 ---
 
-# Tinting a Sprite
+## Overview
 
-Demonstrates how to tint a sprite using a [Color](xref:Microsoft.Xna.Framework.Color) value.
+Tinting sprites is an easy way to either animate a sprite (when it takes damage) or even to create different characters of different colors.  It is quick and efficient to do and all you need is the color to tine with and a single change to your `SpriteBatch` draw call.
 
 ## Drawing a Tinted Sprite
 
 1. Follow the procedures of [Drawing a Sprite](HowTo_Draw_A_Sprite.md).
-2. In the [Game.Update](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_Update_Microsoft_Xna_Framework_GameTime_) method, determine how to tint the sprite.
+2. In the [Game.Update](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_Update_Microsoft_Xna_Framework_GameTime_) method, determine the color to tint the sprite.
 
-   In this example, the value of the game pad thumbsticks determine the Red, Green, Blue, and Alpha values to apply to the sprite.
+   In this example, the position of the mouse determines the Red, Green, values to apply to the sprite, the blue is fixed for simplicity.
 
     ```csharp
     protected Color tint;
     protected override void Update(GameTime gameTime)
     {
-        ...
-        GamePadState input = GamePad.GetState(PlayerIndex.One);
-        tint = new Color(GetColor(input.ThumbSticks.Left.X),
-            GetColor(input.ThumbSticks.Left.Y),
-            GetColor(input.ThumbSticks.Right.X),
-            GetColor(input.ThumbSticks.Right.Y));
-    
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
+
+        // TODO: Add your update logic here
+        MouseState mouse = Mouse.GetState();
+        tint = new Color(mouse.X % 255, mouse.Y % 255, 255);
+
         base.Update(gameTime);
     }
     ```
@@ -35,35 +36,33 @@ Demonstrates how to tint a sprite using a [Color](xref:Microsoft.Xna.Framework.C
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
-    
-        spriteBatch.Begin();
-        spriteBatch.Draw(SpriteTexture, position, tint);
-        spriteBatch.End();
-    
+
+        // TODO: Add your drawing code here
+        _spriteBatch.Begin();
+        _spriteBatch.Draw(spriteTexture, spritePosition, tint);
+        _spriteBatch.End();
+
         base.Draw(gameTime);
     }
     ```
 
 4. When all of the sprites have been drawn, call [SpriteBatch.End](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_End) on your [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) object.
 
+    Moving the mouse around the screen will change the color of the Tint that is applied to the sprite / texture each frame.  Alternatively, try switching the input to something else, or for a challenge, animate the tint to make it look like the character is taking damage.
+
 ## See Also
 
-### Tasks
+- [Drawing a Sprite](HowTo_Draw_A_Sprite.md)
 
-[Drawing a Sprite](HowTo_Draw_A_Sprite.md)
+### Concepts
 
-#### Concepts
+- [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
-[What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
+### Reference
 
-#### Reference
+- [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
+- [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
+- [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
+- [Color](xref:Microsoft.Xna.Framework.Color)
 
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
-[SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
-[Color](xref:Microsoft.Xna.Framework.Color)
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+(Character by `upklyak` from [FreePik](https://www.freepik.com/free-vector/cartoon-alien-character-animation-sprite-sheet_33397951.htm))

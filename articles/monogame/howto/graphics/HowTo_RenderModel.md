@@ -4,9 +4,13 @@ description: Demonstrates how to load and render a model using the MonoGame Cont
 requireMSLicense: true
 ---
 
-> It is assumed that an existing Windows game project is loaded in MonoGame. In this example, the project is called "CPModel."
+## Overview
 
 This example has three main parts: importing and processing the model, drawing the resultant managed object as a model with full lighting effect in the game, and enabling movement of the model with a game pad.
+
+## Requirements
+
+> It is assumed that an existing Windows game project is loaded in MonoGame. In this example, the project is called "CPModel."
 
 ## Adding a Model
 
@@ -149,5 +153,5 @@ Development is complete so you are ready to build and run the game. Control the 
 
 ## See Also
 
-[Adding Content to a Game](../Content_Pipeline/HowTo_GameContent_Add.md)
-[Using Input](../input/index.md)
+- [Adding Content to a Game](../Content_Pipeline/HowTo_GameContent_Add.md)
+- [Using Input](../input/index.md)

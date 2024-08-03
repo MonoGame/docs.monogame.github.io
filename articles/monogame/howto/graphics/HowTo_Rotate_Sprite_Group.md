@@ -1,17 +1,16 @@
 ---
 title: Rotating a Group of Sprites
 description: Demonstrates how to rotate a group of sprites around a single point.
+requireMSLicense: true
 ---
 
-# Rotating a Group of Sprites
-
-Demonstrates how to rotate a group of sprites around a single point.
+## Overview
 
 ## Drawing a Rotated Group of Sprites
 
 1. Follow the steps of [Drawing a Sprite](HowTo_Draw_A_Sprite.md).
 
-2. Create one set of [Vector2](xref:Microsoft.Xna.Framework.Vector2) objects that represents the unrotated positions of the sprites and one set to hold the rotated values.
+2. Create one array of [Vector2](xref:Microsoft.Xna.Framework.Vector2) variables that represent the un-rotated positions of the sprites and another to hold the rotated values.
 
     ```csharp
     private Vector2[] myVectors;
@@ -25,45 +24,63 @@ Demonstrates how to rotate a group of sprites around a single point.
     }
     ```
 
-3. After loading the sprite, calculate the positions of the unrotated group of sprites based on the sprite's size.
+3. After loading the sprite, calculate the positions of the un-rotated group of sprites based on the sprite's size.
 
     ```csharp
-    private Texture2D SpriteTexture;
-    private Vector2 origin;
-    private Vector2 screenpos;
+    private Texture2D spriteTexture;
+    private Vector2 spriteOrigin;
+    private Vector2 spritePosition;
     protected override void LoadContent()
     {
         // Create a new SpriteBatch, which can be used to draw textures.
-        spriteBatch = new SpriteBatch(GraphicsDevice);
-    
-        SpriteTexture = Content.Load<Texture2D>("ship");
-        origin.X = SpriteTexture.Width / 2;
-        origin.Y = SpriteTexture.Height / 2;
-        Viewport viewport = graphics.GraphicsDevice.Viewport;
-        screenpos.X = viewport.Width / 2;
-        screenpos.Y = viewport.Height / 2;
+        _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+        spriteTexture = Content.Load<Texture2D>("Character");
+        viewport = _graphics.GraphicsDevice.Viewport;
+        spriteOrigin.X = spriteTexture.Width / 2;
+        spriteOrigin.Y = spriteTexture.Height / 2;
+        spritePosition.X = viewport.Width / 2;
+        spritePosition.Y = viewport.Height / 2;
+
+        // Populate the `myVectors` array with a grid of Vector2 positions for the character to draw.  These will then be rotated around the center of the screen.
+        int i = 0;
+        while (i < 9)
+        {
+            for (int x = 0; x < 3; x++)
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    myVectors[i] = new Vector2(x * 200, y * 200); // Assign positions
+                    i++;
+                }
+            }
+        }
     }
     ```
 
-4. In your [Game.Update](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_Update_Microsoft_Xna_Framework_GameTime_) method, copy the unrotated vectors and determine the screen position around which all the sprites will rotate.
+4. In your [Game.Update](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_Update_Microsoft_Xna_Framework_GameTime_) method, copy the un-rotated vectors and determine the screen position around which all the sprites will rotate.
 
     ```csharp
-    private float RotationAngle = 0f;
+    private float rotationAngle = 0f;
     private Matrix rotationMatrix = Matrix.Identity;
     protected override void Update(GameTime gameTime)
     {
-        ...
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
+
+        // The time since Update was called last.
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-    
-        RotationAngle += elapsed;
+
+        // TODO: Add your game logic here.
+        rotationAngle += elapsed;
         float circle = MathHelper.Pi * 2;
-        RotationAngle = RotationAngle % circle;
-    
+        rotationAngle %= circle;
+
         // Copy and rotate the sprite positions.
         drawVectors = (Vector2[])myVectors.Clone();
     
-        RotatePoints(ref screenpos, RotationAngle, ref drawVectors);
-    
+        RotatePoints(ref spritePosition, rotationAngle, ref drawVectors);
+
         base.Update(gameTime);
     }
     ```
@@ -78,13 +95,13 @@ Demonstrates how to rotate a group of sprites around a single point.
     private static void RotatePoints(ref Vector2 origin, float radians, ref Vector2[] Vectors)
     {
         Matrix myRotationMatrix = Matrix.CreateRotationZ(radians);
-    
+
         for (int i = 0; i < 9; i++)
         {
             // Rotate relative to origin.
             Vector2 rotatedVector =
                 Vector2.Transform(Vectors[i] - origin, myRotationMatrix);
-    
+
             // Add origin to get final location.
             Vectors[i] = rotatedVector + origin;
         }
@@ -94,38 +111,38 @@ Demonstrates how to rotate a group of sprites around a single point.
 7. Draw each sprite using the rotated vectors as screen locations.
 
     ```csharp
-    private void DrawPoints()
+    protected override void Draw(GameTime gameTime)
     {
-        // Draw using manually rotated vectors
-        spriteBatch.Begin();
+        GraphicsDevice.Clear(Color.CornflowerBlue);
+
+        // TODO: Add your drawing code here
+        _spriteBatch.Begin();
         for (int i = 0; i < drawVectors.Length; i++)
-            spriteBatch.Draw(SpriteTexture, drawVectors[i], null,
-                Color.White, RotationAngle, origin, 1.0f,
+        {
+            _spriteBatch.Draw(spriteTexture, drawVectors[i], null,
+                Color.White, rotationAngle, spriteOrigin, 1.0f,
                 SpriteEffects.None, 0f);
-        spriteBatch.End();
+        }
+        _spriteBatch.End();
+
+        base.Draw(gameTime);
     }
     ```
 
 8. When all the sprites have been drawn, call [SpriteBatch.End](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_End).
 
+    This results in the Grid of characters that are drawn being rotated `Together` around a position in the center of the screen, instead of each sprite rotating individually.
+
 ## See Also
 
-### Tasks
+- [Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
 
-[Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
+### Concepts
 
-#### Concepts
+- [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
-[What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
+### Reference
 
-#### Reference
-
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)  
-[SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
-[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+- [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
+- [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
+- [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)

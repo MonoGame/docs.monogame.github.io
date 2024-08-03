@@ -1,15 +1,12 @@
 ---
 title: Creating a Custom Effect with Texturing
 description: Demonstrates how to use a custom effect and a texture to render a 3D object.
+requireMSLicense: true
 ---
 
-# Creating a Custom Effect with Texturing
+## Overview
 
-Demonstrates how to use a custom effect and a texture to render a 3D object.
-
-## Using a custom effect and a texture
-
-### To use a custom effect and a texture
+## To use a custom effect and a texture
 
 1. Create a vertex declaration that contains a position and a texture coordinate.
 
@@ -80,8 +77,4 @@ Demonstrates how to use a custom effect and a texture to render a 3D object.
 
 ### Concepts
 
-[3D Pipeline Basics](../../whatis/graphics/WhatIs_3DRendering.md)
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.
+- [3D Pipeline Basics](../../whatis/graphics/WhatIs_3DRendering.md)

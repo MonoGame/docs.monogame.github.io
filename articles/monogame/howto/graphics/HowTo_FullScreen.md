@@ -1,15 +1,12 @@
 ---
 title: How to create a Full-Screen Game
 description: Demonstrates how to start a game in full-screen mode.
+requireMSLicense: true
 ---
 
-# Creating a Full-Screen Game
+## Overview
 
-Demonstrates how to start a game in full-screen mode.
-
-## Creating a Full-Screen Game
-
-### To create a full-screen game
+## To create a full-screen game
 
 1. Derive a class from [Game](xref:Microsoft.Xna.Framework.Game).
 
@@ -23,9 +20,3 @@ Demonstrates how to start a game in full-screen mode.
     
     this.graphics.IsFullScreen = true;
     ```
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
