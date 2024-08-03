@@ -1,11 +1,12 @@
 ---
 title: How to work with Microphones
 description: This topic provides basic information about microphone usage in games.
+requireMSLicense: true
 ---
 
-# Working with Microphones
+## Overview
 
-This topic provides basic information about microphone usage in games.
+In this example, ...
 
 ## Supported Microphone Devices
 
@@ -45,9 +46,3 @@ Provides properties, methods, and events for play back of the audio buffer.
 [Microphone](xref:Microsoft.Xna.Framework.Audio.Microphone)
 
 Provides properties, methods, and fields and events for capturing audio data with microphones.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.

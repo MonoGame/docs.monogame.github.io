@@ -11,7 +11,7 @@ An effect initializes the graphics pipeline for performing transforms, lighting,
 
 During rendering, the graphics pipeline transforms 3D geometry to a 2D surface, giving you the option of adding lighting, texturing and many other per-vertex or per-pixel visual effects. An effect initializes the pipeline to render 3D geometry using vertex and pixel shaders, although you can also render a 2D sprite with an effect.
 
-Although more advanced progammable effects are available on Windows and other platfroms. There are several built-in configurable effects which have been designed to run efficiently on mobile GPU hardware, and which are appropriate to the Reach [profile](../WhatIs_Profile.md) used for Windows Phone games.
+Although more advanced programmable effects are available on Windows and other platforms. There are several built-in configurable effects which have been designed to run efficiently on mobile GPU hardware, and which are appropriate to the Reach [profile](WhatIs_GraphicsProfile.md) used for Windows Phone games.
 
 Use one of the following configurable effects to implement these rendering effects:
 

@@ -1,11 +1,12 @@
 ---
 title: How to record Sound with a Microphone
 description: This topic demonstrates the basics of recording audio using a microphone.
+requireMSLicense: true
 ---
 
-# Recording Sound with a Microphone
+## Overview
 
-This topic demonstrates the basics of recording audio using a microphone.
+In this example, ...
 
 The procedure shows the bare basics of using the microphone to record audio. In practice, you will want to use UI elements (such as buttons) to start and stop audio recording.
 
@@ -82,9 +83,3 @@ Provides properties, methods, and fields and events for capturing audio data wit
 [DynamicSoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance)
 
 Provides properties, methods, and events for play back of the audio buffer.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.

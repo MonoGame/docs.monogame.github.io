@@ -1,11 +1,12 @@
 ---
 title: How to play a Song / music
 description: Demonstrates how to play a song from a media library.
+requireMSLicense: true
 ---
 
-# Playing a Song
+## Overview
 
-Demonstrates how to play a song from a media library.
+In this example, ...
 
 The [Albums](xref:Microsoft.Xna.Framework.Media.MediaLibrary.Albums) property provides access to the media library, and the [Play](xref:Microsoft.Xna.Framework.Media.MediaPlayer) method plays a song. Consider any current audio playback when using the [Play](xref:Microsoft.Xna.Framework.Media.MediaPlayer) method. If the user currently is playing a different song, the [Stop](xref:Microsoft.Xna.Framework.Media.MediaPlayer) method can be used to stop the current song.
 
@@ -66,9 +67,3 @@ Plays a song or collection of songs.
 [MediaLibrary.Albums Property](xref:Microsoft.Xna.Framework.Media.MediaLibrary.Albums)
 
 Gets the [AlbumCollection](xref:Microsoft.Xna.Framework.Media.AlbumCollection) that contains all albums in the media library.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.

@@ -1,9 +1,8 @@
 ---
 title: MonoGame Framework Class Library
 description: MonoGame Framework Class Library Reference
+requireMSLicense: true
 ---
-
-# MonoGame Framework Class Library
 
 The MonoGame Framework class library is a library of classes, interfaces, and value types that are included in MonoGame Game Studio. This library provides access to MonoGame Framework functionality and is designed to be the foundation on which MonoGame Game Studio applications, components, and controls are built.
 
@@ -52,9 +51,3 @@ The MonoGame Framework class library is a library of classes, interfaces, and va
 - Microsoft.Xna.Framework.Utilities.Deflate
 
     Contains classes that provide additional support for compression with MonoGame.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.

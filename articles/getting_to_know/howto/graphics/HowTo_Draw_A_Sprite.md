@@ -14,7 +14,7 @@ The following texture will be used to render to the screen.
 
 ![Character Texture](../images/HowTo_DrawSprite_Character.png)
 
-Save it to your content project and name it "**Character**" (which will used to reference it in the project).
+Save it to your content project and name it "**Character**" (this name will used to reference it in the project).
 
 > [!NOTE]
 > The tutorial assumes you have already [created a new MonoGame project](https://docs.monogame.net/articles/getting_started/index.html#2-creating-a-new-project) using one of the standard templates.

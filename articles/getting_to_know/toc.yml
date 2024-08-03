@@ -1,4 +1,24 @@
 - name: What is
   href: whatis/
-- name: How Tp
+  items:
+  - name: Audio
+    href: whatis/WhatIs_Audio.md
+  - name: Content Pipeline
+  - name: Graphics
+  - name: The Game Loop
+    href: whatis/WhatIs_TheGameLoop.md
+  - name: Input
+    href: whatis/WhatIs_Input.md
+  - name: MonoGame Class Library
+    href: whatis/WhatIs_MonoGame_Class_Library.md
+- name: How To
   href: howto/
+  items:
+  - name: Audio
+    href: howto/audio/Index.md
+  - name: Content Pipeline
+    href: howto/content_pipeline/Index.md
+  - name: Graphics
+    href: howto/graphics/Index.md
+  - name: Input
+    href: howto/input/Index.md

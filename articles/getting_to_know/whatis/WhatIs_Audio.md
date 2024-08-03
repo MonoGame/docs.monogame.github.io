@@ -1,9 +1,8 @@
 ---
 title: Sounds Overview
 description: An overview of how the MonoGame Framework provides audio playback through several core audio classes.
+requireMSLicense: true
 ---
-
-# Introduction
 
 If your game is to use a few sound files, then the [SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect), [SoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance), and [DynamicSoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance) classes will provide everything you need to play and stream audio during gameplay.
 
@@ -27,11 +26,12 @@ When working with multiple platforms using MonoGame, there are a few constraints
 * Desktop platforms have a maximum of 256 sounds playing simultaneously.
 * Consoles and other platforms have their own constraints, please look at the console sdk documentation for more information,
 
-An [InstancePlayLimitException](xref:Microsoft.Xna.Framework.Audio.InstancePlayLimitException) exception is thrown if this limit is exceeded.
+> [!IMPORTANT]
+> An [InstancePlayLimitException](xref:Microsoft.Xna.Framework.Audio.InstancePlayLimitException) exception is thrown if this limit is exceeded.
 
 ## Audio Buffer Format
 
-The byte\[\] buffer format used as a parameter for the [SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect) constructor, [Microphone.GetData](xref:Microsoft.Xna.Framework.Audio.Microphone) method, and [DynamicSoundEffectInstance.SubmitBuffer](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance) method is PCM wave data. Additionally, the PCM format is interleaved and in little-endian.
+The `byte[]` buffer format used as a parameter for the [SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect) constructor, [Microphone.GetData](xref:Microsoft.Xna.Framework.Audio.Microphone) method, and [DynamicSoundEffectInstance.SubmitBuffer](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance) method is PCM wave data. Additionally, the PCM format is interleaved and in little-endian.
 
 The audio format has the following constraints:
 
@@ -79,9 +79,3 @@ Provides properties, methods, and events for play back of the audio buffer.
 [Song Class](xref:Microsoft.Xna.Framework.Media.Song)
 
 Provides access to a song in the song library.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.

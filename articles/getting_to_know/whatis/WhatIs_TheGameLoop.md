@@ -1,17 +1,18 @@
 ---
 title: What is the Game Loop
-description: The MonoGame Framework Game class implements a game loop, which provides not only the window which displays your game, but also provides overloadable methods that your game implements to facilitate communication between your game and the operating system. This topic provides an overview of the basic functionality provided by the game loop.
+description: There is a specific order of operations related to how a MonoGame project runs.
+requireMSLicense: true
 ---
-
-# Initializing a Game
 
 The MonoGame Framework [Game](xref:Microsoft.Xna.Framework.Game) class implements a game loop, which provides not only the window which displays your game, but also provides overloadable methods that your game implements to facilitate communication between your game and the operating system. This topic provides an overview of the basic functionality provided by the game loop.
 
 * [Making a New Game](#making-a-new-game)
 * [Game Loop Timing](#game-loop-timing)
-* [Game Components](#fixed-step-game-loops)
+* [Game Components](#game-components)
 * [Game Services](#game-services)
 * [Game Components Consuming Game Services](#game-components-consuming-game-services)
+
+![The MonoGame "Game" Loop](./images/MGExecution.png)
 
 ## Making a New Game
 
@@ -25,7 +26,7 @@ The first step in creating a new game is to make a class that derives from [Game
 
 A [Game](xref:Microsoft.Xna.Framework.Game) is either fixed step or variable step, defaulting to fixed step. The type of step determines how often [Update](xref:Microsoft.Xna.Framework.Game) will be called and affects how you need to represent time-based procedures such as movement and animation.
 
-## Fixed-Step Game Loops
+### Fixed-Step Game Loops
 
 A fixed-step [Game](xref:Microsoft.Xna.Framework.Game) tries to call its **Update** method on the fixed interval specified in **TargetElapsedTime**. Setting **Game.IsFixedTimeStep** to **true** causes a [Game](xref:Microsoft.Xna.Framework.Game) to use a fixed-step game loop. A new MonoGame project uses a fixed-step game loop with a default **TargetElapsedTime** of 1/60th of a second.
 
@@ -49,13 +50,27 @@ When using a variable-step game loop, you should express rates—such as the dis
 
 ## Game Components
 
-Game components provide a modular way of adding functionality to a game. You create a game component by deriving the new component either from the [GameComponent](xref:Microsoft.Xna.Framework.GameComponent) class, or, if the component loads and draws graphics content, from the [DrawableGameComponent](xref:Microsoft.Xna.Framework.DrawableGameComponent) class. You then add game logic and rendering code to the game component by overriding **GameComponent.Update**, **DrawableGameComponent.Draw** and **GameComponent.Initialize**. A game component is registered with a game by passing the component to **Game.Components.Add**. A registered component will have its initialize, update, and draw methods called from the **Game.Initialize**, **Game.Update**, and **Game.Draw** methods, respectively.
+Game components provide a modular way of adding functionality to a game. You create a game component by deriving the new component either from the 
+
+* [GameComponent](xref:Microsoft.Xna.Framework.GameComponent) class, or
+* [DrawableGameComponent](xref:Microsoft.Xna.Framework.DrawableGameComponent) class if the component loads and draws graphics content.
+
+You then add game logic and rendering code to the game component by overriding the following methods:
+
+* **GameComponent.Update**
+* **GameComponent.Initialize**
+
+Additionally, if you derive from the `DrawableGameComponent` class, you will additionally be able to override:
+
+* **DrawableGameComponent.Draw**
+
+A game component is registered with a game by passing the component to `Game.Components.Add`. A registered component will have its `initialize`, `update`, and `draw` methods called from the `Game.Initialize`, `Game.Update`, and `Game.Draw` methods, respectively.
 
 ## Game Services
 
 Game services are a mechanism for maintaining loose coupling between objects that need to interact with each other. Services work through a mediator—in this case, [Game.Services](xref:Microsoft.Xna.Framework.Game.Services). Service providers register with [Game.Services](xref:Microsoft.Xna.Framework.Game.Services), and service consumers request services from [Game.Services](xref:Microsoft.Xna.Framework.Game.Services). This arrangement allows an object that requires a service to request the service without knowing the name of the service provider.
 
-Game services are defined by an interface. A class specifies the services it provides by implementing interfaces and registering the services with [Game.Services](xref:Microsoft.Xna.Framework.Game.Services). A service is registered by calling **Game.Services.AddService** specifying the type of service being implemented and a reference to the object providing the service. For example, to register an object that provides a service represented by the interface IMyService, you would use the following code.
+Game services are defined by a unique interface. A class specifies the services it provides by implementing interfaces and registering the services with [Game.Services](xref:Microsoft.Xna.Framework.Game.Services). A service is registered by calling **Game.Services.AddService** specifying the type of service being implemented and a reference to the object providing the service. For example, to register an object that provides a service represented by the interface IMyService, you would use the following code.
 
 ```csharp
     Services.AddService( typeof( IMyService ), myobject );
@@ -92,9 +107,3 @@ Demonstrates how to create a custom [GraphicsDeviceManager](xref:Microsoft.Xna.F
 [Automatic Rotation and Scaling](../howto/HowTo_AutomaticRotation.md)
 
 Describes rotation and scaling in the MonoGame Framework on Mobile Platforms.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.

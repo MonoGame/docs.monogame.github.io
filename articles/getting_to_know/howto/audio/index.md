@@ -1,48 +1,43 @@
 ---
 title: How To tasks for Audio
 description: A series of articles to answer common questions related to audio operation!
+requireMSLicense: true
 ---
-
-# "How To" Articles for Audio
-
-These articles provide a brief introduction into managing audio in MonoGame games.
 
 ## In This Section
 
-[Playing a Sound](HowTo_PlayASound.md)
+No game is truly complete without sound, whether is is a melodious background track, one off sound effects or even recapturing the players voice through a microphone.  Without sound games lack depth (although also remember for accessibility, some hear sounds through audio description!, make sure to be inclusive.)
 
-Demonstrates how to play a simple sound by using [SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect).
+The following articles showcase some of the best ways to get sound out of your game:
 
-[Looping a Sound](HowTo_LoopASound.md)
+* [Playing a Sound](HowTo_PlayASound.md)
 
-Demonstrates how to loop a sound.
+  Demonstrates how to play a simple sound by using [SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect).
 
-[Adjusting Pitch and Volume](HowTo_ChangePitchAndVolume.md)
+* [Looping a Sound](HowTo_LoopASound.md)
 
-Demonstrates how to change pitch and volume of a playing sound.
+  Demonstrates how to loop a sound.
 
-[Playing a Song](HowTo_PlayASong.md)
+* [Adjusting Pitch and Volume](HowTo_ChangePitchAndVolume.md)
 
-Demonstrates how to play a song from a user's media library.
+  Demonstrates how to change pitch and volume of a playing sound.
 
-[Playing a Song from a URI](HowTo_PlaySongfromURI.md)
+* [Playing a Song](HowTo_PlayASong.md)
 
-Demonstrates how to use the [MediaPlayer](xref:Microsoft.Xna.Framework.Media.MediaPlayer) to play a song from a Uniform Resource Identifier (URI).
+  Demonstrates how to play a song from a user's media library.
 
-[Streaming Data from a WAV File](HowTo_StreamDataFromWav.md)
+* [Playing a Song from a URI](HowTo_PlaySongfromURI.md)
 
-Demonstrates how to stream audio from a wave (.wav) file.
+  Demonstrates how to use the [MediaPlayer](xref:Microsoft.Xna.Framework.Media.MediaPlayer) to play a song from a Uniform Resource Identifier (URI).
 
-[Recording Sounds with Microphones](HowTo_Microphone.md)
+* [Streaming Data from a WAV File](HowTo_StreamDataFromWav.md)
 
-Topics that provide guidance on writing code to support microphones for MonoGame.
+  Demonstrates how to stream audio from a wave (.wav) file.
 
-[Recording Sound with a Microphone](HowTo_Record_Microphone.md)
+* [Accessing Microphone devices](HowTo_Microphone.md)
 
-Demonstrates the basics of recording audio using a microphone attached to a device.
+  Topics that provide guidance on writing code to support access to microphones for MonoGame.
 
----
+* [Recording Sound with a Microphone](HowTo_Record_Microphone.md)
 
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+  Demonstrates the basics of recording audio using a microphone attached to a device.

@@ -1,9 +1,12 @@
 ---
 title: How to stream Data from a WAV File
 description: This topic describes how to stream an audio file using DynamicSoundEffectInstance.
+requireMSLicense: true
 ---
 
-# Streaming Data from a WAV File
+## Overview
+
+In this example, ...
 
 This topic describes how to stream an audio file using [DynamicSoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance).
 
@@ -140,9 +143,3 @@ Event that occurs when the number of audio capture buffers awaiting playback is 
 [OpenStream](xref:Microsoft.Xna.Framework.TitleContainer)
 
 Returns a stream to an existing file in the default title storage location.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.

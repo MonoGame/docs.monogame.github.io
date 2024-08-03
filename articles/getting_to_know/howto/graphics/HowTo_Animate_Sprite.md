@@ -6,19 +6,20 @@ requireMSLicense: true
 
 ## Overview
 
-In this example, you will draw a sprite to the screen and then
+In this example, you will draw a sprite to the screen and then animate the sprite using a custom sprite animation class.
 
 ## Requirements
 
 The example assumes the texture you are loading contains multiple frames of the same size in a texture whose size is uniform (also known as a spritesheet), for example, the following spritesheet contains 8 Images of a character in different phases of motion, when player together it looks like it is animated.
 
-![Trooper Spritesheet](../images/HowTo_SpriteAnimate_Spritesheet.PNG)
+![Character Spritesheet](../images/HowTo_SpriteAnimate_Spritesheet.PNG)
 
-Save the spritesheet to your content project and name it "**AnimatedCharacter**" (which will used to reference it in the project).
+Save the spritesheet to your content project and name it "**AnimatedCharacter**" (this name will used to reference it in the project).
 
-The sample also uses a class named **AnimatedTexture**, which is included with the sample below.
-
-The `AnimatedTexture.cs` is a helper to simplify the loading and drawing of a texture that contains multiple frames of animation.
+> [!NOTE]
+> The sample also uses a class named **AnimatedTexture**, which is included with the sample below.
+>
+> The `AnimatedTexture.cs` is a helper to simplify the loading and drawing of a texture that contains multiple frames of animation.
 
 ## Drawing an Animated Sprite
 

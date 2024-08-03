@@ -41,6 +41,10 @@ A depth buffer contains per-pixel floating-point data for the z depth of each pi
 
 Depth stencil state controls how the depth buffer and the stencil buffer are used.
 
+[What Is a Graphics Profile?](WhatIs_GraphicsProfile.md)
+
+Provides conceptual information about the MonoGame Framework concept of graphics profiles, including explanations of the Reach and HiDef profiles.
+
 [What Is a Model Bone?](WhatIs_ModelBone.md)
 
 A model bone is a matrix that represents the position of a mesh as it relates to other meshes in a 3D model.

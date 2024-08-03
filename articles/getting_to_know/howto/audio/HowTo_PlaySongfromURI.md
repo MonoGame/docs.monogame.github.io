@@ -1,9 +1,12 @@
 ---
 title: How to play a Song from a URI
 description: Demonstrates how to use the MediaPlayer to play a song from a Uniform Resource Identifier (URI).
+requireMSLicense: true
 ---
 
-# Playing a Song from a URI
+## Overview
+
+In this example, ...
 
 Demonstrates how to use the [MediaPlayer](xref:Microsoft.Xna.Framework.Media.MediaPlayer) to play a song from a Uniform Resource Identifier (URI).
 
@@ -54,9 +57,3 @@ Provides methods and properties to play, pause, resume, and stop songs. **MediaP
 [Song Class](xref:Microsoft.Xna.Framework.Media.Song)
 
 Provides access to a song in the song library.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.
