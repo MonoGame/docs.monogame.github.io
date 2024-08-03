@@ -1,12 +1,9 @@
 ---
 title: Understanding the Code
-description: A look at the code that is generated after creating a new project.
+description: This tutorial will go over the code that is generated when you start a blank project.
 ---
 
-# Understanding the Code
-
-This tutorial will go over the code that is generated when you start a blank project.
-
+> [!NOTE]
 > For help with creating a project, please look at the Creating a New Project section of the [Getting Started guide](index.md).
 
 Within the **Game.cs** class file, which is the core of any MonoGame project, you will find several critical sections necessary for your game to run:

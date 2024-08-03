@@ -3,10 +3,6 @@ title: Package games for distribution
 description: How to package your game for distribution.
 ---
 
-# Package games for distribution
-
-Once your game is ready to be published, it is recommended that you package it properly for consumption by players.
-
 ## Desktop games
 
 To publish desktop games, it is recommended that you build your project as a [self-contained](https://docs.microsoft.com/en-us/dotnet/core/deploying/#publish-self-contained) .NET application. As such, your game will require absolutely no external dependencies and should run out-of-the-box as-is.
@@ -35,14 +31,14 @@ We recommend using the .tar.gz archiving format to preserve the execution permis
 
 From the .NET CLI:
 
-```
+```cli
 dotnet publish -c Release -r osx-x64 /p:PublishReadyToRun=false /p:TieredCompilation=false --self-contained
 dotnet publish -c Release -r osx-arm64 /p:PublishReadyToRun=false /p:TieredCompilation=false --self-contained
 ```
 
 We recommend that you distribute your game as an [application bundle](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/BundleTypes/BundleTypes.html). Application bundles are directories with the following file structure:
 
-```
+```text
 YourGame.app                    (this is your root folder)
     - Contents
         - Resources
@@ -56,6 +52,7 @@ YourGame.app                    (this is your root folder)
 ```
 
 The contents of the entry point script:
+
 ```sh
 #!/bin/bash
 
@@ -67,7 +64,7 @@ else
 fi
 ```
 
-The Info.plist file is a standard macOS file containing metadata about your game. Here's an example file with required and recommended values set:
+The `Info.plist` file is a standard macOS file containing metadata about your game. Here is an example file with required and recommended values set:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

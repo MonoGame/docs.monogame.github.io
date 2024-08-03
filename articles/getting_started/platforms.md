@@ -3,16 +3,14 @@ title: Supported Platforms
 description: Platforms that MonoGame supports building games for.
 ---
 
-
-# Supported Platforms
-
 MonoGame supports building games for the following **systems**:
 
 | **Desktop PCs**             | **Mobiles**                | **Gaming consoles***                                                           |
 | --------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
 | Windows<br/>macOS<br/>Linux | iOS<br/>iPadOS<br/>Android | Xbox<br/>PlayStation 4<br/>PlayStation 5<br/>Nintendo Switch<br/>Google Stadia |
 
-**Gaming consoles are restricted to registered developers and are not publicly available nor publicly documented. To get access to those platforms, please contact your console account manager(s). MonoGame documentation for closed platforms is available in their respective repositories.*
+> [!IMPORTANT]
+> **Gaming consoles are restricted to registered developers and are not publicly available nor publicly documented. To get access to those platforms, please contact your console account manager(s). MonoGame documentation for closed platforms is available in their respective repositories.*
 
 ## Understanding MonoGame's platform types
 
@@ -26,7 +24,6 @@ Below is a list of public platforms with their corresponding NuGet package, the 
 
 - [WindowsDX](#windowsdx)
 - [DesktopGL](#desktopgl)
-- [Windows Universal](#windowsuniversal)
 - [Android](#android)
 - [iOS](#ios)
 
@@ -67,28 +64,6 @@ DesktopGL is a convenient way to publish builds for Windows, macOS, and Linux fr
 You can target Windows 8.1 (and up), macOS Catalina 10.15 (and up), and Linux with this platform.
 
 DesktopGL currently does not have a `VideoPlayer` implementation.
-
-### WindowsUniversal
-
-| **Supported Systems**                | **NuGet Package**                   | **Template ID**                                     |
-| ------------------------------------ | ----------------------------------- | --------------------------------------------------- |
-| Windows 10, Xbox (UWP-only, not XDK) | MonoGame.Framework.WindowsUniversal | mguwpcore (core app, no xaml), mguwpxaml (xaml app) |
-
-The WindowsUniversal platform runs on [Universal Windows Platform (UWP)](https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide).
-
-WindowsUniversal uses **DirectX** for graphics, and XAudio for audio just like the WindowsDX platform.
-
-UWP comes in two flavors, each with its own project template:
-
-- **XAML app template**: an app in which your game will be hosted within an XAML page. This can be useful if you wish to offer a more complex UWP experience with multiple pages or XAML controls.
-
-- **Core app template**: a raw app without any XAML, more straightforward if you don't need XAML controls.
-
-This platform is meant to publish games on the **Windows Store**, for both **Windows** and **Xbox** (through the [Xbox Live Creators Program](https://www.xbox.com/en-US/developers/creators-program)).
-
-Note that UWP games running on Xbox get [restricted access](https://docs.microsoft.com/en-us/windows/uwp/xbox-apps/system-resource-allocation) to the console capabilities. To unlock those restrictions, MonoGame has a dedicated Xbox platform for registered [ID@Xbox](https://www.xbox.com/en-US/Developers/id) developers targeting the XDK (this platform is private and requires you to contact your ID@Xbox manager).
-
-Building for UWP requires the Windows SDK version 19041 or better to be installed.
 
 ### Android
 
@@ -135,5 +110,3 @@ A project template to create a [shared project](https://docs.microsoft.com/en-us
 **Template ID**: mgpipeline
 
 A project template for writing custom logic for handling content and building it into XNB files.
-
-# 
