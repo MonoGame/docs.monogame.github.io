@@ -1,11 +1,10 @@
 ---
 title: Drawing Text with a Sprite
 description: Demonstrates how to import a SpriteFont into a project and to draw text using DrawString
+requireMSLicense: true
 ---
 
-# Drawing Text with a Sprite
-
-Demonstrates how to import a [SpriteFont](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) into a project and to draw text using [SpriteBatch.DrawString](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_DrawString_Microsoft_Xna_Framework_Graphics_SpriteFont_System_String_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_).
+## Overview
 
 ## Adding a Sprite Font and Drawing Text
 
@@ -94,23 +93,15 @@ Demonstrates how to import a [SpriteFont](xref:Microsoft.Xna.Framework.Graphics.
 
 ## See Also
 
-### Tasks
+- [Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
 
-[Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
+### Concepts
 
-#### Concepts
+- [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
-[What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
+### Reference
 
-#### Reference
-
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)  
-[SpriteBatch.DrawString](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_DrawString_Microsoft_Xna_Framework_Graphics_SpriteFont_System_String_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)  
-[SpriteFont](xref:Microsoft.Xna.Framework.Graphics.SpriteFont)  
-[ContentManager.Load](xref:Microsoft.Xna.Framework.Content.ContentManager#Microsoft_Xna_Framework_Content_ContentManager_Load__1_System_String_)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.
+- [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
+- [SpriteBatch.DrawString](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_DrawString_Microsoft_Xna_Framework_Graphics_SpriteFont_System_String_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)  
+- [SpriteFont](xref:Microsoft.Xna.Framework.Graphics.SpriteFont)
+- [ContentManager.Load](xref:Microsoft.Xna.Framework.Content.ContentManager#Microsoft_Xna_Framework_Content_ContentManager_Load__1_System_String_)

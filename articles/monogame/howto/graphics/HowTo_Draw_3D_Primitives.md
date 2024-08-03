@@ -1,11 +1,10 @@
 ---
 title: Drawing 3D Primitives using Lists or Strips
 description: Demonstrates how to draw 3D primitives using lines and triangles arranged as strips or lists.
+requireMSLicense: true
 ---
 
-# Drawing 3D Primitives using Lists or Strips
-
-Demonstrates how to draw 3D primitives using lines and triangles arranged as strips or lists.
+## Overview
 
 A 3D primitive describes how vertex data is ordered. This example demonstrates line and triangle primitive types that are the basis for all drawing calls in the MonoGame Framework. To render primitives, you need to create a basic effect and transformation matrices. This topic follows the steps described in [Creating a Basic Effect](HowTo_Create_a_BasicEffect.md) to create an instance of [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect). This sample uses orthographic projection, but you can also use perspective projection to render primitives. The vertices used in the sample are of type [VertexPositionColor Structure](xref:Microsoft.Xna.Framework.Graphics.VertexPositionColor) which contains per-vertex position and color.
 
@@ -19,7 +18,7 @@ The major steps for this example are:
 - Drawing A Triangle List
 - Drawing a Triangle Strip
 
-### To create vertices
+## To create vertices
 
 1. Create a list of vertices in 3D space that represent the points to draw.
 
@@ -239,7 +238,3 @@ A triangle strip is a set of triangles that share multiple vertices. This exampl
     for (int i = 0; i < primitiveList.Length; i++)
         primitiveList[i].Color = Color.White;
     ```
-
-© 2012 Microsoft Corporation. All rights reserved.
-
-© 2023 The MonoGame Foundation.

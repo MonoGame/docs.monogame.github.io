@@ -1,11 +1,7 @@
 ---
 title: How to
-description: A series of articles on how to do certain tasks in MonoGame!
+description: These articles provide a details on how to use the Graphics API in MonoGame.
 ---
-
-# "How To" Articles for MonoGame
-
-These articles provide a details on how to use the Graphics API in MonoGame.
 
 ## In This Section
 

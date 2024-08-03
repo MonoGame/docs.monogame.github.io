@@ -1,11 +1,10 @@
 ---
 title: How to display Multiple Screens with Viewports
 description: Demonstrates how to use viewports to display different scenes simultaneously using two cameras.
+requireMSLicense: true
 ---
 
-# Displaying Multiple Screens with Viewports
-
-Demonstrates how to use viewports to display different scenes simultaneously using two cameras.
+## Overview
 
 ![A Split screen Example](../images/graphics_split_screen.png)
 
@@ -79,15 +78,9 @@ Demonstrates how to use viewports to display different scenes simultaneously usi
 
 ### Concepts
 
-[What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)  
+- [What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)
 
-#### Reference
+### Reference
 
-[GraphicsDevice.Viewport](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice)  
-[Viewport Structure](xref:Microsoft.Xna.Framework.Graphics.Viewport)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+- [GraphicsDevice.Viewport](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice)
+- [Viewport Structure](xref:Microsoft.Xna.Framework.Graphics.Viewport)

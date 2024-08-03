@@ -1,11 +1,12 @@
 ---
 title: Making a Scrolling Background
 description: Demonstrates how to draw a scrolling background sprite using the SpriteBatch class
+requireMSLicense: true
 ---
 
-# Making a Scrolling Background
+## Overview
 
-Demonstrates how to draw a scrolling background sprite using the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) class.
+## Requirements
 
 ## Drawing a Scrolling Background Sprite
 
@@ -117,23 +118,15 @@ Demonstrates how to draw a scrolling background sprite using the [SpriteBatch](x
 
 ## See Also
 
-### Tasks
+- [Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
+- [Drawing a Masked Sprite over a Background](HowTo_Draw_Sprite_Background.md)  
 
-[Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
-[Drawing a Masked Sprite over a Background](HowTo_Draw_Sprite_Background.md)  
+### Concepts
 
-#### Concepts
+- [What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
 
-[What Is a Sprite?](../../whatis/graphics/WhatIs_Sprite.md)
+### Reference
 
-#### Reference
-
-[SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)  
-[SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
-[Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+- [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
+- [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
+- [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)

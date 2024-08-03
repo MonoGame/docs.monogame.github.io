@@ -4,6 +4,8 @@ description: Demonstrates how to create a render target using a RenderTarget2D.
 requireMSLicense: true
 ---
 
+## Overview
+
 The example is very basic but the principles are the same, when drawing to a Render Texture we apply the following process.
 
 1. Set the Graphics Device to output to a texture.

@@ -1,17 +1,14 @@
 ---
 title: How to move the Camera on a Curve
 description: Demonstrates how to use the Curve and CurveKey classes to move a camera along the shape of a curve.
+requireMSLicense: true
 ---
 
-# Moving the Camera on a Curve
-
-Demonstrates how to use the [Curve](xref:Microsoft.Xna.Framework.Curve) and [CurveKey](xref:Microsoft.Xna.Framework.CurveKey) classes to move a camera along the shape of a curve.
+## Overview
 
 Using [Curve](xref:Microsoft.Xna.Framework.Curve)s allows a path to be defined by a small number of control points with the [Curve](xref:Microsoft.Xna.Framework.Curve)s calculating the points on the path between the control points.
 
 ## Scripting the Camera to Follow a Curve
-
-### To script camera movement
 
 1. Create an instance of the [Curve](xref:Microsoft.Xna.Framework.Curve) class for each component being scripted.
 
@@ -134,10 +131,4 @@ Using [Curve](xref:Microsoft.Xna.Framework.Curve)s allows a path to be defined b
 
 ## See Also
 
-[Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+- [Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)

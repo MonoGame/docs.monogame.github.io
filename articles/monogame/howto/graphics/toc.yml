@@ -1,4 +1,20 @@
 - name: Introduction
   href: index.md
-- name: How To Draw a Sprite
-  href: HowTo_Draw_A_Sprite.md
+- name: Sprites
+  items:
+  - name: How To Draw a Sprite
+    href: HowTo_Draw_A_Sprite.md
+  - name: How To Tint a Sprite
+    href: HowTo_Tint_Sprite.md
+  - name: How To Rotate a Sprite
+    href: HowTo_Rotate_Sprite.md
+  - name: How To Scale a Sprite
+    href: HowTo_Scale_Sprite.md
+  - name: How To Animate a Sprite
+    href: HowTo_Animate_Sprite.md
+  - name: How To Rotate a Sprite Group
+    href: HowTo_Rotate_Sprite_Group.md
+- name: Tips
+  items:
+  - name: Scaling Sprites Based on Screen Size
+    href: HowTo_Scale_Sprites_Matrix.md
