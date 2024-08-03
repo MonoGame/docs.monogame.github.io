@@ -9,7 +9,7 @@
   - name: Introduction
     href: getting_started/index.md
   - name: Supported platforms
-    href: platforms.md    
+    href: getting_started/platforms.md    
   - name: 1. Setting up your development environment
     items:
     - name: Windows
@@ -31,9 +31,9 @@
   - name: 5. Adding Basic Code
     href: getting_started/5_adding_basic_code.md
   - name: Packaging
-    href: packaging_games.md
+    href: getting_started/packaging_games.md
   - name: Preparing for consoles
-    href: preparing_for_consoles.md    
+    href: getting_started/preparing_for_consoles.md    
   - name: Tools
     items:
     - name: Introduction
