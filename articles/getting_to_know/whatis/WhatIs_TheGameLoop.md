@@ -12,6 +12,8 @@ The MonoGame Framework [Game](xref:Microsoft.Xna.Framework.Game) class implement
 * [Game Services](#game-services)
 * [Game Components Consuming Game Services](#game-components-consuming-game-services)
 
+![The MonoGame "Game" Loop](./images/MGExecution.png)
+
 ## Making a New Game
 
 The first step in creating a new game is to make a class that derives from [Game](xref:Microsoft.Xna.Framework.Game). The new class needs to override the following methods:
