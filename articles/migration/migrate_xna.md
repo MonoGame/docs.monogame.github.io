@@ -22,7 +22,7 @@ MonoGame is API compatible with [XNA 4.0](https://docs.microsoft.com/en-us/previ
 MonoGame does not use the legacy fxc compiler for effects that XNA used. Instead, MonoGame uses the DX11 compiler.
 The way MonoGame handles shaders imposes some restrictions and causes some caveats in what is and is not supported.
 
-This is all documented in the [custom effects](content_pipeline/custom_effects.md) documentation page.
+This is all documented in the [custom effects](../getting_started/content_pipeline/custom_effects.md) documentation page.
 
 ## Half pixel offset
 

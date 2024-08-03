@@ -1,6 +1,6 @@
 # MonoGame Documentation
 
-This is the source for the [documentation published on MonoGame.net](http://www.monogame.net/documentation/).  It is rebuilt when the code changes and is published nightly to the website.
+This is the source for the [documentation published on MonoGame.net](https://docs.monogame.net/). It is rebuilt when the code changes and is published nightly to the website.
 
 ## General Rules
 
@@ -17,7 +17,7 @@ Breaking these rules can result in your contribution being rejected.
 
 For further details for guidance and advice when contributing to the MonoGame Framework Documentation / API repository, please see the official guide:
 
-### [MonoGame Documentation official contributing guide](https://monogame.net/articles/contributing)
+### [MonoGame Documentation official contributing guide](https://docs.monogame.net/articles/contributing)
 
 ## License
 
