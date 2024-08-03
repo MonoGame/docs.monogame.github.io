@@ -37,35 +37,35 @@
   - name: Tools
     items:
     - name: Introduction
-      href: tools/index.md
+      href: getting_started/tools/index.md
     - name: MGCB
-      href: tools/mgcb.md
+      href: getting_started/tools/mgcb.md
     - name: MGCB Editor
-      href: tools/mgcb_editor.md
+      href: getting_started/tools/mgcb_editor.md
     - name: MGFXC
-      href: tools/mgfxc.md
+      href: getting_started/tools/mgfxc.md
   - name: Content Pipeline
     items:
     - name: Introduction
-      href: content_pipeline/index.md
+      href: getting_started/content_pipeline/index.md
     - name: Why use the Content Pipeline
-      href: content_pipeline/why_content_pipeline.md
+      href: getting_started/content_pipeline/why_content_pipeline.md
     - name: Using MGCB Editor
-      href: content_pipeline/using_mgcb_editor.md
+      href: getting_started/content_pipeline/using_mgcb_editor.md
     - name: Custom Effects
-      href: content_pipeline/custom_effects.md
+      href: getting_started/content_pipeline/custom_effects.md
     - name: TrueType fonts
-      href: content_pipeline/adding_ttf_fonts.md
+      href: getting_started/content_pipeline/adding_ttf_fonts.md
     - name: Localization
-      href: content_pipeline/localization.md
+      href: getting_started/content_pipeline/localization.md
 - name: Migration
   items:
   - name: Migrating from XNA
-    href: migrate_xna.md
+    href: migration/migrate_xna.md
   - name: Migrating from 3.7
-    href: migrate_37.md
+    href: migration/migrate_37.md
   - name: Migrating from 3.8.0
-    href: migrate_38.md
+    href: migration/migrate_38.md
 - name: Samples and Demos
   href: samples.md
 - name: Community Tutorials
