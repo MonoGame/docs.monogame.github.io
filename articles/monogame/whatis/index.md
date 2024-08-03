@@ -1,5 +1,5 @@
 ---
-title: "What Is" Articles for MonoGame
+title: What Is Articles for MonoGame
 description: A series of articles to answer common questions related to MonoGame operation!
 requireMSLicense: true
 ---

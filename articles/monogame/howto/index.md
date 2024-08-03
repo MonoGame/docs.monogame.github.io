@@ -1,11 +1,8 @@
 ---
-title: How To
-description: A series of articles to answer common questions related to MonoGame operation!
+title: How To Articles for MonoGame
+description: These articles provide a brief introduction into performing some basic tasks in MonoGame.
+requireMSLicense: true
 ---
-
-# "How To" Articles for MonoGame
-
-These articles provide a brief introduction into performing some basic tasks in MonoGame.
 
 ## In This Section
 

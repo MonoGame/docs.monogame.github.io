@@ -1,9 +1,7 @@
 ---
-title: Documentation
+title: Welcome to the MonoGame documentation hub
 description: Welcome to the MonoGame documentation hub!
 ---
-
-# Welcome to the MonoGame documentation hub
 
 This new and improved documentation area aims to bridge the gaps in the understanding of the MonoGame Framework, covering all aspects of the features of MonoGame with some support from the original XNA documentation graciously donated by Microsoft.
 

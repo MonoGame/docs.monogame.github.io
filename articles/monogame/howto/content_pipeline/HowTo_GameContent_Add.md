@@ -9,7 +9,7 @@ requireMSLicense: true
 
 ## MonoGame Content Builder Tool (MGCB Editor)
 
-This tutorial assumes that you are using Visual Studio 2022 with its MonoGame extension installed. If you are not using the extension, you will need to manually install and use the [MGCB Editor](~/articles/tools/mgcb_editor.md).
+This tutorial assumes that you are using Visual Studio 2022 with its MonoGame extension installed. If you are not using the extension, you will need to manually install and use the [MGCB Editor](~/articles/getting_started/tools/mgcb_editor.md).
 
 > [!NOTE]
 > This is technically optional, since you can edit the .mgcb files manually if you wish, but the editor is highly recommended for ease of use.
@@ -29,7 +29,7 @@ Now open up your game project and look at the Solution Explorer window. Expand t
 You should now see the MGCB Editor window open up. If a text file opens instead, then right-click on **Content.mgcb** and select **Open With**, then select **MGCB Editor** in the list, click **Set as Default** and then click **OK**, then try again.
 
 > [!NOTE]
-> If you do not see the **MGCB Editor** option when you right-click and select **Open With**, then please review the [Tools documentation](~/articles/tools/index.md) for installing the MGCB Editor tool for your operating system.
+> If you do not see the **MGCB Editor** option when you right-click and select **Open With**, then please review the [Tools documentation](~/articles/getting_started/tools/index.md) for installing the MGCB Editor tool for your operating system.
 
 ![MGCB Editor](~/articles/getting_started/images/3_mgcb_editor_tool.png)
 
