@@ -1,0 +1,21 @@
+- name: What is
+  href: whatis/
+  items:
+  - name: Audio
+  - name: Content Pipeline
+  - name: Graphics
+  - name: The Game Loop
+  - name: Input
+  - name: MonoGame Class Library
+    href: whatis/WhatIs_MonoGame_Class_Library.md  
+- name: How To
+  href: howto/
+  items:
+  - name: Audio
+    href: howto/audio/Index.md
+  - name: Content Pipeline
+    href: howto/content_pipeline/Index.md
+  - name: Graphics
+    href: howto/graphics/Index.md
+  - name: Input
+    href: howto/input/Index.md

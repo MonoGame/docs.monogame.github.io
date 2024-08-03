@@ -58,6 +58,13 @@
       href: getting_started/content_pipeline/adding_ttf_fonts.md
     - name: Localization
       href: getting_started/content_pipeline/localization.md
+- name: Getting to know MonoGame
+  href: getting_to_know/Index.md
+  items:
+  - name: How to
+    href: getting_to_know/howto/Index.md
+  - name: What is
+    href: getting_to_know/whatis/Index.md  
 - name: Migration
   items:
   - name: Migrating from XNA
