@@ -16,11 +16,11 @@ We now support [.NET 6](https://docs.microsoft.com/en-us/dotnet/core/introductio
 
 ## Visual Studio 2022 extension
 
-MonoGame 3.8.1 now comes with an optional Visual Studio extension which will install all the MonoGame project templates and will allow for quick access to the [MGCB Editor](./tools/mgcb_editor.md).
+MonoGame 3.8.1 now comes with an optional Visual Studio extension which will install all the MonoGame project templates and will allow for quick access to the [MGCB Editor](./getting_started/tools/mgcb_editor.md).
 
 This extension is available for Visual Studio 2022, and Visual Studio 2022 for Mac.
 
-If you are migrating from 3.8.0 it is recommended to uninstall the existing global MGCB .NET tools. It would be a good idea to review the [Migrating from 3.8.0](migrate_38.md) documentation, as there are changes to how 3.8.1 works with the .NET tools and the new extension.
+If you are migrating from 3.8.0 it is recommended to uninstall the existing global MGCB .NET tools. It would be a good idea to review the [Migrating from 3.8.0](./migration/migrate_38.md) documentation, as there are changes to how 3.8.1 works with the .NET tools and the new extension.
 
 ## Visual Studio 2019 and prior are no longer supported
 
@@ -40,6 +40,6 @@ This is motivated by the fact that 32bit players are nearly extinct (less than 0
 
 ## Apple silicon (M1+) support
 
-Games built using the ```DesktopGL``` [platform](./platforms.md) and targeting ```osx-arm64``` will now run natively on Apple silicon without Rosetta emulation.
+Games built using the ```DesktopGL``` [platform](./getting_started/platforms.md) and targeting ```osx-arm64``` will now run natively on Apple silicon without Rosetta emulation.
 
-**However**, it is not yet possible to use the [MGCB](./tools/mgcb.md) or the [MGCB Editor](./tools/mgcb_editor.md) on Apple silicon, unless you are running the ```osx-x64``` variant of the .NET SDK (and therefore using Rosetta emulation). We are working toward resolving this inconvenience.
+**However**, it is not yet possible to use the [MGCB](./getting_started/tools/mgcb.md) or the [MGCB Editor](./getting_started/tools/mgcb_editor.md) on Apple silicon, unless you are running the ```osx-x64``` variant of the .NET SDK (and therefore using Rosetta emulation). We are working toward resolving this inconvenience.

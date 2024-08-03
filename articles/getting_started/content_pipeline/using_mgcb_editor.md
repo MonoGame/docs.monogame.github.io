@@ -5,7 +5,7 @@ description: Learn how to use the MGCB Editor to organize and build content for 
 
 # Using MGCB Editor
 
-The [MGCB Editor](../tools/mgcb_editor.md) is used to organize and build content for use with MonoGame. It is accessed by double-clicking a "**.mgcb**" file from within the Visual Studio solution explorer (providing that you installed [MonoGame's Visual Studio extension](../getting_started/1_setting_up_your_development_environment_windows.md)).
+The [MGCB Editor](../tools/mgcb_editor.md) is used to organize and build content for use with MonoGame. It is accessed by double-clicking a "**.mgcb**" file from within the Visual Studio solution explorer (providing that you installed [MonoGame's Visual Studio extension](../1_setting_up_your_development_environment_windows.md)).
 
 Alternatively, you can build it [directly from source](https://github.com/MonoGame/MonoGame/tree/develop/Tools/MonoGame.Content.Builder.Editor) if needed.
 
