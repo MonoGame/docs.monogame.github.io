@@ -19,7 +19,7 @@ Using **[SoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInst
 
 ## Requirements
 
-This sample uses a sound file named [tx0_fire1.wav](./files/tx0_fire1.wav), which you can download from [this link here](./files/tx0_fire1.wav). (save-as)
+This sample uses a sound file named [tx0_fire1.wav](files/tx0_fire1.wav), which you can download from [this link here](files/tx0_fire1.wav). (save-as)
 But you can use your own if you wish.
 
 ## Change Pitch and Volume of Sound
@@ -87,7 +87,6 @@ But you can use your own if you wish.
     {
         return Keyboard.GetState().IsKeyDown(key);
     }
-
      ```
 
  2. In the **[Game.Update](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_Update_Microsoft_Xna_Framework_GameTime_)** method, we will add a check to see if the **Space** key is pressed and adjust the pitch and volume of the sound effect accordingly. The pitch and volume values are adjusted by +0.1f each time the **Space key** is pressed. The pitch values are clamped to a minimum value of -1.0f and a maximum value of 1.0f, and the volume values are then clamped to a minimum value of 0f and a maximum value of 1.0f. This is done to ensure that the pitch and volume values are within  valid ranges.
@@ -112,7 +111,7 @@ But you can use your own if you wish.
  > [!IMPORTANT]
  > The check for the keypress does not prevent the call to the method repeating so any value entered may peak the value in a single key press. To prevent this, you can add a delay to the key press check, or use a boolean value to check if the key has been pressed and released.
 
-## Concepts
+## See Also
 
 * [Playing a Sound](HowTo_PlayASound.md)
 
