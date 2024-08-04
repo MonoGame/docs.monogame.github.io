@@ -4,10 +4,6 @@ description: This topic provides basic information about microphone usage in gam
 requireMSLicense: true
 ---
 
-## Overview
-
-In this example, ...
-
 ## Supported Microphone Devices
 
 The Microphone API is only implemented on OpenAL based platforms at this time. This includes iOS/Android and Desktop projects using DesktopGL.
@@ -31,18 +27,18 @@ The Microphone API behaves like a simple audio recorder with a configurable capt
 
 Also, you can use the **BufferReady** event handler of the [Microphone](xref:Microsoft.Xna.Framework.Audio.Microphone) class if you want to be notified when the audio capture buffer is ready to be processed.
 
-## Concepts
+## See Also
 
-[Creating and Playing Sounds](../../whatis/WhatIs_Audio.md)
+* [Creating and Playing Sounds](../../whatis/WhatIs_Audio.md)
 
-Provides overviews about audio technology, and presents predefined scenarios to demonstrate how to use audio.
+  Provides overviews about audio technology, and presents predefined scenarios to demonstrate how to use audio.
 
 ## Reference
 
-[DynamicSoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance)
+* [DynamicSoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance)
 
-Provides properties, methods, and events for play back of the audio buffer.
+  Provides properties, methods, and events for play back of the audio buffer.
 
-[Microphone](xref:Microsoft.Xna.Framework.Audio.Microphone)
+* [Microphone](xref:Microsoft.Xna.Framework.Audio.Microphone)
 
-Provides properties, methods, and fields and events for capturing audio data with microphones.
+  Provides properties, methods, and fields and events for capturing audio data with microphones.

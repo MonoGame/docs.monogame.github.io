@@ -6,7 +6,7 @@ requireMSLicense: true
 
 ## Overview
 
-In this example, ...
+In this example we will demonstrate streaming a media file using a web URI address (url)
 
 Demonstrates how to use the [MediaPlayer](xref:Microsoft.Xna.Framework.Media.MediaPlayer) to play a song from a Uniform Resource Identifier (URI).
 
@@ -23,7 +23,7 @@ The following steps show you how to play an .mp3 song located on the Internet.
 2. Declare a new instance of [Uri](http://msdn.microsoft.com/en-us/library/system.uri.aspx) using the full URI path to the song.
 
     ```csharp
-    Uri uriStreaming = new Uri("http://www.archive.org/download/gd1977-05-08.shure57.stevenson.29303.flac16/gd1977-05-08d02t06_vbr.mp3");
+    Uri uriStreaming = new Uri("https://github.com/MonoGame/MonoGame/raw/develop/Tests/Assets/Audio/rock_loop_stereo.mp3");
     ```
 
 3. Use the [FromUri](xref:Microsoft.Xna.Framework.Media.Song) method to supply an arbitrary string name for the URI, and then pass the [Uri](http://msdn.microsoft.com/en-us/library/system.uri.aspx) object you created in the previous step.
@@ -38,7 +38,7 @@ The following steps show you how to play an .mp3 song located on the Internet.
     MediaPlayer.Play(song);
     ```
 
-## Concepts
+## See Also
 
 [Playing a Song](HowTo_PlayASong.md)
 

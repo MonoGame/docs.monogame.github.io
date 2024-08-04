@@ -44,7 +44,7 @@ Not much extra code is needed to continuously loop a sound file in your game. Si
 > [!NOTE]
 > Obviously you would not normally call `play` in the `LoadContent` method, we just use here as an example.
 
-## Concepts
+## See Also
 
 * [Playing a Sound](HowTo_PlayASound.md)
 
