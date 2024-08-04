@@ -17,10 +17,10 @@
   href: howto/
   items:
   - name: Audio
-    href: howto/audio/Index.md
+    href: howto/audio/
   - name: Content Pipeline
-    href: howto/content_pipeline/Index.md
+    href: howto/content_pipeline/
   - name: Graphics
-    href: howto/graphics/Index.md
+    href: howto/graphics/
   - name: Input
-    href: howto/input/Index.md
+    href: howto/input/

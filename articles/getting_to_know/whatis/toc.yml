@@ -3,9 +3,9 @@
 - name: Introduction
   href: index.md
 - name: Content Pipeline
-  href: content_pipeline/index.md
+  href: content_pipeline/
 - name: Graphics
-  href: graphics/index.md
+  href: graphics/
 - name: Audio
   href: WhatIs_Audio.md
 - name: Input

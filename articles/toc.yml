@@ -59,32 +59,7 @@
     - name: Localization
       href: getting_started/content_pipeline/localization.md
 - name: Getting to know MonoGame
-  href: getting_to_know/Index.md
-  items:
-  - name: What is
-    href: getting_to_know/whatis/Index.md
-    items:
-  - name: Audio
-    href: getting_to_know/whatis/WhatIs_Audio.md
-  - name: Content Pipeline
-  - name: Graphics
-  - name: The Game Loop
-    href: getting_to_know/whatis/WhatIs_TheGameLoop.md
-  - name: Input
-    href: getting_to_know/whatis/WhatIs_Input.md
-  - name: MonoGame Class Library
-    href: getting_to_know/whatis/WhatIs_MonoGame_Class_Library.md
-  - name: How to
-    href: getting_to_know/howto/Index.md
-    items:
-    - name: Audio
-      href: getting_to_know/howto/audio/Index.md
-    - name: Content Pipeline
-      href: getting_to_know/howto/content_pipeline/Index.md
-    - name: Graphics
-      href: getting_to_know/howto/graphics/Index.md
-    - name: Input
-      href: getting_to_know/howto/input/Index.md
+  href: getting_to_know/
 - name: Migration
   items:
   - name: Migrating from XNA

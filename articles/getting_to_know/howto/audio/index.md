@@ -26,10 +26,6 @@ The following articles showcase some of the best ways to get sound out of your g
 
   Demonstrates how to play a song from a media file.
 
-* [Playing a Song from a URI](HowTo_PlaySongfromURI.md)
-
-  Demonstrates how to use the [MediaPlayer](xref:Microsoft.Xna.Framework.Media.MediaPlayer) to play a song from a Uniform Resource Identifier (URI).
-
 * [Streaming Data from a WAV File](HowTo_StreamDataFromWav.md)
 
   Demonstrates how to stream audio from a wave (.wav) file.
