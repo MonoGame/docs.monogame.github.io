@@ -1,5 +1,5 @@
 - name: Introduction
-  href: index.md
+  href: 
 - name: Roadmap
   href: roadmap.md
 - name: What's New
@@ -7,7 +7,7 @@
 - name: Getting Started
   items:
   - name: Introduction
-    href: getting_started/index.md
+    href: getting_started/
   - name: Supported platforms
     href: getting_started/platforms.md    
   - name: 1. Setting up your development environment
@@ -37,7 +37,7 @@
   - name: Tools
     items:
     - name: Introduction
-      href: getting_started/tools/index.md
+      href: getting_started/tools/
     - name: MGCB
       href: getting_started/tools/mgcb.md
     - name: MGCB Editor
@@ -60,6 +60,35 @@
       href: getting_started/content_pipeline/localization.md
 - name: Getting to know MonoGame
   href: getting_to_know/
+  items:
+  - name: What is
+    href: getting_to_know/whatis/
+    items:
+    - name: Audio
+      href: getting_to_know/whatis/WhatIs_Audio.md
+    - name: Content Pipeline
+      href: getting_to_know/whatis/content_pipeline/
+    - name: Graphics
+      href: getting_to_know/whatis/graphics/
+    - name: Input
+      href: getting_to_know/whatis/WhatIs_Input.md
+    - name: The Game Loop
+      href: getting_to_know/whatis/WhatIs_TheGameLoop.md
+    - name: Vector / Matrix / Quaternions
+      href: getting_to_know/whatis/WhatIs_VectorMatrixQuat.md 
+    - name: MonoGame Class Library
+      href: getting_to_know/whatis/WhatIs_MonoGame_Class_Library.md
+  - name: How to
+    href: getting_to_know/howto/
+    items:
+    - name: Audio
+      href: getting_to_know/howto/audio/
+    - name: Content Pipeline
+      href: getting_to_know/howto/content_pipeline/
+    - name: Graphics
+      href: getting_to_know/howto/graphics/
+    - name: Input
+      href: getting_to_know/howto/input/
 - name: Migration
   items:
   - name: Migrating from XNA

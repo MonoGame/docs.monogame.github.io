@@ -6,11 +6,15 @@
   - name: Audio
     href: whatis/WhatIs_Audio.md
   - name: Content Pipeline
+    href: whatis/content_pipeline/
   - name: Graphics
+    href: whatis/graphics/
   - name: The Game Loop
     href: whatis/WhatIs_TheGameLoop.md
   - name: Input
     href: whatis/WhatIs_Input.md
+  - name: Vector / Matrix / Quaternions
+    href: whatis/WhatIs_VectorMatrixQuat.md    
   - name: MonoGame Class Library
     href: whatis/WhatIs_MonoGame_Class_Library.md
 - name: How To
