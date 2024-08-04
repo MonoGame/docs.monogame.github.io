@@ -8,11 +8,11 @@ If your game is to use a few sound files, then the [SoundEffect](xref:Microsoft.
 
 ## Simple Audio Playback
 
-The simplest way to play sounds for background music or sound effects is to use [SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect) and [SoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance). Source audio files are added like any other game asset to the project. For example code, see [Playing a Sound](../HowTo/audio/HowTo_PlayASound.md), [Looping a Sound](../HowTo/audio/HowTo_LoopASound.md), and [Adjusting Pitch and Volume](../HowTo/audio/HowTo_ChangePitchAndVolume.md). For background music, see [Playing a Song](../HowTo/audio/HowTo_PlayASong.md).
+The simplest way to play sounds for background music or sound effects is to use [SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect) and [SoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance). Source audio files are added like any other game asset to the project. For example code, see [Playing a Sound](../howto/audio/HowTo_PlayASound.md), [Looping a Sound](../howto/audio/HowTo_LoopASound.md), and [Adjusting Pitch and Volume](../howto/audio/HowTo_ChangePitchAndVolume.md). For background music, see [Playing a Song](../howto/audio/HowTo_PlayASong.md).
 
 ## Accessing the Audio Buffer
 
-Developers can use [DynamicSoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance) for direct access to an audio buffer. By accessing the audio buffer, developers can manipulate sound, break up large sound files into smaller data chunks, and stream sound. For example code, see [Streaming Data from a WAV File](../HowTo/audio/HowTo_StreamDataFromWav.md).
+Developers can use [DynamicSoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance) for direct access to an audio buffer. By accessing the audio buffer, developers can manipulate sound, break up large sound files into smaller data chunks, and stream sound. For example code, see [Streaming Data from a WAV File](../howto/audio/HowTo_StreamDataFromWav.md).
 
 ## 3D Audio
 
@@ -51,18 +51,18 @@ Access to the media library, combined with the ability to use playlists, allows 
 
 ## Reference
 
-[SoundEffect Class](xref:Microsoft.Xna.Framework.Audio.SoundEffect)
+* [SoundEffect Class](xref:Microsoft.Xna.Framework.Audio.SoundEffect)
 
-Provides a loaded sound resource.
+  Provides a loaded sound resource.
 
-[SoundEffectInstance Class](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance)
+* [SoundEffectInstance Class](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance)
 
-Provides a single playing, paused, or stopped instance of a [SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect) sound.
+  Provides a single playing, paused, or stopped instance of a [SoundEffect](xref:Microsoft.Xna.Framework.Audio.SoundEffect) sound.
 
-[DynamicSoundEffectInstance Class](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance)
+* [DynamicSoundEffectInstance Class](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance)
 
-Provides properties, methods, and events for play back of the audio buffer.
+  Provides properties, methods, and events for play back of the audio buffer.
 
-[Song Class](xref:Microsoft.Xna.Framework.Media.Song)
+* [Song Class](xref:Microsoft.Xna.Framework.Media.Song)
 
-Provides access to a song in the song library.
+  Provides access to a song in the song library.

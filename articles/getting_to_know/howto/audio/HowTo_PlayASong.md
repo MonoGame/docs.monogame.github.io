@@ -61,10 +61,6 @@ The following demonstrates how to play a song from the media file in the content
 
 ## See Also
 
-* [Playing a Song from a URI](HowTo_PlaySongfromURI.md)
-
-  Demonstrates how to use the [MediaPlayer](xref:Microsoft.Xna.Framework.Media.MediaPlayer) to play a song from a Uniform Resource Identifier (URI).
-
 * [Media Overview](../../whatis/WhatIs_Audio.md)
 
   Provides a high-level overview about the capabilities—such as playing music and video and accessing pictures—of the Media API in MonoGame.

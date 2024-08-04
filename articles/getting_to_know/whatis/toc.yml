@@ -1,5 +1,5 @@
 - name: <- Back
-  href: ../Index.md
+  href: ../index.md
 - name: Introduction
   href: index.md
 - name: Content Pipeline
@@ -7,8 +7,12 @@
 - name: Graphics
   href: graphics/index.md
 - name: Audio
-  href: whatis_audio.md
+  href: WhatIs_Audio.md
+- name: Input
+  href: WhatIs_Input.md
 - name: The Game Loop
-  href: whatis_thegameloop.md
+  href: WhatIs_TheGameLoop.md
 - name: Vector / Matrix / Quaternions
   href: WhatIs_VectorMatrixQuat.md
+- name: MonoGame Class Library
+  href: WhatIs_VectorMatrixQuat.md  

@@ -1,3 +1,5 @@
+- name: Introduction
+  href: index.md
 - name: What is
   href: whatis/
   items:
