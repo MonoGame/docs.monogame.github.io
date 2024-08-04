@@ -1,11 +1,7 @@
 ---
 title: Preparing for consoles
-description: How to get your game ready to run on consoles.
+description: If you would like to port your game to consoles, there are some best practices to follow if you want to avoid running into issues while porting.
 ---
-
-# Preparing for consoles
-
-If you would like to port your game to consoles, there are some best practices to follow if you want to avoid running into issues while porting.
 
 MonoGame for gaming consoles uses a dedicated .NET runtime that is not maintained by Microsoft. Therefore, a 100% accuracy and reliability is not guaranteed. Moreover, the console runtime makes use of `ahead-of-time` native compilation (AOT), which means that some .NET features will not, and cannot work on consoles.
 
@@ -27,7 +23,7 @@ To publish with AOT:
 - Add `<PublishAot>true</PublishAot>` to your `.csproj`.
 - Then run `dotnet publish` from the command-line/terminal.
 
-This will nativily compile your game in a fashion similar to consoles. The output executable will be in your output folder, within a sub-folder nammed `publish`.
+This will natively compile your game in a fashion similar to consoles. The output executable will be in your output folder, within a sub-folder named `publish`.
 
 From there, you can try running this executable. If it does not start or crashes later on, you likely are using reflection or another unsupported feature in a AOT runtime.
 
@@ -41,7 +37,7 @@ It should show you on which C# lines it crashed.
 
 It is important to note that you should test every aspect of your game, and not just if it starts.  Run through all the menus/screens, scene transitions and gameplay.
 
-Another way to make sure that everything is safe is to enable `<EnableTrimAnalyzer>true</EnableTrimAnalyzer>` in your `.csproj`, and then **rebuild** (not just build) your game and check the build output for AOT warnings. Those warnings will tell you which parts of your code might trigger crashes or unexecpted results when running on AOT compilation. You should seek to resolve all of them.
+Another way to make sure that everything is safe is to enable `<EnableTrimAnalyzer>true</EnableTrimAnalyzer>` in your `.csproj`, and then **rebuild** (not just build) your game and check the build output for AOT warnings. Those warnings will tell you which parts of your code might trigger crashes or unexpected results when running on AOT compilation. You should seek to resolve all of them.
 
 ## No runtime compilation / IL emit
 
@@ -61,7 +57,7 @@ It is advised to choose very carefully the libraries that you are using when por
 
 The best way to make sure if they will work, is to search if they are **"AOT-compatible"**, or try to compile with the `<EnableTrimAnalyzer>true</EnableTrimAnalyzer>` setting in your `.csproj` and check if there are any warnings related to those libraries.
 
-For example, here are some parsing libraries known for their compliance with AOT compilation and good handling of memrory:
+For example, here are some parsing libraries known for their compliance with AOT compilation and good handling of memory:
 
 - [TurboXML](https://github.com/xoofx/TurboXml)
 - [TinyJSON](https://github.com/zanders3/json)
@@ -88,7 +84,7 @@ Even though your game has good performance on PC and does not show stutters, you
 
 The garbage collector is slower on consoles and if your game generates a lot of garbage memory, there will be visible stutters.
 
-To verify that your game is not too garbage-prone, you can run Visual Studio's Perfomance Profiler (`Debug/Performance Profiler...`) and check the **".NET Object Allocation Tracking"** tool.
+To verify that your game is not too garbage-prone, you can run Visual Studio's Performance Profiler (`Debug/Performance Profiler...`) and check the **".NET Object Allocation Tracking"** tool.
 
 From there, you can check which parts of your code generate garbage and you can pinpoint where to optimize.
 
@@ -103,7 +99,7 @@ In order to avoid garbage, here are some best practices:
 
 ## Do not rely on system calls
 
-If your game calls directly to system functions, like kernel, win32 or unix commands, you might want to get rid of them.
+If your game calls directly to system functions, like kernel, win32 or Unix commands, you might want to get rid of them.
 
 ## Consider I/O to be asynchronous
 
@@ -116,4 +112,3 @@ If you consider all your I/O and system operations as asynchronous, you will lik
 ## Suggestions
 
 If you have other tips or suggestions when building for consoles, then let the MonoGame team know by raising an issue and we will improve this article even further over time.
-

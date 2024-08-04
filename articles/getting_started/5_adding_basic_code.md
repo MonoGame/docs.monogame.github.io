@@ -1,11 +1,10 @@
 ---
 title: Adding Basic Code
-description: Learn how to add basic logic to your game.
+description: This tutorial will go over adding basic logic to your game
 ---
 
-# Adding Basic Code
-
-This tutorial will go over adding basic logic to your game, continuing from where [Adding Content](4_adding_content.md) left off.
+> [!NOTE]
+> this tutorial continues from where [4. Adding Content](4_adding_content.md) left off.
 
 ---
 
@@ -133,14 +132,14 @@ Find the **Update** method in the Game1.cs class file and add:
 if(Joystick.LastConnectedIndex == 0)
 {
     JoystickState jstate = Joystick.GetState(PlayerIndex.One);
-	
+
     float updatedBallSpeed = ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-	
+
     if (jstate.Axes[1] < 0)
     {
         ballPosition.Y -= updatedBallSpeed;
     }
-	else if (jstate.Axes[1] > 0)
+    else if (jstate.Axes[1] > 0)
     {
         ballPosition.Y += updatedBallSpeed;
     }

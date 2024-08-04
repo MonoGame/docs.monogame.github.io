@@ -1,12 +1,9 @@
 ---
 title: Adding Content
-description: Learn how to add content such as images or sounds to your game.
+description: This tutorial will go over adding content such as images or sounds to your game.
 ---
 
-# Adding Content
-
-This tutorial will go over adding content such as images or sounds to your game.
-
+> [!NOTE]
 > For help with creating a project, please look at the [Creating a New Project](index.md) section of the Getting Started guide.
 
 ## MonoGame Content Builder Tool (MGCB Editor)
