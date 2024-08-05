@@ -29,7 +29,7 @@ Below is a list of public platforms with their corresponding NuGet package, the 
 
 Beside these target platforms, MonoGame provides additional templates for shared game logic and extensions to the MonoGame Content Pipeline that can be used across all platforms.
 
-- [.NET Standard Library](#net-standard-library)
+- [.NET Class Library](#net-class-library)
 - [Shared Project](#shared-project)
 - [Content Pipeline Extension](#content-pipeline-extension)
 
@@ -93,11 +93,11 @@ You can test and deploy an iOS game on Windows by [pairing your Visual Studio 20
 
 ## Other templates
 
-### .NET Standard Library
+### .NET Class Library
 
-**Template ID**: mgnetstandard
+**Template ID**: mglib
 
-A project template to create [.NET Standard](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) libraries to distribute code through a DLL. This can be used to redistribute libraries or to share code between multiple projects (like different platforms).
+A project template to create [.NET](https://learn.microsoft.com/en-us/dotnet/standard/class-library-overview) libraries to distribute code through a DLL. This can be used to redistribute libraries or to share code between multiple projects (like different platforms).
 
 ### Shared Project
 
