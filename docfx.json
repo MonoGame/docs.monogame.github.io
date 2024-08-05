@@ -38,6 +38,8 @@
           "articles/**/*.md",
           "articles/**/*.yml",
           "foundation/**/*.md",
+          "roadmap/**/*.md",
+          "roadmap/**/*.yml",
           "toc.yml",
           "*.md"
         ],

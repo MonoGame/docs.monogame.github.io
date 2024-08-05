@@ -1,6 +1,8 @@
 ---
 title: MonoGame Roadmap
 description: The forecasted roadmap for MonoGame development/improvement, including lists of bounties in development.
+_disableToc: true
+_disableBreadcrumb: true
 ---
 
 ## MonoGame official roadmap
