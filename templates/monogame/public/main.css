@@ -44,6 +44,10 @@ body[data-layout="landing"] > main {
   max-width: 1320px !important;
 }
 
+body[data-disable-toc="true" i] .toc-offcanvas {
+  visibility: hidden;
+}
+
 
 /*******************************************************************************
 *** Section: Bootstrap Overrides
