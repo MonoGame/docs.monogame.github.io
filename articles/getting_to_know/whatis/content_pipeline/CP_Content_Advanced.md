@@ -30,7 +30,7 @@ The flexibility of this process enables you to create and update game assets usi
 
     Describes how to add a custom processor or importer to an existing game solution.
 
-- [Extending a Standard Content Processor](../../howto/Content_Pipeline/HowTo_Extend_Processor.md)
+- [Extending a Standard Content Processor](../../howto/content_pipeline/HowTo_ExtendFontProcessor.md)
 
     Describes how MonoGame lets you modify or extend the behavior of any standard Content Pipeline processor that ships with the product.
 
@@ -38,6 +38,6 @@ The flexibility of this process enables you to create and update game assets usi
 
     Describes how to develop with parameterized processors, both standard and custom.
 
-- [How to: Extend the Font Description Processor to Support Additional Characters](../../howto/Content_Pipeline/HowTo_ExtendFontProcessor.md)
+- [How to: Extend the Font Description Processor to Support Additional Characters](../../howto/content_pipeline/HowTo_ExtendFontProcessor.md)
 
     Describes the process of developing a custom content processor needed to add additional characters to a [FontDescription](xref:Microsoft.Xna.Framework.Content.Pipeline.Graphics.FontDescription) object based on the text that is required by the game.

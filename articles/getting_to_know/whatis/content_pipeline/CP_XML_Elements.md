@@ -85,5 +85,5 @@ The XML file that specifies the data that the Content Loader will read into the 
 
 ## See Also
 
-- [Using an XML File to Specify Content](../../howto/Content_Pipeline/HowTo_UseCustomXML.md)  
-- [Adding Content to a Game](../../howto/Content_Pipeline/HowTo_GameContent_Add.md)  
+- [Using an XML File to Specify Content](../../howto/content_pipeline/HowTo_UseCustomXML.md)  
+- [Adding Content to a Game](../../howto/content_pipeline/HowTo_GameContent_Add.md)  

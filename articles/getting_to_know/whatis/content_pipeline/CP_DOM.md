@@ -16,5 +16,5 @@ The following diagram lists the complete Content DOM.
 
 - [What Is Content?](CP_Overview.md)  
 - [What is the Content Pipeline?](CP_Architecture.md)  
-- [Extending a Standard Content Processor](../../howto/Content_Pipeline/HowTo_Extend_Processor.md)  
+- [Extending a Standard Content Processor](../../howto/content_pipeline/HowTo_Extend_Processor.md)  
 - [Adding New Content Types](CP_Content_Advanced.md)  

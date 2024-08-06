@@ -10,7 +10,7 @@ requireMSLicense: true
 
   Describes the purpose of the MonoGame Content Pipeline and how it helps you add art and data assets to your game.
 
-* [Loading Content](../../howto/Content_Pipeline/HowTo_GameContent_Add.md)
+* [Loading Content](../../howto/content_pipeline/HowTo_GameContent_Add.md)
 
   Demonstrates how to load content such as models, textures, sounds, and effects.
 

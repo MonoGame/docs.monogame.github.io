@@ -42,6 +42,6 @@ The following describes the standard Content Processors and the type of game ass
 
 ## See Also
 
-- [Adding Content to a Game](../../howto/Content_Pipeline/HowTo_GameContent_Add.md)  
+- [Adding Content to a Game](../../howto/content_pipeline/HowTo_GameContent_Add.md)  
 - [What Is Content?](CP_Overview.md)  
 - [Adding a Custom Importer](CP_AddCustomProcImp.md)  

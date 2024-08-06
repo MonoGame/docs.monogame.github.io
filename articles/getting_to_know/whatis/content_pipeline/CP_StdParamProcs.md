@@ -23,4 +23,4 @@ The following describes only standard Content Processors that accept parameters,
 
 ## See Also
 
-- [Adding Content to a Game](../../howto/Content_Pipeline/HowTo_GameContent_Add.md)  
+- [Adding Content to a Game](../../howto/content_pipeline/HowTo_GameContent_Add.md)  

@@ -69,7 +69,7 @@ Here is a sample localized `.spritefont` file:
 
 ## See Also
 
-- [Adding Content to a Game](../../howto/Content_Pipeline/HowTo_GameContent_Add.md)  
+- [Adding Content to a Game](../../howto/content_pipeline/HowTo_GameContent_Add.md)  
 
 ### Reference
 
