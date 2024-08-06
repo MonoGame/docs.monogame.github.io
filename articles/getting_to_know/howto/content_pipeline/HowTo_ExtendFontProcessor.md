@@ -193,13 +193,6 @@ namespace FontProcessor
 
 When you build the solution, the new processor adds the characters in the messages.txt file to the list of characters available to the [SpriteFont](xref:Microsoft.Xna.Framework.Graphics.SpriteFont).
 
-> [!NOTE]
-> To debug a Content Pipeline importer or processor, add the following line to the processor code to launch the debugger.
->
-> ```csharp
-> System.Diagnostics.Debugger.Launch();
-> ```
-
 ## See Also
 
 [Extending a Standard Content Processor](./HowTo_Extend_Processor.md)
