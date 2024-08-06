@@ -26,11 +26,11 @@ When the Content Pipeline is used, the game does not have to parse the XML forma
 
     Describes how to load custom game data at game runtime through the Content Pipeline.
 
-- [XML Elements for XMLImporter](../../whatis/Content_Pipeline/CP_XML_Elements.md)
+- [XML Elements for XMLImporter](../../whatis/content_pipeline/CP_XML_Elements.md)
 
     Describes the elements of an XML file that can be processed by the [XmlImporter Class](xref:Microsoft.Xna.Framework.Content.Pipeline.XmlImporter).
 
-- [Sprite Font XML Schema Reference](../../whatis/Content_Pipeline/CP_SpriteFontSchema.md)
+- [Sprite Font XML Schema Reference](../../whatis/content_pipeline/CP_SpriteFontSchema.md)
 
     Describes the valid tags and values for Sprite-Font (.spritefont) XML files used by the Content Pipeline to create [SpriteFont](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) textures.
 

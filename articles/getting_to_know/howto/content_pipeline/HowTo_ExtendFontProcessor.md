@@ -25,7 +25,7 @@ In this example, a file called _messages.txt_ contains all the text rendered by 
 
 4. Modify this file to use an existing font and any additional characteristics you prefer.
 
-    For more information, see [Sprite Font XML Schema Reference](../../whatis/Content_Pipeline/CP_SpriteFontSchema.md).
+    For more information, see [Sprite Font XML Schema Reference](../../whatis/content_pipeline/CP_SpriteFontSchema.md).
 
 5. Add a new text file named `messages.txt` to the game project by right-clicking on the FontGame project node in Solution Explorer, click **Add**, and then click **New Item**.
 
@@ -203,4 +203,4 @@ When you build the solution, the new processor adds the characters in the messag
 ## See Also
 
 [Extending a Standard Content Processor](./HowTo_Extend_Processor.md)
-[Adding New Content Types](../../whatis/Content_Pipeline/CP_Content_Advanced.md)
+[Adding New Content Types](../../whatis/content_pipeline/CP_Content_Advanced.md)

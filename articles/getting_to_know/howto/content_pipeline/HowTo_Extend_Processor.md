@@ -4,7 +4,7 @@ description: Describes how MonoGame lets you modify or extend the behavior of an
 requireMSLicense: true
 ---
 
-MonoGame lets you modify or extend the behavior of any standard Content Pipeline processor that ships with the product. See [Standard Content Importers and Content Processors](../../whatis/Content_Pipeline/CP_StdImpsProcs.md) for a description of standard processors.
+MonoGame lets you modify or extend the behavior of any standard Content Pipeline processor that ships with the product. See [Standard Content Importers and Content Processors](../../whatis/content_pipeline/CP_StdImpsProcs.md) for a description of standard processors.
 
 Because there are so many asset variants supported by different digital content creation (DCC) tools, it is often useful to be able to modify how one of the standard processors operates. The following examples illustrate some of the kinds of things you might want to do.
 
@@ -124,12 +124,12 @@ Given the processor created by your first override above, you could code the sec
 
 Because this override is processing `MaterialContent` objects in memory rather than `ExternalReference` objects, it uses the [ContentProcessorContext.Convert](xref:Microsoft.Xna.Framework.Content.Pipeline.ContentProcessorContext) function instead of [BuildAsset](xref:Microsoft.Xna.Framework.Content.Pipeline.ContentProcessorContext) to invoke the processor created by your first override.
 
-After building and installing your new `NoCompressionModelProcessor` (see [Adding a Custom Importer](../../whatis/Content_Pipeline/CP_AddCustomProcImp.md)), you can assign it to any models whose textures are already compressed and no further compression is applied.
+After building and installing your new `NoCompressionModelProcessor` (see [Adding a Custom Importer](../../whatis/content_pipeline/CP_AddCustomProcImp.md)), you can assign it to any models whose textures are already compressed and no further compression is applied.
 
 ## See Also
 
-- [Adding New Content Types](../../whatis/Content_Pipeline/CP_Content_Advanced.md)  
-- [What Is Content?](../../whatis/Content_Pipeline/CP_Overview.md)  
-- [What is the Content Pipeline?](../../whatis/Content_Pipeline/CP_Architecture.md)  
-- [Standard Content Importers and Content Processors](../../whatis/Content_Pipeline/CP_StdImpsProcs.md)  
-- [Adding a Custom Importer](../../whatis/Content_Pipeline/CP_AddCustomProcImp.md)  
+- [Adding New Content Types](../../whatis/content_pipeline/CP_Content_Advanced.md)  
+- [What Is Content?](../../whatis/content_pipeline/CP_Overview.md)  
+- [What is the Content Pipeline?](../../whatis/content_pipeline/CP_Architecture.md)  
+- [Standard Content Importers and Content Processors](../../whatis/content_pipeline/CP_StdImpsProcs.md)  
+- [Adding a Custom Importer](../../whatis/content_pipeline/CP_AddCustomProcImp.md)  
