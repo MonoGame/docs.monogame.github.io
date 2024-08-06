@@ -153,7 +153,7 @@ One of the most powerful processors in MonoGame is the text processor, ideally u
 
 So long as the XML file conforms to the MonoGame (XNA) standard, it will generate data within the game for use in the solution.
 
-For an example on how to use XML in your MonoGame project, [check out this article](https://dzone.com/articles/getting-started-with-monogame-using-xml).
+For an example on how to use XML in your MonoGame project, [check out this article](https://darkgenesis.zenithmoon.com/getting-started-with-monogame-using-xml.html).
 
 ## Custom Content Processors
 
