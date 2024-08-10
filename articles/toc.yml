@@ -65,19 +65,19 @@
     href: getting_to_know/whatis/
     items:
     - name: Audio
-      href: getting_to_know/whatis/WhatIs_Audio.md
+      href: getting_to_know/whatis/audio/
     - name: Content Pipeline
       href: getting_to_know/whatis/content_pipeline/
     - name: Graphics
       href: getting_to_know/whatis/graphics/
     - name: Input
-      href: getting_to_know/whatis/WhatIs_Input.md
+      href: getting_to_know/whatis/input/
     - name: The Game Loop
-      href: getting_to_know/whatis/WhatIs_TheGameLoop.md
+      href: getting_to_know/whatis/game_loop/
     - name: Vector / Matrix / Quaternions
-      href: getting_to_know/whatis/WhatIs_VectorMatrixQuat.md 
+      href: getting_to_know/whatis/vector_matrix_quat/
     - name: MonoGame Class Library
-      href: getting_to_know/whatis/WhatIs_MonoGame_Class_Library.md
+      href: getting_to_know/whatis/monogame_class_library/
   - name: How to
     href: getting_to_know/howto/
     items:
