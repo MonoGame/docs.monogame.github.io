@@ -10,6 +10,10 @@ Rotating images and sprites is easy enough, but the main thing to keep in mind i
 
 This guide walks you through calculating a new origin for images (the center in this case) and using that to determine to draw and rotate your sprite from.
 
+### End result
+
+![The output of this tutorial](./images/HowTo_RotateSprite_Final.gif)
+
 ## Drawing a Rotated Sprite
 
 1. Follow the procedures of [Drawing a Sprite](HowTo_Draw_A_Sprite.md).
@@ -47,7 +51,9 @@ This guide walks you through calculating a new origin for images (the center in 
    The angle is specified in radians, and it can be greater than two times `π`, but does not need to be.
 
     ```csharp
+    // The angle at which to rotate and draw the sprite at
     private float rotationAngle;
+
     protected override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -57,6 +63,7 @@ This guide walks you through calculating a new origin for images (the center in 
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
     
         // TODO: Add your game logic here.
+        // Simple roation logic to rotate the sprite in a clockwise direction over time
         rotationAngle += elapsed;
         float circle = MathHelper.Pi * 2;
         rotationAngle %= circle;
@@ -76,6 +83,7 @@ This guide walks you through calculating a new origin for images (the center in 
 
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
+        // Draw call updated to use a different overload with additional parameters, specifically the "Rotation angle" and "Origin".
         _spriteBatch.Draw(spriteTexture, spritePosition, null, Color.White, rotationAngle,
             spriteOrigin, 1.0f, SpriteEffects.None, 0f);
         _spriteBatch.End();

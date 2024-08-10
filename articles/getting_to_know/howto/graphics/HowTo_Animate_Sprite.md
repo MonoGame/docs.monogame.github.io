@@ -8,11 +8,18 @@ requireMSLicense: true
 
 In this example, you will draw a sprite to the screen and then animate the sprite using a custom sprite animation class.
 
+### End result
+
+![The output of this tutorial](images/HowTo_AnimateSprite_Final.gif)
+
+> [!NOTE]
+> Better animations can be done with better images and more frames, have a look at the [Platformer Sample](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.1/Platformer2D) Provided by MonoGame for example.
+
 ## Requirements
 
 The example assumes the texture you are loading contains multiple frames of the same size in a texture whose size is uniform (also known as a spritesheet), for example, the following spritesheet contains 8 Images of a character in different phases of motion, when player together it looks like it is animated.
 
-![Character Spritesheet](../images/HowTo_SpriteAnimate_Spritesheet.PNG)
+![Character Spritesheet](images/HowTo_SpriteAnimate_Spritesheet.PNG)
 
 Save the spritesheet to your content project and name it "**AnimatedCharacter**" (this name will used to reference it in the project).
 
@@ -33,6 +40,9 @@ Save the spritesheet to your content project and name it "**AnimatedCharacter**"
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     
+     /// <summary>
+    /// A helper class for handling animated textures.
+    /// </summary>   
     public class AnimatedTexture
     {
         private int frameCount;
@@ -127,15 +137,17 @@ Save the spritesheet to your content project and name it "**AnimatedCharacter**"
     // The reference to the AnimatedTexture for the character
     private AnimatedTexture spriteTexture;
     // The rotation of the character on screen
-    private const float Rotation = 0;
+    private const float rotation = 0;
     // The scale of the character, how big it is drawn
-    private const float Scale = 2.0f;
+    private const float scale = 0.5f;
     // The draw order of the sprite
-    private const float Depth = 0.5f;
+    private const float depth = 0.5f;
 
     public Game1()
     {
-        spriteTexture = new AnimatedTexture(Vector2.Zero, Rotation, Scale, Depth);
+        _graphics = new GraphicsDeviceManager(this);
+        Content.RootDirectory = "Content";
+        spriteTexture = new AnimatedTexture(Vector2.Zero, rotation, scale, depth);
     }
     ```
 
@@ -149,8 +161,8 @@ Save the spritesheet to your content project and name it "**AnimatedCharacter**"
     private Vector2 characterPos;
     // How many frames/images are included in the animation
     private const int frames = 8;
-    // How many frames should be drawn each section, how fast does the animation run
-    private const int framesPerSec = 3;
+    // How many frames should be drawn each second, how fast does the animation run?
+    private const int framesPerSec = 10;
 
     protected override void LoadContent()
     {
@@ -180,7 +192,7 @@ Save the spritesheet to your content project and name it "**AnimatedCharacter**"
     }
     ```
 
-    This is handled by AnimatedTexture's **UpdateFrame** method, which takes the elapsed seconds between updates as a parameter.
+    This is handled by AnimatedTexture's **UpdateFrame** method, which takes the elapsed seconds between updates as a parameter, as shown below in the except from the "AnimatedTexture" class.
 
     ```csharp
     // class AnimatedTexture
@@ -208,6 +220,7 @@ Save the spritesheet to your content project and name it "**AnimatedCharacter**"
 
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
+        // Replacing the normal SpriteBatch.Draw call to use the version from the "AnimatedTexture" class instead
         spriteTexture.DrawFrame(_spriteBatch, characterPos);
         _spriteBatch.End();
 

@@ -8,11 +8,15 @@ requireMSLicense: true
 
 In any game, drawing basic textures to the screen is essential knowledge, whether it is for menus and background images, to 2D game textures and characters.  In this sample we will walk though the steps needed to load a texture and then render it on the screen.
 
+### End result
+
+![The output of this tutorial](./images/HowTo_DrawSprite_Final.png)
+
 ## Requirements
 
 The following texture will be used to render to the screen.
 
-![Character Texture](../images/HowTo_DrawSprite_Character.png)
+![Character Texture](images/HowTo_DrawSprite_Character.png)
 
 Save it to your content project and name it "**Character**" (this name will used to reference it in the project).
 
@@ -26,7 +30,7 @@ Save it to your content project and name it "**Character**" (this name will used
     In this case, the example uses the **Content** member to load a texture from the MonoGame Framework Content Pipeline.
 
     > [!IMPORTANT]
-    > The texture must be in the project, with the same name passed to [ContentManager.Load](xref:Microsoft.Xna.Framework.Content.ContentManager#Microsoft_Xna_Framework_Content_ContentManager_Load__1_System_String_).
+    > The texture must be in the project, with the same **Name** passed to [ContentManager.Load](xref:Microsoft.Xna.Framework.Content.ContentManager#Microsoft_Xna_Framework_Content_ContentManager_Load__1_System_String_).  In this case the texture should be called "Character"!!
 
     ```csharp
     // The reference to the loaded sprite

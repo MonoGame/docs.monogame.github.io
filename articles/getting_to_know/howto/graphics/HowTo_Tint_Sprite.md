@@ -8,6 +8,10 @@ requireMSLicense: true
 
 Tinting sprites is an easy way to either animate a sprite (when it takes damage) or even to create different characters of different colors.  It is quick and efficient to do and all you need is the color to tine with and a single change to your `SpriteBatch` draw call.
 
+### End result
+
+![The output of this tutorial](./images/HowTo_TintSprite_Final.png)
+
 ## Drawing a Tinted Sprite
 
 1. Follow the procedures of [Drawing a Sprite](HowTo_Draw_A_Sprite.md).
@@ -16,7 +20,9 @@ Tinting sprites is an easy way to either animate a sprite (when it takes damage)
    In this example, the position of the mouse determines the Red, Green, values to apply to the sprite, the blue is fixed for simplicity.
 
     ```csharp
+    // The color tint to apply to the sprite
     protected Color tint;
+
     protected override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -39,6 +45,7 @@ Tinting sprites is an easy way to either animate a sprite (when it takes damage)
 
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
+        // Note the final argument in the Draw call is changed from Color.White to the new "tint" property
         _spriteBatch.Draw(spriteTexture, spritePosition, tint);
         _spriteBatch.End();
 

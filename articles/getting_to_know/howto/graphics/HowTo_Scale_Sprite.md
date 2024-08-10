@@ -14,6 +14,10 @@ There are several implementations to apply scaling to 2D sprites / textures, nam
 
 The examples below detail each of the three methods.
 
+### End result
+
+![The output of this tutorial](./images/HowTo_ScaleSprite_Final.gif)
+
 ## Drawing a Scaled Sprite with a uniform scale
 
 1. Follow the procedures of [Drawing a Sprite](HowTo_Draw_A_Sprite.md).
@@ -25,6 +29,7 @@ The examples below detail each of the three methods.
     ```csharp
     private Vector2 spritePosition = Vector2.Zero;
     protected float spriteScale = 0f;
+
     protected override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -50,6 +55,7 @@ The examples below detail each of the three methods.
 
         // TODO: Add your drawing code here
         _spriteBatch.Begin();
+        // Updated draw call using the overload that allows passing the "scale" of a sprite
         _spriteBatch.Draw(spriteTexture, spritePosition, null,
             Color.White, 0f, Vector2.Zero, spriteScale, SpriteEffects.None, 0f);
         _spriteBatch.End();
