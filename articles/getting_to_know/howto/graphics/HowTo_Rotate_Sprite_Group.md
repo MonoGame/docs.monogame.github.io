@@ -6,6 +6,8 @@ requireMSLicense: true
 
 ## Overview
 
+Sometimes either an individual character is made up of many sprites/textures, or you simply want to arrange a group of sprites in a grid and have them move as one.  The process is simple enough and simply an extension of what is covered in [HowTo Rotate a Sprite](HowTo_Rotate_Sprite.md).
+
 ## Drawing a Rotated Group of Sprites
 
 1. Follow the steps of [Drawing a Sprite](HowTo_Draw_A_Sprite.md).

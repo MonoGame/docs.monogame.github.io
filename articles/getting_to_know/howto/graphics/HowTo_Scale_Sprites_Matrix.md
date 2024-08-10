@@ -80,7 +80,8 @@ To demonstrate this, we will design a view in a default resolution of `800 x 600
     }
     ```
 
-    This is a really handy reusable function to create simple textures at runtime.
+    > [!NOTE]
+    > This is a really handy reusable function to create simple textures at runtime.
 
 4. Next, we create another method to calculate the Scaling Matrix using [Matrix.CreateScale](xref:Microsoft.Xna.Framework.Matrix#Microsoft_Xna_Framework_Matrix_CreateScale_System_Single_) based on the current Graphics Device's resolution, using our original `800x600` as a reference scale.
 

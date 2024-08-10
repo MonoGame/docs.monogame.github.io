@@ -3,7 +3,7 @@ title: What are Graphics?
 description: The basics of the graphics architecture for MonoGame!
 ---
 
-# Graphical basics 101
+## Graphical basics 101
 
 The topics in this section describe the graphical conventions used by MonoGame in rendering and managing content on a screen.
 
