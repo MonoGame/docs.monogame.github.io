@@ -6,7 +6,7 @@ requireMSLicense: true
 
 ## In This Section
 
-This section demonstrates several graphical concepts divided into three categories:
+This section demonstrates several graphical concepts divided into the following categories:
 
 * [2D Sprite Rendering](#2d-sprite-rendering)
 * [Cameras](#cameras)
@@ -45,20 +45,16 @@ This section walks through several core concepts related to sprite rendering, in
 
 Demonstrates how to animate a sprite from a texture using a custom class.
 
-> [!IMPORTANT]
-> More to articles to follow.
+> More Coming soon
 
 ### Cameras
 
-> [!IMPORTANT]
-> Articles to follow.
+> Coming soon
 
 ### 3D Rendering
 
-> [!IMPORTANT]
-> Articles to follow.
+> Coming soon
 
 ### 3D Collisions
 
-> [!IMPORTANT]
-> Articles to follow.
+> Coming soon
