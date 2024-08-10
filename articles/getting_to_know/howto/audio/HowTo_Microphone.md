@@ -29,7 +29,7 @@ Also, you can use the **BufferReady** event handler of the [Microphone](xref:Mic
 
 ## See Also
 
-* [Creating and Playing Sounds](../../whatis/WhatIs_Audio.md)
+* [Creating and Playing Sounds](../../whatis/audio/index.md)
 
   Provides overviews about audio technology, and presents predefined scenarios to demonstrate how to use audio.
 
