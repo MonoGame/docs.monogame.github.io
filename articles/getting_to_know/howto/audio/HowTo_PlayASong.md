@@ -61,7 +61,7 @@ The following demonstrates how to play a song from the media file in the content
 
 ## See Also
 
-* [Media Overview](../../whatis/WhatIs_Audio.md)
+* [Media Overview](../../whatis/audio/index.md)
 
   Provides a high-level overview about the capabilities—such as playing music and video and accessing pictures—of the Media API in MonoGame.
 

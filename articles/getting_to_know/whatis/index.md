@@ -35,19 +35,19 @@ Due the complexity of the Content and Graphics pipelines, the information is bro
 
 This section details some general aspects of the operation of a MonoGame Framework game.
 
-* [What Is Audio?](WhatIs_Audio.md)
+* [What Is Audio?](./audio/index.md)
 
   An overview of how the MonoGame Framework provides audio playback through several core audio classes.
 
-* [What Is Input?](WhatIs_Input.md)
+* [What Is Input?](./input/index.md)
 
   An overview of how the MonoGame Framework provides input management for games.
 
-* [What Is the GameLoop?](WhatIs_TheGameLoop.md)
+* [What Is the GameLoop?](./game_loop/index.md)
 
   A viewport is a 2D rectangle that defines the size of the rendering surface onto which a 3D scene is projected.
 
-* [What are Vectors, Matrices, and Quaternions?](WhatIs_VectorMatrixQuat.md)
+* [What are Vectors, Matrices, and Quaternions?](./vector_matrix_quat/index.md)
 
   Presents an overview of the math-related functionality provided by the MonoGame Framework.
 
@@ -55,6 +55,6 @@ This section details some general aspects of the operation of a MonoGame Framewo
 
 ### References
 
-* [What Is MonoGame Class Library](WhatIs_MonoGame_Class_Library.md)
+* [What Is MonoGame Class Library](./monogame_class_library/index.md)
 
   An overview of the MonoGame Class Library reference, containing all the API calls available to the MonoGame Framework.

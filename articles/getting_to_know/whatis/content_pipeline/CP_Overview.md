@@ -58,7 +58,7 @@ When you include an art asset file in your MonoGame solution's content project (
 
 The run-time components of the MonoGame Content Pipeline support the loading and use of the transformed art asset by your MonoGame.
 
-These run-time components make use of the [MonoGame Framework Class Library](../WhatIs_MonoGame_Class_Library.md), which can be extended to create custom Content Pipeline run-time components.
+These run-time components make use of the [MonoGame Framework Class Library](../monogame_class_library/index.md), which can be extended to create custom Content Pipeline run-time components.
 
 ## See Also
 
