@@ -125,7 +125,7 @@ But you can use your own if you wish.
 
   Demonstrates how to load a wav file through a file stream.
 
-* [Creating and Playing Sounds](../../whatis/WhatIs_Audio.md)
+* [Creating and Playing Sounds](../../whatis/audio/index.md)
 
   Provides overviews about audio technology, and presents predefined scenarios to demonstrate how to use audio.
 
