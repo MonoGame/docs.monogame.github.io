@@ -17,41 +17,45 @@ This section demonstrates several graphical concepts divided into the following 
 
 This section walks through several core concepts related to sprite rendering, including drawing text to the screen.
 
-[How To Draw A Sprite](HowTo_Draw_A_Sprite.md)
+- [How To Draw A Sprite](HowTo_Draw_A_Sprite.md)
 
-Demonstrates how to draw a sprite by using the SpriteBatch class.
+  Demonstrates how to draw a sprite by using the SpriteBatch class.
 
-[How To Tint A Sprite](HowTo_Tint_Sprite.md)
+- [How To Draw A Sprite Background](HowTo_Draw_Sprite_Background.md)
 
-Demonstrates how to tint a sprite using a Color value.
+  Demonstrates how to draw a foreground and background sprite using the SpriteBatch class, where only part of the foreground sprite masks the background.
 
-[How To Rotate A Sprite](HowTo_Rotate_Sprite.md)
+- [How To Tint A Sprite](HowTo_Tint_Sprite.md)
 
-Demonstrates how to rotate a sprite around its center.
+  Demonstrates how to tint a sprite using a Color value.
 
-[How To Rotate A Sprite Group](HowTo_Rotate_Sprite_Group.md)
+- [How To Rotate A Sprite](HowTo_Rotate_Sprite.md)
 
-Demonstrates how to rotate a group of sprites around a single point.
+  Demonstrates how to rotate a sprite around its center.
 
-[How To Scale A Sprite](HowTo_Scale_Sprite.md)
+- [How To Rotate A Sprite Group](HowTo_Rotate_Sprite_Group.md)
 
-Demonstrates how to scale a sprite using a uniform scale.
+  Demonstrates how to rotate a group of sprites around a single point.
 
-[How To Scale A Sprite using A Matrix](HowTo_Scale_Sprites_Matrix.md)
+- [How To Scale A Sprite](HowTo_Scale_Sprite.md)
 
-Demonstrates how to scale sprites using a matrix that is created based on the viewport width.
+  Demonstrates how to scale a sprite using a uniform scale.
 
-[How To Tile Sprites](HowTo_Tile_Sprites.md)
+- [How To Scale A Sprite using A Matrix](HowTo_Scale_Sprites_Matrix.md)
 
-Demonstrates how to draw a sprite repeatedly in the x and y directions in one Draw call.
+  Demonstrates how to scale sprites using a matrix that is created based on the viewport width.
 
-[How To Animate A Sprite](HowTo_Animate_Sprite.md)
+- [How To Tile Sprites](HowTo_Tile_Sprites.md)
 
-Demonstrates how to animate a sprite from a texture using a custom class.
+  Demonstrates how to draw a sprite repeatedly in the x and y directions in one Draw call.
 
-Demonstrates how to import a SpriteFont into a project and to draw text using the DrawString method.
+- [How To Animate A Sprite](HowTo_Animate_Sprite.md)
 
-[How To Make A Scrolling Background](HowTo_Make_Scrolling_Background.md)
+  Demonstrates how to animate a sprite from a texture using a custom class.
+
+- [How To Make A Scrolling Background](HowTo_Make_Scrolling_Background.md)
+
+  Demonstrates how to draw a scrolling background sprite using the SpriteBatch class.
 
 > More Coming soon
 

@@ -154,9 +154,9 @@ Save the texture to your content project and name it "**Starfield**" (this name 
 
 ## See Also
 
-- [Drawing a Sprite](HowTo_Draw_A_Sprite.md)  
+- [Drawing a Sprite](HowTo_Draw_A_Sprite.md)
 - [How to animate a sprite](HowTo_Animate_Sprite.md)
-- [Drawing a Masked Sprite over a Background](HowTo_Draw_Sprite_Background.md)  
+- [Drawing a Masked Sprite over a Background](HowTo_Draw_Sprite_Background.md)
 
 ### Concepts
 
