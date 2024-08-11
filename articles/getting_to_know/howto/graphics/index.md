@@ -15,6 +15,8 @@ This section demonstrates several graphical concepts divided into the following 
 
 ### 2D Sprite Rendering
 
+This section walks through several core concepts related to sprite rendering, including drawing text to the screen.
+
 [How To Draw A Sprite](HowTo_Draw_A_Sprite.md)
 
 Demonstrates how to draw a sprite by using the SpriteBatch class.
@@ -39,11 +41,17 @@ Demonstrates how to scale a sprite using a uniform scale.
 
 Demonstrates how to scale sprites using a matrix that is created based on the viewport width.
 
-This section walks through several core concepts related to sprite rendering, including drawing text to the screen.
+[How To Tile Sprites](HowTo_Tile_Sprites.md)
+
+Demonstrates how to draw a sprite repeatedly in the x and y directions in one Draw call.
 
 [How To Animate A Sprite](HowTo_Animate_Sprite.md)
 
 Demonstrates how to animate a sprite from a texture using a custom class.
+
+Demonstrates how to import a SpriteFont into a project and to draw text using the DrawString method.
+
+[How To Make A Scrolling Background](HowTo_Make_Scrolling_Background.md)
 
 > More Coming soon
 
