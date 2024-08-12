@@ -49,6 +49,10 @@ This section walks through several core concepts related to sprite rendering, in
 
   Demonstrates how to draw a sprite repeatedly in the x and y directions in one Draw call.
 
+- [How To Draw Text](HowTo_Draw_Text.md)
+
+  Demonstrates how to import a SpriteFont into a project and to draw text using the DrawString method.
+
 - [How To Animate A Sprite](HowTo_Animate_Sprite.md)
 
   Demonstrates how to animate a sprite from a texture using a custom class.
