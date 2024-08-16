@@ -53,8 +53,8 @@ dotnet clean
 dotnet restore
 ```
 
-## Update dotent tools Manifest File
-Regardless of the development environment, users will need to update the dotnet tools manifest file manually to use the newest versions.  To do this:
+## Update MGCB Editor
+Regardless of the development environment, users will need to update the dotnet tools manifest file manually to use the newest version of the *MonoGame Content Builder*. To do this:
 1. Open the *.config/dotent-tools.json* manifest file located in the project root directory
 2. Update the version specified for each tool to the current version of MonoGame (currently this is `3.8.2.1105`).
 3. Save the changes
