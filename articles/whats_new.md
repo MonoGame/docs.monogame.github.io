@@ -1,9 +1,26 @@
 ---
 title: Whats New
-description: Whats new with the release of MonoGame 3.8.1
+description: What is new with the release of MonoGame 3.8.2
 ---
 
-# Whats New
+## MonoGame 3.8.2 (notes coming soon)
+
+> [!NOTE]
+> **Coming soon**
+> Refer to the [CHANGELOG](https://github.com/MonoGame/MonoGame/blob/develop/CHANGELOG.md) for a more complete list of the changes.
+
+* Update to .NET 8, including the MGCB tool (now a local tool rather than global, allowing different projects to use different versions)
+* Removal of Windows UWP due to Microsoft shutting support for it (you can still use UWP if you remain on 3.8.1)
+* Updated to building dependencies to improve support.
+* New documentation, including the continuing migration of the older XNA documentation.
+* A MASSIVE clean-up of the MonoGame XML documentation, big shout out to (@AristurtleDev and his team).
+* Build system improvements (mainly a MonoGame building backend thing).
+* Various bugfixes to so many areas of the Framework.
+
+> [!NOTE]
+> More details to follow
+
+## MonoGame 3.8.1 (including Hotfix)
 
 The MonoGame 3.8.1 release marks some big changes since 3.8.0 in how we build and distribute.
 
