@@ -8,6 +8,9 @@ When a new release of MonoGame is pushed, developers will need to manually updat
 ## Update dotnet Templates
 Developers will need to update the MonoGame C# Templates used to create new projects.  Doing this depends on if you are using Visual Studio 2022 or through the dotnet cli.
 
+> [!NOTE]
+> Updating the templates will not affect existing projects.  if developers wish to update existing project, see the info in the [Update Existing Projects](#update-existing-projects) section.
+
 ### Visual Studio 2022
 Develoeprs using Visual Studio 2022 should be using the [MonoGame C# Project Templates](https://marketplace.visualstudio.com/items?itemName=MonoGame.MonoGame-Templates-VSExtension) extension.  This provides not only the tempaltes but also the functinality to open the *MonoGame Content Builder Editor* (MGCB Editor) within Visual Studio.  You can update the extension by performing the following
 
