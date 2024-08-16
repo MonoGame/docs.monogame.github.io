@@ -14,11 +14,6 @@ description: A guide on updating MonoGame when a new release is pushed.
    - [Update dotnet Templates](#update-dotnet-templates)
       - [Visual Studio 2022](#visual-studio-2022-1)
       - [dotnet CLI (VSCode/Rider)](#dotnet-cli-vscoderider)
-   - [Update MGCB Editor](#update-mgcb-editor-1)
-- [Updating Environment for New Projects](#updating-environment-for-new-projects-1)
-  - [Update dotnet Templates](#update-dotnet-templates-1)
-    - [Visual Studio 2022](#visual-studio-2022-2)
-      - [dotnet CLI (VSCode/Rider)](#dotnet-cli-vscoderider-1). 
 
 When a new release of MonoGame is pushed, developers will need to manually update their development environment and/or existing project to make use of the new version.  This guide is intended to walk you through the steps of performing these updates.
 
