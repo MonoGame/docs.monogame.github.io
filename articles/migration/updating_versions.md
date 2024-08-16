@@ -18,7 +18,7 @@ Develoeprs using Visual Studio 2022 should be using the [MonoGame C# Project Tem
 
 If prompted to close Visual Studio to finish the update, do so now to continue installing the update.
 
-## dotnet CLI
+## dotnet CLI (VSCode/Rider)
 Develoeprs using the dotnet CLI with environments such as Visual Studio Code, JetBrains Rider, or other editors, can exceute the following command in a command prompt/terminal to update the templates
 
 ```sh
