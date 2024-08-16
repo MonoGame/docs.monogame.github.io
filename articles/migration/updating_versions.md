@@ -5,38 +5,6 @@ description: A guide on updating MonoGame when a new release is pushed.
 
 When a new release of MonoGame is pushed, developers will need to manually update their development environment and/or existing project to make use of the new version.  This guide is intended to walk you through the steps of performing these updates.
 
-## Update dotnet Templates
-Developers will need to update the MonoGame C# Templates used to create new projects.  Doing this depends on if you are using Visual Studio 2022 or through the dotnet cli.
-
-> [!NOTE]
-> Updating the templates will not affect existing projects.  if developers wish to update existing project, see the info in the [Update Existing Projects](#update-existing-projects) section.
-
-### Visual Studio 2022
-Developers using Visual Studio 2022 should be using the [MonoGame C# Project Templates](https://marketplace.visualstudio.com/items?itemName=MonoGame.MonoGame-Templates-VSExtension) extension.  This provides not only the tempaltes but also the functinality to open the *MonoGame Content Builder Editor* (MGCB Editor) within Visual Studio.  You can update the extension by performing the following
-
-1. Open Visual Studio 2022
-2. In the lanuch window, choose the *Continue without code* option at the bottom on the right.
-3. From the top menu choose, *Extensions > Manage Extensions*  to open the *Extension Manager* panel.
-4. Click the *Updates* tab and choose *MonoGame Framework C# project templates* and update it to the latest version.
-
-If prompted to close Visual Studio to finish the update, do so now to continue installing the update.
-
-### dotnet CLI (VSCode/Rider)
-Develoeprs using the dotnet CLI with environments such as Visual Studio Code, JetBrains Rider, or other editors, can exceute the following command in a command prompt/terminal to update the templates
-
-```sh
-dotnet new install MonoGame.Templates.CSharp
-```
-
-> [!TIP]
-> If you receive a an error or warning stating there are naming conflicts in the templates, you may need to uninstall the templates first with the following command and then install them:
-> 
-> ```sh
-> dotnet new uninstall MonoGame.Templates.CSharp
-> ```
-
-Alternatively, you can perform `dotnet new update` which will update all templates installed to their most current version avaialble.  However, this may affect other templates you have installed that you may not wish to update, it's an all or nothing command.
-
 ## Update Existing Projects
 Developers wishing to update their current project to use a new release version only need to update the *target framework*, *NuGet package verions*, and *dotnet tools* version. Doing this dpeends on if you are using Visual Studio 2022 or another development environment
 
@@ -71,3 +39,38 @@ Once these changes are made, open a command prompt or terminal at the root of th
 ```sh
 dotnet tool restore
 ```
+
+## Updating Environment for New Projects
+The following sections will cover updating your development environment for new projects.
+
+### Update dotnet Templates
+Developers will need to update the MonoGame C# Templates used to create new projects.  Doing this depends on if you are using Visual Studio 2022 or through the dotnet cli.
+
+> [!NOTE]
+> Updating the templates will not affect existing projects.  if developers wish to update existing project, see the info in the [Update Existing Projects](#update-existing-projects) section.
+
+#### Visual Studio 2022
+Developers using Visual Studio 2022 should be using the [MonoGame C# Project Templates](https://marketplace.visualstudio.com/items?itemName=MonoGame.MonoGame-Templates-VSExtension) extension.  This provides not only the tempaltes but also the functinality to open the *MonoGame Content Builder Editor* (MGCB Editor) within Visual Studio.  You can update the extension by performing the following
+
+1. Open Visual Studio 2022
+2. In the lanuch window, choose the *Continue without code* option at the bottom on the right.
+3. From the top menu choose, *Extensions > Manage Extensions*  to open the *Extension Manager* panel.
+4. Click the *Updates* tab and choose *MonoGame Framework C# project templates* and update it to the latest version.
+
+If prompted to close Visual Studio to finish the update, do so now to continue installing the update.
+
+#### dotnet CLI (VSCode/Rider)
+Develoeprs using the dotnet CLI with environments such as Visual Studio Code, JetBrains Rider, or other editors, can exceute the following command in a command prompt/terminal to update the templates
+
+```sh
+dotnet new install MonoGame.Templates.CSharp
+```
+
+> [!TIP]
+> If you receive a an error or warning stating there are naming conflicts in the templates, you may need to uninstall the templates first with the following command and then install them:
+> 
+> ```sh
+> dotnet new uninstall MonoGame.Templates.CSharp
+> ```
+
+Alternatively, you can perform `dotnet new update` which will update all templates installed to their most current version avaialble.  However, this may affect other templates you have installed that you may not wish to update, it's an all or nothing command.
