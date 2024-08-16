@@ -6,15 +6,24 @@ description: A guide on updating MonoGame when a new release is pushed.
 When a new release of MonoGame is pushed, developers will need to manually update their development environment and/or existing project to make use of the new version.  This guide is intended to walk you through the steps of performing these updates.
 
 ## Update Existing Projects
-Developers wishing to update their current project to use a new release version only need to update the *target framework*, *NuGet package verions*, and *dotnet tools* version. Doing this dpeends on if you are using Visual Studio 2022 or another development environment
+Developers wishing to update their current project to use a new release version only need to update the *target framework*, *NuGet package verions*, and *dotnet tools* version. Doing this dpeends on if you are using Visual Studio 2022 or another development environment.
 
-### Visual Studio 2022
+### Update Target Framework
+Developers will need to ensure the project is updated to target the .NET version used by MonoGame at minimum (currenty `net8.0`). To do this, open your project's *.csproj* file and find the `<TargetFramework>` element and change the `net-X.Y` version to `net-8.0`, then save the file.
+
+> [!NOTE]
+> Only change the .NET version number. some projext types have platform specifiers such as `net6.0-windows`. The only thing that should change here is the version number.
+
+### Update NuGet References
+The following sections cover updating your NuGet packages for existing projects based om your developmemt environment.
+
+#### Visual Studio 2022
 Open your existing project in Visual Studio 2022 and perform the following
 1. Right-click on the project in the *Solution Explorer* panel and select *Manage NuGet Packages...".
 2. In the NuGet Packages Manager window, click the *Updates* tab.
 3. Select the MonoGame Framework packages in the list on the left, then click the *Update* button for each one on the right.
 
-### Manually Editing .csproj File
+#### Manually Editing .csproj File (VSCode/Rider)
 Alternatively, regardless of the development environment, developers can manually edit the *.csproj* file for their project to update to the newest MonoGame release.  To do this
 1. Open your project's *.csproj* file
 2. Locate the `<PacakgeReference>` elements for any MonoGame referenced packages.
