@@ -13,25 +13,25 @@
   - name: 1. Setting up your OS for development
     items:
     - name: Windows
-      href: getting_started/1_setting_up_your_development_environment_visual_studio.md
+      href: getting_started/1_setting_up_your_os_for_development_windows.md
     - name: macOS
-      href: getting_started/1_setting_up_your_development_environment_vscode.md
+      href: getting_started/1_setting_up_your_os_for_development_macos.md
     - name: Ubuntu 20.04
-      href: getting_started/1_setting_up_your_development_environment_unix.md
+      href: getting_started/1_setting_up_your_os_for_development_ubuntu.md
   - name: 2. Choosing your IDE
     items:
-    - name: Visual Studio 2022
-      href: getting_started/1_setting_up_your_development_environment_visual_studio.md
+    - name: Visual Studio for Windows
+      href: getting_started/2_choosing_your_ide_visual_studio.md
     - name: VSCode
-      href: getting_started/1_setting_up_your_development_environment_vscode.md
+      href: getting_started/2_choosing_your_ide_vscode.md
     - name: Rider
-      href: getting_started/1_setting_up_your_development_environment_unix.md
+      href: getting_started/2_choosing_your_ide_rider.md
   - name: 3. Creating a new project
     items:
-    - name: Visual Studio 2022
-      href: getting_started/2_creating_a_new_project_vs.md
+    - name: Visual Studio for Windows
+      href: getting_started/3_creating_a_new_project_vs.md
     - name: .NET CLI (Rider or Visual Studio Code)
-      href: getting_started/2_creating_a_new_project_netcore.md
+      href: getting_started/3_creating_a_new_project_netcore.md
   - name: 4. Understanding the Code
     href: getting_started/4_understanding_the_code.md
   - name: 5. Adding Content
