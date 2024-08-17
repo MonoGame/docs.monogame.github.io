@@ -7,16 +7,31 @@ This is a guide on setting up your development environment for creating games wi
 
 By the end, you will be fully equipped to start creating games with MonoGame using Rider.
 
-> [!IMPORTANT]
-> The only development environment that MonoGame officially supports on Mac/Linux is [Visual Studio Code](https://code.visualstudio.com/).
->
-> [Visual Studio for Mac will be discontinued](https://devblogs.microsoft.com/visualstudio/visual-studio-for-mac-retirement-announcement/) by Microsoft in August 2024.  At that time, [Visual Studio Code](https://code.visualstudio.com/) will be the only development environment supported by MonoGame on macOS.
-
----
-
 ## Install Rider
 
-## Setup stuff??
+You can download and install Rider from: [https://www.jetbrains.com/rider/download](https://www.jetbrains.com/rider/download)
+
+## Setting up Rider for development with MonoGame
+
+- Open up terminal (or Powershell on Windows)
+- Run the following command to install templates:
+    ```sh
+    dotnet new install MonoGame.Templates.CSharp
+    ```
+
+## Creating an empty project
+
+1. Open up Rider
+2. Click on the "New Solution" button
+
+    ![Download .NET For Windows](./images/1_setting_up_your_development_environment/rider_new_solution_button.png)
+
+3. Select "MonoGame Cross-Platform Desktop Application" on the list on the left
+
+    ![Download .NET For Windows](./images/1_setting_up_your_development_environment/rider_new_solution_dialog.png)
+
+4. Press "Create"
+5. You can now press F5 to compile and debug you game, happy coding  :)
 
 ## Next Steps
 

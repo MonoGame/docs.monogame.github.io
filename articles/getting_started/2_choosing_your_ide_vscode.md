@@ -57,7 +57,7 @@ By the end, you will be fully equipped to start creating games with MonoGame usi
     dotnet new mgdesktopgl
     ```
 4. When VS Code asks you about automatic creation of launch / task files, press yes
-5. You can press F5 to compile and debug you app, happy coding  :)
+5. You can now press F5 to compile and debug you game, happy coding  :)
 
 ## Next Steps
 
