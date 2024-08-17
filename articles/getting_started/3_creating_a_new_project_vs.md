@@ -28,4 +28,10 @@ You should now see your game window running.
 
 ![Game](images/vswin_mg_new_5.png)
 
-**Next up:** [Understanding the code](3_understanding_the_code.md)
+---
+
+## Next Steps
+
+Next, get to know MonoGame's code structure and project layout:
+
+- [Understanding the code](4_understanding_the_code.md)

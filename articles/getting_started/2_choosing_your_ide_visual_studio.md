@@ -1,6 +1,6 @@
 ---
-title: Setting up your development environment for Visual Studio on Windows
-description: This section provides a step-by-step guide for setting up your development environment on Windows.
+title: Setting up Visual Studio on Windows
+description: This section provides a step-by-step guide for setting up your development IDE on Windows for Visual Studio.
 ---
 
 MonoGame can work with most .NET compatible tools, but we recommend [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
@@ -8,7 +8,7 @@ MonoGame can work with most .NET compatible tools, but we recommend [Visual Stud
 > [!NOTE]
 > Alternatively, you can use [JetBrains Rider](https://www.jetbrains.com/rider/) or [Visual Studio Code](https://code.visualstudio.com/).
 >
-> Check out the guide for [Setting up VSCode / Rider here](./1_setting_up_your_development_environment_vscode.md).
+> Check out the guide for [Setting up VSCode](./2_choosing_your_ide_vscode.md) / [Rider here](./2_choosing_your_ide_rider.md).
 
 ## Install Visual Studio 2022
 
@@ -16,11 +16,11 @@ Before using MonoGame with Visual Studio you need to ensure you have installed t
 
 When installing Visual Studio, the following workloads are required depending on your desired [target platform(s)](./platforms.md):
 
-* Mandatory for all platforms:
-  * **.Net desktop development**
-* Optional
-  * **.Net Multi-platform App UI Development** if you wish to target Android, iOS, or iPadOS.
-  * **Universal Windows Platform development** if you wish to build for Windows store or Xbox.
+- Mandatory for all platforms:
+  - **.Net desktop development**
+- Optional
+  - **.Net Multi-platform App UI Development** if you wish to target Android, iOS, or iPadOS.
+  - **Universal Windows Platform development** if you wish to build for Windows store or Xbox.
 
 ![Visual Studio optional components](images/1_installer_vs_components.png)
 
@@ -56,10 +56,10 @@ To create new MonoGame projects from within Visual Studio 2022, you will need to
 
 You now have the MonoGame templates installed and are ready to create new projects.
 
-> [!NOTE]
->
-> ## [Alternative, use VSCode/Rider on Windows](./1_setting_up_your_development_environment_vscode.md)
->
-> If you prefer to use JetBrains Rider or Visual Studio Code, then check out the [Setting up your development environment for VSCode](./1_setting_up_your_development_environment_vscode.md) article instead.
+---
 
-**Next up:** [Creating a new project](2_creating_a_new_project_vs.md)
+## Next Steps
+
+Next, get to know MonoGame by creating your first game project:
+
+- [Creating a new project](3_creating_a_new_project_vs.md)

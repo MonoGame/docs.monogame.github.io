@@ -1,65 +1,90 @@
 ---
-title: Setting up your development environment for Visual Studio on Windows
+title: Setting up your OS for development on Ubuntu
 description: This section provides a step-by-step guide for setting up your development environment on Windows.
 ---
 
-MonoGame can work with most .NET compatible tools, but we recommend [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
+To develop with MonoGame in C#, you will need to install the .NET SDK. As of MonoGame 3.8.2 the minimum supported version is .NET 8.
 
-> [!NOTE]
-> Alternatively, you can use [JetBrains Rider](https://www.jetbrains.com/rider/) or [Visual Studio Code](https://code.visualstudio.com/).
->
-> Check out the guide for [Setting up VSCode / Rider here](./1_setting_up_your_development_environment_vscode.md).
+## Install .NET 8 SDK
 
-## Install Visual Studio 2022
+1. Open a new **Terminal** window.
+2. Enter the following command in the terminal to download the **dotnet-install.sh**
 
-Before using MonoGame with Visual Studio you need to ensure you have installed the latest [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) along with the required components.
+    ```sh
+    wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+    ```
 
-When installing Visual Studio, the following workloads are required depending on your desired [target platform(s)](./platforms.md):
+3. Grant permission for the script to execute by entering the following command in the terminal:
 
-* Mandatory for all platforms:
-  * **.Net desktop development**
-* Optional
-  * **.Net Multi-platform App UI Development** if you wish to target Android, iOS, or iPadOS.
-  * **Universal Windows Platform development** if you wish to build for Windows store or Xbox.
+    ```sh
+    chmod +x ./dotnet-install.sh
+    ```
 
-![Visual Studio optional components](images/1_installer_vs_components.png)
+4. Run the script to install the .NET 8 SDK by entering the following command in the terminal:
 
-> [!WARNING]
-> **Targeting Windows**
->
-> If you are targeting the standard Windows DirectX backend, you will also need [the DirectX June 2010 runtime](https://www.microsoft.com/en-us/download/details.aspx?id=8109) for audio and gamepads to work properly.
->
-> Work is underway however to update to support DirectX 12 on Windows and Xbox very soon.
+    ```sh
+    ./dotnet-install.sh
+    ```
 
-### Install MonoGame extension for Visual Studio 2022
+    ![.NET Install Script](./images/1_setting_up_your_development_environment/vscode/linux/dotnet-install-script.png)
 
-To create new MonoGame projects from within Visual Studio 2022, you will need to install the **MonoGame Framework C# project templates** extension.  The following steps demonstrate how to install the extension.
+5. You will now need to setup your environment variables so that the `dotnet` command is recognized.  To do this, open the file `~/.bashrc` in a text editor and add the following lines to the end of the file.
 
-1. Launch Visual Studio 2022
-2. Select **Continue without code**.  This will launch Visual Studio without any project or solution opened.
+    ```sh
+    export DOTNET_ROOT=$HOME/.dotnet
+    export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+    ```
 
-    ![Visual Studio Launcher Continue Without Code](images/1_continue_without_code.png)
+    ![Add Environment Variables](./images/1_setting_up_your_development_environment/vscode/linux/add-environment-variables.png)
 
-3. Click "*Extensions -> Manage Extensions* in the Visual Studio 2022 menu bar.  This will open the Manage Extensions dialog window.
+6. Save and close the file, close any open terminal windows, then open a new terminal window so the new environment variables are registered.
+7. Enter the `dotnet` command to validate that the .NET 8 SDK is now installed.
 
-    ![Extensions -> Manage Extensions Menu Selection](images/1_visual_studio_extension_menu.png)
+    ![Verify Installation](./images/1_setting_up_your_development_environment/vscode/linux/verify-install.png)
 
-4. Use the search box in the top-right corner of the Manage Extensions dialog window to search for **MonoGame**, then click the **MonoGame Framework C# project templates** extension as shown below and download it to install it.
+## Setup Wine For Effect Compilation
 
-    ![Visual Studio Extension Manager](images/1_visual_studio_extension_manager.png)
+Effect (shader) compilation requires access to DirectX.  This means it will not work natively on macOS and Linux systems, but it can be used through [Wine](https://www.winehq.org/).
 
-5. After it is downloaded, an alert will appear at the bottom of the Manage Extensions window that states "Your changes will be scheduled.  The modifications will begin when all Microsoft Visual Studio windows are closed."  Click the **Close** button, then close Visual Studio 2022.
+MonoGame provides a setup script that can be executed to setup the Wine environment for Effect (shader) compilation.  However, this script has the following prerequisites that must first be setup:
 
-6. After closing Visual Studio 2022, a VSIX Installer window will open confirming that you want to install the **MonoGame Framework C# project templates** extension.  Click the **Modify** button to accept the install.
+- **curl** must be installed
+- **p7zip** must be installed
+- **wine64** must be installed.
 
-    ![VSIX Installer Window](images/1_vsix_installer_window.png)
+For Debian-based distributions like Ubuntu, you can perform the following:
 
-You now have the MonoGame templates installed and are ready to create new projects.
+1. Open a terminal window
+2. Enter the following command
 
-> [!NOTE]
->
-> ## [Alternative, use VSCode/Rider on Windows](./1_setting_up_your_development_environment_vscode.md)
->
-> If you prefer to use JetBrains Rider or Visual Studio Code, then check out the [Setting up your development environment for VSCode](./1_setting_up_your_development_environment_vscode.md) article instead.
+    ```sh
+    sudo apt install curl p7zip-full wine64
+    ```
 
-**Next up:** [Creating a new project](2_creating_a_new_project_vs.md)
+    > [!TIP]
+    > If you receive an error stating that either of the packages do not have an install candidate, you may need to enable the universe apt repository.  To do this, enter the following commands in the terminal
+    >
+    > ```sh
+    > sudo add-apt-repository universe
+    > sudo apt update
+    > ```
+    >
+    > Then try installing the packages again.
+
+    > [!CAUTION]
+    > If you plan to install Wine using the `winehq-*` package instead, it is recommended that you use the `winehq-stable` package and not `-staging`.
+
+3. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net6_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
+
+    ```sh
+    wget -qO- https://monogame.net/downloads/net6_mgfxc_wine_setup.sh | bash
+    ```
+
+This will create new directory called `.winemonogame` in your home directory.  If you ever wish to undo the setup this script performed, just simply delete that directory.
+
+## Next Steps
+
+Choose from one of the two IDE options on Ubuntu:
+
+- [Setting up VSCode](./2_choosing_your_ide_vscode.md)
+- [Setting up Rider](./2_choosing_your_ide_rider.md)

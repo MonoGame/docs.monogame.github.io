@@ -4,7 +4,7 @@ description: This tutorial will go over adding basic logic to your game
 ---
 
 > [!NOTE]
-> this tutorial continues from where [4. Adding Content](4_adding_content.md) left off.
+> this tutorial continues from where [5. Adding Content](5_adding_content.md) left off.
 
 ---
 
@@ -256,6 +256,16 @@ base.Update(gameTime);
 Now run the game to test for yourself that the ball cannot go beyond the window bounds any more.
 
 Happy Coding ^^
+
+---
+
+## Next Steps
+
+We recommend browsing through the [Getting to know MonoGame](../getting_to_know/index.md) section to learn more and get some tips and tricks from the MonoGame team.
+
+- [Getting to know MonoGame](../getting_to_know/index.md)
+- [What Is articles](../getting_to_know/whatis/index.md)
+- [How To articles](../getting_to_know/howto/index.md)
 
 ## Further Reading
 

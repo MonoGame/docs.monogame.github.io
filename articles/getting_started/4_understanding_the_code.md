@@ -8,19 +8,19 @@ description: This tutorial will go over the code that is generated when you star
 
 Within the **Game.cs** class file, which is the core of any MonoGame project, you will find several critical sections necessary for your game to run:
 
-* **Using statements** - which provide easy access to the various components of MonoGame.
+- **Using statements** - which provide easy access to the various components of MonoGame.
 
-* The **Game Class** definition - the heart of any MonoGame project.
+- The **Game Class** definition - the heart of any MonoGame project.
 
-* The **Game constructor** and key variables - which tell the project how to start.
+- The **Game constructor** and key variables - which tell the project how to start.
 
-* The **Initialize** method - to initialize the game upon its startup.
+- The **Initialize** method - to initialize the game upon its startup.
 
-* The **Load and Unload Content** methods - which are used to add and remove assets from the running game from the [Content project](4_adding_content.md).
+- The **Load and Unload Content** methods - which are used to add and remove assets from the running game from the [Content project](5_adding_content.md).
 
-* The **Update** method - which is called on a regular interval to update your game state, e.g. take player inputs, move ships, or animate entities.
+- The **Update** method - which is called on a regular interval to update your game state, e.g. take player inputs, move ships, or animate entities.
 
-* The **Draw** method - which is called on a regular interval to take the current game state and draw your game entities to the screen.
+- The **Draw** method - which is called on a regular interval to take the current game state and draw your game entities to the screen.
 
 Read further for more details and examples while looking through the code of your new project.
 
@@ -126,4 +126,10 @@ protected override void Draw(GameTime gameTime)
 
 Similar to the Update method, the **Draw** method is also called multiple times per second.  This, as the name suggests, is responsible for drawing content to the screen.
 
-**Next up:** [Adding Content](4_adding_content.md)
+---
+
+## Next Steps
+
+Next, learn how to add and import content into your game project:
+
+- [Adding Content](5_adding_content.md)

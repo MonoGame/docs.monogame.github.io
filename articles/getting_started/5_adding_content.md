@@ -106,4 +106,10 @@ Now run the game. You should get the following:
 
 ![Game](images/3_game.png)
 
-**Next up:** [Adding Basic Code](5_adding_basic_code.md)
+---
+
+## Next Steps
+
+Next, learn how to get your first basic game concept running:
+
+- [Adding Basic Code](6_adding_basic_code.md)

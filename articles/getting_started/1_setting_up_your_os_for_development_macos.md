@@ -1,65 +1,101 @@
 ---
-title: Setting up your development environment for Visual Studio on Windows
-description: This section provides a step-by-step guide for setting up your development environment on Windows.
+title: Setting up your OS for development on MacOS
+description: This section provides a step-by-step guide for setting up your development environment on Mac.
 ---
 
-MonoGame can work with most .NET compatible tools, but we recommend [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
+To develop with MonoGame in C#, you will need to install the .NET SDK. As of MonoGame 3.8.2 the minimum supported version is .NET 8.
 
-> [!NOTE]
-> Alternatively, you can use [JetBrains Rider](https://www.jetbrains.com/rider/) or [Visual Studio Code](https://code.visualstudio.com/).
->
-> Check out the guide for [Setting up VSCode / Rider here](./1_setting_up_your_development_environment_vscode.md).
+## Install .NET 8 SDK
 
-## Install Visual Studio 2022
+> [!IMPORTANT]
+> For the time being, MonoGame requires that you install the x64 version of the .NET SDK even if you are running on an Apple Silicon mac. It is also required that [Rosetta](https://support.apple.com/en-us/HT211861) is enabled.
 
-Before using MonoGame with Visual Studio you need to ensure you have installed the latest [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) along with the required components.
+1. Navigate to [https://dotnet.microsoft.com/en-us/download](https://dotnet.microsoft.com/en-us/download)
 
-When installing Visual Studio, the following workloads are required depending on your desired [target platform(s)](./platforms.md):
+    ![Download .NET For Mac](./images/1_setting_up_your_development_environment/vscode/mac/download-dotnet.png)
 
-* Mandatory for all platforms:
-  * **.Net desktop development**
-* Optional
-  * **.Net Multi-platform App UI Development** if you wish to target Android, iOS, or iPadOS.
-  * **Universal Windows Platform development** if you wish to build for Windows store or Xbox.
+2. Download the .NET SDK x64-(Intel) Installer
 
-![Visual Studio optional components](images/1_installer_vs_components.png)
+    > [!NOTE]
+    > For the time being, MonoGame requires that you install the **.NET SDK x64-(Intel)** version of the .NET SDK even if you are running on an Apple Silicon (M1/M2) Mac.  For Apple Silicon Macs, it also requires that [Rosetta](https://support.apple.com/en-us/HT211861) is enabled.
 
-> [!WARNING]
-> **Targeting Windows**
->
-> If you are targeting the standard Windows DirectX backend, you will also need [the DirectX June 2010 runtime](https://www.microsoft.com/en-us/download/details.aspx?id=8109) for audio and gamepads to work properly.
->
-> Work is underway however to update to support DirectX 12 on Windows and Xbox very soon.
+3. Once the installation **.pkg** file finishes downloading, run it and follow the prompts to install the .NET SDK
 
-### Install MonoGame extension for Visual Studio 2022
+    ![Install .NET For Mac](./images/1_setting_up_your_development_environment/vscode/mac/install-dotnet.png)
 
-To create new MonoGame projects from within Visual Studio 2022, you will need to install the **MonoGame Framework C# project templates** extension.  The following steps demonstrate how to install the extension.
+4. Once the installation is complete, open a new terminal window and run the command `dotnet` to verify the installation was successful.
 
-1. Launch Visual Studio 2022
-2. Select **Continue without code**.  This will launch Visual Studio without any project or solution opened.
+![Verify Installation](./images/1_setting_up_your_development_environment/vscode/mac/verify-install.png)
 
-    ![Visual Studio Launcher Continue Without Code](images/1_continue_without_code.png)
+## Setup Wine For Effect Compilation
 
-3. Click "*Extensions -> Manage Extensions* in the Visual Studio 2022 menu bar.  This will open the Manage Extensions dialog window.
+Effect (shader) compilation requires access to DirectX.  This means it will not work natively on macOS and Linux systems, but it can be used through [Wine](https://www.winehq.org/).
 
-    ![Extensions -> Manage Extensions Menu Selection](images/1_visual_studio_extension_menu.png)
+MonoGame provides a setup script that can be executed to setup the Wine environment for Effect (shader) compilation.  However, this script has the following prerequisites that must first be setup:
 
-4. Use the search box in the top-right corner of the Manage Extensions dialog window to search for **MonoGame**, then click the **MonoGame Framework C# project templates** extension as shown below and download it to install it.
+- **curl** must be installed
+- **p7zip** must be installed
+- **wine-stable** must be installed.
 
-    ![Visual Studio Extension Manager](images/1_visual_studio_extension_manager.png)
+These can be installed using **brew**.
 
-5. After it is downloaded, an alert will appear at the bottom of the Manage Extensions window that states "Your changes will be scheduled.  The modifications will begin when all Microsoft Visual Studio windows are closed."  Click the **Close** button, then close Visual Studio 2022.
+1. Open a terminal window.
+2. Enter the following command:
 
-6. After closing Visual Studio 2022, a VSIX Installer window will open confirming that you want to install the **MonoGame Framework C# project templates** extension.  Click the **Modify** button to accept the install.
+    ```sh
+    brew install p7zip curl
+    brew install --cask wine-stable
+    ```
 
-    ![VSIX Installer Window](images/1_vsix_installer_window.png)
+    > [!CAUTION]
+    > It is recommended that you use `wine-stable` and not `wine-staging`.
 
-You now have the MonoGame templates installed and are ready to create new projects.
+3. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net6_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
 
-> [!NOTE]
->
-> ## [Alternative, use VSCode/Rider on Windows](./1_setting_up_your_development_environment_vscode.md)
->
-> If you prefer to use JetBrains Rider or Visual Studio Code, then check out the [Setting up your development environment for VSCode](./1_setting_up_your_development_environment_vscode.md) article instead.
+```sh
+wget -qO- https://monogame.net/downloads/net6_mgfxc_wine_setup.sh | bash
+```
 
-**Next up:** [Creating a new project](2_creating_a_new_project_vs.md)
+This will create new directory called `.winemonogame` in your home directory.  If you ever wish to undo the setup this script performed, just simply delete that directory.
+
+## Apple Silicon Known Issues
+
+There is currently a two known issue when building content on an Apple Silicon (M1/M2) Mac:
+
+1. **Building Textures**: An exception occurs stating that the **freeimage** lib could not be found.
+2. **Building SpriteFonts**: An exception occurs stating that the **freetype** lib could not be found.
+3. **Building Models**: An exception occurs starting that the **assimp** lib could not be found.
+
+These issue occur due to needing compiled versions of these libs for the M1/M2 architecture.  [There is currently work being done to resolve this](https://github.com/MonoGame/MonoGame/issues/8124), however in the meantime, you can use the following workaround that has been provided by community members.
+
+1. Download and install the x64 version of [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0). This will place an x64 version of .NET 6 in a `/usr/local/share/dotnet/x64` directory.
+NOTE: It MUST be the x64 version in order for this to work. This will allow the x64 native libraries that the MonoGame Content Pipeline uses to function on the Apple Silicon device.
+Currently it also needs to be .NET 6 for the 3.8.1 Release of MonoGame.
+
+2. Open your .csproj and add the following lines to the first `<PropertyGroup>` section.
+
+    ```xml
+    <DotnetCommand>/usr/local/share/dotnet/x64/dotnet</DotnetCommand>
+    ```
+
+3. (Alternative) The directory above is not in the path. But we do not want the system to be confused on which .NET is should be using. So rather thatn putting the x64 verison in the path we should instead create a symlink named `dotnet64`.
+
+    ```sh
+    sudo ln -s /usr/local/share/dotnet/x64/dotnet /usr/local/share/dotnet/dotnet64
+    ```
+
+We can then use this value as the value for `DotnetCommand`
+
+```xml
+<DotnetCommand>dotnet64</DotnetCommand>
+```
+
+> [!IMPORTANT]
+> A fast follow release is planned for Mac/Linux support to improve the content management side of MonoGame.
+
+## Next Steps
+
+Choose from one of the two IDE options on MacOS:
+
+- [Setting up VSCode](./2_choosing_your_ide_vscode.md)
+- [Setting up Rider](./2_choosing_your_ide_rider.md)

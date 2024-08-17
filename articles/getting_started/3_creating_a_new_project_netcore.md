@@ -8,6 +8,8 @@ This guide will walk you through building a starter game with MonoGame using onl
 > [!NOTE]
 > It is assumed that you have already properly installed the .NET 8 SDK and MonoGame.
 
+---
+
 > [!IMPORTANT]
 > Be aware that for iOS/iPadOS and Android, development might be limited when using the .NET CLI. Many of the development features for those targets are exclusive to Visual Studio 2022.
 
@@ -37,4 +39,10 @@ Once created, you can open your code editor of choice in the new folder and begi
 
 > To run your project, check the instructions for [packaging your game](./packaging_games.md) to build the executable using the .NET tooling.
 
-**Next up:** [Understanding the code](3_understanding_the_code.md)
+---
+
+## Next Steps
+
+Next, get to know MonoGame's code structure and project layout:
+
+- [Understanding the code](4_understanding_the_code.md)
