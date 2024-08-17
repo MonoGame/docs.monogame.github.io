@@ -43,6 +43,9 @@ Beside these target platforms, MonoGame provides additional templates for shared
 
 WindowsDX uses WinForms to manage the game window, **DirectX** (9.0c or newer) is used for graphics, and XAudio is used for audio.
 
+> [!NOTE]
+> DX 12 for Windows and Xbox coming very soon.
+
 You can target **Windows*** 8.1 and up with this platform.
 
 WindowsDX requires the [DirectX June 2010](https://www.microsoft.com/en-us/download/details.aspx?id=8109) runtime to both build and run games. Make sure that your players have it installed (otherwise you might be missing sound and gamepad rumble support).
@@ -65,6 +68,9 @@ You can target Windows 8.1 (and up), macOS Catalina 10.15 (and up), and Linux wi
 
 DesktopGL currently does not have a `VideoPlayer` implementation.
 
+> [!NOTE]
+> New native platform with upgraded libraries and Metal/Vulkan support coming very soon.
+
 ### Android
 
 | **Supported Systems** | **NuGet Package**          | **Template ID** |
@@ -76,6 +82,9 @@ The Android platform uses [Xamarin.Android](https://docs.microsoft.com/en-us/xam
 Building for Android requires the .NET Xamarin component to be installed. You can install it with the Visual Studio installer (if you are using Visual Studio) or with the CLI command ```dotnet workload install android``` (if you are working with Rider, VS Code, or the CLI).
 
 Building for Android also requires the Java 11 JDK (we recommend that you use [the Microsoft's distribution](https://docs.microsoft.com/en-us/java/openjdk/download#openjdk-11)) as well as the Android SDK 31.
+
+> [!NOTE]
+> New native platform with upgraded libraries and Metal/Vulkan support coming very soon.
 
 ### iOS
 
@@ -91,6 +100,9 @@ The latest version of Xcode will also be required.
 
 You can test and deploy an iOS game on Windows by [pairing your Visual Studio 2022 with a mac on your local network](https://docs.microsoft.com/en-us/xamarin/ios/get-started/installation/windows/connecting-to-mac/). This feature is not available for Rider, Visual Studio Code, or the CLI.
 
+> [!NOTE]
+> New native platform with upgraded libraries and Metal/Vulkan support coming very soon.
+
 ## Other templates
 
 ### .NET Class Library
@@ -98,6 +110,9 @@ You can test and deploy an iOS game on Windows by [pairing your Visual Studio 20
 **Template ID**: mglib
 
 A project template to create [.NET](https://learn.microsoft.com/en-us/dotnet/standard/class-library-overview) libraries to distribute code through a DLL. This can be used to redistribute libraries or to share code between multiple projects (like different platforms).
+
+> [!NOTE]
+> See the [MonoGame Samples](https://github.com/MonoGame/MonoGame.Samples) for examples of how a .NET class library is used to share code between platforms.
 
 ### Shared Project
 
@@ -110,3 +125,6 @@ A project template to create a [shared project](https://docs.microsoft.com/en-us
 **Template ID**: mgpipeline
 
 A project template for writing custom logic for handling content and building it into XNB files.
+
+> [!NOTE]
+> See [What Is the Content Pipeline?](../getting_to_know/whatis/content_pipeline/CP_Overview.md) for more infomation and read about [What is a Custom Importer](../getting_to_know/whatis/content_pipeline/CP_AddCustomProcImp.md) here.

@@ -9,27 +9,35 @@
   - name: Introduction
     href: getting_started/
   - name: Supported platforms
-    href: getting_started/platforms.md    
-  - name: 1. Setting up your development environment
+    href: getting_started/platforms.md
+  - name: 1. Setting up your OS for development
     items:
     - name: Windows
-      href: getting_started/1_setting_up_your_development_environment_windows.md
-    - name: macOS / Linux
+      href: getting_started/1_setting_up_your_development_environment_visual_studio.md
+    - name: macOS
+      href: getting_started/1_setting_up_your_development_environment_vscode.md
+    - name: Ubuntu 20.04
       href: getting_started/1_setting_up_your_development_environment_unix.md
+  - name: 2. Choosing your IDE
+    items:
+    - name: Visual Studio 2022
+      href: getting_started/1_setting_up_your_development_environment_visual_studio.md
     - name: VSCode
-      href: getting_started/1_setting_up_your_development_environment_vscode.md      
-  - name: 2. Creating a new project
+      href: getting_started/1_setting_up_your_development_environment_vscode.md
+    - name: Rider
+      href: getting_started/1_setting_up_your_development_environment_unix.md
+  - name: 3. Creating a new project
     items:
     - name: Visual Studio 2022
       href: getting_started/2_creating_a_new_project_vs.md
     - name: .NET CLI (Rider or Visual Studio Code)
       href: getting_started/2_creating_a_new_project_netcore.md
-  - name: 3. Understanding the Code
-    href: getting_started/3_understanding_the_code.md
-  - name: 4. Adding Content
-    href: getting_started/4_adding_content.md
-  - name: 5. Adding Basic Code
-    href: getting_started/5_adding_basic_code.md
+  - name: 4. Understanding the Code
+    href: getting_started/4_understanding_the_code.md
+  - name: 5. Adding Content
+    href: getting_started/5_adding_content.md
+  - name: 6. Adding Basic Code
+    href: getting_started/6_adding_basic_code.md
   - name: Packaging
     href: getting_started/packaging_games.md
   - name: Preparing for consoles
