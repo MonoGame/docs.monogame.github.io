@@ -97,6 +97,8 @@
     href: migration/migrate_37.md
   - name: Migrating from 3.8.0
     href: migration/migrate_38.md
+  - name: Updating Versions
+    href: migration/updating_versions.md
 - name: Samples and Demos
   href: samples.md
 - name: Community Tutorials
