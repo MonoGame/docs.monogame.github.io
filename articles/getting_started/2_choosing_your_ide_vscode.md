@@ -31,36 +31,63 @@ By the end, you will be fully equipped to start creating games with MonoGame usi
 ### [Ubuntu](#tab/ubuntu)
 
 1. Open your web browser and navigate to [https://code.visualstudio.com/](https://code.visualstudio.com/).
-2, Click the Download .deb button.
+
+    ![Download VSCode](./images/1_setting_up_your_development_environment/vscode/linux/download-vscode.png)
+
+2. Click the Download .deb button.
 
 ## Setting up VS Code for development with MonoGame
 
 1. Open Visual Studio Code
 1. Open up its terminal window (`Ctrl/Cmd` + `J`)
-3. Run the following command to install MonoGame Templates
+1. Run the following command to install MonoGame Templates
 
     ```sh
     dotnet new install MonoGame.Templates.CSharp
     ```
-4. Run the following command to install C# Dev Kit extension
 
-    ```sh
-    code --install-extension ms-dotnettools.csdevkit
-    ```
+## Install Visual Studio Code C# Extensions
 
-## Creating an empty project
+To transform Visual Studio Code from a simple text editor into a powerful development environment for C# projects, you must install the Visual Studio Code C# extension. This extension enhances the editor by providing syntax highlighting, code analysis, IntelliSense, and other features that significantly improve the development experience and productivity when working with C#.
+
+1. Open Visual Studio Code.
+2. Click the **Extensions** icon in the **Activity Bar** on the left.
+
+    ![Click Extensions](./images/1_setting_up_your_development_environment/vscode/click-extensions.png)
+
+3. In the **Search Box** type `C#`.
+4. Click **Install** for the **C# Dev Kit** extension.  Installing this will also install the base **C#** extension.
+
+![Install C# DevKit Extension](./images/1_setting_up_your_development_environment/vscode/install-devkit.png)
+
+## (Optional) Install the "MonoGame for VSCode" extension
+
+A community member has built a VSCode extension for VS code to enable:
+
+- Automatically install MonoGame templates
+- Create new projects from the file menu or command palette
+- Open the MGCB editor with the click of a button (very useful)
+
+You can find this extension by following the steps above and searching for "MonoGame for VS Code" by r88.
+
+> [!NOTE]
+> While not built by the MonoGame team, we regularly use this extension ourselves and fully support it.
+
+## Creating a new MonoGame project
 
 1. Open up an empty folder in Visual Studio Code
-2. Open up its terminal window (`Ctrl/Cmd` + `J`)
-3. Run the following command to create an empty project for desktop platforms:
+1. Open up its terminal window (`Ctrl/Cmd` + `J`)
+1. Run the following command to create an empty project for desktop platforms:
+
     ```sh
     dotnet new mgdesktopgl
     ```
-4. When VS Code asks you about automatic creation of launch / task files, press yes
-5. You can now press F5 to compile and debug you game, happy coding  :)
+
+1. When VS Code asks you about automatic creation of launch / task files, press yes
+1. You can now press F5 to compile and debug you game, happy coding  :)
 
 ## Next Steps
 
-Next, get to know MonoGame by creating your first game project:
+Next, get to know MonoGame's code structure and project layout:
 
-- [Creating a new project](3_creating_a_new_project_netcore.md)
+- [Understanding the code](4_understanding_the_code.md)
