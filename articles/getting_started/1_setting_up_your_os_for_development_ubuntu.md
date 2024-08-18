@@ -14,6 +14,8 @@ To develop with MonoGame in C#, you will need to install the .NET SDK. As of Mon
     sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
     ```
 
+This will ensure the latest .NET 8 SDK is installed and setup in your environment.
+
 ## Setup Wine For Effect Compilation
 
 Effect (shader) compilation requires access to DirectX.  This means it will not work natively on macOS and Linux systems, but it can be used through [Wine](https://www.winehq.org/).
