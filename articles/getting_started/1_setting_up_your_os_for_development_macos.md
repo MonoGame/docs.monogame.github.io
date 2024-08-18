@@ -8,10 +8,10 @@ To develop with MonoGame in C#, you will need to install the .NET SDK. As of Mon
 ## Install .NET 8 SDK
 
 1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-2. Download the .NET SDK Installer for macOS x64.
+2. Download the `.NET SDK` Installer for `macOS x64`.
 3. Once the **.pkg** file finishes downloading, run it and follow the prompts to install the .NET SDK
 
-    ![Install .NET For Mac](./images/1_setting_up_your_development_environment/vscode/mac/install-dotnet.png)
+    ![Download .NET For Windows](./images/1_setting_up_your_development_environment/dotnet_8_download_page.png)
 
 > [!IMPORTANT]
 >

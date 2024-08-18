@@ -12,9 +12,9 @@ To develop with MonoGame in C#, you will need to install the .NET SDK. As of Mon
 
 You can follow the instructions below based your operating system to install the .NET 8.0 SDK
 
-1. Navigate to [https://dotnet.microsoft.com/en-us/download](https://dotnet.microsoft.com/en-us/download)
+1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
-    ![Download .NET For Windows](./images/1_setting_up_your_development_environment/vscode/windows/download-dotnet.png)
+    ![Download .NET For Windows](./images/1_setting_up_your_development_environment/dotnet_8_download_page.png)
 
 2. Click the **.NET SDK x64** download button to download.  This will take you to the download page where the **dotnet-sdk-8.x.yyy-win-x64.exe** will download.
 3. When the download completes, run the **dotnet-sdk-8.x.yyy-win-x64.exe** installer and complete the steps to install .NET on your machine.
