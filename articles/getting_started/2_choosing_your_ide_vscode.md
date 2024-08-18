@@ -34,7 +34,10 @@ By the end, you will be fully equipped to start creating games with MonoGame usi
 
     ![Download VSCode](./images/1_setting_up_your_development_environment/vscode/linux/download-vscode.png)
 
-2. Click the Download .deb button.
+1. Click the Download `.deb` button.
+1. Double click the `.deb` installer to add VSCode into your installation.
+
+---
 
 ## Setting up VS Code for development with MonoGame
 

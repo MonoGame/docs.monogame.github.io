@@ -42,12 +42,7 @@ By the end of this tutorial set, you will have a working project to build for yo
 - [VS Code](./2_choosing_your_ide_vscode.md)
 - [Rider](./2_choosing_your_ide_rider.md)
 
-### 3. Creating a new project
-
-- With [Visual Studio 2022](3_creating_a_new_project_vs.md)
-- With [the .NET command line interface](3_creating_a_new_project_netcore.md) (compatible with JetBrains Rider and Visual Studio Code)
-
-### 4. Building your game
+### 3. Building your game
 
 - [Understanding the Code](3_understanding_the_code.md)
 - [Adding Content](4_adding_content.md)

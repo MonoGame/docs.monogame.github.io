@@ -8,7 +8,7 @@ MonoGame can work with most .NET compatible tools, but we recommend [Visual Stud
 > [!NOTE]
 > Alternatively, you can use [JetBrains Rider](https://www.jetbrains.com/rider/) or [Visual Studio Code](https://code.visualstudio.com/).
 >
-> Check out the guide for [Setting up VSCode](./2_choosing_your_ide_vscode.md) / [Rider here](./2_choosing_your_ide_rider.md).
+> Check out the guides for [Setting up VSCode](./2_choosing_your_ide_vscode.md) / [Setting up Rider](./2_choosing_your_ide_rider.md) using these links.
 
 ## Install Visual Studio 2022
 

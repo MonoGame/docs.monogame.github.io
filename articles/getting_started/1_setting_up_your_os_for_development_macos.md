@@ -8,18 +8,16 @@ To develop with MonoGame in C#, you will need to install the .NET SDK. As of Mon
 ## Install .NET 8 SDK
 
 1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-2. Download the .NET SDK Installer for your platform.
+2. Download the .NET SDK Installer for macOS x64.
 3. Once the **.pkg** file finishes downloading, run it and follow the prompts to install the .NET SDK
 
     ![Install .NET For Mac](./images/1_setting_up_your_development_environment/vscode/mac/install-dotnet.png)
 
-## Apple Silicon Known Issues
-
-For the time being, MonoGame requires that you install the x64 version of the .NET runtime if you are running on an Apple Silicon mac in order to be able to build content. It is also required that [Rosetta](https://support.apple.com/en-us/HT211861) is enabled. 
-
-1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-2. Download the .NET Runtime Installer for macOS x64
-3. Once the **.pkg** file finishes downloading, run it and follow the prompts to install the .NET Runtime
+> [!IMPORTANT]
+>
+> ### Apple Silicon Known Issues
+>
+> For the time being, MonoGame requires that you install the x64 version of the .NET runtime if you are running on an Apple Silicon mac in order to be able to build content. It is also required that [Rosetta](https://support.apple.com/en-us/HT211861) is enabled. 
 
 ## Setup Wine For Effect Compilation
 

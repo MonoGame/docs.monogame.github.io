@@ -45,6 +45,6 @@ To get you started with Rider, here are the steps for setting up a new Rider Mon
 
 ## Next Steps
 
-Next, get to know MonoGame by creating your first game project:
+Next, get to know MonoGame's code structure and project layout:
 
-- [Creating a new project](3_creating_a_new_project_netcore.md)
+- [Understanding the code](3_understanding_the_code.md)

@@ -20,7 +20,7 @@ You can follow the instructions below based your operating system to install the
 3. When the download completes, run the **dotnet-sdk-8.x.yyy-win-x64.exe** installer and complete the steps to install .NET on your machine.
 4. When the install completes, open a new **Command Prompt** window and run the command `dotnet` to verify the installation was successful.
 
-![Verify Installation](./images/1_setting_up_your_development_environment/vscode/windows/verify-install.png)
+    ![Verify Installation](./images/1_setting_up_your_development_environment/vscode/windows/verify-install.png)
 
 ## Next Steps
 

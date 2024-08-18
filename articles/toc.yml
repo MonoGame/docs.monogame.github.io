@@ -27,17 +27,11 @@
       href: getting_started/2_choosing_your_ide_vscode.md
     - name: Rider
       href: getting_started/2_choosing_your_ide_rider.md
-  - name: 3. Creating a new project
-    items:
-    - name: Visual Studio for Windows
-      href: getting_started/3_creating_a_new_project_vs.md
-    - name: .NET CLI (Rider or Visual Studio Code)
-      href: getting_started/3_creating_a_new_project_netcore.md
-  - name: 4. Understanding the Code
+  - name: 3. Understanding the Code
     href: getting_started/3_understanding_the_code.md
-  - name: 5. Adding Content
+  - name: 4. Adding Content
     href: getting_started/4_adding_content.md
-  - name: 6. Adding Basic Code
+  - name: 5. Adding Basic Code
     href: getting_started/5_adding_basic_code.md
   - name: Packaging
     href: getting_started/packaging_games.md
