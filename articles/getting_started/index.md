@@ -49,6 +49,6 @@ By the end of this tutorial set, you will have a working project to build for yo
 
 ### 4. Building your game
 
-- [Understanding the Code](4_understanding_the_code.md)
-- [Adding Content](5_adding_content.md)
-- [Adding Basic Code](6_adding_basic_code.md)
+- [Understanding the Code](3_understanding_the_code.md)
+- [Adding Content](4_adding_content.md)
+- [Adding Basic Code](5_adding_basic_code.md)

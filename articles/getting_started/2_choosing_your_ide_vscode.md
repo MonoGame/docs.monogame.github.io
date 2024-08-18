@@ -90,4 +90,4 @@ You can find this extension by following the steps above and searching for "Mono
 
 Next, get to know MonoGame's code structure and project layout:
 
-- [Understanding the code](4_understanding_the_code.md)
+- [Understanding the code](3_understanding_the_code.md)

@@ -16,7 +16,7 @@ Within the **Game.cs** class file, which is the core of any MonoGame project, yo
 
 - The **Initialize** method - to initialize the game upon its startup.
 
-- The **Load and Unload Content** methods - which are used to add and remove assets from the running game from the [Content project](5_adding_content.md).
+- The **Load and Unload Content** methods - which are used to add and remove assets from the running game from the [Content project](4_adding_content.md).
 
 - The **Update** method - which is called on a regular interval to update your game state, e.g. take player inputs, move ships, or animate entities.
 
@@ -132,4 +132,4 @@ Similar to the Update method, the **Draw** method is also called multiple times 
 
 Next, learn how to add and import content into your game project:
 
-- [Adding Content](5_adding_content.md)
+- [Adding Content](4_adding_content.md)

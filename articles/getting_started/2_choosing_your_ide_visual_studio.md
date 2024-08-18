@@ -86,4 +86,4 @@ To get you started with Visual Studio, here are the steps for setting up a new M
 
 Next, get to know MonoGame's code structure and project layout:
 
-- [Understanding the code](4_understanding_the_code.md)
+- [Understanding the code](3_understanding_the_code.md)

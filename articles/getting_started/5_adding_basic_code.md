@@ -4,7 +4,7 @@ description: This tutorial will go over adding basic logic to your game
 ---
 
 > [!NOTE]
-> this tutorial continues from where [5. Adding Content](5_adding_content.md) left off.
+> this tutorial continues from where [5. Adding Content](4_adding_content.md) left off.
 
 ---
 

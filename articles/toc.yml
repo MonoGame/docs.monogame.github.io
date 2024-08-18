@@ -34,11 +34,11 @@
     - name: .NET CLI (Rider or Visual Studio Code)
       href: getting_started/3_creating_a_new_project_netcore.md
   - name: 4. Understanding the Code
-    href: getting_started/4_understanding_the_code.md
+    href: getting_started/3_understanding_the_code.md
   - name: 5. Adding Content
-    href: getting_started/5_adding_content.md
+    href: getting_started/4_adding_content.md
   - name: 6. Adding Basic Code
-    href: getting_started/6_adding_basic_code.md
+    href: getting_started/5_adding_basic_code.md
   - name: Packaging
     href: getting_started/packaging_games.md
   - name: Preparing for consoles

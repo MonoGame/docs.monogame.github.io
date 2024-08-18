@@ -112,4 +112,4 @@ Now run the game. You should get the following:
 
 Next, learn how to get your first basic game concept running:
 
-- [Adding Basic Code](6_adding_basic_code.md)
+- [Adding Basic Code](5_adding_basic_code.md)
