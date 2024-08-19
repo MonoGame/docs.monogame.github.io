@@ -8,7 +8,7 @@ To develop with MonoGame in C#, you will need to install the .NET SDK. As of Mon
 ## Install .NET 8 SDK
 
 1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-2. Download the `.NET SDK` Installer for `macOS x64`.
+2. Download the `.NET SDK` Installer for your current platform of `macOS`
 3. Once the **.pkg** file finishes downloading, run it and follow the prompts to install the .NET SDK
 
     ![Download .NET For Windows](./images/1_setting_up_your_development_environment/dotnet_8_download_page.png)
@@ -20,7 +20,7 @@ To develop with MonoGame in C#, you will need to install the .NET SDK. As of Mon
  1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
  2. Download the .NET Runtime Installer for macOS x64
  3. Once the **.pkg** file finishes downloading, run it and follow the prompts to install the .NET Runtime
- 
+
 ## Setup Wine For Effect Compilation
 
 Effect (shader) compilation requires access to DirectX.  This means it will not work natively on macOS and Linux systems, but it can be used through [Wine](https://www.winehq.org/).
