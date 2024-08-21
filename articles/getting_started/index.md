@@ -19,7 +19,6 @@ MonoGame supports the following platforms by default:
 - PlayStation 4*
 - PlayStation 5*
 - Nintendo Switch*
-- Google Stadia*
 
 > [!IMPORTANT]
 > Platforms marked with a *"*"* require developer access from their host vendor platforms.

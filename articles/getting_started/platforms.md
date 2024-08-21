@@ -7,7 +7,7 @@ MonoGame supports building games for the following **systems**:
 
 | **Desktop PCs**             | **Mobiles**                | **Gaming consoles***                                                           |
 | --------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
-| Windows<br/>macOS<br/>Linux | iOS<br/>iPadOS<br/>Android | Xbox<br/>PlayStation 4<br/>PlayStation 5<br/>Nintendo Switch<br/>Google Stadia |
+| Windows<br/>macOS<br/>Linux | iOS<br/>iPadOS<br/>Android | Xbox<br/>PlayStation 4<br/>PlayStation 5<br/>Nintendo Switch                   |
 
 > [!IMPORTANT]
 > **Gaming consoles are restricted to registered developers and are not publicly available nor publicly documented. To get access to those platforms, please contact your console account manager(s). MonoGame documentation for closed platforms is available in their respective repositories.*
@@ -29,9 +29,16 @@ Below is a list of public platforms with their corresponding NuGet package, the 
 
 Beside these target platforms, MonoGame provides additional templates for shared game logic and extensions to the MonoGame Content Pipeline that can be used across all platforms.
 
-- [.NET Class Library](#net-class-library)
-- [Shared Project](#shared-project)
-- [Content Pipeline Extension](#content-pipeline-extension)
+- [Understanding MonoGame's platform types](#understanding-monogames-platform-types)
+- [Platform details](#platform-details)
+  - [WindowsDX](#windowsdx)
+  - [DesktopGL](#desktopgl)
+  - [Android](#android)
+  - [iOS](#ios)
+- [Other templates](#other-templates)
+  - [.NET Class Library](#net-class-library)
+  - [Shared Project](#shared-project)
+  - [Content Pipeline Extension](#content-pipeline-extension)
 
 ## Platform details
 
