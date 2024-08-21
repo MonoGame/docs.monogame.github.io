@@ -53,7 +53,7 @@ You now have the MonoGame templates installed and are ready to create new projec
 
 **Next up:** [Creating a new project](2_creating_a_new_project_vs.md)
 
-## [Alternative] Install the .NET 6 SDK (compatible with JetBrains Rider and Visual Studio Code)
+## [Alternative] Install the .NET 8 SDK (compatible with JetBrains Rider and Visual Studio Code)
 
 If you prefer to use JetBrains Rider or Visual Studio Code, and after installing either of them, you will also need to [install the .NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
 
