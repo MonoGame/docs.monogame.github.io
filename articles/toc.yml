@@ -23,7 +23,7 @@
     items:
     - name: Visual Studio for Windows
       href: getting_started/2_choosing_your_ide_visual_studio.md
-    - name: VSCode
+    - name: Visual Studio Code
       href: getting_started/2_choosing_your_ide_vscode.md
     - name: Rider
       href: getting_started/2_choosing_your_ide_rider.md
