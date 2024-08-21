@@ -73,9 +73,9 @@ DesktopGL currently does not have a `VideoPlayer` implementation.
 
 The Android platform uses [Xamarin.Android](https://docs.microsoft.com/en-us/xamarin/android/). **OpenGL** is used for graphics, and OpenAL for audio.
 
-Building for Android requires the .NET Xamarin component to be installed. You can install it with the Visual Studio installer (if you're using Visual Studio) or with the CLI command ```dotnet workload install android``` (if you're working with Rider, VS Code, or the CLI).
+Building for Android requires the .NET Xamarin component to be installed. You can install it with the Visual Studio installer (if you are using Visual Studio) or with the CLI command ```dotnet workload install android``` (if you are working with Rider, VS Code, or the CLI).
 
-Building for Android also requires the Java 11 JDK (we recommand that you use [the Microsoft's distribution](https://docs.microsoft.com/en-us/java/openjdk/download#openjdk-11)) as well as the Android SDK 31.
+Building for Android also requires the Java 11 JDK (we recommend that you use [the Microsoft's distribution](https://docs.microsoft.com/en-us/java/openjdk/download#openjdk-11)) as well as the Android SDK 31.
 
 ### iOS
 
@@ -85,11 +85,11 @@ Building for Android also requires the Java 11 JDK (we recommand that you use [t
 
 The iOS platform uses [Xamarin.iOS](https://docs.microsoft.com/en-us/xamarin/ios/). **OpenGL** is used for graphics, and OpenAL for audio.
 
-Building for Android requires the .NET Xamarin component to be installed. You can install it with the Visual Studio installer (if you're using Visual Studio) or with the CLI command `dotnet workload install ios` (if you're working with Rider, VS Code, or the CLI).
+Building for Android requires the .NET Xamarin component to be installed. You can install it with the Visual Studio installer (if you are using Visual Studio) or with the CLI command `dotnet workload install ios` (if you are working with Rider, VS Code, or the CLI).
 
 The latest version of Xcode will also be required.
 
-You can test and deploy an iOS game on Windows by [pairing your Visual Studio 2022 with a mac on your local network](https://docs.microsoft.com/en-us/xamarin/ios/get-started/installation/windows/connecting-to-mac/). This feature is not avaible for Rider, Visual Studio Code, or the CLI.
+You can test and deploy an iOS game on Windows by [pairing your Visual Studio 2022 with a mac on your local network](https://docs.microsoft.com/en-us/xamarin/ios/get-started/installation/windows/connecting-to-mac/). This feature is not available for Rider, Visual Studio Code, or the CLI.
 
 ## Other templates
 
@@ -103,7 +103,7 @@ A project template to create [.NET](https://learn.microsoft.com/en-us/dotnet/sta
 
 **Template ID**: mgshared
 
-A project template to create a [shared project](https://docs.microsoft.com/en-us/xamarin/cross-platform/app-fundamentals/shared-projects) which can be used to share code between multiple other projects. The difference with .NET Standard libraries is that shared projects don't produce an intermediate DLL and the code is directly shared and built into the other projects it reference.
+A project template to create a [shared project](https://docs.microsoft.com/en-us/xamarin/cross-platform/app-fundamentals/shared-projects) which can be used to share code between multiple other projects. The difference with .NET Standard libraries is that shared projects do not produce an intermediate DLL and the code is directly shared and built into the other projects it reference.
 
 ### Content Pipeline Extension
 
