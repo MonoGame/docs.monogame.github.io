@@ -42,7 +42,7 @@ By the end, you will be fully equipped to start creating games with MonoGame usi
 ## Setting up VS Code for development with MonoGame
 
 1. Open Visual Studio Code
-1. Open up its terminal window (`Ctrl/Cmd` + `J`)
+1. Open up its terminal window (`Ctrl` + `` ` ``)
 1. Run the following command to install MonoGame Templates
 
     ```sh
@@ -79,15 +79,15 @@ You can find this extension by following the steps above and searching for "Mono
 ## Creating a new MonoGame project
 
 1. Open up an empty folder in Visual Studio Code
-1. Open up its terminal window (`Ctrl/Cmd` + `J`)
-1. Run the following command to create an empty project for desktop platforms:
+2. Open up its terminal window (`Ctrl` + `` ` ``)
+3. Run the following command to create an empty project for desktop platforms:
 
     ```sh
     dotnet new mgdesktopgl
     ```
 
-1. When VS Code asks you about automatic creation of launch / task files, press yes
-1. You can now press F5 to compile and debug you game, happy coding  :)
+4. Once the files are created, open up the `Game1.cs` file and wait a second for the C# extension to load
+5. You can now press F5, select C# and then your projects name if Visual Studio Code asks you, and it should start up your brand new game!
 
 ## Next Steps
 
