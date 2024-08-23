@@ -8,7 +8,7 @@ requireMSLicense: true
 
 The topics in this section describe the graphical conventions used by MonoGame in rendering and managing content on a screen.
 
-### 2D concetps
+### 2D Concepts
 
 * [What Is Sprite?](WhatIs_Sprite.md)
 
