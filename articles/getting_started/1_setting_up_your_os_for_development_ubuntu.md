@@ -16,6 +16,27 @@ To develop with MonoGame in C#, you will need to install the .NET SDK. As of Mon
 
 This will ensure the latest .NET 8 SDK is installed and setup in your environment.
 
+## Install additional workloads
+
+If you intend to also work with platforms such as `Android` or `iOS`, you will need to install the additional .NET workload templates for those platforms which include additional features and simulators to support those platforms.  Just run the following commands from the terminal for the platforms below you wish to install.
+
+### [Android](#tab/android)
+
+```cli
+    dotnet workload install android
+```
+
+### [iOS](#tab/iOS)
+
+```cli
+    dotnet workload install ios
+```
+
+---
+
+> [!NOTE]
+> You can use `dotnet workload search` to detect any other available workloads you wish to use.
+
 ## Setup Wine For Effect Compilation
 
 Effect (shader) compilation requires access to DirectX.  This means it will not work natively on macOS and Linux systems, but it can be used through [Wine](https://www.winehq.org/).
