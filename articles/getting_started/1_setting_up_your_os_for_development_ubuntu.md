@@ -8,13 +8,11 @@ To develop with MonoGame in C#, you will need to install the .NET SDK. As of Mon
 ## Install .NET 8 SDK
 
 1. Open a new **Terminal** window.
-2. Enter the following command in the terminal to download the **dotnet-install.sh**
+2. Enter the following command in the terminal to install the latest .NET 8 SDK:
 
     ```sh
     sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
     ```
-
-This will ensure the latest .NET 8 SDK is installed and setup in your environment.
 
 ## Install additional workloads
 
