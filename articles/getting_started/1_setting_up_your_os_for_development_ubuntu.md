@@ -47,7 +47,7 @@ MonoGame provides a setup script that can be executed to setup the Wine environm
 2. Enter the following command
 
     ```sh
-    sudo apt install curl p7zip-full wine64
+    sudo apt install wget curl p7zip-full wine64
     ```
 
     > [!TIP]
