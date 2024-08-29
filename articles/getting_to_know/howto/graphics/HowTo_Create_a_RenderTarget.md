@@ -22,7 +22,7 @@ The example is very basic but the principles are the same, when drawing to a Ren
 
 This sample uses a `grid` texture (available below) to draw to the [RenderTarget2D](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D) before then rendering the contents of the `Render Target` to the screen as a texture.
 
-![Grid Texture](../images/grid.png)
+![Grid Texture](images/grid.png)
 
 Download the `Grid` texture and add it to your `Content Project` for this example. (see [How to Add Content](../content_pipeline/HowTo_GameContent_Add.md) for more information on this.)
 
@@ -31,8 +31,8 @@ Download the `Grid` texture and add it to your `Content Project` for this exampl
 1. Declare variables for a render target using the [RenderTarget2D](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D) class, for this example we will also be using a [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D) for the "grid" texture we will output to the `Render Target`.
 
     ```csharp
-    private GraphicsDeviceManager graphics;
-    private SpriteBatch spriteBatch;
+    private GraphicsDeviceManager _graphics;
+    private SpriteBatch _spriteBatch;
     private Texture2D grid;
     private RenderTarget2D renderTarget;
     ```
@@ -43,14 +43,14 @@ Download the `Grid` texture and add it to your `Content Project` for this exampl
     protected override void LoadContent()
     {
         // Create a new SpriteBatch, which can be used to draw textures.
-        spriteBatch = new SpriteBatch(GraphicsDevice);
+        _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // using "grid" which matches the NAME of the grid texture in the content project.
         grid = Content.Load<Texture2D>("grid");
     }
     ```
 
-3. Create the render target, giving it the same size as either the Texture (shown below) or the display back buffer (if you are rendering full screen), ideally in the [Game.LoadContent](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_LoadContent) method or later.
+3. While still in the `LoadContent` method, create the render target, giving it the same size as either the Texture (shown below) or the display back buffer (if you are rendering full screen), ideally in the [Game.LoadContent](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_LoadContent) method or later.
 
     ```csharp
     renderTarget = new RenderTarget2D(
@@ -69,19 +69,18 @@ Download the `Grid` texture and add it to your `Content Project` for this exampl
     private void DrawRenderTarget()
     {
         // Set the device to the render target
-        graphics.GraphicsDevice.SetRenderTarget(renderTarget);
+        GraphicsDevice.SetRenderTarget(renderTarget);
     
         // Clear the graphics buffer to a solid color
-        graphics.GraphicsDevice.Clear(Color.Black);
+        GraphicsDevice.Clear(Color.Black);
     
         // Draw the "grid" texture to the graphics buffer, currently outputting to the Render Texture.
-        spriteBatch.Begin();
-        Vector2 pos = Vector2.Zero;
-        spriteBatch.Draw(grid, pos, Color.White);
-        spriteBatch.End();
+        _spriteBatch.Begin();
+        _spriteBatch.Draw(grid, Vector2.Zero, Color.White);
+        _spriteBatch.End();
     
         // Reset the device to the back buffer
-        graphics.GraphicsDevice.SetRenderTarget(null);
+        GraphicsDevice.SetRenderTarget(null);
     }
     ```
 
@@ -99,13 +98,13 @@ Download the `Grid` texture and add it to your `Content Project` for this exampl
         GraphicsDevice.Clear(Color.CornflowerBlue);
         
         // Draw the contents of the Render Target texture
-        spriteBatch.Begin();
-        spriteBatch.Draw(renderTarget,
+        _spriteBatch.Begin();
+        _spriteBatch.Draw(renderTarget,
             new Vector2(200, 50),          // x,y position
             new Rectangle(0, 0, 32, 32),   // just one grid
             Color.White                    // no color scaling
             );
-        spriteBatch.End();
+        _spriteBatch.End();
 
         base.Draw(gameTime);
     }
@@ -113,6 +112,21 @@ Download the `Grid` texture and add it to your `Content Project` for this exampl
 
 The final output should look like the following:
 
-![Output](../images/HowTo_Create_a_RenderTarget_Final.png)
+![Output](images/HowTo_Create_a_RenderTarget_Final.png)
 
 Rendering a 32 by 32 square from the RenderTarget texture to a position 200 x 50 on the screen.
+
+
+## See Also
+
+- [How to create a Basic Effect](HowTo_Create_a_BasicEffect.md)
+
+### Concepts
+
+- [What Is a Render Target?](../../whatis/graphics/WhatIs_Render_Target.md)
+- [What Is a Back Buffer?](../../whatis/graphics/WhatIs_BackBuffer.md)
+
+### Reference
+
+- [GraphicsDevice](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice)
+- [RenderTarget2D](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D)

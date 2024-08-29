@@ -35,19 +35,27 @@ In this example, we will demonstrate how to create a state object using any of t
 
     ```csharp
     if (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
+    {
         changeState = true;
+    }
     
     if ((changeState) && (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Released))
     {
         if (GraphicsDevice.RasterizerState.CullMode == CullMode.None)
+        {
             GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+        }
         else if (GraphicsDevice.RasterizerState.CullMode == CullMode.CullCounterClockwiseFace)
+        {
             GraphicsDevice.RasterizerState = RasterizerState.CullClockwise;
+        }
         else if (GraphicsDevice.RasterizerState.CullMode == CullMode.CullClockwiseFace)
+        {
             GraphicsDevice.RasterizerState = rsCullNone;
+        }
     
         changeState = false;
     }
     ```
 
-> The example contains two triangles. The first one is rendered if you select clockwise winding order; the second triangle is rendered if you select counterclockwise winding order; both triangles are rendered if you select no culling.
+Try this technique with the [HowTo Create a BasicEffect](./HowTo_Create_a_BasicEffect.md) sample and see what kinds of effects the above functionality applies.

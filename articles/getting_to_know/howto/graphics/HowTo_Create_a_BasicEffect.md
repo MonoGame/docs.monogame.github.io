@@ -6,178 +6,139 @@ requireMSLicense: true
 
 ## Overview
 
-> The steps described here apply to effects created with the [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) class. Use the [Effect](xref:Microsoft.Xna.Framework.Graphics.Effect) class to write a custom effect. The example draws aliased geometry. To see an example that draws smoother edges because it also applies anti-aliasing, see [Enabling Anti-aliasing (Multi-sampling)](HowTo_Enable_Anti_Aliasing.md).
+The steps described here apply to effects created with the [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) class using the [Effect](xref:Microsoft.Xna.Framework.Graphics.Effect) class to write a custom effect.
+
+> [!NOTE]
+> The example draws aliased geometry, to see an example that draws smoother edges because it also applies anti-aliasing, see [Enabling Anti-aliasing (Multi-sampling)](HowTo_Enable_Anti_Aliasing.md).
+
+### End result
+
+![The output of this tutorial](images/HowTo_BasicEffect_Sample.png)
 
 ## To use BasicEffect
 
-Using the basic effect class requires a set of world, view, and projection matrices, a vertex buffer, a vertex declaration, and an instance of the [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) class.
+Using the basic effect class requires a set of `world`, `view`, and `projection` matrices, a `vertex buffer`, a `vertex declaration`, and an instance of the [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) class.
 
-1. Declare these objects at the beginning of the game.
+1. Declare these properties at the beginning of the game class.
 
     ```csharp
-    Matrix worldMatrix;
-    Matrix viewMatrix;
-    Matrix projectionMatrix;
-    VertexPositionNormalTexture[] cubeVertices;
-    VertexDeclaration vertexDeclaration;
-    VertexBuffer vertexBuffer;
-    BasicEffect basicEffect;
+    //Matrices for 3D perspective
+    private Matrix worldMatrix, viewMatrix, projectionMatrix;
+
+    // Vertex data for rendering
+    private VertexPositionColor[] triangleVertices;
+
+    // A Vertex format structure that contains position, normal data, and one set of texture coordinates
+    private BasicEffect basicEffect;
     ```
 
-2. Initialize the world, view, and projection matrices.
+1. Initialize the world, view, and projection matrices in the `Initialize`.
 
-    In this example, you create a world matrix that rotates the geometry 22.5 degrees along the x and y axes. The view matrix is a look-at matrix with a camera position at (0, 0, 5), pointing at the origin. The projection matrix is a perspective projection matrix based on a a 45-degree field of view, an aspect ratio equal to the client window, and a set of near and far planes.
-
-    ```csharp
-    float tilt = MathHelper.ToRadians(0);  // 0 degree angle
-    // Use the world matrix to tilt the cube along x and y axes.
-    worldMatrix = Matrix.CreateRotationX(tilt) * Matrix.CreateRotationY(tilt);
-    viewMatrix = Matrix.CreateLookAt(new Vector3(5, 5, 5), Vector3.Zero, Vector3.Up);
-    
-    projectionMatrix = Matrix.CreatePerspectiveFieldOfView(
-        MathHelper.ToRadians(45),  // 45 degree angle
-        (float)GraphicsDevice.Viewport.Width /
-        (float)GraphicsDevice.Viewport.Height,
-        1.0f, 100.0f);
-    ```
-
-3. Initialize [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) with transformation and light values.
+    Next, create a world matrix using the default `Matrix.Identity` for simplicity. Set the `view matrix` as a `look-at` matrix with a camera position of `(0, 0, 50)`, pointing at the origin. The `projection matrix` is a `perspective` projection matrix based on a a `45-degree` field of view, an aspect ratio equal to the client window, and a set of `near` and `far` planes to render the geometry within in view of the camera.
 
     ```csharp
-    basicEffect = new BasicEffect(graphics.GraphicsDevice);
-    
-    basicEffect.World = worldMatrix;
-    basicEffect.View = viewMatrix;
-    basicEffect.Projection = projectionMatrix;
-    
-    // primitive color
-    basicEffect.AmbientLightColor = new Vector3(0.1f, 0.1f, 0.1f);
-    basicEffect.DiffuseColor = new Vector3(1.0f, 1.0f, 1.0f);
-    basicEffect.SpecularColor = new Vector3(0.25f, 0.25f, 0.25f);
-    basicEffect.SpecularPower = 5.0f;
-    basicEffect.Alpha = 1.0f;
-    
-    basicEffect.LightingEnabled = true;
-    if (basicEffect.LightingEnabled)
+    protected override void Initialize()
     {
-        basicEffect.DirectionalLight0.Enabled = true; // enable each light individually
-        if (basicEffect.DirectionalLight0.Enabled)
-        {
-            // x direction
-            basicEffect.DirectionalLight0.DiffuseColor = new Vector3(1, 0, 0); // range is 0 to 1
-            basicEffect.DirectionalLight0.Direction = Vector3.Normalize(new Vector3(-1, 0, 0));
-            // points from the light to the origin of the scene
-            basicEffect.DirectionalLight0.SpecularColor = Vector3.One;
-        }
-    
-        basicEffect.DirectionalLight1.Enabled = true;
-        if (basicEffect.DirectionalLight1.Enabled)
-        {
-            // y direction
-            basicEffect.DirectionalLight1.DiffuseColor = new Vector3(0, 0.75f, 0);
-            basicEffect.DirectionalLight1.Direction = Vector3.Normalize(new Vector3(0, -1, 0));
-            basicEffect.DirectionalLight1.SpecularColor = Vector3.One;
-        }
-    
-        basicEffect.DirectionalLight2.Enabled = true;
-        if (basicEffect.DirectionalLight2.Enabled)
-        {
-            // z direction
-            basicEffect.DirectionalLight2.DiffuseColor = new Vector3(0, 0, 0.5f);
-            basicEffect.DirectionalLight2.Direction = Vector3.Normalize(new Vector3(0, 0, -1));
-            basicEffect.DirectionalLight2.SpecularColor = Vector3.One;
-        }
+        // Setup the matrices to look forward
+        worldMatrix = Matrix.Identity;
+        viewMatrix = Matrix.CreateLookAt(new Vector3(0, 0, 50), Vector3.Zero, Vector3.Up);
+
+        projectionMatrix = Matrix.CreatePerspectiveFieldOfView(
+            MathHelper.PiOver4,
+            GraphicsDevice.Viewport.AspectRatio,
+            1.0f, 300.0f);
+
+        base.Initialize();
     }
     ```
 
-4. Create a vertex declaration for the type [VertexPositionNormalTexture](xref:Microsoft.Xna.Framework.Graphics.VertexPositionNormalTexture).
-
-    * If lighting is enabled, the vertex must have a normal type.
-
-    * If vertex colors are enabled, the vertex must have colors.
-
-    * If texturing is enabled, the vertex must have a texture coordinate.
+1. Initialize a [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) with the transformation and light values in the `LoadContent` method.
 
     ```csharp
-    vertexDeclaration = new VertexDeclaration(new VertexElement[]
-        {
-            new VertexElement(0, VertexElementFormat.Vector3, VertexElementUsage.Position, 0),
-            new VertexElement(12, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0),
-            new VertexElement(24, VertexElementFormat.Vector2, VertexElementUsage.TextureCoordinate, 0)
-        }
-    );
-    ```
-
-5. Create the per vertex data. This example shows the data for one face of the cube.
-
-    ```csharp
-    Vector3 topLeftFront = new Vector3(-1.0f, 1.0f, 1.0f);
-    Vector3 bottomLeftFront = new Vector3(-1.0f, -1.0f, 1.0f);
-    Vector3 topRightFront = new Vector3(1.0f, 1.0f, 1.0f);
-    Vector3 bottomRightFront = new Vector3(1.0f, -1.0f, 1.0f);
-    Vector3 topLeftBack = new Vector3(-1.0f, 1.0f, -1.0f);
-    Vector3 topRightBack = new Vector3(1.0f, 1.0f, -1.0f);
-    Vector3 bottomLeftBack = new Vector3(-1.0f, -1.0f, -1.0f);
-    Vector3 bottomRightBack = new Vector3(1.0f, -1.0f, -1.0f);
-    
-    Vector2 textureTopLeft = new Vector2(0.0f, 0.0f);
-    Vector2 textureTopRight = new Vector2(1.0f, 0.0f);
-    Vector2 textureBottomLeft = new Vector2(0.0f, 1.0f);
-    Vector2 textureBottomRight = new Vector2(1.0f, 1.0f);
-    
-    Vector3 frontNormal = new Vector3(0.0f, 0.0f, 1.0f);
-    Vector3 backNormal = new Vector3(0.0f, 0.0f, -1.0f);
-    Vector3 topNormal = new Vector3(0.0f, 1.0f, 0.0f);
-    Vector3 bottomNormal = new Vector3(0.0f, -1.0f, 0.0f);
-    Vector3 leftNormal = new Vector3(-1.0f, 0.0f, 0.0f);
-    Vector3 rightNormal = new Vector3(1.0f, 0.0f, 0.0f);
-    
-    // Front face.
-    cubeVertices[0] =
-        new VertexPositionNormalTexture(
-        topLeftFront, frontNormal, textureTopLeft);
-    cubeVertices[1] =
-        new VertexPositionNormalTexture(
-        bottomLeftFront, frontNormal, textureBottomLeft);
-    cubeVertices[2] =
-        new VertexPositionNormalTexture(
-        topRightFront, frontNormal, textureTopRight);
-    cubeVertices[3] =
-        new VertexPositionNormalTexture(
-        bottomLeftFront, frontNormal, textureBottomLeft);
-    cubeVertices[4] =
-        new VertexPositionNormalTexture(
-        bottomRightFront, frontNormal, textureBottomRight);
-    cubeVertices[5] =
-        new VertexPositionNormalTexture(
-        topRightFront, frontNormal, textureTopRight);
-    ```
-
-6. Call [GraphicsDevice.Clear](/api/Microsoft.Xna.Framework.Graphics.GraphicsDevice.html#Microsoft_Xna_Framework_Graphics_GraphicsDevice_Clear_Microsoft_Xna_Framework_Color_) to clear the render target.
-
-7. Set the rasterizer state to turn off culling using the [RasterizerState](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.RasterizerState) property.
-
-8. Call [EffectPass.Apply](/api/Microsoft.Xna.Framework.Graphics.EffectPass.html#Microsoft_Xna_Framework_Graphics_EffectPass_Apply) to set the effect state in preparation for rendering.
-
-9. Draw the geometry by calling [GraphicsDevice.DrawPrimitives](/api/Microsoft.Xna.Framework.Graphics.GraphicsDevice.html#Microsoft_Xna_Framework_Graphics_GraphicsDevice_DrawPrimitives_Microsoft_Xna_Framework_Graphics_PrimitiveType_System_Int32_System_Int32_).
-
-    ```csharp
-    graphics.GraphicsDevice.Clear(Color.SteelBlue);
-    
-    RasterizerState rasterizerState1 = new RasterizerState();
-    rasterizerState1.CullMode = CullMode.None;
-    graphics.GraphicsDevice.RasterizerState = rasterizerState1;
-    foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+    protected override void LoadContent()
     {
-        pass.Apply();
-    
-        graphics.GraphicsDevice.DrawPrimitives(
-            PrimitiveType.TriangleList,
-            0,
-            12
-        );
-    }
-    
-    
-    base.Draw(gameTime);
+        basicEffect = new BasicEffect(_graphics.GraphicsDevice);
+
+        basicEffect.World = worldMatrix;
+        basicEffect.View = viewMatrix;
+        basicEffect.Projection = projectionMatrix;
+
+        // primitive color
+        basicEffect.AmbientLightColor = new Vector3(0.1f, 0.1f, 0.1f);
+        basicEffect.DiffuseColor = new Vector3(1.0f, 1.0f, 1.0f);
+        basicEffect.SpecularColor = new Vector3(0.25f, 0.25f, 0.25f);
+        basicEffect.SpecularPower = 5.0f;
+        basicEffect.Alpha = 1.0f;
+        // The following MUST be enabled if you want to color your vertices
+        basicEffect.VertexColorEnabled = true;
+
+        // Use the built in 3 lighting mode provided with BasicEffect            
+        basicEffect.EnableDefaultLighting();
     ```
+
+    > [!NOTE]
+    > If you wish, you can set up the lighting manually through code, as follows:
+    > [!code-csharp[](./files/basiceffectlighting.cs)]
+
+
+1. Still in `LoadContent`, create the per vertex data using the `VertexPositionColor` format. This example shows the data for the face of a triangle.
+
+    ```csharp
+    triangleVertices = new VertexPositionColor[3];
+
+    triangleVertices[0].Position = new Vector3(0f, 0f, 0f);
+    triangleVertices[0].Color = Color.Red;
+    triangleVertices[1].Position = new Vector3(10f, 10f, 0f);
+    triangleVertices[1].Color = Color.Yellow;
+    triangleVertices[2].Position = new Vector3(10f, 0f, -5f);
+    triangleVertices[2].Color = Color.Green;
+    ```
+
+1. Finally, in the `Draw` Method, call [GraphicsDevice.Clear](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice#Microsoft_Xna_Framework_Graphics_GraphicsDevice_Clear_Microsoft_Xna_Framework_Color_) to clear the render target.
+
+1. Set the rasterizer state to turn off culling using the [RasterizerState](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.RasterizerState) property.
+
+1. Call [EffectPass.Apply](/api/Microsoft.Xna.Framework.Graphics.EffectPass.html#Microsoft_Xna_Framework_Graphics_EffectPass_Apply) to set the effect state in preparation for rendering.
+
+1. Draw the geometry by calling [GraphicsDevice.DrawUserPrimitives](/api/Microsoft.Xna.Framework.Graphics.GraphicsDevice.html#Microsoft_Xna_Framework_Graphics_GraphicsDevice_DrawUserPrimitives__1_Microsoft_Xna_Framework_Graphics_PrimitiveType___0___System_Int32_System_Int32_Microsoft_Xna_Framework_Graphics_VertexDeclaration_).
+
+    ```csharp
+    protected override void Draw(GameTime gameTime)
+    {
+        GraphicsDevice.Clear(Color.SteelBlue);
+
+        RasterizerState rasterizerState1 = new RasterizerState();
+        rasterizerState1.CullMode = CullMode.None;
+        GraphicsDevice.RasterizerState = rasterizerState1;
+        foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+        {
+            pass.Apply();
+
+            GraphicsDevice.DrawUserPrimitives(
+                PrimitiveType.TriangleList,
+                triangleVertices,
+                0,
+                1,
+                VertexPositionColor.VertexDeclaration
+            );
+        }
+
+        base.Draw(gameTime);
+    }
+    ```
+
+When the sample is run, the basic geometry is rendered using the custom [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect), feel free to play with the position, content or rendering order to enhance the effect.
+
+## See Also
+
+- [How to create a State Object](HowTo_Create_a_StateObject.md)
+
+### Concepts
+
+- [What Is a Configurable Effect?](../../whatis/graphics/WhatIs_ConfigurableEffect.md)
+
+### Reference
+
+- [GraphicsDevice](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice)
+- [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect)
+- [RasterizerState](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.RasterizerState)
