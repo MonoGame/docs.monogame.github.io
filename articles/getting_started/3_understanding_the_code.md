@@ -6,21 +6,21 @@ description: This tutorial will go over the code that is generated when you star
 > [!NOTE]
 > For help with creating a project, please look at the Creating a New Project section of the [Getting Started guide](index.md).
 
-Within the **Game.cs** class file, which is the core of any MonoGame project, you will find several critical sections necessary for your game to run:
+Within the `Game.cs` class file, which is the core of any MonoGame project, you will find several critical sections necessary for your game to run:
 
-* **Using statements** - which provide easy access to the various components of MonoGame.
+- `Using statements` - which provide easy access to the various components of MonoGame.
 
-* The **Game Class** definition - the heart of any MonoGame project.
+- The `Game` Class definition - the heart of any MonoGame project.
 
-* The **Game constructor** and key variables - which tell the project how to start.
+- The `Game constructor` and key variables - which tell the project how to start.
 
-* The **Initialize** method - to initialize the game upon its startup.
+- The `Initialize` method - to initialize the game upon its startup.
 
-* The **Load and Unload Content** methods - which are used to add and remove assets from the running game from the [Content project](4_adding_content.md).
+- The `Load and Unload Content` methods - which are used to add and remove assets from the running game from the [Content project](4_adding_content.md).
 
-* The **Update** method - which is called on a regular interval to update your game state, e.g. take player inputs, move ships, or animate entities.
+- The `Update` method - which is called on a regular interval to update your game state, e.g. take player inputs, move ships, or animate entities.
 
-* The **Draw** method - which is called on a regular interval to take the current game state and draw your game entities to the screen.
+- The `Draw` method - which is called on a regular interval to take the current game state and draw your game entities to the screen.
 
 Read further for more details and examples while looking through the code of your new project.
 
@@ -45,7 +45,7 @@ These using statements make it easier to use the code that MonoGame has to offer
 public class Game1 : Game
 ```
 
-The main **Game1** class inherits from the **Game** class, which provides all the core methods for your game (ie. Load/Unload Content, Update, Draw etc.). You usually only have one Game class per game, so its name is not that important.
+The main `Game1` class inherits from the `Game` class, which provides all the core methods for your game (ie. Load/Unload Content, Update, Draw etc.). You usually only have one Game class per game, so its name is not that important.
 
 ## Instance Variables
 
@@ -54,7 +54,7 @@ GraphicsDeviceManager graphics;
 SpriteBatch spriteBatch;
 ```
 
-The two default variables that the blank template starts with are the **GraphicsDeviceManager** and **SpriteBatch**. Both of these variables are used for drawing to the screen, as you will see in a later tutorial.
+The two default variables that the blank template starts with are the `GraphicsDeviceManager` and `SpriteBatch`. Both of these variables are used for drawing to the screen, as you will see in a later tutorial.
 
 ## Constructor
 
@@ -66,7 +66,7 @@ public Game1()
 }
 ```
 
-The main game constructor is used to initialize the starting variables. In this case, a new **GraphicsDeviceManager** is created, and the root directory containing the game's content files is set.
+The main game constructor is used to initialize the starting variables. In this case, a new `GraphicsDeviceManager` is created, and the root directory containing the game's content files is set.
 
 ## Initialize Method
 
@@ -79,7 +79,7 @@ protected override void Initialize()
 }
 ```
 
-The **Initialize** method is called after the constructor but before the main game loop (Update/Draw). This is where you can query any required services and load any non-graphic related content.
+The `Initialize` method is called after the constructor but before the main game loop (Update/Draw). This is where you can query any required services and load any non-graphic related content.
 
 ## LoadContent Method
 
@@ -93,7 +93,7 @@ protected override void LoadContent()
 }
 ```
 
-The **LoadContent** method is used to load your game content. It is called only once per game, within the **Initialize** method, before the main game loop starts.
+The `LoadContent` method is used to load your game content. It is called only once per game, within the `Initialize` method, before the main game loop starts.
 
 ## Update Method
 
@@ -109,7 +109,7 @@ protected override void Update(GameTime gameTime)
 }
 ```
 
-The **Update** method is called multiple times per second, and it is used to update your game state (checking for collisions, gathering input, playing audio, etc.).
+The `Update` method is called multiple times per second, and it is used to update your game state (checking for collisions, gathering input, playing audio, etc.).
 
 ## Draw Method
 
@@ -124,6 +124,12 @@ protected override void Draw(GameTime gameTime)
 }
 ```
 
-Similar to the Update method, the **Draw** method is also called multiple times per second.  This, as the name suggests, is responsible for drawing content to the screen.
+Similar to the Update method, the `Draw` method is also called multiple times per second.  This, as the name suggests, is responsible for drawing content to the screen.
 
-**Next up:** [Adding Content](4_adding_content.md)
+---
+
+## Next Steps
+
+Next, learn how to add and import content into your game project:
+
+- [Adding Content](4_adding_content.md)
