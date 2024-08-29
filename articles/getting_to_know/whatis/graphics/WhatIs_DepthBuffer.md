@@ -1,9 +1,8 @@
 ---
 title: What Is a Depth Buffer?
 description: The definition for a Depth Buffer for MonoGame!
+requireMSLicense: true
 ---
-
-# What Is a Depth Buffer?
 
 A depth buffer contains per-pixel floating-point data for the z depth of each pixel rendered. A depth buffer may also contain stencil data which can be used to do more complex rendering such as simple shadows or outlines.
 
@@ -16,9 +15,3 @@ A depth buffer may also contain stencil bits - for this reason it's often called
 Use [DepthStencilState.DepthBufferEnable](xref:Microsoft.Xna.Framework.Graphics.DepthStencilState.DepthBufferEnable) to enable or disable depth buffering. Use the [DepthStencilState.DepthBufferFunction](xref:Microsoft.Xna.Framework.Graphics.DepthStencilState.DepthBufferFunction) to change the comparison function used for the depth test. Clear the depth buffer by passing [ClearOptions.DepthBuffer](/api/Microsoft.Xna.Framework.Graphics.ClearOptions.html) to [GraphicsDevice.Clear](/api/Microsoft.Xna.Framework.Graphics.GraphicsDevice.html#Microsoft_Xna_Framework_Graphics_GraphicsDevice_Clear_Microsoft_Xna_Framework_Color_).
 
 In MonoGame there is no **DepthStencilBuffer** type. The runtime automatically creates a depth buffer when a render target is created, and you specify the format for the depth buffer in a render target's constructor along with the surface format. This prevents a render target from being created without a matching depth buffer.
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.

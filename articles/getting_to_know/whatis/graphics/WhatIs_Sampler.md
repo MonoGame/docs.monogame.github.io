@@ -1,13 +1,17 @@
 ---
 title: What Is Sampler State?
 description: The definition for a Sampler State for MonoGame!
+requireMSLicense: true
 ---
 
-# What Is Sampler State?
+A [Sampler state](xref:Microsoft.Xna.Framework.Graphics.SamplerState) determines how texture data is sampled using texture addressing modes, filtering, and level of detail.
 
-Sampler state determines how texture data is sampled using texture addressing modes, filtering, and level of detail.
+A texture contains an array of texels, or texture pixels, sampling is done each time a texture pixel, or texel, is read from a texture.  The position of each texel is denoted by (u,v), where:
 
-Sampling is done each time a texture pixel, or texel, is read from a texture. A texture contains an array of texels, or texture pixels. The position of each texel is denoted by (u,v), where _u_ is the width and _v_ is the height, and is mapped between 0 and 1 based on the texture width and height. The resulting texture coordinates are used to address a texel when sampling a texture.
+* _u_ is the width 
+* _v_ is the height
+
+These are mapped between 0 and 1 based on the texture width and height. The resulting texture coordinates are used to address a texel when sampling a texture.
 
 When texture coordinates are below 0 or above 1, the texture address mode defines how the texture coordinate addresses a texel location. For example, when using [TextureAddressMode.Clamp](https://monogame.net/api/Microsoft.Xna.Framework.Graphics.TextureAddressMode.html), any coordinate outside the 0-1 range is clamped to a maximum value of 1, and minimum value of 0 before sampling.
 
@@ -17,10 +21,10 @@ Use the [SamplerState](xref:Microsoft.Xna.Framework.Graphics.SamplerState) class
 
 This is the default state for sampling:
 
-* Use linear filtering.
-* Wrap texture addresses on boundaries.
-* Set the maximum anisotropy value to 4.
-* Do not use mip maps or LOD bias.
+* Uses linear filtering.
+* Wraps texture addresses on boundaries.
+* Sets the maximum anisotropy value to 4.
+* Does not use mip maps or LOD bias.
 
 These are the corresponding API states:
 
@@ -30,9 +34,3 @@ These are the corresponding API states:
 * Set [MaxMipLevel](xref:Microsoft.Xna.Framework.Graphics.SamplerState.MaxMipLevel) and [MipMapLevelOfDetailBias](xref:Microsoft.Xna.Framework.Graphics.SamplerState.MipMapLevelOfDetailBias) to 0.
 
 Built-in state objects make it easy to create objects with the most common sampler state settings. The most common settings are **LinearClamp**, **LinearWrap**, **PointClamp**, **PointWrap**, **AnisotropicClamp**, and **AnisotropicWrap**. For an example of creating a state object, see [Creating a State Object](../../howto/graphics/HowTo_Create_a_StateObject.md).
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
