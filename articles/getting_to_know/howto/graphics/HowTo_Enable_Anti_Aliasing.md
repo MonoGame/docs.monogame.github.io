@@ -8,7 +8,7 @@ requireMSLicense: true
 
 **Figure 1.  Anti-aliasing the edges of a cube: multi-sampling is disabled on the left, and enabled on the right.**
 
-![Anti-aliasing the edges of a cube: multi-sampling is disabled on the left, and enabled on the right](../images/graphics_aa.jpg)
+![Anti-aliasing the edges of a cube: multi-sampling is disabled on the left, and enabled on the right](images/graphics_aa.jpg)
 
 Anti-aliasing is a technique for minimizing distortion artifacts caused by aliasing when rendering a high-resolution signal (such as a sharp edge) at a low resolution (such as in a [render target](../../whatis/graphics/WhatIs_Render_Target.md) with a fixed number of pixel locations). anti-aliasing smooths sharp edges by partially rendering to neighboring pixels.
 
@@ -61,7 +61,7 @@ This technique is also called multi-sampling because each pixel value can be the
 ### Concepts
 
 - [3D Pipeline Basics](../../whatis/graphics/WhatIs_3DRendering.md)
-- [What Is anti-aliasing?](../../whatis/graphics/WhatIs_antialiasing.md)
+- [What Is anti-aliasing?](../../whatis/graphics/WhatIs_Antialiasing.md)
 
 ### Reference
 
