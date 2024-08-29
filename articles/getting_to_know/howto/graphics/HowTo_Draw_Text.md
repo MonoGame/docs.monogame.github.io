@@ -79,7 +79,7 @@ MonoGame provides a quick and easy method for drawing text using any registered 
 
 1. In your [Game.Draw](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_Draw_Microsoft_Xna_Framework_GameTime_) method, call [SpriteBatch.Begin](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Begin_Microsoft_Xna_Framework_Graphics_SpriteSortMode_Microsoft_Xna_Framework_Graphics_BlendState_Microsoft_Xna_Framework_Graphics_SamplerState_Microsoft_Xna_Framework_Graphics_DepthStencilState_Microsoft_Xna_Framework_Graphics_RasterizerState_Microsoft_Xna_Framework_Graphics_Effect_System_Nullable_Microsoft_Xna_Framework_Matrix__) on the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) object.
 
-1. If necessary, determine the origin of your text.
+1. If necessary, determine the origin (center) of your text.
 
    If you want to draw your text centered on a point, you can find the center of the text by calling [SpriteFont.MeasureString](xref:Microsoft.Xna.Framework.Graphics.SpriteFont#Microsoft_Xna_Framework_Graphics_SpriteFont_MeasureString_System_String_) and dividing the returned vector by 2.
 
