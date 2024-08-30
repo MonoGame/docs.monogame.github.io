@@ -13,8 +13,6 @@ First, you need to add few new variables in the `Game1.cs` class file: A `Vector
 ```csharp
     public class Game1 : Game
     {
-        _graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = "Content";
         Texture2D ballTexture;
         Vector2 ballPosition;
         float ballSpeed;
