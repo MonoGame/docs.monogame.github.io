@@ -8,67 +8,13 @@ requireMSLicense: true
 
 This sample is based on several assumptions.
 
-* The camera will move frequently, so the camera view [Matrix](xref:Microsoft.Xna.Framework.Matrix) is created and set every time [Game](xref:Microsoft.Xna.Framework.Game) **Update** is called.
+* The camera will move frequently, so the camera view [Matrix](xref:Microsoft.Xna.Framework.Matrix) is created and set every time [Game.Update](xref:Microsoft.Xna.Framework.Game#Microsoft_Xna_Framework_Game_Update_Microsoft_Xna_Framework_GameTime_) is called.
 * The projection [Matrix](xref:Microsoft.Xna.Framework.Matrix) may also change frequently for effects such as zooming.
-* You have added a model to the project.
+* You have added a model to the project, as shown in [How To Render a Model](HowTo_RenderModel.md)
 
-For the sake of simplicity, the sample limits the camera object to rotation about the y axis (vertical spin) and movement along the z axis (forward and backward). The following steps show you how to render the sample scene.
+For the sake of simplicity, the example limits the camera object to rotation about the y axis (vertical spin) and movement along the z axis (forward and backward). The following steps show you how to render the sample scene.
 
 ### To render the sample scene
-
-1. Determine the location and orientation of the camera.
-
-    ```csharp
-    static Vector3 avatarPosition = new Vector3(0, 0, -50);
-    static Vector3 cameraPosition = avatarPosition;
-    ```
-
-2. Create a view matrix using the camera position, the camera orientation (also called the look at point), and the up vector using the **CreateLookAt** method of [Matrix](xref:Microsoft.Xna.Framework.Matrix).
-
-    ```csharp
-    // Calculate the camera's current position.
-    
-    Matrix rotationMatrix = Matrix.CreateRotationY(avatarYaw);
-    
-    // Create a vector pointing the direction the camera is facing.
-    Vector3 transformedReference = Vector3.Transform(cameraReference, rotationMatrix);
-    
-    // Calculate the position the camera is looking at.
-    Vector3 cameraLookat = cameraPosition + transformedReference;
-    
-    // Set up the view matrix and projection matrix.
-    view = Matrix.CreateLookAt(cameraPosition, cameraLookat, new Vector3(0.0f, 1.0f, 0.0f));
-    ```
-
-3. Create a perspective matrix using the near and far clipping planes and the aspect ratio using the CreatePerspectiveFieldOfView method of [Matrix](xref:Microsoft.Xna.Framework.Matrix).
-
-    ```csharp
-    proj = Matrix.CreatePerspectiveFieldOfView(viewAngle, graphics.GraphicsDevice.Viewport.AspectRatio, nearClip, farClip);
-    ```
-
-4. In the [Game](xref:Microsoft.Xna.Framework.Game) **Draw** method of your game, initialize a [BasicEffect](xref:Microsoft.Xna.Framework.Graphics.BasicEffect) object with the world, view, and projection matrices and render all of the 3D objects in the scene.
-
-    ```csharp
-    void DrawModel(Model model, Matrix world, Texture2D texture)
-    {
-        foreach (ModelMesh mesh in model.Meshes)
-        {
-            foreach (BasicEffect be in mesh.Effects)
-            {
-                be.Projection = proj;
-                be.View = view;
-                be.World = world;
-                be.Texture = texture;
-                be.TextureEnabled = true;
-            }
-            mesh.Draw();
-        }
-    }
-    ```
-
-## Rotating and Moving a Camera
-
-### To rotate and move the camera
 
 1. Determine the location and orientation of the camera.
 
@@ -144,13 +90,13 @@ For the sake of simplicity, the sample limits the camera object to rotation abou
     {
         foreach (ModelMesh mesh in model.Meshes)
         {
-            foreach (BasicEffect be in mesh.Effects)
+            foreach (BasicEffect effect in mesh.Effects)
             {
-                be.Projection = proj;
-                be.View = view;
-                be.World = world;
-                be.Texture = texture;
-                be.TextureEnabled = true;
+                effect.Projection = proj;
+                effect.View = view;
+                effect.World = world;
+                effect.Texture = texture;
+                effect.TextureEnabled = true;
             }
             mesh.Draw();
         }

@@ -4,8 +4,11 @@ description: Demonstrates how to position the camera so that all objects in a sc
 requireMSLicense: true
 ---
 
-
 ## Overview
+
+Managing cameras in a 3D environment can be one of the most challenging tasks for any MonoGame developer, if your camera is looking the wrong way then you will not see anything on screen, or at least not what you were expecting.
+
+A simple technique to handle this is to create a [BoundingSphere](xref:Microsoft.Xna.Framework.BoundingSphere) around your visible game content and then have the camera look at the center of it.
 
 ## To position the camera to view all objects in a scene
 
@@ -48,8 +51,7 @@ requireMSLicense: true
     This distance is equal to the hypotenuse of the triangle formed by the center of the sphere, the desired camera position, and the point where the sphere touches the view frustum. One angle of the triangle is known to be the field of view of the camera divided by two. One leg of the triangle is known to be the radius of the sphere. Given these two measurements, you can calculate the hypotenuse as the radius of the sphere divided by the sine of half the field of view.
 
     ```csharp
-    float distanceToCenter =
-        sceneSphere.Radius / (float)Math.Sin(FOV / 2);
+    float distanceToCenter = sceneSphere.Radius / (float)Math.Sin(FOV / 2);
     ```
 
 5. Get the [Backward](xref:Microsoft.Xna.Framework.Matrix.Backward) vector of the view [Matrix](xref:Microsoft.Xna.Framework.Matrix) and flip its X component.
@@ -70,3 +72,13 @@ requireMSLicense: true
 ## See Also
 
 - [Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)
+
+### Concepts
+
+- [What Is a View Frustum?](../../whatis/grasphics/WhatIs_ViewFrustum.md)
+- [What Is a Viewport?](../../whatis/grasphics/WhatIs_Viewport.md)
+
+### Reference
+
+- [BoundingSphere](xref:Microsoft.Xna.Framework.BoundingSphere)
+- [Matrix](xref:Microsoft.Xna.Framework.Matrix)
