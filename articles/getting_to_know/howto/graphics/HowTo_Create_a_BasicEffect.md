@@ -74,6 +74,7 @@ Using the basic effect class requires a set of `world`, `view`, and `projection`
 
         // Use the built in 3 lighting mode provided with BasicEffect            
         basicEffect.EnableDefaultLighting();
+    }
     ```
 
     > [!NOTE]

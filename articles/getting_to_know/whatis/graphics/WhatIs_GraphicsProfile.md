@@ -6,8 +6,10 @@ requireMSLicense: true
 
 A graphics profile is a feature set that is implemented in hardware. The Reach profile implements High Level Shader Language (HLSL) Shader Model 2.0 and the HiDef profile implements HLSL Shader Model 3.0 or above.
 
-> [!NOTE]
-> The Reach profile is the only profile available for mobile game development. Nevertheless, this topic provides background information about the purpose of MonoGame profiles and the differences between the Reach and HiDef profiles.
+> [!IMPORTANT]
+> The information regarding `Graphics Profiles` is recorded here for information only, supporting the history of XNA.
+>
+> With current technology, the **HiDef profile** is more than sufficient for modern hardware and there should be no limits within the MonoGame architecture for using modern techiques for making the most out of todays technology.
 
 To simplify multi-platform development, MonoGame creates a [profile](xref:Microsoft.Xna.Framework.Graphics.GraphicsProfile). A profile is platform independent so you do not need to query for capability bits. The APIs for accessing the features implemented in hardware are consistent across platforms so that game code written for one platform will compile and run on another platform with little or no changes. A game will not run if a hardware device does not meet the profile requirements.
 
