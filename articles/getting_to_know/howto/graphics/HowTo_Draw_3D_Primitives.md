@@ -309,7 +309,7 @@ A triangle strip is a set of triangles that share multiple vertices. This exampl
 
 ### Concepts
 
-- [What Is 3D Rendering?](../../whatis/grasphics/WhatIs_3DRendering.md)
+- [What Is 3D Rendering?](../../whatis/graphics/WhatIs_3DRendering.md)
 
 ### Reference
 

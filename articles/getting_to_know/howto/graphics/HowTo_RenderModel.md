@@ -18,7 +18,7 @@ This example has three main parts:
 
 ## Adding a Model
 
-Follow the steps in [How to add content](HowTo_GameContent_Add.md) in order to add a Model to your project.
+Follow the steps in [How to add content](../content_pipeline/HowTo_GameContent_Add.md) in order to add a Model to your project.
 
 For this example, use the [Fuel Carrier model](https://github.com/MonoGame/MonoGame.Samples/raw/3.8.2/FuelCell/FuelCell.Core/Content/Models/fuelcarrier.fbx) file and its corresponding [diffuse texture](https://github.com/MonoGame/MonoGame.Samples/raw/3.8.2/FuelCell/FuelCell.Core/Content/Models/ShipDiffuse.tga).  But you can use any model file you wish, and set the **Content Importer** to `FBX Importer - MonoGame` and the **Content Processor** is `Model - MonoGame` (which should be the default for an FBX) and Save the solution.
 

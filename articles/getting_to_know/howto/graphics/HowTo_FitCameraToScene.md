@@ -75,8 +75,8 @@ A simple technique to handle this is to create a [BoundingSphere](xref:Microsoft
 
 ### Concepts
 
-- [What Is a View Frustum?](../../whatis/grasphics/WhatIs_ViewFrustum.md)
-- [What Is a Viewport?](../../whatis/grasphics/WhatIs_Viewport.md)
+- [What Is a View Frustum?](../../whatis/graphics/WhatIs_ViewFrustum.md)
+- [What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)
 
 ### Reference
 
