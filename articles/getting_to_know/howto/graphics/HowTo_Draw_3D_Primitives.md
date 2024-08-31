@@ -104,7 +104,7 @@ First we need to setup some data to draw our primitives, essentially a list of p
 
 The example in this section uses the sample vertex list created by following step 1 in the `Creating Vertices` steps.
 
-![Drawing a Line List](HowTo_Draw_3D_Primitives_Line_List.png)
+![Drawing a Line List](images/HowTo_Draw_3D_Primitives_Line_List.png)
 
 ### To draw a line list
 
@@ -148,7 +148,7 @@ The example in this section uses the sample vertex list created by following ste
 
 The example in this section uses the same point list and renders the same output as the Drawing a Line List procedure. However, it uses a `line strip` primitive type when it identifies the indices of the vertex array to draw. **Fewer indices are stored when you use a line strip.**
 
-![Drawing a Line List](HowTo_Draw_3D_Primitives_Line_List.png)
+![Drawing a Line List](images/HowTo_Draw_3D_Primitives_Line_List.png)
 
 ### To draw a line strip
 
