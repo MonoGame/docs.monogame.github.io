@@ -55,8 +55,11 @@ First we need to setup some data to draw our primitives, essentially a list of p
             0,
             1.0f, 1000.0f);
 
+        // Calculate the center of the visible screen using the ViewPort.
         Vector2 screenCenter = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
+        // Calculate the center of the primitives to be drawn.
         var primitiveCenter = new Vector2((points / 2 - 1) * lineLength / 2, lineLength / 2);
+        // Create a translation matrix to position the drawn primitives in the center of the screen and the center of the primitives.
         translationMatrix = Matrix.CreateTranslation(screenCenter.X - primitiveCenter.X, screenCenter.Y - primitiveCenter.Y, 0);
  
        base.Initialize();
@@ -85,6 +88,12 @@ First we need to setup some data to draw our primitives, essentially a list of p
                     new Vector3(x * lineLength, y * lineLength, 0), Color.White);
             }
         }
+
+        // Translate the position of the vertices by the translation matrix calculated earlier.
+        for (int i = 0; i < primitiveList.Length; i++)
+        {
+            primitiveList[i].Position = Vector3.Transform(primitiveList[i].Position, translationMatrix);
+        }        
     ```
 
     - These eight points form a `triangle strip` consisting of six triangles drawn along the plane `z = 0`, with the first point at `(0, 0, 0)`.
