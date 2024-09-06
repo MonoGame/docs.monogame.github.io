@@ -3,20 +3,19 @@ title: Console Access
 description: How do I get access to console versions of MonoGame?
 ---
 
-MonoGame is free to use on all consoles from the [public repository](https://github.dev/MonoGame/monogame), however, the source code to the extensions for each platform is private and only accessible to authorized developers for each platform (managed by the vendors).  These extensions provide additional capabilities to enable MonoGame to perform better on those platforms and include integrations with the vendor's private APIs.
+MonoGame is free to use on all platforms from the [public repository](https://github.dev/MonoGame/monogame), but the code for supporting console platforms is only accessible to authorized console developers.
 
-> [!NOTE]
-> You can independently publish your MonoGame title to the respective consoles without these extensions, but you will have to code the integrations manually.
+These platforms are provided as private code repositories that add integrations with the console vendor's APIs and platform specific documentation.
 
 ## Application process
 
 The process for access to the private console repositories is as follows:
 
 1. Apply to the vendor developer program (required for publishing).
-2. Through the program, request access to the MonoGame console extensions.
+2. Through the program, request access to the MonoGame console repositories.
 
 > [!IMPORTANT]
-> MonoGame cannot directly give anyone access to the private Console repositories without prior approval from the vendor due to NDA requirements set out by each vendor.
+> The MonoGame Foundation cannot directly give anyone access to the private console repositories without prior approval from the vendor due to NDA requirements set out by each vendor.
 
 The instructions below will help you gain access to each platform.
 
