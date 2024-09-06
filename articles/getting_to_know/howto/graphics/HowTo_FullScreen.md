@@ -18,7 +18,7 @@ By default, MonoGame will render in a Window pre-set to the default (800 x 480) 
 1. After creating the [GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager), set its [PreferredBackBufferWidth](xref:Microsoft.Xna.Framework.GraphicsDeviceManager.PreferredBackBufferWidth) and [PreferredBackBufferHeight](xref:Microsoft.Xna.Framework.GraphicsDeviceManager.PreferredBackBufferHeight) to the desired screen height and width.
 
     > [!NOTE]
-    > Check the [What Is 3D Rendering?](../../whatis/graphics/WhatIs_3DRendering.md) guide on the various ways the [GraphicsDevice](xref:Microsoft.Xna.Framework.GraphicsDevice) and [Back Buffer?](../../whatis/graphics/WhatIs_BackBuffer.md) can be initialized.
+    > Check the [What Is 3D Rendering?](../../whatis/graphics/WhatIs_3DRendering.md) guide on the various ways the [GraphicsDevice](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice) and [Back Buffer?](../../whatis/graphics/WhatIs_BackBuffer.md) can be initialized.
 
 1. Set [IsFullScreen](xref:Microsoft.Xna.Framework.GraphicsDeviceManager.IsFullScreen) to **true**.
 
