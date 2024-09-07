@@ -61,11 +61,7 @@ This section walks through several core concepts related to sprite rendering, in
 
   Demonstrates how to draw a scrolling background sprite using the SpriteBatch class.
 
-> More Coming soon
-
 ### Cameras
-
-> Coming soon
 
 - [Rotating and Moving the Camera](HowTo_RotateMoveCamera.md)
 
@@ -79,6 +75,18 @@ This section walks through several core concepts related to sprite rendering, in
 
   Demonstrates how to create a render target using the RenderTarget2D class.
 
+- [How to create a Full-Screen Game](HowTo_FullScreen.md)
+
+  Demonstrates how to start a game in full-screen mode.  
+
+- [How to restrict Aspect Ratio on a Graphics Device](HowTo_AspectRatio.md)
+
+  Demonstrates how to create a custom GraphicsDeviceManager that only selects graphics devices with widescreen aspect ratios in full-screen mode.
+
+- [How to display Multiple Screens with Viewports](HowTo_UseViewportForSplitscreenGaming.md)
+
+  Demonstrates how to use viewports to display different scenes simultaneously using two cameras.
+
 ### 3D Rendering
 
 This section walks through several core concepts related 3D rendering and math practices with MonoGame.
@@ -90,6 +98,10 @@ This section walks through several core concepts related 3D rendering and math p
 - [How to create a Basic Effect](HowTo_Create_a_BasicEffect.md)
 
   Demonstrates how to create and initialize an instance of the BasicEffect class and use it to draw simple geometry.
+
+- [Using a Basic Effect with Texturing](HowTo_Draw_Textured_Quad.md)
+
+  Demonstrates how to create and draw a simple quad—two triangles that form a rectangle or square—using **DrawUserIndexedPrimitives**.  
 
 - [How to create a State Object](HowTo_Create_a_StateObject.md)
 
@@ -107,7 +119,24 @@ This section walks through several core concepts related 3D rendering and math p
 
   Demonstrates how to enable anti-aliasing for your game.
 
+- [How to create a Custom Vertex Declaration](HowTo_UseACustomVertex.md)
+
+  Demonstrates how to create a custom vertex declaration and use it to render a 3D object.
+
+- [How to Dynamically Update Vertex Data](HowTo_DynamicallyUpdateVertices.md)
+
+  Geometry in a 3D game is defined by vertex data. Sometimes, a game needs to modify vertex data or even generate new vertex data dynamically (at run time). Here are some solutions for dynamically updating vertex data.
 
 ### 3D Collisions
 
-> Coming soon
+[Bounding Volumes and Collisions](../HowTo_CollisionDetectionOverview.md)
+
+Collision detection determines whether objects in a game world overlap each other.
+
+[Selecting an Object with a Mouse](HowTo_Select_an_Object_with_a_Mouse.md)
+
+Demonstrates how to check whether the mouse is positioned over a 3D object by creating a ray starting at the camera's near clipping plane and ending at its far clipping plane.
+
+[Testing for Collisions](HowTo_Test_for_Collisions.md)
+
+Demonstrates how to use the BoundingSphere class to check whether two models are colliding.
