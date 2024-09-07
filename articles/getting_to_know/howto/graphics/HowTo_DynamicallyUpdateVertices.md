@@ -25,3 +25,20 @@ Sometimes, your game needs to generate geometry because the geometry is not know
 Create a dynamic vertex or index buffer using [DynamicVertexBuffer](xref:Microsoft.Xna.Framework.Graphics.DynamicVertexBuffer) and [DynamicIndexBuffer](xref:Microsoft.Xna.Framework.Graphics.DynamicIndexBuffer) ; create a static vertex or index buffer using [VertexBuffer](xref:Microsoft.Xna.Framework.Graphics.VertexBuffer) and [IndexBuffer](xref:Microsoft.Xna.Framework.Graphics.IndexBuffer). Use a dynamic buffer for vertex data that is updated every render frame, otherwise, use a static buffer.
 
 The samples are located on the App Hub Web site. For a more advanced solution for dynamic vertex updating, download the [Generated Geometry Sample](http://go.microsoft.com/fwlink/?LinkId=93007). This sample uses the [MeshBuilder](xref:Microsoft.Xna.Framework.Content.Pipeline.Graphics.MeshBuilder) helper class and a custom processor to generate a terrain map from a bitmap loaded by the content manager. Specifically, examine the `Process` method, located in TerrainProcessor.cs, which programmatically creates the terrain geometry based on input from the specified bitmap.
+
+## See Also
+
+- [How to articles for the Graphics Pipeline](index.md)
+
+### Concepts
+
+- [What Is 3D Rendering?](../../whatis/graphics/WhatIs_3DRendering.md)
+- [What Is a Configurable Effect?](../../whatis/graphics/WhatIs_ConfigurableEffect.md)
+
+### Reference
+
+- [GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager)
+- [VertexBuffer](xref:Microsoft.Xna.Framework.Graphics.VertexBuffer)
+- [IndexBuffer](xref:Microsoft.Xna.Framework.Graphics.IndexBuffer)
+- [DynamicVertexBuffer](xref:Microsoft.Xna.Framework.Graphics.DynamicVertexBuffer)
+- [DynamicIndexBuffer](xref:Microsoft.Xna.Framework.Graphics.DynamicIndexBuffer)

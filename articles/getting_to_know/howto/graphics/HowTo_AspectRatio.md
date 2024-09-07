@@ -6,6 +6,8 @@ requireMSLicense: true
 
 ## Overview
 
+Certain games require a fixed resolution that is only suitable for Wide-Screen devices (e.g. a TV). The steps below show how to implement a custom `GraphicsDeviceManager` to provide such a restriction.
+
 ## To restrict graphics devices to widescreen aspect ratios in full-screen mode
 
 1. Create a class that derives from [GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager).
@@ -103,7 +105,7 @@ requireMSLicense: true
                 this.graphics.PreferredBackBufferWidth = 1280;
                 this.graphics.PreferredBackBufferHeight = 720;
     #endif
-    #if WINDOWS_PHONE
+    #if ANDROID
                 this.graphics.PreferredBackBufferWidth = 400;
                 this.graphics.PreferredBackBufferHeight = 600;
     #endif
@@ -113,3 +115,17 @@ requireMSLicense: true
                 graphics.ApplyChanges();
             }
     ```
+
+## See Also
+
+- [How to articles for the Graphics Pipeline](index.md)
+
+### Concepts
+
+- [What Is 3D Rendering?](../../whatis/graphics/WhatIs_3DRendering.md)
+- [What Is a Back Buffer?](../../whatis/graphics/WhatIs_BackBuffer.md)
+- [What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)
+
+### Reference
+
+- [GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager)
