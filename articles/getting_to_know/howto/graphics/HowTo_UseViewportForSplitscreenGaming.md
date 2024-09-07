@@ -6,7 +6,7 @@ requireMSLicense: true
 
 ## Overview
 
-![A Split screen Example](../images/graphics_split_screen.png)
+![A Split screen Example](images/graphics_split_screen.png)
 
 ## To create multiple screens
 
@@ -70,7 +70,6 @@ requireMSLicense: true
         DrawScene(gameTime, Camera2.ViewMatrix, halfprojectionMatrix);
     
         base.Draw(gameTime);
-    
     }
     ```
 

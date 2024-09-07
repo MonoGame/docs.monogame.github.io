@@ -6,6 +6,8 @@ requireMSLicense: true
 
 ## Overview
 
+Collision detection is a crucial part of almost any game where the game needs to know whether or not two objects are touching.  Normally, a simple distance ([Vector3.Distance]()) check is sufficient, but when you need to know where they are touching or require more accurate information, that is when collision detection becomes critical.
+
 ## Detecting Whether Two Models Collide
 
 1. Track the position of a model as it moves about the game world.
