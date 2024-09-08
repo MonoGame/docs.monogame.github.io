@@ -129,14 +129,14 @@ This section walks through several core concepts related 3D rendering and math p
 
 ### 3D Collisions
 
-[Bounding Volumes and Collisions](../HowTo_CollisionDetectionOverview.md)
+- [Bounding Volumes and Collisions](../HowTo_CollisionDetectionOverview.md)
 
-Collision detection determines whether objects in a game world overlap each other.
+  Collision detection determines whether objects in a game world overlap each other.
 
-[Selecting an Object with a Mouse](HowTo_Select_an_Object_with_a_Mouse.md)
+- [Selecting an Object with a Mouse](HowTo_Select_an_Object_with_a_Mouse.md)
 
-Demonstrates how to check whether the mouse is positioned over a 3D object by creating a ray starting at the camera's near clipping plane and ending at its far clipping plane.
+  Demonstrates how to check whether the mouse is positioned over a 3D object by creating a ray starting at the camera's near clipping plane and ending at its far clipping plane.
 
-[Testing for Collisions](HowTo_Test_for_Collisions.md)
+- [Testing for Collisions](HowTo_Test_for_Collisions.md)
 
-Demonstrates how to use the BoundingSphere class to check whether two models are colliding.
+  Demonstrates how to use the BoundingSphere class to check whether two models are colliding.
