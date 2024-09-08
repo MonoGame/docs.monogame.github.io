@@ -1,17 +1,17 @@
 ---
 title: How to exit a Game Immediately
 description: Demonstrates how to exit a game in response to user input.
+requireMSLicense: true
 ---
 
-# Exiting a Game Immediately
+## Overview
 
 Demonstrates how to exit a game in response to user input.
 
 ## Exiting a Game Without Finishing the Current Update
 
-> **Note* some platforms react differently to **Game.Exit**, so be sure to test on a device!
-
-### To exit the game loop without running any remaining code in the update handler
+> [!NOTE]
+> Some platforms react differently to `Game.Exit`, so be sure to test on a device!
 
 1. Derive a class from [Game](xref:Microsoft.Xna.Framework.Game).
 
@@ -59,8 +59,18 @@ Demonstrates how to exit a game in response to user input.
     }
     ```
 
----
+> [!NOTE]
+> The default MonoGame project template already includes code to exit your game (as shown below), however depending on your game, you may wish to change this default logic.
+>
+> ```csharp
+> if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+>    Exit();
+> ```
 
-© 2012 Microsoft Corporation. All rights reserved.  
+## See Also
 
-© 2023 The MonoGame Foundation.
+- [Input Overview](./input/index.md)
+
+### Reference
+
+- [Game.Exit](xref:Microsoft.Xna.Framework.Game.Exit)

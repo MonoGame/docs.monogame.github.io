@@ -1,24 +1,28 @@
 ---
 title: How to work with Asynchronous Methods in MonoGame
 description: This topic describes how you can work with asynchronous methods in MonoGame.
+requireMSLicense: true
 ---
 
-# Working with Asynchronous Methods in MonoGame
+## Overview
 
 This topic describes how you can work with asynchronous methods in MonoGame.
 
-MonoGame provides many methods that operate _asynchronously_ for operations that may take longer than the desired render-cycle length.
+MonoGame provides many methods that operate `asynchronously` for operations that may take longer than the desired render-cycle length.
 
 Asynchronous methods consist of four elements:
 
-* A **Begin** call that begins the asynchronous process. **Begin** methods return an [IASyncResult](http://msdn.microsoft.com/en-us/library/system.iasyncresult.aspx) object that can be used to poll for completion if a callback function is not used to detect the completion of the operation.
-* An **End** call that ends the asynchronous process and returns objects or data requested by the **Begin** call. Calling the corresponding **End** method for each **Begin** method is important to prevent deadlocks and other undesirable behavior.
-* An optional _callback_ method that is called by the system when the asynchronous operation completes. This is passed to the **Begin** call.
-* An optional, arbitrary _tracking object_ that can be supplied to **Begin** to uniquely identify a particular asynchronous request. This object is part of the _IASyncResult_ returned by **Begin**, and is also present in the callback method's _**IASyncResult**_ parameter. Because of this, it also can be used to pass arbitrary data to the callback method when the asynchronous process completes.
+- A **Begin** call that begins the asynchronous process. **Begin** methods return an [IASyncResult](http://msdn.microsoft.com/en-us/library/system.iasyncresult.aspx) object that can be used to poll for completion if a callback function is not used to detect the completion of the operation.
+- An **End** call that ends the asynchronous process and returns objects or data requested by the **Begin** call. Calling the corresponding **End** method for each **Begin** method is important to prevent deadlocks and other undesirable behavior.
+- An optional _callback_ method that is called by the system when the asynchronous operation completes. This is passed to the **Begin** call.
+- An optional, arbitrary _tracking object_ that can be supplied to **Begin** to uniquely identify a particular asynchronous request. This object is part of the _IASyncResult_ returned by **Begin**, and is also present in the callback method's _**IASyncResult**_ parameter. Because of this, it also can be used to pass arbitrary data to the callback method when the asynchronous process completes.
 
-The two most common methods of working with asynchronous methods are to check for completion by polling or by callback. This topic describes both methods.
+The two most common methods of working with asynchronous methods are to check for completion by `polling` or by `callback`. This topic describes both methods.
 
-For exhaustive information about asynchronous methods, see [Asynchronous Programming Design Patterns](http://msdn.microsoft.com/library/ms228969.aspx) on MSDN.
+> [!NOTE]
+> For more exhaustive information about Event Based asynchronous methods, see [Asynchronous Programming Design Patterns](http://msdn.microsoft.com/library/ms228969.aspx) on MSDN.
+>
+> Alternatively, review the alternative [Task-Based Asynchronous patter](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap) approach.
 
 ## To poll for asynchronous method completion
 
@@ -40,10 +44,5 @@ For exhaustive information about asynchronous methods, see [Asynchronous Program
 
 ## See Also
 
-[Asynchronous Programming Design Patterns](http://msdn.microsoft.com/library/ms228969.aspx)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.
+- [Asynchronous Programming Design Patterns](http://msdn.microsoft.com/library/ms228969.aspx)
+- [Task-based asynchronous pattern (TAP) in .NET](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap)

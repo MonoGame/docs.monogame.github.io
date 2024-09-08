@@ -1,9 +1,12 @@
 ---
 title: How to exit a Game After a Time Out
 description: Demonstrates how to exit a game after a period of time (such as inactivity) has passed.
+requireMSLicense: true
 ---
 
-# Adding Time-Out Functionality to a Game
+## Overview
+
+Games are meant to be played, but some users had a tendency to walk away from their controllers or go and do something IRL, when this happens, especially if your game is very dynamic, it is good practice to monitor for a lack of interactivity and pause the game (unless you want the player to die horribly for not paying attention).
 
 ## To make a game time out
 
@@ -59,8 +62,10 @@ description: Demonstrates how to exit a game after a period of time (such as ina
     }
     ```
 
----
+## See Also
 
-© 2012 Microsoft Corporation. All rights reserved.  
+- [Input Overview](./input/index.md)
 
-© 2023 The MonoGame Foundation.
+### Reference
+
+- [Game.Exit](xref:Microsoft.Xna.Framework.Game.Exit)

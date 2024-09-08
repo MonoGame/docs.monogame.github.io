@@ -1,13 +1,15 @@
 ---
 title: How to Save and Load data using MonoGame
 description: Demonstrates reading and writing data in MonoGame projects.
+requireMSLicense: true
 ---
 
-# Writing Data
+## Overview
 
-MonoGame is based on DotNet, which provides access to the System.IO namespace that delivers methods to interact with the file system
+MonoGame is based on DotNet, which provides access to the `System.IO` namespace that delivers methods to interact with the file system
 
-For detailed information about using Isolated Storage in games, see [Local Data Storage for Windows Phone](http://go.microsoft.com/fwlink/?LinkId=254759) in the Windows Phone documentation.
+> [!NOTE]
+> For detailed information about using Storage in games, see [File and Stream I/O Overview](https://learn.microsoft.com/en-us/dotnet/standard/io/) in the MSDN documentation.
 
 ## Saving data using System.IO
 

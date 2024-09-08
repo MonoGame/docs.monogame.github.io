@@ -29,6 +29,6 @@ The following articles showcase some of the best ways to get input into your gam
 
   Demonstrates how to detect and use multi-touch gestures in a MonoGame game.
 
-* [How to select an Object in 3D Space](HowTo_DetectClicked3DObject.md)
+* [How to select an Object in 3D Space](../graphics/HowTo_DetectClicked3DObject.md)
 
   Demonstrates how to check whether the mouse (or touch location) is positioned over a 3D object by creating a ray starting at the camera's near clipping plane and ending at its far clipping plane.
