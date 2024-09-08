@@ -36,4 +36,4 @@ If you love coding and understanding how things work under the hood, MonoGame mi
 
 MonoGame is an open-source project maintained by its community. Great open source projects require high-quality documentation. This is a call for volunteers to continue to help us make the MonoGame documentation truly great. If you can create tutorials, feature guides, code snippets, reference docs, video walkthroughs, or make any improvement to the current documentation, we could use your help!
 
-Check out the [README on GitHub](https://github.com/MonoGame/MonoGame/blob/develop/README.md) or [talk with us on discord](#59) to learn how to help!
+Check out the [README on GitHub](https://github.com/MonoGame/MonoGame/blob/develop/README.md) or [talk with us on discord](https://discord.gg/monogame) to learn how to help!
