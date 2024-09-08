@@ -12,11 +12,11 @@ We will simply define an area ([Rectangle](xref:Microsoft.Xna.Framework.Rectangl
 
 ### End result
 
-![The output of this tutorial](images/HowTo_Tile_Sprites_Final.png)
+![The output of this tutorial](./images/HowTo_Tile_Sprites_Final.png)
 
 ## Requirements
 
-![Sprite to Tile](images/MonoGame.png)
+![Sprite to Tile](./images/MonoGame.png)
 
 ## Drawing a Tiled a Sprite
 
@@ -24,7 +24,7 @@ We will simply define an area ([Rectangle](xref:Microsoft.Xna.Framework.Rectangl
 1. Setup some new variables to define how we want to draw the tiled area and with which Texture.
 
     ```csharp
-        // Tiling Texture
+    // Tiling Texture
     private Texture2D monoGameLogo;
     // How many tiles wide
     private int tileCountWidth = 2;
@@ -67,13 +67,13 @@ We will simply define an area ([Rectangle](xref:Microsoft.Xna.Framework.Rectangl
 1. Call [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_) with the sprite, the destination rectangle, and other relevant parameters.
 
     ```csharp
-    _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.Opaque, SamplerState.LinearWrap, DepthStencilState.Default, RasterizerState.CullNone);
+    _spriteBatch.Draw(monoGameLogo, Vector2.Zero, targetRectangle, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
     ```
 
 1. Call [SpriteBatch.End](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_End) on your [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) object.
 
     ```csharp
-    spriteBatch.End();
+    _spriteBatch.End();
     ```
 
 ## See Also
