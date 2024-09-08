@@ -13,7 +13,7 @@ To publish desktop games, it is recommended that you build your project as a [se
 
 From the .NET CLI:
 
-`dotnet publish -c Release -r win-x64 /p:PublishReadyToRun=false /p:TieredCompilation=false --self-contained`
+`dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained`
 
 You can then zip the content of the publish folder and distribute the archive as-is.
 
@@ -24,8 +24,12 @@ If you are targeting WindowsDX, note that players will need [the DirectX June 20
 From the .NET CLI:
 
 ```cli
-dotnet publish -c Release -r osx-x64 /p:PublishReadyToRun=false /p:TieredCompilation=false --self-contained
-dotnet publish -c Release -r osx-arm64 /p:PublishReadyToRun=false /p:TieredCompilation=false --self-contained
+dotnet publish -c Release -r osx-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained
+dotnet publish -c Release -r osx-arm64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained
+```
+
+```cli
+lipo -create bin/Release/osx-arm64/YouGame bin/Release/osx-x64/YouGame --output bin/Release/YourGame.app/Contents/MacOS/YouGame
 ```
 
 We recommend that you distribute your game as an [application bundle](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/BundleTypes/BundleTypes.html). Application bundles are directories with the following file structure:
@@ -37,23 +41,8 @@ YourGame.app                    (this is your root folder)
             - Content           (this is where all your content and XNB's should go)
             - YourGame.icns     (this is your app icon, in ICNS format)
         - MacOS
-            - amd64             (this is where your game executable for amd64 belongs, place files from the osx-x64/publish directory here)
-            - arm64             (this is where your game executable for arm64 belongs, place files from the osx-arm64/publish directory here)
-            - YourGame          (the entry point script of your app, see bellow for contents)
+            - YourGame          (the main executable for your game)
         - Info.plist            (the metadata of your app, see bellow for contents)
-```
-
-The contents of the entry point script:
-
-```sh
-#!/bin/bash
-
-cd "$(dirname $BASH_SOURCE)/../Resources"
-if [[ $(uname -p) == 'arm' ]]; then
-  ./../MacOS/arm64/YourGame
-else
-  ./../MacOS/amd64/YourGame
-fi
 ```
 
 The `Info.plist` file is a standard macOS file containing metadata about your game. Here is an example file with required and recommended values set:
@@ -111,7 +100,7 @@ For archiving, we recommend using the .tar.gz format to preserve the execution p
 
 From the .NET CLI:
 
-`dotnet publish -c Release -r linux-x64 /p:PublishReadyToRun=false /p:TieredCompilation=false --self-contained`
+`dotnet publish -c Release -r linux-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained`
 
 You can then archive the content of the publish folder and distribute the archive as-is.
 
@@ -122,6 +111,22 @@ We recommend using the .tar.gz archiving format to preserve the execution permis
 ## Special notes about .NET parameters
 
 .NET proposes several parameters when publishing apps that may sound helpful, but have many issues when it comes to games (because they were never meant for games in the first place, but for small lightweight applications).
+
+### PublishAot
+
+This option optimises your game code "Ahead of Time". It allows you to ship your game without the need to JIT (Just In Time compile).
+However you do need to currently add some additional settings to your .csproj.
+
+```
+  <ItemGroup>
+    <TrimmerRootAssembly Include="MonoGame.Framework" />
+    <TrimmerRootAssembly Include="mscorlib" />
+  </ItemGroup>
+```
+
+The `TrimmerRootAssembly` stops the trimmer removing code from these assemblies. This will on the whole allow the game to run without 
+any issues. However if you are using any Third Party assemblies, you might need to add them to this list. 
+For MacOS it is recommended that you publish using AOT as it simplifies the app bundle. 
 
 ### ReadyToRun (R2R)
 
