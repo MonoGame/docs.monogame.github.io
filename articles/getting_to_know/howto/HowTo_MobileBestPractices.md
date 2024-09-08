@@ -80,4 +80,3 @@ If you implement automatic game saving, check for an automatically saved state w
 
 - [Creating a your first MonoGame Game](https://monogame.net/articles/getting_started/index.html)
 - [Setting Aspect ratios for your game](graphics/HowTo_AspectRatio.md)  
-- [Saving data using MonoGame](HowTo_SaveData.md)  

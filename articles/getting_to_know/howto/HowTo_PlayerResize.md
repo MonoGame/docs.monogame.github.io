@@ -39,9 +39,9 @@ On Desktop, it is normally possible for the user to change how the game window i
 
 ### Concepts
 
-- [What Is 3D Rendering?](../../whatis/graphics/WhatIs_3DRendering.md)
-- [What Is a Back Buffer?](../../whatis/graphics/WhatIs_BackBuffer.md)
-- [What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)
+- [What Is 3D Rendering?](../whatis/graphics/WhatIs_3DRendering.md)
+- [What Is a Back Buffer?](../whatis/graphics/WhatIs_BackBuffer.md)
+- [What Is a Viewport?](../whatis/graphics/WhatIs_Viewport.md)
 
 ### Reference
 

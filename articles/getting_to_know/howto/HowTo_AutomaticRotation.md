@@ -26,7 +26,7 @@ If you leave [SupportedOrientations](xref:Microsoft.Xna.Framework.GraphicsDevice
 
 ### Concepts
 
-- [What Is a Back Buffer?](WhatIs_BackBuffer.md)
+- [What Is a Back Buffer?](../whatis/graphics/WhatIs_BackBuffer.md)
 
 ### Reference
 
