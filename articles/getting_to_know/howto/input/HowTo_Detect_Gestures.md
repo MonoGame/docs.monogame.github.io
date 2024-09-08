@@ -14,7 +14,7 @@ MonoGame supports multi-touch gesture-based input on Mobile. The primary class t
 - Query to see if any gestures are available for processing.
 
 > [!NOTE]
-> Gesture support is provided as a convenient subset of the features possible on a multi-touch input device. For more information about general multi-touch programming, see [Working with Touch Input](HowTo_UsemultitouchInput.md).
+> Gesture support is provided as a convenient subset of the features possible on a multi-touch input device. For more information about general multi-touch programming, see [Working with Touch Input](HowTo_UseMultiTouchInput.md).
 
 ## How to detect Gestures on a multi-touch Screen
 
