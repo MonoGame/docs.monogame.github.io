@@ -10,7 +10,7 @@ A game without input is basically just a movie, the user is not interacting and 
 
 The following articles showcase some of the best ways to get input into your game:
 
-* [Overview of User Input and Input Devices](../../whatis/WhatIs_Input.md)
+* [Overview of User Input and Input Devices](../../whatis/input/index.md)
 
   Describes the various types of input devices that can be used with MonoGame.
 

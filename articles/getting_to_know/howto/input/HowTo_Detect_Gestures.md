@@ -49,14 +49,12 @@ The following code illustrates the procedure for detecting gestures on a multi-t
         switch (gs.GestureType)
         {
             case GestureType.VerticalDrag:
-                // move the poem screen vertically by the drag delta
-                // amount.
+                // move the poem screen vertically by the drag delta amount.
                 poem.offset.Y -= gs.Delta.Y;
                 break;
 
             case GestureType.Flick:
-                // add velocity to the poem screen (only interested in
-                // changes to Y velocity).
+                // add velocity to the poem screen (only interested in changes to Y velocity).
                 poem.velocity.Y += gs.Delta.Y;
                 break;
         }
