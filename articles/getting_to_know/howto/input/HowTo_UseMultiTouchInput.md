@@ -3,7 +3,7 @@ title: How to work with Touch Input
 description: This topic demonstrates how to detect and use multi-touch input in a MonoGame game.
 ---
 
-# Working with Touch Input
+## Overview
 
 MonoGame supports multi-touch input on Mobile. The primary class that provides this support is [TouchPanel](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel), which can:
 
@@ -73,9 +73,3 @@ The following code demonstrates how to get the current state of the touch input 
 [TouchPanelCapabilities](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanelCapabilities)  
 [TouchLocation](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation)  
 [TouchLocationState](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocationState)  
-
----
-
-© 2012 Microsoft Corporation. All rights reserved.  
-
-© 2023 The MonoGame Foundation.

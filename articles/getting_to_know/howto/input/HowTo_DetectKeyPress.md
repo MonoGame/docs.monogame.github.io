@@ -1,11 +1,12 @@
 ---
 title: Detecting a Key Press
 description: The code in this topic describes how to detect a key press or release on the keyboard.
+requireMSLicense: true
 ---
 
-# Detecting a Key Press
+## Overview
 
-By using [GetState](xref:Microsoft.Xna.Framework.Input.Keyboard.GetState) a game can determine which keys are being held down. A game often needs to detect when a user has pressed or released a key. For example, there is the case of an action title that requires users to press and release keys in rapid succession. The example uses a cached [KeyboardState](xref:Microsoft.Xna.Framework.Input.KeyboardState) object to determine if keys were pressed or released in a given frame.
+By using [Keyboard.GetState](xref:Microsoft.Xna.Framework.Input.Keyboard.GetState) a game can determine which keys are being held down. A game often needs to detect when a user has pressed or released a key. For example, there is the case of an action title that requires users to press and release keys in rapid succession. The example uses a cached [KeyboardState](xref:Microsoft.Xna.Framework.Input.KeyboardState) object to determine if keys were pressed or released in a given frame.
 
 Depending on game design, there may be times when checking for a key press needs to occur more frequently, and other times it does not. It is possible in the case of very fast key presses that more than one key press could occur within one frame. In such a case, the last key press is returned. Writing code that checks as often as possible for key presses is the best way to handle this case.
 
@@ -69,6 +70,11 @@ namespace Keypress
                 {
                     // If not down last update, key has just been pressed.
                 }
+                else
+                {
+                    // If down last update, key is being held.
+                }
+
             }
             else if (oldState.IsKeyDown(Keys.Space))
             {
@@ -87,8 +93,12 @@ namespace Keypress
 }
 ```
 
----
+## See Also
 
-© 2012 Microsoft Corporation. All rights reserved.  
+- [Detecting a Button Press](HowTo_DetectGamePadInput.md)
+- [Working with Touch Input](HowTo_UseMultiTouchInput.md)
 
-© 2023 The MonoGame Foundation.
+### Reference
+
+- [Microsoft.Xna.Framework.Input](xref:Microsoft.Xna.Framework.Input)
+- [KeyboardState](xref:Microsoft.Xna.Framework.Input.KeyboardState)
