@@ -7,7 +7,7 @@ description: MonoGame Documentation Hub
 <section class="container-xxl my-5">
     <h1 id="monogame-documentation" class="fw-bold"><a href="#monogame-documentation">MonoGame Documentation</a></h1>
     <p>
-        Whether you're just starting out with MonoGame or you've been using it for years, you can find all documentation and
+        Whether you are just starting out with MonoGame or you've been using it for years, you can find all documentation and
         tutorials here.
     </p>
 </section>
@@ -71,9 +71,7 @@ description: MonoGame Documentation Hub
         video walkthroughs, or make any improvement to the current documentation, we could use your help!
     </p>
     <p>
-        Check out the <a href="https://github.com/MonoGame/MonoGame/blob/develop/README.md">README on GitHub</a> or
-        <a href="http://community.monogame.net/t/lets-improve-the-monogame-documentation/916">talk with us on the
-        community site</a> to learn how to help! For a quick start, you can jump on this
-        <a href="https://github.com/MonoGame/MonoGame/projects/4">list of documentation tasks.</a>
+        Check out the <a href="https://github.com/MonoGame/MonoGame/blob/develop/README.md">README on GitHub</a>for information on MonoGame or
+        <a href="https://discord.gg/monogame">talk with us on Discord</a> to learn how to help!
     </p>
 </section>
