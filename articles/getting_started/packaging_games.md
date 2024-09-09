@@ -15,6 +15,9 @@ From the .NET CLI:
 
 `dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained`
 
+> [!IMPORTANT]
+> Note we are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
+
 You can then zip the content of the publish folder and distribute the archive as-is.
 
 If you are targeting WindowsDX, note that players will need [the DirectX June 2010 runtime](https://www.microsoft.com/en-us/download/details.aspx?id=8109) to be installed on their machine for audio and gamepads to work properly.
@@ -48,8 +51,8 @@ dotnet publish -c Release -r osx-x64 -p:PublishReadyToRun=false -p:TieredCompila
 dotnet publish -c Release -r osx-arm64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained
 ```
 
-Note we are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. 
-Especially if you are using Reflection.
+> [!IMPORTANT]
+> Note we are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
 
 Next we need to comibne the two binaries into one Universal Binary which will work on both arm64 and x64 machines.
 We can do this using the `xcode` utility `lipo`.
@@ -141,6 +144,9 @@ From the .NET CLI:
 
 `dotnet publish -c Release -r linux-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained`
 
+> [!IMPORTANT]
+> Note we are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
+
 You can then archive the content of the publish folder and distribute the archive as-is.
 
 We recommend using the .tar.gz archiving format to preserve the execution permissions.
@@ -164,16 +170,18 @@ However you do need to currently add some additional settings to your .csproj.
 ```
 
 The `TrimmerRootAssembly` stops the trimmer removing code from these assemblies. This will on the whole allow the game to run without 
-any issues. However if you are using any Third Party or additional assemblies, you might need to add them to this list. 
-For MacOS it is recommended that you publish using AOT as it simplifies the app bundle. 
+any issues. However if you are using any Third Party or additional assemblies, you might need to add them to this list or fix your code to be `Aot` compliant.
+It is recommended that you publish using AOT as it simplifies the app bundle. 
 
 See [Trim self-contained deployments and executables](https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained) for more information.
 
-There are some known area's yoo need to watchout for. 
+There are some known area's you need to watchout for. 
 
 1. Using `XmlSerializer` in your game will probably cause issues. Since it uses reflection it will be difficult for the Trimmer to figure out what needs to be kept.
    It is recommended that instead of using the `Deserialize` method, you write your own custom deserializer using `XDocument` or `XmlReader`.
-   Alternatively you can use the Content Pipeline and create a custom `Processor` and `Reader` to convert the Xml into a binary format that can be loaded via the usual `Content.Load<T>` method. 
+   Alternatively you can use the Content Pipeline and create a custom `Processor` and `Reader` to convert the Xml into a binary format that can be loaded via the usual `Content.Load<T>` method.
+2. Dynamically loading assemblies via `Assembly.LoadFile`.
+3. No run-time code generation, for example, System.Reflection.Emit.
 
 ### ReadyToRun (R2R)
 
