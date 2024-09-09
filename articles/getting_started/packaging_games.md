@@ -21,17 +21,6 @@ If you are targeting WindowsDX, note that players will need [the DirectX June 20
 
 ### [macOS](#tab/macos)
 
-From the .NET CLI:
-
-```cli
-dotnet publish -c Release -r osx-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained
-dotnet publish -c Release -r osx-arm64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained
-```
-
-```cli
-lipo -create bin/Release/osx-arm64/YouGame bin/Release/osx-x64/YouGame --output bin/Release/YourGame.app/Contents/MacOS/YouGame
-```
-
 We recommend that you distribute your game as an [application bundle](https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/BundleTypes/BundleTypes.html). Application bundles are directories with the following file structure:
 
 ```text
@@ -43,6 +32,38 @@ YourGame.app                    (this is your root folder)
         - MacOS
             - YourGame          (the main executable for your game)
         - Info.plist            (the metadata of your app, see bellow for contents)
+```
+
+So first lets create our directory structure.
+
+```
+mkdir -p bin/Release/YourGame.app/Contents/MacOS/
+mkdir -p bin/Release/YourGame.app/Contents/Resources/Content
+```
+
+Next we need to publish our application for both `arm64` (M1/M2 devices) and `x64` (Intel). From the .NET CLI:
+
+```cli
+dotnet publish -c Release -r osx-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained
+dotnet publish -c Release -r osx-arm64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained
+```
+
+Note we are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. 
+Especially if you are using Reflection.
+
+Next we need to comibne the two binaries into one Universal Binary which will work on both arm64 and x64 machines.
+We can do this using the `xcode` utility `lipo`.
+
+```cli
+lipo -create bin/Release/net8.0/osx-arm64/publish/YourGame bin/Release/net8.0/osx-x64/publish/YourGame -output bin/Release/YourGame.app/Contents/MacOS/YourGame
+```
+
+The above command will combine the two output executables into one. 
+
+Copy over your content
+
+```
+cp -R bin/Release/net8.0/Content bin/Release/YourGame.app/Contents/Resources/Content
 ```
 
 The `Info.plist` file is a standard macOS file containing metadata about your game. Here is an example file with required and recommended values set:
@@ -93,6 +114,24 @@ The `Info.plist` file is a standard macOS file containing metadata about your ga
 For more information about Info.plist files, see the [documentation](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html).
 
 After completing these steps, your .app folder should appear as an executable application on macOS.
+However it does need an icon. So we need to create an `.icns` file. We can use online tools to do this or you can use the following 
+
+```cli
+mkdir -p bin/Release/YourGame.iconset
+sips -z 16 16 Icon.png --out bin/Release/YourGame.iconset/icon_16x16.png
+sips -z 32 32 Icon.png --out bin/Release/YourGame.iconset/icon_16x16@2x.png
+sips -z 32 32 Icon.png --out bin/Release/YourGame.iconset/icon_32x32.png
+sips -z 64 64 Icon.png --out bin/Release/YourGame.iconset/icon_32x32@2x.png
+sips -z 128 128 Icon.png --out bin/Release/YourGame.iconset/icon_128x128.png
+sips -z 256 256 Icon.png --out bin/Release/YourGame.iconset/icon_128x128@2x.png
+sips -z 256 256 Icon.png --out bin/Release/YourGame.iconset/icon_256x256.png
+sips -z 512 512 Icon.png --out bin/Release/YourGame.iconset/icon_256x256@2x.png
+sips -z 512 512 Icon.png --out bin/Release/YourGame.iconset/icon_512x512.png
+sips -z 1024 1024 Icon.png  bin/Release/YourGame.iconset/icon_512x512@2x.png
+iconutil -c icns bin/Release/YourGame.iconset --output bin/Release/YourGame.app/Contents/Resources/YourGame.icns
+```
+
+Note this code is expecting an `Icon.png` file to be in the same directory. This file should be `1024` x `1024` pixels. 
 
 For archiving, we recommend using the .tar.gz format to preserve the execution permissions (you will likely run into permission issues if you use .zip at any point).
 
@@ -125,8 +164,16 @@ However you do need to currently add some additional settings to your .csproj.
 ```
 
 The `TrimmerRootAssembly` stops the trimmer removing code from these assemblies. This will on the whole allow the game to run without 
-any issues. However if you are using any Third Party assemblies, you might need to add them to this list. 
+any issues. However if you are using any Third Party or additional assemblies, you might need to add them to this list. 
 For MacOS it is recommended that you publish using AOT as it simplifies the app bundle. 
+
+See [Trim self-contained deployments and executables](https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained) for more information.
+
+There are some known area's yoo need to watchout for. 
+
+1. Using `XmlSerializer` in your game will probably cause issues. Since it uses reflection it will be difficult for the Trimmer to figure out what needs to be kept.
+   It is recommended that instead of using the `Deserialize` method, you write your own custom deserializer using `XDocument` or `XmlReader`.
+   Alternatively you can use the Content Pipeline and create a custom `Processor` and `Reader` to convert the Xml into a binary format that can be loaded via the usual `Content.Load<T>` method. 
 
 ### ReadyToRun (R2R)
 
