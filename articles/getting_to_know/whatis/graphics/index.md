@@ -22,7 +22,7 @@ The topics in this section describe the graphical conventions used by MonoGame i
 
 * [What Is a Configurable Effect?](WhatIs_ConfigurableEffect.md)
 
-  A configurable effect is an optimized rendering effect designed for Windows Phone. A configurable effect is created using a built-in object with options for user configuration.
+  MonoGame ships with a number of built in effects. These effects have properties so you can use to change behaviour or switch features on or off.
 
 * [What Is a Depth Buffer?](WhatIs_DepthBuffer.md)
 
