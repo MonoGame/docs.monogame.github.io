@@ -44,7 +44,7 @@ mkdir -p bin/Release/YourGame.app/Contents/MacOS/
 mkdir -p bin/Release/YourGame.app/Contents/Resources/Content
 ```
 
-Next we need to publish our application for both `arm64` (M1/M2 devices) and `x64` (Intel). From the .NET CLI:
+Next we need to publish our application for both `arm64` (Apple Silicon) and `x64` (Intel). From the .NET CLI:
 
 ```cli
 dotnet publish -c Release -r osx-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained
