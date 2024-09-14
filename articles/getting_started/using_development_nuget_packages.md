@@ -28,9 +28,47 @@ Next again in the root or top level directory create a `Directory.Build.props` f
     </PropertyGroup>
 </Project>
 ```
-
 `Directory.Build.props` is a MSBuild file which will be imported by all projects in your game. 
 Its like a file to contain global variables. In this case the version of MonoGame we want to use.
+
+To get the latest version from the GitHub feed we have to do a manual search with the following
+
+```CLI
+nuget search "MonoGame.Framework" -PreRelease -Source MonoGameGitHub
+```
+
+This will give you the following output 
+
+```
+====================
+Source: MonoGameGitHub
+--------------------
+> MonoGame.Framework.Android | 1.0.0.1278-develop | Downloads: 164
+  The MonoGame runtime for Android.
+--------------------
+> MonoGame.Framework.Content.Pipeline | 1.0.0.1278-develop | Downloads: 69
+  The Monogame Content Pipeline for Windows, Mac and Linux is used to compile raw content to xnb files...
+--------------------
+> MonoGame.Framework.DesktopGL | 1.0.0.1278-develop | Downloads: 337
+  The MonoGame runtime supporting Windows, Linux and macOS using SDL2 and OpenGL.
+--------------------
+> MonoGame.Framework.Native | 1.0.0.1278-develop | Downloads: 1
+  The MonoGame Native platform.
+--------------------
+> MonoGame.Framework.WindowsDX | 1.0.0.1278-develop | Downloads: 76
+  The MonoGame runtime for Windows using DirectX API's.
+--------------------
+> MonoGame.Framework.WindowsUniversal | 3.8.1.1128-develop | Downloads: 54
+  The MonoGame runtime for UWP (Universal Windows Platform) which supports Windows 10 and Xbox One.
+--------------------
+> MonoGame.Framework.iOS | 1.0.0.1278-develop | Downloads: 153
+  The MonoGame runtime for iOS amd iPadOS.
+--------------------
+```
+
+The version number you want to use is listed in the output.
+Note: As builds are done the version number will always be changing. Unfortunately due to limitations in the way NuGet works we cannot 
+use a wildcard with a prerelease package (so you cannot do `1.0.0.*-develop`). So this is the best way to find the latest verion you want to use.
 
 Next update all the `PackageReference` entires in your csprojs which use MonoGame to use `$(MonoGamePackageVersion)` MSBuild property.
 For example
