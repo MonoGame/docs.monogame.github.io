@@ -104,7 +104,9 @@ To be clean this file should NOT be in your source tree. It should be outside of
           MyGame.DesktopGL.csproj
 
 ```
-Do Not... DO NOT place this NuGet.config file in your source control. 
+
+> [!IMPORTANT]
+> Do Not... DO NOT place a NuGet.config file with valid `packageSourceCredentials` in your source control. 
 
 The contents of the file are as follows, replace `%GITHUB_USER%` with your GitHub username and the `%GITHUB_TOKEN%` with your token.
 
