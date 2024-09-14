@@ -97,6 +97,8 @@ To be clean this file should NOT be in your source tree. It should be outside of
  Projects
       NuGet.confing <-- THIS IS WHERE YOU PUT THE FILE.
       MyGame
+        .git
+        Directory.Build.props
         NuGet.config
         MyGame.DesktopGL
           MyGame.DesktopGL.csproj
@@ -119,5 +121,5 @@ The contents of the file are as follows, replace `%GITHUB_USER%` with your GitHu
 ```
 
 The really good thing about placing these credentials outside of source control is they are safe, but also any
-new projects you create under that folder can also make use of these createntials. So its a good idea to keep them in one place. 
-you
+new projects you create under that folder can also make use of these createntials. So its a good idea to keep them in one place.
+For more information to you read [consuming-packages-authenticated-feeds](https://learn.microsoft.com/en-us/nuget/consume-packages/consuming-packages-authenticated-feeds#credentials-in-nugetconfig-files).
