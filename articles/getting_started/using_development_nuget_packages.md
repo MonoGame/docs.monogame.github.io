@@ -49,8 +49,8 @@ to be a valid GitHub user to use them.
 
 You need to create an Personal Access Token (PAT) on your GitHub account in order to use the NuGet feed.
 See the following documentation on how to create your PAT. 
-(managing-your-personal-access-tokens)[https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens]
-Note: You need to create a "PAT (Classic)" token in order for it to work with the Nuget feed. See (creating-a-personal-access-token-classic)[https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic] for details.
+[managing-your-personal-access-tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+Note: You need to create a "PAT (Classic)" token in order for it to work with the Nuget feed. See [creating-a-personal-access-token-classic](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) for details.
 
 Once you have your PAT you can create a new `NuGet.config` file in the directory ABOVE your game project directory.
 To be clean this file should NOT be in your source tree. It should be outside of any directory which is under source control.
