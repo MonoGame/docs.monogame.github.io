@@ -68,7 +68,7 @@ Source: MonoGameGitHub
 
 The version number you want to use is listed in the output.
 
-> [!IMPORTANT]
+> [!NOTE]
 > As packages are published, the version number will always change. Unfortunately, due to limitations in the way NuGet works, we cannot 
 > use a wildcard with a pre-release package (so you cannot do `1.0.0.*-develop`). So this is the best way to find the latest verion you want to use.
 
@@ -91,7 +91,7 @@ You need to create a Personal Access Token (PAT) on your GitHub account in order
 See the following documentation on how to create your PAT. 
 [managing-your-personal-access-tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 
-> [!IMPORTANT]
+> [!NOTE]
 > You need to create a "PAT (Classic)" token in order for it to work with the Nuget feed. See [creating-a-personal-access-token-classic](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) for details.
 
 Once you have your PAT, you can create a new `NuGet.config` file in the directory ABOVE your game project directory.
