@@ -1,6 +1,6 @@
 # Using the Development Nuget Packages
 
-When the MonoGame develop branch builds it publishes development NuGet packages to the 
+When the MonoGame develop branch builds, it publishes development NuGet packages to the 
 MonoGame NuGet Feed on GitHub. If you want to test a new feature or just be on the 
 very latest code you can use this Feed to do that. 
 
@@ -19,7 +19,7 @@ Then add the following content.
 </configuration>
 ```
 
-Next again in the root or top level directory create a `Directory.Build.props` file and add the following content.
+Next, again in the root or top level directory, create a `Directory.Build.props` file and add the following content.
 
 ```xml
 <Project>
@@ -28,10 +28,10 @@ Next again in the root or top level directory create a `Directory.Build.props` f
     </PropertyGroup>
 </Project>
 ```
-`Directory.Build.props` is a MSBuild file which will be imported by all projects in your game. 
-Its like a file to contain global variables. In this case the version of MonoGame we want to use.
+`Directory.Build.props` is an MSBuild file which will be imported by all projects in your game. 
+It is like a file that contains global variables. In this case the version of MonoGame we want to use.
 
-To get the latest version you can look at one of the packages at [https://github.com/orgs/MonoGame/packages?repo_name=MonoGame](https://github.com/orgs/MonoGame/packages?repo_name=MonoGame). To get the information from the GitHub feed by doing a command line search with the following
+To find out the latest version number, you can look at one of the packages at [https://github.com/orgs/MonoGame/packages?repo_name=MonoGame](https://github.com/orgs/MonoGame/packages?repo_name=MonoGame). Or to get the information from the GitHub feed, you can run the following command.
 
 ```CLI
 nuget search "MonoGame.Framework" -PreRelease -Source MonoGameGitHub
@@ -67,31 +67,35 @@ Source: MonoGameGitHub
 ```
 
 The version number you want to use is listed in the output.
-Note: As builds are done the version number will always be changing. Unfortunately due to limitations in the way NuGet works we cannot 
-use a wildcard with a prerelease package (so you cannot do `1.0.0.*-develop`). So this is the best way to find the latest verion you want to use.
 
-Next update all the `PackageReference` entires in your csprojs which use MonoGame to use `$(MonoGamePackageVersion)` MSBuild property.
-For example
+> [!IMPORTANT]
+> As packages are published, the version number will always change. Unfortunately, due to limitations in the way NuGet works, we cannot 
+> use a wildcard with a pre-release package (so you cannot do `1.0.0.*-develop`). So this is the best way to find the latest verion you want to use.
+
+Next update all the `PackageReference` entries in your csproj's which use MonoGame to use `$(MonoGamePackageVersion)` MSBuild property.
+For example:
 
 ```xml
 <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="$(MonoGamePackageVersion)" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="$(MonoGamePackageVersion)" />
-  </ItemGroup>
+</ItemGroup>
 ```
 
-If you try to build now you will get an error. This is because the NuGet feeds on GitHub are not open. You need
+If you try to build now you will get an error. This is because the NuGet feeds on GitHub are not public. You need
 to be a valid GitHub user to use them. 
 
 ## Authentication
 
-You need to create an Personal Access Token (PAT) on your GitHub account in order to use the NuGet feed.
+You need to create a Personal Access Token (PAT) on your GitHub account in order to use the NuGet feed.
 See the following documentation on how to create your PAT. 
 [managing-your-personal-access-tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
-Note: You need to create a "PAT (Classic)" token in order for it to work with the Nuget feed. See [creating-a-personal-access-token-classic](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) for details.
 
-Once you have your PAT you can create a new `NuGet.config` file in the directory ABOVE your game project directory.
-To be clean this file should NOT be in your source tree. It should be outside of any directory which is under source control.
+> [!IMPORTANT]
+> You need to create a "PAT (Classic)" token in order for it to work with the Nuget feed. See [creating-a-personal-access-token-classic](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) for details.
+
+Once you have your PAT, you can create a new `NuGet.config` file in the directory ABOVE your game project directory.
+To be clear, this file should NOT be in your source tree. It should be outside of any directory which is under source control.
 
 ```
  Projects
@@ -122,6 +126,6 @@ The contents of the file are as follows, replace `%GITHUB_USER%` with your GitHu
 </configuration>
 ```
 
-The really good thing about placing these credentials outside of source control is they are safe, but also any
-new projects you create under that folder can also make use of these createntials. So its a good idea to keep them in one place.
-For more information to you read [consuming-packages-authenticated-feeds](https://learn.microsoft.com/en-us/nuget/consume-packages/consuming-packages-authenticated-feeds#credentials-in-nugetconfig-files).
+The really good thing about placing these credentials outside of source control is that they are safe. But also any
+new projects you create under that folder can also make use of these createntials. So it is a good idea to keep them in one place.
+For more information, you can read [consuming-packages-authenticated-feeds](https://learn.microsoft.com/en-us/nuget/consume-packages/consuming-packages-authenticated-feeds#credentials-in-nugetconfig-files).
