@@ -31,7 +31,7 @@ Next again in the root or top level directory create a `Directory.Build.props` f
 `Directory.Build.props` is a MSBuild file which will be imported by all projects in your game. 
 Its like a file to contain global variables. In this case the version of MonoGame we want to use.
 
-To get the latest version from the GitHub feed we have to do a manual search with the following
+To get the latest version you can look at one of the packages at [https://github.com/orgs/MonoGame/packages?repo_name=MonoGame](https://github.com/orgs/MonoGame/packages?repo_name=MonoGame). To get the information from the GitHub feed by doing a command line search with the following
 
 ```CLI
 nuget search "MonoGame.Framework" -PreRelease -Source MonoGameGitHub
