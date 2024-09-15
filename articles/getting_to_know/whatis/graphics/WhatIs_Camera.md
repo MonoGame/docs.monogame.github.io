@@ -145,8 +145,8 @@ Multiple cameras can be used simultaneously for either a [split screen multi-pla
 
 The projection of the camera can also be made to look different, MonoGame supports the two main modes of projection:
 
-- [Perspective](xref:Microsoft.Xna.Framework.Matrix.html#Microsoft_Xna_Framework_Matrix_CreatePerspective_System_Single_System_Single_System_Single_System_Single_) - A realistic 3D view.
-- [Orthographic](xref:Microsoft.Xna.Framework.Matrix.html#Microsoft_Xna_Framework_Matrix_CreateOrthographic_System_Single_System_Single_System_Single_System_Single_) - Provides a flat 2D view.
+- [Perspective](xref:Microsoft.Xna.Framework.Matrix#Microsoft_Xna_Framework_Matrix_CreatePerspective_System_Single_System_Single_System_Single_System_Single_) - A realistic 3D view.
+- [Orthographic](xref:Microsoft.Xna.Framework.Matrix#Microsoft_Xna_Framework_Matrix_CreateOrthographic_System_Single_System_Single_System_Single_System_Single_) - Provides a flat 2D view.
 
 Each perspective simply alters the way in which content is rendered into view.
 
