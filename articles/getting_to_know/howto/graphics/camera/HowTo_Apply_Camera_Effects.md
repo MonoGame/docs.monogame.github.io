@@ -21,12 +21,12 @@ The example follows on from the [What is a Camera](../../../whatis/graphics/What
 
 ## See Also
 
-- [HowTo Create a First Person Camera](../../howto/graphics/camera/HowTo_Create_First_Person_Camera.md)
-- [HowTo Create a Third Person Camera](../../howto/graphics/camera/HowTo_Create_Third_Person_Camera.md)
-- [HowTo Create a Chase Camera](../../howto/graphics/camera/HowTo_Create_Chase_Camera.md)
-- [HowTo Create a Top Down Camera](../../howto/graphics/camera/HowTo_Create_Top_Down_Camera.md)
-- [HowTo Apply Camera Effects](../../howto/graphics/camera/HowTo_Apply_Camera_Effects.md)
-- [How to display Multiple Screens with Viewports](../../howto/graphics/HowTo_UseViewportForSplitscreenGaming.md)
+- [HowTo Create a First Person Camera](HowTo_Create_First_Person_Camera.md)
+- [HowTo Create a Third Person Camera](HowTo_Create_Third_Person_Camera.md)
+- [HowTo Create a Chase Camera](HowTo_Create_Chase_Camera.md)
+- [HowTo Create a Top Down Camera](HowTo_Create_Top_Down_Camera.md)
+- [HowTo Apply Camera Effects](HowTo_Apply_Camera_Effects.md)
+- [How to display Multiple Screens with Viewports](../HowTo_UseViewportForSplitscreenGaming.md)
 
 ### Concepts
 

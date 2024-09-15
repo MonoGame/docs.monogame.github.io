@@ -174,7 +174,7 @@ Using this camera is then as simple as:
 ### Concepts
 
 - [What Is 3D Rendering?](WhatIs_3DRendering.md)
-- [What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)
+- [What Is a Viewport?](WhatIs_Viewport.md)
 - [What Is a View Frustum?](WhatIs_ViewFrustum.md)
 - [What Is a Render Target?](WhatIs_Render_Target.md)
 
