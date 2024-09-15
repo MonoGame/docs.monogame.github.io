@@ -30,10 +30,10 @@ The example follows on from the [What is a Camera](../../../whatis/graphics/What
 
 ### Concepts
 
-- [What Is 3D Rendering?](WhatIs_3DRendering.md)
-- [What Is a Viewport?](../../whatis/graphics/WhatIs_Viewport.md)
-- [What Is a View Frustum?](WhatIs_ViewFrustum.md)
-- [What Is a Render Target?](WhatIs_Render_Target.md)
+- [What Is 3D Rendering?](../../../whatis/graphics/WhatIs_3DRendering.md)
+- [What Is a Viewport?](../../../whatis/graphics/WhatIs_Viewport.md)
+- [What Is a View Frustum?](../../../whatis/graphics/WhatIs_ViewFrustum.md)
+- [What Is a Render Target?](../../../whatis/graphics/WhatIs_Render_Target.md)
 
 ### Reference
 
