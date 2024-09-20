@@ -1,6 +1,6 @@
 ---
 title: Setting up your OS for development on Ubuntu
-description: This section provides a step-by-step guide for setting up your development environment on Windows.
+description: This section provides a step-by-step guide for setting up your development environment on Ubuntu.
 ---
 
 To develop with MonoGame in C#, you will need to install the .NET SDK. As of MonoGame 3.8.2 the minimum supported version is .NET 8.
