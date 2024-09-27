@@ -16,7 +16,7 @@ From the .NET CLI:
 `dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained`
 
 > [!IMPORTANT]
-> Note we are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
+> We are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
 
 You can then zip the content of the publish folder and distribute the archive as-is.
 
@@ -34,7 +34,7 @@ YourGame.app                    (this is your root folder)
             - YourGame.icns     (this is your app icon, in ICNS format)
         - MacOS
             - YourGame          (the main executable for your game)
-        - Info.plist            (the metadata of your app, see bellow for contents)
+        - Info.plist            (the metadata of your app, see below for contents)
 ```
 
 So first lets create our directory structure.
@@ -52,16 +52,17 @@ dotnet publish -c Release -r osx-arm64 -p:PublishReadyToRun=false -p:TieredCompi
 ```
 
 > [!IMPORTANT]
-> Note we are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
+> We are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
 
-Next we need to comibne the two binaries into one Universal Binary which will work on both arm64 and x64 machines.
+Next we need to combine the two binaries into one Universal Binary which will work on both arm64 and x64 machines.
 We can do this using the `xcode` utility `lipo`.
 
 ```cli
 lipo -create bin/Release/net8.0/osx-arm64/publish/YourGame bin/Release/net8.0/osx-x64/publish/YourGame -output bin/Release/YourGame.app/Contents/MacOS/YourGame
 ```
 
-The above command will combine the two output executables into one. 
+The above command will combine the two output executables into one. It assumes you are using the standard `Output` path for your application.
+If you are using a custom `Output` folder, you will need to make adjustments to the above command.
 
 Copy over your content
 
@@ -116,8 +117,8 @@ The `Info.plist` file is a standard macOS file containing metadata about your ga
 
 For more information about Info.plist files, see the [documentation](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html).
 
-After completing these steps, your .app folder should appear as an executable application on macOS.
-However it does need an icon. So we need to create an `.icns` file. We can use online tools to do this or you can use the following 
+After completing these steps, your `.app` folder should appear as an executable application on macOS.
+However it does need an icon. So we need to create an `.icns` file. We can use online tools to do this or you can use the following: 
 
 ```cli
 mkdir -p bin/Release/YourGame.iconset
@@ -134,9 +135,10 @@ sips -z 1024 1024 Icon.png  bin/Release/YourGame.iconset/icon_512x512@2x.png
 iconutil -c icns bin/Release/YourGame.iconset --output bin/Release/YourGame.app/Contents/Resources/YourGame.icns
 ```
 
-Note this code is expecting an `Icon.png` file to be in the same directory. This file should be `1024` x `1024` pixels. 
+> [!NOTE]
+> This code is expecting an `Icon.png` file to be in the same directory. This file should be `1024` x `1024` pixels. 
 
-For archiving, we recommend using the .tar.gz format to preserve the execution permissions (you will likely run into permission issues if you use .zip at any point).
+For archiving, we recommend using the `.tar.gz` format to preserve the execution permissions (you will likely run into permission issues if you use `.zip` at any point).
 
 ### [Ubuntu](#tab/ubuntu)
 
@@ -145,11 +147,11 @@ From the .NET CLI:
 `dotnet publish -c Release -r linux-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained`
 
 > [!IMPORTANT]
-> Note we are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
+> We are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
 
 You can then archive the content of the publish folder and distribute the archive as-is.
 
-We recommend using the .tar.gz archiving format to preserve the execution permissions.
+We recommend using the `.tar.gz` archiving format to preserve the execution permissions.
 
 ---
 
@@ -160,7 +162,7 @@ We recommend using the .tar.gz archiving format to preserve the execution permis
 ### PublishAot
 
 This option optimises your game code "Ahead of Time". It allows you to ship your game without the need to JIT (Just In Time compile).
-However you do need to currently add some additional settings to your .csproj.
+However, you do need to currently add some additional settings to your `.csproj`.
 
 ```
   <ItemGroup>
@@ -169,29 +171,29 @@ However you do need to currently add some additional settings to your .csproj.
   </ItemGroup>
 ```
 
-The `TrimmerRootAssembly` stops the trimmer removing code from these assemblies. This will on the whole allow the game to run without 
+The `TrimmerRootAssembly` stops the trimmer removing code from these assemblies. This should allow the game to run without 
 any issues. However if you are using any Third Party or additional assemblies, you might need to add them to this list or fix your code to be `Aot` compliant.
 It is recommended that you publish using AOT as it simplifies the app bundle. 
 
 See [Trim self-contained deployments and executables](https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained) for more information.
 
-There are some known area's you need to watchout for. 
+There are some known areas you need to watchout for: 
 
 1. Using `XmlSerializer` in your game will probably cause issues. Since it uses reflection it will be difficult for the Trimmer to figure out what needs to be kept.
-   It is recommended that instead of using the `Deserialize` method, you write your own custom deserializer using `XDocument` or `XmlReader`.
+   It is recommended that, instead of using the `Deserialize` method, you write your own custom deserializer using `XDocument` or `XmlReader`.
    Alternatively you can use the Content Pipeline and create a custom `Processor` and `Reader` to convert the Xml into a binary format that can be loaded via the usual `Content.Load<T>` method.
 2. Dynamically loading assemblies via `Assembly.LoadFile`.
 3. No run-time code generation, for example, System.Reflection.Emit.
 
 ### ReadyToRun (R2R)
 
-[ReadyToRun](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#readytorun-images) is advertised as improving application startup time, but slightly increasing binary size. We recommend not using it for games, because it produces micro stutters when your game is running.
+[ReadyToRun](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#readytorun-images) is advertised as improving application startup time, but slightly increasing binary size. We recommend not using it for games because it produces micro stutters when your game is running.
 
-Ready2Run code is of low quality and makes the Just-In-Time compiler (JIT) to trigger regularly to promote the code to a higher quality. Whenever the JIT runs, it produces potentially very visible stutters.
+ReadyToRun code is of low quality and makes the Just-In-Time compiler (JIT) trigger regularly to promote the code to a higher quality. Whenever the JIT runs, it produces potentially very visible stutters.
 
 Disabling ReadyToRun solves this issue (at the cost of a slightly longer startup time, but typically very negligible).
 
-ReadyToRun is disabled by default. You can configure it by setting the `PublishReadyToRun` property in your csproj file.
+ReadyToRun is disabled by default. You can configure it by setting the `PublishReadyToRun` property in your `.csproj` file.
 
 MonoGame templates for .NET projects explicitly set this to `false`.
 
@@ -199,7 +201,7 @@ MonoGame templates for .NET projects explicitly set this to `false`.
 
 [Tiered compilation](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#tiered-compilation) is a companion system to ReadyToRun and works on the same principle to enhance startup time. We suggest disabling it to avoid any stutter while your game is running.
 
-Tiered compilation is **enabled by default**. To disable it set the `TieredCompilation` property to `false` in your csproj.
+Tiered compilation is **enabled by default**. To disable it, set the `TieredCompilation` property to `false` in your `.csproj`.
 MonoGame templates for .NET projects explicitly set this to `false`.
 
 ### SingleFilePublish
