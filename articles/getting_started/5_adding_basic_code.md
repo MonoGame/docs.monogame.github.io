@@ -164,7 +164,7 @@ Find the `Update` method in the Game1.cs class file and add:
 ```csharp
 if(Joystick.LastConnectedIndex == 0)
 {
-    JoystickState jstate = Joystick.GetState(PlayerIndex.One);
+    JoystickState jstate = Joystick.GetState((int) PlayerIndex.One);
 
     float updatedBallSpeed = ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -202,10 +202,10 @@ If there is no controller, the code inside the if statement will be skipped over
 ### Get the current state of Joystick 1
 
 ```csharp
-JoystickState jstate = Joystick.GetState(0);
+JoystickState jstate = Joystick.GetState((int) PlayerIndex.One);
 ```
 
-This code fetches the current first joystick state `Joystick.GetState(0)` and stores it into a variable called `jstate`.
+This code fetches the current first joystick state `Joystick.GetState((int) PlayerIndex.One)` and stores it into a variable called `jstate`.
 
 ### CHeck the current value of "Axis" 2
 
