@@ -18,7 +18,7 @@ The way we describe a camera in 3D terms is to define a [View Frustrum](./WhatIs
 
 The following diagram shows how this looks.
 
-![A diagram visualisation of the View Frustrum](images/frustum.jpg)
+![A diagram visualization of the View Frustrum](images/frustum.jpg)
 
 Everything within the "cone of view" is recognized by the graphics pipeline and is rendered into a Texture for displaying on the screen.  Everything outside these bounds is ignored (culled) and left on the cutting room floor.
 
@@ -86,7 +86,7 @@ The functionality does provide some techniques to sort what is drawn, provide so
 
 ## [3D Drawing](../../howto/graphics/HowTo_RenderModel.md)
 
-When drawing 3D content in a scene, the Camera's current `View` and `Projection` are what are fed in to the [Effect](xref:Microsoft.Xna.Framework.Graphics.Effect) that draws the 3D content, together with a [Transformational Matrix](../../howto/graphics/HowTo_TransformPoint.md) (`World` position and rotation of the model) multiplied by the same `World` matrix used by the camera (as they are both part of the same world).
+When drawing 3D content in a scene, the Camera's current `View` and `Projection` are what are fed in to an [Effect](xref:Microsoft.Xna.Framework.Graphics.Effect) that draws the 3D content, together with a [Transformational Matrix](../../howto/graphics/HowTo_TransformPoint.md) (`World` position and rotation of the model) multiplied by the same `World` matrix used by the camera (as they are both part of the same world).
 
 An Example model drawing method:
 
@@ -155,12 +155,146 @@ Each perspective simply alters the way in which content is rendered into view.
 To demonstrate a camera setup, the following class acts as a base camera definition that can then be extended to meet your needs for rendering:
 
 ```csharp
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+
+public class Camera
+{
+    private Vector3 position;
+    private float yaw;
+    private float pitch;
+    private int viewportWidth;
+    private int viewportHeight;
+    private float nearClip = 10.0f;
+    private float farClip = 100000.0f;
+
+    public Vector3 Position => position;
+
+    public float Yaw => yaw;
+
+    public float Pitch => pitch;
+
+    public Matrix ViewMatrix
+    {
+        get
+        {
+            Vector3 cameraDirection = Vector3.Transform(Vector3.Forward, Matrix.CreateFromYawPitchRoll(yaw, pitch, 0));
+            Vector3 cameraTarget = position + cameraDirection;
+            return Matrix.CreateLookAt(position, cameraTarget, Vector3.Up);
+        }
+    }
+
+    public Matrix ProjectionMatrix { get; private set; }
+
+    public Camera(Vector3 startPosition, float startYaw, float startPitch, int viewportWidth, int viewportHeight)
+    {
+        position = startPosition;
+        yaw = startYaw;
+        this.viewportWidth = viewportWidth;
+        this.viewportHeight = viewportHeight;
+        this.nearClip = nearClip;
+        this.farClip = farClip;
+
+        ProjectionMatrix = Matrix.CreatePerspectiveFieldOfView(
+            MathHelper.ToRadians(45),
+            viewportWidth / (float)viewportHeight,
+            nearClip,
+            farClip
+        );
+    }
+}
 ```
 
 Using this camera is then as simple as:
 
 ```csharp
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
+public class MonoGameCameraSample : Game
+{
+    private GraphicsDeviceManager _graphics;
+    private SpriteBatch _spriteBatch;
+    private Camera camera;
+
+    private Model myModel;
+
+    public MonoGameCameraSample()
+    {
+        _graphics = new GraphicsDeviceManager(this);
+        Content.RootDirectory = "Content";
+    }
+
+    protected override void Initialize()
+    {
+        // Create a new camera with the following parameters:
+        // 1. Position 50 units Up and 100 units back from the center
+        // 2. Camera is looking straight forward, no turn.
+        // 3. Angle the camera down 25 degrees
+        // 4. Pass in the width and height of the Graphics Device
+        camera = new Camera(
+            new Vector3(0, 50, 100),
+            0f,
+            -MathHelper.ToRadians(25f),
+            GraphicsDevice.Viewport.Width,
+            GraphicsDevice.Viewport.Height
+        );
+
+        base.Initialize();
+    }
+
+    protected override void LoadContent()
+    {
+        _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+        myModel = Content.Load<Model>("Models/p1_wedge");
+    }
+
+    protected override void Draw(GameTime gameTime)
+    {
+        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.BlendState = BlendState.Opaque;
+        GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+        GraphicsDevice.SamplerStates[0] = SamplerState.LinearWrap;
+        GraphicsDevice.DepthStencilState = DepthStencilState.Default;
+
+        // Draw a model using the camera's current View and Projection Matrix
+        DrawModel(myModel, camera.ViewMatrix, camera.ProjectionMatrix);
+
+        base.Draw(gameTime);
+    }
+
+    void DrawModel(Model aModel, Matrix aWorld, Matrix aView)
+    {
+        //Copy any parent transforms
+        Matrix[] transforms = new Matrix[aModel.Bones.Count];
+        aModel.CopyAbsoluteBoneTransformsTo(transforms);
+
+        //Draw the model, a model can have multiple meshes, so loop
+        foreach (ModelMesh mesh in aModel.Meshes)
+        {
+            //This is where the mesh orientation is set, as well as our camera and projection
+            foreach (BasicEffect effect in mesh.Effects)
+            {
+                effect.EnableDefaultLighting();
+                effect.PreferPerPixelLighting = true;
+                effect.World = transforms[mesh.ParentBone.Index] * aWorld;
+                effect.View = aView;
+                effect.Projection = currentProjection;
+            }
+
+            //Draw the mesh, will use the effects set above.
+            mesh.Draw();
+        }
+    }
+}
 ```
+
+This is a fixed camera with no movement and only looking in a single direction all the time, it has no movement, input logic or capability to move around the scene.  IN the following guides we will use/extend this camera base to fit different modes of operation.
+
+> [!NOTE]
+> The sample has wider scope to show all these modes and a much more versatile and multi-purpose camera,  you may wish to use it or create your own bespoke implementation that fits your game.
 
 ## See Also
 
