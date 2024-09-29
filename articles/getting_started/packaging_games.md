@@ -39,7 +39,7 @@ YourGame.app                    (this is your root folder)
 
 So first lets create our directory structure.
 
-```
+```cli
 mkdir -p bin/Release/YourGame.app/Contents/MacOS/
 mkdir -p bin/Release/YourGame.app/Contents/Resources/Content
 ```
@@ -66,7 +66,7 @@ If you are using a custom `Output` folder, you will need to make adjustments to 
 
 Copy over your content
 
-```
+```cli
 cp -R bin/Release/net8.0/Content bin/Release/YourGame.app/Contents/Resources/Content
 ```
 
@@ -115,7 +115,8 @@ The `Info.plist` file is a standard macOS file containing metadata about your ga
 </plist>
 ```
 
-For more information about Info.plist files, see the [documentation](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html).
+> [!NOTE]
+> For more information about `Info.plist` files, see the Apple [documentation](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html).
 
 After completing these steps, your `.app` folder should appear as an executable application on macOS.
 However it does need an icon. So we need to create an `.icns` file. We can use online tools to do this or you can use the following: 
@@ -164,7 +165,7 @@ We recommend using the `.tar.gz` archiving format to preserve the execution perm
 This option optimises your game code "Ahead of Time". It allows you to ship your game without the need to JIT (Just In Time compile).
 However, you do need to currently add some additional settings to your `.csproj`.
 
-```
+```xml
   <ItemGroup>
     <TrimmerRootAssembly Include="MonoGame.Framework" />
     <TrimmerRootAssembly Include="mscorlib" />
