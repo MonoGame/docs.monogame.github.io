@@ -120,7 +120,7 @@ The following is a line-by-line analysis of the above code.
 float updatedBallSpeed = ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 ```
 
-This code caches how much time, in seconds, since the last `Update` call was run, which gives us the duration of a single frame drawn to the screen.  This is then multiplied by the `ballSPeed` value to allow us to control just how fast the ball moves each frame.
+This code caches how much time, in seconds, since the last `Update` call was run, which gives us the duration of a single frame drawn to the screen.  This is then multiplied by the `ballSpeed` value to allow us to control just how fast the ball moves each frame.
 
 The reason why `ballSpeed` is multiplied by `gameTime.ElapsedGameTime.TotalSeconds` is because, when not using fixed time step, the time between Update calls varies. To account for this, the ballSpeed is multiplied by the amount of time that has passed since the last Update call. The result is that the ball appears to move at the same speed regardless of what framerate the game happens to be running at.
 
@@ -164,7 +164,7 @@ Find the `Update` method in the Game1.cs class file and add:
 ```csharp
 if(Joystick.LastConnectedIndex == 0)
 {
-    JoystickState jstate = Joystick.GetState(PlayerIndex.One);
+    JoystickState jstate = Joystick.GetState((int) PlayerIndex.One);
 
     float updatedBallSpeed = ballSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -202,10 +202,10 @@ If there is no controller, the code inside the if statement will be skipped over
 ### Get the current state of Joystick 1
 
 ```csharp
-JoystickState jstate = Joystick.GetState(0);
+JoystickState jstate = Joystick.GetState((int) PlayerIndex.One);
 ```
 
-This code fetches the current first joystick state `Joystick.GetState(0)` and stores it into a variable called `jstate`.
+This code fetches the current first joystick state `Joystick.GetState((int) PlayerIndex.One)` and stores it into a variable called `jstate`.
 
 ### CHeck the current value of "Axis" 2
 
