@@ -3,7 +3,7 @@ title: Setting up your development environment for Rider
 description: A step-by-step guide for setting up your development IDE for Rider
 ---
 
-This is a guide on setting up your development environment for creating games with MonoGame using Rider by DevExpress. By following this guide, you will learn how to install the tools for developing C# applications and configure Rider with recommended extensions for C# development.
+This is a guide on setting up your development environment for creating games with MonoGame using Rider by JetBrains. By following this guide, you will learn how to install the tools for developing C# applications and configure Rider with recommended extensions for C# development.
 
 By the end, you will be fully equipped to start creating games with MonoGame using Rider.
 
