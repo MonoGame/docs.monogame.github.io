@@ -46,3 +46,10 @@ By the end of this tutorial set, you will have a working project to build for yo
 - [Understanding the Code](3_understanding_the_code.md)
 - [Adding Content](4_adding_content.md)
 - [Adding Basic Code](5_adding_basic_code.md)
+
+### 4. Packaging Games
+- [Packaging Games for Distribution](packaging_games.md)
+
+### 5. Advanced Topics
+- [Preparing for Consoles](preparing_for_consoles.md)
+- [Using Development Nuget Packages](using_development_nuget_packages.md)
