@@ -48,7 +48,7 @@ By the end of this tutorial set, you will have a working project to build for yo
 - [Adding Basic Code](5_adding_basic_code.md)
 
 ### 4. Packaging Games
-- [Packaging Games](packaging_games.md)
+- [Packaging Games for Distribution](packaging_games.md)
 
 ### 5. Advanced Topics
 - [Preparing for Consoles](preparing_for_consoles.md)
