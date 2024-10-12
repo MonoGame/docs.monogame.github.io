@@ -1,4 +1,8 @@
-# How to package Textures on Android
+---
+title: How to package Textures for Android?
+description: Describes how to support multiple Texture Compression formats for Android.
+requireMSLicense: false
+---
 
 The Android ecosystem is unique in that the hardware it runs on can be from many different manufactures.
 Unlike iOS or PC you cannot always guarentee what graphics card a user will be using. For this reason
