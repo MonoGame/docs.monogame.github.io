@@ -53,6 +53,7 @@ Check out the awesome work of the larger MonoGame community with their own tutor
 
 ## Shaders
 - [MonoGame-Pixel-Planets - a port of Pixel Planets made by DeepFold with a lot of GLSL shaders converted to HLSL](https://github.com/EnthusiastGuy/MonoGame-Pixel-Planets)
+- [MonoGame-Shader-Samples](https://github.com/cpt-max/MonoGame-Shader-Samples)
 
 ## Others
 
