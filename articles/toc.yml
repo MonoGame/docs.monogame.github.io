@@ -36,7 +36,9 @@
   - name: Packaging
     href: getting_started/packaging_games.md
   - name: Preparing for consoles
-    href: getting_started/preparing_for_consoles.md    
+    href: getting_started/preparing_for_consoles.md
+  - name: Using Development Nuget Packages
+    href: getting_started/using_development_nuget_packages.md
   - name: Tools
     items:
     - name: Introduction

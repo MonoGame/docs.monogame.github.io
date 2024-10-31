@@ -51,6 +51,10 @@ Check out the awesome work of the larger MonoGame community with their own tutor
 - [Batholith Entertainment Game dev tutorials](https://www.youtube.com/playlist?list=PLZ6ofHM1rvK8lQSoKX1USZstM-ZXikFHp)
 - [Let's Code: The T-Rex Runner Game with MonoGame](https://www.youtube.com/watch?v=DJCQVJ83J1U)
 
+## Shaders
+- [MonoGame-Pixel-Planets - a port of Pixel Planets made by DeepFold with a lot of GLSL shaders converted to HLSL](https://github.com/EnthusiastGuy/MonoGame-Pixel-Planets)
+- [MonoGame-Shader-Samples](https://github.com/cpt-max/MonoGame-Shader-Samples)
+
 ## Others
 
 - [Dark Genesis Blog MonoGame content](http://darkgenesis.zenithmoon.com/tag/monogame/)

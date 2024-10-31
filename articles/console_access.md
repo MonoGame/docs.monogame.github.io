@@ -25,7 +25,7 @@ The instructions below will help you gain access to each platform.
 
 Your first step is to register as [Nintendo Developer](https://developer.nintendo.com/register) for Nintendo Switch.
 
-Once you are in the program, you can go to the middleware page and fill out the [MonoGame - Nintendo Developer Athorization](https://developer.nintendo.com/group/development/getting-started/g1kr9vj6/middleware/monogame) form.
+Once you are in the program, you can go to the middleware page and fill out the [MonoGame - Nintendo Developer Authorization](https://developer.nintendo.com/group/development/getting-started/g1kr9vj6/middleware/monogame) form.
 
 We will then contact you with further instructions.
 
