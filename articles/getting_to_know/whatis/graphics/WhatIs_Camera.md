@@ -260,12 +260,12 @@ public class MonoGameCameraSample : Game
         GraphicsDevice.DepthStencilState = DepthStencilState.Default;
 
         // Draw a model using the camera's current View and Projection Matrix
-        DrawModel(myModel, camera.ViewMatrix, camera.ProjectionMatrix);
+        DrawModel(myModel, Matrix.Identity, camera.ViewMatrix, camera.ProjectionMatrix);
 
         base.Draw(gameTime);
     }
 
-    void DrawModel(Model aModel, Matrix aWorld, Matrix aView)
+    void DrawModel(Model aModel, Matrix aWorld, Matrix aView, Matrix aProjection)
     {
         //Copy any parent transforms
         Matrix[] transforms = new Matrix[aModel.Bones.Count];
@@ -281,7 +281,7 @@ public class MonoGameCameraSample : Game
                 effect.PreferPerPixelLighting = true;
                 effect.World = transforms[mesh.ParentBone.Index] * aWorld;
                 effect.View = aView;
-                effect.Projection = currentProjection;
+                effect.Projection = aProjection;
             }
 
             //Draw the mesh, will use the effects set above.
@@ -291,18 +291,10 @@ public class MonoGameCameraSample : Game
 }
 ```
 
-This is a fixed camera with no movement and only looking in a single direction all the time, it has no movement, input logic or capability to move around the scene.  IN the following guides we will use/extend this camera base to fit different modes of operation.
-
-> [!NOTE]
-> The sample has wider scope to show all these modes and a much more versatile and multi-purpose camera,  you may wish to use it or create your own bespoke implementation that fits your game.
+This is a fixed camera with no movement and only looking in a single direction all the time, it has no movement, input logic or capability to move around the scene.
 
 ## See Also
 
-- [HowTo Create a First Person Camera](../../howto/graphics/camera/HowTo_Create_First_Person_Camera.md)
-- [HowTo Create a Third Person Camera](../../howto/graphics/camera/HowTo_Create_Third_Person_Camera.md)
-- [HowTo Create a Chase Camera](../../howto/graphics/camera/HowTo_Create_Chase_Camera.md)
-- [HowTo Create a Top Down Camera](../../howto/graphics/camera/HowTo_Create_Top_Down_Camera.md)
-- [HowTo Apply Camera Effects](../../howto/graphics/camera/HowTo_Apply_Camera_Effects.md)
 - [How to display Multiple Screens with Viewports](../../howto/graphics/HowTo_UseViewportForSplitscreenGaming.md)
 
 ### Concepts
