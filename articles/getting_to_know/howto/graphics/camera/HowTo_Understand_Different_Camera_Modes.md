@@ -147,6 +147,8 @@ In this example, we apply all the same transformations to the camera we perform 
     void UpdateFirstPersonCamera()
     {
         // First person view, the camera moves based on the Model's position (which is moved by input) and the view matrix is updated to always look "forward" from the model.
+
+        // Create a rotational matrix based on the current model's heading.
         Matrix rotationMatrix = Matrix.CreateRotationY(modelRotation);
 
         // Create a vector pointing the direction the camera is facing.
@@ -183,6 +185,7 @@ In this sample we have included a simple physics based "Spring" system, so that 
         // First person view, the camera is offset behind and above the model and moves with it,the view matrix is updated to always look "forward" from the model.
         // It also includes an optional spring physics system to smooth out the camera movement.
 
+        // Create a rotational matrix based on the current model's heading.
         Matrix rotationMatrix = Matrix.CreateRotationY(modelRotation);
 
         // Create a vector pointing the direction the camera is facing.
@@ -252,6 +255,7 @@ To finish off these camera modes, the top-down tracked view is more of a combina
     {
         // A Top-Down view that moves according to two dimensional position of the model, looking down onto the model.
 
+        // Create a rotational matrix based on the current model's heading.
         Matrix rotationMatrix = Matrix.CreateRotationY(modelRotation);
 
         // Create a vector pointing the direction the camera is facing.
