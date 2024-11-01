@@ -22,7 +22,7 @@ The following diagram shows how this looks.
 
 Everything within the "cone of view" is recognized by the graphics pipeline and is rendered into a Texture for displaying on the screen.  Everything outside these bounds is ignored (culled) and left on the cutting room floor.
 
-> [!NOTE]
+> [!CAUTION]
 > Be aware, that in 3D rendering EVERYTHING is evaluated to determine if it is in "View", EVERYTHING you send to the graphics card that you want to be rendered.  So if you send a massive scene and ALL your Models, ALL your textures, etc, then everything is evaluated.  Sure, Graphics Processing has evolved considerably over the years and the processes running on Graphics Cards keep getting quicker, but you still want to make that as efficient as possible.
 
 ## What defines a camera
@@ -33,7 +33,7 @@ Beyond the View Frustrum above, a Camera exists in graphical terms as:
 - A direction - Which direction is the camera pointing?
 - The Target of the camera - What is it looking at? The central point.
 - The View Frustrum of the camera - What is in the field of view?
-- The world transformational matrix applied to the camera (how does the camera see the world)
+- The World Matrix, where in the world is the camera in relation to the center and other objects?
 
 You will see this defined in many samples as the `World`, `View` and `Projection` Matrices, as shown below:
 
@@ -81,6 +81,9 @@ void DrawTexture(SpriteBatch spriteBatch, Texture2D spriteTexture, Vector2 sprit
     spriteBatch.End();
 }
 ```
+
+> [!NOTE]
+> For more on 2D / Sprite rendering, check the [How To](https://docs.monogame.net/articles/getting_to_know/howto/graphics/#2d-sprite-rendering) series for 2D rendering.
 
 The functionality does provide some techniques to sort what is drawn, provide some additional depth and layers, as well as blending options to effectively merge what is drawn.
 

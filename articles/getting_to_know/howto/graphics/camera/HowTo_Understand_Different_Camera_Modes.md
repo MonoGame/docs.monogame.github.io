@@ -51,7 +51,7 @@ The project of the view is also normally fixed for any single camera (although y
 > [!TIP]
 > Elements drawn outside of the camera view / projection are culled or ignored by the graphics device.  However, unless you control what data is sent, you are still paying for the performance to send to the graphics card and consider it for drawing.  This is where techniques are used to limit the data sent to the graphics card and ONLY send models and textures that you know will be actually drawn and limiting what is discarded.
 
-### Camera Views
+## Camera Views
 
 The sample separates out the actual work in drawing each camera mode based on what is active at the time in the `Update` loop, as shown here:
 
@@ -86,7 +86,7 @@ The sample separates out the actual work in drawing each camera mode based on wh
 
 You would not normally do this, it is only done this way for the purposes of the sample.  In reality you would only use the mode relevant to the current game view (although a lot of first person games do allow switching between First Person and Third Person), however, as you will see, you are only updating the way the View Matrix is generated along with the camera position, in 3D the content is always drawn the same regardless.
 
-#### The Fixed Camera view
+### The Fixed Camera view
 
 This is the simplest way of rendering a camera, you just create a `View Matrix` using the Camera's current position and looking at the center of the world (or whatever you want it to look at).  For example:
 
