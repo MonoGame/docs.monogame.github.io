@@ -174,7 +174,9 @@ However, you do need to currently add some additional settings to your `.csproj`
 
 The `TrimmerRootAssembly` stops the trimmer removing code from these assemblies. This should allow the game to run without 
 any issues. However if you are using any Third Party or additional assemblies, you might need to add them to this list or fix your code to be `Aot` compliant.
-It is recommended that you publish using AOT as it simplifies the app bundle. 
+It is recommended that you publish using AOT as it simplifies the app bundle.
+
+You may see some trim and AOT analysis warnings related to MonoGame when using PublishAOT, even after adding `TrimmerRootAssembly` - these are normal and should not present any issue.
 
 See [Trim self-contained deployments and executables](https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained) for more information.
 
