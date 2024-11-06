@@ -106,8 +106,11 @@
     href: migration/updating_versions.md
 - name: Samples and Demos
   href: samples.md
-- name: Building 2D Games
-  href: building_2d_games/
+- name: Tutorials
+  href: tutorials/
+  items:
+    - name: Building 2D Games
+      href: tutorials/building_2d_games/
 - name: Community Tutorials
   href: tutorials.md
 - name: Console Access
