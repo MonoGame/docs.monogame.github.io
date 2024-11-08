@@ -35,6 +35,8 @@ Next, find the `LoadContent` method and add the following after the `_spriteBatc
 _logo = Texture2D.FromFile(GraphicsDevice, "Content/images/logo.png");
 ```
 
+This assigns an image loaded from the provided file to the `_logo` texture we declared.
+
 If you run the game now by press F5, the game will crash with the following exception:
 
 ```
