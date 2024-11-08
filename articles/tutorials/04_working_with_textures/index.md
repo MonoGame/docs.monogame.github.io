@@ -13,7 +13,7 @@ The *content pipeline* can be used for more than just pre-processing images as t
 
 Let's go over both methods of loading a texture, and then we can discuss the pros and cons of each one. First, we need an image to load. Perform the following:
 
-1. Locate the *Content* directory inside your game project directory
+1. Find the *Content* directory inside your game project directory
 2. Create a new folder inside the *Content* directory called *images*.
 3. Right-click the following image of the MonoGame logo and save it in the *Content/images* directory you just created with the filename *logo.png*
 
