@@ -187,11 +187,12 @@ So what happened here? Recall from the table above that the *position* parameter
 One way to correct this is to subtract half the width and height of the logo image from the game window center position like so:
 
 ```cs
-_spriteBatch.Draw(_logo, 
-  new Vector2(
+_spriteBatch.Draw(
+  _logo,        // texture
+  new Vector2(  // position
     (Window.ClientBounds.Width * 0.5f) - (_logo.Width * 0.5f),
     (Window.ClientBounds.Height * 0.5f) - (_logo.Height * 0.5f)),
-  Color.White);
+  Color.White); // color
 ```
 
 This offsets the position so that it correctly centers the image to the game window.
@@ -201,17 +202,18 @@ This offsets the position so that it correctly centers the image to the game win
 While this works, this may not be the best way to do it. Let's explore why. The `SpriteBatch.Draw` method contains other overloads that accept more parameters. Let's change the `SpriteBatch.Draw` method call to use the one with all parameters. Adjust the code to the following:
 
 ```cs
-_spriteBatch.Draw(_logo, 
-  new Vector2(
+_spriteBatch.Draw(
+  _logo,              // texture
+  new Vector2(        // position
     (Window.ClientBounds.Width * 0.5f) - (_logo.Width * 0.5f),
     (Window.ClientBounds.Height * 0.5f) - (_logo.Height * 0.5f)),
-  null,
-  Color.White,
-  0.0f,
-  Vector2.Zero,
-  1.0f,
-  SpriteEffects.None,
-  0.0f);
+  null,               // sourceRectangle
+  Color.White,        // color
+  0.0f,               // rotation
+  Vector2.Zero,       // origin
+  1.0f,               // scale
+  SpriteEffects.None, // effects
+  0.0f);              // layerDepth
 ```
 
 Changing the `SpriteBatch.Draw` method call to this overload will render it the same as before, centered on the game window, only now we can see all of the parameters available. The parameters for this `SpriteBatch.Draw` overload are
@@ -231,17 +233,18 @@ Changing the `SpriteBatch.Draw` method call to this overload will render it the 
 Let's adjust the rotation of the texture when it draws so that it is rotation 90°, making it vertical instead of horizontal. Rotation, however, has to be specified in radians, not degrees. We can use the built-in math library in MonoGame to convert from 90° to radians by calling `MathHelper.ToRadians`. Update the code to the following
 
 ```cs
-_spriteBatch.Draw(_logo, 
-  new Vector2(
+_spriteBatch.Draw(
+  _logo,                    // texture
+  new Vector2(              // position
     (Window.ClientBounds.Width * 0.5f) - (_logo.Width * 0.5f),
     (Window.ClientBounds.Height * 0.5f) - (_logo.Height * 0.5f)),
-  null,
-  Color.White,
-  MathHelper.ToRadians(90),
-  Vector2.Zero,
-  1.0f,
-  SpriteEffects.None,
-  0.0f);
+  null,                     // sourceRectangle
+  Color.White,              // color
+  MathHelper.ToRadians(90), // rotation
+  Vector2.Zero,             // origin
+  1.0f,                     // scale
+  SpriteEffects.None,       // effects
+  0.0f);                    // layerDepth
 ```
 
 The image should now be drawn centered on the game window and rotated so that it's vertical instead of horizontal right? Let's run it and find out.
@@ -251,15 +254,20 @@ The image should now be drawn centered on the game window and rotated so that it
 What happened here? We told it to draw it at the center position of the game window like before and to rotate it by 90°, which it did, but not exactly how we expected. So why did this happen? Recall from the parameters table above that the *origin* parameter specifies the point of origin in the texture where it is not only rendered from but also the point at which it's rotated from. In the code sample above, we used `Vector2.Zero` as the origin, which is the default origin point, or the top-left corner of the image. So when we told it to rotate 90°, it did so from the top-left corner of the image. Let's fix the code so that the origin is now in the center of the image.
 
 ```cs
-_spriteBatch.Draw(_logo, 
-  new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height) * 0.5f,
-  null,
-  Color.White,
-  MathHelper.ToRadians(90),
-  new Vector2(_logo.Width, _logo.Height) * 0.5f,
-  1.0f,
-  SpriteEffects.None,
-  0.0f);
+_spriteBatch.Draw(
+  _logo,                    // texture
+  new Vector2(              // position
+    Window.ClientBounds.Width, 
+    Window.ClientBounds.Height) * 0.5f,
+  null,                     // sourceRectangle
+  Color.White,              // color
+  MathHelper.ToRadians(90), // rotation
+  new Vector2(              // origin
+    _logo.Width, 
+    _logo.Height) * 0.5f,
+  1.0f,                     // scale
+  SpriteEffects.None,       // effects
+  0.0f);                    // layerDepth
 ```
 
 In the code above, we have adjust the *origin* parameter to use the center point of the texture. This will be the origin point at which it will now rotate from. It is also the origin point at which it is rendered from, so we no longer need to subtract half the logo width and height from the *position* parameter. After making this change, if we run the game now, we'll see it drawn correctly rotated 90° and centered on the game window.
@@ -285,15 +293,20 @@ Rectangle iconSourceRect = new Rectangle(0, 0, 128, 128);
 Next, update the `_spriteBatch.Draw` method call to the following
 
 ```cs
-_spriteBatch.Draw(_logo,
-    new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height) * 0.5f,
-    iconSourceRect,
-    Color.White,
-    0.0f,
-    new Vector2(iconSourceRect.Width, iconSourceRect.Height) * 0.5f,
-    1.0f,
-    SpriteEffects.None,
-    0.0f);
+_spriteBatch.Draw(
+    _logo,              // texture
+    new Vector2(        // position
+      Window.ClientBounds.Width, 
+      Window.ClientBounds.Height) * 0.5f,
+    iconSourceRect,     // sourceRectangle
+    Color.White,        // color
+    0.0f,               // rotation
+    new Vector2(        // origin
+      iconSourceRect.Width, 
+      iconSourceRect.Height) * 0.5f,
+    1.0f,               // scale
+    SpriteEffects.None, // effects
+    0.0f);              // layerDepth
 ```
 
 The changes you just made first added a new `Rectangle` value called `iconSourceRect` that represents the dimensions of the MonoGame logo icon region within the texture. Then the *sourceRectangle* parameter of the `_spriteBatch.Draw` was updated to use the new `iconSourceRect` value. Notice that we are still telling it to draw the `_logo` for the *texture*, we've just supplied it with a source rectangle this time. Finally, the *origin* parameter was updated to use the width and height of the `iconSourceRect`. Since the overall dimensions of what we'll be rendering has changed due to supplying a source rectangle, the origin needs to be adjusted to those dimensions as well.
