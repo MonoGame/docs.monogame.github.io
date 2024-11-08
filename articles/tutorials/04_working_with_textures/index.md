@@ -54,6 +54,12 @@ Your path may be different, but you'll get the same exception. This is because e
 
 This will inform the build process that when the project builds, it should include the *Content\images\logo.png* file as part of the build and copy it to the build output directory.
 
+> [!NOTE]
+> If you are using Visual Studio, you can achieve the same result by right-clicking 
+> 1. Right-clicking the *logo.png* file in the *Solution Explorer* panel
+> 2. Select *Properties* from the context menu.  This will open the *Properties* panel for the item.
+> 3. Change the *Copy to Output Directory* property to *Copy Always*.
+
 After adding the above, if you run the game now, it will launch with no exception, but with just the default cornflower blue screen. The texture is being loaded from file, but we haven't told the game to draw it just yet. We'll draw it in a moment, but for now, let's look at doing the same process of loading the texture, but using the *content pipeline*.
 
 ### Loading From Content Pipeline
