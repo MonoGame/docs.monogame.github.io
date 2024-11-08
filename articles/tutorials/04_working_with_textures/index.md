@@ -29,6 +29,9 @@ The following image illustrates this workflow:
 
 For the same amount of steps, you also get the benefit of the image file being pre-processed and compiled to an optimized format that can be understood by GPUs without needing to be decompressed first, reducing the memory footprint.  For instance, on desktops, image files can be compiled using [DXT compression](https://en.wikipedia.org/wiki/S3\_Texture\_Compression).
 
+> [!NOTE]
+> For more information on the benefits of compiling assets and what optimizations it can offer, see the [Content Pipeline](../../getting_started/content_pipeline/index.md) documentation.
+
 Enough talk though, let's take a look at using both of these methods.  First, we need an image to load.  Perform the following:
 
 1. Find the *Content* directory inside your game project directory
