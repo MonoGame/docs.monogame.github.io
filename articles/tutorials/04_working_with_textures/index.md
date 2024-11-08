@@ -124,7 +124,7 @@ The change we made now uses the instance of the `ContentManager` object provided
 If you run the game now, you'll get the same result as before when we loaded the texture from file. The texture will be loaded in, without error. Before we move on to drawing the texture, let's briefly cover what is actually happening now that we are using the *content pipeline*.
 
 * When you opened the MGCB Editor, the *Content.mgcb* file in your project was loaded inside it. Then in the editor, you added the *logo.png* file. When you saved the changes, these changes were written back to the *Content.mgcb* file.
-* When you told the project to run, it has to perform a build first. One of the NuGet references in a MonoGame project is the *MonoGame.Content.Builder.Tasks* NuGet reference. This adds build tasks that will perform the following:
+* when you ran the project, it performed a built first.  One of the NuGet references in a MonoGame project is the *MonoGame.Content.Builder.Tasks* NuGet reference. This adds build tasks that will perform the following:
   1. Compile the assets defined in the *Content.mgcb* file using the MonoGame Content Builder Tool (MGCB Tool) into *.xnb* files. This compilation process performs the pre-processing of the content.
   2. Copy the compiled *.xnb* files to your game project's build directory
 * Used the `ContentManager` at runtime to load the compiled asset.
