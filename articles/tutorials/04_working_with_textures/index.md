@@ -37,7 +37,7 @@ Enough talk though, let's take a look at using both of these methods.  First, we
 
 <figure><img src="./images/logo.png" alt="Figure 4-2: MonoGame Horizontal Logo"><figcaption><p><strong>Figure 4-2: MonoGame Horizontal Logo</strong></p></figcaption></figure>
 
-Next, open the *Game1.cs* file in your project and add the following instance member to the class where the `GraphicsDeviceManager` and `SpriteBatch` instance member varaibles are:
+Next, open the *Game1.cs* file in your project and add the following instance member to the class where the `GraphicsDeviceManager` and `SpriteBatch` instance member variables are:
 
 ```cs
 private Texture2D _logo;
