@@ -37,13 +37,13 @@ Enough talk though, let's take a look at using both of these methods.  First, we
 
 <figure><img src="./images/logo.png" alt="Figure 4-2: MonoGame Horizontal Logo"><figcaption><p><strong>Figure 4-2: MonoGame Horizontal Logo</strong></p></figcaption></figure>
 
-Next, open the *Game1.cs* file in your project and add the following instance member to the class where the `GraphicsDeviceManager` and `SpriteBatch` instance member variables are:
+Next, open the *Game1.cs* file in your project and add
 
 ```cs
 private Texture2D _logo;
 ```
 
-This adds a new instance member to the class called `_logo` that is of type `Texture2D`. `Texture2D` is the type used to store a reference to 2D image data in MonoGame.
+beneath where the `GraphicsDeviceManager` and `SpriteBatch` instance member variables are declared.  This adds a new `Texture2D` instanced called `_logo`.  `Texture2D` is the type used to store a reference to 2D image data in MonoGame.
 
 ### Loading From File
 
