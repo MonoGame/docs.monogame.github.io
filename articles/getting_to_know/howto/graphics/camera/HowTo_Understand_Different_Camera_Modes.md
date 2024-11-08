@@ -27,9 +27,9 @@ These are the kinds of camera modes demonstrated in this sample:
 
 ## Sample
 
-As the sample is quite large and contains several pieces of content for the demonstration, it is provided as a download here:
+As the sample is quite large and contains several pieces of content for the demonstration, the full source is available here:
 
-### [Basic Camera Example](../files/BasicCameraExample.zip)
+### [Basic Camera Example Source](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.2/Tutorials/BasicCameraExample)
 
 ## Understanding the different camera modes
 

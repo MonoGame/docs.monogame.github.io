@@ -91,7 +91,30 @@ The functionality does provide some techniques to sort what is drawn, provide so
 
 When drawing 3D content in a scene, the Camera's current `View` and `Projection` are what are fed in to an [Effect](xref:Microsoft.Xna.Framework.Graphics.Effect) that draws the 3D content, together with a [Transformational Matrix](../../howto/graphics/HowTo_TransformPoint.md) (`World` position and rotation of the model) multiplied by the same `World` matrix used by the camera (as they are both part of the same world).
 
-An Example model drawing method:
+The MonoGame `Model` class has a built in `Draw` Method which performs the basic functions needed in order to render a 3D model into the view, requiring only the `World`, `View`, and `Projection` matrices required to draw it, as follows:
+
+```csharp
+    Model myModel;
+
+    protected override void LoadContent()
+    {
+        myModel = Content.Load<Model>("<model file name>");
+    }
+
+    protected override void Draw(GameTime gameTime)
+    {
+        GraphicsDevice.Clear(Color.CornflowerBlue);
+
+        // Ground drawn from the center of the scene
+        myModel.Draw(Matrix.Identity, currentCameraView, currentCameraProjection);
+    }
+    
+```
+
+> [!INFO]
+> For information purposes only
+
+Behind the scenes, the `model.Draw()` method is using a `BasicEffect` and performing the necessary matrix calculations to position and render the model, as follows:
 
 ```csharp
 /// <summary>
