@@ -109,9 +109,7 @@ This is the simplest way of rendering a camera, you just create a `View Matrix` 
 
 ### The Tracking Camera
 
-Giving the camera something to look at requires a little more thought, the target, while positioned in a 3D world using a `Vector3`, needs transforming by the world `Matrix` in order to determine its position relative to the same world the camera is located in.
-
-Once transformed, a simple `Vector3` addition is used to give the final world position before generating the view, as follows:
+Giving the camera something to look at is also quite simple, instead of looking at the center of the world (assuming the world is `Matrix.Identity`), we instead "Look at" the model itself, dymanically updated each frame, as follows:
 
 ```csharp
     // Set the position of the camera in world space, for the fixed camera view matrix.
@@ -121,14 +119,8 @@ Once transformed, a simple `Vector3` addition is used to give the final world po
     {
         // Tracking view, the camera is always in the same position but changes the view matrix to "look" towards a target.
 
-        // Create a vector pointing the direction the camera is facing.  
-        Vector3 transformedReference = Vector3.Transform(modelPosition, Matrix.Identity);
-
-        // Calculate the position the camera is looking at.
-        Vector3 cameraLookat = transformedReference + modelPosition;
-
         // Set up our world matrix, view matrix and projection matrix.
-        UpdateCameraView(cameraFixedPosition, cameraLookat);
+        UpdateCameraView(cameraFixedPosition, modelPosition);
     }
 ```
 
