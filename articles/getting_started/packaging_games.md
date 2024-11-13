@@ -174,7 +174,9 @@ However, you do need to currently add some additional settings to your `.csproj`
 
 The `TrimmerRootAssembly` stops the trimmer removing code from these assemblies. This should allow the game to run without 
 any issues. However if you are using any Third Party or additional assemblies, you might need to add them to this list or fix your code to be `Aot` compliant.
-It is recommended that you publish using AOT as it simplifies the app bundle. 
+It is recommended that you publish using AOT as it simplifies the app bundle.
+
+You may see some trim and AOT analysis warnings related to MonoGame when using PublishAOT, even after adding `TrimmerRootAssembly` - these are normal and should not present any issue.
 
 See [Trim self-contained deployments and executables](https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained) for more information.
 
@@ -205,9 +207,9 @@ MonoGame templates for .NET projects explicitly set this to `false`.
 Tiered compilation is **enabled by default**. To disable it, set the `TieredCompilation` property to `false` in your `.csproj`.
 MonoGame templates for .NET projects explicitly set this to `false`.
 
-### SingleFilePublish
+### PublishSingleFile
 
-SingleFilePublish packages your game into a single executable file with all dependencies and content integrated.
+PublishSingleFile packages your game into a single executable file with all dependencies and content integrated.
 
 While it sounds very convenient, be aware that it's not magical and is in fact a hidden self-extracting zip archive. As such, it may make app startup take **a lot** longer if your game is large, and may fail to launch on systems where user permissions don't allow extracting files (or if there is not enough storage space available).
 

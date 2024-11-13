@@ -3,17 +3,17 @@ title: Tutorials
 description: Tutorials provided by MonoGame community members.
 ---
 
-
-# Tutorials
+> [!NOTE]
+> The **MonoGame Foundation** are actively working with the community to update tutorials and documentation, while the existing content available is still valid and working, it is felt it does need modernizing.
+>
+> Have a tutorial suggestion, article or series that really helped you? Then please [log an issue](https://github.com/MonoGame/docs.monogame.github.io/issues) to get it included.
 
 Check out the awesome work of the larger MonoGame community with their own tutorials, blogs and videos.
 
-> If you have a blog or article on MonoGame and wish to have it recognized here, reach out to the MonoGame team using the [support links listed on the help page](help_and_support.md).
-
 ## Microsoft
 
-- [Archived XNA Game Studio documentation](https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb200104(v=xnagamestudio.41))
 - [XNA Game Studio educational resources archive](https://github.com/SimonDarksideJ/XNAGameStudio)
+- [Archived XNA Game Studio documentation](https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb200104(v=xnagamestudio.41))
 
 ## RB Whitaker's MonoGame Tutorials
 
@@ -29,6 +29,11 @@ Check out the awesome work of the larger MonoGame community with their own tutor
 - [Part 2 - Android](http://neildanson.wordpress.com/2013/07/31/f-and-monogame-part-2-android/)
 - [Part 3 - iOS](http://neildanson.wordpress.com/2013/07/31/f-and-monogame-part-3-ios/)
 - [Part 4 - Content Pipeline](http://neildanson.wordpress.com/2013/08/13/f-and-monogame-part-4-content-pipeline/)
+
+## Shaders
+
+- [MonoGame-Pixel-Planets - a port of Pixel Planets made by DeepFold with a lot of GLSL shaders converted to HLSL](https://github.com/EnthusiastGuy/MonoGame-Pixel-Planets)
+- [MonoGame-Shader-Samples](https://github.com/cpt-max/MonoGame-Shader-Samples)
 
 ## Darkside of MonoGame video series
 
@@ -46,27 +51,40 @@ Check out the awesome work of the larger MonoGame community with their own tutor
 
 - [CodingMadeEasy RPG Tutorial](http://www.youtube.com/watch?feature=player_embedded&v=agt9-J9RPZ0)
 - [Psuedo Games Tutorials](http://www.youtube.com/watch?feature=player_embedded&v=BwtQn02oy6A)
-- [Desenvolvendo jogos multiplataforma em C# com MonoGame - Alexandre Chohfi (Portuguese)](http://channel9.msdn.com/Blogs/MSDN-Brasil-Cursos-de-Desenvolvimento/Desenvolvendo-jogos-multiplataforma-em-C-com-MonoGame)
-- [Desenvolvimento de jogos para Windows 8 com XNA - Alexandre Chohfi (Portuguese)](https://www.youtube.com/watch?v=gM5pRnYV1tA)
 - [Batholith Entertainment Game dev tutorials](https://www.youtube.com/playlist?list=PLZ6ofHM1rvK8lQSoKX1USZstM-ZXikFHp)
 - [Let's Code: The T-Rex Runner Game with MonoGame](https://www.youtube.com/watch?v=DJCQVJ83J1U)
 
 ## Others
 
-- [Dark Genesis Blog MonoGame content](http://darkgenesis.zenithmoon.com/tag/monogame/)
+- [Dark Genesis Blog MonoGame content](https://darkgenesis.zenithmoon.com/tag.html?tag=monogame)
 - [awesome-monogame - A large list of MonoGame libraries and more by aloisdeniel](https://github.com/aloisdeniel/awesome-monogame)
 - [A collection of tutorials, libraries and more, many of which are MonoGame related](https://github.com/UnterrainerInformatik/GameDevelopmentLinks)
 - [How to create animations and sprite sheets for MonoGame](https://www.codeandweb.com/texturepacker/tutorials/how-to-create-sprite-sheets-and-animations-with-monogame)
 - [Making a platformer in F# with MonoGame](http://bruinbrown.wordpress.com/2013/10/06/making-a-platformer-in-f-with-monogame/)
 - [XNA 4.0 Shader Programming / HLSL](http://digitalerr0r.wordpress.com/tutorials/)
 - [Using Spine with MonoGame - by Randolph Burt (Randeroo)](http://randolphburt.co.uk/2013/03/30/dragons-and-dancing-crabs/)
-- [Mac porting series](http://benkane.wordpress.com/2012/01/20/the-great-porting-adventure-day-8/)
 - [Porting a Windows Phone 7 Game to Android](http://warrenburch.blogspot.co.uk/2011/12/porting-windows-phone-7-game-to-android.html)
-- [A series on embedding MonoGame/WinGL into WinForms](http://jaquadro.com/2013/03/bringing-your-xna-winforms-controls-to-monogame-opengl/)
-- [French articles about MonoGame on Linux, Windows and Windows 8](http://www.demonixis.net/blog/category/tutoriels/tuto-xna/)
 - [MonoGame "Hello World" on Mac OS X and Xamarin Studio](http://jaquadro.com/2013/09/monogame-hello-world-on-mac-os-x-and-xamarin-studio/)
 - [Solving Resolution Independent Rendering And 2D Camera Using Monogame](http://blog.roboblob.com/2013/07/27/solving-resolution-independent-rendering-and-2d-camera-using-monogame/)
 - [XNA is Dead; Long Live the New XNA, MonoGame](http://www.codemag.com/Article/1411081)
 - [Running MonoGame on Android Wear](http://crossplatform.io/running-monogame-on-android-wear/)
 - [Text rendering in MonoGame](https://roy-t.nl/2018/07/04/Text-Rendering.html)
 - [Randomchaos-MonoGame-Samples](https://github.com/NemoKradXNA/Randomchaos-MonoGame-Samples)
+
+## Other Languages
+
+A collection of tutorials in other languages:
+
+### Portuguese
+
+- [Desenvolvimento de jogos para Windows 8 com XNA - Alexandre Chohfi (Portuguese)](https://www.youtube.com/watch?v=gM5pRnYV1tA)
+
+### French
+
+- [French articles about MonoGame on Linux, Windows and Windows 8](http://www.demonixis.net/blog/category/tutoriels/tuto-xna/)
+
+## We Need Your Help!
+
+MonoGame is an open-source project maintained by its community. Great open source projects require high-quality documentation. This is a call for volunteers to continue to help us make the MonoGame documentation truly great. If you can create tutorials, feature guides, code snippets, reference docs, video walkthroughs, or make any improvement to the current documentation, we could use your help!
+
+Check out the [README on GitHub](https://github.com/MonoGame/MonoGame/blob/develop/README.md) or [talk with us on discord](https://discord.gg/monogame) to learn how to help!

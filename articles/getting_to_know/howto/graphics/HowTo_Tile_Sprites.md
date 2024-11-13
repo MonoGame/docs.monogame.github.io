@@ -12,11 +12,11 @@ We will simply define an area ([Rectangle](xref:Microsoft.Xna.Framework.Rectangl
 
 ### End result
 
-![The output of this tutorial](./images/HowTo_Tile_Sprites_Final.png)
+![The output of this tutorial](images/HowTo_Tile_Sprites_Final.png)
 
 ## Requirements
 
-![Sprite to Tile](./images/MonoGame.png)
+![Sprite to Tile](images/MonoGame.png)
 
 ## Drawing a Tiled a Sprite
 

@@ -35,6 +35,16 @@ When installing Visual Studio, the following workloads are required depending on
 
 To create new MonoGame projects from within Visual Studio 2022, you will need to install the **MonoGame Framework C# project templates** extension.  The following steps demonstrate how to install the extension.
 
+> [!WARNING]
+> **Visual Studio Extension Issues**
+> 
+> The extension that is installed by Visual Studio 2022 is currently outdated.
+> Instead of using Visual Studio 2022 to install the templates, run the following command:
+> ```sh
+>    dotnet new install MonoGame.Templates.CSharp
+>  ```
+> After doing this, you should be able to launch Visual Studio 2022 and create a new project with the newly installed templates.
+
 1. Launch Visual Studio 2022
 2. Select **Continue without code**.  This will launch Visual Studio without any project or solution opened.
 
