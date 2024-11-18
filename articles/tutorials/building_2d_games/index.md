@@ -19,9 +19,9 @@ This documentation will introduce game development concepts using the MonoGame f
 > [!CAUTION]
 > This is currently a work in progress and is not finished.
 
-| Chapter | Summary | Source Files |
-| ------- | ------- | ------------ |
-|         |         |              |
+| Chapter              | Summary                                                                          | Source Files |
+| -------------------- | -------------------------------------------------------------------------------- | ------------ |
+| [01: What Is Monogame](01_what_is_monogame) | The history of MonoGame and what features it provides developers to create games |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
