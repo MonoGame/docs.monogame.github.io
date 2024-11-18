@@ -6,7 +6,7 @@ description: In this chapter, we will explore the contents of the Game1 file gen
 After you created a new MonoGame project using the *MonoGame Cross-Platform Desktop Application* template in [Chapter 02](../02_getting_started/index.md#creating-your-first-monogame-application), you will notice the generated files and project structure that serve as a starting point for your game application.  While MonoGame offers different templates based on target platform, all projects will contain the *Game1.cs* file.
 
 > [!TIP]  
-> For an in-depth look at all files created in a MonoGame project when using the MonoGame templates, refer to [Appendix 02: MonoGame Project Overview](../appendix_02_monogame_project_overview/index.md).
+> For an in-depth look at all files created in a MonoGame project when using the MonoGame templates, refer to [Appendix 02: MonoGame Project Overview](#).
 
 ## Exploring the Game1 Class
 
@@ -170,7 +170,7 @@ In the next chapter, you will start working with sprites and learn how to load a
 
 ## See Also
 
-This chapter briefly touched on the *Game1.cs* file and the [Game](xref:Microsoft.Xna.Framework.Game) class. For an in-depth detailed discussion of all files created in a MonoGame project, including a full overview of the order of execution for a MonoGame game, see [Appendix 02: MonoGame Project Overview](../appendix_02_monogame_project_overview/index.md).
+This chapter briefly touched on the *Game1.cs* file and the [Game](xref:Microsoft.Xna.Framework.Game) class. For an in-depth detailed discussion of all files created in a MonoGame project, including a full overview of the order of execution for a MonoGame game, see [Appendix 02: MonoGame Project Overview](#).
 
 ## Test Your Knowledge
 
