@@ -1,9 +1,9 @@
 ---
 title: "Chapter 03: The Game1 File"
-description: In this chapter, we'll explore the contents of the Game1 file generated when a new MonoGame game project is created.
+description: In this chapter, we will explore the contents of the Game1 file generated when a new MonoGame game project is created.
 ---
 
-After you created a new MonoGame project using the *MonoGame Cross-Platform Desktop Application* template in [Chapter 02](../02_getting_started/index.md#creating-your-first-monogame-application), you'll notice the generated files and project structure that serve as a starting point for your game application.  While MonoGame offers different templates based on target platform, all projects will contain the *Game1.cs* file.
+After you created a new MonoGame project using the *MonoGame Cross-Platform Desktop Application* template in [Chapter 02](../02_getting_started/index.md#creating-your-first-monogame-application), you will notice the generated files and project structure that serve as a starting point for your game application.  While MonoGame offers different templates based on target platform, all projects will contain the *Game1.cs* file.
 
 > [!TIP]  
 > For an in-depth look at all files created in a MonoGame project when using the MonoGame templates, refer to [Appendix 02: MonoGame Project Overview](../appendix_02_monogame_project_overview/index.md).
@@ -64,7 +64,7 @@ public class Game1 : Game
 
 ```
 
-Let's take a closer look at what's happening here:
+This class provides the following structure:
 1. **Graphics and Rendering**: The class declares two core graphics components; the [GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) for interacting with the Graphics Processing Unit (GPU) and the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) for 2D rendering.
 2. **Initialization**: The constructor and [Initialize](xref:Microsoft.Xna.Framework.Game.Initialize) method handle the game's setup sequence.
 3. **Content Loading**: The [LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent) method manages game asset loading during startup.
@@ -112,7 +112,7 @@ This separation allows you to perform setup tasks in a logical order; core syste
 > You may be wondering why there is an [Initialize](xref:Microsoft.Xna.Framework.Game.Initialize) method instead of performing all initializations in the constructor.  The [Initialize](xref:Microsoft.Xna.Framework.Game.Initialize) method is a `virtual` method that is overridden, and [it is advised to not call overridable methods from within a constructor](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2214), as this can lead to unexpected states in object constructor when called.  Additionally, when the constructor is called, the base constructor will instantiate properties and services based on the target platform that may be needed first before performing initializations for the game itself.
 
 ## Content Loading
-The [LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent) method serves as the place for asset management. Here you can load textures, sound effects, music, and other game assets.  We'll cover loading assets in the coming chapters as we discuss each asset type that can be loaded.  In a new project, the only task it performs is initializing a new instance of the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
+The [LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent) method serves as the place for asset management. Here you can load textures, sound effects, music, and other game assets.  We will cover loading assets in the coming chapters as we discuss each asset type that can be loaded.  In a new project, the only task it performs is initializing a new instance of the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
 ```cs
 protected override void LoadContent()
@@ -152,7 +152,7 @@ The first line is executing the [Clear](xref:Microsoft.Xna.Framework.Graphics.Gr
 
 <figure><img src="./images/solitaire.webp" alt="Figure 3-2: Windows XP Solitaire Win Screen."><figcaption><p><em>Figure 3-2: Windows XP Solitaire Win Screen.</em></p></figcaption></figure>
 
-While this can make for a neat effect, it's not something you want all the time. So, the screen is cleared and refilled with a solid color. You can test this yourself by modifying the code to use a different color, such as [Color.MonoGameOrange](xref:Microsoft.Xna.Framework.Color.MonoGameOrange), then running the game. (yes, there is a MonoGame Orange color).
+While this can make for a neat effect, it is not something you want all the time. So, the screen is cleared and refilled with a solid color. You can test this yourself by modifying the code to use a different color, such as [Color.MonoGameOrange](xref:Microsoft.Xna.Framework.Color.MonoGameOrange), then running the game. (yes, there is a MonoGame Orange color).
 
 Each time the game loops completes and the game is drawn to the screen, we call this a *frame*. So if MonoGame is running the game loop at 60 frames per second, that means it is performing and update and a render of each frame in 16ms. Notice that both the [Update](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) and the [Draw](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) methods both receive a parameter of the type [GameTime](xref:Microsoft.Xna.Framework.GameTime). The [GameTime](xref:Microsoft.Xna.Framework.GameTime) parameter provides a snapshot of the timing values for the game, including the amount of time that it took for the previous frame to execute. This is commonly referred to as the *delta time*.
 
@@ -160,13 +160,13 @@ Each time the game loops completes and the game is drawn to the screen, we call 
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+Here is a review of what was accomplished in this chapter:
 
 - You read through the default code provided in a *Game1.cs* file created by a MonoGame template.
 - You learned about the lifecycle of a MonoGame game project.
 - You learned what a game loop is and how it is implemented in MonoGame.
 
-In the next chapter, you'll start working with sprites and learn how to load and render them.
+In the next chapter, you will start working with sprites and learn how to load and render them.
 
 ## See Also
 
@@ -197,7 +197,7 @@ This chapter briefly touched on the *Game1.cs* file and the [Game](xref:Microsof
     <details>
     <summary>Question 3 Answer</summary>
 
-    > [LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent) is executed during the `base.Initialize()` method call within the [Initialize](xref:Microsoft.Xna.Framework.Game.Initialize) method.  It's important to know this because anything being initialized that is dependent on content loaded should be done **after** the `base.Initialize()` call and not **before**. 
+    > [LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent) is executed during the `base.Initialize()` method call within the [Initialize](xref:Microsoft.Xna.Framework.Game.Initialize) method.  It is important to know this because anything being initialized that is dependent on content loaded should be done **after** the `base.Initialize()` call and not **before**. 
     
     </details><br />
 
