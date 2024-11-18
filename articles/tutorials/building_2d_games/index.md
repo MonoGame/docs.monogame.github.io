@@ -3,6 +3,8 @@ title: Building 2D Games with MonoGame
 description: A beginner tutorial for building 2D games with MonoGame.
 ---
 
+This tutorial covers game development concepts using the MonoGame framework as our tool.  Throughout each chapter, we'll explore game development with MonoGame, introducing new concepts to build upon previous ones as we go. We'll create a Snake game, which will serve as the vehicle to apply the concepts learned throughout the tutorial.  The goal of this tutorial is to give you a solid foundation in 2D game development with MonoGame and provide you with reusable modules that you can jump start future projects.
+
 ## Who This Is For
 
 This documentation is meant to be an introduction to game development and MonoGame. Readers should have a foundational understanding of C# and be comfortable with concepts such as classes and objects.
