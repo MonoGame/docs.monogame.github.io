@@ -114,8 +114,6 @@
       items:
         - name: "01: What Is MonoGame?"
           href: tutorials/building_2d_games/01_what_is_monogame/
-- name: Community Tutorials
-  href: tutorials.md
 - name: Console Access
   href: console_access.md
 - name: Help and Support
