@@ -17,9 +17,9 @@ This documentation will introduce game development concepts using the MonoGame f
 > [!CAUTION]
 > This is currently a work in progress and is not finished.
 
-| Chapter | Summary |
-| ------- | ------- |
-|         |         |
+| Chapter | Summary | Source Files |
+| ------- | ------- | ------------ |
+|         |         |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
