@@ -116,6 +116,8 @@
           href: tutorials/building_2d_games/01_what_is_monogame/
         - name: "02: Getting Started"
           href: tutorials/building_2d_games/02_getting_started/
+        - name: "03: The Game1 File"
+          href: tutorials/building_2d_games/03_the_game1_file/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
