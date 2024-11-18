@@ -207,9 +207,9 @@ MonoGame templates for .NET projects explicitly set this to `false`.
 Tiered compilation is **enabled by default**. To disable it, set the `TieredCompilation` property to `false` in your `.csproj`.
 MonoGame templates for .NET projects explicitly set this to `false`.
 
-### SingleFilePublish
+### PublishSingleFile
 
-SingleFilePublish packages your game into a single executable file with all dependencies and content integrated.
+PublishSingleFile packages your game into a single executable file with all dependencies and content integrated.
 
 While it sounds very convenient, be aware that it's not magical and is in fact a hidden self-extracting zip archive. As such, it may make app startup take **a lot** longer if your game is large, and may fail to launch on systems where user permissions don't allow extracting files (or if there is not enough storage space available).
 
