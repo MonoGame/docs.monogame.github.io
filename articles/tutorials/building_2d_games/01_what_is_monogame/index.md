@@ -17,11 +17,23 @@ The official first release of MonoGame occurred in 2011, as an open source versi
 
 Today, it is a mature, cross-platform framework, that is built with the spirit of preserving XNA but adopting modern game development practices. Some popular titles created using MonoGame include [Celeste](https://store.steampowered.com/app/504230/Celeste/), [Stardew Valley](https://store.steampowered.com/app/413150/Stardew\_Valley/), and [Streets of Rage 4](https://store.steampowered.com/app/985890/Streets\_of\_Rage\_4/).
 
-<figure><img src="./images/celeste.png" alt="Figure 1-1: Celeste, developed by Maddy Thorson and Noel Berry"><figcaption><p><em>Figure 1-1: Celeste, developed by Maddy Thorson and Noel Berry</em></p></figcaption></figure>
-
-<figure><img src="./images/stardew-valley.png" alt="Figure 1-2: Stardew Valley, developed by Eric Barone (ConcernedApe)."><figcaption><p><em>Figure 1-2: Stardew Valley, developed by Eric Barone (ConcernedApe).</em></p></figcaption></figure>
-
-<figure><img src="./images/sor4.jpg" alt="Figure 1-3: Streets of Rage 4, developed by Dotemu, LizardCube, and Guard Crush Games."><figcaption><p><em>Figure 1-3: Streets of Rage 4, developed by Dotemu, LizardCube, and Guard Crush Games.</em></p></figcaption></figure>
+<table style="border: transparent;">
+    <tr>
+        <td width="50%" align="center">
+            <figure><img src="./images/celeste.png" alt="Figure 1-1: Celeste."><figcaption><small>Figure 1-1: Celeste</small></figcaption></figure>
+        </td>
+        <td width="50%" align="center">
+            <figure><img src="./images/stardew-valley.png" alt="Figure 1-2: Stardew Valley."><figcaption><small>Figure 1-2: Stardew Valley.</small></figcaption></figure>
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" align="center">
+            <figure><img src="./images/sor4.jpg" alt="Figure 1-3: Streets of Rage 4."><figcaption><p><small>Figure 1-3: Streets of Rage 4.</small></p></figcaption></figure>
+        </td>
+        <td width="50%">
+        </td>
+    </tr>
+</table>
 
 ## Features
 
