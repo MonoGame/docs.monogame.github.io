@@ -106,8 +106,18 @@
     href: migration/updating_versions.md
 - name: Samples and Demos
   href: samples.md
-- name: Community Tutorials
-  href: tutorials.md
+- name: Tutorials
+  href: tutorials/
+  items:
+    - name: Building 2D Games
+      href: tutorials/building_2d_games/
+      items:
+        - name: "01: What Is MonoGame?"
+          href: tutorials/building_2d_games/01_what_is_monogame/
+        - name: "02: Getting Started"
+          href: tutorials/building_2d_games/02_getting_started/
+        - name: "03: The Game1 File"
+          href: tutorials/building_2d_games/03_the_game1_file/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
