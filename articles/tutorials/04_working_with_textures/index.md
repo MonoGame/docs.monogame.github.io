@@ -135,8 +135,6 @@ Running the game now, the image will be loaded as a texture, just like it did wh
 
 ## Drawing a Texture
 
-## Drawing a Texture
-
 As mentioned in [Chapter 03](../03_the_game1_file/index.md#looking-at-the-code), all rendering should be done inside the `Draw` method. The `Draw` method's responsibility is to render the game state that was calculated in `Update`'; it should not contain any game logic or complex calculations.
 
 Locate the `Draw` method in the *Game1.cs* file and add the following after the `Clear` method call is made:
