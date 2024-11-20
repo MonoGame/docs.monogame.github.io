@@ -7,15 +7,15 @@ Textures are images that are used in your game to represent the visual graphics 
 
 ## Loading a Texture
 
-Loading textures in MonoGame can be done by loading an image file directly at runtime in game, or it can be loaded through the *content pipeline*.  Both approaches will get the texture loaded and ready to render, but there are trade offs to each approach.
+Loading textures, like any other asset in MonoGame, can be done by loading the asset file directly at runtime in game, or it can be loaded through the *content pipeline*.  Both of these methods are two sides of the same coin and there are trade offs to each approach.
 
-Loading an image file directly at runtime is very straightforward.  To use this workflow you need to:
+For instance, to load an image file directly at runtime, you would need to
 
 1. Add the image file to your project
-2. Manually configure your project to copy the image file to the game project build directory
-3. Load the image file at runtime using the `Texture2D.FromFile` method.
+2. Configure the project to copy the image file to the game project build directory
+3. Load the image file as a texture at runtime using the `Texture2D.FromFile` method.
 
-While being a straightforward process, the image file is still in it's compressed format such as *.png* or *.jpg*.  These compression formats are not understood by a Graphics Processing Unit (GPU) so they need to be decompressed into raw bytes that it does understand before it can store the data, potentially leaving a larger memory footprint.
+When loading an image file as a texture directly like this, however, loads it in its compressed format such as *.png* or *.jpg*.  These compression formats are not understood by a Graphics Processing Unit (GPU); they will need to be decompressed into raw bytes as a format the GPU does understand before it can store the data.  Doing this can potentially leave a larger memory footprint for your assets.
 
 On the other side of this coin, MonoGame offers the *content pipeline*; a workflow for managing assets, such as image files.  The workflow is made up of a set of tools and utilities that are automatically added by default when you create a new MonoGame project using the MonoGame templates.  To use this workflow, you need to:
 
@@ -32,61 +32,18 @@ For the same amount of steps, you also get the benefit of the image file being p
 > [!NOTE]
 > For more information on the benefits of compiling assets and what optimizations it can offer, see the [Content Pipeline](../../getting_started/content_pipeline/index.md) documentation.
 
-Enough talk though, let's take a look at using both of these methods.  First, we need an image to load.  Perform the following:
+For this tutorial series, we're going to focus on using the content pipeline workflow to loading assets, including images.  Doing this will get you as the developer accustomed to using the content pipeline tools and also give the benefits of having assets precompiled to optimized formats.
 
-1. Find the *Content* directory inside your game project directory
-2. Create a new folder inside the *Content* directory called *images*.
-3. Right-click the following image of the MonoGame logo and save it in the *Content/images* directory you just created with the filename *logo.png*
+To get started, first we need an image to load.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your on your computer, such as your desktop.
 
 <figure><img src="./images/logo.png" alt="Figure 4-2: MonoGame Horizontal Logo"><figcaption><p><strong>Figure 4-2: MonoGame Horizontal Logo</strong></p></figcaption></figure>
 
-Next, open the *Game1.cs* file in your project and add
-
-```cs
-private Texture2D _logo;
-```
-
-beneath where the `GraphicsDeviceManager` and `SpriteBatch` instance member variables are declared.  This adds a new `Texture2D` instanced called `_logo`.  `Texture2D` is the type used to store a reference to 2D image data in MonoGame.
-
-### Loading From File
-
-To load a an image file directly as a texture at runtime, we can use the `Texture2D.FromFile` method.  Find the `LoadContent` method and add the following after the `_spriteBatch` is instantiated:
-
-```cs
-_logo = Texture2D.FromFile(GraphicsDevice, "Content/images/logo.png");
-```
-
-This assigns an image loaded from the provided file to the `_logo` texture we declared.  Running the game now though will cause a crash with an exception similar to the following:
-
-```
-Exception has occurred: CLR/System.IO.DirectoryNotFoundException
-An unhandled exception of type 'System.IO.DirectoryNotFoundException' occurred in System.Private.CoreLib.dll: 'Could not find a part of the path 'C:\dev\MonoGameSnake\MonoGameSnake\bin\Debug\net8.0\Content\images\logo.png'.'
-```
-
-This is because even though we added the *logo.png* file, we need to configure the project to copy the file to the build output when we do a project build.  To do this, open the *MonoGameSnake.csproj* file and add the following before the closing `</Project>` element at the bottom:
-
-```xml
-<ItemGroup>
-    <Content Include="Content\images\logo.png" CopyToOutputDirectory="PreserveNewest" />
-</ItemGroup>
-```
-> [!NOTE]
-> If you are using Visual Studio, you can achieve the same result by right-clicking 
-> 1. Right-clicking the *logo.png* file in the *Solution Explorer* panel
-> 2. Select *Properties* from the context menu.  This will open the *Properties* panel for the item.
-> 3. Change the *Copy to Output Directory* property to *Copy Always*.
-
-Now when you run the game, first the build is performed which will copy the image file to the build output directory, then the image is loaded as a texture in the `LoadContent` method using the `Texture2D.FromFile` method call.
-
-Now let's take a look at doing the same process but instead using the content pipeline.
-
-### Loading From Content Pipeline
-
-To use the content pipeline to load our image, we first need to open the *MonoGame Content Builder Editor (MGCB Editor)*. Since we are using VSCode for this tutorial, you should have installed the *MonoGame for VSCode* extension in [Chapter 02](../02_getting_started/index.md#installing-the-monogame-for-vscode-extension). With this extension installed, when you have a code file open, you will see the MonoGame logo in the top-right of the code window like below:
+### Adding the Image To Content Project
+Now that we have an image, we need to open the *MonoGame Content Builder Editor (MGCB Editor)* so we can add the image to the content project.  Since we are using VSCode for this tutorial, you should have installed the *MonoGame for VSCode* extension in [Chapter 02]().  When this extension is installed, anytime you have a code file open, you will see the MonoGame logo in the top-right of the code window like below:
 
 <figure><img src="./images/mgcb-editor-icon.png" alt="Figure 4-3: MonoGame for VSCode extension icon"><figcaption><p><strong>Figure 4-3: MonoGame for VSCode extension icon</strong></p></figcaption></figure>
 
-Clicking this icon will open the MGCB Editor with the *Content.mgcb* file in the current project loaded.
+Clicking this icon will open the MGCB Editor and load the *Content.mgcb* file from the current project in it.
 
 > [!NOTE]  
 > If you did not install the *MonoGame for VSCode* extension or prefer to not use it, you can use the CLI commands to open the MGCB Editor instead. To do this:
@@ -104,16 +61,15 @@ With the MGCB Editor now open, perform the following
 3. Name the folder `images`.
 4. Right-click on the new *images* folder
 5. Select *Add > Existing Item*.
-6. Navigate to the *icon.png* file and choose it
+6. Navigate to the *logo.png* file you downloaded and choose it
 
-After adding an existing file, you will be prompted with a pop-up asking if you would like to *Copy the file* or *Add a link*. Since the file is already in our *Content/images* directory, the copy option is greyed out, so choose the *Add a link* option, then click the *Add* button.
+After adding an existing file, you will be prompted with a pop-up asking if you would like to *Copy the file* or *Add a link*.
 
 <figure><img src="./images/add-file-popup.png" alt="Figure 4-5: Add Existing File Popup"><figcaption><p><strong>Figure 4-5: Add Existing File Popup</strong></p></figcaption></figure>
 
-> [!CAUTION]  
-> When adding existing files in the future, the choice between copying the file and adding a link can make a big difference. When you choose to copy the file, it makes a literal copy of the current file and puts that copy inside the Content directory in your project. This means any changes to the original source file will not be reflected in the copy.
->
-> By adding as a link, it will instead reference the source file without making a copy. This means changes made in the source file will be reflected, however the link is stored as a relative link, relative to the *Content.mgcb* file. So if the source file moves, or you move the project, then you'll need to re-add the link.
+For the purposes of this tutorial, choose the *Copy the File* option, then click the *Add* button.  When adding existing files in the future, the choice between copying the file and adding a link can make a big difference:
+- **Copy the File**: Choosing this will make a literal copy of the selected file and put the copy inside the Content directory of your project.  This means any changes in teh original source file will not be reflected in the copy.
+- **Add a link**: Choosing this will instead add a reference to the source file without making a copy.  This means changes made in teh source file will be reflected on each build.  However, the link is stored as a relative link, with the path being relative to the *Content.mgcb* file.  So if the source file moves, or you move the project, then you'll need to re-add the link.
 
 After adding the *logo.png* file, you're project node should look similar to the following:
 
@@ -121,17 +77,27 @@ After adding the *logo.png* file, you're project node should look similar to the
 
 Save the changes by pressing `CTRL+S`, or by clicking the *Save* icon in the top tool bar, or by choosing *File > Save* from the top menu. When you save the changes made, the MGCB Editor will write updates to the *Content.mgcb* file in your project to reflect the changes made. After saving, you can close the MGCB Editor.
 
-Now that we have added the logo image to our content project using the MGCB Editor, we need to make some small adjustments in our code to load the image using the content pipeline.  First, open the *MonoGameSnake.csproj* file and remove the `<ItemGroup>` section we added before. We no longer need the project build itself to copy the file over for us.
+### Loading The Image Using `ContentManager`
 
-Next, open the *Game1.cs* file and navigate to the `LoadContent` method. Change the line of code where we loaded the texture from file to the following
+With the image now added to the content project, whenever a build of our game project is performed, the content pipeline will automatically handle compiling the image into an optimized format and ensuring that the compiled asset is copied to the final game project build directory.  This process is handled by the *MonoGame.Content.Builder.Tasks* NuGet package reference.  Now we need to update our game to load the asset.
+
+First, open the *Game1.cs* file in your project and add
 
 ```cs
+private Texture2D _logo;
+```
+
+beneath where the `GraphicsDeviceManager` and `SpriteBatch` instance member variables are declared.  This adds a new `Texture2D` instanced called `_logo`.  `Texture2D` is the type used to store a reference to 2D image data in MonoGame.
+
+Next, locate the `LoadContent` method and add the following after the `_spriteBatch` is instantiated:
+
+```
 _logo = Content.Load<Texture2D>("images/logo");
 ```
 
-The change we made now uses the instance of the `ContentManager` object provided by the `Content` property in the `Game` class. We call the `Load<T>` method, where `T` is the content type that we are loading. The parameter we pass to it is the *asset name* which is a string representation of the path to the content to load, without any extensions. The path used as the *asset name* is also relative to the `Content.RootDirectory` value, which was set to `Content` in the `Game1` constructor above. This means the *asset name* of our logo image located at *Content/images/logo.png* is `images/logo`.
+This uses the `ContentManager` object provided by the `Content` property of the `Game` class to load the compiled image file.  We use the `Load<T>` method where `T` is the content type that we are loading, in this case a `Texture2D`.  The parameter we pass to it is the *asset name*, which is a string representation of the path to the content to load, without any extensions.  The path used as the asset name is also relative to the value of `Content.RootDirectory` which was set to `Content` in the `Game1` constructor.  THis means the asset name of our logo image located at *Content/images/logo.png* is `images/logo`.
 
-Running the game now, the image will be loaded as a texture, just like it did when you loaded it directly from file previously, only now it's loading the compiled asset.  Let's review what is actually happening now that we are using the *content pipeline*.
+IF you run the game now, the image will be loaded as a texture, but all we'll see is the empty cornflower blue game window.  Next, we need to tell our game to draw the texture.
 
 ## Drawing a Texture
 
@@ -315,8 +281,7 @@ As an exercise for yourself, see if you can adjust the code to draw only the Mon
 
 Let's review what you accomplished in this chapter:
 
-- You loaded an image as a texture directly from file.
-- You loaded the same image as a texture using the content pipeline.
+- You added an image file to the content project using the MGCB Editor
 - You learned about the content pipeline workflow and how MonoGame automates the process for you.
 - You used the `SpriteBatch` class to draw a texture.
 - You learned the different parameters available when using the `SpriteBatch.Draw` method.
@@ -338,7 +303,7 @@ The content pipeline was briefly discussed in this chapter, and only touched on 
 
     > The two main ways to load a texture in MonoGame are:
     > 
-    > 1. Directly from file using `Texture2D.FromFile`.   This is a more straightforward process, but requires manually setting up file copying, offers no pre-processing benefits, and can have a higher memory footprint.
+    > 1. Directly from file using `Texture2D.FromFile`.   This method requires manually setting up file copying, offers no pre-processing benefits, and can have a higher memory footprint.
     >  
     > 2. Using the content pipeline with `Content.Load<Texture2D>`.  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.
     </details><br />
