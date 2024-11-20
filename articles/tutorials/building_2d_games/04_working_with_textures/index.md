@@ -39,7 +39,7 @@ To get started, first we need an image to load.  Right-click the following image
 <figure><img src="./images/logo.png" alt="Figure 4-2: MonoGame Horizontal Logo"><figcaption><p><strong>Figure 4-2: MonoGame Horizontal Logo</strong></p></figcaption></figure>
 
 ### Adding the Image To Content Project
-Now that we have an image, we need to open the *MonoGame Content Builder Editor (MGCB Editor)* so we can add the image to the content project.  Since we are using VSCode for this tutorial, you should have installed the *MonoGame for VSCode* extension in [Chapter 02]().  When this extension is installed, anytime you have a code file open, you will see the MonoGame logo in the top-right of the code window like below:
+Now that we have an image, we need to open the *MonoGame Content Builder Editor (MGCB Editor)* so we can add the image to the content project.  Since we are using VSCode for this tutorial, you should have installed the *MonoGame for VSCode* extension in [Chapter 02](../02_getting_started/index.md#installing-the-monogame-for-vscode-extension).  When this extension is installed, anytime you have a code file open, you will see the MonoGame logo in the top-right of the code window like below:
 
 <figure><img src="./images/mgcb-editor-icon.png" alt="Figure 4-3: MonoGame for VSCode extension icon"><figcaption><p><strong>Figure 4-3: MonoGame for VSCode extension icon</strong></p></figcaption></figure>
 
@@ -63,12 +63,12 @@ With the MGCB Editor now open, perform the following
 5. Select *Add > Existing Item*.
 6. Navigate to the *logo.png* file you downloaded and choose it
 
-After adding an existing file, you will be prompted with a pop-up asking if you would like to *Copy the file* or *Add a link*.
+After adding an existing file, you will be prompted with a pop-up asking if you would like to *Copy the file to the directory* or *Add a link*.
 
 <figure><img src="./images/add-file-popup.png" alt="Figure 4-5: Add Existing File Popup"><figcaption><p><strong>Figure 4-5: Add Existing File Popup</strong></p></figcaption></figure>
 
-For the purposes of this tutorial, choose the *Copy the File* option, then click the *Add* button.  When adding existing files in the future, the choice between copying the file and adding a link can make a big difference:
-- **Copy the File**: Choosing this will make a literal copy of the selected file and put the copy inside the Content directory of your project.  This means any changes in teh original source file will not be reflected in the copy.
+For the purposes of this tutorial, choose the *Copy the file to the directory* option, then click the *Add* button.  When adding existing files in the future, the choice between copying the file and adding a link can make a big difference:
+- **Copy the file to the directory**: Choosing this will make a literal copy of the selected file and put the copy inside the Content directory of your project.  This means any changes in teh original source file will not be reflected in the copy.
 - **Add a link**: Choosing this will instead add a reference to the source file without making a copy.  This means changes made in teh source file will be reflected on each build.  However, the link is stored as a relative link, with the path being relative to the *Content.mgcb* file.  So if the source file moves, or you move the project, then you'll need to re-add the link.
 
 After adding the *logo.png* file, you're project node should look similar to the following:
@@ -77,7 +77,7 @@ After adding the *logo.png* file, you're project node should look similar to the
 
 Save the changes by pressing `CTRL+S`, or by clicking the *Save* icon in the top tool bar, or by choosing *File > Save* from the top menu. When you save the changes made, the MGCB Editor will write updates to the *Content.mgcb* file in your project to reflect the changes made. After saving, you can close the MGCB Editor.
 
-### Loading The Image Using `ContentManager`
+### Loading the Image Using `ContentManager`
 
 With the image now added to the content project, whenever a build of our game project is performed, the content pipeline will automatically handle compiling the image into an optimized format and ensuring that the compiled asset is copied to the final game project build directory.  This process is handled by the *MonoGame.Content.Builder.Tasks* NuGet package reference.  Now we need to update our game to load the asset.
 
@@ -101,7 +101,7 @@ IF you run the game now, the image will be loaded as a texture, but all we'll se
 
 ## Drawing a Texture
 
-As mentioned in [Chapter 03](../03_the_game1_file/index.md#looking-at-the-code), all rendering should be done inside the `Draw` method. The `Draw` method's responsibility is to render the game state that was calculated in `Update`'; it should not contain any game logic or complex calculations.
+As mentioned in [Chapter 03](../03_the_game1_file/index.md#the-game-loop), all rendering should be done inside the `Draw` method. The `Draw` method's responsibility is to render the game state that was calculated in `Update`'; it should not contain any game logic or complex calculations.
 
 Locate the `Draw` method in the *Game1.cs* file and add the following after the `Clear` method call is made:
 
