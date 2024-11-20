@@ -43,7 +43,7 @@ This section details some of the operational aspects of running a MonoGame game.
 
 * [How to manage automatic rotation and scaling](HowTo_AutomaticRotation.md)
 
-  A walkthrough what is involved in figuring out if two objects collide for MonoGame!
+  Demonstrates how to manage rotation and scaling based on device orientation.
 
 * [How to exit a Game Immediately](HowTo_ExitNow.md)
 
