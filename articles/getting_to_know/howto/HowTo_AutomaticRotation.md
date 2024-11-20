@@ -1,6 +1,6 @@
 ---
 title: How to manage automatic rotation and scaling
-description: Demonstrates how to manage rotation and scaling based on device orientation
+description: Demonstrates how to manage rotation and scaling based on device orientation.
 requireMSLicense: true
 ---
 
