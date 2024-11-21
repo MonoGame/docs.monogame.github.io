@@ -19,11 +19,12 @@ This documentation will introduce game development concepts using the MonoGame f
 > [!CAUTION]
 > This is currently a work in progress and is not finished.
 
-| Chapter                                              | Summary                                                                                                                 | Source Files |
-| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------ |
-| [01: What Is Monogame](01_what_is_monogame/index.md) | The history of MonoGame and what features it provides developers to create games.                                       |              |
-| [02: Getting Started](02_getting_started/index.md)   | Setup with MonoGame by preparing your environment for dotnet development and setting up Visual Studio Code as your IDE. |              |
-| [03: The Game1 File](03_the_game1_file/index.md)     | Explore the contents of the Game1 file generated when a new MonoGame game project is created.                           |              |
+| Chapter                                                        | Summary                                                                                                                      | Source Files |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| [01: What Is Monogame](01_what_is_monogame/index.md)           | The history of MonoGame and what features it provides developers to create games.                                            |              |
+| [02: Getting Started](02_getting_started/index.md)             | Setup with MonoGame by preparing your environment for dotnet development and setting up Visual Studio Code as your IDE.      |              |
+| [03: The Game1 File](03_the_game1_file/index.md)               | Explore the contents of the Game1 file generated when a new MonoGame game project is created.                                |              |
+| [04: Working With Textures](04_working_with_textures/index.md) | the process of loading image files as textures using the MonoGame content pipeline and rendering them using the SpriteBatch. |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
