@@ -30,7 +30,7 @@ The following image illustrates this workflow:
 For the same amount of steps, you also get the benefit of the image file being pre-processed and compiled to an optimized format that can be understood by GPUs without needing to be decompressed first, reducing the memory footprint.  For instance, on desktops, image files can be compiled using [DXT compression](https://en.wikipedia.org/wiki/S3\_Texture\_Compression).
 
 > [!NOTE]
-> For more information on the benefits of compiling assets and what optimizations it can offer, see the [Content Pipeline](../../getting_started/content_pipeline/index.md) documentation.
+> For more information on the benefits of compiling assets and what optimizations it can offer, see the [Content Pipeline](../../../getting_started/content_pipeline/index.md) documentation.
 
 For this tutorial series, we're going to focus on using the content pipeline workflow to loading assets, including images.  Doing this will get you as the developer accustomed to using the content pipeline tools and also give the benefits of having assets precompiled to optimized formats.
 
