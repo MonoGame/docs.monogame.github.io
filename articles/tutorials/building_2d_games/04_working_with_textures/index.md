@@ -284,6 +284,7 @@ As an exercise for yourself, see if you can adjust the code to draw only the Mon
 
 Let's review what you accomplished in this chapter:
 
+- You learned the disadvantages of loading an image file directly compared to the advantages of use the **Content Pipeline**
 - You added an image file to the content project using the MGCB Editor
 - You learned about the content pipeline workflow and how MonoGame automates the process for you.
 - You used the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) class to draw a texture.
