@@ -3,7 +3,7 @@ title: "Chapter 04: Working with Textures"
 description: In this chapter, we'll look at the process of loading image files as textures using the MonoGame content pipeline and rendering them using the SpriteBatch.
 ---
 
-Textures are images that are used in your game to represent the visual graphics to the player.  Before being able to render them with the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), you first need to create or load the texture.  We'll discuss creating a texture in code later in this series. For now, we're going to look at loading existing image files as textures and then rendering them with the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
+Textures are images that are used in your game to represent the visual graphics to the player, commonly referred to as *Sprites*.  Before being able to render them with the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), you first need to create or load the texture.  We'll discuss creating a texture in code later in this series. For now, we're going to look at loading existing image files as textures and then rendering them with the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
 ## Loading a Texture
 
