@@ -3,7 +3,7 @@ title: "Chapter 04: Working with Textures"
 description: In this chapter, we'll look at the process of loading image files as textures using the MonoGame content pipeline and rendering them using the SpriteBatch.
 ---
 
-Textures are images that are used in your game to represent the visual graphics to the player, commonly referred to as *Sprites*.  Before being able to render them with the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), you first need to create or load the texture.  We'll discuss creating a texture in code later in this series. For now, we're going to look at loading existing image files as textures and then rendering them with the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
+Textures are images that are used in your game to represent the visual graphics to the player, commonly referred to as *Sprites*.  Before being able to render them with the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), you first need to create or load the texture.  We'll discuss creating a texture in code later in this series. For now, we're going to look at loading existing image files as textures and then rendering them with the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
 ## Loading a Texture
 
@@ -13,7 +13,7 @@ For instance, to load an image file directly at runtime, you would need to
 
 1. Add the image file to your project
 2. Configure the project to copy the image file to the game project build directory
-3. Load the image file as a texture at runtime using the [Texture2D.FromFile](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)) method.
+3. Load the image file as a texture at runtime using the [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)) method.
 
 When loading an image file as a texture directly like this, however, loads it in its compressed format such as *.png* or *.jpg*.  These compression formats are not understood by a Graphics Processing Unit (GPU); they will need to be decompressed into raw bytes as a format the GPU does understand before it can store the data.  Doing this can potentially leave a larger memory footprint for your assets.
 
@@ -21,7 +21,7 @@ On the other side of this coin, MonoGame offers the *content pipeline*; a workfl
 
 1. Add the image file to your content project (*Content.mgcb* file) using the MGCB Editor.
 2. Perform a project build. Doing this, the *MonoGame.Content.Builder.Tasks* NuGet reference will compile the assets defined in the content project and automatically copy them to the game project build directory.
-3. Load the compiled asset at runtime using the [ContentManager](xref:Microsoft.Xna.Framework.Content.ContentManager).
+3. Load the compiled asset at runtime using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
 
 The following image illustrates this workflow:
 
@@ -77,7 +77,7 @@ After adding the *logo.png* file, you're project node should look similar to the
 
 Save the changes by pressing `CTRL+S`, or by clicking the *Save* icon in the top tool bar, or by choosing *File > Save* from the top menu. When you save the changes made, the MGCB Editor will write updates to the *Content.mgcb* file in your project to reflect the changes made. After saving, you can close the MGCB Editor.
 
-### Loading the Image Using [ContentManager](xref:Microsoft.Xna.Framework.Content.ContentManager)
+### Loading the Image Using [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager)
 
 With the image now added to the content project, whenever a build of our game project is performed, the content pipeline will automatically handle compiling the image into an optimized format and ensuring that the compiled asset is copied to the final game project build directory.  This process is handled by the *MonoGame.Content.Builder.Tasks* NuGet package reference.  Now we need to update our game to load the asset.
 
@@ -87,23 +87,23 @@ First, open the *Game1.cs* file in your project and add
 private Texture2D _logo;
 ```
 
-beneath where the [GraphicsDeviceManager](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) and [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) instance member variables are declared.  This adds a new [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D) instanced called `_logo`.  [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D) is the type used to store a reference to 2D image data in MonoGame.
+beneath where the [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) instance member variables are declared.  This adds a new [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) instanced called `_logo`.  [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) is the type used to store a reference to 2D image data in MonoGame.
 
-Next, locate the [LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent) method and add the following after the `_spriteBatch` is instantiated:
+Next, locate the [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method and add the following after the `_spriteBatch` is instantiated:
 
 ```
 _logo = Content.Load<Texture2D>("images/logo");
 ```
 
-This uses the [ContentManager](xref:Microsoft.Xna.Framework.Content.ContentManager) object provided by the [Content](xref:Microsoft.Xna.Framework.Game.Content) property of the [Game](xref:Microsoft.Xna.Framework.Game) class to load the compiled image file.  We use the [Load<T>](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)) method where `T` is the content type that we are loading, in this case a [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D).  The parameter we pass to it is the *asset name*, which is a string representation of the path to the content to load, without any extensions.  The path used as the asset name is also relative to the value of [Content.RootDirectory](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory) which was set to `Content` in the `Game1` constructor.  THis means the asset name of our logo image located at *Content/images/logo.png* is `images/logo`.
+This uses the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) object provided by the [**Content**](xref:Microsoft.Xna.Framework.Game.Content) property of the [**Game**](xref:Microsoft.Xna.Framework.Game) class to load the compiled image file.  We use the [**Load<T>**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)) method where `T` is the content type that we are loading, in this case a [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D).  The parameter we pass to it is the *asset name*, which is a string representation of the path to the content to load, without any extensions.  The path used as the asset name is also relative to the value of [**Content.RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory) which was set to `Content` in the `Game1` constructor.  THis means the asset name of our logo image located at *Content/images/logo.png* is `images/logo`.
 
 IF you run the game now, the image will be loaded as a texture, but all we'll see is the empty cornflower blue game window.  Next, we need to tell our game to draw the texture.
 
 ## Drawing a Texture
 
-As mentioned in [Chapter 03](../03_the_game1_file/index.md#the-game-loop), all rendering should be done inside the [Draw](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method. The [Draw](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method's responsibility is to render the game state that was calculated in [Update](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime))'; it should not contain any game logic or complex calculations.
+As mentioned in [Chapter 03](../03_the_game1_file/index.md#the-game-loop), all rendering should be done inside the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method. The [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method's responsibility is to render the game state that was calculated in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime))'; it should not contain any game logic or complex calculations.
 
-Locate the [Draw](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method in the *Game1.cs* file and add the following after the [Clear](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)) method call is made:
+Locate the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method in the *Game1.cs* file and add the following after the [**Clear**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)) method call is made:
 
 ```cs
 _spriteBatch.Begin();
@@ -111,32 +111,32 @@ _spriteBatch.Draw(_logo, Vector2.Zero, Color.White);
 _spriteBatch.End();
 ```
 
-These lines of code tell the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) to draw the logo texture you loaded in the top-left corner of the game window. Run the game and you should see something similar to the following:
+These lines of code tell the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) to draw the logo texture you loaded in the top-left corner of the game window. Run the game and you should see something similar to the following:
 
 <figure><img src="./images/logo-from-file.png" alt="Figure 4-7: The MonoGame logo drawn to the game window."><figcaption><p><strong>Figure 4-7: The MonoGame logo drawn to the game window.</strong></p></figcaption></figure>
 
-When drawing with MonoGame, the graphics device needs to be prepared and told that it is going to receive data to pass to the GPU to render. When using the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) for rendering, we do this by using the [SpriteBatch.Begin](xref:Microsoft_Xna_Framework_Graphics_SpriteBatch_Begin_Microsoft_Xna_Framework_Graphics_SpriteSortMode_Microsoft_Xna_Framework_Graphics_BlendState_Microsoft_Xna_Framework_Graphics_SamplerState_Microsoft_Xna_Framework_Graphics_DepthStencilState_Microsoft_Xna_Framework_Graphics_RasterizerState_Microsoft_Xna_Framework_Graphics_Effect_System_Nullable_Microsoft_Xna_Framework_Matrix__) method. We can't use the [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method without first using the [SpriteBatch.Begin](xref:Microsoft_Xna_Framework_Graphics_SpriteBatch_Begin_Microsoft_Xna_Framework_Graphics_SpriteSortMode_Microsoft_Xna_Framework_Graphics_BlendState_Microsoft_Xna_Framework_Graphics_SamplerState_Microsoft_Xna_Framework_Graphics_DepthStencilState_Microsoft_Xna_Framework_Graphics_RasterizerState_Microsoft_Xna_Framework_Graphics_Effect_System_Nullable_Microsoft_Xna_Framework_Matrix__) so the graphics device is set to a state ready to draw.  [SpriteBatch.End](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End) must always be called when finished rendering with the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).  When the [End](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End)` method is called, it is at this point that the batched draw calls are submitted to the GPU for rendering.
+When drawing with MonoGame, the graphics device needs to be prepared and told that it is going to receive data to pass to the GPU to render. When using the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) for rendering, we do this by using the [**SpriteBatch.Begin**](xref:Microsoft_Xna_Framework_Graphics_SpriteBatch_Begin_Microsoft_Xna_Framework_Graphics_SpriteSortMode_Microsoft_Xna_Framework_Graphics_BlendState_Microsoft_Xna_Framework_Graphics_SamplerState_Microsoft_Xna_Framework_Graphics_DepthStencilState_Microsoft_Xna_Framework_Graphics_RasterizerState_Microsoft_Xna_Framework_Graphics_Effect_System_Nullable_Microsoft_Xna_Framework_Matrix__) method. We can't use the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method without first using the [**SpriteBatch.Begin**](xref:Microsoft_Xna_Framework_Graphics_SpriteBatch_Begin_Microsoft_Xna_Framework_Graphics_SpriteSortMode_Microsoft_Xna_Framework_Graphics_BlendState_Microsoft_Xna_Framework_Graphics_SamplerState_Microsoft_Xna_Framework_Graphics_DepthStencilState_Microsoft_Xna_Framework_Graphics_RasterizerState_Microsoft_Xna_Framework_Graphics_Effect_System_Nullable_Microsoft_Xna_Framework_Matrix__) so the graphics device is set to a state ready to draw.  [**SpriteBatch.End**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End) must always be called when finished rendering with the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).  When the [**End**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End)` method is called, it is at this point that the batched draw calls are submitted to the GPU for rendering.
 
-In the above example, we use the [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method with the following parameters
+In the above example, we use the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method with the following parameters
 
 | Parameter  | Type        | Description                                                                                                       |
 | ---------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
-| *texture*  | [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D) | The [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D) to draw                                                                                           |
-| *position* | [Vector2](xref:Microsoft.Xna.Framework.Vector2)   | The xy-coordinate position to draw the texture at. The origin point being the top-left corner of the image.       |
-| *color*    | [Color](xref:Microsoft.Xna.Framework.Color)     | The color mask (tint) to apply to the image drawn. Specifying [Color.White](xref:Microsoft.Xna.Framework.Color.White) will render the texture with no tint. |
+| *texture*  | [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) | The [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) to draw                                                                                           |
+| *position* | [**Vector2**](xref:Microsoft.Xna.Framework.Vector2)   | The xy-coordinate position to draw the texture at. The origin point being the top-left corner of the image.       |
+| *color*    | [**Color**](xref:Microsoft.Xna.Framework.Color)     | The color mask (tint) to apply to the image drawn. Specifying [**Color.White**](xref:Microsoft.Xna.Framework.Color.White) will render the texture with no tint. |
 
 Try adjusting the position and color parameters to see how they can affect the image being drawn.
 
-In MonoGame, the xy-coordinate space on the screen begins at (0, 0) in the top left corner, with the x-coordinate increasing to the right, and the y-coordinate increasing downward. Knowing this, let's try drawing the logo centered on the game window. To do this, we would first need to know the xy-coordinate position of the center of the game window. We can get this information from the [Window.ClientBounds](xref:Microsoft.Xna.Framework.GameWindow.ClientBounds) property provided by the [Game](xref:Microsoft.Xna.Framework.Game) class.
+In MonoGame, the xy-coordinate space on the screen begins at (0, 0) in the top left corner, with the x-coordinate increasing to the right, and the y-coordinate increasing downward. Knowing this, let's try drawing the logo centered on the game window. To do this, we would first need to know the xy-coordinate position of the center of the game window. We can get this information from the [**Window.ClientBounds**](xref:Microsoft.Xna.Framework.GameWindow.ClientBounds) property provided by the [**Game**](xref:Microsoft.Xna.Framework.Game) class.
 
-[Window.ClientBounds](xref:Microsoft.Xna.Framework.GameWindow.ClientBounds) has both an `X` and `Y` property that represent the top-left coordinates of the game window (0, 0). It also `Width` and `Height` properties that represent the width and height of the game window in pixels. Knowing this, we only need to get half of the width and height to know the xy-coordinate position of the center of the game window. Let's update our draw method to use this information, adjust the [Draw](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method call to the following
+[**Window.ClientBounds**](xref:Microsoft.Xna.Framework.GameWindow.ClientBounds) has both an `X` and `Y` property that represent the top-left coordinates of the game window (0, 0). It also `Width` and `Height` properties that represent the width and height of the game window in pixels. Knowing this, we only need to get half of the width and height to know the xy-coordinate position of the center of the game window. Let's update our draw method to use this information, adjust the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method call to the following
 
 ```cs
 _spriteBatch.Draw(_logo, new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height) * 0.5f, Color.White);
 ```
 
 > [!TIP]  
-> In the example above, we multiply the [Vector2](xref:Microsoft.Xna.Framework.Vector2) created by `0.5f` to half the value instead of dividing it by `2.0f`. If you're not used to seeing this, it might seem strange at first, but it's actually an optimization technique. CPUs are able to perform multiplication operations much faster than division operations and reading `* 0.5f` is easily understood to be the same thing as `/ 2.0f` when reading.
+> In the example above, we multiply the [**Vector2**](xref:Microsoft.Xna.Framework.Vector2) created by `0.5f` to half the value instead of dividing it by `2.0f`. If you're not used to seeing this, it might seem strange at first, but it's actually an optimization technique. CPUs are able to perform multiplication operations much faster than division operations and reading `* 0.5f` is easily understood to be the same thing as `/ 2.0f` when reading.
 
 We're now telling the position to be a half the width and height of the client bounds. If we run the game now, the logo should be drawn at the center of the game window correct? Well, not exactly. If you run the game now, it will look similar to the following:
 
@@ -159,7 +159,7 @@ This offsets the position so that it correctly centers the image to the game win
 
 <figure><img src="./images/logo-centered.png" alt="Figure 4-9: The MonoGame logo drawn centered on the game window."><figcaption><p><strong>Figure 4-9: The MonoGame logo drawn centered on the game window.</strong></p></figcaption></figure>
 
-While this works, this may not be the best way to do it. Let's explore why. The [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method contains other overloads that accept more parameters. Let's change the [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method call to use the one with all parameters. Adjust the code to the following:
+While this works, this may not be the best way to do it. Let's explore why. The [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method contains other overloads that accept more parameters. Let's change the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method call to use the one with all parameters. Adjust the code to the following:
 
 ```cs
 _spriteBatch.Draw(
@@ -176,18 +176,18 @@ _spriteBatch.Draw(
   0.0f);              // layerDepth
 ```
 
-Changing the [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method call to this overload will render it the same as before, centered on the game window, only now we can see all of the parameters available. The parameters for this [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) overload are
+Changing the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method call to this overload will render it the same as before, centered on the game window, only now we can see all of the parameters available. The parameters for this [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) overload are
 
 | Parameter         | Type            | Description                                                                                                                                                                                                                                                                                          |
 | ----------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| *texture*         | [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)     | The [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D) to draw                                                                                                                                                                                                                                                                              |
-| *position*        | [Vector2](xref:Microsoft.Xna.Framework.Vector2)       | The xy-coordinate position to draw the texture at. The origin point being the top-left corner of the image.                                                                                                                                                                                          |
-| *sourceRectangle* | [Rectangle](xref:Microsoft.Xna.Framework.Rectangle)     | An optional region within the texture to be rendered in order to draw only a portion of the texture. Specifying `null` will render the entire texture.                                                                                                                                               |
-| *color*           | [Color](xref:Microsoft.Xna.Framework.Color)         | The color mask (tint) to apply to the image drawn. Specifying [Color.White](xref:Microsoft.Xna.Framework.Color.White) will render the texture with no tint.                                                                                                                                                                                    |
+| *texture*         | [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D)     | The [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) to draw                                                                                                                                                                                                                                                                              |
+| *position*        | [**Vector2**](xref:Microsoft.Xna.Framework.Vector2)       | The xy-coordinate position to draw the texture at. The origin point being the top-left corner of the image.                                                                                                                                                                                          |
+| *sourceRectangle* | [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle)     | An optional region within the texture to be rendered in order to draw only a portion of the texture. Specifying `null` will render the entire texture.                                                                                                                                               |
+| *color*           | [**Color**](xref:Microsoft.Xna.Framework.Color)         | The color mask (tint) to apply to the image drawn. Specifying [**Color.White**](xref:Microsoft.Xna.Framework.Color.White) will render the texture with no tint.                                                                                                                                                                                    |
 | *rotation*        | `float`         | The amount of rotation, in radians, to apply to the texture when rendering. Specifying `0.0f` will render the image with no rotation.                                                                                                                                                                |
-| *origin*          | [Vector2](xref:Microsoft.Xna.Framework.Vector2)       | The xy-coordinate origin point of the texture when rendering. This will affect the offset of the texture when rendered as well being the origin in which the texture is rotated around and scaled from.                                                                                              |
+| *origin*          | [**Vector2**](xref:Microsoft.Xna.Framework.Vector2)       | The xy-coordinate origin point of the texture when rendering. This will affect the offset of the texture when rendered as well being the origin in which the texture is rotated around and scaled from.                                                                                              |
 | *scale*           | `float`         | The amount to scale the image across the x- and y-axes. Specifying `1.0f` will render the image at its default size with no scaling.                                                                                                                                                                 |
-| *effects*         | [SpriteEffects](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects) | A [SpriteEffects](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects) enum value to that specifies if the texture should be rendered flipped across the horizontal axis, the vertical axis, or both axes.                                                                                                                                                |
+| *effects*         | [**SpriteEffects**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects) | A [**SpriteEffects**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects) enum value to that specifies if the texture should be rendered flipped across the horizontal axis, the vertical axis, or both axes.                                                                                                                                                |
 | *layerDepth*      | `float`         | Specifies the depth at which the texture is rendered. Textures with a higher layer depth value are drawn on top of those with a lower layer depth value. **Note: This value will only apply when using `SpriteSortMode.FrontToBack` or \`SpriteSortMode.BackToFront. We'll cover this in a moment.** |
 
 Let's adjust the rotation of the texture when it draws so that it is rotation 90°, making it vertical instead of horizontal. Rotation, however, has to be specified in radians, not degrees. We can use the built-in math library in MonoGame to convert from 90° to radians by calling `MathHelper.ToRadians`. Update the code to the following
@@ -236,7 +236,7 @@ In the code above, we have adjust the *origin* parameter to use the center point
 
 ## Drawing Texture Regions
 
-Above, we saw the full parameter list for drawing a texture using [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)). One of those parameters was called *sourceRectangle*. So far, we've just set this parameter to `null`, which specifies that the full texture should be rendered. However, we can make use of the *sourceRectangle* parameter to specify a region within the texture itself to draw instead of drawing the full texture.
+Above, we saw the full parameter list for drawing a texture using [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)). One of those parameters was called *sourceRectangle*. So far, we've just set this parameter to `null`, which specifies that the full texture should be rendered. However, we can make use of the *sourceRectangle* parameter to specify a region within the texture itself to draw instead of drawing the full texture.
 
 For instance, take the logo image we've been using. We can break it down into two distinct regions; the logo and the MonoGame word mark.
 
@@ -244,7 +244,7 @@ For instance, take the logo image we've been using. We can break it down into tw
 
 We can see from this image that the actual logo starts at position (0, 0) and is 128px wide and 128px tall. Likewise, the MonoGame word mark starts at position (150, 34) and is 458px wide and 58px tall. Knowing the starting position and the width and height of the region gives us a defined rectangle that we can use as the *sourceRectangle*.
 
-Let's see this in action by only drawing the MonoGame logo icon part of the texture. First, after the call to the [Clear](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)) method, add the following variable:
+Let's see this in action by only drawing the MonoGame logo icon part of the texture. First, after the call to the [**Clear**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)) method, add the following variable:
 
 ```cs
 Rectangle iconSourceRect = new Rectangle(0, 0, 128, 128);
@@ -269,7 +269,7 @@ _spriteBatch.Draw(
     0.0f);              // layerDepth
 ```
 
-The changes you just made first added a new [Rectangle](xref:Microsoft.Xna.Framework.Rectangle) value called `iconSourceRect` that represents the dimensions of the MonoGame logo icon region within the texture. Then the *sourceRectangle* parameter of the `_spriteBatch.Draw` was updated to use the new `iconSourceRect` value. Notice that we are still telling it to draw the `_logo` for the *texture*, we've just supplied it with a source rectangle this time. Finally, the *origin* parameter was updated to use the width and height of the `iconSourceRect`. Since the overall dimensions of what we'll be rendering has changed due to supplying a source rectangle, the origin needs to be adjusted to those dimensions as well.
+The changes you just made first added a new [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) value called `iconSourceRect` that represents the dimensions of the MonoGame logo icon region within the texture. Then the *sourceRectangle* parameter of the `_spriteBatch.Draw` was updated to use the new `iconSourceRect` value. Notice that we are still telling it to draw the `_logo` for the *texture*, we've just supplied it with a source rectangle this time. Finally, the *origin* parameter was updated to use the width and height of the `iconSourceRect`. Since the overall dimensions of what we'll be rendering has changed due to supplying a source rectangle, the origin needs to be adjusted to those dimensions as well.
 
 If you run the game now, you should see the following:
 
@@ -283,8 +283,8 @@ Let's review what you accomplished in this chapter:
 
 - You added an image file to the content project using the MGCB Editor
 - You learned about the content pipeline workflow and how MonoGame automates the process for you.
-- You used the [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) class to draw a texture.
-- You learned the different parameters available when using the [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method.
+- You used the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) class to draw a texture.
+- You learned the different parameters available when using the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method.
 - You learned the importance of the *origin* parameter in relation to the *position*, *rotation*, and *scale* parameters when rendering a texture.
 - You learned how to draw a specific sub region within a texture by using the *sourceRectangle* parameter.
 
@@ -303,9 +303,9 @@ The content pipeline was briefly discussed in this chapter, and only touched on 
 
     > The two main ways to load a texture in MonoGame are:
     > 
-    > 1. Directly from file using [Texture2D.FromFile](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)).   This method requires manually setting up file copying, offers no pre-processing benefits, and can have a higher memory footprint.
+    > 1. Directly from file using [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)).   This method requires manually setting up file copying, offers no pre-processing benefits, and can have a higher memory footprint.
     >  
-    > 2. Using the content pipeline with [Content.Load<Texture2D>](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)).  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.
+    > 2. Using the content pipeline with [**Content.Load<Texture2D>**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)).  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.
     </details><br />
 
 2. During the MonoGame content pipeline workflow, assets are compiled and then copied to the project output directory.  What is responsible for performing this task?
@@ -317,12 +317,12 @@ The content pipeline was briefly discussed in this chapter, and only touched on 
     
     </details><br />
 
-3. Define as many of the parameters for the [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method as you can remember and what the purpose of them are.
+3. Define as many of the parameters for the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method as you can remember and what the purpose of them are.
 
     <details>
     <summary>Question 3 Answer</summary>
 
-    > - `texture`: The [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D) to draw.
+    > - `texture`: The [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) to draw.
     > - `position`: The position to draw the texture at.
     > - `sourceRectangle`: Optional region within the texture to render.
     > - `color`: The color mask (tint) to apply
