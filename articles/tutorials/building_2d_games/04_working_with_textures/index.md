@@ -23,7 +23,7 @@ For instance, to load an image file directly at runtime, you would need to
 On the other side of this coin, MonoGame offers the **Content Pipeline**; a workflow for managing assets, such as image files.  The workflow is made up of a set of tools and utilities that are automatically added by default when you create a new MonoGame project using the MonoGame templates.  To use this workflow, you need to:
 
 1. Add the image file to your content project (*Content.mgcb* file) using the MGCB Editor.
-2. Perform a project build. Doing this, the *MonoGame.Content.Builder.Tasks* NuGet reference will compile the assets defined in the content project and automatically copy them to the game project build directory.
+2. Perform a project build. Doing this, the *MonoGame.Content.Builder.Tasks* NuGet reference will compile the assets defined in the content project for the target platform and automatically copy them to the game project build directory.
 3. Load the compiled asset at runtime using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
 
 The following image illustrates this workflow:
