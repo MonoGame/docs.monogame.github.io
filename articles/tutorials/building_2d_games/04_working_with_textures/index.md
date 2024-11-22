@@ -7,7 +7,7 @@ Textures are images that are used in your game to represent the visual graphics 
 
 ## Loading a Texture
 
-Loading textures, like any other asset in MonoGame, can be done by loading the asset file directly at runtime in game, or it can be loaded through the *content pipeline*.  Both of these methods are two sides of the same coin and there are trade offs to each approach.
+Loading textures, like any other asset in MonoGame, can be done by loading the asset file directly at runtime in game, or it can be loaded through the **Content Pipeline**.  Both of these methods are two sides of the same coin and there are trade offs to each approach.
 
 For instance, to load an image file directly at runtime, you would need to
 
@@ -18,9 +18,9 @@ For instance, to load an image file directly at runtime, you would need to
 > [!IMPORTANT] 
 > A big disadvantage to loading an image file as a texture directly, is when that when it loads it, it does so in its compressed format such as *.png* or *.jpg*.  These compression formats are not understood by a Graphics Processing Unit (GPU); they will need to be decompressed into raw bytes as a format the GPU does understand before it can store the data.  Doing this can potentially leave a larger memory footprint for your assets.  You will also need to handle how different compression formats work on the platform you are targeting such as desktops, mobile, and consoles.  
 > 
-> Alternatively, as we'll explore below, using the **content pipeline** handles this for you automatically.
+> Alternatively, as we'll explore below, using the **Content Pipeline** handles this for you automatically.
 
-On the other side of this coin, MonoGame offers the *content pipeline*; a workflow for managing assets, such as image files.  The workflow is made up of a set of tools and utilities that are automatically added by default when you create a new MonoGame project using the MonoGame templates.  To use this workflow, you need to:
+On the other side of this coin, MonoGame offers the **Content Pipeline**; a workflow for managing assets, such as image files.  The workflow is made up of a set of tools and utilities that are automatically added by default when you create a new MonoGame project using the MonoGame templates.  To use this workflow, you need to:
 
 1. Add the image file to your content project (*Content.mgcb* file) using the MGCB Editor.
 2. Perform a project build. Doing this, the *MonoGame.Content.Builder.Tasks* NuGet reference will compile the assets defined in the content project and automatically copy them to the game project build directory.
