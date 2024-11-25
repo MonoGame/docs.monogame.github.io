@@ -80,13 +80,56 @@ After adding the *logo.png* file, you're project node should look similar to the
 
 Save the changes by pressing `CTRL+S`, or by clicking the *Save* icon in the top tool bar, or by choosing *File > Save* from the top menu. When you save the changes made, the MGCB Editor will write updates to the *Content.mgcb* file in your project to reflect the changes made. After saving, you can close the MGCB Editor.
 
+### Understanding Content Paths
+The folder structure you create in the MGCB Editor directly affects how you load content in your game. When you perform a build of your game project, the *MonoGame.Content.Builder.Tasks* NuGet package reference will:
+
+1. Compile the image into an optimized format in the **content project's** output directory (typically *ProjectRoot/Content/bin/Platform/Content*) as an *.xnb* file.
+2. Copy the compiled assets to your **game's** output directory (typically *ProjectRoot/bin/Debug/net8.0/Content* or *ProjectRoot/bin/Release/net8.0/Content*). 
+
+For example, if your content project contains:
+```sh
+Content/
+  ├── images/
+  │   └── logo.png
+  └── sounds/
+      └── music.mp3
+```
+
+then when the tasks first compiles the assets, they will be output to:
+
+```sh
+ProjectRoot/
+  └── Content/
+      └── bin/
+          └── DesktopGL/
+              └── Content/
+                  ├── images/
+                  │   └── logo.xnb
+                  └── sounds/
+                      └── music.xnb
+```
+
+Then after compiling them and copying them to the game projects output directory, it will look like the following:
+
+```sh
+ProjectRoot/
+  └── bin/
+      └── Debug/
+          └── net8.0/
+              └── Content/
+                  ├── images/
+                  │   └── logo.xnb
+                  └── sounds/
+                      └── music.xnb
+```
+
+When the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) is used to load these assets, it looks for them relative to its [**RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory) property. By default, this is set to `"Content"` in the `Game1` constructor to match where the compiled assets are copied. The path used to load an asset must match its location relative to the [**RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory), minus any extension. For example, to load the above assets you the paths would be `"images/logo"` and `"sounds/music"`.
+
 ### Loading the Image Using [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager)
 
-With the image now added to the content project, whenever a build of our game project is performed, the content pipeline will automatically handle compiling the image into an optimized format and ensuring that the compiled asset is copied to the final game project build directory.  This process is handled by the *MonoGame.Content.Builder.Tasks* NuGet package reference.  Now we need to update our game to load the asset.
+With the image now added to the content project, now we need to update our game to load the asset. First, open the *Game1.cs* file in your project and add 
 
-First, open the *Game1.cs* file in your project and add
-
-```cs
+```cs 
 private Texture2D _logo;
 ```
 
@@ -98,9 +141,12 @@ Next, locate the [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent
 _logo = Content.Load<Texture2D>("images/logo");
 ```
 
-This uses the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) object provided by the [**Content**](xref:Microsoft.Xna.Framework.Game.Content) property of the [**Game**](xref:Microsoft.Xna.Framework.Game) class to load the compiled image file.  We use the [**Load<T>**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)) method where `T` is the content type that we are loading, in this case a [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D).  The parameter we pass to it is the *asset name*, which is a string representation of the path to the content to load, without any extensions.  The path used as the asset name is also relative to the value of [**Content.RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory) which was set to `Content` in the `Game1` constructor.  This means the asset name of our logo image located at *Content/images/logo.png* is `images/logo`.
+This uses the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) objected provided by the [**Content**](xref:Microsoft.Xna.Framework.Game.Content) property of the [**Game**](xref:Microsoft.Xna.Framework.Game) class to load the compiled image file.  The [**Load&lt;T&gt;**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)) method takes two parts:
 
-IF you run the game now, the image will be loaded as a texture, but all we'll see is the empty cornflower blue game window.  Next, we need to tell our game to draw the texture.
+1. `T` Type Reference: The content type we are loading (in this case [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D)).
+2. `assetName` Parameter: A string path that matches the content path of the asset to load.  As mentioned in the [Understanding Content Paths](#understanding-content-paths) section, the content path is relative to the [**ContentManager.RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory), minus the extension.  Since we added our image to the *images* folder in the content project, the content path will be `"images/logo"`.
+
+If you run the game now, the image will be loaded as a texture, but all we'll see is the empty cornflower blue game window.  Next, we need to tell our game to draw the texture.
 
 ## Drawing a Texture
 
