@@ -35,7 +35,7 @@ For the same amount of steps, you also get the benefit of the image file being p
 > [!NOTE]
 > For more information on the benefits of compiling assets and what optimizations it can offer, see the [Content Pipeline](../../../getting_started/content_pipeline/index.md) documentation.
 
-For this tutorial series, we're going to focus on using the content pipeline workflow to loading assets, including images.  Doing this will get you as the developer accustomed to using the content pipeline tools and also give the benefits of having assets precompiled to optimized formats.
+For this tutorial series, we're going to focus on using the content pipeline workflow to load assets, including images.  Doing this will get you as the developer accustomed to using the content pipeline tools and also give the benefits of having assets precompiled to optimized formats.
 
 To get started, first we need an image to load.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your on your computer, such as your desktop.
 
