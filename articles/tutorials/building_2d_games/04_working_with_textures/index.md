@@ -174,7 +174,7 @@ _spriteBatch.Draw(_logo, Vector2.Zero, Color.White);
 _spriteBatch.End();
 ```
 
-These lines initialize the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), draw the logo at [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero) (0,0), and complete the batch. Run the game to see the logo appear in the window's upper-left corner:
+These lines initialize the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), draw the logo at [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero) (0, 0), and complete the batch. Run the game to see the logo appear in the window's upper-left corner:
 
 <figure><img src="./images/logo-from-file.png" alt="Figure 4-7: The MonoGame logo drawn to the game window."><figcaption><p><strong>Figure 4-7: The MonoGame logo drawn to the game window.</strong></p></figcaption></figure>
 
