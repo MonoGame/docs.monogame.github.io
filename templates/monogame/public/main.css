@@ -213,3 +213,9 @@ p img {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
 }
+
+/* Resolves issue where xref links in table columns will break and wrap text in
+the middle of the word */
+td > .xref {
+  word-break: normal;
+}
