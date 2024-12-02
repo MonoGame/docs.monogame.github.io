@@ -3,7 +3,7 @@ title: "Chapter 04: Working with Textures"
 description: In this chapter, we'll look at the process of loading image files as textures using the MonoGame content pipeline and rendering them using the SpriteBatch.
 ---
 
-Textures are images that are used in your game to represent the visual graphics to the player, commonly referred to as *Sprites*.  Before being able to render them with the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), you first need to create or load the texture.  We'll discuss creating a texture in code later in this series. For now, we're going to look at loading existing image files as textures and then rendering them with the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
+Textures are images that are used in your game to represent the visual graphics to the player, commonly referred to as *Sprites*.  Before being able to render them with the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), you first need to create or load the texture.  We'll discuss creating a texture in code later in this series. For now, we are going to look at loading existing image files as textures and then rendering them with the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
 ## Loading a Texture
 
@@ -35,7 +35,7 @@ For the same amount of steps, you also get the benefit of the image file being p
 > [!NOTE]
 > For more information on the benefits of compiling assets and what optimizations it can offer, see the [Content Pipeline](../../../getting_started/content_pipeline/index.md) documentation.
 
-For this tutorial series, we're going to focus on using the content pipeline workflow to load assets, including images.  Doing this will get you as the developer accustomed to using the content pipeline tools and also give the benefits of having assets precompiled to optimized formats.
+For this tutorial series, we are going to focus on using the content pipeline workflow to load assets, including images.  Doing this will get you as the developer accustomed to using the content pipeline tools and also give the benefits of having assets precompiled to optimized formats.
 
 To get started, first we need an image to load.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your on your computer, such as your desktop.
 
@@ -74,7 +74,7 @@ For the purposes of this tutorial, choose the *Copy the file to the directory* o
 - **Copy the file to the directory**: Choosing this will make a literal copy of the selected file and put the copy inside the Content directory of your project.  This means any changes in teh original source file will not be reflected in the copy.
 - **Add a link**: Choosing this will instead add a reference to the source file without making a copy.  This means changes made in teh source file will be reflected on each build.  However, the link is stored as a relative link, with the path being relative to the *Content.mgcb* file.  So if the source file moves, or you move the project, then you'll need to re-add the link.
 
-After adding the *logo.png* file, you're project node should look similar to the following:
+After adding the *logo.png* file, your project node should look similar to the following:
 
 <figure><img src="./images/mgcb-logo-added.png" alt="Figure 4-6: Logo image added to the MGCB Editor"><figcaption><p><strong>Figure 4-6: Logo image added to the MGCB Editor</strong></p></figcaption></figure>
 
@@ -146,7 +146,7 @@ This uses the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentM
 1. `T` Type Reference: The content type we are loading (in this case [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D)).
 2. `assetName` Parameter: A string path that matches the content path of the asset to load.  As mentioned in the [Understanding Content Paths](#understanding-content-paths) section, the content path is relative to the [**ContentManager.RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory), minus the extension.  Since we added our image to the *images* folder in the content project, the content path will be `"images/logo"`.
 
-If you run the game now, the image will be loaded as a texture, but all we'll see is the empty cornflower blue game window.  This is because we're only loading it and not telling the game to draw it.  
+If you run the game now, the image will be loaded as a texture, but all we'll see is the empty cornflower blue game window.  This is because we are only loading it and not telling the game to draw it.  
 
 ## Drawing a Texture
 
@@ -197,13 +197,13 @@ _spriteBatch.Draw(_logo, new Vector2(Window.ClientBounds.Width, Window.ClientBou
 ```
 
 > [!TIP]  
-> In the example above, we multiply the [**Vector2**](xref:Microsoft.Xna.Framework.Vector2) created by `0.5f` to halve the value instead of dividing it by `2.0f`. If you're not used to seeing this, it might seem strange at first, but it's actually an optimization technique. CPUs are able to perform multiplication operations much faster than division operations and reading `* 0.5f` is easily understood to be the same thing as `/ 2.0f` when reading.
+> In the example above, we multiply the [**Vector2**](xref:Microsoft.Xna.Framework.Vector2) created by `0.5f` to halve the value instead of dividing it by `2.0f`. If you are not used to seeing this, it might seem strange at first, but it is actually an optimization technique. CPUs are able to perform multiplication operations much faster than division operations and reading `* 0.5f` is easily understood to be the same thing as `/ 2.0f` when reading.
 
 We have now set the position to half the window's dimensions, which should center the logo. Let's run the game to see the result.
 
 <figure><img src="./images/logo-off-center.png" alt="Figure 4-8: Attempting to draw the MonoGame logo centered on the game window."><figcaption><p><strong>Figure 4-8: Attempting to draw the MonoGame logo centered on the game window.</strong></p></figcaption></figure>
 
-The logo is not centered as we expected it to be.  Even though we set the *position* parameter to the center of the game window, the texture starts drawing from its *origin*, which is the upper-left corner in this example.  So when we set the position to the screen's center, we're actually placing the logo's upper-left corner at that point, not its center.
+The logo is not centered as we expected it to be.  Even though we set the *position* parameter to the center of the game window, the texture starts drawing from its *origin*, which is the upper-left corner in this example.  So when we set the position to the screen's center, we are actually placing the logo's upper-left corner at that point, not its center.
 
 One way to correct this is to subtract half the width and height of the texture from the game window's center position like so:
 
@@ -220,7 +220,7 @@ This offsets the position so that it correctly centers the image to the game win
 
 <figure><img src="./images/logo-centered.png" alt="Figure 4-9: The MonoGame logo drawn centered on the game window."><figcaption><p><strong>Figure 4-9: The MonoGame logo drawn centered on the game window.</strong></p></figcaption></figure>
 
-While this works, there's a better approach.  There is an a different overload of the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method that provides additional parameters for complete control over the draw operation. Update your code to: 
+While this works, there is a better approach.  There is an a different overload of the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method that provides additional parameters for complete control over the draw operation. Update your code to: 
 
 ```cs
 _spriteBatch.Draw(
