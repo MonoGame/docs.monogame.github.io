@@ -220,7 +220,7 @@ This offsets the position so that it correctly centers the image to the game win
 
 <figure><img src="./images/logo-centered.png" alt="Figure 4-9: The MonoGame logo drawn centered on the game window."><figcaption><p><strong>Figure 4-9: The MonoGame logo drawn centered on the game window.</strong></p></figcaption></figure>
 
-While this works, there's a better approach.  There is an a different overload of the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method that provides additional parameters. Update your code to: 
+While this works, there's a better approach.  There is an a different overload of the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method that provides additional parameters for complete control over the draw operation. Update your code to: 
 
 ```cs
 _spriteBatch.Draw(
@@ -237,7 +237,7 @@ _spriteBatch.Draw(
   0.0f);              // layerDepth
 ```
 
-Using this overload of [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) produces the same centered result, but exposes all available parameters. Here's what each parameter does:
+This overload produces the same centered result but exposes all parameters that control rendering for a draw operation.  Unlike engines that abstract much of these details away, MonoGame provides explicit control for a flexible custom rendering pipeline.  Here is what each parameter does:
 
 | Parameter         | Type            | Description                                                                                                                                                                                                                                                                                          |
 | ----------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
