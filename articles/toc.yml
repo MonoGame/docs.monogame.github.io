@@ -118,6 +118,8 @@
           href: tutorials/building_2d_games/02_getting_started/
         - name: "03: The Game1 File"
           href: tutorials/building_2d_games/03_the_game1_file/
+        - name: "04: Working with Textures"
+          href: tutorials/building_2d_games/04_working_with_textures/          
 - name: Console Access
   href: console_access.md
 - name: Help and Support
