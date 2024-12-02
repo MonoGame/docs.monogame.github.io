@@ -2,7 +2,7 @@
 
 This repository contains the documentation for MonoGame.
 
-## Building Form Source
+## Building From Source
 
 The MonoGame website is built using the .NET tool [DocFX](https://dotnet.github.io/docfx/) to generate the base MonoGame documentation and the API reference documentation.  This means you will need the following prerequisites to build locally from source
 
