@@ -24,8 +24,9 @@ This documentation will introduce game development concepts using the MonoGame f
 | [01: What Is Monogame](01_what_is_monogame/index.md)                     | The history of MonoGame and what features it provides developers to create games.                                            |              |
 | [02: Getting Started](02_getting_started/index.md)                       | Setup with MonoGame by preparing your environment for dotnet development and setting up Visual Studio Code as your IDE.      |              |
 | [03: The Game1 File](03_the_game1_file/index.md)                         | Explore the contents of the Game1 file generated when a new MonoGame game project is created.                                |              |
-| [04: Working with Textures](04_working_with_textures/index.md)           | The process of loading image files as textures using the MonoGame content pipeline and rendering them using the SpriteBatch. |              |
-| [05: Optimize Texture Rendering](05_optimize_texture_rendering/index.md) |                                                                                                                              |              |
+| [04: Game Library](04_game_library/index.md)                             | Create a class library project to house reusable game components that we'll develop throughout this tutorial series.         |              |
+| [05: Working with Textures](05_working_with_textures/index.md)           | The process of loading image files as textures using the MonoGame content pipeline and rendering them using the SpriteBatch. |              |
+| [06: Optimize Texture Rendering](06_optimize_texture_rendering/index.md) |                                                                                                                              |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 

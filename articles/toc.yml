@@ -118,10 +118,12 @@
           href: tutorials/building_2d_games/02_getting_started/
         - name: "03: The Game1 File"
           href: tutorials/building_2d_games/03_the_game1_file/
-        - name: "04: Working with Textures"
-          href: tutorials/building_2d_games/04_working_with_textures/
-        - name: "05: Sprite Batching"
-          href: tutorials/building_2d_games/05_optimize_texture_rendering/
+        - name: "04: Game Library"
+          href: tutorials/building_2d_games/04_game_library/
+        - name: "05: Working with Textures"
+          href: tutorials/building_2d_games/05_working_with_textures/
+        - name: "06: Optimize Texture Rendering"
+          href: tutorials/building_2d_games/06_optimize_texture_rendering/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
