@@ -238,18 +238,19 @@ public class Sprite
 ```
 
 ### Properties
-- The first property of the `Sprite` class is the `Texture` property.  This is a get-only property since there is no design reason it should ever change once the `Sprite` is created.
-- The `SourceRectangle` is a public *getter* but the setter is *protected*.  This will allow us to extend the use of this property later when we explore creating animated sprites.
-- The `Color`, `Rotation`, `Scale`, `Origin`, `Effects`, and `LayerDepth` properties encapsulate the parameters of the [**SpriteBatch.Draw**]() method, each set to the default values that would be given when that method is called.
-- The `Width` and `Height` properties are get-only properties that are calculated based on the width and height of the `SourceRectangle` property multiplied by the scale factor.  This automatically accounts for scaling, making it easier to perform calculations like collision detection or positioning without manually apply the scale factor each time.
+The `Sprite` class contains the following properties:
 
+- The `Texture` property is a get-only property since there is no design reason it should even change once a `Sprite` instance is created.
+- The `SourceRectangle` property has a public getter while the setter is *protected*.  This is setting the stage to extend the `Sprite` class later when we explore creating animated sprites.
+- The `Color`, `Rotation`, `Scale`, `Origin`, `Effects`, and `LayerDepth` properties encapsulate the parameters of the [**SpriteBatch.Draw**]() method; each property set to the default value that would be given when the method is called.
+- The `Width` and `Height` properties are get-only properties that are calculated based on the width and height of the `SourceRectangle` property, multiplied by the scale factor.  This automatically accounts for scaling, making it easier to perform calculations like collision detection or positioning without manually applying the scale factor each time.
 
 ### Constructor
-The constructor specifies that it requires a `Texture2D` and a `Rectangle` value be given, with these representing the source texture (texture atlas) and the boundary within the atlas where the sprite is.  Before storing the references, checks are made to ensure:
+The constructor requires two parameters, a [**Texture2D**]() and a [**Rectangle**](), representing the source texture (texture atlas) and the boundry within the atlas where the sprite is.  Before storing the references, checks are made to ensure:
 
-1. The `Texture2D` given is not null
-2. The `Texture2D` given was not previously disposed of
-3. The `Rectangle` given is a boundary that is contained within the `Texture2D`.
+- The [**Texture2D**]() given is not null
+- The [**Texture2D**]() given was not previously disposed of
+- The [**Rectangle**]() given is a boundary that is contained within the [**Texture2D**]().
 
 You might think that adding these checks are pointless, because when would you ever pass in a null or disposed texture, or provide a source rectangle that is out of bounds of the texture bounds. Of course you would never do this right?  Well, we're all human and sometimes we make mistakes.  It's always best to check yourself to be sure before you publish your game with bugs that could have been avoided.
 
@@ -259,6 +260,6 @@ You might think that adding these checks are pointless, because when would you e
 > The `Debug.Assert` lines of code are also removed completely when you compile the project in a Release build, so you don't have to worry about debug specific code making its way into your final release.
 
 ### The Draw Method
-Finally, we have the `Draw` method.  This method is responsible for rendering the sprite.  It requires a [**SpriteBatch**]() as parameter which will be the [**SpriteBatch**]() instance used to render the sprite, and a `Vector2` value that represents the position to render the sprite at. Then the [**SpriteBatch.Draw**]() method is executed using the [**SpriteBatch**]() given, using the fields and properties of the `Sprite` as the parameters, to render it at the position specified.
+The `Draw` method is responsible for rendering the sprite.  It requires two parameters, a [**SpriteBatch**]() instance used to render the sprite and a [**Vector2**]() specifying the position to render the sprite at.  Here, the [**SpriteBatch.Draw**]() method is executed using the properties of the `Sprite` as the parameters, with the [**Vector2**]() specified as the position.
 
 ## Using the `Sprite` Class
