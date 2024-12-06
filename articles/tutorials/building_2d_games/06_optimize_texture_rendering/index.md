@@ -138,10 +138,145 @@ Now that we have defined what the `Sprite` class should be, let's create it.  In
 1. Add a new folder to the *MonoGameLibrary* project named *Graphics*.
 2. Create a new file named *Sprite.cs* in that folder.
 
-> [!NOTE]
-> The *Sprite.cs* class file is placed in the *MonoGame/Graphics* directory to keep rendering-related classes organized together.  As we add more functionality to the library, we'll continue to use directories to maintain a clean structure.
+Add the following code for the foundation of the `Sprite` class to the *Sprite.cs* file:
 
-Add the following code to the *Sprite.cs* file:
+```cs
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+namespace MonoGameLibrary.Graphics;
+
+public class Sprite
+{
+
+}
+```
+
+> [!NOTE]
+> The *Sprite.cs* class file is placed in the *MonoGame/Graphics* directory and the class uses the `MonoGame.Graphics` namespace to keep rendering-related classes organized together.  As we add more functionality to the library, we'll continue to use directories and namespaces to maintain a clean structure.
+
+### Properties
+Let's start by adding the properties needed to store the sprite's rendering information:
+
+```cs
+/// <summary>
+/// Gets the source texture used when rendering this Sprite.
+/// </summary>
+public Texture2D Texture { get; }
+
+/// <summary>
+/// Gets the source rectangle that represents the region within the source texture to use
+/// when rendering this Sprite.
+/// </summary>
+public Rectangle SourceRectangle { get; protected set; }
+
+/// <summary>
+/// Gets or Sets the color tint to apply when rendering this sprite.
+/// Default value is Color.White.
+/// </summary>
+public Color Color { get; set; } = Color.White;
+
+/// <summary>
+/// Gets or Sets the amount of rotation, in radians, to apply when rendering this sprite.
+/// Sprite is rotated around the Origin.
+/// Default value is 0.0f
+/// </summary>
+public float Rotation { get; set; } = 0.0f;
+
+/// <summary>
+/// Gets or Sets the scale factor to apply to the x- and y-axes when rendering this sprite.
+/// Sprite is scaled from the Origin.
+/// Default value is Vector2.One.
+/// </summary>
+public Vector2 Scale { get; set; } = Vector2.One;
+
+/// <summary>
+/// Gets or Sets the xy-coordinate origin point, relative to the top-left corner, of this sprite.
+/// Default value is Vector2.Zero
+/// </summary>
+public Vector2 Origin { get; set; } = Vector2.Zero;
+
+/// <summary>
+/// Gets or Sets whether this sprite should be flipped horizontally, vertically, or both, when rendered.
+/// Default value is SpriteEffects.None.
+/// </summary>
+public SpriteEffects Effects { get; set; } = SpriteEffects.None;
+
+/// <summary>
+/// Gets or Sets the depth at which this sprite is rendered.
+/// Default value is 0.0f.
+/// </summary>
+public float LayerDepth { get; set; } = 0.0f;
+
+/// <summary>
+/// Gets the width of this sprite multiplied by the x-axis scale factor.
+/// </summary>
+public float Width => SourceRectangle.Width * Scale.X;
+
+/// <summary>
+/// Gets the height of this sprite, multiplied by the y-axis scale factor.
+/// </summary>
+public float Height => SourceRectangle.Height * Scale.Y;
+```
+
+The above adds the following properties to the `Sprite` class:
+
+- The `Texture` property is a get-only property since there is no design reason it should even change once a `Sprite` instance is created.
+- The `SourceRectangle` property has a public getter while the setter is *protected*.  This is setting the stage to extend the `Sprite` class later when we explore creating animated sprites.
+- The `Color`, `Rotation`, `Scale`, `Origin`, `Effects`, and `LayerDepth` properties encapsulate the parameters of the [**SpriteBatch.Draw**]() method; each property set to the default value that would be given when the method is called.
+- The `Width` and `Height` properties are get-only properties that are calculated based on the width and height of the `SourceRectangle` property, multiplied by the scale factor.  This automatically accounts for scaling, making it easier to perform calculations like collision detection or positioning without manually applying the scale factor each time.
+
+### Constructor
+Now that we have the properties defined, let's add a constructor:
+
+```cs
+/// <summary>
+/// Creates a new Sprite instance using the source texture and source rectangle provided.
+/// </summary>
+/// <param name="texture">The source texture of the sprite.</param>
+/// <param name="sourceRectangle">The source rectangle to use when rendering the sprite.</param>
+public Sprite(Texture2D texture, Rectangle sourceRectangle)
+{
+    Debug.Assert(texture is not null);
+    Debug.Assert(!texture.IsDisposed);
+
+    Texture = texture;
+    SourceRectangle = sourceRectangle;
+}
+```
+
+The constructor requires two parameters, a [**Texture2D**]() and a [**Rectangle**](), representing the source texture (texture atlas) and the boundry within the atlas where the sprite is.  Before storing the references, checks are made to ensure:
+
+- The [**Texture2D**]() given is not null
+- The [**Texture2D**]() given was not previously disposed of
+- The [**Rectangle**]() given is a boundary that is contained within the [**Texture2D**]().
+
+You might think that adding these checks are pointless, because when would you ever pass in a null or disposed texture, or provide a source rectangle that is out of bounds of the texture bounds. Of course you would never do this right?  Well, we're all human and sometimes we make mistakes.  It's always best to check yourself to be sure before you publish your game with bugs that could have been avoided.
+
+> [!TIP]  
+> Instead of throwing exceptions in the constructor when performing these checks,  `Debug.Assert` is used here.  This has a similar result as throwing an exception, except that the line of code is only ever executed when you run the code in a Debug build.  It asserts that the statement provided is true.  If the statement is false, then code execution will be paused at that line of code similar to if you add a breakpoint to debug.  This allows you to catch any issues while developing your game and running in a Debug build without needing to throw exceptions.  
+>
+> The `Debug.Assert` lines of code are also removed completely when you compile the project in a Release build, so you don't have to worry about debug specific code making its way into your final release.
+
+### Draw Method
+Finally, add the method responsible for rendering the sprite:
+
+```cs
+/// <summary>
+/// Draws this sprite using the SpriteBatch given at the position specified.
+/// </summary>
+/// <param name="spriteBatch">The SpriteBatch to use when rendering this sprite.</param>
+/// <param name="position">The xy-coordinate position to render this sprite at.</param>
+public void Draw(SpriteBatch spriteBatch, Vector2 position)
+{
+    spriteBatch.Draw(Texture, position, SourceRectangle, Color, Rotation, Origin, Scale, Effects, LayerDepth);
+}
+```
+
+The `Draw` method requires two parameters, a [**SpriteBatch**]() instance used to render the sprite and a [**Vector2**]() specifying the position to render the sprite at.  Here, the [**SpriteBatch.Draw**]() method is executed using the properties of the `Sprite` as the parameters, with the [**Vector2**]() specified as the position.
+
+Now that we have built and explained each part of the `Sprite` class, here is the complete implementation for comparison:
 
 ```cs
 using System.Diagnostics;
@@ -236,30 +371,5 @@ public class Sprite
     }
 }
 ```
-
-### Properties
-The `Sprite` class contains the following properties:
-
-- The `Texture` property is a get-only property since there is no design reason it should even change once a `Sprite` instance is created.
-- The `SourceRectangle` property has a public getter while the setter is *protected*.  This is setting the stage to extend the `Sprite` class later when we explore creating animated sprites.
-- The `Color`, `Rotation`, `Scale`, `Origin`, `Effects`, and `LayerDepth` properties encapsulate the parameters of the [**SpriteBatch.Draw**]() method; each property set to the default value that would be given when the method is called.
-- The `Width` and `Height` properties are get-only properties that are calculated based on the width and height of the `SourceRectangle` property, multiplied by the scale factor.  This automatically accounts for scaling, making it easier to perform calculations like collision detection or positioning without manually applying the scale factor each time.
-
-### Constructor
-The constructor requires two parameters, a [**Texture2D**]() and a [**Rectangle**](), representing the source texture (texture atlas) and the boundry within the atlas where the sprite is.  Before storing the references, checks are made to ensure:
-
-- The [**Texture2D**]() given is not null
-- The [**Texture2D**]() given was not previously disposed of
-- The [**Rectangle**]() given is a boundary that is contained within the [**Texture2D**]().
-
-You might think that adding these checks are pointless, because when would you ever pass in a null or disposed texture, or provide a source rectangle that is out of bounds of the texture bounds. Of course you would never do this right?  Well, we're all human and sometimes we make mistakes.  It's always best to check yourself to be sure before you publish your game with bugs that could have been avoided.
-
-> [!TIP]  
-> Instead of throwing exceptions in the constructor when performing these checks,  `Debug.Assert` is used here.  This has a similar result as throwing an exception, except that the line of code is only ever executed when you run the code in a Debug build.  It asserts that the statement provided is true.  If the statement is false, then code execution will be paused at that line of code similar to if you add a breakpoint to debug.  This allows you to catch any issues while developing your game and running in a Debug build without needing to throw exceptions.  
->
-> The `Debug.Assert` lines of code are also removed completely when you compile the project in a Release build, so you don't have to worry about debug specific code making its way into your final release.
-
-### The Draw Method
-The `Draw` method is responsible for rendering the sprite.  It requires two parameters, a [**SpriteBatch**]() instance used to render the sprite and a [**Vector2**]() specifying the position to render the sprite at.  Here, the [**SpriteBatch.Draw**]() method is executed using the properties of the `Sprite` as the parameters, with the [**Vector2**]() specified as the position.
 
 ## Using the `Sprite` Class
