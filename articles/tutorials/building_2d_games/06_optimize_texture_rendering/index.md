@@ -373,3 +373,106 @@ public class Sprite
 ```
 
 ## Using the `Sprite` Class
+With the `Sprite` class now created, let's see it in action.  Recall the illustration of the MonoGame logo we added to the game broken down into texture regions from [Chapter 05](../05_working_with_textures/index.md#texture-regions):
+
+<figure><img src="./images/logo-texture-regions.png" alt="Figure 6-2: The MonoGame logo broken down into texture regions."><figcaption><p><strong>Figure 6-2: The MonoGame logo broken down into texture regions.</strong></p></figcaption></figure>
+
+The contents of this image are similar to a texture atlas.  Within the single image it contains two separate images:
+
+- The MonoGame logo icon at (0, 0) with a width of 128px and a height of 128px.
+- The MonoGame wordmark at (150, 34) with a width of 458px and a height of 58px.
+
+Knowing this, let's adjust the code in our game to use the new `Sprite` class to create a logo and wordmark sprite from the single image.  First, open the *Game1.cs* file and add the following namespace using statement at the top:
+
+```cs
+using MonoGameLibrary.Graphics;
+```
+
+Next, locate the `_logo` instance member field declaration and add the following directly after:
+
+```cs
+// Sprite object that represents the MonoGame icon within the logo texture.
+private Sprite _monogameIcon;
+
+// Sprite object that represents the MonoGame wordmark within the logo texture.
+private Sprite _monogameWordmark;
+```
+
+These will be the two `Sprite` instance we will create for the icon and wordmark sprites from the logo texture.  Next, locate the [**LoadContent**]() method and add the following after the logo texture is loaded:
+
+```cs
+// Create a new sprite from the logo texture using the texture region that
+// contains only the MonoGame icon.
+_monogameIcon = new Sprite(_logo, new Rectangle(0, 0, 128, 128));
+
+// Create a new sprite from the logo texture using the texture region that
+// contains only the MonoGame wordmark.
+_monogameWordmark = new Sprite(_logo, new Rectangle(150, 34, 458, 58));
+```
+
+The above code takes the single `_logo` texture and uses it to create both the `_monogameIcon` and `monogameWordmark` sprites.  The *sourceRectangle* parameter provided for each are based on the texture region boundaries shown in Figure 6-2 above.
+
+Next, locate the [**Draw**]() method and replace the entire method with the following:
+
+```cs
+protected override void Draw(GameTime gameTime)
+{
+    GraphicsDevice.Clear(Color.CornflowerBlue);
+
+    // Calculate the center X and Y coordinate position of the game window.
+    Vector2 center = new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height) * 0.5f;
+
+    _spriteBatch.Begin();
+
+    //  Draw the icon sprite at the center of the game window.
+    _monogameIcon.Draw(_spriteBatch, center);
+
+    // Draw the wordmark sprite at the center of the game window below the icon.
+    _monogameWordmark.Draw(_spriteBatch, new Vector2(center.X, center.Y + _monogameIcon.Height));
+
+    _spriteBatch.End();
+
+    base.Draw(gameTime);
+}
+```
+
+The new code for the [**Draw**]() method now renders both sprites.  Since both sprites are using the same source [**Texture2D**](), no texture swapping occurs between the calls.  The center of the game window is calculated and used as the position to draw each of the sprites, with the `_monogameWordmark` sprite being drawn below the `_monogameIcon` sprite by making using of the `Sprite.Height` property.  Let's run the game and see the result.
+
+<figure><img src="./images/logo-wordmark-offcenter.png" alt="Figure 6-3: The MonoGame icon and wordmark."><figcaption><p><strong>Figure 6-3: The MonoGame icon and wordmark.</strong></p></figcaption></figure>
+
+We have a similar problem that we saw [in the previous chapter](../05_working_with_textures/index.md#drawing-a-texture); the sprites are *technically* drawn correctly at the center of the screen, but the `Origin` was never set for them, so it's default is the upper-left corner of each sprite.  Our goal here is to draw the sprites such that the logo is centered on top of the wordmark and both are centered on the game window.  Take a look at Figure 6-4 below:
+
+<figure><img src="./images/logo-wordmark-centered-example.png" alt="Figure 6-3: The MonoGame icon and wordmark centered on the game window with the origin point shown."><figcaption><p><strong>Figure 6-3: The MonoGame icon and wordmark centered on the game window with the origin point shown.</strong></p></figcaption></figure>
+
+The green circle in the image represents the center of the game window.  In order to render the sprites like shown in the image, we need to adjust their `Origin` properties so they align with where the green circle is.  
+
+- For the MonoGame logo, we can see that the origin would be at the bottom-center of the sprite.
+- For the MonoGame wordmark, we can see that the origin would be at the upper-center of the sprite.
+
+Now that we know where the origins should be, let's update our code.  Locate the [**LoadContent**]() method and add the following after the two sprites are created:
+
+```cs
+// Set the origin of the icon sprite to the bottom-center
+_monogameIcon.Origin = new Vector2(_monogameIcon.SourceRectangle.Width * 0.5f, _monogameIcon.SourceRectangle.Height);
+
+// Set the origin of the wordmark sprite to the upper-center
+_monogameWordmark.Origin = new Vector2(_monogameWordmark.SourceRectangle.Width * 0.5f, 0);
+```
+
+The above sets the correct `Origin` property for both sprites.  Notice that both use the [**Width**]() property of the `SourceRectangle` for each sprite to get the X coordinate center for the origin.  When setting the origin, it needs to be relative to the bounds of what is being drawn, in this case the bounding source rectangle of each sprite.  The [**Rectangle**]() struct in MonoGame does have a [**Center**]() property, but that would not have been correct to use here.  The `SourceRectangle` for the `_monogameWordmark` is (150, 34) with a width of 458px and a height of 58px, so the *center* would have been 379, which is half the width from the X coordinate position of the rectangle (150 + 458/2).  Instead we just need the center of the bounds of the rectangle, which we get by calculating half the width.
+
+Now that we've set the `Origin` property for both sprites, we no longer need to adjust the position of the `_monogameWordmark` by the height of the `_monogameLogo` when rendering it.  Locate the [**Draw**]() method and update the draw call for the `_monogameWordmark` to the following:
+
+```cs
+// Draw the wordmark sprite at the center of the game window.
+_monogameWordmark.Draw(_spriteBatch, center);
+```
+
+Running the game now produces the expected result.
+
+<figure><img src="./images/logo-wordmark-centered.png" alt="Figure 6-3: The MonoGame icon and wordmark centered on the game window."><figcaption><p><strong>Figure 6-3: The MonoGame icon and wordmark centered on the game window.</strong></p></figcaption></figure>
+
+- A single texture is used to render two sprites, so no texture swapping
+- The logo is centered on top of the wordmark, and both are centered relative to the game window
+
+
