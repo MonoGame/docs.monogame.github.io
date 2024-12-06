@@ -22,7 +22,7 @@ Fortunately the Android engineers recognised that supporting all of these textur
 was not an easy task. So with the introduction of the `.aab` file format they added the ability to 
 add multiple texture format files to the package. The way the `.aab` works is that it is not the final
 `.apk`. The final `.apk` will be built from the `.aab` when the game is delivered to the end user device. 
-As a result not all of the file in the `.aab` will make it to the device. It will filter out things like
+As a result not all of the files in the `.aab` will make it to the device. It will filter out things like
 `.so` files for other cpu types, and yes, texture formats. 
 
 The `.aab` supports the following directory suffixes for texture compresison
@@ -50,7 +50,7 @@ you use when processing an image. This following table shows you how to map that
 | DxtCompressed | #tcf_s3tc |
 | Etc1Compressed | #tcf_etc1 |
 | EtcCompressed | #tcf_etc2 |
-| Compressed | No Suffix |
+| Compressed or Color | No Suffix |
 
 ## Adding Texture Compression Suffixes
 
@@ -77,7 +77,7 @@ So in the example above, the `LogoOnly_64px.png` file will be compressed using `
 
 > !Important
 > Some texture formats have specific size requirements. For example PVRTC Compressed Textures MUST be a Power of 2 and Square (e.g 1024x1024).
-> Many others need to be Power of 2. It is recommended that you make all your textures Power of 2 
+> Many others need to be Power of 2. It is recommended that you make all your textures Power of 2  just to make life easier.
 
 
 ## Sample `.mgcb`
@@ -95,6 +95,8 @@ So in the example above, the `LogoOnly_64px.png` file will be compressed using `
 /processorParam:TextureFormat=PvrCompressed
 /build:Textures/LogoOnly_64px.png;Textures#tcf_pvrtc/LogoOnly_64px
 ```
+
+## Sample `.mgcb` with Multiple Compression Formats
 
 ```bash
 #----------------------------- Global Properties ----------------------------#
@@ -127,7 +129,7 @@ So in the example above, the `LogoOnly_64px.png` file will be compressed using `
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=True
 /processorParam:MakeSquare=False
-/processorParam:TextureFormat=PvrCompressed
+/processorParam:TextureFormat=Compressed
 /build:Textures/LogoOnly_64px.png
 
 #begin Textures/LogoOnly_64px.png
