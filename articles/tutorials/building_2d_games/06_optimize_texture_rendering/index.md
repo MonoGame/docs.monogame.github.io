@@ -13,7 +13,7 @@ In this chapter, you will:
 By the end of this chapter, you'll understand how to organize your game's textures for optimal performance and have a flexible sprite system for your future game projects.
 
 ## Texture Swapping
-Every time the [**SpriteBatch.Draw**]() method is executed when a different *texture* parameter than the previous [**SpriteBatch.Draw**]() method call, a *texture swap* occurs, unbinding the current texture on the GPU and binding the new texture.
+Every time the [**SpriteBatch.Draw**]() method is executed with a different *texture* parameter than the previous [**SpriteBatch.Draw**]() method call, a *texture swap* occurs, unbinding the current texture on the GPU and binding the new texture.
 
 > [!NOTE]
 > A texture swap occurs when the GPU needs to switch between different textures during rendering. While each individual swap may seem trivial, the cumulative effect in a complex game can significantly impact performance.
