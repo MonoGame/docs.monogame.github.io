@@ -43,7 +43,7 @@ In the above example:
 These texture swaps, while negligible in this example, can become a performance issue in a full game where you might be drawing hundreds or thousands of sprites per frame.
 
 ### Attempting to Optimize Draw Order
-One approach to get around this could be to optimize the order of the draw calls to minimize texture swaps:
+One approach to get around this could be to optimize the order of the draw calls to minimize texture swaps  For example, if we reorder the draw calls from the previous example so that both paddles are drawn first and then the ball, the number of texture swaps is reduced from two to one:
 
 ```cs
 // Render the left and right paddles first.
@@ -53,7 +53,7 @@ _spriteBatch.Draw(paddleTexture, _rightPaddlePosition, Color.White);
 _spriteBatch.Draw(ballTexture, _ballPosition, Color.White);
 ```
 
-This approach does reduce the texture swaps, however it is not a scalable solution. In a real game with dozens of different textures and complex draw orders for layered sprites, UI elements, particles, etc., managing draw order by texture becomes impractical and will conflict with desired visual layering.
+However this is not a scalable solution. In a real game with dozens of different textures and complex draw orders for layered sprites, UI elements, particles, etc., managing draw order by texture becomes impractical and will conflict with desired visual layering.
 
 ## What is a Texture Atlas
 A texture atlas (also known as a sprite sheet) is a large image file that contains multiple smaller images packed together. Instead of loading separate textures for each game element, you load the single texture file with all the images combined like a scrapbook where all your photos are arranged on the same page.
