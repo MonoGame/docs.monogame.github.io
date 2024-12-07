@@ -42,9 +42,6 @@ In the above example:
 
 These texture swaps, while negligible in this example, can become a performance issue in a full game where you might be drawing hundreds or thousands of sprites per frame.
 
-> [!TIP]
-> When profiling your game's performance, pay attention to the number of texture swaps occurring per frame. A high number of swaps can be an early indicator that your rendering pipeline needs optimization.
-
 ### Attempting to Optimize Draw Order
 One approach to get around this could be to optimize the order of the draw calls to minimize texture swaps:
 
