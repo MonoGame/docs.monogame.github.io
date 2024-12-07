@@ -34,13 +34,13 @@ _spriteBatch.Draw(ballTexture, ballPosition, Color.White);
 _spriteBatch.Draw(paddleTexture, rightPaddlePosition, Color.White);
 ```
 
-In this example, the following occurs:
+In the above example:
 
-1. First paddle draw: The paddle texture is bound to the GPU.
-2. Ball draw: The paddle texture is unbound from the GPU and then the ball texture is bound (Texture Swap #1).
-3. Second paddle draw: The ball texture is unbound from the GPU and the paddle texture is bound (Texture Swap #2).
+1. The paddle texture is bound to the GPU so the left player paddle can be drawn.
+2. The paddle texture is unbound from the GPU and the ball texture is bound so that the ball can be drawn (Texture Swap #1).
+3. The ball texture is unbound from the GPU and the paddle texture is bound again so the right player paddle can be drawn (Texture Swap #2).
 
-These texture swaps, while negligible in our simple Pong example, can become a performance issue in a full game where you might be drawing hundreds or thousands of sprites per frame.
+These texture swaps, while negligible in this example, can become a performance issue in a full game where you might be drawing hundreds or thousands of sprites per frame.
 
 > [!TIP]
 > When profiling your game's performance, pay attention to the number of texture swaps occurring per frame. A high number of swaps can be an early indicator that your rendering pipeline needs optimization.
