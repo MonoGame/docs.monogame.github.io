@@ -469,4 +469,12 @@ Running the game now produces the expected result.
 - A single texture is used to render two sprites, so no texture swapping
 - The logo is centered on top of the wordmark, and both are centered relative to the game window
 
+## Conclusion
+Let's review what you accomplished in this chapter:
 
+- Learned about texture swapping and its impact on performance
+- Explored texture atlases as a solution for optimizing texture rendering
+- Created a reusable Sprite class to simplify texture management
+- Used the Sprite class to render multiple sprites from a single texture
+
+In the next chapter, we'll build on the Sprite class to create animated sprites, allowing us to bring more life to our games through sprite animation.
