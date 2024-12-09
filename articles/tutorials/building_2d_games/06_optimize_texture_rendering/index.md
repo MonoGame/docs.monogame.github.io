@@ -94,9 +94,6 @@ protected override void Draw(GameTime gameTime)
 }
 ```
 
-> [!TIP]
-> When creating a texture atlas, organize related sprites close together and try to minimize empty space between sprites. This makes the atlas more efficient and easier to maintain.
-
 ## Defining the `Sprite` Class
 While using texture atlases solves the performance issues of texture swapping, managing multiple source rectangles and draw parameters for each sprite can become complex as your game grows. In the Pong game we are already tracking source rectangles for both the paddle and ball sprites. Imagine scaling this up to a game with dozens of different sprites, each potentially needing their own position, rotation, scale, and other rendering properties. 
 
