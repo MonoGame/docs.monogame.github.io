@@ -478,3 +478,26 @@ Let's review what you accomplished in this chapter:
 - Used the Sprite class to render multiple sprites from a single texture
 
 In the next chapter, we'll build on the Sprite class to create animated sprites, allowing us to bring more life to our games through sprite animation.
+
+## Test Your Knowledge
+
+1. What is a texture swap and why can it impact performance?
+
+   <details>
+   <summary>Question 1 Answer</summary>
+   
+   > A texture swap occurs when the GPU needs to unbind one texture and bind another between draw calls. While individual swaps may seem trivial, they can significantly impact performance in games with many sprites as each swap is an expensive GPU operation.
+   </details><br />
+
+2. Name a benefit of using a texture atlas.
+
+   <details>
+   <summary>Question 2 Answer</summary>
+   
+   > Any of the following are benefits of using a texture atlas:
+   > - Eliminates texture swaps by using a single texture
+   > - Reduces memory usage
+   > - Simplifies asset management
+   > - Improves rendering performance
+   </details><br />
+   
