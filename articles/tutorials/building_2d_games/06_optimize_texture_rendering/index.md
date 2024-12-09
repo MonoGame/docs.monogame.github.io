@@ -436,7 +436,7 @@ The new code for the [**Draw**]() method now renders both sprites.  Since both s
 
 We have a similar problem that we saw [in the previous chapter](../05_working_with_textures/index.md#drawing-a-texture); the sprites are *technically* drawn correctly at the center of the screen, but the `Origin` was never set for them, so it's default is the upper-left corner of each sprite.  Our goal here is to draw the sprites such that the logo is centered on top of the wordmark and both are centered on the game window.  Take a look at Figure 6-4 below:
 
-<figure><img src="./images/logo-wordmark-centered-example.png" alt="Figure 6-3: The MonoGame icon and wordmark centered on the game window with the origin point shown."><figcaption><p><strong>Figure 6-3: The MonoGame icon and wordmark centered on the game window with the origin point shown.</strong></p></figcaption></figure>
+<figure><img src="./images/logo-wordmark-centered-example.png" alt="Figure 6-4: The MonoGame icon and wordmark centered on the game window with the origin point shown."><figcaption><p><strong>Figure 6-4: The MonoGame icon and wordmark centered on the game window with the origin point shown.</strong></p></figcaption></figure>
 
 The green circle in the image represents the center of the game window.  In order to render the sprites like shown in the image, we need to adjust their `Origin` properties so they align with where the green circle is.  
 
@@ -464,7 +464,7 @@ _monogameWordmark.Draw(_spriteBatch, center);
 
 Running the game now produces the expected result.
 
-<figure><img src="./images/logo-wordmark-centered.png" alt="Figure 6-3: The MonoGame icon and wordmark centered on the game window."><figcaption><p><strong>Figure 6-3: The MonoGame icon and wordmark centered on the game window.</strong></p></figcaption></figure>
+<figure><img src="./images/logo-wordmark-centered.png" alt="Figure 6-5: The MonoGame icon and wordmark centered on the game window."><figcaption><p><strong>Figure 6-5: The MonoGame icon and wordmark centered on the game window.</strong></p></figcaption></figure>
 
 - A single texture is used to render two sprites, so no texture swapping
 - The logo is centered on top of the wordmark, and both are centered relative to the game window
