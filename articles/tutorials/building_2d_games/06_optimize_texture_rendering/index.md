@@ -240,7 +240,7 @@ public Sprite(Texture2D texture, Rectangle sourceRectangle)
 }
 ```
 
-The constructor requires two parameters, a [**Texture2D**]() and a [**Rectangle**](), representing the source texture (texture atlas) and the boundry within the atlas where the sprite is.  Before storing the references, checks are made to ensure:
+The constructor requires two parameters, a [**Texture2D**]() and a [**Rectangle**](), representing the source texture (texture atlas) and the boundary within the atlas where the sprite is.  Before storing the references, checks are made to ensure:
 
 - The [**Texture2D**]() given is not null
 - The [**Texture2D**]() given was not previously disposed of
