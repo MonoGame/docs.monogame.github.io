@@ -3,7 +3,7 @@ title: "Chapter 06: Optimizing Texture Rendering"
 description: Explore optimization techniques when rendering textures using a texture atlas.
 ---
 
-In [Chapter 05](../05_working_with_textures/index.md), you learned how to load and render textures using [**SpriteBatch**](). While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we'll explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.
+In [Chapter 05](../05_working_with_textures/index.md), you learned how to load and render textures using [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we'll explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.
 
 In this chapter, you will:
 - Learn about texture swapping and its impact on performance.
@@ -13,7 +13,7 @@ In this chapter, you will:
 By the end of this chapter, you'll understand how to organize your game's textures for optimal performance and have a flexible sprite system for your future game projects.
 
 ## Texture Swapping
-Every time the [**SpriteBatch.Draw**]() method is executed with a different *texture* parameter than the previous [**SpriteBatch.Draw**]() method call, a *texture swap* occurs, unbinding the current texture on the GPU and binding the new texture.
+Every time the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)) method is executed with a different *texture* parameter than the previous [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)) method call, a *texture swap* occurs, unbinding the current texture on the GPU and binding the new texture.
 
 > [!NOTE]
 > A texture swap occurs when the GPU needs to switch between different textures during rendering. While each individual swap may seem trivial, the cumulative effect in a complex game can significantly impact performance.
@@ -103,13 +103,13 @@ The following table lists the fields, properties, and methods needed for the `Sp
 
 | Property          | Type                  | Description                                                                                                          |
 | ----------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `Texture`         | [**Texture2D**]()     | The source texture used when rendering the sprite.                                                                   |
-| `SourceRectangle` | [**Rectangle**]()     | The boundary within the source texture to render.                                                                    |
-| `Color`           | [**Color**]()         | The color tint to apply when rendering the sprite.                                                                   |
+| `Texture`         | [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D)     | The source texture used when rendering the sprite.                                                                   |
+| `SourceRectangle` | [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle)     | The boundary within the source texture to render.                                                                    |
+| `Color`           | [**Color**](xref:Microsoft.Xna.Framework.Color)         | The color tint to apply when rendering the sprite.                                                                   |
 | `Rotation`        | `float`               | The amount of rotation, in radians, to apply when rendering the sprite.                                              |
-| `Scale`           | [**Vector2**]()       | The scale factor to apply to the x- and y-axes when rendering the sprite.                                            |
-| `Origin`          | [**Vector2**]()       | The xy-coordinate origin point, relative to the top-left corner, of the sprite.                                      |
-| `Effects`         | [**SpriteEffects**]() | The [**SpriteEffects**]() value to apply when rendering to flip the sprite horizontally, vertically, or both.        |
+| `Scale`           | [**Vector2**](xref:Microsoft.Xna.Framework.Vector2)       | The scale factor to apply to the x- and y-axes when rendering the sprite.                                            |
+| `Origin`          | [**Vector2**](xref:Microsoft.Xna.Framework.Vector2)       | The xy-coordinate origin point, relative to the top-left corner, of the sprite.                                      |
+| `Effects`         | [**SpriteEffects**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects) | The [**SpriteEffects**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects) value to apply when rendering to flip the sprite horizontally, vertically, or both.        |
 | `LayerDepth`      | `float`               | The depth at which the sprite is rendered.                                                                           |
 | `Width`           | `float`               | The width of the sprite, calculated by multiplying the width of the `_sourceRectangle` by the x-axis scale factor.   |
 | `Height`          | `float`               | The height of the sprite, calculated by multiplying the height of the `_sourceRectangle` by the y-axis scale factor. |
@@ -117,10 +117,10 @@ The following table lists the fields, properties, and methods needed for the `Sp
 | Method                         | Returns  | Description                                                                                              |
 | ------------------------------ | -------- | -------------------------------------------------------------------------------------------------------- |
 | `Sprite(Texture2D, Rectangle)` | `Sprite` | Creates a new instance of the `Sprite` class using source texture and source rectangle parameters given. |
-| `Draw(SpriteBatch, Vector2)`   | `void`   | Draws the sprite using the [**SpriteBatch**]() provided at the specified position.                       |
+| `Draw(SpriteBatch, Vector2)`   | `void`   | Draws the sprite using the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) provided at the specified position.                       |
 
 > [!NOTE]
-> The properties of the `Sprite` class directly correspond to the parameters used in [**SpriteBatch.Draw**](). This design makes it simple to encapsulate all rendering information while maintaining flexibility in how each sprite is displayed.
+> The properties of the `Sprite` class directly correspond to the parameters used in [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)). This design makes it simple to encapsulate all rendering information while maintaining flexibility in how each sprite is displayed.
 
 > [!TIP]
 > The `Width` and `Height` properties automatically account for scaling, making it easier to perform calculations like collision detection or positioning without manually applying the scale factor each time.
@@ -218,7 +218,7 @@ The above adds the following properties to the `Sprite` class:
 
 - The `Texture` property is a get-only property since there is no design reason it should even change once a `Sprite` instance is created.
 - The `SourceRectangle` property has a public getter while the setter is *protected*.  This is setting the stage to extend the `Sprite` class later when we explore creating animated sprites.
-- The `Color`, `Rotation`, `Scale`, `Origin`, `Effects`, and `LayerDepth` properties encapsulate the parameters of the [**SpriteBatch.Draw**]() method; each property set to the default value that would be given when the method is called.
+- The `Color`, `Rotation`, `Scale`, `Origin`, `Effects`, and `LayerDepth` properties encapsulate the parameters of the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)) method; each property set to the default value that would be given when the method is called.
 - The `Width` and `Height` properties are get-only properties that are calculated based on the width and height of the `SourceRectangle` property, multiplied by the scale factor.  This automatically accounts for scaling, making it easier to perform calculations like collision detection or positioning without manually applying the scale factor each time.
 
 ### Constructor
@@ -240,11 +240,11 @@ public Sprite(Texture2D texture, Rectangle sourceRectangle)
 }
 ```
 
-The constructor requires two parameters, a [**Texture2D**]() and a [**Rectangle**](), representing the source texture (texture atlas) and the boundary within the atlas where the sprite is.  Before storing the references, checks are made to ensure:
+The constructor requires two parameters, a [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) and a [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle), representing the source texture (texture atlas) and the boundary within the atlas where the sprite is.  Before storing the references, checks are made to ensure:
 
-- The [**Texture2D**]() given is not null
-- The [**Texture2D**]() given was not previously disposed of
-- The [**Rectangle**]() given is a boundary that is contained within the [**Texture2D**]().
+- The [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) given is not null
+- The [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) given was not previously disposed of
+- The [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) given is a boundary that is contained within the [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D).
 
 You might think that adding these checks are pointless, because when would you ever pass in a null or disposed texture, or provide a source rectangle that is out of bounds of the texture bounds. Of course you would never do this right?  Well, we're all human and sometimes we make mistakes.  It's always best to check yourself to be sure before you publish your game with bugs that could have been avoided.
 
@@ -268,7 +268,7 @@ public void Draw(SpriteBatch spriteBatch, Vector2 position)
 }
 ```
 
-The `Draw` method requires two parameters, a [**SpriteBatch**]() instance used to render the sprite and a [**Vector2**]() specifying the position to render the sprite at.  Here, the [**SpriteBatch.Draw**]() method is executed using the properties of the `Sprite` as the parameters, with the [**Vector2**]() specified as the position.
+The `Draw` method requires two parameters, a [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) instance used to render the sprite and a [**Vector2**](xref:Microsoft.Xna.Framework.Vector2) specifying the position to render the sprite at.  Here, the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)) method is executed using the properties of the `Sprite` as the parameters, with the [**Vector2**](xref:Microsoft.Xna.Framework.Vector2) specified as the position.
 
 Now that we have built and explained each part of the `Sprite` class, here is the complete implementation for comparison:
 
@@ -392,7 +392,7 @@ private Sprite _monogameIcon;
 private Sprite _monogameWordmark;
 ```
 
-These will be the two `Sprite` instance we will create for the icon and wordmark sprites from the logo texture.  Next, locate the [**LoadContent**]() method and add the following after the logo texture is loaded:
+These will be the two `Sprite` instance we will create for the icon and wordmark sprites from the logo texture.  Next, locate the [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method and add the following after the logo texture is loaded:
 
 ```cs
 // Create a new sprite from the logo texture using the texture region that
@@ -406,7 +406,7 @@ _monogameWordmark = new Sprite(_logo, new Rectangle(150, 34, 458, 58));
 
 The above code takes the single `_logo` texture and uses it to create both the `_monogameIcon` and `monogameWordmark` sprites.  The *sourceRectangle* parameter provided for each are based on the texture region boundaries shown in Figure 6-2 above.
 
-Next, locate the [**Draw**]() method and replace the entire method with the following:
+Next, locate the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method and replace the entire method with the following:
 
 ```cs
 protected override void Draw(GameTime gameTime)
@@ -430,7 +430,7 @@ protected override void Draw(GameTime gameTime)
 }
 ```
 
-The new code for the [**Draw**]() method now renders both sprites.  Since both sprites are using the same source [**Texture2D**](), no texture swapping occurs between the calls.  The center of the game window is calculated and used as the position to draw each of the sprites, with the `_monogameWordmark` sprite being drawn below the `_monogameIcon` sprite by making using of the `Sprite.Height` property.  Let's run the game and see the result.
+The new code for the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method now renders both sprites.  Since both sprites are using the same source [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D), no texture swapping occurs between the calls.  The center of the game window is calculated and used as the position to draw each of the sprites, with the `_monogameWordmark` sprite being drawn below the `_monogameIcon` sprite by making using of the `Sprite.Height` property.  Let's run the game and see the result.
 
 <figure><img src="./images/logo-wordmark-offcenter.png" alt="Figure 6-3: The MonoGame icon and wordmark."><figcaption><p><strong>Figure 6-3: The MonoGame icon and wordmark.</strong></p></figcaption></figure>
 
@@ -443,7 +443,7 @@ The green circle in the image represents the center of the game window.  In orde
 - For the MonoGame logo, we can see that the origin would be at the bottom-center of the sprite.
 - For the MonoGame wordmark, we can see that the origin would be at the upper-center of the sprite.
 
-Now that we know where the origins should be, let's update our code.  Locate the [**LoadContent**]() method and add the following after the two sprites are created:
+Now that we know where the origins should be, let's update our code.  Locate the [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method and add the following after the two sprites are created:
 
 ```cs
 // Set the origin of the icon sprite to the bottom-center
@@ -453,9 +453,9 @@ _monogameIcon.Origin = new Vector2(_monogameIcon.SourceRectangle.Width * 0.5f, _
 _monogameWordmark.Origin = new Vector2(_monogameWordmark.SourceRectangle.Width * 0.5f, 0);
 ```
 
-The above sets the correct `Origin` property for both sprites.  Notice that both use the [**Width**]() property of the `SourceRectangle` for each sprite to get the X coordinate center for the origin.  When setting the origin, it needs to be relative to the bounds of what is being drawn, in this case the bounding source rectangle of each sprite.  The [**Rectangle**]() struct in MonoGame does have a [**Center**]() property, but that would not have been correct to use here.  The `SourceRectangle` for the `_monogameWordmark` is (150, 34) with a width of 458px and a height of 58px, so the *center* would have been 379, which is half the width from the X coordinate position of the rectangle (150 + 458/2).  Instead we just need the center of the bounds of the rectangle, which we get by calculating half the width.
+The above sets the correct `Origin` property for both sprites.  Notice that both use the [**Width**](xref:Microsoft.Xna.Framework.Rectangle.Width) property of the `SourceRectangle` for each sprite to get the X coordinate center for the origin.  When setting the origin, it needs to be relative to the bounds of what is being drawn, in this case the bounding source rectangle of each sprite.  The [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct in MonoGame does have a [**Center**](xref:Microsoft.Xna.Framework.Rectangle.Center) property, but that would not have been correct to use here.  The `SourceRectangle` for the `_monogameWordmark` is (150, 34) with a width of 458px and a height of 58px, so the *center* would have been 379, which is half the width from the X coordinate position of the rectangle (150 + 458/2).  Instead we just need the center of the bounds of the rectangle, which we get by calculating half the width.
 
-Now that we've set the `Origin` property for both sprites, we no longer need to adjust the position of the `_monogameWordmark` by the height of the `_monogameLogo` when rendering it.  Locate the [**Draw**]() method and update the draw call for the `_monogameWordmark` to the following:
+Now that we've set the `Origin` property for both sprites, we no longer need to adjust the position of the `_monogameWordmark` by the height of the `_monogameLogo` when rendering it.  Locate the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method and update the draw call for the `_monogameWordmark` to the following:
 
 ```cs
 // Draw the wordmark sprite at the center of the game window.
