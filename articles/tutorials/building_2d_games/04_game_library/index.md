@@ -91,7 +91,7 @@ When using the *MonoGame Game Library* project template, the generated project c
 Here is a review of what was accomplished in this chapter:
 
 - Learned what a class library is and the benefits of using one.
-- Created a new MonoGame Game Library project
+- Created a new MonoGame Game Library project.
 - Added the library project as a reference to the game project.
 
 ## Test Your Knowledge
@@ -103,7 +103,7 @@ Here is a review of what was accomplished in this chapter:
     
     > Any of the following are advantages of using a class library:
     > - Reusability: The classes can be easily reused in future game projects by simply adding a reference to the library.
-    > - Organization: Keeps game-specific code separate from reusable library code.
+    > - Organization: It keeps game-specific code separate from reusable library code.
     > - Maintainability: Changes to the library can benefit all games that use it.
     > - Testing: The library code can be tested independently of any specific game.
     </details><br />
