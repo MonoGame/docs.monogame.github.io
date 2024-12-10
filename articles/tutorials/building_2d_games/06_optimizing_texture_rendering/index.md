@@ -152,7 +152,7 @@ public class Sprite
 ```
 
 > [!NOTE]
-> The *Sprite.cs* class file is placed in the *MonoGame/Graphics* directory and the class uses the `MonoGame.Graphics` namespace to keep rendering-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
+> The *Sprite.cs* class file is placed in the *MonoGame/Graphics* directory and the class uses the `MonoGame.Graphics` [namespace](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview) to keep rendering-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
 
 ### Properties
 
