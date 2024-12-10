@@ -19,14 +19,14 @@ This documentation will introduce game development concepts using the MonoGame f
 > [!CAUTION]
 > This is currently a work in progress and is not finished.
 
-| Chapter                                                                  | Summary                                                                                                                      | Source Files |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| [01: What Is Monogame](01_what_is_monogame/index.md)                     | The history of MonoGame and what features it provides developers to create games.                                            |              |
-| [02: Getting Started](02_getting_started/index.md)                       | Setup with MonoGame by preparing your environment for dotnet development and setting up Visual Studio Code as your IDE.      |              |
-| [03: The Game1 File](03_the_game1_file/index.md)                         | Explore the contents of the Game1 file generated when a new MonoGame game project is created.                                |              |
-| [04: Game Library](04_game_library/index.md)                             | Create a class library project to house reusable game components that we'll develop throughout this tutorial series.         |              |
-| [05: Working with Textures](05_working_with_textures/index.md)           | The process of loading image files as textures using the MonoGame content pipeline and rendering them using the SpriteBatch. |              |
-| [06: Optimizing Texture Rendering](06_optimizing_texture_rendering/index.md) |                                                                                                                              |              |
+| Chapter                                                                      | Summary                                                                                                                                             | Source Files |
+| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| [01: What Is Monogame](01_what_is_monogame/index.md)                         | Learn about the history of MonoGame and explore the features it provides developers when creating games.                                            |              |
+| [02: Getting Started](02_getting_started/index.md)                           | Setup your development environment for dotnet development and MonoGame using Visual Studio Code as your IDE.                                        |              |
+| [03: The Game1 File](03_the_game1_file/index.md)                             | Explore the contents of the Game1 file generated when creating a new MonoGame project.                                                              |              |
+| [04: Game Library](04_game_library/index.md)                                 | Create a class library project to house reusable game components that we'll develop throughout this tutorial series.                                |              |
+| [05: Working with Textures](05_working_with_textures/index.md)               | Learn how to load and render textures using the MonoGame content pipeline and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). |              |
+| [06: Optimizing Texture Rendering](06_optimizing_texture_rendering/index.md) | Explore optimization techniques when rendering textures using a texture atlas.                                                                      |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
