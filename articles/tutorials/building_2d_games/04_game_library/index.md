@@ -5,10 +5,10 @@ description: Create a class library project to house reusable game components th
 
 Throughout this tutorial series, we will be creating reusable classes that add extended behavior on top of what MonoGame offers natively.  Instead of adding these classes directly to our game project, we can create a separate class library project to contain them.  This approach offers several advantages, including:
 
-1.  **Reusability**: The classes can be easily reused in future game projects by simply adding a reference to the library.
-2.  **Organization**: Keeps game-specific code separate from reusable library code.
-3.  **Maintainability**: Changes to the library can benefit all games that use it.
-4.  **Testing**: The library code can be tested independently of any specific game.
+1. **Reusability**: The classes can be easily reused in future game projects by simply adding a reference to the library.
+2. **Organization**: Keeps game-specific code separate from reusable library code.
+3. **Maintainability**: Changes to the library can benefit all games that use it.
+4. **Testing**: The library code can be tested independently of any specific game.
 
 A class library is a project type that compiles into a Dynamic Link Library (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.  MonoGame offers the *MonoGame Game Library* project template that can be used to create a class library.
 
@@ -16,6 +16,7 @@ A class library is a project type that compiles into a Dynamic Link Library (DLL
 > By using the **MonoGame Game Library** template instead of a standard C# class library template, we get the correct MonoGame framework references and configuration automatically set up.  This saves time and ensures compatibility with MonoGame projects.
 
 ## Create the Class Library
+
 Let's use the MonoGame Game Library project template to add a new class library project that will contain our reusable code.
 
 ### Visual Studio Code
@@ -46,6 +47,7 @@ To add the class library using the MonoGame Game Library project template with t
 3. Enter the command `dotnet sln add ./MonoGameLibrary/` to add the newly created class library project to the *MonoGameSnake.sln* solution file.
 
 ## Adding a Reference To The Class Library
+
 Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, our game project will be unaware of anything we add to the class library.  To do this:
 
 ### Visual Studio Code
@@ -76,6 +78,7 @@ To add the game library project as a reference to the game project with the dotn
 2. Enter the command `dotnet add reference ../MonoGameLibrary/`.  This will add the *MonoGameLibrary* reference to the *MonoGameSnake* game project.
 
 ## Clean Up
+
 When using the *MonoGame Game Library* project template, the generated project contains file similar to a standard MonoGame game project, including a *dotnet-tools.json* manifest file, a *Content.mgcb* file, and a *Game1.cs* file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the *MonoGameLibrary* project directory and delete them:
 
 1. The *.config/* directory.
@@ -84,10 +87,11 @@ When using the *MonoGame Game Library* project template, the generated project c
 
 > [!TIP]
 > These files are needed in more advanced scenarios such as creating a central code base for game logic that is referenced by other projects of which each target different platforms such as desktop, mobile, and console.  Creating a project structure of this type is out of scope for this tutorial.  
-> 
+>
 > If you would like more information on this, Simon Jackson has written the article [Going cross-platform with MonoGame](https://darkgenesis.zenithmoon.com/going-cross-platform-with-monogame.html) which covers this in more detail.
 
 ## Conclusion
+
 Here is a review of what was accomplished in this chapter:
 
 - Learned what a class library is and the benefits of using one.
@@ -100,7 +104,7 @@ Here is a review of what was accomplished in this chapter:
 
     <details>
     <summary>Question 1 Answer</summary>
-    
+
     > Any of the following are advantages of using a class library:
     > - Reusability: The classes can be easily reused in future game projects by simply adding a reference to the library.
     > - Organization: It keeps game-specific code separate from reusable library code.
@@ -112,7 +116,7 @@ Here is a review of what was accomplished in this chapter:
 
     <details>
     <summary>Question 2 Answer</summary>
-    
+
     > The MonoGame Game Library template automatically sets up the correct MonoGame framework references and configuration, saving time and ensuring compatibility.
     </details><br />
 
@@ -120,7 +124,6 @@ Here is a review of what was accomplished in this chapter:
 
     <details>
     <summary>Question 3 Answer</summary>
-    
+
     > Without adding a reference, the game project will be unaware of anything added to the class library and won't be able to use any of its code.
     </details><br />
-

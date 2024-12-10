@@ -6,6 +6,7 @@ description: Explore optimization techniques when rendering textures using a tex
 In [Chapter 05](../05_working_with_textures/index.md), you learned how to load and render textures using [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we'll explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.
 
 In this chapter, you will:
+
 - Learn about texture swapping and its impact on performance.
 - Understand what texture atlases are and how they can improve rendering efficiency.
 - Create a reusable `Sprite` class to simplify texture atlas usage.
@@ -13,6 +14,7 @@ In this chapter, you will:
 By the end of this chapter, you'll understand how to organize your game's textures for optimal performance and have a flexible sprite system for your future game projects.
 
 ## Texture Swapping
+
 Every time the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)) method is executed with a different *texture* parameter than the previous [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)) method call, a *texture swap* occurs, unbinding the current texture on the GPU and binding the new texture.
 
 > [!NOTE]
@@ -43,6 +45,7 @@ In the above example:
 These texture swaps, while negligible in this example, can become a performance issue in a full game where you might be drawing hundreds or thousands of sprites per frame.
 
 ### Attempting to Optimize Draw Order
+
 One approach to get around this could be to optimize the order of the draw calls to minimize texture swaps  For example, if we reorder the draw calls from the previous example so that both paddles are drawn first and then the ball, the number of texture swaps is reduced from two to one:
 
 ```cs
@@ -56,6 +59,7 @@ _spriteBatch.Draw(ballTexture, _ballPosition, Color.White);
 However this is not a scalable solution. In a real game with dozens of different textures and complex draw orders for layered sprites, UI elements, particles, etc., managing draw order by texture becomes impractical and will conflict with desired visual layering.
 
 ## What is a Texture Atlas
+
 A texture atlas (also known as a sprite sheet) is a large image file that contains multiple smaller images packed together. Instead of loading separate textures for each game element, you load the single texture file with all the images combined like a scrapbook where all your photos are arranged on the same page.
 
 > [!NOTE]
@@ -95,9 +99,10 @@ protected override void Draw(GameTime gameTime)
 ```
 
 ## Defining the `Sprite` Class
-While using texture atlases solves the performance issues of texture swapping, managing multiple source rectangles and draw parameters for each sprite can become complex as your game grows. In the Pong game we are already tracking source rectangles for both the paddle and ball sprites. Imagine scaling this up to a game with dozens of different sprites, each potentially needing their own position, rotation, scale, and other rendering properties. 
 
-To better organize this complexity, we can apply object-oriented design principles by creating a `Sprite` class that encapsulates all the information needed to render a sprite from our texture atlas. 
+While using texture atlases solves the performance issues of texture swapping, managing multiple source rectangles and draw parameters for each sprite can become complex as your game grows. In the Pong game we are already tracking source rectangles for both the paddle and ball sprites. Imagine scaling this up to a game with dozens of different sprites, each potentially needing their own position, rotation, scale, and other rendering properties.
+
+To better organize this complexity, we can apply object-oriented design principles by creating a `Sprite` class that encapsulates all the information needed to render a sprite from our texture atlas.
 
 The following table lists the fields, properties, and methods needed for the `Sprite` class we will create:
 
@@ -121,7 +126,6 @@ The following table lists the fields, properties, and methods needed for the `Sp
 
 > [!NOTE]
 > The properties of the `Sprite` class directly correspond to the parameters used in [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)). This design makes it simple to encapsulate all rendering information while maintaining flexibility in how each sprite is displayed.
-
 > [!TIP]
 > The `Width` and `Height` properties automatically account for scaling, making it easier to perform calculations like collision detection or positioning without manually applying the scale factor each time.
 
@@ -151,6 +155,7 @@ public class Sprite
 > The *Sprite.cs* class file is placed in the *MonoGame/Graphics* directory and the class uses the `MonoGame.Graphics` namespace to keep rendering-related classes organized together.  As we add more functionality to the library, we'll continue to use directories and namespaces to maintain a clean structure.
 
 ### Properties
+
 Let's start by adding the properties needed to store the sprite's rendering information:
 
 ```cs
@@ -222,6 +227,7 @@ The above adds the following properties to the `Sprite` class:
 - The `Width` and `Height` properties are get-only properties that are calculated based on the width and height of the `SourceRectangle` property, multiplied by the scale factor.  This automatically accounts for scaling, making it easier to perform calculations like collision detection or positioning without manually applying the scale factor each time.
 
 ### Constructor
+
 Now that we have the properties defined, let's add a constructor:
 
 ```cs
@@ -254,6 +260,7 @@ You might think that adding these checks are pointless, because when would you e
 > The `Debug.Assert` lines of code are also removed completely when you compile the project in a Release build, so you don't have to worry about debug specific code making its way into your final release.
 
 ### Draw Method
+
 Finally, add the method responsible for rendering the sprite:
 
 ```cs
@@ -367,6 +374,7 @@ public class Sprite
 ```
 
 ## Using the `Sprite` Class
+
 With the `Sprite` class now created, let's see it in action.  Recall the illustration of the MonoGame logo we added to the game broken down into texture regions from [Chapter 05](../05_working_with_textures/index.md#texture-regions):
 
 <figure><img src="./images/logo-texture-regions.png" alt="Figure 6-2: The MonoGame logo broken down into texture regions."><figcaption><p><strong>Figure 6-2: The MonoGame logo broken down into texture regions.</strong></p></figcaption></figure>
@@ -470,6 +478,7 @@ Running the game now produces the expected result.
 - The logo is centered on top of the wordmark, and both are centered relative to the game window
 
 ## Conclusion
+
 Let's review what you accomplished in this chapter:
 
 - Learned about texture swapping and its impact on performance
@@ -485,7 +494,7 @@ In the next chapter, we'll build on the Sprite class to create animated sprites,
 
    <details>
    <summary>Question 1 Answer</summary>
-   
+
    > A texture swap occurs when the GPU needs to unbind one texture and bind another between draw calls. While individual swaps may seem trivial, they can significantly impact performance in games with many sprites as each swap is an expensive GPU operation.
    </details><br />
 
@@ -493,11 +502,10 @@ In the next chapter, we'll build on the Sprite class to create animated sprites,
 
    <details>
    <summary>Question 2 Answer</summary>
-   
+
    > Any of the following are benefits of using a texture atlas:
    > - Eliminates texture swaps by using a single texture
    > - Reduces memory usage
    > - Simplifies asset management
    > - Improves rendering performance
    </details><br />
-   
