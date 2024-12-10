@@ -59,7 +59,7 @@ To add the game library project as a reference to the game project in Visual Stu
 > The Solution Explorer panel in VSCode is provided by the C# Dev Kit extension that was installed in [Chapter 02](../02_getting_started/index.md#install-the-c-dev-kit-extension).  If you do not see this panel, you can open it by
 >
 > 1. Opening the *Command Palette* (View > Command Palette).
-> 2. Enter "Explorer: Focus on Solution ExplorerView" and select the command.
+> 2. Enter "Explorer: Focus on Solution Explorer View" and select the command.
 
 ### Visual Studio 2022
 To add the game library project as a reference to the game project in Visual Studio 2022:
