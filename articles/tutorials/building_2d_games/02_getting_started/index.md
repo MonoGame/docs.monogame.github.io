@@ -1,6 +1,6 @@
 ---
 title: "Chapter 02: Getting Started"
-description: In this chapter, you'll get setup with MonoGame by preparing your environment for dotnet development and setting up Visual Studio Code as your IDE.
+description: Setup your development environment for dotnet development and MonoGame using Visual Studio Code as your IDE.
 ---
 
 Unlike game engines, MonoGame is a *framework*. This means it does not come as a standalone program that you download an install with a graphical user interface used to create games. Instead, MonoGame integrates into the standard .NET development workflow, offering a code-first approach to game development. This approach offers several advantages

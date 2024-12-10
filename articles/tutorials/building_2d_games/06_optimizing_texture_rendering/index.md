@@ -1,6 +1,6 @@
 ---
 title: "Chapter 06: Optimizing Texture Rendering"
-description: "In this chapter, we'll explore optimization techniques for texture rendering, including texture atlases and the Sprite class to improve game performance."
+description: Explore optimization techniques when rendering textures using a texture atlas.
 ---
 
 In [Chapter 05](../05_working_with_textures/index.md), you learned how to load and render textures using [**SpriteBatch**](). While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we'll explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.
