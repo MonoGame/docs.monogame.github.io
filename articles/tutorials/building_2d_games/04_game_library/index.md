@@ -25,7 +25,7 @@ To add the class library using the MonoGame Game Library project template in Vis
 2. Enter ".NET New Project" and select that command.
 3. Enter "MonoGame Game Library" and select it as the template to use.
 4. Name the project "MonoGameLibrary".
-5. When prompted for a location, use the default option which will put the new project in a folder next to your game project.
+5. When prompted for a location, use the default option, which will put the new project in a folder next to your game project.
 6. Select "Create Project".
 
 ### Visual Studio 2022
@@ -35,15 +35,15 @@ To add the class library using the MonoGame Game Library project template in Vis
 2. Choose Add > New Project from the context menu.
 3. Enter "MonoGame Game Library" in the search box, select that template, then click Next.
 4. Name the project "MonoGameLibrary".
-5. The location by default will put the new project in a folder next to your game project, you do not need to adjust this.
+5. The location by default will put the new project in a folder next to your game project; you do not need to adjust this.
 6. Click "Create".
 
 ### dotnet CLI
 To add the class library using the MonoGame Game Library project template with the dotnet CLI, perform the following:
 
 1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.sln* solution file.
-2. Enter the command `dotnet new mglib -n MonoGameLibrary`.  This will create the project and place it in a folder next to your game project.
-3. Enter the command `dotnet sln add ./MonoGameLibrary/`.  This will add the newly created class library project to the *MonoGameSnake.sln* solution file.
+2. Enter the command `dotnet new mglib -n MonoGameLibrary` to create the project, placing it in a folder next to your game project.
+3. Enter the command `dotnet sln add ./MonoGameLibrary/` to add the newly created class library project to the *MonoGameSnake.sln* solution file.
 
 ## Adding a Reference To The Class Library
 Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, then our game project will be unaware of anything we add to the class library.  To do this:
