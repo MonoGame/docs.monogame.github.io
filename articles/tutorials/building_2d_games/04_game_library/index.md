@@ -1,6 +1,6 @@
 ---
 title: "Chapter 04: Game Library"
-description: Create a class library project to house reusable game components that we'll develop throughout this tutorial series.
+description: Create a class library project to house reusable game components that we will develop throughout this tutorial series.
 ---
 
 Throughout this tutorial series, we will be creating reusable classes that add extended behavior on top of what MonoGame offers natively.  Instead of adding these classes directly to our game project, we can create a separate class library project to contain them.  This approach offers several advantages, including:

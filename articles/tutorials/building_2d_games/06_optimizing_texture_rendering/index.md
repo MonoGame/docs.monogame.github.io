@@ -3,7 +3,7 @@ title: "Chapter 06: Optimizing Texture Rendering"
 description: Explore optimization techniques when rendering textures using a texture atlas.
 ---
 
-In [Chapter 05](../05_working_with_textures/index.md), you learned how to load and render textures using [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we'll explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.
+In [Chapter 05](../05_working_with_textures/index.md), you learned how to load and render textures using [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we will explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.
 
 In this chapter, you will:
 
@@ -152,7 +152,7 @@ public class Sprite
 ```
 
 > [!NOTE]
-> The *Sprite.cs* class file is placed in the *MonoGame/Graphics* directory and the class uses the `MonoGame.Graphics` namespace to keep rendering-related classes organized together.  As we add more functionality to the library, we'll continue to use directories and namespaces to maintain a clean structure.
+> The *Sprite.cs* class file is placed in the *MonoGame/Graphics* directory and the class uses the `MonoGame.Graphics` namespace to keep rendering-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
 
 ### Properties
 
@@ -252,7 +252,7 @@ The constructor requires two parameters, a [**Texture2D**](xref:Microsoft.Xna.Fr
 - The [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) given was not previously disposed of
 - The [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) given is a boundary that is contained within the [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D).
 
-You might think that adding these checks are pointless, because when would you ever pass in a null or disposed texture, or provide a source rectangle that is out of bounds of the texture bounds. Of course you would never do this right?  Well, we're all human and sometimes we make mistakes.  It's always best to check yourself to be sure before you publish your game with bugs that could have been avoided.
+You might think that adding these checks are pointless, because when would you ever pass in a null or disposed texture, or provide a source rectangle that is out of bounds of the texture bounds. Of course you would never do this right?  Well, we're all human and sometimes we make mistakes.  It is always best to check yourself to be sure before you publish your game with bugs that could have been avoided.
 
 > [!TIP]  
 > Instead of throwing exceptions in the constructor when performing these checks,  `Debug.Assert` is used here.  This has a similar result as throwing an exception, except that the line of code is only ever executed when you run the code in a Debug build.  It asserts that the statement provided is true.  If the statement is false, then code execution will be paused at that line of code similar to if you add a breakpoint to debug.  This allows you to catch any issues while developing your game and running in a Debug build without needing to throw exceptions.  
@@ -486,7 +486,7 @@ Let's review what you accomplished in this chapter:
 - Created a reusable Sprite class to simplify texture management
 - Used the Sprite class to render multiple sprites from a single texture
 
-In the next chapter, we'll build on the Sprite class to create animated sprites, allowing us to bring more life to our games through sprite animation.
+In the next chapter, we will build on the Sprite class to create animated sprites, allowing us to bring more life to our games through sprite animation.
 
 ## Test Your Knowledge
 
