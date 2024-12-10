@@ -47,7 +47,7 @@ To add the class library using the MonoGame Game Library project template with t
 
 1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.sln* solution file.
 2. Enter the command `dotnet new mglib -n MonoGameLibrary` to create the project, placing it in a folder next to your game project.
-3. Enter the command `dotnet sln add ./MonoGameLibrary/` to add the newly created class library project to the *MonoGameSnake.sln* solution file.
+3. Enter the command `dotnet sln MonoGameSnake.sln add ./MonoGameLibrary/MonoGameLibrary.csproj` to add the newly created class library project to the *MonoGameSnake.sln* solution file.
 
 ---
 
@@ -83,7 +83,7 @@ To add the game library project as a reference to the game project in Visual Stu
 To add the game library project as a reference to the game project with the dotnet CLI:
 
 1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.csproj* C# project file.
-2. Enter the command `dotnet add reference ../MonoGameLibrary/`.  This will add the *MonoGameLibrary* reference to the *MonoGameSnake* game project.
+2. Enter the command `dotnet add ./MonoGameSnake.csproj reference ../MonoGameLibrary/MonoGameLibrary.csproj`.  This will add the *MonoGameLibrary* reference to the *MonoGameSnake* game project.
 
 ---
 
