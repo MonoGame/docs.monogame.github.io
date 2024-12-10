@@ -10,7 +10,7 @@ Throughout this tutorial series, we will be creating reusable classes that add e
 3. **Maintainability**: Changes to the library can benefit all games that use it.
 4. **Testing**: The library code can be tested independently of any specific game.
 
-A class library is a project type that compiles into a Dynamic Link Library (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.  MonoGame offers the *MonoGame Game Library* project template that can be used to create a class library.
+A class library is a project type that compiles into a [Dynamic Link Library](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries) (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.  MonoGame offers the *MonoGame Game Library* project template that can be used to create a class library.
 
 > [!NOTE]
 > By using the **MonoGame Game Library** template instead of a standard C# class library template, we get the correct MonoGame framework references and configuration automatically set up.  This saves time and ensures compatibility with MonoGame projects.
