@@ -26,7 +26,7 @@ This documentation will introduce game development concepts using the MonoGame f
 | [03: The Game1 File](03_the_game1_file/index.md)                         | Explore the contents of the Game1 file generated when a new MonoGame game project is created.                                |              |
 | [04: Game Library](04_game_library/index.md)                             | Create a class library project to house reusable game components that we'll develop throughout this tutorial series.         |              |
 | [05: Working with Textures](05_working_with_textures/index.md)           | The process of loading image files as textures using the MonoGame content pipeline and rendering them using the SpriteBatch. |              |
-| [06: Optimize Texture Rendering](06_optimize_texture_rendering/index.md) |                                                                                                                              |              |
+| [06: Optimizing Texture Rendering](06_optimizing_texture_rendering/index.md) |                                                                                                                              |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 

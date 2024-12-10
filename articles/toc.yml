@@ -122,8 +122,8 @@
           href: tutorials/building_2d_games/04_game_library/
         - name: "05: Working with Textures"
           href: tutorials/building_2d_games/05_working_with_textures/
-        - name: "06: Optimize Texture Rendering"
-          href: tutorials/building_2d_games/06_optimize_texture_rendering/
+        - name: "06: Optimizing Texture Rendering"
+          href: tutorials/building_2d_games/06_optimizing_texture_rendering/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
