@@ -72,7 +72,7 @@ To add the game library project as a reference to the game project in Visual Stu
 ### dotnet CLI
 To add the game library project as a reference to the game project with the dotnet CLI:
 
-1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.csproj* C# project file
+1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.csproj* C# project file.
 2. Enter the command `dotnet add reference ../MonoGameLibrary/`.  This will add the *MonoGameLibrary* reference to the *MonoGameSnake* game project.
 
 ## Clean Up
