@@ -46,7 +46,7 @@ To add the class library using the MonoGame Game Library project template with t
 3. Enter the command `dotnet sln add ./MonoGameLibrary/` to add the newly created class library project to the *MonoGameSnake.sln* solution file.
 
 ## Adding a Reference To The Class Library
-Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, then our game project will be unaware of anything we add to the class library.  To do this:
+Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, our game project will be unaware of anything we add to the class library.  To do this:
 
 ### Visual Studio Code
 To add the game library project as a reference to the game project in Visual Studio Code:
