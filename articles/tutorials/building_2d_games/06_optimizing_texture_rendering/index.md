@@ -255,9 +255,9 @@ The constructor requires two parameters, a [**Texture2D**](xref:Microsoft.Xna.Fr
 You might think that adding these checks are pointless, because when would you ever pass in a null or disposed texture, or provide a source rectangle that is out of bounds of the texture bounds. Of course you would never do this right?  Well, we're all human and sometimes we make mistakes.  It is always best to check yourself to be sure before you publish your game with bugs that could have been avoided.
 
 > [!TIP]  
-> Instead of throwing exceptions in the constructor when performing these checks,  `Debug.Assert` is used here.  This has a similar result as throwing an exception, except that the line of code is only ever executed when you run the code in a Debug build.  It asserts that the statement provided is true.  If the statement is false, then code execution will be paused at that line of code similar to if you add a breakpoint to debug.  This allows you to catch any issues while developing your game and running in a Debug build without needing to throw exceptions.  
+> Instead of throwing exceptions in the constructor when performing these checks,  [**Debug.Assert**](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.debug.assert?view=net-9.0) is used here.  This has a similar result as throwing an exception, except that the line of code is only ever executed when you run the code in a Debug build.  It asserts that the statement provided is true.  If the statement is false, then code execution will be paused at that line of code similar to if you add a breakpoint to debug.  This allows you to catch any issues while developing your game and running in a Debug build without needing to throw exceptions.  
 >
-> The `Debug.Assert` lines of code are also removed completely when you compile the project in a Release build, so you don't have to worry about debug specific code making its way into your final release.
+> The [**Debug.Assert**](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.debug.assert?view=net-9.0) lines of code are also removed completely when you compile the project in a Release build, so you don't have to worry about debug specific code making its way into your final release.
 
 ### Draw Method
 
