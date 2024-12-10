@@ -19,7 +19,8 @@ A class library is a project type that compiles into a Dynamic Link Library (DLL
 
 Let's use the MonoGame Game Library project template to add a new class library project that will contain our reusable code.
 
-### Visual Studio Code
+### [Visual Studio Code](#tab/vscode)
+
 To add the class library using the MonoGame Game Library project template in Visual Studio Code, perform the following:
 
 1. Open the *Command Palette* (View > Command Palette).
@@ -29,7 +30,8 @@ To add the class library using the MonoGame Game Library project template in Vis
 5. When prompted for a location, use the default option, which will put the new project in a folder next to your game project.
 6. Select "Create Project".
 
-### Visual Studio 2022
+### [Visual Studio 2022](#tab/vs2022)
+
 To add the class library using the MonoGame Game Library project template in Visual Studio 2022, perform the following:
 
 1. Right-click the *MonoGameSnake* solution in the Solution Explorer panel.
@@ -39,18 +41,22 @@ To add the class library using the MonoGame Game Library project template in Vis
 5. The location by default will put the new project in a folder next to your game project; you do not need to adjust this.
 6. Click "Create".
 
-### dotnet CLI
+### [dotnet CLI](#tab/dotnetcli)
+
 To add the class library using the MonoGame Game Library project template with the dotnet CLI, perform the following:
 
 1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.sln* solution file.
 2. Enter the command `dotnet new mglib -n MonoGameLibrary` to create the project, placing it in a folder next to your game project.
 3. Enter the command `dotnet sln add ./MonoGameLibrary/` to add the newly created class library project to the *MonoGameSnake.sln* solution file.
 
+---
+
 ## Adding a Reference To The Class Library
 
 Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, our game project will be unaware of anything we add to the class library.  To do this:
 
-### Visual Studio Code
+### [Visual Studio Code](#tab/vscode)
+
 To add the game library project as a reference to the game project in Visual Studio Code:
 
 1. In the Solution Explorer panel, right-click the *MonoGameSnake* project.
@@ -63,7 +69,8 @@ To add the game library project as a reference to the game project in Visual Stu
 > 1. Opening the *Command Palette* (View > Command Palette).
 > 2. Enter "Explorer: Focus on Solution Explorer View" and select the command.
 
-### Visual Studio 2022
+### [Visual Studio 2022](#tab/vs2022)
+
 To add the game library project as a reference to the game project in Visual Studio 2022:
 
 1. In the Solution Explorer panel, right-click the *MonoGameSnake* project.
@@ -71,11 +78,14 @@ To add the game library project as a reference to the game project in Visual Stu
 3. Check the box for the *MonoGameLibrary* project.
 4. Click Ok.
 
-### dotnet CLI
+### [dotnet CLI](#tab/dotnetcli)
+
 To add the game library project as a reference to the game project with the dotnet CLI:
 
 1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.csproj* C# project file.
 2. Enter the command `dotnet add reference ../MonoGameLibrary/`.  This will add the *MonoGameLibrary* reference to the *MonoGameSnake* game project.
+
+---
 
 ## Clean Up
 
