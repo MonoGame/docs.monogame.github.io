@@ -64,7 +64,8 @@
       "_hostname": "monogame.net",
       "_openGraphImage": "images/social_embed_image.png",
       "_description": "One framework for creating powerful cross-platform games.",
-      "_appTitle": "MonoGame"
+      "_appTitle": "MonoGame",
+      "_enableSearch": true
     },
     "template": [
       "default",
