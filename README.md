@@ -33,7 +33,7 @@ With your environment setup properly, the following explains how to build from s
   `dotnet docfx docfx.json --serve`
 
 > [!NOTE]
-> Docfx hosting does not support hot reload, so to refresh the hosted site you will need to stop the agent (ctrl-c) and run the above command again to refresh pages
+> Docfx hosting does not support hot reload, so to refresh the hosted site you will need to run `docfx docfx.json` in a separate terminal or stop and rerun the agent (ctrl-c)
 
 ## Document styling
 
@@ -53,7 +53,7 @@ The use of DocFX with the updated MonoGame docs site has afforded the use of som
 
   [DocFX Markdown style guide](https://dotnet.github.io/docfx/docs/markdown.html?tabs=linux%2Cdotnet#alerts)
 
-As an example of a document written using the above notes, please refer to the [HowTo: Create a Render Target tutorial](https://github.com/MonoGame/docs.monogame.github.io/blob/feature/docsmigration/articles/monogame/howto/graphics/HowTo_Create_a_RenderTarget.md)
+As an example of a document written using the above notes, please refer to the [HowTo: Create a Render Target tutorial](./articles/getting_to_know/howto/graphics/HowTo_Create_a_RenderTarget.md)
 
 > [!TIP]
 > No additional text is needed at the bottom of document pages as the licenses and requirements are automatically added by the DocFX build system
