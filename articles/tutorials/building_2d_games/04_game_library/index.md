@@ -23,9 +23,9 @@ Let's use the MonoGame Game Library project template to add a new class library 
 
 To add the class library using the MonoGame Game Library project template in Visual Studio Code, perform the following:
 
-1. Open the *Command Palette* (View > Command Palette).
-2. Enter ".NET New Project" and select that command.
-3. Enter "MonoGame Game Library" and select it as the template to use.
+1. In the *Solution Explorer* panel, right-click the *MonoGameSnake* solution.
+2. Chose *New Project* from the context menu.
+3. Enter "Monogame Game Library" and select it as the template to use.
 4. Name the project "MonoGameLibrary".
 5. When prompted for a location, use the default option, which will put the new project in a folder next to your game project.
 6. Select "Create Project".
