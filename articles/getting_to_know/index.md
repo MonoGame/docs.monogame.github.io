@@ -13,7 +13,7 @@ Please check back regularly for updates and more details on the evolution of the
 
 Provides simple definitions for most of the central concepts maintained by the MonoGame Framework.
 
-The aim with this documentation section to to answer those most basic of questions, what is this thing and what is it for?  Ultimately, these guides are here to help peel back the curtains as to what each feature of the MonoGame framework is for.
+The aim with this documentation section is to answer those most basic of questions, what is this thing and what is it for?  Ultimately, these guides are here to help peel back the curtains as to what each feature of the MonoGame framework is for.
 
 ### [How To articles](howto/index.md)
 
