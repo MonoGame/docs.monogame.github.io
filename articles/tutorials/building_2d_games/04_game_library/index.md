@@ -87,6 +87,18 @@ To add the game library project as a reference to the game project with the dotn
 
 ---
 
+## Validating Setup
+Before moving on, let's validate that the reference to our game library was setup correct and can be referenced within the game project.  We can do this by simply adding a `using` statement in our game project to ensure it resolves.  Perform the following:
+
+1. Open the *Game1.cs* file located in the *MonoGameSnake* project.
+2. At the top of the file where the `using` statements are located, located the `using Microsoft.Xna.Framework.Input` statement and adding the following on a new line below it:
+
+    ```cs
+    using MonoGameLibrary;
+    ```
+
+3. If you do not see an error, then the project reference has been setup correctly.  **You can now remove the using statement just added**.  If you receive an error that the type or namespace for `MonoGameLibrary` could not be found, this means the project reference was not setup correctly.  Revisit the [Adding a Reference to the Class Library](#adding-a-reference-to-the-class-library) section above and ensure that the reference is added properly.
+
 ## Clean Up
 
 When using the *MonoGame Game Library* project template, the generated project contains file similar to a standard MonoGame game project, including a *dotnet-tools.json* manifest file, a *Content.mgcb* file, and a *Game1.cs* file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the *MonoGameLibrary* project directory and delete them:
