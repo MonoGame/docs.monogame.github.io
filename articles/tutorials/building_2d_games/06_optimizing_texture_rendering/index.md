@@ -129,9 +129,107 @@ The following table lists the fields, properties, and methods needed for the `Sp
 > [!TIP]
 > The `Width` and `Height` properties automatically account for scaling, making it easier to perform calculations like collision detection or positioning without manually applying the scale factor each time.
 
+## Creating A Class Library
+
+Now that we have defined what the `Sprite` class should be, let's create it.  However, instead of adding it to our *MonoGameSnake* game project, we're going to create a class library and add it to that. Creating a class library offers server advantages, including:
+
+1. **Reusability**: The classes can be easily reused in future game projects by simply adding a reference to the library.
+2. **Organization**: Keeps game-specific code separate from reusable library code.
+3. **Maintainability**: Changes to the library can benefit all games that use it.
+4. **Testing**: The library code can be tested independently of any specific game.
+
+A class library is a project type that compiles into a [Dynamic Link Library](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries) (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.  MonoGame offers the *MonoGame Game Library* project template that can be used to create a class library.
+
+### Adding the Class Library
+
+MonoGame offers the *MonoGame Game Library* project template to add a new class library project that is configured with the correct monoGame framework references.  Using this template saves time and ensures compatibility with MonoGame projects.  
+
+To use the template to add the class library, perform the following
+
+#### [Visual Studio Code](#tab/vscode)
+
+To add the class library using the MonoGame Game Library project template in Visual Studio Code, perform the following:
+
+1. In the *Solution Explorer* panel, right-click the *MonoGameSnake* solution.
+2. Chose *New Project* from the context menu.
+3. Enter "Monogame Game Library" and select it as the template to use.
+4. Name the project "MonoGameLibrary".
+5. When prompted for a location, use the default option, which will put the new project in a folder next to your game project.
+6. Select "Create Project".
+
+#### [Visual Studio 2022](#tab/vs2022)
+
+To add the class library using the MonoGame Game Library project template in Visual Studio 2022, perform the following:
+
+1. Right-click the *MonoGameSnake* solution in the Solution Explorer panel.
+2. Choose Add > New Project from the context menu.
+3. Enter "MonoGame Game Library" in the search box, select that template, then click Next.
+4. Name the project "MonoGameLibrary".
+5. The location by default will put the new project in a folder next to your game project; you do not need to adjust this.
+6. Click "Create".
+
+#### [dotnet CLI](#tab/dotnetcli)
+
+To add the class library using the MonoGame Game Library project template with the dotnet CLI, perform the following:
+
+1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.sln* solution file.
+2. Enter the command `dotnet new mglib -n MonoGameLibrary` to create the project, placing it in a folder next to your game project.
+3. Enter the command `dotnet sln MonoGameSnake.sln add ./MonoGameLibrary/MonoGameLibrary.csproj` to add the newly created class library project to the *MonoGameSnake.sln* solution file.
+
+---
+
+### Adding a Reference To The Class Library
+
+Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, our game project will be unaware of anything we add to the class library.  To do this:
+
+#### [Visual Studio Code](#tab/vscode)
+
+To add the game library project as a reference to the game project in Visual Studio Code:
+
+1. In the Solution Explorer panel, right-click the *MonoGameSnake* project.
+2. Choose "Add Project Reference" from the context menu.
+3. Choose *MonoGameLibrary" from the available options.
+
+> [!TIP]
+> The Solution Explorer panel in VSCode is provided by the C# Dev Kit extension that was installed in [Chapter 02](../02_getting_started/index.md#install-the-c-dev-kit-extension).  If you do not see this panel, you can open it by
+>
+> 1. Opening the *Command Palette* (View > Command Palette).
+> 2. Enter "Explorer: Focus on Solution Explorer View" and select the command.
+
+#### [Visual Studio 2022](#tab/vs2022)
+
+To add the game library project as a reference to the game project in Visual Studio 2022:
+
+1. In the Solution Explorer panel, right-click the *MonoGameSnake* project.
+2. Select Add > Project Reference from the context menu.
+3. Check the box for the *MonoGameLibrary* project.
+4. Click Ok.
+
+#### [dotnet CLI](#tab/dotnetcli)
+
+To add the game library project as a reference to the game project with the dotnet CLI:
+
+1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.csproj* C# project file.
+2. Enter the command `dotnet add ./MonoGameSnake.csproj reference ../MonoGameLibrary/MonoGameLibrary.csproj`.  This will add the *MonoGameLibrary* reference to the *MonoGameSnake* game project.
+
+---
+
+### Clean Up
+
+When using the *MonoGame Game Library* project template, the generated project contains file similar to a standard MonoGame game project, including a *dotnet-tools.json* manifest file, a *Content.mgcb* file, and a *Game1.cs* file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the *MonoGameLibrary* project directory and delete them:
+
+1. The *.config/* directory.
+2. The *Content/* directory
+3. The *Game1.cs* file.
+
+> [!TIP]
+> These files are needed in more advanced scenarios such as creating a central code base for game logic that is referenced by other projects of which each target different platforms such as desktop, mobile, and console.  Creating a project structure of this type is out of scope for this tutorial.  
+>
+> If you would like more information on this, Simon Jackson has written the article [Going cross-platform with MonoGame](https://darkgenesis.zenithmoon.com/going-cross-platform-with-monogame.html) which covers this in more detail.
+
 ## Adding the `Sprite` class
 
-Now that we have defined what the `Sprite` class should be, let's create it.  Instead of adding this to the game project, we're going to add it to the *MonoGameLibrary* class library project that was setup in [Chapter 04](../04_game_library/index.md).  Perform the following:
+Now that we have the class library setup, let's take the defined `Sprite` class and create it; adding it to the game library we just setup.  Perform the following:
 
 1. Add a new folder to the *MonoGameLibrary* project named *Graphics*.
 2. Create a new file named *Sprite.cs* in that folder.
@@ -389,6 +487,9 @@ Knowing this, let's adjust the code in our game to use the new `Sprite` class to
 ```cs
 using MonoGameLibrary.Graphics;
 ```
+
+> [!TIP]
+> After adding the above `using` statement, if you receive an error stating that type or namespace for `MonoGameLibrary.Graphics` could not be found, this means the project reference was not setup correctly.  Revisit the [Adding a Reference To the Class Library](#adding-a-reference-to-the-class-library) section above to ensure that the reference is added properly.
 
 Next, locate the `_logo` instance member field declaration and add the following directly after:
 
