@@ -16,12 +16,12 @@ While the environment setup process is similar to the standard setup process for
 
 The first thing we need to do is install the .NET *Software Development Kit* (SDK). At the time of this writing, MonoGame targets the .NET 8.0 SDK. To install it, follow the instructions based on your operating system below
 
-### Windows
+### [Windows](#tab/windows)
 1. Open a web browser and navigate to https://dotnet.microsoft.com/en-us/download.
 2. Click the *Download .NET SDK x64* button to start the download of the .NET SDK Installer.
 3. Once the download finishes, run the installer
 
-### macOS
+### [macOS](#tab/macos)
 1. Open a web browser and navigate to https://dotnet.microsoft.com/en-us/download.
 2. Click the *Download .NET SDK x64 (Intel)* button start the download of the .NET SDK Installer
 3. Once the download finishes, run the installer.  
@@ -29,13 +29,15 @@ The first thing we need to do is install the .NET *Software Development Kit* (SD
 > [!NOTE]  
 > For the time being, MonoGame requires that you install the **Intel** version even if you are using an Apple Silicon (M1/M2) Mac. For Apple Silicon Macs, it also requires that [Rosetta](https://support.apple.com/en-us/HT211861) is enabled.
 
-### Linux
+### [Linux](#tab/linux)
 1. Open a new *Terminal* window
 2. Enter the following command to install the .NET SDK
 
 ```sh
 sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
 ```
+
+---
 
 ## Install Additional Workloads (Optional)
 
@@ -60,22 +62,26 @@ dotnet new install MonoGame.Templates.CSharp
 
 To install VSCode, follow the instructions for your operating system below:
 
-### Windows
+### [Windows](#tab/windows)
+
 1. Open a browser and navigate to https://code.visualstudio.com/.
 2. Click the *Download for Windows* button to start the download of the installer.
 3. Once the download finishes, run the installer.
 
-### macOS
+### [macOS](#tab/macos)
 
 1. Open a web browser and navigate to https://code.visualstudio.com/.
 2. Click the *Download for macOS* button to start the download of the *.zip* archive.
 3. Once the download finishes, double click the *.zip* archive to extract the *Visual Studio Code.app* application package
 4. Drag-and-drop the *Visual Studio Code.app* application package into your *Application* directory to make it available in the macOS *LaunchPad*.
 
-### Linux
+### [Linux](#tab/linux)
+
 1. Open a web browser and navigate to https://code.visualstudio.com/.
 2. Click the *.deb* download button to download the package for Debian based Linux distributions, or the *.rpm* download button for Red Hat based Linux distributions.
 3. Once the download finishes, open the package downloaded to install.
+
+---
 
 ## Install the C# Dev Kit Extension
 
@@ -105,7 +111,13 @@ To install it, with VSCode open:
 
 *Effect* (shader) compilation requires access to DirectX. This means it will not work natively on macOS and Linux systems, but it can be used through [WINE](https://www.winehq.org/). MonoGame provides a setup script that can be executed to setup the WINE environment. Below you can find the steps based on your operating system. To do this, follow the instructions for your operating system below:
 
-### macOS
+### [Windows](#tab/windows)
+
+> [!NOTE]
+> Setting up WINE for effect compilation is not required for Windows
+
+### [macOS](#tab/macos)
+
 Open a new *Terminal* window and enter execute the following commands:
 
 ```sh
@@ -114,7 +126,11 @@ brew install --cask wine-stable
 wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 ```
 
-### Linux
+> [!NOTE]
+> After performing these steps, a new directory called *.winemonogame* will be created in your home directory. If you ever wish to undo the setup this script performed, you can just simply delete this directory.
+
+### [Linux](#tab/linux)
+
 Open a new *Terminal* window and execute the following commands:
 
 ```sh
@@ -123,7 +139,9 @@ wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 ```
 
 > [!NOTE]
-> After performing these steps, regardless of macOS or Linux, a new directory called *.winemonogame* will be created in your home directory. If you ever wish to undo the setup this script performed, you can just simply delete this directory.
+> After performing these steps, a new directory called *.winemonogame* will be created in your home directory. If you ever wish to undo the setup this script performed, you can just simply delete this directory.
+
+---
 
 ## Creating Your First MonoGame Application
 
