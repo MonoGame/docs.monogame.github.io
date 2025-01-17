@@ -1,6 +1,6 @@
 ---
 title: "Chapter 01: What is MonoGame"
-description: In this chapter, we'll explore the history of MonoGame and what features it provides developers to create games.
+description: Learn about the history of MonoGame and explore the features it provides developers when creating games.
 ---
 
 ## A Brief History
