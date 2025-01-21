@@ -1,5 +1,5 @@
 ---
-title: "Chapter 05: Working with Textures"
+title: "Chapter 04: Working with Textures"
 description: Learn how to load and render textures using the MonoGame content pipeline and SpriteBatch.
 ---
 
