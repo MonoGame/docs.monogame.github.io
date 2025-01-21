@@ -590,7 +590,7 @@ Let's review what you accomplished in this chapter:
 - Created a reusable Sprite class to simplify texture management
 - Used the Sprite class to render multiple sprites from a single texture
 
-In the next chapter, we will build on the Sprite class to create animated sprites, allowing us to bring more life to our games through sprite animation.
+In the next chapter, we'll start exploring Input in MonoGame and how to capture it to make our game interactive.
 
 ## Test Your Knowledge
 
