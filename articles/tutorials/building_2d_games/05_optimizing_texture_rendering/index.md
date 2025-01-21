@@ -1,9 +1,9 @@
 ---
-title: "Chapter 06: Optimizing Texture Rendering"
+title: "Chapter 05: Optimizing Texture Rendering"
 description: Explore optimization techniques when rendering textures using a texture atlas.
 ---
 
-In [Chapter 05](../05_working_with_textures/index.md), you learned how to load and render textures using [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we will explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.
+In [Chapter 04](../04_working_with_textures/index.md), you learned how to load and render textures using [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we will explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.
 
 In this chapter, you will:
 
@@ -473,7 +473,7 @@ public class Sprite
 
 ## Using the `Sprite` Class
 
-With the `Sprite` class now created, let's see it in action.  Recall the illustration of the MonoGame logo we added to the game broken down into texture regions from [Chapter 05](../05_working_with_textures/index.md#texture-regions):
+With the `Sprite` class now created, let's see it in action.  Recall the illustration of the MonoGame logo we added to the game broken down into texture regions from [Chapter 04](../04_working_with_textures/index.md#texture-regions):
 
 <figure><img src="./images/logo-texture-regions.png" alt="Figure 6-2: The MonoGame logo broken down into texture regions."><figcaption><p><strong>Figure 6-2: The MonoGame logo broken down into texture regions.</strong></p></figcaption></figure>
 
@@ -543,7 +543,7 @@ The new code for the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft
 
 <figure><img src="./images/logo-wordmark-offcenter.png" alt="Figure 6-3: The MonoGame icon and wordmark."><figcaption><p><strong>Figure 6-3: The MonoGame icon and wordmark.</strong></p></figcaption></figure>
 
-We have a similar problem that we saw [in the previous chapter](../05_working_with_textures/index.md#drawing-a-texture); the sprites are *technically* drawn correctly at the center of the screen, but the `Origin` was never set for them, so it's default is the upper-left corner of each sprite.  Our goal here is to draw the sprites such that the logo is centered on top of the wordmark and both are centered on the game window.  Take a look at Figure 6-4 below:
+We have a similar problem that we saw [in the previous chapter](../04_working_with_textures/index.md#drawing-a-texture); the sprites are *technically* drawn correctly at the center of the screen, but the `Origin` was never set for them, so it's default is the upper-left corner of each sprite.  Our goal here is to draw the sprites such that the logo is centered on top of the wordmark and both are centered on the game window.  Take a look at Figure 6-4 below:
 
 <figure><img src="./images/logo-wordmark-centered-example.png" alt="Figure 6-4: The MonoGame icon and wordmark centered on the game window with the origin point shown."><figcaption><p><strong>Figure 6-4: The MonoGame icon and wordmark centered on the game window with the origin point shown.</strong></p></figcaption></figure>
 
@@ -584,6 +584,9 @@ Let's review what you accomplished in this chapter:
 
 - Learned about texture swapping and its impact on performance
 - Explored texture atlases as a solution for optimizing texture rendering
+- Learned what a class library is and the benefits of using one.
+- Created a new MonoGame Game Library project.
+- Added the library project as a reference to the game project.
 - Created a reusable Sprite class to simplify texture management
 - Used the Sprite class to render multiple sprites from a single texture
 
@@ -610,3 +613,23 @@ In the next chapter, we will build on the Sprite class to create animated sprite
    > - Simplifies asset management
    > - Improves rendering performance
    </details><br />
+
+3. Name an advantage of using a class library for game development.
+
+    <details>
+    <summary>Question 3 Answer</summary>
+
+    > Any of the following are advantages of using a class library:
+    > - Reusability: The classes can be easily reused in future game projects by simply adding a reference to the library.
+    > - Organization: It keeps game-specific code separate from reusable library code.
+    > - Maintainability: Changes to the library can benefit all games that use it.
+    > - Testing: The library code can be tested independently of any specific game.
+    </details><br />
+
+4. Why should we use the MonoGame Game Library template instead of a standard class library template?
+
+    <details>
+    <summary>Question 4 Answer</summary>
+
+    > The MonoGame Game Library template automatically sets up the correct MonoGame framework references and configuration, saving time and ensuring compatibility.
+    </details><br />
