@@ -124,6 +124,8 @@
           href: tutorials/building_2d_games/05_working_with_textures/
         - name: "06: Optimizing Texture Rendering"
           href: tutorials/building_2d_games/06_optimizing_texture_rendering/
+        - name: "07: The Sprite Class"
+          href: tutorials/building_2d_games/07_the_sprite_class/          
 - name: Console Access
   href: console_access.md
 - name: Help and Support
