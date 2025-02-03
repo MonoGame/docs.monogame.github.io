@@ -190,7 +190,7 @@ public Sprite CreateSprite(string regionName)
 }
 ```
 
-## Using the `Sprite` Class
+## Using the Sprite Class
 
 Let's adjust our game now to use the `Sprite` class instead of just the texture regions.  Replace the contents of *Game1.cs* with the following:
 
