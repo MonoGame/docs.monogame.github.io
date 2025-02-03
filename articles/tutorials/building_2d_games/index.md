@@ -26,7 +26,7 @@ This documentation will introduce game development concepts using the MonoGame f
 | [03: The Game1 File](03_the_game1_file/index.md)                             | Explore the contents of the Game1 file generated when creating a new MonoGame project.                                                              |              |
 | [04: Content Pipeline](04_content_pipeline/index.md)                         | Learn the advantages of using the **Content Pipeline** to load assets and go through the processes of loading your first asset                      |              |
 | [05: Working with Textures](05_working_with_textures/index.md)               | Learn how to load and render textures using the MonoGame content pipeline and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). |              |
-| [05: Optimizing Texture Rendering](06_optimizing_texture_rendering/index.md) | Explore optimization techniques when rendering textures using a texture atlas.                                                                      |              |
+| [06: Optimizing Texture Rendering](06_optimizing_texture_rendering/index.md) | Explore optimization techniques when rendering textures using a texture atlas.                                                                      |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
