@@ -28,6 +28,7 @@ This documentation will introduce game development concepts using the MonoGame f
 | [05: Working with Textures](05_working_with_textures/index.md)               | Learn how to load and render textures using the MonoGame content pipeline and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). |              |
 | [06: Optimizing Texture Rendering](06_optimizing_texture_rendering/index.md) | Explore optimization techniques when rendering textures using a texture atlas.                                                                      |              |
 | [07: The Sprite Class](07_the_sprite_class/index.md)                         | Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more.      |              |
+| [08: The AnimatedSprite Class](07_the_sprite_class/index.md)                 | Create an AnimatedSprite class that builds upon our Sprite class to support frame-based animations.                                                 |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
