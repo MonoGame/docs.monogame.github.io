@@ -13,7 +13,7 @@ With your environment setup properly, the following explains how to build from s
 1. Clone this repository
 
     ```sh
-    git clone https://github.com/MonoGame/monogame.github.io.git
+    git clone https://github.com/MonoGame/docs.monogame.github.io/
     ```
 
 2. Install DotNet dependencies
