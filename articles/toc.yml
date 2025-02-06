@@ -126,8 +126,10 @@
           href: tutorials/building_2d_games/06_optimizing_texture_rendering/
         - name: "07: The Sprite Class"
           href: tutorials/building_2d_games/07_the_sprite_class/          
-        - name: "07: The AnimatedSprite Class"
+        - name: "08: The AnimatedSprite Class"
           href: tutorials/building_2d_games/08_the_animatedsprite_class/           
+        - name: "09: Handling Input"
+          href: tutorials/building_2d_games/09_handling_input/                     
 - name: Console Access
   href: console_access.md
 - name: Help and Support
