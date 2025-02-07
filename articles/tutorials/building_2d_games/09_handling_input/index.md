@@ -210,7 +210,10 @@ The [**GamePadState.Buttons**](xref:Microsoft.Xna.Framework.Input.GamePadState.B
 >
 > | Front                                                      | Back                                                     |
 > |------------------------------------------------------------|----------------------------------------------------------|
+> | Xbox                                                       |                                                          |
 > | ![Front Of Controller](./images/xbox-controller-front.svg) | ![Back Of Controller](./images/xbox-controller-back.svg) |
+> | Playstation                                                |                                                          |
+> | ![Front Of Controller](./images/ps-controller-front.svg)   | ![Back Of Controller](./images/ps-controller-back.svg)   |
 
 Like with the [mouse input](#mousestate-struct), each of these buttons are represented by a [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) enum value.  For instance, if you wanted to check if the A button is being pressed you could do the following:
 
