@@ -203,6 +203,10 @@ The [**GamePadState.Buttons**](xref:Microsoft.Xna.Framework.Input.GamePadState.B
 
 > [!NOTE]
 > Recall from [Chapter 01](../01_what_is_monogame/index.md) that MonoGame is a implementation the XNA API.  Since XNA was originally created for making games on Windows PC and Xbox 360, the names of the gamepad buttons match those of an Xbox 360 controller.
+>
+> | Front                                                      | Back                                                     |
+> |------------------------------------------------------------|----------------------------------------------------------|
+> | ![Front Of Controller](./images/xbox-controller-front.svg) | ![Back Of Controller](./images/xbox-controller-back.svg) |
 
 Like with the [mouse input](#mousestate-struct), each of these buttons are represented by a [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) enum value.  For instance, if you wanted to check if the A button is being pressed you could do the following:
 
