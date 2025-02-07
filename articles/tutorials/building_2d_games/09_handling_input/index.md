@@ -38,6 +38,9 @@ if(Keyboard.GetState().IsKeyDown(Keys.Space))
 }
 ```
 
+> [!TIP]
+> Notice we store the keyboard state in a variable instead of calling [**Keyboard.GetState**](xref:Microsoft.Xna.Framework.Input.Keyboard.GetState) multiple times. This is more efficient and ensures consistent input checking within a single frame.
+
 ### Implementing Keyboard Input
 
 Let's implement keyboard controls to move our slime sprite around the screen.  Open the *Game1.cs* file and perform the following:
@@ -74,9 +77,6 @@ Let's implement keyboard controls to move our slime sprite around the screen.  O
         _slimePosition.X += MOVEMENT_SPEED;
     }
     ```
-
-    > [!TIP]
-    > Notice we store the keyboard state in a variable instead of calling [**Keyboard.GetState**](xref:Microsoft.Xna.Framework.Input.Keyboard.GetState) multiple times. This is more efficient and ensures consistent input checking within a single frame.
 
     > [!NOTE]
     > Remember that the Y-axis increases downward in MonoGame's coordinate system. This is why we subtract from Y to move up and add to Y to move down.
