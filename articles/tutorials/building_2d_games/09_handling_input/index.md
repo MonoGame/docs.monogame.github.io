@@ -32,7 +32,9 @@ The [**KeyboardState**](xref:Microsoft.Xna.Framework.Input.KeyboardState) struct
 For example, if we wanted to see if the Space key is down, you could use the following:
 
 ```cs
-if(Keyboard.GetState().IsKeyDown(Keys.Space))
+KeyboardState keyboardState = Keyboard.GetState();
+
+if(keyboardState.IsKeyDown(Keys.Space))
 {
     // The space key is down, so do something.
 }
@@ -118,7 +120,9 @@ Unlike keyboard input which uses [**IsKeyDown(Keys)**](xref:Microsoft.Xna.Framew
 For example, if we wanted to see if the left mouse button is down, you could use the following
 
 ```cs
-if(Mouse.GetState().LeftButton == ButtonState.Pressed)
+MouseState mouseState = Mouse.GetState();
+
+if(mouseState.LeftButton == ButtonState.Pressed)
 {
     // The left button is down, so do something.
 }
@@ -211,7 +215,9 @@ The [**GamePadState.Buttons**](xref:Microsoft.Xna.Framework.Input.GamePadState.B
 Like with the [mouse input](#mousestate-struct), each of these buttons are represented by a [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) enum value.  For instance, if you wanted to check if the A button is being pressed you could do the following:
 
 ```cs
-if(GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed)
+GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+if(gamePadState.Buttons.A == ButtonState.Pressed)
 {
     // Button A is pressed, do something.
 }
@@ -231,7 +237,9 @@ The [**DPad**](xref:Microsoft.Xna.Framework.Input.GamePadState.DPad)  property r
 Like with the [Buttons](#buttons), these also return a [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) enum value to represent the state of the DPad button.  For instance, if you wanted to check if the DPad up button is being pressed, you could do the following:
 
 ```cs
-if(GamePad.GetState(PlayerIndex.One).DPad.Down == ButtonState.Pressed)
+GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+if(gamePadState.DPad.Down == ButtonState.Pressed)
 {
     // DPad down is pressed, do something.
 }
@@ -254,8 +262,11 @@ The thumbstick values are represented as a [**Vector2**](xref:Microsoft.Xna.Fram
 For example, if you wanted to move a sprite using the left thumbstick, you could do the following
 
 ```cs
-Vector2 leftStick = GamePad.GetState(PlayerIndex.One).Thumbsticks.Left;
+GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+Vector2 leftStick = gamePadState.Thumbsticks.Left;
 leftStick.Y *= -1.0f;
+
 sprite.Position += leftStick;
 ```
 
@@ -324,7 +335,9 @@ You can use the [**IsButtonDown(Buttons)**](xref:Microsoft.Xna.Framework.Input.G
 For example, if we wanted to check if the A button on the the first gamepad is pressed, you could use the following:
 
 ```cs
-if(GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.A))
+GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+if(gamePadState.IsButtonDown(Buttons.A))
 {
     // The A button is pressed, do something.
 }
@@ -338,6 +351,7 @@ Let's implement gamepad controls as an alternative method of moving the slime sp
 
 ```cs
 GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
 _slimePos.X += gamePadState.ThumbSticks.Left.X * MOVEMENT_SPEED;
 _slimePos.Y -= gamePadState.ThumbSticks.Left.Y * MOVEMENT_SPEED;
 ```
