@@ -80,8 +80,8 @@ Let's implement keyboard controls to move our slime sprite around the screen.  O
     }
     ```
 
-    > [!NOTE]
-    > Remember that the Y-axis increases downward in MonoGame's coordinate system. This is why we subtract from Y to move up and add to Y to move down.
+    > [!IMPORTANT]
+    > Why are we subtracting from the Y position when moving up instead of adding?  Recall from [Chapter 05](../05_working_with_textures/index.md#drawing-a-texture) that MonoGame uses a coordinate system where the Y value **increases** moving down.  So in order to move **up** the screen, we need to reduce the Y value.
 
 3. Finally, in [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), update the position of the slime when it is rendered by using the `_slimePosition` value:
 
@@ -271,7 +271,9 @@ sprite.Position += leftStick;
 ```
 
 > [!IMPORTANT]
-> When the Y-Axis is fully pushed downward, its value is `-1.0f`.  Recall from [Chapter 05](../05_working_with_textures/index.md#drawing-a-texture) that MonoGame uses a coordinate system where the Y values **increase** moving down. This is directly opposite of the value represented by the thumbstick.  To resolve this, the common approach is to multiply the Y value of the thumbstick by `-1.0f`.  This is why it is done in the example above.
+> Notice that we inverted the y-axis value of the thumbstick by multiplying it by `-1.0f`. This is necessary because the thumbstick y-axis values range from `-1.0f` (down) to `1.0f` (up).  The y-axis of the screen coordinates in MonoGame **increases** downward, as we saw in [Chapter 05](../05_working_with_textures/index.md#drawing-a-texture) and in the [Implementing Keyboard Input](#implementing-keyboard-input) section above.
+>
+> This inversion aligns the thumbstick's y-axis value with the screen movement.
 
 #### Triggers
 
