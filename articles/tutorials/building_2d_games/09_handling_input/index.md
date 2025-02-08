@@ -10,9 +10,6 @@ When you play a game, you need ways to control what's happening; using a keyboar
 - [**GamePad**](xref:Microsoft.Xna.Framework.Input.GamePad): Manages controller input like button presses and thumbstick movement.
 - [**TouchPanel**](xref:Microsoft.Xna.Framework.Input.TouchPanel): Manages touch input on devices with a touch panel such as mobile phones and tablets.
 
-> [!NOTE]
-> MonoGame also supports touch and accelerometer input for mobile devices, however this tutorial focuses on desktop input handling using keyboard, mouse, and gamepad controls.
-
 Each of these input types has a `GetState` method that, when called, checks what is happening with that device at that moment. Think of it like taking a snapshot; when you call `GetState`, MonoGame looks at that exact moment to see which buttons are pressed, where the mouse is, or how the controller is being used.
 
 In this chapter you will, we will learn how to use each of these dedicated input classes to handle player input.
