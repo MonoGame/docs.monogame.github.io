@@ -29,6 +29,7 @@ This documentation will introduce game development concepts using the MonoGame f
 | [06: Optimizing Texture Rendering](06_optimizing_texture_rendering/index.md) | Explore optimization techniques when rendering textures using a texture atlas.                                                                      |              |
 | [07: The Sprite Class](07_the_sprite_class/index.md)                         | Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more.      |              |
 | [08: The AnimatedSprite Class](07_the_sprite_class/index.md)                 | Create an AnimatedSprite class that builds upon our Sprite class to support frame-based animations.                                                 |              |
+| [09: Handling Input](09_handling_input/index.md)                             | Learn how to handle keyboard, mouse, and gamepad input in MonoGame.                                                                                 |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
