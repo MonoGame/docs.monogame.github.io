@@ -7,7 +7,7 @@ When you play a game, you need ways to control what's happening; using a keyboar
 
 - [**Keyboard**](xref:Microsoft.Xna.Framework.Input.Keyboard): Detects which keys are being pressed.
 - [**Mouse**](xref:Microsoft.Xna.Framework.Input.Mouse): Tracks mouse movement, button clicks, and scroll wheel use.
-- [**GamePad**](xref:Microsoft.Xna.Framework.Input.GamePad): Manages controller input like button presses and joystick movement.
+- [**GamePad**](xref:Microsoft.Xna.Framework.Input.GamePad): Manages controller input like button presses and thumbstick movement.
 
 > [!NOTE]
 > MonoGame also supports touch and accelerometer input for mobile devices, however this tutorial focuses on desktop input handling using keyboard, mouse, and gamepad controls.
@@ -173,11 +173,11 @@ Running the game now, you can move the bat sprite around by clicking the left mo
 
 ## Gamepad Input
 
-Gamepads are often used as a primary input for a game or an alternative for keyboard and mouse controls.  MonoGame provides the [**GamePad**](xref:Microsoft.Xna.Framework.Input.GamePad) class to handle gamepad input, making it easy to detect which buttons are pressed and the value of the joysticks. Calling [**GamePad.GetState**](xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)) will retrieve the state of the gamepad as a [**GamePadState**](xref:Microsoft.Xna.Framework.Input.GamePadState) struct.  Since multiple gamepads can be connected, you will need to supply a [**PlayerIndex**](xref:Microsoft.Xna.Framework.PlayerIndex) value to specify which gamepad state to retrieve.
+Gamepads are often used as a primary input for a game or an alternative for keyboard and mouse controls.  MonoGame provides the [**GamePad**](xref:Microsoft.Xna.Framework.Input.GamePad) class to handle gamepad input, making it easy to detect which buttons are pressed and the value of the thumbsticks. Calling [**GamePad.GetState**](xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)) will retrieve the state of the gamepad as a [**GamePadState**](xref:Microsoft.Xna.Framework.Input.GamePadState) struct.  Since multiple gamepads can be connected, you will need to supply a [**PlayerIndex**](xref:Microsoft.Xna.Framework.PlayerIndex) value to specify which gamepad state to retrieve.
 
 ### GamePadState Struct
 
-The [**GamePadState**](xref:Microsoft.Xna.Framework.Input.GamePadState) struct and properties that can be used to get the state of the buttons, dpad, triggers, and joysticks:
+The [**GamePadState**](xref:Microsoft.Xna.Framework.Input.GamePadState) struct and properties that can be used to get the state of the buttons, dpad, triggers, and thumbsticks:
 
 | Property                                                                       | Type                                                                            | Description                                                                                                                                                                                                                        |
 |--------------------------------------------------------------------------------|---------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -335,7 +335,7 @@ You can use the [**IsButtonDown(Buttons)**](xref:Microsoft.Xna.Framework.Input.G
 
 
 > [!CAUTION]
-> While you can use these methods to get the state of any of these button inputs, the state will only tell you if it is being pressed or released.  For the actual joystick values and trigger values, you would need to use the properties instead.
+> While you can use these methods to get the state of any of these button inputs, the state will only tell you if it is being pressed or released.  For the actual thumbstick values and trigger values, you would need to use the properties instead.
 
 For example, if we wanted to check if the A button on the the first gamepad is pressed, you could use the following:
 
