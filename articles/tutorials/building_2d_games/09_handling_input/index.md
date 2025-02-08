@@ -563,12 +563,12 @@ In the next chapter, we'll learn how to track previous input states to handle si
 
 ## Test Your Knowledge
 
-1. Why do we store the result of GetState() in a variable instead of calling it multiple times?
+1. Why do we store the result of `GetState` in a variable instead of calling it multiple times?
 
    <details>
    <summary>Question 1 Answer</summary>
    
-   > Storing the state in a variable is more efficient and ensures consistent input checking within a frame. Each GetState() call polls the device, which can impact performance if called repeatedly.
+   > Storing the state in a variable is more efficient and ensures consistent input checking within a frame. Each `GetState` call polls the device, which can impact performance if called repeatedly.
    </details><br />
 
 2. What's the main difference between how keyboard and mouse/gamepad button states are checked?
@@ -576,7 +576,7 @@ In the next chapter, we'll learn how to track previous input states to handle si
    <details>
    <summary>Question 2 Answer</summary>
    
-   > Keyboard input uses IsKeyUp/IsKeyDown methods, while mouse and gamepad buttons return a ButtonState enum value (Pressed or Released).
+   > Keyboard input uses [**IsKeyUp**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys))/[**IsKeyDown**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)) methods, while mouse and gamepad buttons return a [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) enum value (Pressed or Released).
    </details><br />
 
 3. When using thumbstick values for movement, why do we multiply the Y value by -1?
@@ -594,3 +594,39 @@ In the next chapter, we'll learn how to track previous input states to handle si
    
    > Analog triggers provide values between 0.0f and 1.0f based on how far they're pressed, while digital triggers only report 0.0f (not pressed) or 1.0f (pressed). This affects how you handle trigger input in your game.
    </details><br />
+
+5. What's the key difference between [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) and [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture)?
+
+    <details>
+    <summary>Question 5 Answer</summary>
+    
+    > [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) returns information about current touch points on the screen, while [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture) provides information about specific gesture patterns like taps, drags, and pinches that have been performed.
+    </details><br />
+
+6. Why do we use a while loop with [**TouchPanel.IsGestureAvailable**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.IsGestureAvailable) when reading gestures?
+
+    <details>
+    <summary>Question 6 Answer</summary>
+    
+    > Quick gestures can generate multiple gesture events that are queued. Using a while loop with [**TouchPanel.IsGestureAvailable**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.IsGestureAvailable) ensures we process all queued gestures, as [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture) only returns one gesture at a time.
+    </details><br />
+
+7. How does touch input differ from mouse input in terms of handling multiple input points?
+
+    <details>
+    <summary>Question 7 Answer</summary>
+    
+    > Touch input can handle multiple simultaneous touch points through the [**TouchCollection**](Microsoft.Xna.Framework.Input.Touch.TouchCollection), while mouse input only tracks a single cursor position. This allows touch input to support features like multi-touch gestures that aren't possible with a mouse.
+    </details><br />
+
+8. What are the different states a [**TouchLocation**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation) can have and what do they indicate?
+
+    <details>
+    <summary>Question 8 Answer</summary>
+    
+    > A [**TouchLocation**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation) can have four states:
+    > - [**Pressed**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocationState): Initial contact with the screen
+    > - [**Moved**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocationState): Touch point moved while maintaining contact
+    > - [**Released**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocationState): Contact with the screen ended
+    > - [**Invalid**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocationState): Touch data is not valid or tracking was lost
+    </details><br />
