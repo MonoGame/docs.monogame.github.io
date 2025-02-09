@@ -62,7 +62,7 @@ The resulting compiled effect file can be used from your game code like so:
 
 ```csharp
 byte[] bytecode = File.ReadAllBytes("mycompiled.mgfx");
-var effect = new Effect(bytecode);
+var effect = new Effect(graphicsDevice, bytecode);
 ```
 
 This is how the stock effects (BasicEffect, DualTextureEffect, etc) are compiled and loaded.
