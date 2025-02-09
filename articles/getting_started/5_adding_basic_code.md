@@ -207,7 +207,7 @@ JoystickState jstate = Joystick.GetState((int) PlayerIndex.One);
 
 This code fetches the current first joystick state `Joystick.GetState((int) PlayerIndex.One)` and stores it into a variable called `jstate`.
 
-### CHeck the current value of "Axis" 2
+### Check the current value of "Axis" 2
 
 ```csharp
 if (jstate.Axes[1] < 0)

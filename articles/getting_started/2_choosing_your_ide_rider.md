@@ -41,7 +41,7 @@ To get you started with Rider, here are the steps for setting up a new Rider Mon
     ![Rider MonoGame template](./images/1_setting_up_your_development_environment/rider_new_solution_dialog.png)
 
 4. Press "Create"
-5. You can now press `F5` to compile and debug you game, happy coding  :)
+5. You can now press `F5` to compile and debug your game, happy coding  :)
 
 ## Next Steps
 

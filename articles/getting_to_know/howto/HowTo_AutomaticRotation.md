@@ -1,6 +1,6 @@
 ---
 title: How to manage automatic rotation and scaling
-description: A walkthrough what is involved in figuring out if two objects collide for MonoGame!
+description: Demonstrates how to manage rotation and scaling based on device orientation.
 requireMSLicense: true
 ---
 

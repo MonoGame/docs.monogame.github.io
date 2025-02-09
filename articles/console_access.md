@@ -45,7 +45,7 @@ We will process these requests to give you access and further instructions.
 
 To publish on Xbox, you must first be a member of the [ID@Xbox Program](https://developer.microsoft.com/en-US/games/publish/).
 
-Once you are active in the program you can email `idsetup@xbox.com` and copy the MonoGame`console@monogame.net`account requesting Xbox Developer verification for access to MonoGame for Xbox.
+Once you are active in the program you can email `idsetup@xbox.com` and copy the MonoGame `console@monogame.net` account requesting Xbox Developer verification for access to MonoGame for Xbox.
 
 Once Microsoft approves your development status we will respond with further instructions.
 
