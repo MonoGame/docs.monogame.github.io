@@ -129,7 +129,9 @@
         - name: "08: The AnimatedSprite Class"
           href: tutorials/building_2d_games/08_the_animatedsprite_class/           
         - name: "09: Handling Input"
-          href: tutorials/building_2d_games/09_handling_input/                     
+          href: tutorials/building_2d_games/09_handling_input/    
+        - name: "10: Input Management"
+          href: tutorials/building_2d_games/10_input_management/                 
 - name: Console Access
   href: console_access.md
 - name: Help and Support
