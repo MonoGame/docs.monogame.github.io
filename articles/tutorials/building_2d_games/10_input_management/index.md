@@ -320,7 +320,37 @@ These properties provide different ways to work with the cursor position:
 - `Position`: Gets/sets the cursor position as a [**Point**](xref:Microsoft.Xna.Framework.Point).
 - `X`: Gets/sets just the horizontal position.
 - `Y`: Gets/sets just the vertical position.
-- `WasMoved`: Indicates if the cursor moved this frame.
+
+Next, we'll add properties for determining if the mouse cursor moved between game frames and if so how much:
+
+```cs
+/// <summary>
+/// Gets the difference in the mouse cursor position between the previous and current frame.
+/// </summary>
+public Point PositionDelta => CurrentState.Position - PreviousState.Position;
+
+/// <summary>
+/// Gets the difference in the mouse cursor x-position between the previous and current frame.
+/// </summary>
+public int XDelta => CurrentState.X - PreviousState.X;
+
+/// <summary>
+/// Gets the difference in the mouse cursor y-position between the previous and current frame.
+/// </summary>
+public int YDelta => CurrentState.Y - PreviousState.Y;
+
+/// <summary>
+/// Gets a value that indicates if the mouse cursor moved between the previous and current frames.
+/// </summary>
+public bool WasMoved => PositionDelta != Point.Zero;
+```
+
+The properties provide different ways of detecting mouse movement between frames:
+
+- `PositionDelta`: Gets how much the cursor moved between frames as a [**Point**](xref:Microsoft.Xna.Framework.Point).
+- `XDelta`: Gets how much the cursor moved horizontally between frames.
+- `YDelta`: Gets how much the cursor moved vertically between frames.
+- `WasMoved`: Indicates if the cursor moved between frames.
 
 Finally, we'll add properties for handling the scroll wheel:
 
