@@ -526,9 +526,10 @@ That's it for the `MouseInfo` class, next we'll move onto gamepad input.
 
 ## The GamePadInfo Class
 
-To manage gamepad input effectively, we need to track both current and previous states, as well as provide easy access to the thumbstick values, trigger values, and button states. The `GamePadInfo` class will encapsulate all of this functionality, making it easier to:
+To manage gamepad input effectively, we need to track both current and previous states, is the gamepad still connected, as well as provide easy access to the thumbstick values, trigger values, and button states. The `GamePadInfo` class will encapsulate all of this functionality, making it easier to:
 
-- Track current and previous mouse states.
+- Track current and previous gamepad states.
+- Check if the gamepad is still connected.
 - Track the position of the left and right thumbsticks.
 - Check the values of the left and right triggers.
 - Detect when gamepad buttons are pressed or released.
