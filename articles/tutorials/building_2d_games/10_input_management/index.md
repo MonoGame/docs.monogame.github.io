@@ -227,7 +227,7 @@ public enum MouseButton
 
 > [!NOTE]
 > Each enum value corresponds directly to a button property in MouseState:
-
+>
 > - `Left`: Maps to [**MouseState.LeftButton**](xref:Microsoft.Xna.Framework.Input.MouseState.LeftButton).
 > - `Middle`: Maps to [**MouseState.MiddleButton**](xref:Microsoft.Xna.Framework.Input.MouseState.MiddleButton).
 > - `Right`: Maps to [**MouseState.RightButton**](xref:Microsoft.Xna.Framework.Input.MouseState.RightButton).
@@ -238,7 +238,7 @@ public enum MouseButton
 
 To manage mouse input effectively, we need to track both current and previous states, as well as provide easy access to mouse position, scroll wheel values, and button states. The `MouseInfo` class will encapsulate all of this functionality, making it easier to:
 
-- Track current and previous mouse states. 
+- Track current and previous mouse states.
 - Track the mouse position and detect movement.
 - Track scroll wheel changes.
 - Detect when mouse buttons are pressed or released
@@ -359,7 +359,7 @@ public MouseInfo()
 }
 ```
 
-The constructor 
+The constructor:
 
 - Creates an empty state for `PreviousState` since there is no previous input yet.
 - Gets the current mouse state as our starting point for `CurrentState`.
@@ -488,6 +488,7 @@ These methods serve two distinct purposes. For checking continuous states:
 - `IsKeyUp`: Returns true as long as a key is not being pressed.
 
 And for detecting state changes:
+
 - `WasKeyJustPressed`: Returns true only on the frame when a key changes from up-to-down.
 - `WasKeyJustReleased`: Returns true only on the frame when a key changes from down-to-up.
 
@@ -724,7 +725,7 @@ And for detecting state changes:
 Finally, we'll add methods for controlling gamepad vibration:
 
 ```cs
- /// <summary>
+/// <summary>
 /// Sets the vibration for all motors of this gamepad.
 /// </summary>
 /// <param name="strength">The strength of the vibration from 0.0f (none) to 1.0f (full).</param>
@@ -752,7 +753,6 @@ The vibration methods provide control over the gamepad's haptic feedback:
 > [!TIP]
 > When setting vibration, you can specify both the strength (`0.0f` to `1.0f`) and duration. The vibration will automatically stop after the specified time has elapsed, so you don't need to manage stopping it manually.
 
-
 That's it for the `GamePadInfo` class.  Next, let's create the actual input manager.
 
 ## The InputManager Class
@@ -760,7 +760,6 @@ That's it for the `GamePadInfo` class.  Next, let's create the actual input mana
 Now that we have classes to handle keyboard, mouse, and gamepad input individually, we can create a centralized manager class to coordinate all input handling. The `InputManager` class will be static, providing easy access to all input states from anywhere in our game.
 
 In the *Input* directory of the *MonoGameLibrary* project, add a new file named *InputManager.cs* with this initial structure:
-
 
 ```cs
 using Microsoft.Xna.Framework;
@@ -839,7 +838,6 @@ public static void Update(GameTime gameTime)
 
 > [!TIP]
 > By centralizing input updates in the `InputManager`, we ensure all input states are updated consistently each frame. You only need to call `InputManager.Update` once in your game's [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) method.
-
 
 ### Implementing the InputManager Class
 
@@ -935,9 +933,9 @@ In this chapter, you learned how to:
 - Detect the difference between continuous and single-frame input states.
 - Create classes to manage different input devices.
 - Build a centralized `InputManager` to coordinate all input handling that is:
-   - Reusable across different game projects
-   - Easy to maintain and extend
-   - Consistent across different input devices
+  - Reusable across different game projects
+  - Easy to maintain and extend
+  - Consistent across different input devices
 
 ## Test Your Knowledge
 
@@ -945,7 +943,7 @@ In this chapter, you learned how to:
 
    <details>
    <summary>Question 1 Answer</summary>
-   
+
    > "Down" checks if an input is currently being held, returning true every frame while held. "Just pressed" only returns true on the first frame when the input changes from up to down, requiring comparison between current and previous states.
    </details><br />
 
@@ -953,7 +951,7 @@ In this chapter, you learned how to:
 
    <details>
    <summary>Question 2 Answer</summary>
-   
+
    > Tracking both states allows us to detect when input changes occur by comparing the current frame's state with the previous frame's state. This is essential for implementing "just pressed" and "just released" checks.
    </details><br />
 
@@ -961,6 +959,6 @@ In this chapter, you learned how to:
 
    <details>
    <summary>Question 3 Answer</summary>
-   
+
    > The `InputManager` centralizes all input handling, automatically tracks states between frames, and provides a consistent API across different input devices. This makes the code more organized, reusable, and easier to maintain.
    </details><br />
