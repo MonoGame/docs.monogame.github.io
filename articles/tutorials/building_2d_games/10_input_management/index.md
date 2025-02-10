@@ -239,7 +239,8 @@ public enum MouseButton
 To manage mouse input effectively, we need to track both current and previous states, as well as provide easy access to mouse position, scroll wheel values, and button states. The `MouseInfo` class will encapsulate all of this functionality, making it easier to:
 
 - Track current and previous mouse states.
-- Track the mouse position and detect movement.
+- Track the mouse position.
+- Check the change in mouse position between frames and if it was moved.
 - Track scroll wheel changes.
 - Detect when mouse buttons are pressed or released
 - Check if mouse buttons are being held down
