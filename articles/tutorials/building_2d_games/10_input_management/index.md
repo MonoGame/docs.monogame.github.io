@@ -1,6 +1,6 @@
 ---
 title: "Chapter 10: Input Management"
-description: TODO WRITE DESCRIPTION
+description: "Learn how to create an input management system to handle keyboard, mouse, and gamepad input, including state tracking between frames and creating a reusable framework for handling player input."
 ---
 
 In [Chapter 09](../09_handling_input/index.md), you learned how to handle input from various devices like keyboard, mouse, and gamepad. While checking if an input is currently down works well for continuous actions like movement, many game actions should only happen once when an input is first pressed; think firing a weapon or jumping. To handle these scenarios, we need to compare the current input state with the previous frame's state to detect when an input changes from up to down.
