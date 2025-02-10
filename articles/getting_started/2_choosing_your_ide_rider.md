@@ -14,9 +14,8 @@ You can download and install Rider from: [https://www.jetbrains.com/rider/downlo
 ![Rider download](./images/2_chosing_your_ide_rider_download.png)
 
 > [!NOTE]
-> Rider has a 30 day free trial license, but after that you will need to purchase one to continue using it.  It is worth trying to see how it compares it VSCode.
+> Rider is free for personal use, you do have to register and create an account, but otherwise all features will be unlocked.
 >
-> **Hint* - or visit a nearby .NET user group, who often have JetBrains licenses available as giveaways, as they are very a generous and supportive company.
 
 ## Setting up Rider for development with MonoGame
 
