@@ -19,22 +19,23 @@ This documentation will introduce game development concepts using the MonoGame f
 > [!CAUTION]
 > This is currently a work in progress and is not finished.
 
-| Chapter                                                                      | Summary                                                                                                                                             | Source Files |
-|------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
-| [01: What Is MonoGame](01_what_is_monogame/index.md)                         | Learn about the history of MonoGame and explore the features it provides developers when creating games.                                            |              |
-| [02: Getting Started](02_getting_started/index.md)                           | Setup your development environment for dotnet development and MonoGame using Visual Studio Code as your IDE.                                        |              |
-| [03: The Game1 File](03_the_game1_file/index.md)                             | Explore the contents of the Game1 file generated when creating a new MonoGame project.                                                              |              |
-| [04: Content Pipeline](04_content_pipeline/index.md)                         | Learn the advantages of using the **Content Pipeline** to load assets and go through the processes of loading your first asset                      |              |
-| [05: Working with Textures](05_working_with_textures/index.md)               | Learn how to load and render textures using the MonoGame content pipeline and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). |              |
-| [06: Optimizing Texture Rendering](06_optimizing_texture_rendering/index.md) | Explore optimization techniques when rendering textures using a texture atlas.                                                                      |              |
-| [07: The Sprite Class](07_the_sprite_class/index.md)                         | Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more.      |              |
-| [08: The AnimatedSprite Class](07_the_sprite_class/index.md)                 | Create an AnimatedSprite class that builds upon our Sprite class to support frame-based animations.                                                 |              |
-| [09: Handling Input](09_handling_input/index.md)                             | Learn how to handle keyboard, mouse, and gamepad input in MonoGame.                                                                                 |              |
+| Chapter                                                                      | Summary                                                                                                                                                                                           | Source Files |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| [01: What Is MonoGame](01_what_is_monogame/index.md)                         | Learn about the history of MonoGame and explore the features it provides developers when creating games.                                                                                          |              |
+| [02: Getting Started](02_getting_started/index.md)                           | Setup your development environment for dotnet development and MonoGame using Visual Studio Code as your IDE.                                                                                      |              |
+| [03: The Game1 File](03_the_game1_file/index.md)                             | Explore the contents of the Game1 file generated when creating a new MonoGame project.                                                                                                            |              |
+| [04: Content Pipeline](04_content_pipeline/index.md)                         | Learn the advantages of using the **Content Pipeline** to load assets and go through the processes of loading your first asset                                                                    |              |
+| [05: Working with Textures](05_working_with_textures/index.md)               | Learn how to load and render textures using the MonoGame content pipeline and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).                                               |              |
+| [06: Optimizing Texture Rendering](06_optimizing_texture_rendering/index.md) | Explore optimization techniques when rendering textures using a texture atlas.                                                                                                                    |              |
+| [07: The Sprite Class](07_the_sprite_class/index.md)                         | Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more.                                                    |              |
+| [08: The AnimatedSprite Class](07_the_sprite_class/index.md)                 | Create an AnimatedSprite class that builds upon our Sprite class to support frame-based animations.                                                                                               |              |
+| [09: Handling Input](09_handling_input/index.md)                             | Learn how to handle keyboard, mouse, and gamepad input in MonoGame.                                                                                                                               |              |
+| [10: Input Management](10_input_management//index.md)                        | Learn how to create an input management system to handle keyboard, mouse, and gamepad input, including state tracking between frames and creating a reusable framework for handling player input. |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
 | Appendix | Summary |
-|----------|---------|
+| -------- | ------- |
 |          |         |
 
 ## Conventions Used in This Documentation
