@@ -935,9 +935,9 @@ In this chapter, you learned how to:
 - Detect the difference between continuous and single-frame input states.
 - Create classes to manage different input devices.
 - Build a centralized `InputManager` to coordinate all input handling that is:
- - Reusable across different game projects
- - Easy to maintain and extend
- - Consistent across different input devices
+   - Reusable across different game projects
+   - Easy to maintain and extend
+   - Consistent across different input devices
 
 ## Test Your Knowledge
 
