@@ -21,7 +21,7 @@ When handling input in games, there are two key scenarios we need to consider:
 - An input is being held down (like holding a movement key).
 - An input was just pressed for one frame (like pressing a jump button).
 
-Let's look at the difference using keyboard input as an example. With our current implementation, we can check if a key is down using [**KeyboardState.IsKeyDown**]():
+Let's look at the difference using keyboard input as an example. With our current implementation, we can check if a key is down using [**KeyboardState.IsKeyDown**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)):
 
 ```cs
 KeyboardState keyboardState = Keyboard.GetState();
@@ -208,7 +208,7 @@ That's it for the `KeyboardInfo` class, let's move on to mouse input next.
 
 ## MouseButton Enum
 
-Recall from the [Mouse Input](../09_handling_input/index.md#mouse-input) section of the previous chapter that the [**MouseState**]() struct provides button states through properties rather than methods like `IsButtonDown`/`IsButtonUp`. To keep our input management API consistent across devices, we'll create a `MouseButton` enum that lets us reference mouse buttons in a similar way to how we use [**Keys**]() for keyboard input and [**Buttons**]() for gamepad input.
+Recall from the [Mouse Input](../09_handling_input/index.md#mouse-input) section of the previous chapter that the [**MouseState**](xref:Microsoft.Xna.Framework.Input.MouseState) struct provides button states through properties rather than methods like `IsButtonDown`/`IsButtonUp`. To keep our input management API consistent across devices, we'll create a `MouseButton` enum that lets us reference mouse buttons in a similar way to how we use [**Keys**](xref:Microsoft.Xna.Framework.Input.Keys) for keyboard input and [**Buttons**](xref:Microsoft.Xna.Framework.Input.Buttons) for gamepad input.
 
 In the *Input* directory of the *MonoGameLibrary* project, add a new file named *MouseButton.cs* with the following code:
 
@@ -228,11 +228,11 @@ public enum MouseButton
 > [!NOTE]
 > Each enum value corresponds directly to a button property in MouseState:
 
-> - `Left`: Maps to [**MouseState.LeftButton**]()
-> - `Middle`: Maps to [**MouseState.MiddleButton**]()
-> - `Right`: Maps to [**MouseState.RightButton**]()
-> - `XButton1`: Maps to [**MouseState.XButton1**]()
-> - `XButton2`: Maps to [**MouseState.XButton2**]()    
+> - `Left`: Maps to [**MouseState.LeftButton**](xref:Microsoft.Xna.Framework.Input.MouseState.LeftButton).
+> - `Middle`: Maps to [**MouseState.MiddleButton**](xref:Microsoft.Xna.Framework.Input.MouseState.MiddleButton).
+> - `Right`: Maps to [**MouseState.RightButton**](xref:Microsoft.Xna.Framework.Input.MouseState.RightButton).
+> - `XButton1`: Maps to [**MouseState.XButton1**](xref:Microsoft.Xna.Framework.Input.MouseState.XButton1).
+> - `XButton2`: Maps to [**MouseState.XButton2**](xref:Microsoft.Xna.Framework.Input.MouseState.XButton2).   
 
 ## The MouseInfo Class
 
@@ -317,7 +317,7 @@ public bool WasMoved => CurrentState.X != PreviousState.X || CurrentState.Y != P
 
 These properties provide different ways to work with the cursor position:
 
-- `Position`: Gets/sets the cursor position as a [**Point**]().
+- `Position`: Gets/sets the cursor position as a [**Point**](xref:Microsoft.Xna.Framework.Point).
 - `X`: Gets/sets just the horizontal position.
 - `Y`: Gets/sets just the vertical position.
 - `WasMoved`: Indicates if the cursor moved this frame.
@@ -492,7 +492,7 @@ And for detecting state changes:
 - `WasKeyJustReleased`: Returns true only on the frame when a key changes from down-to-up.
 
 > [!NOTE]
-> Each method uses a switch statement to check the appropriate button property from the [**MouseState**]() based on which `MouseButton` enum value is provided. This provides a consistent API while handling the different button properties internally.
+> Each method uses a switch statement to check the appropriate button property from the [**MouseState**](xref:Microsoft.Xna.Framework.Input.MouseState) based on which `MouseButton` enum value is provided. This provides a consistent API while handling the different button properties internally.
 
 Finally, we need a method to handle setting the cursor position:
 
@@ -551,13 +551,13 @@ public class GamePadInfo
 
 ### GamePadInfo Properties
 
-We use vibration in gamepads to provide haptic feedback to the player.  The [**GamePad**]() class provides the [**SetVibration**]() method to tell the gamepad to vibrate, but it does not provide a timing mechanism for it if we wanted to only vibrate for a certain period of time.  Add the following private field to the `GamePadInfo` class:
+We use vibration in gamepads to provide haptic feedback to the player.  The [**GamePad**](xref:Microsoft.Xna.Framework.Input.GamePad) class provides the [**SetVibration**](xref:Microsoft.Xna.Framework.Input.GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex,System.Single,System.Single)) method to tell the gamepad to vibrate, but it does not provide a timing mechanism for it if we wanted to only vibrate for a certain period of time.  Add the following private field to the `GamePadInfo` class:
 
 ```cs
 private TimeSpan _vibrationTimeRemaining = TimeSpan.Zero;
 ```
 
-Recall from the [previous chapter](../09_handling_input/index.md#gamepad-input) that a [**PlayerIndex**]() value needs to be supplied when calling [**Gamepad.GetState**]().   Doing this returns the state of the gamepad connected at that player index.  So we'll need a property to track the player index this gamepad info is for.
+Recall from the [previous chapter](../09_handling_input/index.md#gamepad-input) that a [**PlayerIndex**](xref:Microsoft.Xna.Framework.PlayerIndex) value needs to be supplied when calling [**Gamepad.GetState**](xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)).   Doing this returns the state of the gamepad connected at that player index.  So we'll need a property to track the player index this gamepad info is for.
 
 ```cs
 /// <summary>
@@ -632,7 +632,7 @@ public GamePadInfo(PlayerIndex playerIndex)
 
 This constructor
 
-- Requires a [**PlayerIndex**]() value which is stored and will be used to get the states for the correct gamepad
+- Requires a [**PlayerIndex**](xref:Microsoft.Xna.Framework.PlayerIndex) value which is stored and will be used to get the states for the correct gamepad
 - Creates an empty state for `PreviousState` since there is no previous state yet.
 - Gets the current gamepad state as our starting `CurrentState`.
 
@@ -665,7 +665,7 @@ public void Update(GameTime gameTime)
 ```
 
 > [!NOTE]
-> Unlike keyboard and mouse input, the gamepad update method takes a [**GameTime**]() parameter. This allows us to track and manage timed vibration effects.
+> Unlike keyboard and mouse input, the gamepad update method takes a [**GameTime**](xref:Microsoft.Xna.Framework.GameTime) parameter. This allows us to track and manage timed vibration effects.
 
 Next, we'll add methods to check various button states:
 
@@ -838,7 +838,7 @@ public static void Update(GameTime gameTime)
 ```
 
 > [!TIP]
-> By centralizing input updates in the `InputManager`, we ensure all input states are updated consistently each frame. You only need to call `InputManager.Update` once in your game's [**Update**]() method.
+> By centralizing input updates in the `InputManager`, we ensure all input states are updated consistently each frame. You only need to call `InputManager.Update` once in your game's [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) method.
 
 
 ### Implementing the InputManager Class
@@ -847,13 +847,13 @@ Now that we have our input management system complete, let's update our game to 
 
 Let's update the input code in our game now to instead use the `InputManager` class to manage tracking input states which inputs are active. Open the *Game1.cs* file and perform the following:
 
-1. First we need to set up the `InputManager`.  In [**Initialize**](), add this initialization code just before `base.Initialize()`:
+1. First we need to set up the `InputManager`.  In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize), add this initialization code just before `base.Initialize()`:
 
     ```cs
     InputManager.Initialize();
     ```
 
-2. Next, in [**Update**](), we need to ensure input states are updated each frame.  Add the following as the first line of code inside the [**Update**]() method:
+2. Next, in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), we need to ensure input states are updated each frame.  Add the following as the first line of code inside the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) method:
 
     ```cs
     InputManager.Update(gameTime);
