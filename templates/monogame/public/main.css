@@ -73,6 +73,17 @@ color: var(--mg-orange-primary)
 }
 
 /*******************************************************************************
+*** Section: Navbar Fixes
+*** The main monogame website uses bootstrap 5.3.2 while docfx is sitll on
+*** bootstrap 3.4.1.  The following are fixes for the top navbar specifically
+*** so that it looks the same as the main website
+*******************************************************************************/
+nav#autocollapse > div.container-xxl {
+  max-width: 1320px;
+}
+
+
+/*******************************************************************************
 *** Section: MonoGame Utility Classes
 *** Utility classes used throughout the site that provide some MonoGame specific
 *** styling.

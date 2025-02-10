@@ -18,11 +18,6 @@
                     {{/_enableSearch}}
                 </div>
             </div>
-            <div>
-                <a class="btn mg-donate-button ms-3" type="button" href="https://monogame.net/donate">
-                    <i class="bi bi-heart"></i> Donate
-                </a>
-            </div>
         </div>
     </nav>
 </header>
