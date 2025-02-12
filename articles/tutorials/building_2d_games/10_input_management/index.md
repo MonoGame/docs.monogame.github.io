@@ -889,55 +889,63 @@ Let's update the input code in our game now to instead use the `InputManager` cl
     InputManager.Update(gameTime);
     ```
 
-3. Now let's update our game controls to use the `InputManager`.  First replace the exit condition code with the following:
+3. Next, remove the `if` statement in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) that checks for the gamepad back button or the keyboard escape key being pressed and then exits the game.
+
+4. Finally, update the game controls to use the `InputManager`.  Replace the `HandleKeyboardInput`, `HandleMouseInput` and `HandleGamePadInput` methods with the following:
 
     ```cs
-    GamePadInfo gamePadOne = InputManager.GamePads[(int)PlayerIndex.One];
-    
-    if(gamePadOne.WasButtonJustPressed(Buttons.Back) || InputManager.Keyboard.WasKeyJustPressed(Keys.Escape))
+    private void KeyboardInputCheck()
     {
-        Exit();
+        if (InputManager.Keyboard.IsKeyDown(Keys.Esc))
+        {
+            Exit();
+        }
+        if (InputManager.Keyboard.IsKeyDown(Keys.Up))
+        {
+            _slimePosition.Y -= MOVEMENT_SPEED;
+        }
+        if (InputManager.Keyboard.IsKeyDown(Keys.Down))
+        {
+            _slimePosition.Y += MOVEMENT_SPEED;
+        }
+        if (InputManager.Keyboard.IsKeyDown(Keys.Left))
+        {
+            _slimePosition.X -= MOVEMENT_SPEED;
+        }
+        if (InputManager.Keyboard.IsKeyDown(Keys.Right))
+        {
+            _slimePosition.X += MOVEMENT_SPEED;
+        }
     }
-    ```
 
-    > [!NOTE]
-    > Notice how we store a reference to `GamePadInfo` for player one. This makes our code more readable and efficient since we don't need to access the `GamePads` array multiple times.
+    private void HandleMouseInput()
+    {
+        if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
+        {
+            _batPosition = InputManager.Mouse.Position.ToVector2();
+        }
+    }
 
-4. Finally, replace the keyboard, mouse, and gamepad movement controls we implemented previously with the following:
+    private void HandleGamepadInput()
+    {
+        GamePadInfo gamePadOne = InputManager.GamePads[(int)PlayerIndex.One];
 
-    ```cs
-    if(InputManager.Keyboard.IsKeyDown(Keys.Up))
-    {
-        _slimePos.Y -= MOVEMENT_SPEED;
-    }
-    if (InputManager.Keyboard.IsKeyDown(Keys.Down))
-    {
-        _slimePos.Y += MOVEMENT_SPEED;
-    }
-    if (InputManager.Keyboard.IsKeyDown(Keys.Left))
-    {
-        _slimePos.X -= MOVEMENT_SPEED;
-    }
-    if (InputManager.Keyboard.IsKeyDown(Keys.Right))
-    {
-        _slimePos.X += MOVEMENT_SPEED;
-    }
-    
-    if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
-    {
-        _batPosition = InputManager.Mouse.Position.ToVector2();
-    }
-    
-    if (gamePadOne.IsButtonDown(Buttons.A))
-    {
-        _slimePos.X += gamePadOne.LeftThumbStick.X * 1.5f * MOVEMENT_SPEED;
-        _slimePos.Y -= gamePadOne.LeftThumbStick.Y * 1.5f * MOVEMENT_SPEED;
-        gamePadOne.SetVibration(1.0f, TimeSpan.FromSeconds(0.5f));
-    }
-    else
-    {
-        _slimePos.X += gamePadOne.LeftThumbStick.X * MOVEMENT_SPEED;
-        _slimePos.Y -= gamePadOne.LeftThumbStick.Y * MOVEMENT_SPEED;
+        if(gamePadOne.IsButtonDown(Buttons.Back))
+        {
+            Exit();
+        }
+
+        if (gamePadOne.IsButtonDown(Buttons.A))
+        {
+            _slimePosition.X += gamePadOne.LeftThumbStick.X * 1.5f * MOVEMENT_SPEED;
+            _slimePosition.Y -= gamePadOne.LeftThumbStick.Y * 1.5f * MOVEMENT_SPEED;
+            gamePadOne.SetVibration(1.0f, TimeSpan.FromSeconds(0.5f));
+        }
+        else
+        {
+            _slimePosition.X += gamePadOne.LeftThumbStick.X * MOVEMENT_SPEED;
+            _slimePosition.Y -= gamePadOne.LeftThumbStick.Y * MOVEMENT_SPEED;
+        }
     }
     ```
 
