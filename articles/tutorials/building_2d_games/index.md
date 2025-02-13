@@ -20,7 +20,7 @@ This documentation will introduce game development concepts using the MonoGame f
 > This is currently a work in progress and is not finished.
 
 | Chapter                                                                      | Summary                                                                                                                                                                                           | Source Files |
-| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
 | [01: What Is MonoGame](01_what_is_monogame/index.md)                         | Learn about the history of MonoGame and explore the features it provides developers when creating games.                                                                                          |              |
 | [02: Getting Started](02_getting_started/index.md)                           | Setup your development environment for dotnet development and MonoGame using Visual Studio Code as your IDE.                                                                                      |              |
 | [03: The Game1 File](03_the_game1_file/index.md)                             | Explore the contents of the Game1 file generated when creating a new MonoGame project.                                                                                                            |              |
@@ -30,12 +30,13 @@ This documentation will introduce game development concepts using the MonoGame f
 | [07: The Sprite Class](07_the_sprite_class/index.md)                         | Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more.                                                    |              |
 | [08: The AnimatedSprite Class](07_the_sprite_class/index.md)                 | Create an AnimatedSprite class that builds upon our Sprite class to support frame-based animations.                                                                                               |              |
 | [09: Handling Input](09_handling_input/index.md)                             | Learn how to handle keyboard, mouse, and gamepad input in MonoGame.                                                                                                                               |              |
-| [10: Input Management](10_input_management//index.md)                        | Learn how to create an input management system to handle keyboard, mouse, and gamepad input, including state tracking between frames and creating a reusable framework for handling player input. |              |
+| [10: Input Management](10_input_management/index.md)                         | Learn how to create an input management system to handle keyboard, mouse, and gamepad input, including state tracking between frames and creating a reusable framework for handling player input. |              |
+| [11: Collision Detection](11_collision_detection/index.md)                   | Learn how to implement collision detection between game objects and handle collision responses like blocking, triggering events, and bouncing.                                                    |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
 | Appendix | Summary |
-| -------- | ------- |
+|----------|---------|
 |          |         |
 
 ## Conventions Used in This Documentation
