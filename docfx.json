@@ -50,6 +50,7 @@
       {
         "files": [
           "**/images/**",
+          "**/videos/**",
           "**/files/**",
           "CNAME"
         ]
