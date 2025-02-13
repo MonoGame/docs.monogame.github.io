@@ -894,9 +894,9 @@ Let's update the input code in our game now to instead use the `InputManager` cl
 4. Finally, update the game controls to use the `InputManager`.  Replace the `HandleKeyboardInput`, `HandleMouseInput` and `HandleGamePadInput` methods with the following:
 
     ```cs
-    private void KeyboardInputCheck()
+    private void HandleKeyboardInput()
     {
-        if (InputManager.Keyboard.IsKeyDown(Keys.Esc))
+        if (InputManager.Keyboard.IsKeyDown(Keys.Escape))
         {
             Exit();
         }
