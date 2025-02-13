@@ -589,7 +589,7 @@ Let's implement bounce collision response by modifying our game so the bat moves
         // if the bat is not contained within the bounds of the screen, then we
         // perform our collision response and bounce (reflect) it off the screen
         // edge that it is closest too
-        if(!screenBounds.Contains(batBounds))
+        if (!screenBounds.Contains(batBounds))
         {
             // First find the distance from the edges of the bat to each edge of the screen
             float distanceLeft = Math.Abs(screenBounds.Left - batBounds.Left);
@@ -605,7 +605,7 @@ Let's implement bounce collision response by modifying our game so the bat moves
     
             Vector2 normal;
     
-            if(minDistance == distanceLeft)
+            if (minDistance == distanceLeft)
             {
                 // The bat is closest to the left edge, so get the left edge normal
                 // and move the new position so the left edge of the bat will be
@@ -613,7 +613,7 @@ Let's implement bounce collision response by modifying our game so the bat moves
                 normal = Vector2.UnitX;
                 newPosition.X = 0;
             }
-            else if(minDistance == distanceRight)
+            else if (minDistance == distanceRight)
             {
                 // The bat is closest to the right edge, so get the right edge normal
                 // and move the new position so that the right edge of the bat will
@@ -621,7 +621,7 @@ Let's implement bounce collision response by modifying our game so the bat moves
                 normal = -Vector2.UnitX;
                 newPosition.X = screenBounds.Right - _bat.Width;
             }
-            else if(minDistance == distanceTop)
+            else if (minDistance == distanceTop)
             {
                 // The bat is closest to the top edge, so get the top edge normal
                 // and move the new position so that the top edge of the bat will
