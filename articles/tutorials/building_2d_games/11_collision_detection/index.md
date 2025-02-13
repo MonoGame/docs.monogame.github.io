@@ -648,7 +648,7 @@ Let's implement bounce collision response by modifying our game so the bat moves
     ```
 
     > [!TIP]
-    > [**Vector2.UnitX](xref:Microsoft.Xna.Framework.Vector2.UnitX) is $(1, 0)$ and [**Vector2.UnitY](xref:Microsoft.Xna.Framework.Vector2.UnitY) is $(0, 1)$.  We use these to get the screen edge normal since the edges of the screen are not at an angle.  For more complex surfaces, you would need to calculate the appropriate normal vector based on the surface angle
+    > [**Vector2.UnitX**](xref:Microsoft.Xna.Framework.Vector2.UnitX) is $(1, 0)$ and [**Vector2.UnitY**](xref:Microsoft.Xna.Framework.Vector2.UnitY) is $(0, 1)$.  We use these to get the screen edge normal since the edges of the screen are not at an angle.  For more complex surfaces, you would need to calculate the appropriate normal vector based on the surface angle
 
 5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), call the new `UpdateBatMovement` method just after the `_bat.Update(gameTime)` call:
 
