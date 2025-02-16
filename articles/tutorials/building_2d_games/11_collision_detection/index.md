@@ -683,6 +683,15 @@ Running the game now, you'll see the bat moving automatically and bouncing off t
 
 <figure><video width="100%" autoplay loop muted><source type="video/webm" src="./videos/bounce-collision-example.webm"></video><figcaption><p><strong>Figure 11-7: An example of bounce collision response; The bat bounces off screen edges and gets a new velocity when respawning.</strong></p></figcaption></figure>
 
+## Optimizing Collision Performance
+
+When checking for collisions between multiple objects, testing every object against every other object (often called brute force checking) becomes inefficient as your game grows. Brute force checking can be calculated as $(n * (n - 1)) / 2$ where $n$ is the total number of objects.  For example, if you have 100 objects in your game, that's $(100 * 99) / 2 = 4950$ collision checks every frame.  To improve performance, we can use a two-phase approach:
+
+1. Broad Phase: A quick, simple check to rule out objects that definitely aren't colliding.
+2. Narrow Phase: A more precise check only performed on objects that passed the broad phase.
+
+For our simple game with just two objects, this optimization isn't necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.  Later in this tutorial series we will implement an algorithm called spatial hashing to perform broad phase checks.
+
 ## Separating Axis Theorem
 
 One collision detection method we did not discuss in this tutorial is called *Separating Axis Therom* (SAT).  SAT is used for more complex collision detection scenarios between objects such as rotated rectangles or *convex* polygons.  There are also performance considerations to consider when using SAT.
