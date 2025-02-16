@@ -157,11 +157,15 @@ Now that you have your development environment setup, it's time to create your f
 
 After selecting *Create Project*, a new C# project will be created based on the MonoGame template we choose and opened automatically in VSCode.
 
-<figure><img src="./images/vscode.png" alt="Figure 2-1: A new MonoGame project after being created in Visual Studio Code"><figcaption><p><em>Figure 2-1: A new MonoGame project after being created in Visual Studio Code</em></p></figcaption></figure>
+| ![Figure 2-1: A new MonoGame project after being created in Visual Studio Code](./images/vscode.png) |
+| :---: |
+| **Figure 2-1: A new MonoGame project after being created in Visual Studio Code** |
 
 Now that we have the project created, press the `F5` key on your keyboard, or choose *Run > Start Debugging* from the top menu. If prompted for a configuration, choose *C#*. The project will compile and run, displaying a screen similar to the following
 
-<figure><img src="./images/cornflower-blue.png" alt="Figure 2-2: The default MonoGame cornflower blue game window."><figcaption><p><em>Figure 2-2: The default MonoGame cornflower blue game window.</em></p></figcaption></figure>
+| ![Figure 2-2: The default MonoGame cornflower blue game window](./images/cornflower-blue.png) |
+| :---: |
+| **Figure 2-2: The default MonoGame cornflower blue game window** |
 
 Be amazed, the default MonoGame Cornflower Blue game window. You have just created your very first MonoGame application. While there isn't much happening here visually, there is a log going on behind the scenes that the MonoGame framework is handling for you. When you ran the application, the following occurred:
 

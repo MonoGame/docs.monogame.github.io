@@ -28,7 +28,9 @@ On the other side of this coin, MonoGame offers the **Content Pipeline**; a work
 
 The following image illustrates this workflow:
 
-<figure><img src="./images/content-pipeline-workflow-full.png" alt="Figure 4-1: MonoGame Content Pipeline Workflow"><figcaption><p><strong>Figure 4-1: MonoGame Content Pipeline Workflow</strong></p></figcaption></figure>
+| ![Figure 4-1: MonoGame Content Pipeline Workflow](./images/content-pipeline-workflow-full.png) |
+| :---: |
+| **FigFigure 4-1: MonoGame Content Pipeline Workflowure** |
 
 For the same amount of steps, you also get the benefit of the assets being pre-processed and compiled to an optimized format for the target platform.  For instance, image files can be compiled using [DXT compression](https://en.wikipedia.org/wiki/S3\_Texture\_Compression), which is a format that is understood by GPUs without needing to be decompressed first, reducing the memory footprint.
 
@@ -39,7 +41,9 @@ For this tutorial series, we are going to focus on using the content pipeline wo
 
 To get started and to walk through the process, we'll start with loading an image file.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your on your computer, such as your desktop.
 
-<figure><img src="./images/logo.png" alt="Figure 4-2: MonoGame Horizontal Logo"><figcaption><p><strong>Figure 4-2: MonoGame Horizontal Logo</strong></p></figcaption></figure>
+| ![Figure 4-2: MonoGame Horizontal Logo](./images/logo.png) |
+| :---: |
+| **Figure 4-2: MonoGame Horizontal Logo** |
 
 ## Opening the MGCB Editor
 
@@ -49,7 +53,9 @@ The *MonoGame Content Builder Editor (MGCB Editor)* is a GUI tool that can be us
 
 To open the *Content.mgcb* content project file in the MGCB Editor with Visual Studio Code, you can use the *MonoGame for VSCode* extension.  You should have installed this extension in [Chapter 02](../02_getting_started/index.md#installing-the-monogame-for-vscode-extension).  With this extension install, anytime you have a code file open, you will see the MonoGame logo in the top-right of the code window like below:
 
-<figure><img src="./images/mgcb-editor-icon.png" alt="Figure 4-3: MonoGame for VSCode extension icon"><figcaption><p><strong>Figure 4-3: MonoGame for VSCode extension icon</strong></p></figcaption></figure>
+| ![Figure 4-3: MonoGame for VSCode extension icon](./images/mgcb-editor-icon.png) |
+| :---: |
+| **Figure 4-3: MonoGame for VSCode extension icon** |
 
 Clicking the MonoGame logo here will open the *Content.mgcb* content project file from the current project in the MGCB Editor.
 
@@ -68,7 +74,9 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 
 Once you have the *Content.mgcb* content project file for your game project opened in the MGCB Editor, you should see a window similar to the following:
 
-<figure><img src="./images/mgcb-editor.png" alt="Figure 4-4: MonoGame Content Builder Editor (MGCB Editor) Window"><figcaption><p><strong>Figure 4-4: MonoGame Content Builder Editor (MGCB Editor) Window</strong></p></figcaption></figure>
+| ![Figure 4-4: MonoGame Content Builder Editor (MGCB Editor) Window](./images/mgcb-editor.png) |
+| :---: |
+| **Figure 4-4: MonoGame Content Builder Editor (MGCB Editor) Window** |
 
 ## Adding Assets in the MGCB Editor
 
@@ -83,7 +91,9 @@ Now that the *Content.mgcb* content project file is opened in the MGCB Editor, w
 
 After adding an existing file, you will be prompted with a pop-up asking if you would like to *Copy the file to the directory* or *Add a link*.
 
-<figure><img src="./images/add-file-popup.png" alt="Figure 4-5: Add Existing File Popup"><figcaption><p><strong>Figure 4-5: Add Existing File Popup</strong></p></figcaption></figure>
+| ![Figure 4-5: Add Existing File Popup](./images/add-file-popup.png) |
+| :---: |
+| **Figure 4-5: Add Existing File Popup** |
 
 For the purposes of this tutorial, choose the *Copy the file to the directory* option, then click the *Add* button.  When adding existing files in the future, the choice between copying the file and adding a link can make a big difference:
 
@@ -93,7 +103,9 @@ For the purposes of this tutorial, choose the *Copy the file to the directory* o
 
 After adding the *logo.png* file, your project node should look similar to the following:
 
-<figure><img src="./images/mgcb-logo-added.png" alt="Figure 4-6: Logo image added to the MGCB Editor"><figcaption><p><strong>Figure 4-6: Logo image added to the MGCB Editor</strong></p></figcaption></figure>
+| ![Figure 4-6: Logo image added to the MGCB Editor](./images/mgcb-logo-added.png) |
+| :---: |
+| **Figure 4-6: Logo image added to the MGCB Editor** |
 
 After changes have been made in the MGBC Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and haven't saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved.  To save changes, you can perform one of the following:
 
@@ -172,7 +184,9 @@ The key changes we made here are
 
 Running the game now will show the MonoGame logo displayed in the upper-left corner of the game window.
 
-<figure><img src="./images/logo-drawn.png" alt="Figure 4-7: The MonoGame logo drawn to the game window."><figcaption><p><strong>Figure 4-7: The MonoGame logo drawn to the game window.</strong></p></figcaption></figure>
+| ![Figure 4-7: The MonoGame logo drawn to the game window](./images/logo-drawn.png) |
+| :---: |
+| **Figure 4-7: The MonoGame logo drawn to the game window** |
 
 ## Conclusion
 

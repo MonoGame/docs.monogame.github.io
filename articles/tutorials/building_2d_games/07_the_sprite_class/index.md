@@ -204,7 +204,9 @@ The key changes in this implementation are:
 
 Running the game now will produce the same result as in the previous chapter.  
 
-<figure><img src="./images/slime-and-bat-rendered.png" alt="Figure 7-1: The slime and bat sprites being rendered in the upper-left corner of the game window."><figcaption><p><strong>Figure 7-1: The slime and bat sprites being rendered in the upper-left corner of the game window.</strong></p></figcaption></figure>
+| ![Figure 7-1: The slime and bat sprites being rendered in the upper-left corner of the game window](./images/slime-and-bat-rendered.png) |
+| :---: |
+| **Figure 7-1: The slime and bat sprites being rendered in the upper-left corner of the game window** |
 
 Try adjusting the various properties available for the slime and the bat sprites to see how they affect the rendering.
 

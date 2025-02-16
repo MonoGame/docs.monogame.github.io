@@ -10,7 +10,9 @@ While packing images into a texture atlas and managing them through our `Sprite`
 
 In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, Figure 8-1 below shows three frames that make up a bat's wing-flapping animation:
 
-<figure><img src="./images/bat-animation-example.gif" alt="Figure 8-1: Animation example of a bat flapping its wings."><figcaption><p><strong>Figure 8-1: Animation example of a bat flapping its wings.</strong></p></figcaption></figure>
+| ![Figure 8-1: Animation example of a bat flapping its wings](./images/bat-animation-example.gif) |
+| :---: |
+| **Figure 8-1: Animation example of a bat flapping its wings** |
 
 By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.
 
@@ -485,7 +487,9 @@ Running the game now shows both sprites animating automatically:
 - The slime bounces between two frames
 - The bat's wings flap in a continuous cycle
 
-<figure><img src="./images/slime-bat-animated.gif" alt="Figure 8-2: The slime and bat sprite animating.."><figcaption><p><strong>Figure 8-2: The slime and bat sprite animating.</strong></p></figcaption></figure>
+| ![Figure 8-2: The slime and bat sprite animating](./images/slime-bat-animated.gif) |
+| :---: |
+| **Figure 8-2: The slime and bat sprite animating** |
 
 ## Conclusion
 

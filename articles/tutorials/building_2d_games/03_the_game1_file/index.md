@@ -72,7 +72,9 @@ This class provides the following structure:
 
 Figure 3-1 below shows the lifecycle of a MonoGame game including the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) and [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) methods that make up the *game loop*.
 
-<figure><img src="./images/monogame-lifecycle.png" alt="Figure 3-1: Lifecycle of a MonoGame game."><figcaption><p><em>Figure 3-1: Lifecycle of a MonoGame game.</em></p></figcaption></figure>
+| ![Figure 3-1: Lifecycle of a MonoGame game](./images/monogame-lifecycle.png) |
+| :---: |
+| **Figure 3-1: Lifecycle of a MonoGame game** |
 
 ## Graphics and Rendering
 The graphics pipeline in monogame starts with two components: the [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
@@ -150,7 +152,9 @@ The [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framewor
 
 The first line is executing the [**Clear**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)) method of the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice) property using the color [**CornflowerBlue**](xref:Microsoft.Xna.Framework.Color.CornflowerBlue). Recall that the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice) object is your direct interface between the game and what is rendered to the screen. Every time the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method is called, this line of code of erasing the contents of the game window and refilling it with the color specified. Without clearing the contents of the screen first, every draw call would draw the new frame render over top of the previous render, and you'd end up with something like the old solitaire win screen
 
-<figure><img src="./images/solitaire.webp" alt="Figure 3-2: Windows XP Solitaire Win Screen."><figcaption><p><em>Figure 3-2: Windows XP Solitaire Win Screen.</em></p></figcaption></figure>
+| ![Figure 3-2: Windows XP Solitaire Win Screen](./images/solitaire.webp) |
+| :---: |
+| **Figure 3-2: Windows XP Solitaire Win Screen** |
 
 While this can make for a neat effect, it is not something you want all the time. So, the screen is cleared and refilled with a solid color. You can test this yourself by modifying the code to use a different color, such as [**Color.MonoGameOrange**](xref:Microsoft.Xna.Framework.Color.MonoGameOrange), then running the game. (yes, there is a MonoGame Orange color).
 
