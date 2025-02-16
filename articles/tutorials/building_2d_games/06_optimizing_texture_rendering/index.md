@@ -68,7 +68,9 @@ A texture atlas (also known as a sprite sheet) is a large image file that contai
 
 In the Pong example, imagine taking the paddle and ball image and combining them into a single image file like in Figure 6-1 below:
 
-<figure><img src="./images/pong-atlas.png" alt="Figure 6-1: Pong Texture Atlas Example."><figcaption><p><strong>Figure 6-1: Pong Texture Atlas Example.</strong></p></figcaption></figure>
+| ![Figure 6-1: Pong Texture Atlas Example](./images/pong-atlas.png) |
+| :---: |
+| **Figure 6-1: Pong Texture Atlas Example** |
 
 Now when we draw these images, we would be using the same texture and just specify the source rectangles for the paddle or ball when needed, completely eliminating texture swaps.
 
@@ -363,7 +365,9 @@ Let's put our new `TextureRegion` class to use by creating a simple game scene. 
 
 Download the texture atlas by right-clicking the following image and saving it as *atlas.png*:
 
-<figure><img src="./images/atlas.png" alt="Figure 6-2: The texture atlas for our game."><figcaption><p><strong>Figure 6-2: The texture atlas for our game.</strong></p></figcaption></figure>
+| ![Figure 6-2: The texture atlas for our game](./images/atlas.png) |
+| :---: |
+| **Figure 6-2: The texture atlas for our game** |
 
 Add this texture atlas to your content project using the MGCB Editor:
 
@@ -389,7 +393,9 @@ Let's examine the key changes in the code:
 
 Running the game now shows the slime sprite in the upper-left corner of the game window:
 
-<figure><img src="./images/slime-rendered.png" alt="Figure 6-3: The slime texture region being rendered in the upper-left corner of the game window."><figcaption><p><strong>Figure 6-3: The slime texture region being rendered in the upper-left corner of the game window.</strong></p></figcaption></figure>
+| ![Figure 6-3: The slime texture region being rendered in the upper-left corner of the game window](./images/slime-rendered.png) |
+| :---: |
+| **Figure 6-3: The slime texture region being rendered in the upper-left corner of the game window** |
 
 ## The TextureAtlas Class
 
@@ -591,7 +597,9 @@ The key changes in this implementation are:
 
 Running the game now shows both sprites in the upper-left corner:
 
-<figure><img src="./images/slime-and-bat-rendered.png" alt="Figure 6-4: The slime and bat texture regions being rendered in the upper-left corner of the game window."><figcaption><p><strong>Figure 6-4: The slime and bat texture regions being rendered in the upper-left corner of the game window.</strong></p></figcaption></figure>
+| ![Figure 6-4: The slime and bat texture regions being rendered in the upper-left corner of the game window](./images/slime-and-bat-rendered.png) |
+| :---: |
+| **Figure 6-4: The slime and bat texture regions being rendered in the upper-left corner of the game window** |
 
 While manual creation works for a few sprites, managing many regions becomes cumbersome. Let's now explore the `TextureAtlas.FromFile` method to load our atlas configuration from XML instead. Perform the following:
 
@@ -614,7 +622,9 @@ While manual creation works for a few sprites, managing many regions becomes cum
 5. Navigate to and choose the *atlas-definition.xml* file you just created to add it.
 6. In the properties panel at the bottom for the *atlas-definition.xml* file, change the *Build Action* property from *Build* to *Copy*.
 
-    <figure><img src="./images/mgcb-editor-copy.png" alt="Figure 6-6: The atlas-definition.xml file added to the content project with the Build Action property set to Copy."><figcaption><p><strong>Figure 6-6: The atlas-definition.xml file added to the content project with the Build Action property set to Copy.</strong></p></figcaption></figure>
+    | ![Figure 6-5: The atlas-definition.xml file added to the content project with the Build Action property set to Copy](./images/mgcb-editor-copy.png) |
+    | :---: |
+    | **Figure 6-5: The atlas-definition.xml file added to the content project with the Build Action property set to Copy** |
 
 7. Save the changes and close the MGCB Editor
 

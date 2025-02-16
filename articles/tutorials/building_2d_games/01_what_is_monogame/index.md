@@ -17,23 +17,11 @@ The official first release of MonoGame occurred in 2011, as an open source versi
 
 Today, it is a mature, cross-platform framework, that is built with the spirit of preserving XNA but adopting modern game development practices. Some popular titles created using MonoGame include [Celeste](https://store.steampowered.com/app/504230/Celeste/), [Stardew Valley](https://store.steampowered.com/app/413150/Stardew\_Valley/), and [Streets of Rage 4](https://store.steampowered.com/app/985890/Streets\_of\_Rage\_4/).
 
-<table style="border: transparent;">
-    <tr>
-        <td width="50%" align="center">
-            <figure><img src="./images/celeste.png" alt="Figure 1-1: Celeste."><figcaption><small>Figure 1-1: Celeste</small></figcaption></figure>
-        </td>
-        <td width="50%" align="center">
-            <figure><img src="./images/stardew-valley.png" alt="Figure 1-2: Stardew Valley."><figcaption><small>Figure 1-2: Stardew Valley.</small></figcaption></figure>
-        </td>
-    </tr>
-    <tr>
-        <td width="50%" align="center">
-            <figure><img src="./images/sor4.jpg" alt="Figure 1-3: Streets of Rage 4."><figcaption><p><small>Figure 1-3: Streets of Rage 4.</small></p></figcaption></figure>
-        </td>
-        <td width="50%">
-        </td>
-    </tr>
-</table>
+| ![Figure 1-1: Celeste](./images/celeste.png) | ![Figure 1-2: Stardew Valley](./images/stardew-valley.png) |
+| :---: | :---: |
+| **Figure 1-1 Celeste.** | **Figure 1-2: Stardew Valley** |
+| ![Figure 1-3: Streets of Rage 4](./images/sor4.jpg) | |
+| **Figure 1-3: Streets of Rage 4** | |
 
 ## Features
 
@@ -63,7 +51,7 @@ By providing cross-platform support, developers can target multiple platforms fr
 
 MonoGame is designed and built in C#. It is the official programming language supported in documentation, samples, and community discussion. However, MonoGame is not exclusively tied to C#. As a .NET library, MonoGame can be used with any .NET-compatible language including Visual Basic and F#.
 
-> [!CAUTION] 
+> [!CAUTION]
 > While the alternative .NET languages can be used, community support may be limited outside the scope of C#.
 
 Regardless of which .NET language used, developers should have a foundational understanding of the language and programming concepts such as:
@@ -83,7 +71,7 @@ Regardless of which .NET language used, developers should have a foundational un
 
     <details>
     <summary>Question 1 Answer</summary>
-    
+
     > Any of the following are advantages of using the MonoGame
     > 1. It provides cross-platform support, allowing developers to target multiple platforms from a single code base.
     >
@@ -93,12 +81,11 @@ Regardless of which .NET language used, developers should have a foundational un
 
     </details><br />
 
-
 2. What programming languages can be used when creating a game with MonoGame?
 
     <details>
     <summary>Question 2 Answer</summary>
-    
+
     > The primary language used is C#, which is the same language that the MonoGame framework is developed in.  However, any .NET language can be used, such as F# or Visual Basic.
-    
+
     </details><br />

@@ -48,6 +48,11 @@ body[data-disable-toc="true" i] .toc-offcanvas {
   visibility: hidden;
 }
 
+th:has(a img[alt^="Figure"]),
+td:has(a img[alt^="Figure"]) {
+  width: 50%;
+}
+
 
 /*******************************************************************************
 *** Section: Bootstrap Overrides
@@ -71,6 +76,17 @@ body[data-disable-toc="true" i] .toc-offcanvas {
 .nav .active {
 color: var(--mg-orange-primary)
 }
+
+/*******************************************************************************
+*** Section: Navbar Fixes
+*** The main monogame website uses bootstrap 5.3.2 while docfx is sitll on
+*** bootstrap 3.4.1.  The following are fixes for the top navbar specifically
+*** so that it looks the same as the main website
+*******************************************************************************/
+nav#autocollapse > div.container-xxl {
+  max-width: 1320px;
+}
+
 
 /*******************************************************************************
 *** Section: MonoGame Utility Classes
@@ -182,6 +198,12 @@ box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   color: var(--bs-body-color);
 }
 
+.mg-donate-button {
+  --bs-btn-bg: #F1465A;
+  --bs-btn-hover-bg: #F25265;
+  --bs-btn-color: #fff;
+  --bs-btn-hover-color: #fff;
+}
 
 /*******************************************************************************
 *** Some adjustments to give the content some space.
