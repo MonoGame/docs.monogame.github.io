@@ -55,11 +55,15 @@ The most basic form of collision detection uses rectangles, often called *boundi
 
 For example, look at Figure 11-1 below.  The axes of the rectangle on the left are aligned with the axes of the screen, however the axes of the rectangle on the right are not.
 
-<figure><img src="./images/aabb-vs-non-aabb.svg" alt="Figure 11-1: Axis-Aligned Bounding Box versus Not Axis-Aligned Bounding Box."><figcaption><p><strong>Figure 11-1: Axis-Aligned Bounding Box versus Not Axis-Aligned Bounding Box.</strong></p></figcaption></figure>
+| ![Figure 11-1: Axis-Aligned Bounding Box versus Not Axis-Aligned Bounding Box](./images/aabb-vs-non-aabb.svg) |
+| :---: |
+| **Figure 11-1: Axis-Aligned Bounding Box versus Not Axis-Aligned Bounding Box** |
 
 If two bounding boxes were to overlap, like in Figure 11-2 below, then we would say they are colliding:
 
-<figure><img src="./images/aabb-collision-example.svg" alt="Figure 11-2: Two axis-aligned bounding boxes colliding."><figcaption><p><strong>Figure 11-2: Two axis-aligned bounding boxes colliding</strong></p></figcaption></figure>
+| ![Figure 11-2: Two axis-aligned bounding boxes colliding](./images/aabb-collision-example.svg) |
+| :---: |
+| **Figure 11-2: Two axis-aligned bounding boxes colliding** |
 
 MonoGame provides the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct which represents a rectangle by its position (X,Y) and size (Width,Height). The following table shows some of the properties of the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct:
 
@@ -159,7 +163,9 @@ This change performs the following:
 
 Running the game now, you can move the slime sprite around and anytime it collides with the bat sprite, both will change to a red tint.  You can click to move the bat to a different position to see that its bounding box updates with its position.
 
-<figure><video width="100%" autoplay loop muted><source type="video/webm" src="./videos/slime-bat-collision.webm"></video><figcaption><p><strong>Figure 11-3: The slime and bat sprite changing colors when colliding.</strong></p></figcaption></figure>
+| ![Figure 11-3: The slime and bat sprite changing colors when colliding](./videos/slime-bat-collision.webm) |
+| :---: |
+| **Figure 11-3: The slime and bat sprite changing colors when colliding** |
 
 ## The Circle Struct
 
@@ -399,7 +405,9 @@ Now that we know how to determine the distance between the center of two circles
 1. If the distance is greater than or equal to the sum of the radii, then the circles do not overlap
 2. If the distance is less than the sum of the radii, then the circles do overlap.
 
-<figure><img src="./images/circle-collision.svg" alt="Figure 11-4: Circle collision showing how distance between centers determines overlap."><figcaption><p><strong>Figure 11-4: Circle collision showing how distance between centers determines overlap.</strong></p></figcaption></figure>
+| ![Figure 11-4: Circle collision showing how distance between centers determines overlap](./images/circle-collision.svg) |
+| :---: |
+| **Figure 11-4: Circle collision showing how distance between centers determines overlap** |
 
 > [!NOTE]
 > In Figure 11-4 above, we can see from the two circles in the upper-left corner that the distance is equal to the sum of the radii.  This means they are **touching** but not overlapping. Remember, to overlap, the distance must be less than the sum of the radii.
@@ -477,7 +485,9 @@ These changes perform the following
 
 Running the game now, if you attempt to move the slime onto the bat, you'll see that the slime will be blocked from doing so.
 
-<figure><video width="100%" autoplay loop muted><source type="video/webm" src="./videos/blocking-collision-example.webm"></video><figcaption><p><strong>Figure 11-5: An example of blocking collision response; the slime is unable to move over the bat.</strong></p></figcaption></figure>
+| ![Figure 11-5: An example of blocking collision response; the slime is unable to move over the bat](./videos/blocking-collision-example.webm) |
+| :---: |
+| **Figure 11-5: An example of blocking collision response; the slime is unable to move over the bat** |
 
 ### Trigger Collision Response
 
@@ -515,7 +525,9 @@ if (CollisionCheck())
 
 When you run the game and move the slime into the bat, you'll see the bat instantly teleport to a new random position on the screen:
 
-<figure><video width="100%" autoplay loop muted><source type="video/webm" src="./videos/trigger-collision-example.webm"></video><figcaption><p><strong>Figure 11-6: An example of trigger collision response; The bat moves to a random location on the screen when the slime collides with it.</strong></p></figcaption></figure>
+| ![Figure 11-6: An example of trigger collision response; The bat moves to a random location on the screen when the slime collides with it](./videos/trigger-collision-example.webm) |
+| :---: |
+| **Figure 11-6: An example of trigger collision response; The bat moves to a random location on the screen when the slime collides with it** |
 
 ### Bounce Collision Response
 
@@ -524,7 +536,9 @@ For games that need objects to bounce off each other (like in Pong), we need to 
 1. The incoming vector (the direction something is moving).
 2. The normal vector (the direction perpendicular to the surface).
 
-<figure><img src="./images/reflection-diagram.svg" alt="Figure 11-7: Vector reflection showing how an incoming vector reflects off a surface based on its normal vector."><figcaption><p><strong>Figure 11-7: Vector reflection showing how an incoming vector reflects off a surface based on its normal vector.</strong></p></figcaption></figure>
+| ![Figure 11-7: Vector reflection showing how an incoming vector reflects off a surface based on its normal vector](./images/reflection-diagram.svg) |
+| :---: |
+| **Figure 11-7: Vector reflection showing how an incoming vector reflects off a surface based on its normal vector** |
 
 As shown in the diagram above, when an incoming vector hits a surface, it reflects at the same angle ($\theta$) relative to the normal vector.
 
@@ -681,7 +695,9 @@ Let's implement bounce collision response by modifying our game so the bat moves
 
 Running the game now, you'll see the bat moving automatically and bouncing off the screen edges. When the slime collides with it, the bat will teleport to a random location and start moving in a new random direction:
 
-<figure><video width="100%" autoplay loop muted><source type="video/webm" src="./videos/bounce-collision-example.webm"></video><figcaption><p><strong>Figure 11-7: An example of bounce collision response; The bat bounces off screen edges and gets a new velocity when respawning.</strong></p></figcaption></figure>
+| ![Figure 11-7: An example of bounce collision response; The bat bounces off screen edges and gets a new velocity when respawning](./videos/bounce-collision-example.webm) |
+| :---: |
+| **Figure 11-7: An example of bounce collision response; The bat bounces off screen edges and gets a new velocity when respawning** |
 
 ## Optimizing Collision Performance
 
