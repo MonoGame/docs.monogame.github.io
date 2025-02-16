@@ -17,7 +17,27 @@ Let's start by understanding the basics of collision detection and the different
 
 ## Understanding Collision Detection
 
-Before we start implementing collision detection, let's discuss what collision detection actually is.  In 2D games, collision detection involves checking if two shapes overlap.  The most common shapes used are rectangles and circles due to their simplicity, ease of representation, and that they cover most use cases.  In more complex scenarios, polygons can be used but are more complicated to represent and determine collision for.
+Before we start implementing collision detection, let's discuss what collision detection actually is. In 2D games, collision detection involves checking if two objects interact with each other in some way. There are several approaches to detecting collisions, ranging from simple to complex:
+
+1. Distance Checks: The simplest form - checking if objects are within a certain range of each other. This is useful when you only need to know if objects are "near" each other, like detecting if an enemy is close enough to chase the player.
+
+2. Simple Shape Based Checks: Checking if two shapes overlap. The most common and simple shapes used are:
+   - Rectangles:
+        - Great for walls, platforms, and most game objects.
+        - Easy to visualize and debug.
+        - Works well with tile-based games.
+   - Circles:
+       - Better for round objects like balls and coins.
+       - More accurate for rotating objects.
+       - Simpler check for overlap than rectangles.
+
+    > [!NOTE]
+    > These shapes are popular because they're simple to work with and cover most gameplay needs.  
+
+3. Complex Polygon Checks: For games needing precise collision detection, you can use more complex shapes. However, these are more complicated to implement and generally unnecessary for most 2D games.
+
+> [!TIP]
+> Start with the simplest collision detection that meets your needs. If distance checks work for your game mechanic, there's no need to implement more complex shape-based collision. Similarly, rectangle collision is usually sufficient for most 2D games.
 
 ### Collision Detection vs Collision Response
 
@@ -28,24 +48,6 @@ Often times when talking about collision detection, the term is used to mean bot
 - Bouncing: Reflect objects off each other (like balls).
 
 We'll explore implementing these responses throughout this chapter.
-
-### Choosing Collision Shapes
-
-When deciding which collision shape to use, consider:
-
-- Rectangle Collision:
-  - Best for objects with straight edges (platforms, walls).
-  - Efficient for large numbers of objects.
-  - Easy to visualize and debug.
-  - Works well with tile-based games.
-- Circle Collision:
-  - Better for round objects (balls, coins).
-  - More accurate for rotating objects.
-  - Simpler for continuous collision detection.
-  - Natural for radius-based interactions.
-
-> [!TIP]
-> Start with rectangle collision unless you have a specific need for circle collision. Rectangles are simpler to work with and perform better in most cases.
 
 ## Rectangle Collision
 
@@ -681,9 +683,11 @@ Running the game now, you'll see the bat moving automatically and bouncing off t
 
 <figure><video width="100%" autoplay loop muted><source type="video/webm" src="./videos/bounce-collision-example.webm"></video><figcaption><p><strong>Figure 11-7: An example of bounce collision response; The bat bounces off screen edges and gets a new velocity when respawning.</strong></p></figcaption></figure>
 
-## See Also
+## Separating Axis Theorem
 
-One collision detection method we did not discuss in this tutorial is called *Separating Axis Therom* (SAT).  SAT is used for more complex collision detection scenarios such as non-AABB rectangle, polygons vs polygons, and polygons vs circles.  If you are interested in further reading about this, please see the following articles as a good starting point
+One collision detection method we did not discuss in this tutorial is called *Separating Axis Therom* (SAT).  SAT is used for more complex collision detection scenarios between objects such as rotated rectangles or *convex* polygons.  There are also performance considerations to consider when using SAT.
+
+Implementing SAT is out-of-scope for this tutorial. If you are interested in further reading about this, please see the following articles as a good starting point
 
 - [Separating Axis Theorem (SAT) Explanation](https://www.sevenson.com.au/actionscript/sat/).
 - [Collision Detection Using the Separating Axis Theorem](https://gamedevelopment.tutsplus.com/tutorials/collision-detection-using-the-separating-axis-theorem--gamedev-169) by Kah Shiu Chong.
