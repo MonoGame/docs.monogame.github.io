@@ -38,7 +38,6 @@ When deciding which collision shape to use, consider:
   - Efficient for large numbers of objects.
   - Easy to visualize and debug.
   - Works well with tile-based games.
-
 - Circle Collision:
   - Better for round objects (balls, coins).
   - More accurate for rotating objects.
