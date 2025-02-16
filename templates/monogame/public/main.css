@@ -48,6 +48,11 @@ body[data-disable-toc="true" i] .toc-offcanvas {
   visibility: hidden;
 }
 
+th:has(a img[alt^="Figure"]),
+td:has(a img[alt^="Figure"]) {
+  width: 50%;
+}
+
 
 /*******************************************************************************
 *** Section: Bootstrap Overrides
