@@ -134,6 +134,8 @@
           href: tutorials/building_2d_games/10_input_management/
         - name: "11: Collision Detection"
           href: tutorials/building_2d_games/11_collision_detection/
+        - name: "12: Sound Effects and Music"
+          href: tutorials/building_2d_games/12_soundeffects_and_music/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
