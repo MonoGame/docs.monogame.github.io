@@ -106,8 +106,32 @@
     href: migration/updating_versions.md
 - name: Samples and Demos
   href: samples.md
-- name: Community Tutorials
-  href: tutorials.md
+- name: Tutorials
+  href: tutorials/
+  items:
+    - name: Building 2D Games
+      href: tutorials/building_2d_games/
+      items:
+        - name: "01: What Is MonoGame?"
+          href: tutorials/building_2d_games/01_what_is_monogame/
+        - name: "02: Getting Started"
+          href: tutorials/building_2d_games/02_getting_started/
+        - name: "03: The Game1 File"
+          href: tutorials/building_2d_games/03_the_game1_file/
+        - name: "04: Content Pipeline"
+          href: tutorials/building_2d_games/04_content_pipeline/
+        - name: "05: Working with Textures"
+          href: tutorials/building_2d_games/05_working_with_textures/
+        - name: "06: Optimizing Texture Rendering"
+          href: tutorials/building_2d_games/06_optimizing_texture_rendering/
+        - name: "07: The Sprite Class"
+          href: tutorials/building_2d_games/07_the_sprite_class/          
+        - name: "08: The AnimatedSprite Class"
+          href: tutorials/building_2d_games/08_the_animatedsprite_class/           
+        - name: "09: Handling Input"
+          href: tutorials/building_2d_games/09_handling_input/    
+        - name: "10: Input Management"
+          href: tutorials/building_2d_games/10_input_management/                 
 - name: Console Access
   href: console_access.md
 - name: Help and Support
