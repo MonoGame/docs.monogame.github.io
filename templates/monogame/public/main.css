@@ -53,6 +53,12 @@ td:has(a img[alt^="Figure"]) {
   width: 50%;
 }
 
+th video,
+td video {
+  width: 100%;
+  height: 100%
+}
+
 
 /*******************************************************************************
 *** Section: Bootstrap Overrides
