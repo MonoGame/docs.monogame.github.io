@@ -56,22 +56,35 @@ The key characteristics of sound effects are:
   - Desktop platforms have a maximum of 256 sounds playing simultaneously.
   - Consoles and other platforms have their own constraints, and you would need to refer to the SDK documentation for that platform.
 - Lower latency playback (ideal for immediate feedback)
-- Individual volume control per instance
+- Individual volume control per instance.
 
-When you play a [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect), it returns a [**SoundEffectInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance) that can be used to control that specific playback:
+There are two ways to play a sound effect:
+
+1. Direct playback using [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play):
+
+    ```cs
+    // Load the sound effect
+    SoundEffect bounceSound = Content.Load<SoundEffect>("bounce");
+    
+    // Play directly - good for simple, one-off sounds
+    bounceSound.Play();
+    ```
+
+2. Creating an instances using [**SoundEffect.CreateInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance):
 
 ```cs
 // Load the sound effect
-SoundEffect soundEffect = Content.Load<SoundEffect>("sound effect");
+SoundEffect bounceSound = Content.Load<SoundEffect>("bounce");
 
-// Create an instance we can control
-SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
-soundEffectInstance.Volume = 0.5f;
-soundEffectInstance.Play();
-
-// Or play it directly if we don't need to control it
-soundEffectInstance.Play();
+// Create an instance for more control
+SoundEffectInstance bounceSoundInstance = bounceSound.CreateInstance();
+bounceSoundInstance.IsLooped = true;  // Make it loop
+bounceSoundInstance.Volume = 0.5f;    // Set half volume
+bounceSoundInstance.Play();
 ```
+
+> [!TIP]
+> Use [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play) for simple sound effects that you just want to play once. Use [**SoundEffect.CreateInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance) when you need more control over the sound effect, like adjusting volume, looping, or managing multiple instances of the same sound.
 
 ### Music
 
