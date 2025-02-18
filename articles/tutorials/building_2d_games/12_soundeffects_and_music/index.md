@@ -51,7 +51,10 @@ The [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) class hand
 The key characteristics of sound effects are:
 
 - Loaded entirely into memory for quick access
-- Can play multiple instances simultaneously
+- Can play multiple instances simultaneously:
+  - Mobile platforms can have a maximum of 32 sounds playing simultaneously.
+  - Desktop platforms have a maximum of 256 sounds playing simultaneously.
+  - Consoles and other platforms have their own constraints, and you would need to refer to the SDK documentation for that platform.
 - Lower latency playback (ideal for immediate feedback)
 - Individual volume control per instance
 
