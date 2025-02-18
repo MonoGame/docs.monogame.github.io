@@ -660,28 +660,28 @@ Open the *Game1.cs* file and perform the following:
 
 3. Finally, after creating the bounding rectangle for the circle, add the following to perform a distance based collision check:
 
-```cs
-// Use distance based checks to determine if the slime is within the
-// bounds of the game screen, and if it's outside that screen edge,
-// move it back inside.
-if(slimeBounds.Left < screenBounds.Left)
-{
-    _slimePosition.X = screenBounds.Left;
-}
-else if(slimeBounds.Right > screenBounds.Right)
-{
-    _slimePosition.X = screenBounds.Right - _slime.Width;
-}
-
-if(slimeBounds.Top < screenBounds.Top)
-{
-    _slimePosition.Y = screenBounds.Top;
-}
-else if(slimeBounds.Bottom > screenBounds.Bottom)
-{
-    _slimePosition.Y = screenBounds.Bottom - _slime.Height;
-}
-```
+    ```cs
+    // Use distance based checks to determine if the slime is within the
+    // bounds of the game screen, and if it's outside that screen edge,
+    // move it back inside.
+    if(slimeBounds.Left < screenBounds.Left)
+    {
+        _slimePosition.X = screenBounds.Left;
+    }
+    else if(slimeBounds.Right > screenBounds.Right)
+    {
+        _slimePosition.X = screenBounds.Right - _slime.Width;
+    }
+    
+    if(slimeBounds.Top < screenBounds.Top)
+    {
+        _slimePosition.Y = screenBounds.Top;
+    }
+    else if(slimeBounds.Bottom > screenBounds.Bottom)
+    {
+        _slimePosition.Y = screenBounds.Bottom - _slime.Height;
+    }
+    ```
 
 Running the game now, try moving the slime outside the edges of the game window.  You'll see that it's now being prevented from doing so:
 
