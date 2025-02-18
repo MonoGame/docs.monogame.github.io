@@ -19,33 +19,209 @@ Let's start by understanding the basics of collision detection and the different
 
 Before we start implementing collision detection, let's discuss what collision detection actually is. In 2D games, collision detection involves checking if two objects interact with each other in some way. There are several approaches to detecting collisions, ranging from simple to complex:
 
-1. Distance Checks: The simplest form - checking if objects are within a certain range of each other. This is useful when you only need to know if objects are "near" each other, like detecting if an enemy is close enough to chase the player.
+### Proximity Collision Detection
 
-2. Simple Shape Based Checks: Checking if two shapes overlap. The most common and simple shapes used are:
-   - Rectangles:
-        - Great for walls, platforms, and most game objects.
-        - Easy to visualize and debug.
-        - Works well with tile-based games.
-   - Circles:
-       - Better for round objects like balls and coins.
-       - More accurate for rotating objects.
-       - Simpler check for overlap than rectangles.
+The simplest form is checking if objects are within a certain range of each other.  This is useful when you only need to know if objects are "near" each other like detecting if an enemy is close enough to chase a player or if two objects are close enough to perform a more complex collision check.
 
-    > [!NOTE]
-    > These shapes are popular because they're simple to work with and cover most gameplay needs.  
+### Simple Shape Based Collision Detection
 
-3. Complex Polygon Checks: For games needing precise collision detection, you can use more complex shapes. However, these are more complicated to implement and generally unnecessary for most 2D games.
+Shaped based collision detection checks if two shapes overlap.  The most common and simple shapes used are circles and rectangles:
+
+#### Circle Collision Detection
+
+Circle collision detection is computationally a simpler check than that rectangles.  There are also no special considerations if the circles are rotated, which makes them easier to use.  To determine if two circle shapes are overlapping, we only need to check if the square of the sum of the radii between the two circles is less than the squared distance between the two circles with the following formula:
+
+Two find the distance between two circles, imagine drawing a line from the center of one circle to the center of the other.  This length of this line is the distance, but we could also calculate it by first walking up or down and then walking left or right from the center of one circle to another, forming a right triangle.
+
+| ![Figure 11-1: Showing the distance between the center of two circles forms a right triange](./images/circle-distance-right-triangle.svg) |
+| :---: |
+| **Figure 11-1: Showing the distance between the center of two circles forms a right triange** |
+
+In the Figure 11-1 above
+
+- $a$ is the distance between the center of the two on the x-axis (horizontal).
+- $b$ is the distance between the center of the two circles on the y-axis (vertical).
+- $c$ is the total distance between the center of the two circles.
+
+Since this forms a right triangle, to calculate the squared distance, we can use Pythagorean's Theorem:
+
+$$c^2 = a^2 + b^2$$
+
+Then we just check if the squared sum of the radii of the two circles is less than the squared distance:
+
+$$(radius_{circle1} + radius_{circle2})^2 < c^2$$
+
+If it is less, then the circles are overlapping; otherwise, they are not.
+
+To calculate the squared distance between to points, MonoGame provides the [**Vector2.DistanceSquared**](xref:Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method:
+
+```cs
+Vector2 circle1Position = new Vector2(8, 10);
+Vector2 circle2Position = new Vector2(5, 6);
+
+float circle1Radius = 5;
+float circle2Radius = 5;
+
+// c^2 = (8 - 5)^2 + (10 - 6)^2
+// c^2 = 3^2 + 4^2
+// c^2 = 9 + 16
+// c^2 = 25
+float distanceSquared = Vector2.DistanceSquared(circle1Position, circle2Position); 
+
+// r^2 = (5 + 5)^2
+// r^2 = (10)^2
+// r^2 = 100
+int radiiSquared = (circle1Radius + circle2Radius) * (circle1Radius + circle2Radius)
+
+// They do not overlap since 100 is not less than 25
+if(radii < distanceSquared)
+{
+    
+}
+```
 
 > [!TIP]
-> Start with the simplest collision detection that meets your needs. If distance checks work for your game mechanic, there's no need to implement more complex shape-based collision. Similarly, rectangle collision is usually sufficient for most 2D games.
+> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared.  So why don't we use this instead?
+>
+> Square root operations are more computationally complex for a CPU.  So instead of getting the normal distance, which would require the square root operation, it's more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.
+
+#### Rectangle Collision Detection
+
+Rectangles, often called *bounding boxes*, typically uses what's called *Axis-Aligned Bounding Box* (AABB) collision detection to determine if two rectangle shapes overlap.  Unlike circles, to perform AABB collision detection, the x- and y-axes of both rectangles must be aligned with the x- and y-axes of the screen.  This is just another way of saying that the rectangles cannot be rotated.
+
+| ![Figure 11-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axe.](./images/aabb-vs-non-aabb.svg) |
+| :---: |
+| **Figure 11-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axes** |
+
+MonoGame provides the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct which represents a rectangle by its position (X,Y) and size (Width,Height). The following table shows some of the properties of the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct:
+
+| Property                                                    | Type  | Description                                                                                                                                                                          |
+|-------------------------------------------------------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Bottom**](xref:Microsoft.Xna.Framework.Rectangle.Bottom) | `int` | Returns the y-coordinate location of the bottom edge of the rectangle.  This is equal to [**Rectangle.Y](xref:Microsoft.Xna.Framework.Rectangle.Y) plus the height of the rectangle. |
+| [**Left**](xref:Microsoft.Xna.Framework.Rectangle.Left)     | `int` | Returns the x-coordinate location of the left edge of the rectangle.  This is equal to [**Rectangle.X**](Microsoft.Xna.Framework.Rectangle.X).                                       |
+| [**Right**](xref:Microsoft.Xna.Framework.Rectangle.Right)   | `int` | Returns the x-coordinate location of the right edge of the rectangle.  This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X) plus the width of the rectangle. |
+| [**Top**](xref:Microsoft.Xna.Framework.Rectangle.Top)       | `int` | Returns the y-coordinate location of the top edge of the rectangle. This is equal to [**Rectangle.Y**](xref:Microsoft.Xna.Framework.Rectangle.Y). |
+
+To determine if two rectangles overlap using AABB collision detection, there are four conditions that need to be checked, and all four conditions must be true.  Given two rectangles $A$ and $B$, these conditions are:
+
+1. $A.Left$ must be less than $B.Right$.
+2. $A.Right$ must be greater than $B.Left$.
+3. $A.Top$ must be less than $B.Bottom$.
+4. $A.Bottom$ must be greater than $B.Top$.
+
+If even a single one of these conditions is false, then the rectangles are not overlapping and thus not colliding.
+
+MonoGame provides the [**Rectangle.Intersects**](xref:Microsoft.Xna.Framework.Rectangle.Intersects(Microsoft.Xna.Framework.Rectangle)) method which will perform an AABB collision check for us:
+
+```cs
+// Rectangle 1
+//                Top: 0
+//          ----------------
+//         |                |
+//         |                |
+// Left: 0 |                |  Right: 32
+//         |                |
+//         |                |
+//          ----------------
+//              Bottom: 32
+Rectangle rect1 = new Rectangle(0, 0, 32, 32);
+
+// Rectangle 2
+//                Top: 16
+//           ----------------
+//          |                |
+//          |                |
+// Left: 16 |                |  Right: 48
+//          |                |
+//          |                |
+//           ----------------
+//              Bottom: 48
+Rectangle rect2 = new Rectangle (16, 16, 32, 32);
+
+// rect1.Left (0)  < rect2.Right (48) = true
+// rect1.Right (32) > rect3.Left (16) = true
+// rect1.Top (0) < rect2.Bottom (48) = true
+// rect1.Bottom (32) > rect2.Top (16) = true
+bool isColliding = rect1.Intersects(rect2); // returns true
+```
+
+| ![Figure 11-3: The rectangle on the left is overlapping the rectangle on the right based on the conditions required for the Axis-Aligned Bounding Box collision check](./images/aabb-collision-example.svg) |
+| :---: |
+| **Figure 11-3: The rectangle on the left is overlapping the rectangle on the right based on the conditions required for the Axis-Aligned Bounding Box collision check** |
+
+#### Complex Polygon Collision Detection
+
+Complex polygon collision detection uses a method called *Separating Axis Theorem* (SAT) to determine if two polygon shapes overlap.  SAT uses more complex calculations that can determine if any ploygon shape overlaps another polygon shape, including if they are rotated. There are performance considerations to consider when using SAT.
+
+Implementing SAT is out-of-scope for this tutorial. If you are interested in further reading about this, please see the following articles as a good starting point:
+
+- [Separating Axis Theorem (SAT) Explanation](https://www.sevenson.com.au/actionscript/sat/).
+- [Collision Detection Using the Separating Axis Theorem](https://gamedevelopment.tutsplus.com/tutorials/collision-detection-using-the-separating-axis-theorem--gamedev-169) by Kah Shiu Chong.
+- [N Tutorial A - Collision Detection and Response](http://www.metanetsoftware.com/technique/tutorialA.html).
+
+#### Choosing a Collision Detection Method
+
+When determining which collision detection method to use, you should start with the simplest one that meets the needs of your game.  If distance checks work for your game mechanic, there's no need to implement more complex shape based detections.  Similarly, if a circle can represent the bounding area of a game object, start with that before moving onto rectangles.
+
+Some other points to consider are
+
+- Circles:
+  - Better for round objects like balls and coins.
+  - More accurate for rotating objects.
+  - Simpler check for overlap than rectangles.
+- Rectangles:
+  - Great for walls, platforms, and most game objects.
+  - Easy to visualize and debug.
+  - Works well with tile-based games.
 
 ### Collision Detection vs Collision Response
 
 Often times when talking about collision detection, the term is used to mean both the detection of overlapping shapes and what to do once a positive check has occurred.  What you do after a positive collision check has occurred is called the *collision response*.  Some of the common responses are:
 
-- Blocking: Prevent objects from overlapping (like walls).
-- Triggering: Cause an event (like collecting items).
-- Bouncing: Reflect objects off each other (like balls).
+#### Blocking Collision Response
+
+A blocking collision response is the most basic response which just prevents the two objects from overlapping.  This is commonly used for walls, platforms and other solid objects.  To perform a blocking collision response
+
+1. Store the location of an object calculating the new location to move it to.
+2. Check if it is overlapping an object at the new location:
+  - If it is overlapping, then set the position to the the position before it was moved.
+  - If it is not overlapping, set the position to the new calculated position.
+
+For example:
+
+```cs
+// Store the current location
+Vector2 previousLocation = _spriteLocation;
+
+// Calculate a new location
+Vector2 newLocation = _spriteLocation + new Vector2(10, 0);
+
+// Create a bounding box for the sprite object
+Rectangle spriteBounds = new Rectangle(
+    (int)newLocation.X,
+    (int)newLocation.Y,
+    (int)_sprite.Width,
+    (int)_sprite.Height
+);
+
+// Create a bounding box for the blocking object
+Rectangle blockingBounds = new Rectangle(
+    (int)_blockingLocation_.X,
+    (int)_blockingLocation_.Y,
+    (int)_blockingSprite_.Width,
+    (int)_blockingSprite_.Height
+);
+
+// Detect if they are colliding
+if(spriteBounds.Intersects(blockingBounds)) 
+{
+    // Respond by not allowing the sprite to move by setting
+    // the location back to the previous location.
+    newLocation = previousLocation;
+}
+
+_spriteLocation = newLocation;
+```
 
 We'll explore implementing these responses throughout this chapter.
 
@@ -381,7 +557,12 @@ public static bool operator !=(Circle lhs, Circle rhs) => !lhs.Equals(rhs);
 
 ## Circle Collision
 
-Circle collision is calculated using the distance between the centers of the two circles. If the distance between the center of two circles is smaller than the sum of their radii, then they are considered overlapping (colliding).  To find the distance between the center of two circles, Monogame provides the [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method which needs two pieces of information:
+Circle collision is calculated using the distance between the centers of the two circles. If the distance between the center of two circles is smaller than the sum of their radii, then they are considered overlapping (colliding).  We can find the distance between two circles by calculating the distance of the path between their centers.
+
+To find the distance of a path, MonoGame provides both the `[**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2))` method and the  [**Vector2.DistanceSqaured**](Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2))  method. Which one should we use though?
+
+To find the distance between two points, think about walking from one point to another; you can walk straight there (the direct distance) or you can walk first up/down then left/right (forming a right triangle).  Given that it forms a right triangle, calculating the distance of the direct path is done using Pythagorean's Theorem $c^2 = a^2 + b^2$ where $c$ is the distance and $a$ and $b$ are our two vectors.  Under-the-hood, [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) returns back the distance, which means it has to calculate the square root of $c$ before returning the value.  Alternatively, [**Vector2.DistanceSqaured**](Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) returns the value of $c^2$.  
+To find the distance between the center of two circles, MonoGame provides the [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method which needs two pieces of information:
 
 1. The location of the center of one circle.
 1. The location of the center of another circle.
