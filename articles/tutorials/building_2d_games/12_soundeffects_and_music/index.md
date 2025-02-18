@@ -32,7 +32,10 @@ Recall from [Chapter 01](../01_what_is_monogame/index.md) that MonoGame is an im
 >
 > For these reasons, this tutorial will focus on the simplified sound API, which provides all the core functionality needed for most games while remaining cross-platform compatible.
 
-The simplified sound API approaches audio management through two distinct paths, each optimized for different use cases in games. When adding audio to your game, you need to consider how different types of sounds should be handled. A short sound effect, like the bounce of a ball, needs to play immediately and might need to play multiple times simultaneously. In contrast, background music needs to play continuously but doesn't require the same immediate response.
+The simplified sound API approaches audio management through two distinct paths, each optimized for different use cases in games. When adding audio to your game, you need to consider how different types of sounds should be handled:
+
+- **Sound Effects**: Short audio clips that need to play immediately and often simultaneously, like the bounce of a ball or feedback for picking up a collectable.
+- **Music**: Longer audio pieces that play continuously in the background, like level themes.
 
 MonoGame addresses these different needs through two main classes:
 
