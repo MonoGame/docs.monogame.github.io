@@ -19,13 +19,18 @@ Let's start by understanding how MonoGame approaches audio content.
 
 ## Understanding Audio in MonoGame
 
-Recall from [Chapter 01](../01_what_is_monogame/index.md) that MonoGame is an implementation of the XNA API. When Microsoft originally released XNA, there were two methods for implementing audio in your game: the *Microsoft Cross-Platform Audio Creation Tool* (XACT) and the simplified sound API. XACT is a mini audio engineering studio where you can easily edit the audio for your game like editing volume, pitch, looping, applying effects, and other properties without having to do it in code. At that time, XACT for XNA games was akin to what FMOD Studio is today for game audio.
+Recall from [Chapter 01](../01_what_is_monogame/index.md) that MonoGame is an implementation of the XNA API.  With XNA, there were two methods for implementing audio in your game: the *Microsoft Cross-Platform Audio Creation Tool* (XACT) and the simplified sound API.
 
-| ![Figure 12-1: Microsoft Cross-Platform Audio Creation Tool](./images/xact-editor.png) |
-|:--------------------------------------------------------------------------------------:|
-|             **Figure 12-1: Microsoft Cross-Platform Audio Creation Tool**              |
-
-While XACT projects are still fully supported in MonoGame, it remains a Windows-only tool that hasn't been updated since Microsoft discontinued the original XNA, nor has its source code been made open source. Though it's possible to install XACT on modern Windows, the process can be complex. For these reasons, this tutorial will focus on the simplified sound API, which provides all the core functionality needed for most games while remaining cross-platform compatible.
+> [!IMPORTANT]
+> XACT is a mini audio engineering studio where you can easily edit the audio for your game like editing volume, pitch, looping, applying effects, and other properties without having to do it in code. At that time, XACT for XNA games was akin to what FMOD Studio is today for game audio.
+>
+> | ![Figure 12-1: Microsoft Cross-Platform Audio Creation Tool](./images/xact-editor.png) |
+> |:--------------------------------------------------------------------------------------:|
+> |             **Figure 12-1: Microsoft Cross-Platform Audio Creation Tool**              |
+>
+> While XACT projects are still fully supported in MonoGame, it remains a Windows-only tool that hasn't been updated since Microsoft discontinued the original XNA, nor has its source code been made open source. Though it's possible to install XACT on modern Windows, the process can be complex.
+>
+> For these reasons, this tutorial will focus on the simplified sound API, which provides all the core functionality needed for most games while remaining cross-platform compatible.
 
 The simplified sound API approaches audio management through two distinct paths, each optimized for different use cases in games. When adding audio to your game, you need to consider how different types of sounds should be handled. A short sound effect, like the bounce of a ball, needs to play immediately and might need to play multiple times simultaneously. In contrast, background music needs to play continuously but doesn't require the same immediate response.
 
