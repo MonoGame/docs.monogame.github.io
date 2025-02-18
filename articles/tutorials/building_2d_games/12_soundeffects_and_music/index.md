@@ -87,13 +87,19 @@ Songs are played through the [**MediaPlayer**](xref:Microsoft.Xna.Framework.Medi
 // Load the song
 Song backgroundMusic = Content.Load<Song>("theme");
 
+// Check if the media player is already playing, if so, stop it
+if(MediaPlayer.State == MediaState.Playing)
+{
+    MediaPlayer.Stop();
+}
+
 // Play the song, optionally looping
 MediaPlayer.IsRepeating = true;
 MediaPlayer.Play(backgroundMusic);
 ```
 
-> [!NOTE]
-> While [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) instances can be played simultaneously, trying to play a new [**Song**](xref:Microsoft.Xna.Framework.Audio.Song) while another is playing will automatically stop the current song. This is why [**Song**](xref:Microsoft.Xna.Framework.Audio.Song) is ideal for background music where you typically only want one track playing at a time.
+> [!IMPORTANT]
+> While [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) instances can be played simultaneously, trying to play a new [**Song**](xref:Microsoft.Xna.Framework.Audio.Song) while another is playing will stop the current song in the best case, and in the worst case cause a crash on some platforms.  In the example above, the state of the media player is checked first before we tell it to play a song.  Checking the state first and stopping it manually if it is playing is best practice to prevent potential crashes.
 
 Throughout this chapter, we'll use both classes to add audio feedback to our game; sound effects for the bat bouncing and being eaten by the slime, and background music to create atmosphere.
 
@@ -220,12 +226,18 @@ MediaPlayer.IsRepeating = true;
 // Adjust the volume (0.0f to 1.0f)
 MediaPlayer.Volume = 0.5f;
 
+// Check if the media player is already playing, if so, stop it
+if(MediaPlayer.State == MediaState.Playing)
+{
+    MediaPlayer.Stop();
+}
+
 // Start playing the background music
 MediaPlayer.Play(_backgroundMusic);
 ```
 
-> [!NOTE]
-> Only one song can play at a time. Starting a new song will automatically stop any currently playing song.
+> [!IMPORTANT]
+> Remember to always check the state of the media player and stopping it if it is already playing before telling it to play a song to prevent potential crashes.
 
 ### Adding Audio to Our Game
 
@@ -242,6 +254,12 @@ Open *Game1.cs* and make the following changes:
     ```cs
     // Ensure the song is looping
     MediaPlayer.IsRepeating = true;
+
+    // Check if the media player is already playing, if so, stop it
+    if(MediaPlayer.State == MediaState.Playing)
+    {
+        MediaPlayer.Stop();
+    }
     
     // PLay the song
     MediaPlayer.Play(_backgroundMusic);
@@ -488,6 +506,13 @@ public SoundEffectInstance PlaySoundEffect(string assetName, float volume = 1.0f
 public void PlaySong(string assetName)
 {
     Song song = _songs[assetName];
+
+    // Check if the media player is already playing, if so, stop it
+    if(MediaPlayer.State == MediaState.Playing)
+    {
+        MediaPlayer.Stop();
+    }
+
     MediaPlayer.Play(song);
 }
 ```
