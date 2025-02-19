@@ -58,34 +58,6 @@ The key characteristics of sound effects are:
 - Lower latency playback (ideal for immediate feedback)
 - Individual volume control per instance.
 
-There are two ways to play a sound effect:
-
-1. Direct playback using [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play):
-
-    ```cs
-    // Load the sound effect
-    SoundEffect bounceSound = Content.Load<SoundEffect>("bounce");
-    
-    // Play directly - good for simple, one-off sounds
-    bounceSound.Play();
-    ```
-
-2. Creating an instances using [**SoundEffect.CreateInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance):
-
-```cs
-// Load the sound effect
-SoundEffect bounceSound = Content.Load<SoundEffect>("bounce");
-
-// Create an instance for more control
-SoundEffectInstance bounceSoundInstance = bounceSound.CreateInstance();
-bounceSoundInstance.IsLooped = true;  // Make it loop
-bounceSoundInstance.Volume = 0.5f;    // Set half volume
-bounceSoundInstance.Play();
-```
-
-> [!TIP]
-> Use [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play) for simple sound effects that you just want to play once. Use [**SoundEffect.CreateInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance) when you need more control over the sound effect, like adjusting volume, looping, or managing multiple instances of the same sound.
-
 ### Music
 
 The [**Song**](xref:Microsoft.Xna.Framework.Audio.Song) class handles longer audio pieces like background music.  The key characteristics of songs are:
@@ -93,26 +65,6 @@ The [**Song**](xref:Microsoft.Xna.Framework.Audio.Song) class handles longer aud
 - Streamed from storage rather than loaded into memory.
 - Only one song can be played at a time.
 - Higher latency, but lower memory usage.
-
-Songs are played through the [**MediaPlayer**](xref:Microsoft.Xna.Framework.Media.MediaPlayer) class:
-
-```cs
-// Load the song
-Song backgroundMusic = Content.Load<Song>("theme");
-
-// Check if the media player is already playing, if so, stop it
-if(MediaPlayer.State == MediaState.Playing)
-{
-    MediaPlayer.Stop();
-}
-
-// Play the song, optionally looping
-MediaPlayer.IsRepeating = true;
-MediaPlayer.Play(backgroundMusic);
-```
-
-> [!IMPORTANT]
-> While [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) instances can be played simultaneously, trying to play a new [**Song**](xref:Microsoft.Xna.Framework.Audio.Song) while another is playing will stop the current song in the best case, and in the worst case cause a crash on some platforms.  In the example above, the state of the media player is checked first before we tell it to play a song.  Checking the state first and stopping it manually if it is playing is best practice to prevent potential crashes.
 
 Throughout this chapter, we'll use both classes to add audio feedback to our game; sound effects for the bat bouncing and being eaten by the slime, and background music to create atmosphere.
 
@@ -134,91 +86,71 @@ MonoGame supports several audio file formats for both sound effects and music:
 
 ### Adding Audio Files
 
-Before we can add audio to our game, we need some sound files to work with. Download the following audio files:
+Adding audio files can be done through the content pipeline, just like we did for image files, using the MGCB Editor.  When you add an audio file to the content project, the MGCB Editor will automatically select the appropriate importer and processor for the audio file based on the file extension.
 
-- [bounce.wav](./files/bounce.wav) - For when the bat bounces off screen edges
-- [collect.wav](./files/collect.wav) - For when the slime eats the bat
-- [theme.mp3](./files/theme.mp3) - Background music
+The processor that are available for audio files file:
+
+- **Sound Effects**: Processes the audio file as a [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect).  This is  automatically selected for *.wav* files.
+- **Soung**: Processes the audio file as a [**Song**](xref:Microsoft.Xna.Framework.Audio.Song).  This is automatically selected for *.mp3*, *.ogg*, and *.wma* files.
+
+| ![Figure 12-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files** | **Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files](./images/sound-effect-properties.png) | ![Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files](./images/song-properties.png) |
+| :---: | :---: |
+| **Figure 12-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files** | **Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files** |
 
 > [!NOTE]
->
-> - *bounce.wav* is "Retro Impact Punch 07" by Davit Masia (https://kronbits.itch.io/retrosfx).
-> - *collect.wav* is "Retro Jump Classic 08" by Davit Masia (https://kronbits.itch.io/retrosfx).
-> - *theme.mp3* is "8bit Dungeon Level" by Kevin MacLeod (incompetech.com), Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/
-
-Add these files to your content project using the MGCB Editor:
-
-1. Open the *Content.mgcb* file in the MGCB Editor.
-2. Create a new directory called `audio` (right-click *Content* > *Add* > *New Folder*).
-3. Right-click the new *audio* directory and choose *Add* > *Existing Item...*.
-4. Navigate to and select the audio files you downloaded.
-5. For each file that's added, check its properties in the Properties panel:
-   - For `.wav` files, ensure *Build Action* is set to `Build` and *Content Processor* is set to `Sound Effect`.
-   - For `.mp3` files, ensure *Build Action* is set to `Build` and *Content Processor* is set to `Song`.
-
-    | ![Figure 12-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files** | **Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files](./images/sound-effect-properties.png) | ![Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files](./images/song-properties.png) |
-    | :---: | :---: |
-    | **Figure 12-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files** | **Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files** |
+> While you typically will not need to change the processor it automatically selects, there may be times where you add files, such as *.mp3* files that are meant to be sound effects and not songs.  Always double check that the processor selected is for the intended type.
 
 ### Loading Sound Effects
 
-To load a sound effect, we use [**ContentManager.Load**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)) with the [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) type.  Open then *Game1.cs* and perform the following:
+To load a sound effect, we use [**ContentManager.Load**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)) with the [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) type:
 
-1. First, add the following fields to store the sound effects that are loaded:
-
-    ```cs
-    private SoundEffect _bounceSound;
-    private SoundEffect _collectSound;
-    ```
-
-2. In [LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent) add the following to load the sound effects:
-
-    ```cs
-    _bounceSound = Content.Load<SoundEffect>("audio/bounce");
-    _collectSound = Content.Load<SoundEffect>("audio/collect");
-    ```
+```cs
+SoundEffect soundEffect = Content.Load<SoundEffect>("soundEffect");
+```
 
 ### Loading Music
 
-Loading music is similar, only we specify the [**Song**](xref:Microsoft.Xna.Framework.Audio.Song) type instead.  Perform the following:
+Loading music is similar, only we specify the [**Song**](xref:Microsoft.Xna.Framework.Audio.Song) type instead. 
 
-1. First, add the following field to track the song:
+```cs
+Song song = Content.Load<Song>("song");
+```
 
-    ```cs
-    private Song _backgroundMusic;
-    ```
+## Playing Sound Effects
 
-2. In [LoadContent](xref:Microsoft.Xna.Framework.Game.LoadContent) add the following to load the song:
-
-    ```cs
-    _backgroundMusic = Content.Load<Song>("audio/theme");
-    ```
-
-## Playing Audio
-
-Now that we have our audio content loaded, we can implement sound playback in our game. Let's start by understanding how to play sound effects and music, then we'll add them to our game's collision events.
-
-### Playing Sound Effects
-
-The [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) class provides two ways to play sounds:
+Sound effects are played using the [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) class. This class provides two ways to play sounds:
 
 1. Direct playback using [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play):
 
     ```cs
+    // Load the sound effect
+    SoundEffect soundEffect = Content.Load<SoundEffect>("soundEffect");
+
     // Play the sound effect with default settings
-    _bounceSound.Play();
+    soundEffect.Play();
     ```
 
 2. Creating an instance using [**SoundEffect.CreateInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance):
 
     ```cs
+    // Load the sound effect
+    SoundEffect soundEffect = Content.Load<SoundEffect>("soundEffect");
+
     // Create an instance we can control
-    SoundEffectInstance bounceInstance = _bounceSound.CreateInstance();
-    bounceInstance.Volume = 0.5f;
-    bounceInstance.Play();
+    SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
+
+    // Adjust the properties of the instance as needed
+    soundEffectInstance.IsLooped = true;    // Make it loop
+    soundEffectInstance.Volume = 0.5f;      // Set half volume.
+
+    // Play the sound effect using the instance.
+    soundEffectInstance.Play();
     ```
 
-The first method is simpler but provides no control over the playback. The second method returns a [**SoundEffectInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance) that can be controlled through several properties:
+- Use [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play) for simple sound effects that you just want to play once.
+- Use [**SoundEffect.CreateInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance) when you need more control over the sound effect, like adjusting volume, looping, or managing multiple instances of the same sound.  
+
+[**SoundEffectInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance) contains several properties that can be used to control how the sound effect is played:
 
 | Property                                                                        | Type                                                            | Description                                                                |
 |---------------------------------------------------------------------------------|-----------------------------------------------------------------|----------------------------------------------------------------------------|
@@ -228,7 +160,7 @@ The first method is simpler but provides no control over the playback. The secon
 | [**State**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State)       | [**SoundState**](xref:Microsoft.Xna.Framework.Audio.SoundState) | Current playback state (Playing, Paused, or Stopped).                      |
 | [**Volume**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume)     | `float`                                                         | Volume level between 0.0f (silent) and 1.0f (full volume).                 |
 
-### Playing Music
+## Playing Music
 
 Unlike sound effects, music is played through the [**MediaPlayer**](xref:Microsoft.Xna.Framework.Media.MediaPlayer) class. This static class manages playback of [**Song**](xref:Microsoft.Xna.Framework.Media.Song) instances and provides global control over music playback:
 
@@ -250,53 +182,7 @@ MediaPlayer.Play(_backgroundMusic);
 ```
 
 > [!IMPORTANT]
-> Remember to always check the state of the media player and stopping it if it is already playing before telling it to play a song to prevent potential crashes.
-
-### Adding Audio to Our Game
-
-Let's update our game to play audio at appropriate times.  We'll play:
-
-- Background music when the game first loads.
-- The bounce sound when the bat hits screen edges.
-- The collect sound when the slime eats the bat.
-
-Open *Game1.cs* and make the following changes:
-
-1. First, let's add background music playback. In [Initialize](xref:Microsoft.Xna.Framework.Game.Initialize), after the call to `base.Initialize()`, add:
-
-    ```cs
-    // Ensure the song is looping
-    MediaPlayer.IsRepeating = true;
-
-    // Check if the media player is already playing, if so, stop it
-    if(MediaPlayer.State == MediaState.Playing)
-    {
-        MediaPlayer.Stop();
-    }
-    
-    // PLay the song
-    MediaPlayer.Play(_backgroundMusic);
-    ```
-
-2. Next, update the `UpdateBatMovement` method to play the bounce sound when the bat hits screen edges.  Add the following as part of the collision response:
-
-    ```cs
-    // Play bounce sound
-    _bounceSound.Play();
-    ```
-
-3. Finally, in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), add the collect sound during the collision response when the slime eats the bat:
-
-    ```cs
-    // Play collect sound
-    _collectSound.Play();
-    ```
-
-Running the game now, you'll hear:
-
-- Background music playing continuously.
-- A bounce sound whenever the bat hits screen edges.
-- A collect sound whenever the slime eats the bat.
+> While [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) instances can be played simultaneously, trying to play a new [**Song**](xref:Microsoft.Xna.Framework.Audio.Song) while another is playing will stop the current song in the best case, and in the worst case cause a crash on some platforms.  In the example above, the state of the media player is checked first before we tell it to play a song.  Checking the state first and stopping it manually if it is playing is best practice to prevent potential crashes.
 
 ## Audio Management
 
@@ -653,19 +539,45 @@ public void DecreaseVolume(float amount)
 - `IncreaseVolume`: Raises the volume of both music and sound effects by the specified amount, ensuring it doesn't exceed the maximum (1.0f).
 - `DecreaseVolume`: Lowers the volume of both music and sound effects by the specified amount, ensuring it doesn't go below zero.
 
-### Using the AudioManager
+## Adding Audio To Our Game
 
-Now that we have our `AudioManager` class to handle audio, let's update our game to use it instead of managing audio directly. We'll remove the individual audio fields and update our collision response code to use the manager.
+Before we can add audio to our game, we need some sound files to work with. Download the following audio files:
 
-Open *Game1.cs* and make the following changes to use the new audio manager:
+- [bounce.wav](./files/bounce.wav) - For when the bat bounces off screen edges
+- [collect.wav](./files/collect.wav) - For when the slime eats the bat
+- [theme.mp3](./files/theme.mp3) - Background music
 
-1. First, remove the individual audio fields `_bounceSound`, `_collectSound`, and `_backgroundMusic` and add an `AudioManger` field:
+> [!NOTE]
+>
+> - *bounce.wav* is "Retro Impact Punch 07" by Davit Masia (https://kronbits.itch.io/retrosfx).
+> - *collect.wav* is "Retro Jump Classic 08" by Davit Masia (https://kronbits.itch.io/retrosfx).
+> - *theme.mp3* is "8bit Dungeon Level" by Kevin MacLeod (incompetech.com), Licensed under Creative Commons: By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/
+
+Add these files to your content project using the MGCB Editor:
+
+1. Open the *Content.mgcb* file in the MGCB Editor.
+2. Create a new directory called `audio` (right-click *Content* > *Add* > *New Folder*).
+3. Right-click the new *audio* directory and choose *Add* > *Existing Item...*.
+4. Navigate to and select the audio files you downloaded.
+5. For each file that's added, check its properties in the Properties panel:
+   - For `.wav` files, ensure the *Processor* is set to `Sound Effect`.
+   - For `.mp3` files, ensure the *Processor* is set to `Song`.
+
+Next, let's implement the `AudioManager` game component that was created in our game to manage audio. Open the *Game1.cs* file and perform the following:
+
+1. Add the following using namespace at the top so we have access to the `AudioManager` class we created:
+
+    ```cs
+    using MonoGameLibrary.Audio;
+    ```
+
+2. Add a new private field to access the `AudioManager` with:
 
     ```cs
     private AudioManager _audioManager;
     ```
 
-2. In the constructor, create the manager and add it as a game component:
+3. In the constructor, add the following to create a new instance of the audio manager and add it as a game component:
 
     ```cs
     // Create and add the audio manager
@@ -673,26 +585,23 @@ Open *Game1.cs* and make the following changes to use the new audio manager:
     Components.Add(_audioManager);
     ```
 
-3. Update [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) to play the background music through the audio manager instead of the [**MediaPlayer**](xref:Microsoft.Xna.Framework.Media.MediaPlayer):
-
-    ```cs
-    // Start playing background music
-    _audioManager.PlaySong("audio/theme");
-    ```
-
-4. Update [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) to load audio through the manager:
+4. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), add the following to load audio through the manager:
 
     ```cs
     // Load audio content
     _audioManager.AddSoundEffect("audio/bounce");
     _audioManager.AddSoundEffect("audio/collect");
     _audioManager.AddSong("audio/theme");
+    ```
 
+5. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize), after the call to `base.Initialize()`, tell the audio manager to start playing the background music:
+
+    ```cs
     // Start playing background music
     _audioManager.PlaySong("audio/theme");
     ```
 
-5. Update `HandleKeyboardInput` to use the manager for audio controls:
+6. Update `HandleKeyboardInput` to add new inputs to control the audio manager:
 
     ```cs
     if (InputManager.Keyboard.WasKeyJustPressed(Keys.M))
@@ -711,24 +620,21 @@ Open *Game1.cs* and make the following changes to use the new audio manager:
     }
     ```
 
-6. Update the collision response in `UpdateBatMovement` to play the bounce sound effect using the manager:
+7. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), play the bounce sound effect after calculating the reflection vector for the bat if it hit the edge of the screen:
 
     ```cs
     // Play bounce sound through the manager
     _audioManager.PlaySoundEffect("audio/bounce");
     ```
 
-7. Update the collision response in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) to play the collect sound effect using the manager:
+8. Finally, in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) when it is detected that the slime intersects ("eats") the bat, play the collect sound effect:
 
     ```cs
     // Play collect sound through the manager
     _audioManager.PlaySoundEffect("audio/collect");
     ```
 
-> [!NOTE]
-> Since we added the `AudioManager` as a game component, we don't need to worry about updating or disposing of audio resources - the component system handles this automatically.
-
-Running the game now, you'll have the same audio feedback as before, but with better management of audio resources and additional features like volume control and muting. Try using the following controls:
+Running the game now, the background music will start playing when the game launches, the bounce sound effect will play each time the bat bounces off the edge of the screen, and the collect sound effect will play each time the slime eats the bat.  In addition, you can use the following controls to control the audio through the audio manager:
 
 - M key to toggle mute/unmute.
 - Plus (+) key to increase volume.
