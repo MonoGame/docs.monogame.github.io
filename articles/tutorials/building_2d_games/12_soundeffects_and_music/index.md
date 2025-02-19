@@ -375,7 +375,17 @@ Add the following methods to control audio playback:
 
 ```cs
 /// <summary>
-/// Plays the sound effect with the specified asset name.
+/// Plays the sound effect with the specified name.
+/// </summary>
+/// <param name="assetName">The asset name of the sound effect to play.</param>
+/// <returns>The sound effect instance created by playing the sound effect.</returns>
+public SoundEffectInstance PlaySoundEffect(string assetName)
+{
+    return PlaySoundEffect(assetName, 1.0f, 0.0f, 0.0f, false);
+}
+
+/// <summary>
+/// Plays the sound effect with the specified asset name, using the specified properties.
 /// </summary>
 /// <param name="assetName">The asset name of the sound effect to play.</param>
 /// <param name="volume">The volume, ranging from 0.0 (silence) to 1.0 (full volume).</param>
@@ -383,7 +393,7 @@ Add the following methods to control audio playback:
 /// <param name="pan">The panning, ranging from -1.0 (left speaker) to 0.0 (centered), 1.0 (right speaker).</param>
 /// <param name="isLooped">Whether the the sound effect should loop after playback.</param>
 /// <returns>The sound effect instance created by playing the sound effect.</returns>
-public SoundEffectInstance PlaySoundEffect(string assetName, float volume = 1.0f, float pitch = 0.0f, float pan = 0.0f, bool isLooped = false)
+public SoundEffectInstance PlaySoundEffect(string assetName, float volume, float pitch, float pan, bool isLooped)
 {
     SoundEffect soundEffect = _soundEffects[assetName];
 
@@ -416,7 +426,7 @@ public void PlaySong(string assetName)
 }
 ```
 
-- `PlaySoundEffect`: Creates and plays an instance of a sound effect with customizable properties like volume, pitch, panning, and looping. Returns the instance for further control if needed.
+- `PlaySoundEffect`: Two overloads of this method are implemented.  The first can be used to quickly fire off a sound effect if you don't need to adjust additional properties.  The second contains parameters to customize the volume, pitch, panning, and looping properties of the sound effect.  Both methods returns the instance for further control if needed.
 - `PlaySong`: Starts playing a song through the MediaPlayer. Since only one song can play at a time, this will automatically stop any currently playing song.
 
 #### State Control Methods
