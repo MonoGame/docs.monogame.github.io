@@ -28,7 +28,7 @@ Recall from [Chapter 01](../01_what_is_monogame/index.md) that MonoGame is an im
 > |:--------------------------------------------------------------------------------------:|
 > |             **Figure 12-1: Microsoft Cross-Platform Audio Creation Tool**              |
 >
-> While XACT projects are still fully supported in MonoGame, it remains a Windows-only tool that hasn't been updated since Microsoft discontinued the original XNA, nor has its source code been made open source. Though it's possible to install XACT on modern Windows, the process can be complex.
+> While XACT projects are still fully supported in MonoGame, it remains a Windows-only tool that has not been updated since Microsoft discontinued the original XNA, nor has its source code been made open source. Though it is possible to install XACT on modern Windows, the process can be complex.
 >
 > For these reasons, this tutorial will focus on the simplified sound API, which provides all the core functionality needed for most games while remaining cross-platform compatible.
 
@@ -66,7 +66,7 @@ The [**Song**](xref:Microsoft.Xna.Framework.Audio.Song) class handles longer aud
 - Only one song can be played at a time.
 - Higher latency, but lower memory usage.
 
-Throughout this chapter, we'll use both classes to add audio feedback to our game; sound effects for the bat bouncing and being eaten by the slime, and background music to create atmosphere.
+Throughout this chapter, we will use both classes to add audio feedback to our game; sound effects for the bat bouncing and being eaten by the slime, and background music to create atmosphere.
 
 ## Loading Audio Content
 
@@ -82,7 +82,7 @@ MonoGame supports several audio file formats for both sound effects and music:
 - `.wma`: Windows Media Audio format (not recommended for cross-platform games)
 
 > [!TIP]
-> For sound effects, `.wav` files provide the best loading and playback performance since they don't need to be decompressed. For music, `.mp3` or `.ogg` files are better choices as they reduce file size while maintaining good quality.
+> For sound effects, `.wav` files provide the best loading and playback performance since they do not need to be decompressed. For music, `.mp3` or `.ogg` files are better choices as they reduce file size while maintaining good quality.
 
 ### Adding Audio Files
 
@@ -197,7 +197,7 @@ To get started, create a new directory called *Audio* in the *MonoGameLibrary* p
 
 ### The AudioManager Class
 
-To effectively manage audio in our games, we'll create an `AudioManager` class that handles loading, playing, and controlling both sound effects and music. This manager will be implemented as a [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent), allowing it to receive automatic updates and cleanup.
+To effectively manage audio in our games, we will create an `AudioManager` class that handles loading, playing, and controlling both sound effects and music. This manager will be implemented as a [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent), allowing it to receive automatic updates and cleanup.
 
 In the *Audio* directory of the *MonoGameLibrary* project, add a new file named *AudioManager.cs* with this initial structure:
 
@@ -426,7 +426,7 @@ public void PlaySong(string assetName)
 }
 ```
 
-- `PlaySoundEffect`: Two overloads of this method are implemented.  The first can be used to quickly fire off a sound effect if you don't need to adjust additional properties.  The second contains parameters to customize the volume, pitch, panning, and looping properties of the sound effect.  Both methods returns the instance for further control if needed.
+- `PlaySoundEffect`: Two overloads of this method are implemented.  The first can be used to quickly fire off a sound effect if you do not need to adjust additional properties.  The second contains parameters to customize the volume, pitch, panning, and looping properties of the sound effect.  Both methods returns the instance for further control if needed.
 - `PlaySong`: Starts playing a song through the MediaPlayer. Since only one song can play at a time, this will automatically stop any currently playing song.
 
 #### State Control Methods
@@ -546,8 +546,8 @@ public void DecreaseVolume(float amount)
 }
 ```
 
-- `IncreaseVolume`: Raises the volume of both music and sound effects by the specified amount, ensuring it doesn't exceed the maximum (1.0f).
-- `DecreaseVolume`: Lowers the volume of both music and sound effects by the specified amount, ensuring it doesn't go below zero.
+- `IncreaseVolume`: Raises the volume of both music and sound effects by the specified amount, ensuring it does not exceed the maximum (1.0f).
+- `DecreaseVolume`: Lowers the volume of both music and sound effects by the specified amount, ensuring it does not go below zero.
 
 ## Adding Audio To Our Game
 
@@ -569,7 +569,7 @@ Add these files to your content project using the MGCB Editor:
 2. Create a new directory called `audio` (right-click *Content* > *Add* > *New Folder*).
 3. Right-click the new *audio* directory and choose *Add* > *Existing Item...*.
 4. Navigate to and select the audio files you downloaded.
-5. For each file that's added, check its properties in the Properties panel:
+5. For each file that is added, check its properties in the Properties panel:
    - For `.wav` files, ensure the *Processor* is set to `Sound Effect`.
    - For `.mp3` files, ensure the *Processor* is set to `Song`.
 
@@ -665,7 +665,7 @@ Let's review what you accomplished in this chapter:
   - Automatically cleans up audio resources.
   - Integrates with the game component system.
 
-In the next chapter, we'll explore scene management to handle different game screens like a title screen and a gameplay screen.
+In the next chapter, we will explore scene management to handle different game screens like a title screen and a gameplay screen.
 
 ## Test Your Knowledge
 
