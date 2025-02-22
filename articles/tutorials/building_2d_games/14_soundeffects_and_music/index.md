@@ -614,17 +614,17 @@ Next, let's implement the `AudioManager` game component that was created in our 
 6. Update `HandleKeyboardInput` to add new inputs to control the audio manager:
 
     ```cs
-    if (InputManager.Keyboard.WasKeyJustPressed(Keys.M))
+    if (_input.Keyboard.WasKeyJustPressed(Keys.M))
     {
         _audioManager.ToggleMute();
     }
     
-    if (InputManager.Keyboard.WasKeyJustPressed(Keys.OemPlus))
+    if (_input.Keyboard.WasKeyJustPressed(Keys.OemPlus))
     {
         _audioManager.IncreaseVolume(0.1f);
     }
     
-    if (InputManager.Keyboard.WasKeyJustPressed(Keys.OemMinus))
+    if (_input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
     {
         _audioManager.DecreaseVolume(0.1f);
     }

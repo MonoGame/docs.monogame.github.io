@@ -3,7 +3,7 @@ title: "Chapter 06: Content Pipeline"
 description: Learn the advantages of using the Content Pipeline to load assets and go through the processes of loading your first asset 
 ---
 
-Every game has assets; images to represent the visual graphics to players, audio to provide sound effects and background music, fonts to render text with, and much more.  These assets start out as raw files (e.g. *.png* image files or *.mp3* audio files), which you'll need to load into the game to use. 
+Every game has assets; images to represent the visual graphics to players, audio to provide sound effects and background music, fonts to render text with, and much more.  These assets start out as raw files (e.g. *.png* image files or *.mp3* audio files), which you'll need to load into the game to use.
 
 ## Loading Assets
 
@@ -116,12 +116,14 @@ After changes have been made in the MGBC Editor, ensure that you save the change
 Save the changes and then close the MGCB Editor.
 
 ## Understanding Content Paths
+
 The folder structure you create in the MGCB Editor directly affects how you load content in your game. When you perform a build of your game project, the *MonoGame.Content.Builder.Tasks* NuGet package reference will:
 
 1. Compile the image into an optimized format in the **content project's** output directory (typically *ProjectRoot/Content/bin/Platform/Content*) as an *.xnb* file.
-2. Copy the compiled assets to your **game's** output directory (typically *ProjectRoot/bin/Debug/net8.0/Content* or *ProjectRoot/bin/Release/net8.0/Content*). 
+2. Copy the compiled assets to your **game's** output directory (typically *ProjectRoot/bin/Debug/net8.0/Content* or *ProjectRoot/bin/Release/net8.0/Content*).
 
 For example, if your content project contains:
+
 ```sh
 Content/
   ├── images/
@@ -169,18 +171,30 @@ The [**Game**](xref:Microsoft.Xna.Framework.Game) class provides the [**Content*
 1. `T` Type Reference: The content type we are loading.
 2. `assetName` Parameter: A string path that matches the content path of the asset to load.  As mentioned in the [Understanding Content Paths](#understanding-content-paths) section, the content path is relative to the [**ContentManager.RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory), minus the extension.  For instance, we added our image to the *images* folder in the content project, the content path for it will be `"images/logo"`.
 
-Let's update the game now to load the image file using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).  First, open the *Game1.cs* file in your project and replace the contents with the following:
+Let's update the game now to load the image file using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager). Open the *Game1.cs* file in the game project and perform the following:
 
-[!code-csharp[](./Game1.cs?highlight=11,32,50-52)]
+1. Add a new [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) field to store the logo texture in:
 
-The key changes we made here are
+    ```cs
+    private Texture2D _logo;
+    ```
 
-- The `_logo` member was added to store a reference to the logo texture once we load it.
-- In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the logo texture is loaded using [**ContentManager.Load<T>**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)).
-- In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), the logo is rendered using the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
+2. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), load the logo texture using the content pipeline:
+
+    ```cs
+    _logo = Content.Load<Texture2D>("images/logo");
+    ```
+
+3. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), draw the texture using the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch):
+
+    ```cs
+    _spriteBatch.Begin();
+    _spriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+    _spriteBatch.End();
+    ```
   
-  > [!NOTE]
-  > We'll go more into detail about the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) in the next chapter.
+    > [!NOTE]
+    > We'll go more into detail about the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) in the next chapter.
 
 Running the game now will show the MonoGame logo displayed in the upper-left corner of the game window.
 

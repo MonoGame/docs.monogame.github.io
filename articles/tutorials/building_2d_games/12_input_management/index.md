@@ -789,7 +789,7 @@ That's it for the `GamePadInfo` class.  Next, let's create the actual input mana
 
 ## The InputManager Class
 
-Now that we have classes to handle keyboard, mouse, and gamepad input individually, we can create a centralized manager class to coordinate all input handling. The `InputManager` class will be static, providing easy access to all input states from anywhere in our game.
+Now that we have classes to handle keyboard, mouse, and gamepad input individually, we can create a centralized manager class to coordinate all input handling. The `InputManager` class will be a [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent) like we discussed previously in [Chapter 05](../05_game_components/index.md).
 
 In the *Input* directory of the *MonoGameLibrary* project, add a new file named *InputManager.cs* with this initial structure:
 
@@ -798,7 +798,7 @@ using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary.Input;
 
-public static class InputManager
+public class InputManager : GameComponent
 {
 
 }
@@ -806,37 +806,49 @@ public static class InputManager
 
 ### InputManager Properties
 
-The InputManager class needs properties to access each type of input device. Add these properties:
+The `InputManager` class needs properties to access each type of input device. Add these properties:
 
 ```cs
 /// <summary>
 /// Gets the state information of keyboard input.
 /// </summary>
-public static KeyboardInfo Keyboard { get; private set; }
+public KeyboardInfo Keyboard { get; private set; }
 
 /// <summary>
 /// Gets the state information of mouse input.
 /// </summary>
-public static MouseInfo Mouse { get; private set; }
+public MouseInfo Mouse { get; private set; }
 
 /// <summary>
 /// Gets the state information of a gamepad.
 /// </summary>
-public static GamePadInfo[] GamePads { get; private set; }
+public GamePadInfo[] GamePads { get; private set; }
 ```
 
 > [!NOTE]
 > The `GamePads` property is an array because MonoGame supports up to four gamepads simultaneously. Each gamepad is associated with a PlayerIndex (0-3).
 
+### InputManager Constructor
+
+The `InputManager` needs a constructor that accept a [**Game**](xref:Microsoft.Xna.Framework.Game) parameter due to inheriting from the [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent) class.  Add the following constructor:
+
+```cs
+/// <summary>
+/// Creates a new InputManager.
+/// </summary>
+/// <param name="game">The game this input manager belongs to.</param>
+public InputManager(Game game) : base(game) { }
+```
+
 ### InputManager Methods
 
-First, we need a method to initialize our input devices:
+First, override the `Initialize` method so that we can ensure that the states for each input devices are initialized:
 
 ```cs
 /// <summary>
 /// Initializes this input manager.
 /// </summary>
-public static void Initialize()
+public override void Initialize()
 {
     Keyboard = new KeyboardInfo();
     Mouse = new MouseInfo();
@@ -849,14 +861,14 @@ public static void Initialize()
 }
 ```
 
-Next, we'll add a method to update all input states:
+Next override the `Update` method so that the states of the input devices are updated:
 
 ```cs
 /// <summary>
 /// Updates the state information for the keyboard, mouse, and gamepad inputs.
 /// </summary>
 /// <param name="gameTime">A snapshot of the timing values for the current frame.</param>
-public static void Update(GameTime gameTime)
+public override void Update(GameTime gameTime)
 {
     Keyboard.Update();
     Mouse.Update();
@@ -868,73 +880,78 @@ public static void Update(GameTime gameTime)
 }
 ```
 
-> [!TIP]
-> By centralizing input updates in the `InputManager`, we ensure all input states are updated consistently each frame. You only need to call `InputManager.Update` once in your game's [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) method.
-
 ### Implementing the InputManager Class
 
 Now that we have our input management system complete, let's update our game to use it. Instead of tracking input states directly, we'll use the `InputManager` to handle all our input detection. Open *Game1.cs* and make the following changes:
 
-Let's update the input code in our game now to instead use the `InputManager` class to manage tracking input states which inputs are active. Open the *Game1.cs* file and perform the following:
-
-1. First we need to set up the `InputManager`.  In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize), add this initialization code just before `base.Initialize()`:
+1. Add the `MonoGameLibrary.Input` using directive so we can access the `InputManager` class:
 
     ```cs
-    InputManager.Initialize();
+    using MonoGameLibrary.Input;
     ```
 
-2. Next, in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), we need to ensure input states are updated each frame.  Add the following as the first line of code inside the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) method:
+2. Add a field for the `InputManager` class:
 
     ```cs
-    InputManager.Update(gameTime);
+    private InputManager _input;
     ```
 
-3. Next, remove the `if` statement in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) that checks for the gamepad back button or the keyboard escape key being pressed and then exits the game.
+3. In the constructor, create the `InputManager` and add it to to the game component collection:
 
-4. Finally, update the game controls to use the `InputManager`.  Replace the `HandleKeyboardInput`, `HandleMouseInput` and `HandleGamePadInput` methods with the following:
+    ```cs
+    // Create and add the input manager component to the game's component collection
+    _input = new InputManager(this);
+    Components.Add(_input);
+    ```
+
+4. In [**Update**](xref:xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), remove the `if` statement that checks for the gamepad back button or keyboard escape key being pressed and then calls exit.  We're going to move this to the individual handle input methods in a moment.
+
+5. In [**Update**](xref:xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) move the `base.Update(gameTime)` call from being the last line of the method to the first line of the method.  We do this because game components are updated during the `base.Update(gameTime)` call and we want to ensure that input is updated before we start handling input checks.
+
+6. Update the `HandleKeyboardInput` method to use the new `InputManager`:
 
     ```cs
     private void HandleKeyboardInput()
     {
-        if (InputManager.Keyboard.IsKeyDown(Keys.Escape))
+        if (_input.Keyboard.IsKeyDown(Keys.Escape))
         {
             Exit();
         }
-        if (InputManager.Keyboard.IsKeyDown(Keys.Up))
+    
+        if (_input.Keyboard.IsKeyDown(Keys.Up))
         {
             _slimePosition.Y -= MOVEMENT_SPEED;
         }
-        if (InputManager.Keyboard.IsKeyDown(Keys.Down))
+    
+        if (_input.Keyboard.IsKeyDown(Keys.Down))
         {
             _slimePosition.Y += MOVEMENT_SPEED;
         }
-        if (InputManager.Keyboard.IsKeyDown(Keys.Left))
+    
+        if (_input.Keyboard.IsKeyDown(Keys.Left))
         {
             _slimePosition.X -= MOVEMENT_SPEED;
         }
-        if (InputManager.Keyboard.IsKeyDown(Keys.Right))
+    
+        if (_input.Keyboard.IsKeyDown(Keys.Right))
         {
             _slimePosition.X += MOVEMENT_SPEED;
         }
     }
+    ```
 
-    private void HandleMouseInput()
-    {
-        if (InputManager.Mouse.WasButtonJustPressed(MouseButton.Left))
-        {
-            _batPosition = InputManager.Mouse.Position.ToVector2();
-        }
-    }
+7. Update the `HandleGamePadInput` method to use the new `InputManager`:
 
+    ```cs
     private void HandleGamepadInput()
     {
-        GamePadInfo gamePadOne = InputManager.GamePads[(int)PlayerIndex.One];
-
-        if(gamePadOne.IsButtonDown(Buttons.Back))
+        GamePadInfo gamePadOne = _input.GamePads[(int)PlayerIndex.One];
+    
+        if (gamePadOne.IsButtonDown(Buttons.Back))
         {
             Exit();
         }
-
+    
         if (gamePadOne.IsButtonDown(Buttons.A))
         {
             _slimePosition.X += gamePadOne.LeftThumbStick.X * 1.5f * MOVEMENT_SPEED;
@@ -949,6 +966,8 @@ Let's update the input code in our game now to instead use the `InputManager` cl
     }
     ```
 
+8. Remove the `HandleMouseInput` and the `HandleTouchInput` methods, we no longer need these since they were just for example purposes.
+
 The key improvements in this implementation are:
 
 1. Centralized Input Management:
@@ -960,9 +979,6 @@ The key improvements in this implementation are:
     - Mouse movement now only triggers on initial click using `WasButtonJustPressed`.
     - Gamepad vibration is handled through `SetVibration` with automatic duration.
     - Thumbstick values are easily accessed through `LeftThumbStick` property.
-
-> [!NOTE]
-> Using `WasButtonJustPressed` instead of `IsButtonDown` for the mouse control means the bat only moves when you first click, not continuously while holding the button. This gives you more precise control over movement.
 
 Running the game now, you will be able to control it the same as before, only now we're using our new `InputManager` class instead.
 
