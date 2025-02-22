@@ -1,9 +1,9 @@
 ---
-title: "Chapter 05: Working with Textures"
+title: "Chapter 07: Working with Textures"
 description: Learn how to load and render textures using the MonoGame content pipeline and SpriteBatch.
 ---
 
-Textures are images that are used in your game to represent the visual graphics to the player, commonly referred to as *Sprites*.  In [Chapter 04](../04_content_pipeline/index.md#loading-assets), you went through the steps of using the **Content Pipeline** to load the MonoGame *logo.png* texture and rendering it to the screen.
+Textures are images that are used in your game to represent the visual graphics to the player, commonly referred to as *Sprites*.  In [Chapter 06](../06_content_pipeline/index.md#loading-assets), you went through the steps of using the **Content Pipeline** to load the MonoGame *logo.png* texture and rendering it to the screen.
 
 In this chapter, you will:
 
@@ -28,7 +28,7 @@ Three methods are are used when rendering with the [**SpriteBatch**](xref:Micros
 
 As mentioned in [Chapter 03](../03_the_game1_file/index.md#the-game-loop), all rendering should be done inside the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method. The [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method's responsibility is to render the game state that was calculated in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)); it should not contain any game logic or complex calculations.
 
-At the end of [Chapter 04](../04_content_pipeline/index.md#loading-assets), you added the following code to the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) in the *Game1.cs* file:
+At the end of [Chapter 06](../06_content_pipeline/index.md#loading-assets), you added the following code to the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) in the *Game1.cs* file:
 
 ```cs
 _spriteBatch.Begin();

@@ -1,9 +1,9 @@
 ---
-title: "Chapter 11: Collision Detection"
+title: "Chapter 13: Collision Detection"
 description: "Learn how to implement collision detection between game objects and handle collision responses like blocking, triggering events, and bouncing."
 ---
 
-In [Chapter 10](../10_input_management/index.md), you learned how to manage player input to control game objects. However, for objects in your game to interact with each other, collecting items, hitting obstacles, or triggering events, you need to detect when these objects come into contact. This is accomplished through collision detection.
+In [Chapter 12](../12_input_management/index.md), you learned how to manage player input to control game objects. However, for objects in your game to interact with each other, collecting items, hitting obstacles, or triggering events, you need to detect when these objects come into contact. This is accomplished through collision detection.
 
 In this chapter you will:
 

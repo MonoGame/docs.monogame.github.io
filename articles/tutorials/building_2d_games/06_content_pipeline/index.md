@@ -1,5 +1,5 @@
 ---
-title: "Chapter 04: Content Pipeline"
+title: "Chapter 06: Content Pipeline"
 description: Learn the advantages of using the Content Pipeline to load assets and go through the processes of loading your first asset 
 ---
 

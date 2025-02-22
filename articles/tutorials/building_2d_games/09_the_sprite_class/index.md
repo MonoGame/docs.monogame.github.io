@@ -1,9 +1,9 @@
 ---
-title: "Chapter 07: The Sprite Class"
+title: "Chapter 09: The Sprite Class"
 description: "Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more."
 ---
 
-In [Chapter 06](../06_optimizing_texture_rendering/index.md), you learned how to use texture atlases to optimize rendering performance. While this solved the issue of texture swapping, managing individual sprites and their properties becomes increasingly complex as your game grows. Even in our simple example with just a slime and a bat, we would eventually need to track various properties for each sprite:
+In [Chapter 08](../08_optimizing_texture_rendering/index.md), you learned how to use texture atlases to optimize rendering performance. While this solved the issue of texture swapping, managing individual sprites and their properties becomes increasingly complex as your game grows. Even in our simple example with just a slime and a bat, we would eventually need to track various properties for each sprite:
 
 - Color mask for tinting.
 - Origin for rotation and scale.
@@ -169,7 +169,7 @@ public void Draw(SpriteBatch spriteBatch, Vector2 position)
 
 ## Create Sprites With The TextureAtlas Class
 
-While the `GetRegion` method of the `TextureAtlas` class we created in [Chapter 06](../06_optimizing_texture_rendering/index.md#the-textureatlas-class) works well for retrieving regions, creating sprites requires multiple steps:
+While the `GetRegion` method of the `TextureAtlas` class we created in [Chapter 08](../08_optimizing_texture_rendering/index.md#the-textureatlas-class) works well for retrieving regions, creating sprites requires multiple steps:
 
 1. Get the region by name.
 2. Store it in a variable.
