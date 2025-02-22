@@ -48,6 +48,17 @@ body[data-disable-toc="true" i] .toc-offcanvas {
   visibility: hidden;
 }
 
+th:has(a img[alt^="Figure"]),
+td:has(a img[alt^="Figure"]) {
+  width: 50%;
+}
+
+th video,
+td video {
+  width: 100%;
+  height: 100%
+}
+
 
 /*******************************************************************************
 *** Section: Bootstrap Overrides
@@ -229,4 +240,10 @@ p img {
 {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
+}
+
+/* Resolves issue where xref links in table columns will break and wrap text in
+the middle of the word */
+td > .xref {
+  word-break: normal;
 }
