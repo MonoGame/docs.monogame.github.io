@@ -16,7 +16,7 @@ In MonoGame, we can create these animations by cycling through different regions
 
 By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.
 
-In this chapter, we'll build off of the `Sprite` class we created in [Chapter 09](../09_the_sprite_class/) to create an `AnimatedSprite` class we can use to bring animations to life.
+In this chapter, we'll build off of the `Sprite` class we created in [Chapter 09](../09_the_sprite_class/index.md) to create an `AnimatedSprite` class we can use to bring animations to life.
 
 ## The Animation Class
 

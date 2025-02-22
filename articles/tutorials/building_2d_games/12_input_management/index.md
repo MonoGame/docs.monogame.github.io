@@ -590,7 +590,7 @@ We use vibration in gamepads to provide haptic feedback to the player.  The [**G
 private TimeSpan _vibrationTimeRemaining = TimeSpan.Zero;
 ```
 
-Recall from the [previous chapter](../09_handling_input/index.md#gamepad-input) that a [**PlayerIndex**](xref:Microsoft.Xna.Framework.PlayerIndex) value needs to be supplied when calling [**Gamepad.GetState**](xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)).   Doing this returns the state of the gamepad connected at that player index.  So we'll need a property to track the player index this gamepad info is for.
+Recall from the [previous chapter](../11_handling_input/index.md#gamepad-input) that a [**PlayerIndex**](xref:Microsoft.Xna.Framework.PlayerIndex) value needs to be supplied when calling [**Gamepad.GetState**](xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)).   Doing this returns the state of the gamepad connected at that player index.  So we'll need a property to track the player index this gamepad info is for.
 
 ```cs
 /// <summary>
@@ -904,9 +904,9 @@ Now that we have our input management system complete, let's update our game to 
     Components.Add(_input);
     ```
 
-4. In [**Update**](xref:xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), remove the `if` statement that checks for the gamepad back button or keyboard escape key being pressed and then calls exit.  We're going to move this to the individual handle input methods in a moment.
+4. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), remove the `if` statement that checks for the gamepad back button or keyboard escape key being pressed and then calls exit.  We're going to move this to the individual handle input methods in a moment.
 
-5. In [**Update**](xref:xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) move the `base.Update(gameTime)` call from being the last line of the method to the first line of the method.  We do this because game components are updated during the `base.Update(gameTime)` call and we want to ensure that input is updated before we start handling input checks.
+5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) move the `base.Update(gameTime)` call from being the last line of the method to the first line of the method.  We do this because game components are updated during the `base.Update(gameTime)` call and we want to ensure that input is updated before we start handling input checks.
 
 6. Update the `HandleKeyboardInput` method to use the new `InputManager`:
 

@@ -97,8 +97,8 @@ MonoGame provides the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) st
 
 | Property                                                    | Type  | Description                                                                                                                                                                          |
 |-------------------------------------------------------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Bottom**](xref:Microsoft.Xna.Framework.Rectangle.Bottom) | `int` | Returns the y-coordinate location of the bottom edge of the rectangle.  This is equal to [**Rectangle.Y](xref:Microsoft.Xna.Framework.Rectangle.Y) plus the height of the rectangle. |
-| [**Left**](xref:Microsoft.Xna.Framework.Rectangle.Left)     | `int` | Returns the x-coordinate location of the left edge of the rectangle.  This is equal to [**Rectangle.X**](Microsoft.Xna.Framework.Rectangle.X).                                       |
+| [**Bottom**](xref:Microsoft.Xna.Framework.Rectangle.Bottom) | `int` | Returns the y-coordinate location of the bottom edge of the rectangle.  This is equal to [**Rectangle.Y**](xref:Microsoft.Xna.Framework.Rectangle.Y) plus the height of the rectangle. |
+| [**Left**](xref:Microsoft.Xna.Framework.Rectangle.Left)     | `int` | Returns the x-coordinate location of the left edge of the rectangle.  This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X).                                       |
 | [**Right**](xref:Microsoft.Xna.Framework.Rectangle.Right)   | `int` | Returns the x-coordinate location of the right edge of the rectangle.  This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X) plus the width of the rectangle. |
 | [**Top**](xref:Microsoft.Xna.Framework.Rectangle.Top)       | `int` | Returns the y-coordinate location of the top edge of the rectangle. This is equal to [**Rectangle.Y**](xref:Microsoft.Xna.Framework.Rectangle.Y).                                    |
 
@@ -184,8 +184,9 @@ A blocking collision response is the most basic response which just prevents the
 
 1. Store the location of an object calculating the new location to move it to.
 2. Check if it is overlapping an object at the new location:
-  - If it is overlapping, then set the position to the the position before it was moved.
-  - If it is not overlapping, set the position to the new calculated position.
+
+- If it is overlapping, then set the position to the the position before it was moved.
+- If it is not overlapping, set the position to the new calculated position.
 
 For example:
 
@@ -226,7 +227,7 @@ _spriteLocation = newLocation;
 Sometimes, instead of preventing an object from moving onto another object, we want to ensure an object remains contained within a certain bounding area. MonoGame also provides the [**Rectangle.Contains**](xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)) method that we can use to determine this.  [**Rectangle.Contains**](xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)) can check if any of the following are completely contained within the bounds of the rectangle;
 
 - [**Point**](xref:Microsoft.Xna.Framework.Point)
-- [**Rectangle**](xref:Microsof.Xna.Framework.Rectangle)
+- [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle)
 - [**Vector2**](xref:Microsoft.Xna.Framework.Vector2)
 
 For example, if we wanted to perform a blocking collision response that ensure a sprite remained contained within the bounds of the game screen:
@@ -401,7 +402,7 @@ For our simple game with just two objects, this optimization isn't necessary. Ho
 
 ## The Circle Struct
 
-For our game, we are going to implement circle based collision detection.   MonoGame does not have a `Circle` struct to represent a circle like it does with [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle).  Before we can perform circle collision, we will need to create our own. 
+For our game, we are going to implement circle based collision detection.   MonoGame does not have a `Circle` struct to represent a circle like it does with [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle).  Before we can perform circle collision, we will need to create our own.
 
 In the *MonoGameLibrary* project, add a new file named *Circle.cs*.  Add the following code as the foundation of the `Circle` struct:
 
@@ -797,7 +798,7 @@ Running the game now, you'll see the bat moving automatically and bouncing off t
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |                       **Figure 11-6: The bat is assigned a random velocity and moves automatically, bouncing off the edges of the screen if it collides with them**                       |
 
-Finally, let's add a trigger response when the slime "eats" the bat, causing the bat to respawn at a random location on the screen with a new random velocity.  In [**Update**](xref:xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) after we set the new position for the bat, add the following
+Finally, let's add a trigger response when the slime "eats" the bat, causing the bat to respawn at a random location on the screen with a new random velocity.  In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) after we set the new position for the bat, add the following
 
 ```cs
 if (slimeBounds.Intersects(batBounds))

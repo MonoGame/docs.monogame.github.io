@@ -8,7 +8,7 @@ When you play a game, you need ways to control what's happening; using a keyboar
 - [**Keyboard**](xref:Microsoft.Xna.Framework.Input.Keyboard): Detects which keys are being pressed.
 - [**Mouse**](xref:Microsoft.Xna.Framework.Input.Mouse): Tracks mouse movement, button clicks, and scroll wheel use.
 - [**GamePad**](xref:Microsoft.Xna.Framework.Input.GamePad): Manages controller input like button presses and thumbstick movement.
-- [**TouchPanel**](xref:Microsoft.Xna.Framework.Input.TouchPanel): Manages touch input on devices with a touch panel such as mobile phones and tablets.
+- [**TouchPanel**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel): Manages touch input on devices with a touch panel such as mobile phones and tablets.
 
 Each of these input types has a `GetState` method that, when called, checks what is happening with that device at that moment. Think of it like taking a snapshot; when you call `GetState`, MonoGame looks at that exact moment to see which buttons are pressed, where the mouse is, or how the controller is being used.
 
@@ -655,7 +655,7 @@ In the next chapter, we'll learn how to track previous input states to handle si
     <details>
     <summary>Question 7 Answer</summary>
     
-    > Touch input can handle multiple simultaneous touch points through the [**TouchCollection**](Microsoft.Xna.Framework.Input.Touch.TouchCollection), while mouse input only tracks a single cursor position. This allows touch input to support features like multi-touch gestures that aren't possible with a mouse.
+    > Touch input can handle multiple simultaneous touch points through the [**TouchCollection**](xref:Microsoft.Xna.Framework.Input.Touch.TouchCollection), while mouse input only tracks a single cursor position. This allows touch input to support features like multi-touch gestures that aren't possible with a mouse.
     </details><br />
 
 8. What are the different states a [**TouchLocation**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation) can have and what do they indicate?
