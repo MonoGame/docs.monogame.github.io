@@ -64,7 +64,7 @@ By default, the SpriteFont processor uses a limited set of characters to generat
 
 As a result MonoGame has a **LocalizedFontProcessor** which does something slightly different. The process looks at the resx files you provide it with and generates an optimized **spritefont** which only contains the characters your game uses.
 
-To make use of this functionality you ned to tell the spritefont which resx files to use. Open the **.spritefont** with a xml/text editor and add lines like this inside the Asset node:
+To make use of this functionality you need to tell the spritefont which resx files to use. Open the **.spritefont** with a xml/text editor and add lines like this inside the Asset node:
 
 ```xml
 <ResourceFiles>
