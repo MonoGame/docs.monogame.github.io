@@ -256,15 +256,16 @@ td > .xref {
   position: relative;
   margin: 1rem 0 2rem 0;
   padding: 0.75rem;
+  border: 2px solid var(--mg-orange-primary);
   border-radius: 4px;
-  background-color: #f5f5f5;
+  background-color: var(--bs-body-bg);
   cursor: pointer;
 }
 
 /* Initial blacked-out state */
 .question-answer:not(.revealed) {
   color: transparent;
-  background-color: #202225;
+  background-color: var(--bs-body-bg);
   user-select: none;
 }
 
@@ -279,19 +280,19 @@ td > .xref {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--bs-body-color);
   font-weight: bold;
   pointer-events: none;
 }
 
 /* Reveal on hover style (optional) */
 .question-answer:not(.revealed):hover {
-  background-color: #2f3136;
+  background-color: var(--bs-secondary-bg);
 }
 
 /* Make it accessible */
 .question-answer:focus {
-  outline: 2px solid #0066cc;
+  outline: 2px solid var(--mg-orange-secondary);
 }
 
 /* Hide all child elements when not revealed */
@@ -301,9 +302,8 @@ td > .xref {
 
 /* When revealed, show content normally */
 .question-answer.revealed {
-  color: initial;
-  background-color: #f5f5f5;
-  border-left: 4px solid #0066cc;
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
 }
 
 .question-answer.revealed * {
