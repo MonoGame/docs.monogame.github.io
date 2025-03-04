@@ -1,28 +1,33 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGameLibrary.Graphics;
+using MonoGameLibrary;
 
-namespace MonoGameSnake;
+namespace DungeonSlime;
 
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private TextureRegion _slime;
-    private TextureRegion _bat;
+
+    // The MonoGame logo texture
+    private Texture2D _logo;
 
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+
+        // Create a new FramesPerSecondCounter.
+        FramesPerSecondCounter fpsCounter = new FramesPerSecondCounter();
+
+        // Add it to the game's component collection
+        Components.Add(fpsCounter);
     }
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
-
         base.Initialize();
     }
 
@@ -30,19 +35,8 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // Load the atlas texture using the content manager
-        Texture2D atlasTexture = Content.Load<Texture2D>("images/atlas");
-
-        //  Create a TextureAtlas instance from the atlas
-        TextureAtlas atlas = new TextureAtlas(atlasTexture);
-
-        //  Create and add the slime and bad regions
-        atlas.AddRegion("slime", 0, 160, 40, 40);
-        atlas.AddRegion("bat", 80, 160, 40, 40);
-
-        // Retrieve the slime and bat regions
-        _slime = atlas.GetRegion("slime");
-        _bat = atlas.GetRegion("bat");
+        // Load the MonoGame logo asset using the ContentManager
+        _logo = Content.Load<Texture2D>("images/logo");
     }
 
     protected override void Update(GameTime gameTime)
@@ -55,16 +49,16 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
+        // Clear the back buffer.
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
+        // Begin the sprite batch to prepare for rendering.
         _spriteBatch.Begin();
 
-        // Draw the slime texture region.
-        _slime.Draw(_spriteBatch, Vector2.One, Color.White);
+        // Draw the logo texture
+        _spriteBatch.Draw(_logo, Vector2.Zero, Color.White);
 
-        // Draw the bat texture region 10px to the right of the slime.
-        _bat.Draw(_spriteBatch, new Vector2(_slime.Width + 10, 0), Color.White);
-
+        // Always end the sprite batch when finished.
         _spriteBatch.End();
 
         base.Draw(gameTime);

@@ -22,92 +22,13 @@ By creating a `Sprite` class, we can encapsulate both the texture region and its
 
 In the *Graphics* directory within the *MonoGameLibrary* project, add a new file named *Sprite.cs*.  Add the following code for the foundation of the `Sprite` class to the *Sprite.cs* file:
 
-```cs
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
-namespace MonoGameLibrary.Graphics;
-
-public class Sprite
-{
-
-}
-```
+[!code-csharp[](./snippets/sprite.cs#declaration)]
 
 ### Properties
 
 The `Sprite` class will utilize properties that mirror the parameters used in [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)) so the rendering parameter for each sprite is self contained.  Add the following properties:
 
-```cs
-/// <summary>
-/// Gets or Sets the source texture region represented by this sprite.
-/// </summary>
-public TextureRegion Region { get; set; }
-
-/// <summary>
-/// Gets or Sets the color mask to apply when rendering this sprite.
-/// </summary>
-/// <remarks>
-/// Default value is Color.White
-/// </remarks>
-public Color Color { get; set; } = Color.White;
-
-/// <summary>
-/// Gets or Sets the amount of rotation, in radians, to apply when rendering this sprite.
-/// </summary>
-/// <remarks>
-/// Default value is 0.0f
-/// </remarks>
-public float Rotation { get; set; } = 0.0f;
-
-/// <summary>
-/// Gets or Sets the scale factor to apply to the x- and y-axes when rendering this sprite.
-/// </summary>
-/// <remarks>
-/// Default value is Vector2.One
-/// </remarks>
-public Vector2 Scale { get; set; } = Vector2.One;
-
-/// <summary>
-/// Gets or Sets the xy-coordinate origin point, relative to the top-left corner, of this sprite.
-/// </summary>
-/// <remarks>
-/// Default value is Vector2.Zero
-/// </remarks>
-public Vector2 Origin { get; set; } = Vector2.Zero;
-
-/// <summary>
-/// Gets or Sets the sprite effects to apply when rendering this sprite.
-/// </summary>
-/// <remarks>
-/// Default value is SpriteEffects.None
-/// </remarks>
-public SpriteEffects Effects { get; set; } = SpriteEffects.None;
-
-/// <summary>
-/// Gets or Sets the layer depth to apply when rendering this sprite.
-/// </summary>
-/// <remarks>
-/// Default value is 0.0f
-/// </remarks>
-public float LayerDepth { get; set; } = 0.0f;
-
-/// <summary>
-/// Gets the width, in pixels, of this sprite. 
-/// </summary>
-/// <remarks>
-/// Width is calculated by multiplying the width of the source texture region by the x-axis scale factor.
-/// </remarks>
-public float Width => Region.Width * Scale.X;
-
-/// <summary>
-/// Gets the height, in pixels, of this sprite.
-/// </summary>
-/// <remarks>
-/// Height is calculated by multiplying the height of the source texture region by the y-axis scale factor.
-/// </remarks>
-public float Height => Region.Height * Scale.Y;
-```
+[!code-csharp[](./snippets/sprite.cs#members)]
 
 The `TextureRegion` property works to provide the texture and source rectangle when rendering the sprite. Other properties directly correspond to [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)) parameters with the same default values, making it easy to understand how each property affects the sprite's appearance.
 
@@ -118,21 +39,7 @@ The `TextureRegion` property works to provide the texture and source rectangle w
 
 The `Sprite` class will provide two ways to create a new sprite.  Add the following constructors:
 
-```cs
-/// <summary>
-/// Creates a new sprite.
-/// </summary>
-public Sprite() { }
-
-/// <summary>
-/// Creates a new sprite using the specified source texture region.
-/// </summary>
-/// <param name="region">The texture region to use as the source texture region for this sprite.</param>
-public Sprite(TextureRegion region)
-{
-    Region = region;
-}
-```
+[!code-csharp[](./snippets/sprite.cs#ctors)]
 
 The default constructor creates an empty sprite that can be configured later, while the parameterized constructor allows you to specify the source texture region for the sprite.
 
@@ -140,25 +47,7 @@ The default constructor creates an empty sprite that can be configured later, wh
 
 Finally, the `Sprite` class provides the following two methods:
 
-```cs
-/// <summary>
-/// Sets the origin of this sprite to the center
-/// </summary>
-public void CenterOrigin()
-{
-    Origin = new Vector2(Region.Width, Region.Height) * 0.5f;
-}
-
-/// <summary>
-/// Submit this sprite for drawing to the current batch.
-/// </summary>
-/// <param name="spriteBatch">The SpriteBatch instance used for batching draw calls.</param>
-/// <param name="position">The xy-coordinate position to render this sprite at.</param>
-public void Draw(SpriteBatch spriteBatch, Vector2 position)
-{
-    Region.Draw(spriteBatch, position, Color, Rotation, Origin, Scale, Effects, LayerDepth);
-}
-```
+[!code-csharp[](./snippets/sprite.cs#methods)]
 
 - `CenterOrigin`: Sets the origin point of the sprite to its center.
 
@@ -177,24 +66,13 @@ While the `GetRegion` method of the `TextureAtlas` class we created in [Chapter 
 
 We can simplify this process by adding a sprite creation method to the `TextureAtlas` class. Open *TextureAtlas.cs* and add the following method:
 
-```cs
-/// <summary>
-/// Creates a new sprite using the region from this texture atlas with the specified name.
-/// </summary>
-/// <param name="regionName">The name of the region to create the sprite with.</param>
-/// <returns>A new Sprite using the texture region with the specified name.</returns>
-public Sprite CreateSprite(string regionName)
-{
-    TextureRegion region = GetRegion(regionName);
-    return new Sprite(region);
-}
-```
+[!code-csharp[](./snippets/createsprite.cs)]
 
 ## Using the Sprite Class
 
 Let's adjust our game now to use the `Sprite` class instead of just the texture regions.  Replace the contents of *Game1.cs* with the following:
 
-[!code-csharp[](./src/Game1-sprite-usage.cs?highlight=12-13,36-38,55-59)]
+[!code-csharp[](./snippets/game1.cs?highlight=13-17,40-44,62-66)]
 
 The key changes in this implementation are:
 
@@ -204,9 +82,9 @@ The key changes in this implementation are:
 
 Running the game now will produce the same result as in the previous chapter.  
 
-| ![Figure 7-1: The slime and bat sprites being rendered in the upper-left corner of the game window](./images/slime-and-bat-rendered.png) |
-| :---: |
-| **Figure 7-1: The slime and bat sprites being rendered in the upper-left corner of the game window** |
+| ![Figure 9-1: The slime and bat sprites being rendered in the upper-left corner of the game window](./images/slime-and-bat-rendered.png) |
+|:----------------------------------------------------------------------------------------------------------------------------------------:|
+|                   **Figure 9-1: The slime and bat sprites being rendered in the upper-left corner of the game window**                   |
 
 Try adjusting the various properties available for the slime and the bat sprites to see how they affect the rendering.
 
@@ -220,32 +98,24 @@ In the next chapter, we'll build upon the `Sprite` class to create an `AnimatedS
 
 1. What is the benefit of using a Sprite class instead of managing texture regions directly?
 
-   <details>
-   <summary>Question 1 Answer</summary>
-   
-   > The `Sprite` class encapsulates all rendering properties (position, rotation, scale, etc.) into a single, reusable component. This makes it easier to manage multiple instances of the same type of sprite without having to track properties through individual variables.
-   </details><br />
+    :::question-answer
+    The `Sprite` class encapsulates all rendering properties (position, rotation, scale, etc.) into a single, reusable component. This makes it easier to manage multiple instances of the same type of sprite without having to track properties through individual variables.
+    :::
 
 2. Why do the `Width` and `Height` properties of a Sprite take the Scale property into account?
 
-   <details>
-   <summary>Question 2 Answer</summary>
-   
-   > The `Width` and `Height` properties account for scaling to make it easier to position sprites relative to each other without having to manually calculate the scaled dimensions. This is particularly useful when sprites are rendered at different scales.
-   </details><br />
+    :::question-answer
+    The `Width` and `Height` properties account for scaling to make it easier to position sprites relative to each other without having to manually calculate the scaled dimensions. This is particularly useful when sprites are rendered at different scales.
+    :::
 
 3. When using the `CenterOrigin` method, why is the origin calculated using the region's dimensions rather than the sprite's scaled dimensions?
 
-   <details>
-   <summary>Question 3 Answer</summary>
-   
-   > The origin needs to be set based on the texture region's actual dimensions because it represents the point around which scaling and rotation are applied. Using the scaled dimensions would result in incorrect positioning since the origin would change based on the current scale factor.
-   </details><br />
+    :::question-answer
+    The origin needs to be set based on the texture region's actual dimensions because it represents the point around which scaling and rotation are applied. Using the scaled dimensions would result in incorrect positioning since the origin would change based on the current scale factor.
+    :::
 
 4. What advantage does the `TextureAtlas.CreateSprite` method provide over using `GetRegion`?
 
-   <details>
-   <summary>Question 4 Answer</summary>
-   
-   > The `CreateSprite` method simplifies sprite creation by combining multiple steps (getting the region, storing it, creating a sprite) into a single method call. This reduces code repetition and makes sprite creation more straightforward.
-   </details><br />
+    :::question-answer
+    The `CreateSprite` method simplifies sprite creation by combining multiple steps (getting the region, storing it, creating a sprite) into a single method call. This reduces code repetition and makes sprite creation more straightforward.
+    :::

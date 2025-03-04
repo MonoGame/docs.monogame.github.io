@@ -22,15 +22,15 @@ For instance, to load an image file directly at runtime, you would need to:
 
 On the other side of this coin, MonoGame offers the **Content Pipeline**; a workflow for managing assets. The workflow is made up of a set of tools and utilities that are automatically added by default when you create a new MonoGame project using the MonoGame project templates.  To use this workflow, you need to:
 
-1. Add the asset file to your content project (*Content.mgcb* file) using the MGCB Editor.
+1. Add the asset file to your content project (*Content.mgcb* file) using the *MonoGame Content Builder Editor* (MGCB Editor).
 2. Perform a project build. Doing this, the *MonoGame.Content.Builder.Tasks* NuGet reference will compile the assets defined in the content project, optimized for the target platform, and automatically copy them to the game project build directory.
 3. Load the compiled asset at runtime using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
 
 The following image illustrates this workflow:
 
-| ![Figure 4-1: MonoGame Content Pipeline Workflow](./images/content-pipeline-workflow-full.png) |
-| :---: |
-| **FigFigure 4-1: MonoGame Content Pipeline Workflowure** |
+| ![Figure 6-1: MonoGame Content Pipeline Workflow](./images/content-pipeline-workflow-full.png) |
+|:----------------------------------------------------------------------------------------------:|
+|                       **Figure 6-1: MonoGame Content Pipeline Workflow**                       |
 
 For the same amount of steps, you also get the benefit of the assets being pre-processed and compiled to an optimized format for the target platform.  For instance, image files can be compiled using [DXT compression](https://en.wikipedia.org/wiki/S3\_Texture\_Compression), which is a format that is understood by GPUs without needing to be decompressed first, reducing the memory footprint.
 
@@ -39,23 +39,31 @@ For the same amount of steps, you also get the benefit of the assets being pre-p
 
 For this tutorial series, we are going to focus on using the content pipeline workflow to load assets.  Doing this will get you as the developer accustomed to using the content pipeline tools and also give the benefits of having assets precompiled to optimized formats.
 
-To get started and to walk through the process, we'll start with loading an image file.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your on your computer, such as your desktop.
+## The MGCB Editor
 
-| ![Figure 4-2: MonoGame Horizontal Logo](./images/logo.png) |
-| :---: |
-| **Figure 4-2: MonoGame Horizontal Logo** |
+The MGCB Editor is a GUI tool that can be used to edit your content project.  This tool is automatically added to your game project as a local [dotnet tool](https://learn.microsoft.com/en-us/dotnet/core/tools/global-tools) when you create a new MonoGame game project using one of the MonoGame project templates.  Using the editor, you can add existing assets to the content project for your game, or create a new asset using one of the built-in types in the MGCB Editor:
 
-## Opening the MGCB Editor
+- **Effect (.fx)**: A shader file that creates custom visual effects by controlling how graphics are rendered on the GPU.
+- **LocalizedSpriteFont Description (.spritefont)**: A configuration file for creating fonts with support for multiple languages.
+- **Sprite Effect (.fx)**: A shader specifically designed for use with 2D sprites to create special visual effects.
+- **SpriteFont Description (.spritefont)**: A configuration file that defines how text will be displayed in your game, including character set and font properties.
+- **Xml Content (.xml)**: A structured data file for storing game information like levels, dialogues, or configuration settings.
 
-The *MonoGame Content Builder Editor (MGCB Editor)* is a GUI tool that can be used to edit your content project.  The content project is the *Content.mgcb* file in your game project directory.  This file can be edited manually by hand, however it's much easier to use the MGCB Editor instead.  To open the *Content.mgcb* content project file in the MGCB Editor, perform the following based on your editor:
+> [!NOTE]
+> The content project is the *Content.mgcb* file in your game project directory.  This file can be edited manually by hand, however it's much easier to use the MGCB Editor instead.  
+
+### Opening the MGCB Editor
+
+There are different methods of opening the MGCB Editor tool depending on your IDE and environment:
 
 ### [Visual Studio Code](#tab/vscode)
 
 To open the *Content.mgcb* content project file in the MGCB Editor with Visual Studio Code, you can use the *MonoGame for VSCode* extension.  You should have installed this extension in [Chapter 02](../02_getting_started/index.md#installing-the-monogame-for-vscode-extension).  With this extension install, anytime you have a code file open, you will see the MonoGame logo in the top-right of the code window like below:
 
-| ![Figure 4-3: MonoGame for VSCode extension icon](./images/mgcb-editor-icon.png) |
-| :---: |
-| **Figure 4-3: MonoGame for VSCode extension icon** |
+
+| ![Figure 6-2: MonoGame for VSCode extension icon](./images/mgcb-editor-icon.png) |
+|:--------------------------------------------------------------------------------:|
+|                **Figure 6-2: MonoGame for VSCode extension icon**                |
 
 Clicking the MonoGame logo here will open the *Content.mgcb* content project file from the current project in the MGCB Editor.
 
@@ -72,135 +80,184 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 
 ---
 
-Once you have the *Content.mgcb* content project file for your game project opened in the MGCB Editor, you should see a window similar to the following:
+| ![Figure 6-3: MonoGame Content Builder Editor (MGCB Editor) Window](./images/mgcb-editor.png) |
+|:---------------------------------------------------------------------------------------------:|
+|             **Figure 6-3: MonoGame Content Builder Editor (MGCB Editor) Window**              |
 
-| ![Figure 4-4: MonoGame Content Builder Editor (MGCB Editor) Window](./images/mgcb-editor.png) |
-| :---: |
-| **Figure 4-4: MonoGame Content Builder Editor (MGCB Editor) Window** |
+In Figure 6-2 above, you can see the user interface for the MGCB Editor:
 
-## Adding Assets in the MGCB Editor
+- **Toolbar**: Contains icon buttons for common actions such as creating new items, opening files, saving changes, and building content.
+- **Project Panel**: Located on the left of the MGCB Editor, displays a hierarchial tree view of all content items added to the content project.  The root node *Content* represents the root of the content project.
+- **Properties Panel**: Located on the bottom left of the MGCB Editor, shows the properties of the currently selected item in the project panel.  The properties available are based on the item type selected.
+- **Build Output Panel**: The large area to the right side outputs build messages, warnings, and errors when content is processed.
 
-Now that the *Content.mgcb* content project file is opened in the MGCB Editor, we can add the assets to it that we want to include in our game.  For now, we're just going to add the image file of the MonoGame logo that you downloaded previously.  To do this, perform the following:
+### Adding Existing Assets
 
-1. Right-click on the *Content* node in the *Project* panel on the left.
-2. Select *Add > New Folder*.
-3. Name the folder `images`.
-4. Right-click on the new *images* folder
-5. Select *Add > Existing Item*.
-6. Navigate to the *logo.png* file you downloaded and choose it
+To add an existing asset to the content project:
 
-After adding an existing file, you will be prompted with a pop-up asking if you would like to *Copy the file to the directory* or *Add a link*.
+1. In the Project panel, select the folder where you want to add the item. If you want to add it to the root, select the main *Content* node.
+2. Right-click on the selected folder and choose *Add > Existing Item...* from the context menu.
+3. In the file browser that appears, navigate to the location of the file you want to add.
+4. Select the file(s) you want to add and click *Open*.
 
-| ![Figure 4-5: Add Existing File Popup](./images/add-file-popup.png) |
-| :---: |
-| **Figure 4-5: Add Existing File Popup** |
+When adding existing assets to the content project, a pop-up dialog will appear with the following options:
 
-For the purposes of this tutorial, choose the *Copy the file to the directory* option, then click the *Add* button.  When adding existing files in the future, the choice between copying the file and adding a link can make a big difference:
+- **Copy the file to the directory**: Creates a duplicate of the file inside your project's Content directory. This creates an independent copy, meaning any later changes to the original file won't affect your project.
+- **Add a link**: Creates a reference to the original file without making a copy. This maintains a connection to the source file, so any updates to the original will be included when you build. Note that the link uses a path relative to the Content.mgcb file, so if either the source file or your project moves, you'll need to reestablish the link.
+- **Skip**: Cancels adding the current file while continuing with any other selected files.
 
-- **Copy the file to the directory**: Choosing this will make a literal copy of the selected file and put the copy inside the Content directory of your project.  This means any changes in the original source file will not be reflected in the copy.
+| ![Figure 6-4: Add existing file pop-up](./images/add-file-popup.png) |
+|:--------------------------------------------------------------------:|
+|               **Figure 6-4: Add existing file pop-up**               |
 
-- **Add a link**: Choosing this will instead add a reference to the source file without making a copy.  This means changes made in the source file will be reflected on each build.  However, the link is stored as a relative link, with the path being relative to the *Content.mgcb* file.  So if the source file moves, or you move the project, you'll need to re-add the link.
+### Adding Built-In Asset Types
 
-After adding the *logo.png* file, your project node should look similar to the following:
+To create a new asset using one of the built-in types in the MGCB Editor:
 
-| ![Figure 4-6: Logo image added to the MGCB Editor](./images/mgcb-logo-added.png) |
-| :---: |
-| **Figure 4-6: Logo image added to the MGCB Editor** |
+1. In the Project panel, select the folder where you want to add the new asset. If you want to add it to the root, select the main *Content* node.
+2. Right-click on the selected folder and choose *Add > New Item...* from the context menu.
+3. In the dialog that appears, select the type of asset you want to create from the list of available built-in types:
+    - **Effect (.fx)**: A shader file that creates custom visual effects by controlling how graphics are rendered on the GPU.
+    - **SpriteFont Description (.spritefont)**: A configuration file that defines how text will be displayed in your game, including character set and font properties.
+    - **Sprite Effect (.fx)**: A shader specifically designed for use with 2D sprites to create special visual effects.
+    - **Xml Content (.xml)**: A structured data file for storing game information like levels, dialogues, or configuration settings.
+    - **LocalizedSpriteFont Description (.spritefont)**: A configuration file for creating fonts with support for multiple languages.
+4. Enter a name for your new asset in the *Name* field.
+5. Click *Create* to add the new asset to your project.
 
-After changes have been made in the MGBC Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and haven't saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved.  To save changes, you can perform one of the following:
+| ![Figure 6-5: New file pop-up](./images/new-file-popup.png) |
+|:-----------------------------------------------------------:|
+|               **Figure 6-5: New file pop-up**               |
 
-- Choose *File > Save* from the top menu.
-- Click the *Save* icon in the top tool bar.
-- Use the `CTRL+S` keyboard shortcut.
-  
-Save the changes and then close the MGCB Editor.
+> [!NOTE]
+> Each built-in asset type comes with a template that includes the minimum required structure and settings.
+
+### Adding Folders to Organize Content
+
+Organizing your game assets into folders helps keep your content project manageable as it grows. To add a new folder:
+
+1. In the Project panel, select the location where you want to create a new folder. This can be the root *Content* node or another existing folder.
+2. Right-click on the selected location and choose *Add > New Folder...* from the context menu.
+3. Type a name for the new folder and click *Ok*.
+
+| ![Figure 6-6: New folder pop-up](./images/new-folder-popup.png) |
+|:---------------------------------------------------------------:|
+|                 **Figure 6-6: New folder pop-up                 |
+
+The new folder will appear in your content tree, and you can now add items to it by:
+
+- Adding existing assets directly to the folder
+- Creating new assets within the folder
+
+The folder structure you create in the MGCB Editor affects how you'll access your content in code. It's good practice to establish a folder structure early in your project development to avoid having to reorganize and update content paths later.
+
+## The ContentManager Class
+
+To load assets in code that have been processed through the content pipeline, MonoGame provides the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) class.
+
+> [!NOTE]
+> The [**Game**](xref:Microsoft.Xna.Framework.Game) class provides the [**Content**](xref:Microsoft.Xna.Framework.Game.Content) property which is ready to use instance of the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
+
+### ContentManager Properties
+
+The [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) offers the following properties:
+
+| Property                                                                                   | Type               | Description                                                 |
+|--------------------------------------------------------------------------------------------|--------------------|-------------------------------------------------------------|
+| [**RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory)     | `string`           | The root directory the content manager searches for assets. |
+| [**ServiceProvider**](xref:Microsoft.Xna.Framework.Content.ContentManager.ServiceProvider) | `IServiceProvider` | The service provider used by the content manager.           |
+
+### ContentManager Methods
+
+The [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) offers the following methods:
+
+| Method                                                                                                                                                     | Returns | Description                                                                                                                                                                                                                                                                                               |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Load&lt;T&gt;(string)**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String))                                                    | `T`     | Loads the assets of type `T` that has been processed by the content pipeline.                                                                                                                                                                                                                             |
+| [**LoadLocalized&lt;T&gt;(string)**](xref:Microsoft.Xna.Framework.Content.ContentManager.LoadLocalized``1(System.String))                                  | `T`     | Loads the asset of type `T` that has been processed by the content pipeline using prepending the [**CultureInfo.CurrentCulture**](https://learn.microsoft.com/en-us/dotnet/api/system.globalization.cultureinfo.currentculture?view=net-9.0) value to the end of the asset name. (e.g. "assetname.en-US") |
+| [**Unload**](xref:Microsoft.Xna.Framework.Content.ContentManager.Unload)                                                                                   | `void`  | Unloads all assets that have been loaded by that content manager instance.                                                                                                                                                                                                                                |
+| [**UnloadAsset(string)**](xref:Microsoft.Xna.Framework.Content.ContentManager.UnloadAsset(System.String))                                                  | `void`  | Unloads the asset with the specified name that has been loaded by that content manager instance.                                                                                                                                                                                                          |
+| [**UnloadAssets(IList&lt;string&gt;)**](xref:Microsoft.Xna.Framework.Content.ContentManager.UnloadAssets(System.Collections.Generic.IList{System.String})) | `void`  | Unloads the assets that have been loaded by that content manager with the names specified in the list provided.                                                                                                                                                                                           |
+| [**Dispose**](xref:Microsoft.Xna.Framework.Content.ContentManager.Dispose(System.Boolean))                                                                 | `void`  | Unloads all assets from the content manager and disposes of the content manager instance.                                                                                                                                                                                                                 |
+
+> [!TIP]
+> When an asset is loaded for the first time, the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) will internally cache the loaded asset.  Loading that same asset later will return the cached asset instead of having to perform another disk read to load the asset again.
+
+> [!TIP]
+> When an asset is unloaded, if the asset type implements the `IDisposable` interface, the `Dispose` method will automatically be called on the asset during hte unload process.
+
+When loading an asset, the load methods require two parts:
+
+1. `T` Type Reference: The content type we are loading.
+2. `assetName` Parameter: A string path that matches the content path of the asset to load.
 
 ## Understanding Content Paths
 
 The folder structure you create in the MGCB Editor directly affects how you load content in your game. When you perform a build of your game project, the *MonoGame.Content.Builder.Tasks* NuGet package reference will:
 
-1. Compile the image into an optimized format in the **content project's** output directory (typically *ProjectRoot/Content/bin/Platform/Content*) as an *.xnb* file.
+1. Compile the assets into an optimized format in the **content project's** output directory (typically *ProjectRoot/Content/bin/Platform/Content*) as an *.xnb* file.
 2. Copy the compiled assets to your **game's** output directory (typically *ProjectRoot/bin/Debug/net8.0/Content* or *ProjectRoot/bin/Release/net8.0/Content*).
 
 For example, if your content project contains:
 
-```sh
-Content/
-  ├── images/
-  │   └── logo.png
-  └── sounds/
-      └── music.mp3
-```
+[!code-sh[](./snippets/content_dir_tree.sh)]
 
 then when the tasks first compiles the assets, they will be output to:
 
-```sh
-ProjectRoot/
-  └── Content/
-      └── bin/
-          └── DesktopGL/
-              └── Content/
-                  ├── images/
-                  │   └── logo.xnb
-                  └── sounds/
-                      └── music.xnb
-```
+[!code-sh[](./snippets/content_build_dir_tree.sh)]
 
 Then after compiling them and copying them to the game projects output directory, it will look like the following:
 
-```sh
-ProjectRoot/
-  └── bin/
-      └── Debug/
-          └── net8.0/
-              └── Content/
-                  ├── images/
-                  │   └── logo.xnb
-                  └── sounds/
-                      └── music.xnb
-```
+[!code-sh[](./snippets/project_build_dir_tree.sh)]
 
 When the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) is used to load these assets, it looks for them relative to its [**RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory) property. By default, this is set to `"Content"` in the `Game1` constructor to match where the compiled assets are copied. The path used to load an asset must match its location relative to the [**RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory), minus any extension. For example, to load the above assets, the paths would be `"images/logo"` and `"sounds/music"`.
 
-## Loading Content In Game
+## Loading Our First Asset
 
-To load assets that have been processed through the content pipeline, we can use the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).  The [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) not only loads the asset for us, but als provides methods of managing the asset once loaded.  For instance, when an asset is loaded the first time, the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) internally caches the loaded asset.  Loading that same asset later will return the cached asset instead of having to perform another disk read to load the asset again.
+Let's walk through the process of editing our content project using the MGCB Editor to add a new image asset and then load it in our game.  To get started, we'll first need an image to load.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your computer:
 
-The [**Game**](xref:Microsoft.Xna.Framework.Game) class provides the [**Content**](xref:Microsoft.Xna.Framework.Game.Content) property which is ready to use instance of the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).  We can use this to load content using the [**ContentManager.Load&lt;T&gt;**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)) method.  This method takes two parts:
+| ![Figure 6-7: MonoGame Horizontal Logo](./images/logo.png) |
+|:----------------------------------------------------------:|
+|          **Figure 6-7: MonoGame Horizontal Logo**          |
 
-1. `T` Type Reference: The content type we are loading.
-2. `assetName` Parameter: A string path that matches the content path of the asset to load.  As mentioned in the [Understanding Content Paths](#understanding-content-paths) section, the content path is relative to the [**ContentManager.RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory), minus the extension.  For instance, we added our image to the *images* folder in the content project, the content path for it will be `"images/logo"`.
+Now that we have an image file to add, perform the following:
 
-Let's update the game now to load the image file using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager). Open the *Game1.cs* file in the game project and perform the following:
+1. Open the content project in the MGCB Editor.
+2. Select the *Content* node in the Project Panel.
+3. Right-click on the selected *Content* node and choose *Add > New Folder...* from teh context menu.
+4. Name the folder *images* and click the *Ok* button.
+5. Select the new *images* node in the Project Panel.
+6. Right-click on the selected *images* node and choose *Add > Existing Item..* from teh context menu.
+7. In the file browser that appears, navigate to the location of the *logo.png* file you just downloaded.
+8. Select the *logo.png*  file click *Open*.
+9. When prompted choose the *Copy the file to the directory* option from the add exiting file pop-up.
+10. Save the changes made to the content project by selecting *File > Save* from the top menu.
 
-1. Add a new [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) field to store the logo texture in:
+> [!IMPORTANT]
+> After changes have been made in the MGBC Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and haven't saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved
 
-    ```cs
-    private Texture2D _logo;
-    ```
+| ![Figure 6-8: The logo image added to the content project in the MGCB Editor](./images/mgcb-logo-added.png) |
+|:-----------------------------------------------------------------------------------------------------------:|
+|               **Figure 6-8: The logo image added to the content project in the MGCB Editor**                |
 
-2. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), load the logo texture using the content pipeline:
+With the MonoGame logo image now added to the content project, we can load it in our game and draw it.  Open the *Game1.cs* file and make the following changes:
 
-    ```cs
-    _logo = Content.Load<Texture2D>("images/logo");
-    ```
+[!code-csharp[](./snippets/game1.cs?highlight=13-14,38-39,55-62)]
 
-3. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), draw the texture using the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch):
+The key changes made here are:
 
-    ```cs
-    _spriteBatch.Begin();
-    _spriteBatch.Draw(_logo, Vector2.Zero, Color.White);
-    _spriteBatch.End();
-    ```
-  
+1. The private field `_logo` was added to store the logo [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) once it is loaded.
+2. In [**LoadContent**](xref:xref:Microsoft.Xna.Framework.Game.LoadContent), the logo texture is loaded using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
+3. In [**Draw**](xref:xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) the logo is drawn using the [**SpriteBatch**](xref:xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
+
     > [!NOTE]
     > We'll go more into detail about the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) in the next chapter.
 
 Running the game now will show the MonoGame logo displayed in the upper-left corner of the game window.
 
-| ![Figure 4-7: The MonoGame logo drawn to the game window](./images/logo-drawn.png) |
-| :---: |
-| **Figure 4-7: The MonoGame logo drawn to the game window** |
+| ![Figure 6-9: The MonoGame logo drawn to the game window](./images/logo-drawn.png) |
+|:----------------------------------------------------------------------------------:|
+|             **Figure 6-9: The MonoGame logo drawn to the game window**             |
 
 ## Conclusion
 
@@ -217,21 +274,16 @@ In the next chapter, we'll go more into detail on working with textures and the 
 
 1. What are the two main ways of loading a texture, and what are the pros and cons of each approach?
 
-    <details>
-    <summary>Question 1 Answer</summary>
+    :::question-answer
+    The two main ways to load a texture in MonoGame are:
 
-    > The two main ways to load a texture in MonoGame are:
-    >
-    > 1. Directly from file using [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)).   This method requires manually setting up file copying, offers no pre-processing benefits, and can have a higher memory footprint.
-    >  
-    > 2. Using the content pipeline with [**Content.Load<Texture2D>**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)).  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.
-    </details><br />
+    1. Directly from file using [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)).   This method requires manually setting up file copying, offers no pre-processing benefits, and can have a higher memory footprint.
+
+    2. Using the content pipeline with [**Content.Load<Texture2D>**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)).  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.
+    :::
 
 2. During the MonoGame content pipeline workflow, assets are compiled and then copied to the project output directory.  What is responsible for performing this task?
 
-    <details>
-    <summary>Question 2 Answer</summary>
-
-    > The *MonoGame.Content.Builder.Tasks* NuGet reference.
-
-    </details><br />
+    :::question-answer
+    The *MonoGame.Content.Builder.Tasks* NuGet reference.
+    :::

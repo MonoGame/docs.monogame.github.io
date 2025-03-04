@@ -24,9 +24,9 @@ Recall from [Chapter 01](../01_what_is_monogame/index.md) that MonoGame is an im
 > [!IMPORTANT]
 > XACT is a mini audio engineering studio where you can easily edit the audio for your game like editing volume, pitch, looping, applying effects, and other properties without having to do it in code. At that time, XACT for XNA games was akin to what FMOD Studio is today for game audio.
 >
-> | ![Figure 12-1: Microsoft Cross-Platform Audio Creation Tool](./images/xact-editor.png) |
+> | ![Figure 14-1: Microsoft Cross-Platform Audio Creation Tool](./images/xact-editor.png) |
 > |:--------------------------------------------------------------------------------------:|
-> |             **Figure 12-1: Microsoft Cross-Platform Audio Creation Tool**              |
+> |             **Figure 14-1: Microsoft Cross-Platform Audio Creation Tool**              |
 >
 > While XACT projects are still fully supported in MonoGame, it remains a Windows-only tool that has not been updated since Microsoft discontinued the original XNA, nor has its source code been made open source. Though it is possible to install XACT on modern Windows, the process can be complex.
 >
@@ -91,11 +91,11 @@ Adding audio files can be done through the content pipeline, just like we did fo
 The processor that are available for audio files file:
 
 - **Sound Effects**: Processes the audio file as a [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect).  This is  automatically selected for *.wav* files.
-- **Soung**: Processes the audio file as a [**Song**](xref:Microsoft.Xna.Framework.Media.Song).  This is automatically selected for *.mp3*, *.ogg*, and *.wma* files.
+- **Song**: Processes the audio file as a [**Song**](xref:Microsoft.Xna.Framework.Media.Song).  This is automatically selected for *.mp3*, *.ogg*, and *.wma* files.
 
-| ![Figure 12-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files** | **Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files](./images/sound-effect-properties.png) | ![Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files](./images/song-properties.png) |
-| :---: | :---: |
-| **Figure 12-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files** | **Figure 12-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files** |
+| [!Figure 14-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files](./images/sound-effect-properties.png) | [!Figure 14-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files](./images/song-properties.png) |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|
+|                   **Figure 14-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files**                    |                **Figure 14-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files                 |
 
 > [!NOTE]
 > While you typically will not need to change the processor it automatically selects, there may be times where you add files, such as *.mp3* files that are meant to be sound effects and not songs.  Always double check that the processor selected is for the intended type.
@@ -104,17 +104,13 @@ The processor that are available for audio files file:
 
 To load a sound effect, we use [**ContentManager.Load**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)) with the [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) type:
 
-```cs
-SoundEffect soundEffect = Content.Load<SoundEffect>("soundEffect");
-```
+[!code-csharp[](./snippets/load_soundeffect.cs)]
 
 ### Loading Music
 
-Loading music is similar, only we specify the [**Song**](xref:Microsoft.Xna.Framework.Media.Song) type instead. 
+Loading music is similar, only we specify the [**Song**](xref:Microsoft.Xna.Framework.Media.Song) type instead.
 
-```cs
-Song song = Content.Load<Song>("song");
-```
+[!code-csharp[](./snippets/load_song.cs)]
 
 ## Playing Sound Effects
 
@@ -122,30 +118,11 @@ Sound effects are played using the [**SoundEffect**](xref:Microsoft.Xna.Framewor
 
 1. Direct playback using [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play):
 
-    ```cs
-    // Load the sound effect
-    SoundEffect soundEffect = Content.Load<SoundEffect>("soundEffect");
-
-    // Play the sound effect with default settings
-    soundEffect.Play();
-    ```
+    [!code-csharp[](./snippets/play_soundeffect.cs)]
 
 2. Creating an instance using [**SoundEffect.CreateInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance):
 
-    ```cs
-    // Load the sound effect
-    SoundEffect soundEffect = Content.Load<SoundEffect>("soundEffect");
-
-    // Create an instance we can control
-    SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
-
-    // Adjust the properties of the instance as needed
-    soundEffectInstance.IsLooped = true;    // Make it loop
-    soundEffectInstance.Volume = 0.5f;      // Set half volume.
-
-    // Play the sound effect using the instance.
-    soundEffectInstance.Play();
-    ```
+    [!code-csharp[](./snippets/play_soundeffect_instance.cs)]
 
 - Use [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play) for simple sound effects that you just want to play once.
 - Use [**SoundEffect.CreateInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance) when you need more control over the sound effect, like adjusting volume, looping, or managing multiple instances of the same sound.  
@@ -164,22 +141,7 @@ Sound effects are played using the [**SoundEffect**](xref:Microsoft.Xna.Framewor
 
 Unlike sound effects, music is played through the [**MediaPlayer**](xref:Microsoft.Xna.Framework.Media.MediaPlayer) class. This static class manages playback of [**Song**](xref:Microsoft.Xna.Framework.Media.Song) instances and provides global control over music playback:
 
-```cs
-// Set whether the song should repeat when finished
-MediaPlayer.IsRepeating = true;
-
-// Adjust the volume (0.0f to 1.0f)
-MediaPlayer.Volume = 0.5f;
-
-// Check if the media player is already playing, if so, stop it
-if(MediaPlayer.State == MediaState.Playing)
-{
-    MediaPlayer.Stop();
-}
-
-// Start playing the background music
-MediaPlayer.Play(_backgroundMusic);
-```
+[!code-csharp[](./snippets/play_song.cs)]
 
 > [!IMPORTANT]
 > While [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) instances can be played simultaneously, trying to play a new [**Song**](xref:Microsoft.Xna.Framework.Media.Song) while another is playing will stop the current song in the best case, and in the worst case cause a crash on some platforms.  In the example above, the state of the media player is checked first before we tell it to play a song.  Checking the state first and stopping it manually if it is playing is best practice to prevent potential crashes.
@@ -201,20 +163,7 @@ To effectively manage audio in our games, we will create an `AudioManager` class
 
 In the *Audio* directory of the *MonoGameLibrary* project, add a new file named *AudioManager.cs* with this initial structure:
 
-```cs
-using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Media;
-
-namespace MonoGameLibrary.Audio;
-
-public class AudioManager : GameComponent
-{
-
-}
-```
+[!code-csharp[](./snippets/audiomanager.cs#declaration)]
 
 > [!TIP]
 > The `AudioManager` class inherits from [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent), which allows it to be added to a game's component collection and automatically receive updates.
@@ -223,13 +172,7 @@ public class AudioManager : GameComponent
 
 The `AudioManager` class needs to track various audio resources and states. Add these private fields:
 
-```cs
-private readonly Dictionary<string, SoundEffect> _soundEffects;
-private readonly Dictionary<string, Song> _songs;
-private readonly List<SoundEffectInstance> _activeSoundEffectInstances;
-private float _previousMusicVolume;
-private float _previousSoundEffectVolume;
-```
+[!code-csharp[](./snippets/audiomanager.cs#fields)]
 
 These fields serve different purposes:
 
@@ -242,30 +185,13 @@ These fields serve different purposes:
 
 The AudioManager provides a property to track its mute state.  Add the following property:
 
-```cs
-/// <summary>
-/// Gets a value that indicates if audio is muted.
-/// </summary>
-public bool IsMuted { get; private set; }
-```
+[!code-csharp[](./snippets/audiomanager.cs#properties)]
 
 ### AudioManager Constructor
 
 The constructor initializes our collections and sets up the component.  Add the following constructor:
 
-```cs
-/// <summary>
-/// Creates a new AudioManager instance.
-/// </summary>
-/// <param name="game">The game this audio manager will belong too..</param>
-public AudioManager(Game game)
-    : base(game)
-{
-    _soundEffects = new Dictionary<string, SoundEffect>();
-    _songs = new Dictionary<string, Song>();
-    _activeSoundEffectInstances = new List<SoundEffectInstance>();
-}
-```
+[!code-csharp[](./snippets/audiomanager.cs#ctors)]
 
 ### AudioManager Methods
 
@@ -275,66 +201,7 @@ The `AudioManager` class provides several categories of methods to handle differ
 
 Add the following methods to the manager which override key methods from [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent):
 
-```cs
-/// <summary>
-/// Initializes this Audio manager.
-/// </summary>
-public override void Initialize()
-{
-    _previousMusicVolume = MediaPlayer.Volume = 1.0f;
-    _previousSoundEffectVolume = SoundEffect.MasterVolume = 1.0f;
-    base.Initialize();
-}
-
-/// <summary>
-/// Updates this Audio manager
-/// </summary>
-/// <param name="gameTime">A snapshot of the current timing values for the game.</param>
-public override void Update(GameTime gameTime)
-{
-    int index = 0;
-
-    while (index < _activeSoundEffectInstances.Count)
-    {
-        SoundEffectInstance instance = _activeSoundEffectInstances[index];
-
-        if (instance.State == SoundState.Stopped && !instance.IsDisposed)
-        {
-            instance.Dispose();
-        }
-
-        _activeSoundEffectInstances.RemoveAt(index);
-    }
-
-    base.Update(gameTime);
-}
-
-/// <summary>
-/// Disposes this Audio manager and cleans up resources.
-/// </summary>
-/// <param name="disposing">Indicates whether managed resources should be disposed.</param>
-protected override void Dispose(bool disposing)
-{
-    if (disposing)
-    {
-        foreach (SoundEffect soundEffect in _soundEffects.Values)
-        {
-            soundEffect.Dispose();
-        }
-
-        foreach (Song song in _songs.Values)
-        {
-            song.Dispose();
-        }
-
-        _soundEffects.Clear();
-        _songs.Clear();
-        _activeSoundEffectInstances.Clear();
-    }
-
-    base.Dispose(disposing);
-}
-```
+[!code-csharp[](./snippets/audiomanager.cs#methods_gamecomponent)]
 
 - `Initialize`: Sets up initial audio states by setting the default volume levels for both music and sound effects to full volume (1.0f). These values are also stored as the previous volumes for use when unmuting.
 - `Update`: Handles cleanup of completed sound effects. Each frame, it checks for any sound effect instances that have finished playing (reached the Stopped state) and disposes of them to free up resources.
@@ -344,27 +211,7 @@ protected override void Dispose(bool disposing)
 
 Add the following methods to handle handle loading audio content into the manager:
 
-```cs
-/// <summary>
-/// Adds the sound effect with the specified asset name to this audio manager.
-/// </summary>
-/// <param name="assetName">The asset name of the sound effect to add.</param>
-public void AddSoundEffect(string assetName)
-{
-    SoundEffect soundEffect = Game.Content.Load<SoundEffect>(assetName);
-    _soundEffects.Add(assetName, soundEffect);
-}
-
-/// <summary>
-/// Adds the song with the specified asset name to this audio manager.
-/// </summary>
-/// <param name="assetName">The asset name of the song to add.</param>
-public void AddSong(string assetName)
-{
-    Song song = Game.Content.Load<Song>(assetName);
-    _songs.Add(assetName, song);
-}    
-```
+[!code-csharp[](./snippets/audiomanager.cs#methods_content)]
 
 - `AddSoundEffect`: Loads a sound effect from the content pipeline using the provided asset name and stores it in the `_soundEffects` dictionary for later use.
 - `AddSong`: Similar to `AddSoundEffect`, this loads a song from the content pipeline and stores it in the `_songs` dictionary.
@@ -373,58 +220,7 @@ public void AddSong(string assetName)
 
 Add the following methods to control audio playback:
 
-```cs
-/// <summary>
-/// Plays the sound effect with the specified name.
-/// </summary>
-/// <param name="assetName">The asset name of the sound effect to play.</param>
-/// <returns>The sound effect instance created by playing the sound effect.</returns>
-public SoundEffectInstance PlaySoundEffect(string assetName)
-{
-    return PlaySoundEffect(assetName, 1.0f, 0.0f, 0.0f, false);
-}
-
-/// <summary>
-/// Plays the sound effect with the specified asset name, using the specified properties.
-/// </summary>
-/// <param name="assetName">The asset name of the sound effect to play.</param>
-/// <param name="volume">The volume, ranging from 0.0 (silence) to 1.0 (full volume).</param>
-/// <param name="pitch">The pitch adjustment, ranging from -1.0 (down an octave) to 0.0 (no change) to 1.0 (up an octave).</param>
-/// <param name="pan">The panning, ranging from -1.0 (left speaker) to 0.0 (centered), 1.0 (right speaker).</param>
-/// <param name="isLooped">Whether the the sound effect should loop after playback.</param>
-/// <returns>The sound effect instance created by playing the sound effect.</returns>
-public SoundEffectInstance PlaySoundEffect(string assetName, float volume, float pitch, float pan, bool isLooped)
-{
-    SoundEffect soundEffect = _soundEffects[assetName];
-
-    SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
-    soundEffectInstance.Volume = volume;
-    soundEffectInstance.Pitch = pitch;
-    soundEffectInstance.Pan = pan;
-    soundEffectInstance.IsLooped = isLooped;
-
-    soundEffectInstance.Play();
-
-    return soundEffectInstance;
-}
-
-/// <summary>
-/// Plays the song with the specified asset name.
-/// </summary>
-/// <param name="assetName">The asset name of the song to play.</param>
-public void PlaySong(string assetName)
-{
-    Song song = _songs[assetName];
-
-    // Check if the media player is already playing, if so, stop it
-    if(MediaPlayer.State == MediaState.Playing)
-    {
-        MediaPlayer.Stop();
-    }
-
-    MediaPlayer.Play(song);
-}
-```
+[!code-csharp[](./snippets/audiomanager.cs#methods_playback)]
 
 - `PlaySoundEffect`: Two overloads of this method are implemented.  The first can be used to quickly fire off a sound effect if you do not need to adjust additional properties.  The second contains parameters to customize the volume, pitch, panning, and looping properties of the sound effect.  Both methods returns the instance for further control if needed.
 - `PlaySong`: Starts playing a song through the MediaPlayer. Since only one song can play at a time, this will automatically stop any currently playing song.
@@ -433,80 +229,7 @@ public void PlaySong(string assetName)
 
 Add the following methods to manage the overall state of audio playback:
 
-```cs
-/// <summary>
-/// Pauses all audio.
-/// </summary>
-public void PauseAudio()
-{
-    // Pause any active songs playing
-    MediaPlayer.Pause();
-
-    // Pause any active sound effects
-    foreach (SoundEffectInstance soundEffectInstance in _activeSoundEffectInstances)
-    {
-        soundEffectInstance.Pause();
-    }
-}
-
-/// <summary>
-/// Resumes play of all previous paused audio.
-/// </summary>
-public void ResumeAudio()
-{
-    // Resume paused music
-    MediaPlayer.Resume();
-
-    // Resume any active sound effects
-    foreach (SoundEffectInstance soundEffectInstance in _activeSoundEffectInstances)
-    {
-        soundEffectInstance.Resume();
-    }
-}
-
-/// <summary>
-/// Mutes all audio.
-/// </summary>
-public void MuteAudio()
-{
-    // Store the volume so they can be restored during ResumeAudio
-    _previousMusicVolume = MediaPlayer.Volume;
-    _previousSoundEffectVolume = SoundEffect.MasterVolume;
-
-    // Set all volumes to 0
-    MediaPlayer.Volume = 0.0f;
-    SoundEffect.MasterVolume = 0.0f;
-
-    IsMuted = true;
-}
-
-/// <summary>
-/// Unmutes all audio to the volume level prior to muting.
-/// </summary>
-public void UnmuteAudio()
-{
-    // Restore the previous volume values
-    MediaPlayer.Volume = _previousMusicVolume;
-    SoundEffect.MasterVolume = _previousSoundEffectVolume;
-
-    IsMuted = false;
-}
-
-/// <summary>
-/// Toggles the current audio mute state.
-/// </summary>
-public void ToggleMute()
-{
-    if (IsMuted)
-    {
-        UnmuteAudio();
-    }
-    else
-    {
-        MuteAudio();
-    }
-}
-```
+[!code-csharp[](./snippets/audiomanager.cs#methods_state)]
 
 - `PauseAudio`: Pauses all currently playing audio including both the active song and any playing sound effects.
 - `ResumeAudio`: Resumes playback of previously paused audio, both for the song and sound effects.
@@ -518,33 +241,7 @@ public void ToggleMute()
 
 Finally, add the following methods to adjusting the volume of all audio:
 
-```cs
-/// <summary>
-/// Increases volume of all audio by the specified amount.
-/// </summary>
-/// <param name="amount">The amount to increase the audio by.</param>
-public void IncreaseVolume(float amount)
-{
-    if (!IsMuted)
-    {
-        MediaPlayer.Volume = Math.Min(MediaPlayer.Volume + amount, 1.0f);
-        SoundEffect.MasterVolume = Math.Min(SoundEffect.MasterVolume + amount, 1.0f);
-    }
-}
-
-/// <summary>
-/// Decreases the volume of all audio by the specified amount.
-/// </summary>
-/// <param name="amount">The amount to decrease the audio by.</param>
-public void DecreaseVolume(float amount)
-{
-    if (!IsMuted)
-    {
-        MediaPlayer.Volume = Math.Max(MediaPlayer.Volume - amount, 0.0f);
-        SoundEffect.MasterVolume = Math.Max(SoundEffect.MasterVolume - amount, 0.0f);
-    }
-}
-```
+[!code-csharp[](./snippets/audiomanager.cs#methods_volume)]
 
 - `IncreaseVolume`: Raises the volume of both music and sound effects by the specified amount, ensuring it does not exceed the maximum (1.0f).
 - `DecreaseVolume`: Lowers the volume of both music and sound effects by the specified amount, ensuring it does not go below zero.
@@ -573,76 +270,24 @@ Add these files to your content project using the MGCB Editor:
    - For `.wav` files, ensure the *Processor* is set to `Sound Effect`.
    - For `.mp3` files, ensure the *Processor* is set to `Song`.
 
-Next, let's implement the `AudioManager` game component that was created in our game to manage audio. Open the *Game1.cs* file and perform the following:
+Next, let's implement the `AudioManager` game component that was created in our game to manage audio. Open the *Game1.cs* and make the following changes:
 
-1. Add the following using namespace at the top so we have access to the `AudioManager` class we created:
+[!code-csharp[](./snippets/game1.cs?highlight=6,38-39,53-57,73-74,90-97,198-199,222-223,280-296)]
 
-    ```cs
-    using MonoGameLibrary.Audio;
-    ```
+The key changes made here are:
 
-2. Add a new private field to access the `AudioManager` with:
-
-    ```cs
-    private AudioManager _audioManager;
-    ```
-
-3. In the constructor, add the following to create a new instance of the audio manager and add it as a game component:
-
-    ```cs
-    // Create and add the audio manager
-    _audioManager = new AudioManager(this);
-    Components.Add(_audioManager);
-    ```
-
-4. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), add the following to load audio through the manager:
-
-    ```cs
-    // Load audio content
-    _audioManager.AddSoundEffect("audio/bounce");
-    _audioManager.AddSoundEffect("audio/collect");
-    _audioManager.AddSong("audio/theme");
-    ```
-
-5. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize), after the call to `base.Initialize()`, tell the audio manager to start playing the background music:
-
-    ```cs
-    // Start playing background music
-    _audioManager.PlaySong("audio/theme");
-    ```
-
-6. Update `HandleKeyboardInput` to add new inputs to control the audio manager:
-
-    ```cs
-    if (_input.Keyboard.WasKeyJustPressed(Keys.M))
-    {
-        _audioManager.ToggleMute();
-    }
-    
-    if (_input.Keyboard.WasKeyJustPressed(Keys.OemPlus))
-    {
-        _audioManager.IncreaseVolume(0.1f);
-    }
-    
-    if (_input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
-    {
-        _audioManager.DecreaseVolume(0.1f);
-    }
-    ```
-
-7. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), play the bounce sound effect after calculating the reflection vector for the bat if it hit the edge of the screen:
-
-    ```cs
-    // Play bounce sound through the manager
-    _audioManager.PlaySoundEffect("audio/bounce");
-    ```
-
-8. Finally, in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) when it is detected that the slime intersects ("eats") the bat, play the collect sound effect:
-
-    ```cs
-    // Play collect sound through the manager
-    _audioManager.PlaySoundEffect("audio/collect");
-    ```
+1. The `using MonoGameLibrary.Audio` using directive was added so we can use the new `AudioManager` class.
+2. The field `_audio` was added to track and access the `AudioManager`.
+3. In the constructor, a new instance of the `AudioManager` is created and added to the game's component collection.
+4. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the bounce, collect, and theme sound effects and song are added to the audio manager.
+5. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) the audio manager is told to start play the theme song.
+6. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) the following changes were made:
+    1. When it is detected that the bat should bounce off the edge of the screen, the bounce sound effect is played
+    2. When it is detected that the slime eats the bat, the collect sound effect is played.
+7. In `CheckKeyboardInput`, the following changes were made:
+    1. When the M key is pressed, the audio mute is toggled on/off.
+    2. When the + key is pressed, the audio volume is increased.
+    3. WHen the - key is pressed, the audio volume is decreased.
 
 Running the game now, the background music will start playing when the game launches, the bounce sound effect will play each time the bat bounces off the edge of the screen, and the collect sound effect will play each time the slime eats the bat.  In addition, you can use the following controls to control the audio through the audio manager:
 
@@ -671,24 +316,18 @@ In the next chapter, we will explore scene management to handle different game s
 
 1. What are the two main classes MonoGame provides for audio playback and how do they differ?
 
-   <details>
-   <summary>Question 1 Answer</summary>
-
-   > MonoGame provides [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) for short audio clips (loaded entirely into memory, multiple can play at once) and [**Song**](xref:Microsoft.Xna.Framework.Media.Song) for longer audio like music (streamed from storage, only one can play at a time).
-   </details><br />
+    :::question-answer
+    MonoGame provides [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) for short audio clips (loaded entirely into memory, multiple can play at once) and [**Song**](xref:Microsoft.Xna.Framework.Media.Song) for longer audio like music (streamed from storage, only one can play at a time).
+    :::
 
 2. What is the advantage of using the content pipeline for loading audio files?
 
-   <details>
-   <summary>Question 2 Answer</summary>
-
-   > The content pipeline processes audio files into an optimized format for your target platform, manages asset copying to the output directory, and provides a consistent way to load content at runtime through the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
-   </details><br />
+    :::question-answer
+    The content pipeline processes audio files into an optimized format for your target platform, manages asset copying to the output directory, and provides a consistent way to load content at runtime through the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
+    :::
 
 3. Why did we create the `AudioManager` as a game component?
 
-   <details>
-   <summary>Question 3 Answer</summary>
-   
-   > By inheriting from [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent), the `AudioManager` receives automatic updates and cleanup through the game's component system.
-   </details><br />
+    :::question-answer
+    By inheriting from [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent), the `AudioManager` receives automatic updates and cleanup through the game's component system.
+    :::

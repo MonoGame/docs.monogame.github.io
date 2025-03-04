@@ -30,7 +30,7 @@ To use the template to add the class library, perform the following:
 
 To add the class library using the MonoGame Game Library project template in Visual Studio Code, perform the following:
 
-1. In the *Solution Explorer* panel, right-click the *MonoGameSnake* solution.
+1. In the *Solution Explorer* panel, right-click the *DungeonSlime* solution.
 2. Chose *New Project* from the context menu.
 3. Enter "Monogame Game Library" and select it as the template to use.
 4. Name the project "MonoGameLibrary".
@@ -41,7 +41,7 @@ To add the class library using the MonoGame Game Library project template in Vis
 
 To add the class library using the MonoGame Game Library project template in Visual Studio 2022, perform the following:
 
-1. Right-click the *MonoGameSnake* solution in the Solution Explorer panel.
+1. Right-click the *DungeonSlime* solution in the Solution Explorer panel.
 2. Choose Add > New Project from the context menu.
 3. Enter "MonoGame Game Library" in the search box, select that template, then click Next.
 4. Name the project "MonoGameLibrary".
@@ -52,9 +52,9 @@ To add the class library using the MonoGame Game Library project template in Vis
 
 To add the class library using the MonoGame Game Library project template with the dotnet CLI, perform the following:
 
-1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.sln* solution file.
+1. Open a new Command Prompt or Terminal window in the same directory as the *DungeonSlime.sln* solution file.
 2. Enter the command `dotnet new mglib -n MonoGameLibrary` to create the project, placing it in a folder next to your game project.
-3. Enter the command `dotnet sln MonoGameSnake.sln add ./MonoGameLibrary/MonoGameLibrary.csproj` to add the newly created class library project to the *MonoGameSnake.sln* solution file.
+3. Enter the command `dotnet sln DungeonSlime.sln add ./MonoGameLibrary/MonoGameLibrary.csproj` to add the newly created class library project to the *DungeonSlime.sln* solution file.
 
 ---
 
@@ -66,7 +66,7 @@ Now that the game library project has been created, a reference to it needs to b
 
 To add the game library project as a reference to the game project in Visual Studio Code:
 
-1. In the Solution Explorer panel, right-click the *MonoGameSnake* project.
+1. In the Solution Explorer panel, right-click the *DungeonSlime* project.
 2. Choose "Add Project Reference" from the context menu.
 3. Choose *MonoGameLibrary" from the available options.
 
@@ -80,7 +80,7 @@ To add the game library project as a reference to the game project in Visual Stu
 
 To add the game library project as a reference to the game project in Visual Studio 2022:
 
-1. In the Solution Explorer panel, right-click the *MonoGameSnake* project.
+1. In the Solution Explorer panel, right-click the *DungeonSlime* project.
 2. Select Add > Project Reference from the context menu.
 3. Check the box for the *MonoGameLibrary* project.
 4. Click Ok.
@@ -89,8 +89,8 @@ To add the game library project as a reference to the game project in Visual Stu
 
 To add the game library project as a reference to the game project with the dotnet CLI:
 
-1. Open a new Command Prompt or Terminal window in the same directory as the *MonoGameSnake.csproj* C# project file.
-2. Enter the command `dotnet add ./MonoGameSnake.csproj reference ../MonoGameLibrary/MonoGameLibrary.csproj`.  This will add the *MonoGameLibrary* reference to the *MonoGameSnake* game project.
+1. Open a new Command Prompt or Terminal window in the same directory as the *DungeonSlime.csproj* C# project file.
+2. Enter the command `dotnet add ./DungeonSlime.csproj reference ../MonoGameLibrary/MonoGameLibrary.csproj`.  This will add the *MonoGameLibrary* reference to the *DungeonSlime* game project.
 
 ---
 
@@ -113,61 +113,7 @@ Let's validate our class library setup by creating a simple component that count
 
 Create a new file called *FramesPerSecondCounter.cs* in the root of the *MonoGameLibrary* project and add the following code:
 
-```cs
-using System;
-using Microsoft.Xna.Framework;
-
-namespace MonoGameLibrary;
-
-/// <summary>
-/// Tracks and calculates the number of frames rendered per second.
-/// </summary>
-public class FramesPerSecondCounter
-{
-    /// A static TimeSpan representing one second, used for FPS calculation intervals.
-    private static readonly TimeSpan s_oneSecond = TimeSpan.FromSeconds(1);
-
-    /// Tracks the number of frames rendered in the current second.
-    private int _frameCounter;
-
-    /// Tracks the elapsed time since the last FPS calculation.
-    private TimeSpan _elapsedTime;
-
-    /// <summary>
-    /// Gets the current frames per second calculation.
-    /// </summary>
-    public float FramesPerSecond { get; private set; }
-
-    /// <summary>
-    /// Creates a new FramesPerSecondCounter.
-    /// </summary>
-    public FramesPerSecondCounter() { }
-
-    /// <summary>
-    /// Updates the FPS calculation based on elapsed game time.
-    /// </summary>
-    /// <param name="gameTime">A snapshot of the game's timing values.</param>
-    public void Update(GameTime gameTime)
-    {
-        _elapsedTime += gameTime.ElapsedGameTime;
-
-        if (_elapsedTime > s_oneSecond)
-        {
-            FramesPerSecond = _frameCounter;
-            _frameCounter = 0;
-            _elapsedTime -= s_oneSecond;
-        }
-    }
-
-    /// <summary>
-    /// Increments the frame counter. Should be called once per frame during the game's Draw method.
-    /// </summary>
-    public void UpdateCounter()
-    {
-        _frameCounter++;
-    }
-}
-```
+[!code-csharp[](./snippets/framespersecondcounter.cs)]
 
 This class:
 
@@ -175,38 +121,21 @@ This class:
 - Updates the FPS calculation based on elapsed time.
 - Provides the current FPS through a property.
 
-Now let's use this counter in our game. Open *Game1.cs* and make the following changes:
+## Adding the Module To Our Game
 
-1. Add the using directive for our library at the top:
+Now that we have the `FramesPerSecondCounter` class created, let's add it to our game.  Doing this will also help ensure that the project references were setup correctly.  Open the *Game1.cs* file and make the following changes:
 
-    ```cs
-    using MonoGameLibrary;
-    ```
+[!code-csharp[](./snippets/game1.cs?highlight=4,13-14,22-23,41-42,51-55)]
 
-2. Add a field for the FPS counter:
+The key changes made here are:
 
-    ```cs
-    private FramesPerSecondCounter _fpsCounter;
-    ```
-
-3. In the constructor, create a new instance:
-
-    ```cs
-    _fpsCounter = new FramesPerSecondCounter();
-    ```
-
-4. In Update, add:
-
-    ```cs
-    _fpsCounter.Update(gameTime);
-    ```
-
-5. In Draw, just before `base.Draw()`, add:
-
-    ```cs
-    _fpsCounter.UpdateCounter();
-    Window.Title = $"FPS: {_fpsCounter.FramesPerSecond}";
-    ```
+1. The `using MonoGameLibrary` using directive was added so we can use the new `FramesPerSecondCounter` class.
+2. The field `_fpsCounter` was added to track the `FramesPerSecondCounter` instance.
+3. In the constructor, a new instance of the `FramesPerSecondCounter` is created.
+4. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the `Update` method for the frames per second counter is called.
+5. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime))
+    1. The `UpdateCOunter` method for the frames per second counter is called.
+    2. The game window title is updated to display the frames per second value.
 
 When you run the game now, you'll see the current FPS displayed in the window title bar. This confirms that:
 
@@ -247,28 +176,22 @@ In the next chapter, we'll go over MonoGame's Game Component system and how we c
 
 1. What are the main benefits of using a class library for game development?
 
-   <details>
-   <summary>Question 1 Answer</summary>
-
-   > The main benefits are:
-   > - **Reusability**: Code can be easily shared between different game projects
-   > - **Organization**: Separates reusable code from game-specific code
-   > - **Maintainability**: Changes to shared code benefit all games using the library
-   > - **Testing**: Library code can be tested independently of specific games
-   </details><br />
+    :::question-answer
+    The main benefits are:
+    - **Reusability**: Code can be easily shared between different game projects
+    - **Organization**: Separates reusable code from game-specific code
+    - **Maintainability**: Changes to shared code benefit all games using the library
+    - **Testing**: Library code can be tested independently of specific games
+    :::
 
 2. Why should you use the MonoGame Game Library template instead of a standard class library template?
 
-   <details>
-   <summary>Question 2 Answer</summary>
-
-   > The MonoGame Game Library template automatically configures the correct MonoGame framework references and ensures compatibility with MonoGame projects, saving time and preventing potential setup issues.
-   </details><br />
+    :::question-anser
+    The MonoGame Game Library template automatically configures the correct MonoGame framework references and ensures compatibility with MonoGame projects, saving time and preventing potential setup issues.
+    :::
 
 3. What happens if you don't add a reference to your class library in your game project?
 
-    <details>
-    <summary>Question 3 Answer</summary>
-
+    :::question-answer
     > Without adding a reference, your game project will be unaware of any code in the class library. You won't be able to use any of the classes or components from the library in your game.
-    </details><br />
+    :::

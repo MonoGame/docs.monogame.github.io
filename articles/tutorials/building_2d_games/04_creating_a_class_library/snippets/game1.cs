@@ -1,45 +1,45 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGameLibrary.Graphics;
+using MonoGameLibrary;
 
-namespace MonoGameSnake;
+namespace DungeonSlime;
 
 public class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
-    private TextureRegion _slime;
+
+    // Tracks the FramesPerSecondCounter instance.
+    private FramesPerSecondCounter _fpsCounter;
 
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+
+        // Create a new FramesPerSecondCounter.
+        _fpsCounter = new FramesPerSecondCounter();
     }
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
-
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        // Load the atlas texture using the content manager
-        Texture2D atlasTexture = Content.Load<Texture2D>("images/atlas");
-
-        // create a texture region from the atlas for the slime sprite
-        _slime = new TextureRegion(atlasTexture, 0, 160, 40, 40);
     }
 
     protected override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
+
+        // Update the frames per second instance.
+        _fpsCounter.Update(gameTime);
 
         base.Update(gameTime);
     }
@@ -48,12 +48,11 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin();
+        // Update the frame counter.
+        _fpsCounter.UpdateCounter();
 
-        // Draw the slime texture region
-        _slime.Draw(_spriteBatch, Vector2.One, Color.White);
-
-        _spriteBatch.End();
+        // Update the window title to show the frames per second.
+        Window.Title = $" FPS: {_fpsCounter.FramesPerSecond}";
 
         base.Draw(gameTime);
     }

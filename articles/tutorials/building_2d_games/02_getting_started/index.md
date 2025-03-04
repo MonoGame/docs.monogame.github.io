@@ -17,11 +17,13 @@ While the environment setup process is similar to the standard setup process for
 The first thing we need to do is install the .NET *Software Development Kit* (SDK). At the time of this writing, MonoGame targets the .NET 8.0 SDK. To install it, follow the instructions based on your operating system below
 
 ### [Windows](#tab/windows)
+
 1. Open a web browser and navigate to https://dotnet.microsoft.com/en-us/download.
 2. Click the *Download .NET SDK x64* button to start the download of the .NET SDK Installer.
 3. Once the download finishes, run the installer
 
 ### [macOS](#tab/macos)
+
 1. Open a web browser and navigate to https://dotnet.microsoft.com/en-us/download.
 2. Click the *Download .NET SDK x64 (Intel)* button start the download of the .NET SDK Installer
 3. Once the download finishes, run the installer.  
@@ -152,7 +154,7 @@ Now that you have your development environment setup, it's time to create your f
 3. Type `.NET New Project` in the *Command Palette* and choose the *.NET New Project* command
 4. Next you'll be shown a list of the available .NET project templates. Enter `MonoGame` into the prompt to filter the project templates to only show the MonoGame ones, then choose the *MonoGame Cross-Platform Desktop Application* project template.
 5. After choosing the template, a dialog window will appear asking you to choose a location to save the project.
-6. Next you'll be prompted to enter a name for the project. Enter the name `MonoGameSnake`.
+6. Next you'll be prompted to enter a name for the project. Enter the name `DungeonSlime`.
 7. Finally, select the *Create Project* prompt.
 
 After selecting *Create Project*, a new C# project will be created based on the MonoGame template we choose and opened automatically in VSCode.
@@ -199,27 +201,18 @@ Now that your development environment is setup and ready to go, you can dive in 
 
 1. What version of the .NET SDK is currently targeted by MonoGame applications?
 
-    <details>
-    <summary>Question 1 Answer</summary>
-
-    > .NET 8.0
-
-    </details><br />
+    :::question-answer
+    .NET 8.0
+    :::
 
 2. What is the current version of MonoGame?
 
-    <details>
-    <summary>Question 2 Answer</summary>
-
-    > 3.8.2.1105
-
-    </details><br /> 
+    :::question-answer
+    3.8.2.1105
+    :::
 
 3. What is the color of the game window when you run a MonoGame project for the first time?
 
-    <details>
-    <summary>Question 3 Answer</summary>
-
-    > Cornflower Blue
-
-    </details><br />
+    :::question-answer
+    Cornflower Blue
+    :::

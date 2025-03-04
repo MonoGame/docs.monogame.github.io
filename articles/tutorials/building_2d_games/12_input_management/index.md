@@ -23,14 +23,7 @@ When handling input in games, there are two key scenarios we need to consider:
 
 Let's look at the difference using keyboard input as an example. With our current implementation, we can check if a key is down using [**KeyboardState.IsKeyDown**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)):
 
-```cs
-KeyboardState keyboardState = Keyboard.GetState();
-
-if (keyboardState.IsKeyDown(Keys.Space))
-{
-    // This runs EVERY frame the space key is held down
-}
-```
+[!code[](./snippets/key_down_every_frame.cs)]
 
 However, many game actions shouldn't repeat while a key is held. For instance, if the Space key makes your character jump, you probably don't want them to jump repeatedly just because the player is holding the key down. Instead, you want the jump to happen only on the first frame when Space is pressed.
 
@@ -41,27 +34,11 @@ To detect this "just pressed" state, we need to compare two states:
 
 If both conditions are true, we know the key was just pressed.  If we were to modify the above code to track the previous keyboard state it would look something like this:
 
-```cs
-private KeyboardState _previousKeyboardState;
-
-protected override void Update(GameTime gameTime)
-{
-    KeyboardState keyboardState = Keyboard.GetState();
-
-    if (keyboardState.IsKeyDown(Keys.Space) && _previousKeyboardState.IsKeyUp(Keys.Space))
-    {
-        // This will only run on the first frame Space is pressed and will not
-        // happen again until it has been released and then pressed again.
-    }
-
-    _previousKeyboardState = keyboardState;
-    base.Update(gameTime);
-}
-```
+[!code-csharp[](./snippets/compare_previous_state.cs)]
 
 This same concept applies to mouse buttons and gamepad input as well. Any time you need to detect a "just pressed" or "just released" state, you'll need to compare the current input state with the previous frame's state.
 
-So far, we've only been working with our game within the *Game1.cs* file.  This has been fine for the examples given.  Overtime, as the game grows, we're going to have a more complex system setup with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable `InputManager` class to simplify this for us. 
+So far, we've only been working with our game within the *Game1.cs* file.  This has been fine for the examples given.  Overtime, as the game grows, we're going to have a more complex system setup with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable `InputManager` class to simplify this for us.
 
 Before we create the `InputManager` class, let's first create classes for the keyboard, mouse, and gamepad that encapsulates the information about those inputs which will then be exposed through the `InputManager`.  
 
@@ -77,32 +54,13 @@ Let's start our input management system by creating a class to handle keyboard i
 
 In the *Input* directory of the *MonoGameLibrary* project, add a new file named *KeyboardInfo.cs* with this initial structure:
 
-```cs
-using Microsoft.Xna.Framework.Input;
-
-namespace MonoGameLibrary.Input;
-
-public class KeyboardInfo
-{
-
-}
-```
+[!code-csharp[](./snippets/keyboardinfo.cs#declaration)]
 
 ### KeyboardInfo Properties
 
 To detect changes in keyboard input between frames, we need to track both the previous and current keyboard states. Add these properties to the `KeyboardInfo` class:
 
-```cs
-/// <summary>
-/// Gets the state of keyboard input during the previous update cycle.
-/// </summary>
-public KeyboardState PreviousState { get; private set; }
-
-/// <summary>
-/// Gets the state of keyboard input during the current input cycle.
-/// </summary>
-public KeyboardState CurrentState { get; private set; }
-```
+[!code-csharp[](./snippets/keyboardinfo.cs#members)]
 
 > [!NOTE]
 > These properties use a public getter but private setter pattern. This allows other parts of the game to read the keyboard states if needed, while ensuring only the `KeyboardInfo` class can update them.
@@ -111,16 +69,7 @@ public KeyboardState CurrentState { get; private set; }
 
 The `KeyboardInfo` class needs a constructor to initialize the keyboard states. Add this constructor:
 
-```cs
-/// <summary>
-/// Creates a new KeyboardInfo 
-/// </summary>
-public KeyboardInfo()
-{
-    PreviousState = new KeyboardState();
-    CurrentState = Keyboard.GetState();
-}
-```
+[!code-csharp[](./snippets/keyboardinfo.cs#ctors)]
 
 The constructor:
 
@@ -133,63 +82,14 @@ This initialization ensures we have valid states to compare against in the first
 
 The `KeyboardInfo` class needs methods both for updating states and checking key states. Let's start with our update method:
 
-```cs
-/// <summary>
-/// Updates the state information about keyboard input.
-/// </summary>
-public void Update()
-{
-    PreviousState = CurrentState;
-    CurrentState = Keyboard.GetState();
-}
-```
+[!code-csharp[](./snippets/keyboardinfo.cs#methods_update)]
 
 > [!NOTE]
 > Each time `Update` is called, the current state becomes the previous state, and we get a fresh current state. This creates our frame-to-frame comparison chain.
 
 Next, we'll add methods to check various key states:
 
-```cs
-/// <summary>
-/// Returns a value that indicates if the specified key is currently down.
-/// </summary>
-/// <param name="key">The key to check.</param>
-/// <returns>true if the specified key is currently down; otherwise, false.</returns>
-public bool IsKeyDown(Keys key)
-{
-    return CurrentState.IsKeyDown(key);
-}
-
-/// <summary>
-/// Returns a value that indicates whether the specified key is currently up.
-/// </summary>
-/// <param name="key">The key to check.</param>
-/// <returns>true if the specified key is currently up; otherwise, false.</returns>
-public bool IsKeyUp(Keys key)
-{
-    return CurrentState.IsKeyUp(key);
-}
-
-/// <summary>
-/// Returns a value that indicates if the specified key was just pressed on the current frame.
-/// </summary>
-/// <param name="key">The key to check.</param>
-/// <returns>true if the specified key was just pressed on the current frame; otherwise, false.</returns>
-public bool WasKeyJustPressed(Keys key)
-{
-    return CurrentState.IsKeyDown(key) && PreviousState.IsKeyUp(key);
-}
-
-/// <summary>
-/// Returns a value that indicates if the specified key was just released on the current frame.
-/// </summary>
-/// <param name="key">The key to check.</param>
-/// <returns>true if the specified key was just released on the current frame; otherwise, false.</returns>
-public bool WasKeyJustReleased(Keys key)
-{
-    return CurrentState.IsKeyUp(key) && PreviousState.IsKeyDown(key);
-}
-```
+[!code-csharp[](./snippets/keyboardinfo.cs#methods_keystate)]
 
 These methods serve two distinct purposes.  For checking continuous states:
 
@@ -212,18 +112,7 @@ Recall from the [Mouse Input](../11_handling_input/index.md#mouse-input) section
 
 In the *Input* directory of the *MonoGameLibrary* project, add a new file named *MouseButton.cs* with the following code:
 
-```cs
-namespace MonoGameLibrary.Input;
-
-public enum MouseButton
-{
-    Left,
-    Middle,
-    Right,
-    XButton1,
-    XButton2
-}
-```
+[!code-csharp[](./snippets/mousebutton.cs)]
 
 > [!NOTE]
 > Each enum value corresponds directly to a button property in MouseState:
@@ -232,7 +121,7 @@ public enum MouseButton
 > - `Middle`: Maps to [**MouseState.MiddleButton**](xref:Microsoft.Xna.Framework.Input.MouseState.MiddleButton).
 > - `Right`: Maps to [**MouseState.RightButton**](xref:Microsoft.Xna.Framework.Input.MouseState.RightButton).
 > - `XButton1`: Maps to [**MouseState.XButton1**](xref:Microsoft.Xna.Framework.Input.MouseState.XButton1).
-> - `XButton2`: Maps to [**MouseState.XButton2**](xref:Microsoft.Xna.Framework.Input.MouseState.XButton2).   
+> - `XButton2`: Maps to [**MouseState.XButton2**](xref:Microsoft.Xna.Framework.Input.MouseState.XButton2).
 
 ## The MouseInfo Class
 
@@ -247,17 +136,7 @@ To manage mouse input effectively, we need to track both current and previous st
   
 Let's create this class in the *Input* directory of the *MonoGameLibrary* project. Add a new file named *MouseInfo.cs* with the following initial structure:
 
-```cs
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-
-namespace MonoGameLibrary.Input;
-
-public class MouseInfo
-{
-
-}
-```
+[!code-csharp[](./snippets/mouseinfo.cs#declaration)]
 
 ### MouseInfo Properties
 
@@ -265,53 +144,11 @@ The `MouseInfo` class needs properties to track both mouse states and provide ea
 
 First, we need properties for tracking mouse states:
 
-```cs
-/// <summary>
-/// The state of mouse input during the previous update cycle.
-/// </summary>
-public MouseState PreviousState { get; private set; }
-
-/// <summary>
-/// The state of mouse input during the current update cycle.
-/// </summary>
-public MouseState CurrentState { get; private set; }
-```
+[!code-csharp[](./snippets/mouseinfo.cs#properties_states)]
 
 Next, we'll add properties for handling cursor position:
 
-```cs
-/// <summary>
-/// Gets or Sets the current position of the mouse cursor in screen space.
-/// </summary>
-public Point Position
-{
-    get => CurrentState.Position;
-    set => SetPosition(value.X, value.Y);
-}
-
-/// <summary>
-/// Gets or Sets the current x-coordinate position of the mouse cursor in screen space.
-/// </summary>
-public int X
-{
-    get => CurrentState.X;
-    set => SetPosition(value, CurrentState.Y);
-}
-
-/// <summary>
-/// Gets or Sets the current y-coordinate position of the mouse cursor in screen space.
-/// </summary>
-public int Y
-{
-    get => CurrentState.Y;
-    set => SetPosition(CurrentState.X, value);
-}
-
-/// <summary>
-/// Gets a value that indicates if the mouse cursor moved between the previous and current frames.
-/// </summary>
-public bool WasMoved => CurrentState.X != PreviousState.X || CurrentState.Y != PreviousState.Y;
-```
+[!code-csharp[](./snippets/mouseinfo.cs#properties_position)]
 
 > [!NOTE]
 > The position properties use a `SetPosition` method that we'll implement later. This method will handle the actual cursor positioning on screen.
@@ -324,27 +161,7 @@ These properties provide different ways to work with the cursor position:
 
 Next, we'll add properties for determining if the mouse cursor moved between game frames and if so how much:
 
-```cs
-/// <summary>
-/// Gets the difference in the mouse cursor position between the previous and current frame.
-/// </summary>
-public Point PositionDelta => CurrentState.Position - PreviousState.Position;
-
-/// <summary>
-/// Gets the difference in the mouse cursor x-position between the previous and current frame.
-/// </summary>
-public int XDelta => CurrentState.X - PreviousState.X;
-
-/// <summary>
-/// Gets the difference in the mouse cursor y-position between the previous and current frame.
-/// </summary>
-public int YDelta => CurrentState.Y - PreviousState.Y;
-
-/// <summary>
-/// Gets a value that indicates if the mouse cursor moved between the previous and current frames.
-/// </summary>
-public bool WasMoved => PositionDelta != Point.Zero;
-```
+[!code-csharp[](./snippets/mouseinfo.cs#properties_position_delta)]
 
 The properties provide different ways of detecting mouse movement between frames:
 
@@ -355,17 +172,7 @@ The properties provide different ways of detecting mouse movement between frames
 
 Finally, we'll add properties for handling the scroll wheel:
 
-```cs
-/// <summary>
-/// Gets the cumulative value of the mouse scroll wheel since the start of the game.
-/// </summary>
-public int ScrollWheel => CurrentState.ScrollWheelValue;
-
-/// <summary>
-/// Gets the value of the scroll wheel between the previous and current frame.
-/// </summary>
-public int ScrollWheelDelta => CurrentState.ScrollWheelValue - PreviousState.ScrollWheelValue;
-```
+[!code-csharp[](./snippets/mouseinfo.cs#properties_scrollwheel)]
 
 The scroll wheel properties serve different purposes:
 
@@ -377,18 +184,9 @@ The scroll wheel properties serve different purposes:
 
 ### MouseInfo Constructor
 
-The `KeyboardInfo` class needs a constructor to initialize the mouse states. Add this constructor:
+The `MouseInfo` class needs a constructor to initialize the mouse states. Add this constructor:
 
-```cs
-/// <summary>
-/// Creates a new MouseInfo.
-/// </summary>
-public MouseInfo()
-{
-    PreviousState = new MouseState();
-    CurrentState = Mouse.GetState();
-}
-```
+[!code-csharp[](./snippets/mouseinfo.cs#ctors)]
 
 The constructor:
 
@@ -401,119 +199,13 @@ This initialization ensures we have valid states to compare against in the first
 
 The `MouseInfo` class needs methods for updating states, checking button states, and setting the cursor position. Let's start with our update method:
 
-```cs
-/// <summary>
-/// Updates the state information about mouse input.
-/// </summary>
-public void Update()
-{
-    PreviousState = CurrentState;
-    CurrentState = Mouse.GetState();
-}
-```
+[!code-csharp[](./snippets/mouseinfo.cs#methods_update)]
 
 Next, we'll add methods to check various button states:
 
-```cs
-/// <summary>
-/// Returns a value that indicates whether the specified mouse button is currently down.
-/// </summary>
-/// <param name="button">The mouse button to check.</param>
-/// <returns>true if the specified mouse button is currently down; otherwise, false.</returns>
-public bool IsButtonDown(MouseButton button)
-{
-    switch (button)
-    {
-        case MouseButton.Left:
-            return CurrentState.LeftButton == ButtonState.Pressed;
-        case MouseButton.Middle:
-            return CurrentState.MiddleButton == ButtonState.Pressed;
-        case MouseButton.Right:
-            return CurrentState.RightButton == ButtonState.Pressed;
-        case MouseButton.XButton1:
-            return CurrentState.XButton1 == ButtonState.Pressed;
-        case MouseButton.XButton2:
-            return CurrentState.XButton2 == ButtonState.Pressed;
-        default:
-            return false;
-    }
-}
-
-/// <summary>
-/// Returns a value that indicates whether the specified mouse button is current up.
-/// </summary>
-/// <param name="button">The mouse button to check.</param>
-/// <returns>true if the specified mouse button is currently up; otherwise, false.</returns>
-public bool IsButtonUp(MouseButton button)
-{
-    switch (button)
-    {
-        case MouseButton.Left:
-            return CurrentState.LeftButton == ButtonState.Released;
-        case MouseButton.Middle:
-            return CurrentState.MiddleButton == ButtonState.Released;
-        case MouseButton.Right:
-            return CurrentState.RightButton == ButtonState.Released;
-        case MouseButton.XButton1:
-            return CurrentState.XButton1 == ButtonState.Released;
-        case MouseButton.XButton2:
-            return CurrentState.XButton2 == ButtonState.Released;
-        default:
-            return false;
-    }
-}
-
-/// <summary>
-/// Returns a value that indicates whether the specified mouse button was just pressed on the current frame.
-/// </summary>
-/// <param name="button">The mouse button to check.</param>
-/// <returns>true if the specified mouse button was just pressed on the current frame; otherwise, false.</returns>
-public bool WasButtonJustPressed(MouseButton button)
-{
-    switch (button)
-    {
-        case MouseButton.Left:
-            return CurrentState.LeftButton == ButtonState.Pressed && PreviousState.LeftButton == ButtonState.Released;
-        case MouseButton.Middle:
-            return CurrentState.MiddleButton == ButtonState.Pressed && PreviousState.MiddleButton == ButtonState.Released;
-        case MouseButton.Right:
-            return CurrentState.RightButton == ButtonState.Pressed && PreviousState.RightButton == ButtonState.Released;
-        case MouseButton.XButton1:
-            return CurrentState.XButton1 == ButtonState.Pressed && PreviousState.XButton1 == ButtonState.Released;
-        case MouseButton.XButton2:
-            return CurrentState.XButton2 == ButtonState.Pressed && PreviousState.XButton2 == ButtonState.Released;
-        default:
-            return false;
-    }
-}
-
-/// <summary>
-/// Returns a value that indicates whether the specified mouse button was just released on the current frame.
-/// </summary>
-/// <param name="button">The mouse button to check.</param>
-/// <returns>true if the specified mouse button was just released on the current frame; otherwise, false.</returns>F
-public bool WasButtonJustReleased(MouseButton button)
-{
-    switch (button)
-    {
-        case MouseButton.Left:
-            return CurrentState.LeftButton == ButtonState.Released && PreviousState.LeftButton == ButtonState.Pressed;
-        case MouseButton.Middle:
-            return CurrentState.MiddleButton == ButtonState.Released && PreviousState.MiddleButton == ButtonState.Pressed;
-        case MouseButton.Right:
-            return CurrentState.RightButton == ButtonState.Released && PreviousState.RightButton == ButtonState.Pressed;
-        case MouseButton.XButton1:
-            return CurrentState.XButton1 == ButtonState.Released && PreviousState.XButton1 == ButtonState.Pressed;
-        case MouseButton.XButton2:
-            return CurrentState.XButton2 == ButtonState.Released && PreviousState.XButton2 == ButtonState.Pressed;
-        default:
-            return false;
-    }
-}
-```
+[!code-csharp[](./snippets/mouseinfo.cs#methods_buttonstate)]
 
 These methods serve two distinct purposes. For checking continuous states:
-
 
 - `IsKeyDown`: Returns true as long as a key is being held down.
 - `IsKeyUp`: Returns true as long as a key is not being pressed.
@@ -528,27 +220,7 @@ And for detecting state changes:
 
 Finally, we need a method to handle setting the cursor position:
 
-```cs
-/// <summary>
-/// Sets the current position of the mouse cursor in screen space and updates the CurrentState with the new position.
-/// </summary>
-/// <param name="x">The x-coordinate location of the mouse cursor in screen space.</param>
-/// <param name="y">The y-coordinate location of the mouse cursor in screen space.</param>
-public void SetPosition(int x, int y)
-{
-    Mouse.SetPosition(x, y);
-    CurrentState = new MouseState(
-        x,
-        y,
-        CurrentState.ScrollWheelValue,
-        CurrentState.LeftButton,
-        CurrentState.MiddleButton,
-        CurrentState.RightButton,
-        CurrentState.XButton1,
-        CurrentState.XButton2
-    );
-}
-```
+[!code-csharp[](./snippets/mouseinfo.cs#methods_setposition)]
 
 > [!TIP]
 > Notice that after setting the position, we immediately update the `CurrentState`. This ensures our state tracking remains accurate even when manually moving the cursor.
@@ -569,99 +241,35 @@ To manage gamepad input effectively, we need to track both current and previous 
 
 Let's create this class in the *Input* directory of the *MonoGameLibrary* project. Add a new file named *GamePadInfo.cs* with the following initial structure:
 
-```cs
-using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-
-namespace MonoGameLibrary.Input;
-
-public class GamePadInfo
-{
-
-}
-```
+[!code-csharp[](./snippets/gamepadinfo.cs#declaration)]
 
 ### GamePadInfo Properties
 
 We use vibration in gamepads to provide haptic feedback to the player.  The [**GamePad**](xref:Microsoft.Xna.Framework.Input.GamePad) class provides the [**SetVibration**](xref:Microsoft.Xna.Framework.Input.GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex,System.Single,System.Single)) method to tell the gamepad to vibrate, but it does not provide a timing mechanism for it if we wanted to only vibrate for a certain period of time.  Add the following private field to the `GamePadInfo` class:
 
-```cs
-private TimeSpan _vibrationTimeRemaining = TimeSpan.Zero;
-```
+[!code-csharp[](./snippets/gamepadinfo.cs#member_fields)]
 
 Recall from the [previous chapter](../11_handling_input/index.md#gamepad-input) that a [**PlayerIndex**](xref:Microsoft.Xna.Framework.PlayerIndex) value needs to be supplied when calling [**Gamepad.GetState**](xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)).   Doing this returns the state of the gamepad connected at that player index.  So we'll need a property to track the player index this gamepad info is for.
 
-```cs
-/// <summary>
-/// Gets the index of the player this gamepad is for.
-/// </summary>
-public PlayerIndex PlayerIndex { get; }
-```
+[!code-csharp[](./snippets/gamepadinfo.cs#properties_playerindex)]
 
 To detect changes in the gamepad input between frames, we need to track both the previous and current gamepad states.  Add these properties to the `GamePadInfo` class:
 
-```cs
-/// <summary>
-/// Gets the state of input for this gamepad during the previous update cycle.
-/// </summary>
-public GamePadState PreviousState { get; private set; }
-
-/// <summary>
-/// Gets the state of input for this gamepad during the current update cycle.
-/// </summary>
-public GamePadState CurrentState { get; private set; }
-```
+[!code-csharp[](./snippets/gamepadinfo.cs#properties_state)]
 
 There are times that a gamepad can disconnect for various reasons; being unplugged, bluetooth disconnection, or battery dying are just some examples.  To track if the gamepad is connected, add the following property:
 
-```cs
-/// <summary>
-/// Gets a value that indicates if this gamepad is currently connected.
-/// </summary>
-public bool IsConnected => CurrentState.IsConnected;
-```
+[!code-csharp[](./snippets/gamepadinfo.cs#properties_connected)]
 
 The values of the thumbsticks and triggers can be accessed through the `CurrentState`.  However, instead of having to navigate through multiple property chains to get this information, add the following properties to get direct access to the values:
 
-```cs
-/// <summary>
-/// Gets the value of the left thumbstick of this gamepad.
-/// </summary>
-public Vector2 LeftThumbStick => CurrentState.ThumbSticks.Left;
-
-/// <summary>
-/// Gets the value of the right thumbstick of this gamepad.
-/// </summary>
-public Vector2 RightThumbStick => CurrentState.ThumbSticks.Right;
-
-/// <summary>
-/// Gets the value of the left trigger of this gamepad.
-/// </summary>
-public float LeftTrigger => CurrentState.Triggers.Left;
-
-/// <summary>
-/// Gets the value of the right trigger of this gamepad.
-/// </summary>
-public float RightTrigger => CurrentState.Triggers.Right;
-```
+[!code-csharp[](./snippets/gamepadinfo.cs#properties_thumbsticks_triggers)]
 
 ### GamePadInfo Constructor
 
 The `GamePadInfo` class needs a constructor to initialize the gamepad states.  Add this constructor
 
-```cs
-/// <summary>
-/// Creates a new GamePadInfo for the gamepad connected at the specified player index.
-/// </summary>
-/// <param name="playerIndex">The index of the player for this gamepad.</param>
-public GamePadInfo(PlayerIndex playerIndex)
-{
-    PlayerIndex = playerIndex;
-    PreviousState = new GamePadState();
-    CurrentState = GamePad.GetState(playerIndex);
-}
-```
+[!code-csharp[](./snippets/gamepadinfo.cs#ctors)]
 
 This constructor
 
@@ -675,74 +283,14 @@ This initialization ensures we have valid states to compare against in the first
 
 The `GamePadInfo` class needs methods for updating states, checking button states, and controlling vibration. Let's start with our update method:
 
-```cs
-/// <summary>
-/// Updates the state information for this gamepad input.
-/// </summary>
-/// <param name="gameTime"></param>
-public void Update(GameTime gameTime)
-{
-    PreviousState = CurrentState;
-    CurrentState = GamePad.GetState(PlayerIndex);
-
-    if (_vibrationTimeRemaining > TimeSpan.Zero)
-    {
-        _vibrationTimeRemaining -= gameTime.ElapsedGameTime;
-
-        if (_vibrationTimeRemaining <= TimeSpan.Zero)
-        {
-            StopVibration();
-        }
-    }
-}
-```
+[!code-csharp[](./snippets/gamepadinfo.cs#methods_update)]
 
 > [!NOTE]
 > Unlike keyboard and mouse input, the gamepad update method takes a [**GameTime**](xref:Microsoft.Xna.Framework.GameTime) parameter. This allows us to track and manage timed vibration effects.
 
 Next, we'll add methods to check various button states:
 
-```cs
-/// <summary>
-/// Returns a value that indicates whether the specified gamepad button is current down.
-/// </summary>
-/// <param name="button">The gamepad button to check.</param>
-/// <returns>true if the specified gamepad button is currently down; otherwise, false.</returns>
-public bool IsButtonDown(Buttons button)
-{
-    return CurrentState.IsButtonDown(button);
-}
-
-/// <summary>
-/// Returns a value that indicates whether the specified gamepad button is currently up.
-/// </summary>
-/// <param name="button">The gamepad button to check.</param>
-/// <returns>true if the specified gamepad button is currently up; otherwise, false.</returns>
-public bool IsButtonUp(Buttons button)
-{
-    return CurrentState.IsButtonUp(button);
-}
-
-/// <summary>
-/// Returns a value that indicates whether the specified gamepad button was just pressed on the current frame.
-/// </summary>
-/// <param name="button"><The gamepad button to check./param>
-/// <returns>true if the specified gamepad button was just pressed on the current frame; otherwise, false.</returns>
-public bool WasButtonJustPressed(Buttons button)
-{
-    return CurrentState.IsButtonDown(button) && PreviousState.IsButtonUp(button);
-}
-
-/// <summary>
-/// Returns a value that indicates whether the specified gamepad button was just released on the current frame.
-/// </summary>
-/// <param name="button"><The gamepad button to check./param>
-/// <returns>true if the specified gamepad button was just released on the current frame; otherwise, false.</returns>
-public bool WasButtonJustReleased(Buttons button)
-{
-    return CurrentState.IsButtonUp(button) && PreviousState.IsButtonDown(button);
-}
-```
+[!code-csharp[](./snippets/gamepadinfo.cs#methods_buttonstate)]
 
 These methods serve two distinct purposes. For checking continuous states:
 
@@ -756,26 +304,7 @@ And for detecting state changes:
 
 Finally, we'll add methods for controlling gamepad vibration:
 
-```cs
-/// <summary>
-/// Sets the vibration for all motors of this gamepad.
-/// </summary>
-/// <param name="strength">The strength of the vibration from 0.0f (none) to 1.0f (full).</param>
-/// <param name="time">The amount of time the vibration should occur.</param>
-public void SetVibration(float strength, TimeSpan time)
-{
-    _vibrationTimeRemaining = time;
-    GamePad.SetVibration(PlayerIndex, strength, strength);
-}
-
-/// <summary>
-/// Stops the vibration of all motors for this gamepad.
-/// </summary>
-public void StopVibration()
-{
-    GamePad.SetVibration(PlayerIndex, 0.0f, 0.0f);
-}
-```
+[!code-csharp[](./snippets/gamepadinfo.cs#methods_vibration)]
 
 The vibration methods provide control over the gamepad's haptic feedback:
 
@@ -793,37 +322,13 @@ Now that we have classes to handle keyboard, mouse, and gamepad input individual
 
 In the *Input* directory of the *MonoGameLibrary* project, add a new file named *InputManager.cs* with this initial structure:
 
-```cs
-using Microsoft.Xna.Framework;
-
-namespace MonoGameLibrary.Input;
-
-public class InputManager : GameComponent
-{
-
-}
-```
+[!code-csharp[](./snippets/inputmanager.cs#declaration)]
 
 ### InputManager Properties
 
 The `InputManager` class needs properties to access each type of input device. Add these properties:
 
-```cs
-/// <summary>
-/// Gets the state information of keyboard input.
-/// </summary>
-public KeyboardInfo Keyboard { get; private set; }
-
-/// <summary>
-/// Gets the state information of mouse input.
-/// </summary>
-public MouseInfo Mouse { get; private set; }
-
-/// <summary>
-/// Gets the state information of a gamepad.
-/// </summary>
-public GamePadInfo[] GamePads { get; private set; }
-```
+[!code-csharp[](./snippets/inputmanager.cs#properties)]
 
 > [!NOTE]
 > The `GamePads` property is an array because MonoGame supports up to four gamepads simultaneously. Each gamepad is associated with a PlayerIndex (0-3).
@@ -832,153 +337,37 @@ public GamePadInfo[] GamePads { get; private set; }
 
 The `InputManager` needs a constructor that accept a [**Game**](xref:Microsoft.Xna.Framework.Game) parameter due to inheriting from the [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent) class.  Add the following constructor:
 
-```cs
-/// <summary>
-/// Creates a new InputManager.
-/// </summary>
-/// <param name="game">The game this input manager belongs to.</param>
-public InputManager(Game game) : base(game) { }
-```
+[!code-csharp[](./snippets/inputmanager.cs#ctors)]
 
 ### InputManager Methods
 
 First, override the `Initialize` method so that we can ensure that the states for each input devices are initialized:
 
-```cs
-/// <summary>
-/// Initializes this input manager.
-/// </summary>
-public override void Initialize()
-{
-    Keyboard = new KeyboardInfo();
-    Mouse = new MouseInfo();
-
-    GamePads = new GamePadInfo[4];
-    for (int i = 0; i < 4; i++)
-    {
-        GamePads[i] = new GamePadInfo((PlayerIndex)i);
-    }
-}
-```
+[!code-csharp[](./snippets/inputmanager.cs#methods_initialize)]
 
 Next override the `Update` method so that the states of the input devices are updated:
 
-```cs
-/// <summary>
-/// Updates the state information for the keyboard, mouse, and gamepad inputs.
-/// </summary>
-/// <param name="gameTime">A snapshot of the timing values for the current frame.</param>
-public override void Update(GameTime gameTime)
-{
-    Keyboard.Update();
-    Mouse.Update();
+[!code-csharp[](./snippets/inputmanager.cs#methods_update)]
 
-    for (int i = 0; i < 4; i++)
-    {
-        GamePads[i].Update(gameTime);
-    }
-}
-```
-
-### Implementing the InputManager Class
+## Implementing the InputManager Class
 
 Now that we have our input management system complete, let's update our game to use it. Instead of tracking input states directly, we'll use the `InputManager` to handle all our input detection. Open *Game1.cs* and make the following changes:
 
-1. Add the `MonoGameLibrary.Input` using directive so we can access the `InputManager` class:
+[!code-csharp[](./snippets/game1.cs?highlight=6,27-28,36-40,66-68,86-90,94,100,106,112,118,126-127,132,135,139,145,147-148,153,159,165,171)]
 
-    ```cs
-    using MonoGameLibrary.Input;
-    ```
+The key changes made here are:
 
-2. Add a field for the `InputManager` class:
+1. The `using MonoGameLibrary.Input` using directive was added so we can access the `InputManager` class.
+2. The field `_input` was added to track and access the `InputManager`.
+3. In the constructor, a new instance of the `InputManager` is created and added to the game's component collection.
+4. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the check for the gamepad back button or keyboard escape key being pressed was removed.
+5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the call to `base.Update(gameTime)` was moved to the first line so that the input manager component is updated before game logic is checked.
+6. The check for the escape key was moved to the `CheckKeyboardInput` method.
+7. In `CheckKeyboardInput`, instead of calling `Keyboard.GetState` and then using the state, calls to check keyboard input now use the input manager.
+8. The check for the back button was moved to `CheckGamePadInput`
+9. In `CheckGamePadInput` instead of calling `GamePad.GetState`, the `GamePadInfo` of player one's game pad is retrieved from the input manager and calls to check gamepad input now use this.
 
-    ```cs
-    private InputManager _input;
-    ```
-
-3. In the constructor, create the `InputManager` and add it to to the game component collection:
-
-    ```cs
-    // Create and add the input manager component to the game's component collection
-    _input = new InputManager(this);
-    Components.Add(_input);
-    ```
-
-4. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), remove the `if` statement that checks for the gamepad back button or keyboard escape key being pressed and then calls exit.  We're going to move this to the individual handle input methods in a moment.
-
-5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) move the `base.Update(gameTime)` call from being the last line of the method to the first line of the method.  We do this because game components are updated during the `base.Update(gameTime)` call and we want to ensure that input is updated before we start handling input checks.
-
-6. Update the `HandleKeyboardInput` method to use the new `InputManager`:
-
-    ```cs
-    private void HandleKeyboardInput()
-    {
-        if (_input.Keyboard.IsKeyDown(Keys.Escape))
-        {
-            Exit();
-        }
-    
-        if (_input.Keyboard.IsKeyDown(Keys.Up))
-        {
-            _slimePosition.Y -= MOVEMENT_SPEED;
-        }
-    
-        if (_input.Keyboard.IsKeyDown(Keys.Down))
-        {
-            _slimePosition.Y += MOVEMENT_SPEED;
-        }
-    
-        if (_input.Keyboard.IsKeyDown(Keys.Left))
-        {
-            _slimePosition.X -= MOVEMENT_SPEED;
-        }
-    
-        if (_input.Keyboard.IsKeyDown(Keys.Right))
-        {
-            _slimePosition.X += MOVEMENT_SPEED;
-        }
-    }
-    ```
-
-7. Update the `HandleGamePadInput` method to use the new `InputManager`:
-
-    ```cs
-    private void HandleGamepadInput()
-    {
-        GamePadInfo gamePadOne = _input.GamePads[(int)PlayerIndex.One];
-    
-        if (gamePadOne.IsButtonDown(Buttons.Back))
-        {
-            Exit();
-        }
-    
-        if (gamePadOne.IsButtonDown(Buttons.A))
-        {
-            _slimePosition.X += gamePadOne.LeftThumbStick.X * 1.5f * MOVEMENT_SPEED;
-            _slimePosition.Y -= gamePadOne.LeftThumbStick.Y * 1.5f * MOVEMENT_SPEED;
-            gamePadOne.SetVibration(1.0f, TimeSpan.FromSeconds(0.5f));
-        }
-        else
-        {
-            _slimePosition.X += gamePadOne.LeftThumbStick.X * MOVEMENT_SPEED;
-            _slimePosition.Y -= gamePadOne.LeftThumbStick.Y * MOVEMENT_SPEED;
-        }
-    }
-    ```
-
-8. Remove the `HandleMouseInput` and the `HandleTouchInput` methods, we no longer need these since they were just for example purposes.
-
-The key improvements in this implementation are:
-
-1. Centralized Input Management:
-    - All input is now accessed through the `InputManager`.
-    - Input states are automatically tracked between frames.
-    - No need to manually store previous states.
-
-2. Improved Input Detection:
-    - Mouse movement now only triggers on initial click using `WasButtonJustPressed`.
-    - Gamepad vibration is handled through `SetVibration` with automatic duration.
-    - Thumbstick values are easily accessed through `LeftThumbStick` property.
+By implementing these changes, we get the following improvements;
 
 Running the game now, you will be able to control it the same as before, only now we're using our new `InputManager` class instead.
 
@@ -997,24 +386,18 @@ In this chapter, you learned how to:
 
 1. What's the difference between checking if an input is "down" versus checking if it was "just pressed"?
 
-   <details>
-   <summary>Question 1 Answer</summary>
-
-   > "Down" checks if an input is currently being held, returning true every frame while held. "Just pressed" only returns true on the first frame when the input changes from up to down, requiring comparison between current and previous states.
-   </details><br />
+    :::question-answer
+    "Down" checks if an input is currently being held, returning true every frame while held. "Just pressed" only returns true on the first frame when the input changes from up to down, requiring comparison between current and previous states.
+    :::
 
 2. Why do we track both current and previous input states?
 
-   <details>
-   <summary>Question 2 Answer</summary>
-
-   > Tracking both states allows us to detect when input changes occur by comparing the current frame's state with the previous frame's state. This is essential for implementing "just pressed" and "just released" checks.
-   </details><br />
+    :::question-answer
+    Tracking both states allows us to detect when input changes occur by comparing the current frame's state with the previous frame's state. This is essential for implementing "just pressed" and "just released" checks.
+    :::
 
 3. What advantage does the `InputManager` provide over handling input directly?
 
-   <details>
-   <summary>Question 3 Answer</summary>
-
-   > The `InputManager` centralizes all input handling, automatically tracks states between frames, and provides a consistent API across different input devices. This makes the code more organized, reusable, and easier to maintain.
-   </details><br />
+    :::question-answer
+    The `InputManager` centralizes all input handling, automatically tracks states between frames, and provides a consistent API across different input devices. This makes the code more organized, reusable, and easier to maintain.
+    :::
