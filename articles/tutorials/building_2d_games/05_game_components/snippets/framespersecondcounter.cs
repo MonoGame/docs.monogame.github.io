@@ -33,7 +33,7 @@ public class FramesPerSecondCounter : DrawableGameComponent
     /// Updates the FPS calculation based on elapsed game time.
     /// </summary>
     /// <param name="gameTime">A snapshot of the game's timing values.</param>
-    public override Update(GameTime gameTime)
+    public override void Update(GameTime gameTime)
     {
         _elapsedTime += gameTime.ElapsedGameTime;
 
@@ -48,7 +48,7 @@ public class FramesPerSecondCounter : DrawableGameComponent
     /// <summary>
     /// Increments the frame counter. Should be called once per frame during the game's Draw method.
     /// </summary>
-    public override Draw(GameTime gameTime)
+    public override void Draw(GameTime gameTime)
     {
         // Increment the frame counter only during draw.
         _frameCounter++;

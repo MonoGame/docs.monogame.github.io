@@ -17,7 +17,7 @@ public class Game1 : Game
         IsMouseVisible = true;
 
         // Create a new FramesPerSecondCounter.
-        FramesPerSecondCounter fpsCounter = new FramesPerSecondCounter();
+        FramesPerSecondCounter fpsCounter = new FramesPerSecondCounter(this);
 
         // Add it to the game's component collection
         Components.Add(fpsCounter);
