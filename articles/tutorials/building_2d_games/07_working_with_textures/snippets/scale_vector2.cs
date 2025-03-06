@@ -11,7 +11,7 @@ protected override void Draw(GameTime gameTime)
         _logo,                      // texture
         new Vector2(                // position
             Window.ClientBounds.Width,
-            indow.ClientBounds.Height) * 0.5f,
+            Window.ClientBounds.Height) * 0.5f,
         null,                       // sourceRectangle
         Color.White,                // color
         0.0f,                       // rotation
