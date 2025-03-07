@@ -35,6 +35,7 @@ This documentation will introduce game development concepts using the MonoGame f
 | [12: Input Management](12_input_management/index.md)                         | Learn how to create an input management system to handle keyboard, mouse, and gamepad input, including state tracking between frames and creating a reusable framework for handling player input. |              |
 | [13: Collision Detection](13_collision_detection/index.md)                   | Learn how to implement collision detection between game objects and handle collision responses like blocking, triggering events, and bouncing.                                                    |              |
 | [14: Sound Effects and Music](14_soundeffects_and_music/index.md)            | Learn how to load and play sound effects and background music in MonoGame including managing audio volume, looping, and handling multiple sound effects at once.                                  |              |
+| [15: Working with SpriteFonts](15_working_with_spritefonts/index.md)         | Learn how to create and use SpriteFonts to render text in your MonoGame project, including loading custom fonts and controlling text appearance.                                                  |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
