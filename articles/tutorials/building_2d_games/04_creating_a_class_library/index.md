@@ -53,7 +53,7 @@ To add the class library using the MonoGame Game Library project template in Vis
 
 1. In the *Solution Explorer* panel, right-click the *DungeonSlime* solution.
 2. Chose *New Project* from the context menu.
-3. Enter "Monogame Game Library" and select it as the template to use.
+3. Enter "MonoGame Game Library" and select it as the template to use.
 4. Name the project "MonoGameLibrary".
 5. When prompted for a location, use the default option, which will put the new project in a folder next to your game project.
 6. Select "Create Project".
@@ -164,9 +164,9 @@ When you run the game now, you'll see the current FPS displayed in the window ti
 - The game project can reference and use library classes.
 - The basic structure for creating reusable components works.
 
-| ![Figure 4-1: The game window showing the frames per second in the title bar of the window](./images/game_showing_fps.png) |
+| ![Figure 4-3: The game window showing the frames per second in the title bar of the window](./images/game_showing_fps.png) |
 | :---: |
-| **Figure 4-1: The game window showing the frames per second in the title bar of the window** |
+| **Figure 4-3: The game window showing the frames per second in the title bar of the window** |
 
 > [!TIP]
 > While this FPS counter is a simple example, it demonstrates the pattern we'll use throughout the tutorial: create reusable components in the library project, then reference and use them in games. This same approach will work for more complex components like sprite management, input handling, and collision detection.
@@ -176,7 +176,7 @@ When you run the game now, you'll see the current FPS displayed in the window ti
 >
 > *The type or namespace name 'FramesPerSecondCounter' could not be found (are you missing a using directive or an assembly reference?)*
 >
-> This means either you forgot to add the `using MonoGameLibrary;` using directive to the top of the *Game1.cs* class file, or you did not add the project reference correctly.  Ensure that the project reference was added correctly by revisiting the [Add a Refernece to the Class Library](#adding-a-reference-to-the-class-library) section above and that you added the using directive.
+> This means either you forgot to add the `using MonoGameLibrary;` using directive to the top of the *Game1.cs* class file, or you did not add the project reference correctly.  Ensure that the project reference was added correctly by revisiting the [Add a Reference to the Class Library](#adding-a-reference-to-the-class-library) section above and that you added the using directive.
 
 ## Conclusion
 
@@ -207,7 +207,7 @@ In the next chapter, we'll go over MonoGame's Game Component system and how we c
 
 2. Why should you use the MonoGame Game Library template instead of a standard class library template?
 
-    :::question-anser
+    :::question-answer
     The MonoGame Game Library template automatically configures the correct MonoGame framework references and ensures compatibility with MonoGame projects, saving time and preventing potential setup issues.
     :::
 
