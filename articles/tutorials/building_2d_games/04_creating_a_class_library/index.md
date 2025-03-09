@@ -3,14 +3,7 @@ title: "04: Creating a Class Library"
 description: "Learn how to create and structure a reusable MonoGame class library to organize game components and share code between projects."
 ---
 
-One of the goals of this tutorial is to create reusable modules that you can use to jump start your next game project after this.  Instead of creating these modules directly in our game project, we can create a *class library* and add them to that.  Creating a class library offers several advantages, including:
-
-1. **Reusability**: The classes can be easily reused in future game projects by simply adding a reference to the library.
-2. **Organization**: Keeps game-specific code separate from reusable library code.
-3. **Maintainability**: Changes to the library can benefit all games that use it.
-4. **Testing**: The library code can be tested independently of any specific game.
-
-A class library is a project type that compiles into a [Dynamic Link Library](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries) (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.  MonoGame offers the *MonoGame Game Library* project template that can be used to create a class library.
+One of the goals of this tutorial is to create reusable modules that you can use to jump start your next game project after this. Rather than starting from scratch each time, we'll build a collection of game components you can take with you from project to project.
 
 In this chapter you will:
 
@@ -19,6 +12,34 @@ In this chapter you will:
 - Add library references to your game project.
 - Structure your library for reusability.
 - Set up the foundation for creating shared game components.
+
+## What Is a Class Library
+
+Think of a class library like a toolbox for your game development. Just as a mechanic keeps their most-used tools in a toolbox they bring to every job, a class library stores code components you'll want to use in multiple game projects. Instead of recreating these tools for each new game (or copying and pasting code), you organize them in one place where they're easy to find, use, and improve over time.
+
+The following diagrams show how this works:
+
+| ![Figure 4-1: Without using a class library, common modules are duplicated across projects](./images/without-class-library.png) |
+| :---: |
+| **Figure 4-1: Without using a class library, common modules are duplicated across projects** |
+
+| ![Figure 4-2: Using a class library, common modules are shared across projects](./images/with-class-library.png) |
+| :---: |
+| **Figure 4-2: Using a class library, common modules are shared across projects** |
+
+> [!NOTE]
+> A class library is a project type that compiles into a [Dynamic Link Library](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries) (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.
+
+## Why Create a Class Library?
+
+Creating a class library offers several important advantages, especially as your games grow more complex:
+
+1. **Reusability**: Instead of rewriting the same code for each new game project, you build it once in your library and reuse it everywhere. This is like creating a multi-tool that works across all your projects.
+2. **Organization**: Your game code stays focused on the unique aspects of each game, while common functionality lives in the library. This keeps your project folder neat and makes code easier to find.
+3. **Maintainability**: When you improve or fix a bug in your library code, all games using that library benefit automatically. This means fixing one bug once instead of in multiple places.
+4. **Testing**: You can test your library code independently from any specific game. This helps ensure your core systems are solid before you build a game on top of them.
+
+As your library grows, you'll accumulate a personal collection of well-tested modules that make starting new projects much faster. The modules we'll create in this library will handle common game tasks like input, audio, sprites, and animations.
 
 ## Adding the Class Library
 
