@@ -70,7 +70,23 @@ Alternatively, for better portability across development environments, it's reco
 
 #### Size
 
-The `<Size>` element controls the font size in points. For pixel fonts, keeping this at a small value preserves the crisp pixel look. For smoother, anti-aliased fonts, you might want a larger value.
+The `<Size>` element controls the font size in points. While it might seem straightforward, font sizing requires consideration and can be dependent on several factors.  When choosing a font size, consider:
+
+- **Resolution impact**: Fonts that look good at 1080p may appear too small at 4K or too large at 720p.
+- **Font style**: Pixel fonts look best with small sizes to preserve crispness.
+- **Use case**: Different UI elements may require different sizes for proper hierarchy.
+
+You may want to create multiple SpriteFont Description files for different use cases in your game such as:
+
+- A larger font for headings and titles.
+- A medium-sized font for standard UI elements.
+- A smaller font for detailed information.
+
+Creating multiple SpriteFont Description files, however, can remove some of the benefits of fonts being a texture atlas since you will now have multiple atlases for each size. You'll also now have multiple assets to manage both as asset files and references in code.
+
+An alternative approach is to create a single SpriteFont Description with a larger than needed size font, then scale it down during runtime in the game. This approach allows you to maintain the single SpriteFont Description file and single texture atlas, however, the size of the texture atlas will now be larger.
+
+There are tradeoffs to each approach and you should choose the one that works best for your game.
 
 #### Spacing
 
