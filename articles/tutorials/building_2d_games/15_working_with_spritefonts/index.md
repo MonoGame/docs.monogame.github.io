@@ -96,6 +96,9 @@ The `<Spacing>` element adjusts the space between characters. The default value 
 
 The `<UseKerning>` element determines whether to use kerning information from the font. Kerning adjusts the spacing between specific pairs of characters for more visually pleasing results. For most fonts, you'll want to leave this as `true`.
 
+> [!NOTE]
+> While kerning typically improves text appearance, some fonts (including Arial) may not respond optimally to kerning adjustments. If you notice unusual character spacing with a particular font, try setting this value to `false`.
+
 #### Style
 
 The `<Style>` element sets the font style. Valid options are "Regular", "Bold", "Italic", or "Bold, Italic". Note that not all fonts have all styles available, and using a style that doesn't exist will fall back to Regular.
