@@ -44,6 +44,8 @@ This will create a default SpriteFont Description file that look something like 
 
 [!code-xml[](./snippets/spritefont_description.spritefont)]
 
+When creating a SpriteFont Description for your game, you'll need to make several important decisions about font selection, size, formatting, and licensing. The following sections will guide you through customizing the SpriteFont Description using these considerations.
+
 ### Customizing the SpriteFont
 
 The SpriteFont Description file allows you to customize various aspects of how the font will be processed and appear in your game. Here are the key elements you can modify:
