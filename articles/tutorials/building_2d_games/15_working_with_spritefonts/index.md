@@ -17,7 +17,12 @@ Let's start by understanding how text rendering works in MonoGame.
 
 ## Understanding SpriteFonts
 
-MonoGame processes fonts through the content pipeline to create a texture atlas of font characters.  Preprocessing the font characters into a texture atlas improves performance when rendering text since it removes texture swapping for each character rendered.
+MonoGame processes fonts through the content pipeline to create a texture atlas of font characters.  MonoGame uses the texture atlas approach rather than directly using system fonts for several important reasons:
+
+- **Cross-platform Compatibility**: System fonts cannot be guaranteed to exist on all platforms.
+- **Consistency**: Ensures that the text appears the same across all platforms.
+- **GPU Rendering**: Graphics cards do not understand font formats directly; they can only render textures.
+- **Performance**: Pre-rendering the glyphs to a texture atlas allow for faster rendering at runtime with no texture swapping.
 
 A [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) in MonoGame consists of:
 
@@ -25,7 +30,7 @@ A [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) in MonoGame
 2. Data that tracks the position, size, and spacing of each character.
 3. Kerning information for adjusting spacing between specific character pairs.
 
-The texture atlas approach means fonts are rendered as sprites, using the same [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) system you learned about for drawing textures.
+The texture atlas approach means fonts are rendered as sprites, using the same [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) system you learned about for drawing textures.  When you draw text, MonoGame is actually drawing small portions of the texture atlas for each character assembled together to form complete words and sentences.
 
 ## Creating a SpriteFont Description
 
