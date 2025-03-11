@@ -4,13 +4,13 @@ protected override void Draw(GameTime gameTime)
     GraphicsDevice.Clear(Color.CornflowerBlue);
 
     // Begin the sprite batch to prepare for rendering.
-    _spriteBatch.Begin();
+    SpriteBatch.Begin();
 
     // Draw the texture
-    _spriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+    SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
 
     // Always end the sprite batch when finished.
-    _spriteBatch.End();
+    SpriteBatch.End();
 
     base.Draw(gameTime);
 }

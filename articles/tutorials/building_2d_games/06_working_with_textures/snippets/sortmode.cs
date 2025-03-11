@@ -10,10 +10,10 @@ protected override void Draw(GameTime gameTime)
     Rectangle wordmarkSourceRect = new Rectangle(150, 34, 458, 58);
 
     // Begin the sprite batch to prepare for rendering.
-    _spriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack);
+    SpriteBatch.Begin(sortMode: SpriteSortMode.FrontToBack);
 
     // Draw only the icon portion of the texture.
-    _spriteBatch.Draw(
+    SpriteBatch.Draw(
         _logo,              // texture
         new Vector2(        // position
             Window.ClientBounds.Width,
@@ -30,7 +30,7 @@ protected override void Draw(GameTime gameTime)
     );
 
     // Draw only the word mark portion of the texture.
-    _spriteBatch.Draw(
+    SpriteBatch.Draw(
         _logo,              // texture
         new Vector2(        // position
           Window.ClientBounds.Width,
@@ -47,7 +47,7 @@ protected override void Draw(GameTime gameTime)
     );
 
     // Always end the sprite batch when finished.
-    _spriteBatch.End();
+    SpriteBatch.End();
 
     base.Draw(gameTime);
 }
