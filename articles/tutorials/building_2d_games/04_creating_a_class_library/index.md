@@ -20,12 +20,12 @@ Think of a class library like a toolbox for your game development. Just as a mec
 The following diagrams show how this works:
 
 | ![Figure 4-1: Without using a class library, common modules are duplicated across projects](./images/without-class-library.png) |
-| :---: |
-| **Figure 4-1: Without using a class library, common modules are duplicated across projects** |
+|:-------------------------------------------------------------------------------------------------------------------------------:|
+|                  **Figure 4-1: Without using a class library, common modules are duplicated across projects**                   |
 
 | ![Figure 4-2: Using a class library, common modules are shared across projects](./images/with-class-library.png) |
-| :---: |
-| **Figure 4-2: Using a class library, common modules are shared across projects** |
+|:----------------------------------------------------------------------------------------------------------------:|
+|                 **Figure 4-2: Using a class library, common modules are shared across projects**                 |
 
 > [!NOTE]
 > A class library is a project type that compiles into a [Dynamic Link Library](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries) (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.
@@ -130,46 +130,44 @@ When using the *MonoGame Game Library* project template, the generated project c
 
 ## Creating Our First Library Module
 
-Let's validate our class library setup by creating a simple component that counts frames per second (FPS). This will demonstrate that we can successfully create classes in our library and use them in our game.
+Let's create a class for our library called `Core`.  This class will extend the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class and provide a starting point for game development with some common functionality built in.  Creating this will also let us validate that our class library reference setup was correct.
 
-Create a new file called *FramesPerSecondCounter.cs* in the root of the *MonoGameLibrary* project and add the following code:
+Create a new file called *Core.cs* in the *MonoGameLibrary* project and add the following code:
 
-[!code-csharp[](./snippets/framespersecondcounter.cs)]
+[!code-csharp[](./snippets/core.cs)]
 
-This class:
+The `Core` class provides the following features
 
-- Tracks how many frames are rendered each second.
-- Updates the FPS calculation based on elapsed time.
-- Provides the current FPS through a property.
+1. It extends the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class, so it inherits all of the base functionality.
+2. It implements a singleton pattern through the `Instance` property, ensure only one core exists.
+3. It provides static access to the graphics device manager and the sprite batch.
+4. It simplifies the game window setup with a constructor that handles common initializations.
 
-## Adding the Module To Our Game
+This approach provides a consistent foundation for all our games, handling common setup tasks and providing convenient access to core functionality.
 
-Now that we have the `FramesPerSecondCounter` class created, let's add it to our game.  Doing this will also help ensure that the project references were setup correctly.  Open the *Game1.cs* file and make the following changes:
+> [!NOTE]
+> As this tutorial progress, we'll be coming back to this `Core` class to add more to it.
 
-[!code-csharp[](./snippets/game1.cs?highlight=4,13-14,22-23,41-42,51-55)]
+## Updating Our Game to Use the Core Class
+
+Now that we have our `Core` class, let's modify our game project to use it.  Doing this will also help ensure that the project references were setup correctly.
+
+Open the *Game1.cs* file and make the following changes:
+
+[!code-csharp[](./snippets/game1.cs?highlight=4,8,10,22-25)]
 
 The key changes made here are:
 
-1. The `using MonoGameLibrary` using directive was added so we can use the new `FramesPerSecondCounter` class.
-2. The field `_fpsCounter` was added to track the `FramesPerSecondCounter` instance.
-3. In the constructor, a new instance of the `FramesPerSecondCounter` is created.
-4. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the `Update` method for the frames per second counter is called.
-5. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime))
-    1. The `UpdateCOunter` method for the frames per second counter is called.
-    2. The game window title is updated to display the frames per second value.
+1. Adding `using MonoGameLibrary;` directive to reference our library.
+1. Removed the [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) fields, these are now supplied through the `Core` class.
+1. Changed `Game1` class to inherit from `Core` instead of `Game`.
+1. Updated the constructor to call the `Core` base constructor with our game configuration.
 
-When you run the game now, you'll see the current FPS displayed in the window title bar. This confirms that:
+Running the game now will show the same window as before, only now it is at a 1280x720 resolution as per the configuration and it is using the `Core` class from our library.  This may not seem like a big change visually, but it demonstrates how our library can simplify and standardize game initializations.
 
-- Our class library project is correctly set up.
-- The game project can reference and use library classes.
-- The basic structure for creating reusable components works.
-
-| ![Figure 4-3: The game window showing the frames per second in the title bar of the window](./images/game_showing_fps.png) |
-| :---: |
-| **Figure 4-3: The game window showing the frames per second in the title bar of the window** |
-
-> [!TIP]
-> While this FPS counter is a simple example, it demonstrates the pattern we'll use throughout the tutorial: create reusable components in the library project, then reference and use them in games. This same approach will work for more complex components like sprite management, input handling, and collision detection.
+| ![Figure 4-3: The game window at 1280x720 with the title Dungeon Slime](./images/game-window.png) |
+|:-------------------------------------------------------------------------------------------------:|
+|       **Figure 4-3: Figure 4-3: The game window at 1280x720 with the title Dungeon Slime**        |
 
 > [!IMPORTANT]
 > If you receive an error stating that the following:
@@ -191,7 +189,7 @@ Let's review what you accomplished in this chapter:
 - Added the library as a reference to your game project
 - Created your first reusable component and referenced and used it in the game project.
 
-In the next chapter, we'll go over MonoGame's Game Component system and how we can use it with our class library.
+In the next chapter, we'll learn about the Content Pipeline and how to load game assets.
 
 ## Test Your Knowledge
 
