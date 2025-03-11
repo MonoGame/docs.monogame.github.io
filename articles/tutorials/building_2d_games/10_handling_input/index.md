@@ -1,5 +1,5 @@
 ---
-title: "Chapter 11: Handling Input"
+title: "Chapter 10: Handling Input"
 description: "Learn how to handle keyboard, mouse, and gamepad input in MonoGame."
 ---
 

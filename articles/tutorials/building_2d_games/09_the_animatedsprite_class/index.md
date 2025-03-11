@@ -1,5 +1,5 @@
 ---
-title: "Chapter 10: The AnimatedSprite Class"
+title: "Chapter 09: The AnimatedSprite Class"
 description: "Create an AnimatedSprite class that builds upon our Sprite class to support frame-based animations."
 ---
 

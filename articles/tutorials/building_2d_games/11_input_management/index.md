@@ -1,5 +1,5 @@
 ---
-title: "Chapter 12: Input Management"
+title: "Chapter 11: Input Management"
 description: "Learn how to create an input management system to handle keyboard, mouse, and gamepad input, including state tracking between frames and creating a reusable framework for handling player input."
 ---
 

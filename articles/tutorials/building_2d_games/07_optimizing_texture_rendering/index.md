@@ -1,5 +1,5 @@
 ---
-title: "Chapter 08: Optimizing Texture Rendering"
+title: "Chapter 07: Optimizing Texture Rendering"
 description: Explore optimization techniques when rendering textures using a texture atlas.
 ---
 

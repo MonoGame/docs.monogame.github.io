@@ -120,28 +120,26 @@
           href: tutorials/building_2d_games/03_the_game1_file/
         - name: "04: Creating a Class Library"
           href: tutorials/building_2d_games/04_creating_a_class_library/
-        - name: "05: Game Components"
-          href: tutorials/building_2d_games/05_game_components/
-        - name: "06: Content Pipeline"
-          href: tutorials/building_2d_games/06_content_pipeline/
-        - name: "07: Working with Textures"
-          href: tutorials/building_2d_games/07_working_with_textures/
-        - name: "08: Optimizing Texture Rendering"
-          href: tutorials/building_2d_games/08_optimizing_texture_rendering/
-        - name: "09: The Sprite Class"
-          href: tutorials/building_2d_games/09_the_sprite_class/
-        - name: "10: The AnimatedSprite Class"
-          href: tutorials/building_2d_games/10_the_animatedsprite_class/
-        - name: "11: Handling Input"
-          href: tutorials/building_2d_games/11_handling_input/
-        - name: "12: Input Management"
-          href: tutorials/building_2d_games/12_input_management/
-        - name: "13: Collision Detection"
-          href: tutorials/building_2d_games/13_collision_detection/
-        - name: "14: Sound Effects and Music"
-          href: tutorials/building_2d_games/14_soundeffects_and_music/
-        - name: "15: Working with SpriteFonts"
-          href: tutorials/building_2d_games/15_working_with_spritefonts/
+        - name: "05: Content Pipeline"
+          href: tutorials/building_2d_games/05_content_pipeline/
+        - name: "06: Working with Textures"
+          href: tutorials/building_2d_games/06_working_with_textures/
+        - name: "07: Optimizing Texture Rendering"
+          href: tutorials/building_2d_games/07_optimizing_texture_rendering/
+        - name: "08: The Sprite Class"
+          href: tutorials/building_2d_games/08_the_sprite_class/
+        - name: "09: The AnimatedSprite Class"
+          href: tutorials/building_2d_games/09_the_animatedsprite_class/
+        - name: "10: Handling Input"
+          href: tutorials/building_2d_games/10_handling_input/
+        - name: "11: Input Management"
+          href: tutorials/building_2d_games/11_input_management/
+        - name: "12: Collision Detection"
+          href: tutorials/building_2d_games/12_collision_detection/
+        - name: "13: Sound Effects and Music"
+          href: tutorials/building_2d_games/13_soundeffects_and_music/
+        - name: "14: Working with SpriteFonts"
+          href: tutorials/building_2d_games/14_working_with_spritefonts/
 - name: Console Access
   href: console_access.md
 - name: Help and Support

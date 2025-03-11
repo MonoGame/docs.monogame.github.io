@@ -1,5 +1,5 @@
 ---
-title: "Chapter 15: Working with SpriteFonts"
+title: "Chapter 14: Working with SpriteFonts"
 description: "Learn how to create and use SpriteFonts to render text in your MonoGame project, including loading custom fonts and controlling text appearance."
 ---
 

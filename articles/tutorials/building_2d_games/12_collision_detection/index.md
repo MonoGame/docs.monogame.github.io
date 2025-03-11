@@ -1,5 +1,5 @@
 ---
-title: "Chapter 13: Collision Detection"
+title: "Chapter 12: Collision Detection"
 description: "Learn how to implement collision detection between game objects and handle collision responses like blocking, triggering events, and bouncing."
 ---
 

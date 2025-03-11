@@ -1,5 +1,5 @@
 ---
-title: "Chapter 09: The Sprite Class"
+title: "Chapter 08: The Sprite Class"
 description: "Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more."
 ---
 
