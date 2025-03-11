@@ -242,7 +242,7 @@ Now that we have an image file to add, perform the following:
 
 With the MonoGame logo image now added to the content project, we can load it in our game and draw it.  Open the *Game1.cs* file and make the following changes:
 
-[!code-csharp[](./snippets/game1.cs?highlight=13-14,38-39,55-62)]
+[!code-csharp[](./snippets/game1.cs?highlight=10-11,27,45-52)]
 
 The key changes made here are:
 

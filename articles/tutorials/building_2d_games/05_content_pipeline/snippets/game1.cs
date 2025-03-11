@@ -5,38 +5,27 @@ using MonoGameLibrary;
 
 namespace DungeonSlime;
 
-public class Game1 : Game
+public class Game1 : Core
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
-
     // The MonoGame logo texture
     private Texture2D _logo;
 
-    public Game1()
+    public Game1() : base("Dungeon Slime", 1280, 720, false)
     {
-        _graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = "Content";
-        IsMouseVisible = true;
 
-        // Create a new FramesPerSecondCounter.
-        FramesPerSecondCounter fpsCounter = new FramesPerSecondCounter(this);
-
-        // Add it to the game's component collection
-        Components.Add(fpsCounter);
     }
 
     protected override void Initialize()
     {
+        // TODO: Add your initialization logic here
+
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        // Load the MonoGame logo asset using the ContentManager
         _logo = Content.Load<Texture2D>("images/logo");
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
@@ -44,22 +33,23 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
+        // TODO: Add your update logic here
+
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        // Clear the back buffer.
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         // Begin the sprite batch to prepare for rendering.
-        _spriteBatch.Begin();
+        SpriteBatch.Begin();
 
         // Draw the logo texture
-        _spriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+        SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
 
         // Always end the sprite batch when finished.
-        _spriteBatch.End();
+        SpriteBatch.End();
 
         base.Draw(gameTime);
     }
