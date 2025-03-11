@@ -84,11 +84,12 @@ You may want to create multiple SpriteFont Description files for different use c
 - A medium-sized font for standard UI elements.
 - A smaller font for detailed information.
 
-Creating multiple SpriteFont Description files, however, can remove some of the benefits of fonts being a texture atlas since you will now have multiple atlases for each size. You'll also now have multiple assets to manage both as asset files and references in code.
-
-An alternative approach is to create a single SpriteFont Description with a larger than needed size font, then scale it down during runtime in the game. This approach allows you to maintain the single SpriteFont Description file and single texture atlas, however, the size of the texture atlas will now be larger.
-
-There are tradeoffs to each approach and you should choose the one that works best for your game.
+> [!TIP]
+> Creating multiple SpriteFont Description files, however, can remove some of the benefits of fonts being a texture atlas since you will now have multiple atlases for each size. You'll also now have multiple assets to manage both as asset files and references in code.
+>
+> An alternative approach is to create a single SpriteFont Description with a larger than needed size font, then scale it down during runtime in the game. This approach allows you to maintain the single SpriteFont Description file and single texture atlas, however, the size of the texture atlas will now be larger.
+>
+> There are tradeoffs to each approach and you should choose the one that works best for your game.
 
 #### Spacing
 
