@@ -3,7 +3,7 @@ title: "Chapter 13: SoundEffects and Music"
 description: "Learn how to load and play sound effects and background music in MonoGame including managing audio volume, looping, and handling multiple sound effects at once."
 ---
 
-In [Chapter 13](../13_collision_detection/index.md), we implemented collision detection to enable interactions between game objects; the slime can now "eat" the bat, which respawns in a random location, while the bat bounces off screen edges. While these mechanics work visually, our game lacks an important element of player feedback: audio.
+In [Chapter 12](../12_collision_detection/index.md), we implemented collision detection to enable interactions between game objects; the slime can now "eat" the bat, which respawns in a random location, while the bat bounces off screen edges. While these mechanics work visually, our game lacks an important element of player feedback: audio.
 
 Audio plays a crucial role in game development by providing immediate feedback for player actions and creating atmosphere. Sound effects alert players when events occur (like collisions or collecting items), while background music helps establish mood and atmosphere.
 
@@ -146,9 +146,106 @@ Unlike sound effects, music is played through the [**MediaPlayer**](xref:Microso
 > [!IMPORTANT]
 > While [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect) instances can be played simultaneously, trying to play a new [**Song**](xref:Microsoft.Xna.Framework.Media.Song) while another is playing will stop the current song in the best case, and in the worst case cause a crash on some platforms.  In the example above, the state of the media player is checked first before we tell it to play a song.  Checking the state first and stopping it manually if it is playing is best practice to prevent potential crashes.
 
-## Audio Management
+## The AudioController Class
 
-While playing sounds and music is straightforward, a complete game needs to handle various audio states and cleanup. An audio manager that will:
+While playing sounds and music is straightforward, a game needs to handle various audio states and resource cleanup including:
+
+- Track and manage sound effect instances that are created.
+- Dispose of sound effect instances when they are finished.
+- Handle volume control for songs and sound effects.
+- Manage audio states (pause/resume, mute/unmute).
+
+To handle these situations, we can create a reusuable module in our class library to do this.  In the *MonoGameLibrary* project, create a new directory named *Audio*, then add a new class file named *AudioController.cs* to the *Audio* directory with this initial structure:
+
+[!code-csharp[](./snippets/audiocontroller.cs#declaration)]
+
+> [!NOTE]
+> The `AudioController` class will implement the `IDisposable` interface.
+
+### AudioController Properties and Fields
+
+The `AudioController` will need to track sound effect instances created for cleanup and track the state and volume levels of songs and sound effects when toggling between mute states.  Add the following fields and properties:
+
+[!code-csharp[](./snippets/audiocontroller.cs#properties)]
+
+### AudioController Constructor
+
+The constructor just initializes the collection used to track the sound effect instances.  Add the following constructor:
+
+[!code-csharp[](./snippets/audiocontroller.cs#ctors)]
+
+> [!NOTE]
+> The `AudioController` class implements a [finalizer](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers) method `~AudioManager()`.  This method is called when an instance of the class is collected by the garbage collector and is here as part of the `IDisposable` implementation.
+
+### AudioController Methods
+
+The `AudioController` will need methods to:
+
+- Update it to check for resources to clean up.
+- Playing sound effects and songs
+- State management (play/pause, mute/unmute)
+- Volume control
+- Implement the `IDisposable` interface.
+
+#### AudioController Update
+
+The `Update` method will check for existing sound effect instances that have expired and properly dispose of them.  Add the following method:
+
+[!code-csharp[](./snippets/audiocontroller.cs#update)]
+
+#### AudioController Playback
+
+While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way doesn't work if you need to pause them because the game paused.  Instead, we can add playback methods through the `AudioController` that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.  Add the following methods:
+
+[!code-csharp[](./snippets/audiocontroller.cs#playback)]
+
+#### AudioController State Control
+
+The `AudioController` provides methods to control the state of audio playback including pausing and resuming audio as well as muting and unmuting.  Add the following methods:
+
+[!code-csharp[](./snippets/audiocontroller.cs#state)]
+
+#### AudioController Volume Control
+
+The `AudioController` also provides methods to increase and decrease the global volume of songs and sound effects.  Add the following methods:
+
+[!code-csharp[](./snippets/audiocontroller.cs#volume)]
+
+#### AudioController IDisposable Implementation
+
+Finally, the `AudioController` implements the `IDisposable` interface.  Add the following methods:
+
+[!code-csharp[](./snippets/audiocontroller.cs#idisposable)]
+
+> [!TIP]
+> `IDisposable` has been implemented here according to best practices as described in the [Implementing a Dispose Method](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose) document on Microsoft Learn.
+
+## Implementing the AudioController Class
+
+Now that we have the audio controller class complete, let's update the game to use it.  We'll do this in two steps:
+
+1. First, update the `Core` class to add the `AudioController` globally.
+1. Update the `Game1` class to use the global audio controller from `Core`.
+
+### Updating the Core Class
+
+The `Core` class serves as our the base game class, so we'll update it first to add and expose the `AudioController` globally.  Open the *Core.cs* file in the *MonoGameLibrary* project and update it to the following:
+
+[!code-csharp[](./snippets/core.cs?highlight=5,39-42,88-89,100-106,113-114)]
+
+The key changes made here are:
+
+1. Added the `using MonoGameLibrary.Audio;` directive to access the `AudioController` class.
+2. Added a static `Audio` property to provide global access to the audio controller.
+3. Created the new audio controller instance in the `Initialize` method.
+4. Added an override for the `UnloadContent` method where we dispose of the audio controller.
+5. The audio controller is updated in the `Update` method.
+
+### Updating the Game1 Class
+
+## Audio Controller
+
+While playing sounds and music is straightforward, a complete game needs to handle various audio states and cleanup. An audio controller that will:
 
 - Track and manage sound effects and songs
 - Handle volume control
@@ -157,45 +254,45 @@ While playing sounds and music is straightforward, a complete game needs to hand
 
 To get started, create a new directory called *Audio* in the *MonoGameLibrary* project.
 
-### The AudioManager Class
+### The AudioController Class
 
-To effectively manage audio in our games, we will create an `AudioManager` class that handles loading, playing, and controlling both sound effects and music. This manager will be implemented as a [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent), allowing it to receive automatic updates and cleanup.
+To effectively manage audio in our games, we will create an `AudioController` class that handles
 
-In the *Audio* directory of the *MonoGameLibrary* project, add a new file named *AudioManager.cs* with this initial structure:
+1. Playing songs, ensuring that the media state is checked before switching
+1. Play sound effects and track the instances created when they are played.
+1. Control volume of the active song and any active sound effect instances.
+1. Cleans up resources created automatically when a sound effect instance is finished.
 
-[!code-csharp[](./snippets/audiomanager.cs#declaration)]
+In the *Audio* directory of the *MonoGameLibrary* project, add a new file named *AudioController.cs* with this initial structure:
 
-> [!TIP]
-> The `AudioManager` class inherits from [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent), which allows it to be added to a game's component collection and automatically receive updates.
+[!code-csharp[](./snippets/audiocontroller.cs#declaration)]
 
-#### AudioManager Members
+#### AudioController Members
 
-The `AudioManager` class needs to track various audio resources and states. Add these private fields:
+The `AudioController` class needs to track various audio resources and states. Add these private fields:
 
-[!code-csharp[](./snippets/audiomanager.cs#fields)]
+[!code-csharp[](./snippets/audiocontroller.cs#fields)]
 
 These fields serve different purposes:
 
-- `_soundEffects`: Stores loaded sound effects by their asset name.
-- `_songs`: Stores loaded songs by their asset name.
 - `_activeSoundEffectInstances`: Tracks currently playing sound effects.
-- `_previousMusicVolume` and `_previousSoundEffectVolume`: Store volume levels for mute/unmute functionality.
+- `_previousMusicVolume` and `_previousSoundEffectVolume`: Stores the global volume levels for songs and sound effects when toggling mute so they can be restored when mute is toggled off.
 
-### AudioManager Properties
+### AudioController Properties
 
-The AudioManager provides a property to track its mute state.  Add the following property:
+The AudioController provides a property to track its mute state.  Add the following property:
 
-[!code-csharp[](./snippets/audiomanager.cs#properties)]
+[!code-csharp[](./snippets/audiocontroller.cs#properties)]
 
-### AudioManager Constructor
+### AudioController Constructor
 
-The constructor initializes our collections and sets up the component.  Add the following constructor:
+The constructor initializes the collection that tracks the active sound effect instances. Add the following constructor:
 
-[!code-csharp[](./snippets/audiomanager.cs#ctors)]
+[!code-csharp[](./snippets/audiocontroller.cs#ctors)]
 
-### AudioManager Methods
+### AudioController Methods
 
-The `AudioManager` class provides several categories of methods to handle different aspects of audio management.  Each group of methods serves a specific purpose in managing game audio, from basic playback to more complex state management.
+The `AudioController` class provides several categories of methods to handle different aspects of audio management.  Each group of methods serves a specific purpose in managing game audio, from basic playback to more complex state management.
 
 #### Game Component Methods
 
