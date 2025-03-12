@@ -328,7 +328,7 @@ For our game, we're going to implement keyboard and gamepad controls based on th
 
 Open *Game1.cs* and update it with the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=19-23,64-68,73-108,110-161,171)]
+[!code-csharp[](./snippets/game1.cs?highlight=17-21,60-64,69-157,168)]
 
 The key changes made here are:
 

@@ -1,15 +1,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 
 namespace DungeonSlime;
 
-public class Game1 : Game
+public class Game1 : Core
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
-
     // Defines the slime animated sprite.
     private AnimatedSprite _slime;
 
@@ -22,11 +20,9 @@ public class Game1 : Game
     // Speed multiplier when moving.
     private const float MOVEMENT_SPEED = 5.0f;
 
-    public Game1()
+    public Game1() : base("Dungeon Slime", 1280, 720, false)
     {
-        _graphics = new GraphicsDeviceManager(this);
-        Content.RootDirectory = "Content";
-        IsMouseVisible = true;
+
     }
 
     protected override void Initialize()
@@ -38,8 +34,6 @@ public class Game1 : Game
 
     protected override void LoadContent()
     {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
-
         // Create the texture atlas from the XML configuration file
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
@@ -48,6 +42,8 @@ public class Game1 : Game
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite("bat-animation");
+
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
@@ -162,19 +158,20 @@ public class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
+        // Clear the back buffer.
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         // Begin the sprite batch to prepare for rendering.
-        _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+        SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
         // Draw the slime sprite.
-        _slime.Draw(_spriteBatch, _slimePosition);
+        _slime.Draw(SpriteBatch, _slimePosition);
 
         // Draw the bat sprite 10px to the right of the slime.
-        _bat.Draw(_spriteBatch, new Vector2(_slime.Width + 10, 0));
+        _bat.Draw(SpriteBatch, new Vector2(_slime.Width + 10, 0));
 
         // Always end the sprite batch when finished.
-        _spriteBatch.End();
+        SpriteBatch.End();
 
         base.Draw(gameTime);
     }

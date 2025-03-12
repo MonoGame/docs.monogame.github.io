@@ -3,7 +3,7 @@ title: "Chapter 08: The Sprite Class"
 description: "Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more."
 ---
 
-In [Chapter 08](../08_optimizing_texture_rendering/index.md), you learned how to use texture atlases to optimize rendering performance. While this solved the issue of texture swapping, managing individual sprites and their properties becomes increasingly complex as your game grows. Even in our simple example with just a slime and a bat, we would eventually need to track various properties for each sprite:
+In [Chapter 07](../07_optimizing_texture_rendering/index.md), you learned how to use texture atlases to optimize rendering performance. While this solved the issue of texture swapping, managing individual sprites and their properties becomes increasingly complex as your game grows. Even in our simple example with just a slime and a bat, we would eventually need to track various properties for each sprite:
 
 - Color mask for tinting.
 - Origin for rotation and scale.
@@ -72,7 +72,7 @@ We can simplify this process by adding a sprite creation method to the `TextureA
 
 Let's adjust our game now to use the `Sprite` class instead of just the texture regions.  Replace the contents of *Game1.cs* with the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=13-17,40-44,62-66)]
+[!code-csharp[](./snippets/game1.cs?highlight=11-15,34-38,61-65)]
 
 The key changes in this implementation are:
 

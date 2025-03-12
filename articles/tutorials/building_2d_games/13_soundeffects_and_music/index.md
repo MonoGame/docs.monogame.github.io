@@ -93,7 +93,7 @@ The processor that are available for audio files file:
 - **Sound Effects**: Processes the audio file as a [**SoundEffect**](xref:Microsoft.Xna.Framework.Audio.SoundEffect).  This is  automatically selected for *.wav* files.
 - **Song**: Processes the audio file as a [**Song**](xref:Microsoft.Xna.Framework.Media.Song).  This is automatically selected for *.mp3*, *.ogg*, and *.wma* files.
 
-| [!Figure 14-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files](./images/sound-effect-properties.png) | [!Figure 14-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files](./images/song-properties.png) |
+| ![Figure 14-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files](./images/sound-effect-properties.png) | ![Figure 14-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files](./images/song-properties.png) |
 |:-------------------------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------:|
 |                   **Figure 14-2: MGCB Editor properties panel showing Sound Effect content processor settings for .wav files**                    |                **Figure 14-3: MGCB Editor properties panel showing Song content processor settings for .mp3 files                 |
 

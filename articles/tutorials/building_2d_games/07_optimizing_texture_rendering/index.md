@@ -3,7 +3,7 @@ title: "Chapter 07: Optimizing Texture Rendering"
 description: Explore optimization techniques when rendering textures using a texture atlas.
 ---
 
-In [Chapter 07](../07_working_with_textures/index.md), you learned how to load and render textures using [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we will explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.
+In [Chapter 06](../06_working_with_textures/index.md), you learned how to load and render textures using [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). While rendering individual textures works well for simple games, it can lead to performance issues as your game grows more complex. In this chapter, we will explore how to optimize texture rendering by reducing texture swaps and creating reusable components for better organization.
 
 In this chapter, you will:
 
@@ -167,7 +167,7 @@ Add this texture atlas to your content project using the MGCB Editor:
 
 First, we'll explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of *Game1.cs* with the following:
 
-[!code-csharp[](./snippets/game1/textureatlas_usage.cs?highlight=13-17,37-53,71-75)]
+[!code-csharp[](./snippets/game1/textureatlas_usage.cs?highlight=5,11-15,31-47,67-77)]
 
 The key changes in this implementation are:
 
@@ -210,7 +210,7 @@ While manual creation works for a few sprites, managing many regions becomes cum
 
 8. Replace the contents of *Game1.cs* with the following code:
 
-    [!code-csharp[](./snippets/game1/textureatlas_xml_usage.cs?highlight=37-38)]
+    [!code-csharp[](./snippets/game1/textureatlas_xml_usage.cs?highlight=31-32)]
 
 The key improvements here is in [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), where we now:
 

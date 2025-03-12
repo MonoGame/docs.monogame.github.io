@@ -7,7 +7,10 @@ using Microsoft.Xna.Framework.Media;
 
 namespace MonoGameLibrary.Audio;
 
-public class AudioManager : GameComponent { }
+public class AudioManager 
+{
+    
+}
 #endregion
 {
     #region fields

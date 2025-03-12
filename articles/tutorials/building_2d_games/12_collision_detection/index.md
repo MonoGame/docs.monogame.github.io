@@ -34,7 +34,7 @@ Circle collision detection is computationally a simpler check than that rectangl
 Two find the distance between two circles, imagine drawing a line from the center of one circle to the center of the other.  This length of this line is the distance, but we could also calculate it by first walking up or down and then walking left or right from the center of one circle to another, forming a right triangle.
 
 | ![Figure 13-1: Showing the distance between the center of two circles forms a right triange](./images/circle-distance-right-triangle.svg) |
-|:-----------------------------------------------------------------------------------------------------------------------------------------:|
+| :---------------------------------------------------------------------------------------------------------------------------------------: |
 |                       **Figure 13-1: Showing the distance between the center of two circles forms a right triange**                       |
 
 In the Figure 13-1 above
@@ -67,17 +67,17 @@ To calculate the squared distance between to points, MonoGame provides the [**Ve
 Rectangles, often called *bounding boxes*, typically uses what's called *Axis-Aligned Bounding Box* (AABB) collision detection to determine if two rectangle shapes overlap.  Unlike circles, to perform AABB collision detection, the x- and y-axes of both rectangles must be aligned with the x- and y-axes of the screen.  This is just another way of saying that the rectangles cannot be rotated.
 
 | ![Figure 13-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axe.](./images/aabb-vs-non-aabb.svg) |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                **Figure 13-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axes**                |
 
 MonoGame provides the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct which represents a rectangle by its position (X,Y) and size (Width,Height). The following table shows some of the properties of the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct:
 
-| Property                                                    | Type  | Description                                                                                                                                                                          |
-|-------------------------------------------------------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Property                                                    | Type  | Description                                                                                                                                                                            |
+| ----------------------------------------------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [**Bottom**](xref:Microsoft.Xna.Framework.Rectangle.Bottom) | `int` | Returns the y-coordinate location of the bottom edge of the rectangle.  This is equal to [**Rectangle.Y**](xref:Microsoft.Xna.Framework.Rectangle.Y) plus the height of the rectangle. |
-| [**Left**](xref:Microsoft.Xna.Framework.Rectangle.Left)     | `int` | Returns the x-coordinate location of the left edge of the rectangle.  This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X).                                       |
-| [**Right**](xref:Microsoft.Xna.Framework.Rectangle.Right)   | `int` | Returns the x-coordinate location of the right edge of the rectangle.  This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X) plus the width of the rectangle. |
-| [**Top**](xref:Microsoft.Xna.Framework.Rectangle.Top)       | `int` | Returns the y-coordinate location of the top edge of the rectangle. This is equal to [**Rectangle.Y**](xref:Microsoft.Xna.Framework.Rectangle.Y).                                    |
+| [**Left**](xref:Microsoft.Xna.Framework.Rectangle.Left)     | `int` | Returns the x-coordinate location of the left edge of the rectangle.  This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X).                                    |
+| [**Right**](xref:Microsoft.Xna.Framework.Rectangle.Right)   | `int` | Returns the x-coordinate location of the right edge of the rectangle.  This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X) plus the width of the rectangle.   |
+| [**Top**](xref:Microsoft.Xna.Framework.Rectangle.Top)       | `int` | Returns the y-coordinate location of the top edge of the rectangle. This is equal to [**Rectangle.Y**](xref:Microsoft.Xna.Framework.Rectangle.Y).                                      |
 
 To determine if two rectangles overlap using AABB collision detection, there are four conditions that need to be checked, and all four conditions must be true.  Given two rectangles $A$ and $B$, these conditions are:
 
@@ -93,7 +93,7 @@ MonoGame provides the [**Rectangle.Intersects**](xref:Microsoft.Xna.Framework.Re
 [!code-csharp[](./snippets/rectangle_intersects.cs)]
 
 | ![Figure 13-3: The rectangle on the left is overlapping the rectangle on the right based on the conditions required for the Axis-Aligned Bounding Box collision check](./images/aabb-collision-example.svg) |
-|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                   **Figure 13-3: The rectangle on the left is overlapping the rectangle on the right based on the conditions required for the Axis-Aligned Bounding Box collision check**                   |
 
 #### Complex Polygon Collision Detection
@@ -175,7 +175,7 @@ For games that need objects to bonce off each other (like a the ball in a Pong g
 2. The normal vector (the direction perpendicular to the surface).
 
 | ![Figure 13-4: A diagram showing how an incoming vector reflects off of a surface base around the normal vector of the surface](./images/reflection-diagram.svg) |
-|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                 **Figure 13-4: A diagram showing how an incoming vector reflects off of a surface base around the normal vector of the surface**                 |
 
 As shown in the diagram above, when an incoming vector hits a surface, it reflects at the same angle ($\theta$) relative to the normal vector.
@@ -296,7 +296,7 @@ If you run the game right now and move the slime around, you'll notice a few iss
 
 Let's update our game to implement these changes using collision detection and response. Open *Game1.cs* and make the following changes:
 
-[!code-csharp[](./snippets/game1.cs?highlight=5,31-35,56-61,96-196,199-211,318)]
+[!code-csharp[](./snippets/game1.cs?highlight=1,5,25-29,40-45,79-179,184-196,296-297)]
 
 The key changes made here are:
 
@@ -321,9 +321,9 @@ Running the game now
 - You can move the slime around, but cannot leave the bounds of the screen with the slime.
 - If you move the slime to collide ("eat") the bat, the bat will respawn at a new location with a new velocity.
 
-| ![Figure 13-7: When the slime collides ("eats") the bat, the bat respawns in a new location on the screen with a random velocity assigned](./videos/bat-respawns-when-eaten.webm) |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|                       **Figure 13-7: When the slime collides ("eats") the bat, the bat respawns in a new location on the screen with a random velocity assigned**                       |
+| ![Figure 13-7: When the slime collides ("eats") the bat, the bat respawns in a new location on the screen with a random velocity assigned](./videos/gameplay.webm) |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|            **Figure 13-7: When the slime collides ("eats") the bat, the bat respawns in a new location on the screen with a random velocity assigned**             |
 
 ## Conclusion
 

@@ -11,20 +11,18 @@ While packing images into a texture atlas and managing them through our `Sprite`
 In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, Figure 10-1 below shows three frames that make up a bat's wing-flapping animation:
 
 | ![Figure 10-1: Animation example of a bat flapping its wings](./images/bat-animation-example.gif) |
-|:------------------------------------------------------------------------------------------------:|
+| :-----------------------------------------------------------------------------------------------: |
 |                  **Figure 10-1: Animation example of a bat flapping its wings**                   |
 
 By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.
 
-In this chapter, we'll build off of the `Sprite` class we created in [Chapter 09](../09_the_sprite_class/index.md) to create an `AnimatedSprite` class we can use to bring animations to life.
+In this chapter, we'll build off of the `Sprite` class we created in [Chapter 08](../08_the_sprite_class/index.md) to create an `AnimatedSprite` class we can use to bring animations to life.
 
 ## The Animation Class
 
 Before we can create animated sprites, we need a way to manage animation data. Let's create an `Animation` class to encapsulate this information. In the *Graphics* directory within the *MonoGameLibrary* project, add a new file named *Animation.cs* with this initial structure:
 
-|                     Animation.cs                      |
-|:-----------------------------------------------------:|
-| [!code-csharp[](./snippets/animation.cs#declaration)] |
+[!code-csharp[](./snippets/animation.cs#declaration)]
 
 ### Animation Properties
 
@@ -168,7 +166,7 @@ We can simplify this process by adding an animated spirte creation method to the
 
 Let's adjust our game now to use the `AnimatedSprite` class to see our sprites come to life. Replaces the contents of *Game1.cs* with the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=13-17,40-44,52-56)]
+[!code-csharp[](./snippets/game1.cs?highlight=11-15,34-38,48-52)]
 
 Let's examine the key changes in this implementation:
 
@@ -181,9 +179,9 @@ Running the game now shows both sprites animating automatically:
 - The slime bounces between two frames
 - The bat's wings flap in a continuous cycle
 
-| ![Figure 10-2: The slime and bat sprite animating](./images/slime-bat-animated.gif) |
-|:----------------------------------------------------------------------------------:|
-|                 **Figure 10-2: The slime and bat sprite animating**                 |
+| ![Figure 10-2: The slime and bat sprite animating](./videos/slime-bat-animated.webm) |
+| :----------------------------------------------------------------------------------: |
+|                 **Figure 10-2: The slime and bat sprite animating**                  |
 
 ## Conclusion
 

@@ -351,23 +351,38 @@ Next override the `Update` method so that the states of the input devices are up
 
 ## Implementing the InputManager Class
 
-Now that we have our input management system complete, let's update our game to use it. Instead of tracking input states directly, we'll use the `InputManager` to handle all our input detection. Open *Game1.cs* and make the following changes:
+Now tha we have our input management system complete, let's update our game to use it.  We'll do this in two steps:
 
-[!code-csharp[](./snippets/game1.cs?highlight=6,27-28,36-40,66-68,86-90,94,100,106,112,118,126-127,132,135,139,145,147-148,153,159,165,171)]
+1. First, update the `Core` class to add the `InputManager` globally.
+2. Update the `Game1` class to use the global input manager from `Core`.
 
-The key changes made here are:
+### Updating the Core Class
 
-1. The `using MonoGameLibrary.Input` using directive was added so we can access the `InputManager` class.
-2. The field `_input` was added to track and access the `InputManager`.
-3. In the constructor, a new instance of the `InputManager` is created and added to the game's component collection.
-4. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the check for the gamepad back button or keyboard escape key being pressed was removed.
-5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the call to `base.Update(gameTime)` was moved to the first line so that the input manager component is updated before game logic is checked.
-6. The check for the escape key was moved to the `CheckKeyboardInput` method.
-7. In `CheckKeyboardInput`, instead of calling `Keyboard.GetState` and then using the state, calls to check keyboard input now use the input manager.
-8. The check for the back button was moved to `CheckGamePadInput`
-9. In `CheckGamePadInput` instead of calling `GamePad.GetState`, the `GamePadInfo` of player one's game pad is retrieved from the input manager and calls to check gamepad input now use this.
+The `Core` class serves as our base game class, so we will update it to add and expose the `InputManager` globally.  Open the *Core.cs* file in the *MonoGameLibrary* project and update it to the following:
 
-By implementing these changes, we get the following improvements;
+[!code-csharp[](./snippets/core.cs?highlight=5,28-36,77-83,91-102)]
+
+The key changes to the `Core` class are:
+
+1. Added the `using MonoGameLibrary.Input;` directive to access the `InputManager` class.
+2. Added a static `Input` property to provide global access to the input manager.
+3. Added a static `ExitOnEscape` property to set whether the game should exit when the Escape key on the keyboard is pressed.
+4. Added an override for the `Initialize` method where the input manager is created.
+5. Added an override for the `Update` method where:
+   1. The input manager is updated
+   2. A check is made to see if `ExitOnEscape` is true and if the Escape keyboard key is pressed.
+
+
+### Updating the Game1 Class
+
+Now let's update our `Game1` class to use the new input management system through the `Core` class.  Open *Game1.cs* in the game project and update it to the following:
+
+[!code-csharp[](./snippets/game1.cs?highlight=74,80,86,92,98,106,111,114,118,124,126-127,132,138,144,150)]
+
+The key changes to the `Game1` class are:
+
+1. In [**Update**](xref:xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the check for the gamepad back button or keyboard escape key being pressed was removed.  This is now handled by the `ExitOnEscape` property and the `Update` method of the `Core` class.
+2. In `CheckKeyboardInput` and `CheckGamepadInput`, instead of getting the keyboard and gamepad states and then using the states, calls to check those devices are now done through the input 
 
 Running the game now, you will be able to control it the same as before, only now we're using our new `InputManager` class instead.
 
@@ -381,6 +396,8 @@ In this chapter, you learned how to:
   - Reusable across different game projects
   - Easy to maintain and extend
   - Consistent across different input devices
+- Integrate the input system into the `Core` class for global access.
+- Update the game to use the new input management system.
 
 ## Test Your Knowledge
 
