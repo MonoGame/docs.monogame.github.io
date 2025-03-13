@@ -201,23 +201,27 @@ Next, open the *gameFont.spritefont* file and make the following changes:
 The key changes here are:
 
 1. The `<FontName>` element was updated to `04B_11.ttf`, the exact filename with extension of the TTF font we just downloaded.
-2. The `<Size>` element was updated to be `16`.
+2. The `<Size>` element was updated to be `32`.
 
 ### Updating the Game
 
 Finally, open the *Game1.cs* file and make the following changes:
 
-[!code-csharp[](./snippets/game1.cs?highlight=41-45,105-106,234-235,378-379)]
+[!code-csharp[](./snippets/game1.cs?highlight=39-43,54-61,90-91,220-221,360-361)]
 
 The key changes made are:
 
 1. The `_font` field was added to store the SpriteFont Description when loaded.
-1. The `_score` field was added to track the player's score.
-1. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the font is loaded using the content manager.
-1. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the player's score is increased by `100` each time the slime eats the bat.
-1. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), the score is drawn to the top-left of the screen using the sprite batch.
+2. The `_score` field was added to track the player's score.
+3. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize)
+   1. The height of the rendered font is measured
+   2. The initial slime position is placed 10px below where the score text will be rendered.
+   3. The initial bat position is updated to be 10px below where the score text will be rendered.
+4. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the font is loaded using the content manager.
+5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the player's score is increased by `100` each time the slime eats the bat.
+6. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), the score is drawn to the top-left of the screen using the sprite batch.
 
-| ![Figure 15-2: The game with score displayed in the top-left corner](./videos/score.webm) |
+| ![Figure 15-2: The game with score displayed in the top-left corner](./videos/gameplay.webm) |
 |:----------------------------------------------------------------------------------------:|
 |           **Figure 15-2: The game with score displayed in the top-left corner**           |
 
