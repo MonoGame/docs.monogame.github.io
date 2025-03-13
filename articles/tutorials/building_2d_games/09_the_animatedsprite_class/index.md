@@ -8,11 +8,11 @@ While packing images into a texture atlas and managing them through our `Sprite`
 > [!NOTE]
 > The term "frame" in animation refers to a single image in an animation sequence. This is different from a game frame, which represents one complete render cycle of your game.
 
-In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, Figure 10-1 below shows three frames that make up a bat's wing-flapping animation:
+In MonoGame, we can create these animations by cycling through different regions of our texture atlas, with each region representing a single frame of the animation. For example, Figure 9-1 below shows three frames that make up a bat's wing-flapping animation:
 
-| ![Figure 10-1: Animation example of a bat flapping its wings](./images/bat-animation-example.gif) |
+| ![Figure 9-1: Animation example of a bat flapping its wings](./images/bat-animation-example.gif) |
 | :-----------------------------------------------------------------------------------------------: |
-|                  **Figure 10-1: Animation example of a bat flapping its wings**                   |
+|                  **Figure 9-1: Animation example of a bat flapping its wings**                   |
 
 By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.
 
@@ -50,7 +50,7 @@ The default constructor creates an animation with an empty collection of frames 
 
 ## Creating Animations With The TextureAtlas Class
 
-The `TextureAtlas` class we created in [Chapter 08](../08_optimizing_texture_rendering/index.md#the-textureatlas-class) can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The *atlas.png* image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. Let's first update our *atlas-definition.xml* file to include all regions in the atlas, as well as add new `<Animation>` elements to define the animations.  Open the *atlas-definition.xml* file and replace the contents with the following:
+The `TextureAtlas` class we created in [Chapter 07](../07_optimizing_texture_rendering/index.md#the-textureatlas-class) can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The *atlas.png* image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. Let's first update our *atlas-definition.xml* file to include all regions in the atlas, as well as add new `<Animation>` elements to define the animations.  Open the *atlas-definition.xml* file and replace the contents with the following:
 
 [!code-xml[](./snippets/atlas_definition.xml)]
 
@@ -152,7 +152,7 @@ The `Draw` method inherited from the base `Sprite` class remains unchanged, as i
 
 ## Creating AnimatedSprites With The TextureAtlas Class
 
-Similar to the update we did to the `TextureAtlas` class in [Chapter 09](../09_the_sprite_class/index.md#create-sprites-with-the-textureatlas-class), creating an `AnimatedSprite` from the atlas would require
+Similar to the update we did to the `TextureAtlas` class in [Chapter 08](../08_the_sprite_class/index.md#create-sprites-with-the-textureatlas-class), creating an `AnimatedSprite` from the atlas would require
 
 1. Get the animation by name.
 2. Store it in a variable.
@@ -179,9 +179,9 @@ Running the game now shows both sprites animating automatically:
 - The slime bounces between two frames
 - The bat's wings flap in a continuous cycle
 
-| ![Figure 10-2: The slime and bat sprite animating](./videos/slime-bat-animated.webm) |
+| ![Figure 9-2: The slime and bat sprite animating](./videos/slime-bat-animated.webm) |
 | :----------------------------------------------------------------------------------: |
-|                 **Figure 10-2: The slime and bat sprite animating**                  |
+|                 **Figure 9-2: The slime and bat sprite animating**                  |
 
 ## Conclusion
 

@@ -3,7 +3,7 @@ title: "Chapter 11: Input Management"
 description: "Learn how to create an input management system to handle keyboard, mouse, and gamepad input, including state tracking between frames and creating a reusable framework for handling player input."
 ---
 
-In [Chapter 11](../11_handling_input/index.md), you learned how to handle input from various devices like keyboard, mouse, and gamepad. While checking if an input is currently down works well for continuous actions like movement, many game actions should only happen once when an input is first pressed; think firing a weapon or jumping. To handle these scenarios, we need to compare the current input state with the previous frame's state to detect when an input changes from up to down.
+In [Chapter 10](../10_handling_input/index.md), you learned how to handle input from various devices like keyboard, mouse, and gamepad. While checking if an input is currently down works well for continuous actions like movement, many game actions should only happen once when an input is first pressed; think firing a weapon or jumping. To handle these scenarios, we need to compare the current input state with the previous frame's state to detect when an input changes from up to down.
 
 In this chapter you will:
 
@@ -108,7 +108,7 @@ That's it for the `KeyboardInfo` class, let's move on to mouse input next.
 
 ## MouseButton Enum
 
-Recall from the [Mouse Input](../11_handling_input/index.md#mouse-input) section of the previous chapter that the [**MouseState**](xref:Microsoft.Xna.Framework.Input.MouseState) struct provides button states through properties rather than methods like `IsButtonDown`/`IsButtonUp`. To keep our input management API consistent across devices, we'll create a `MouseButton` enum that lets us reference mouse buttons in a similar way to how we use [**Keys**](xref:Microsoft.Xna.Framework.Input.Keys) for keyboard input and [**Buttons**](xref:Microsoft.Xna.Framework.Input.Buttons) for gamepad input.
+Recall from the [Mouse Input](../10_handling_input/index.md#mouse-input) section of the previous chapter that the [**MouseState**](xref:Microsoft.Xna.Framework.Input.MouseState) struct provides button states through properties rather than methods like `IsButtonDown`/`IsButtonUp`. To keep our input management API consistent across devices, we'll create a `MouseButton` enum that lets us reference mouse buttons in a similar way to how we use [**Keys**](xref:Microsoft.Xna.Framework.Input.Keys) for keyboard input and [**Buttons**](xref:Microsoft.Xna.Framework.Input.Buttons) for gamepad input.
 
 In the *Input* directory of the *MonoGameLibrary* project, add a new file named *MouseButton.cs* with the following code:
 
@@ -249,7 +249,7 @@ We use vibration in gamepads to provide haptic feedback to the player.  The [**G
 
 [!code-csharp[](./snippets/gamepadinfo.cs#member_fields)]
 
-Recall from the [previous chapter](../11_handling_input/index.md#gamepad-input) that a [**PlayerIndex**](xref:Microsoft.Xna.Framework.PlayerIndex) value needs to be supplied when calling [**Gamepad.GetState**](xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)).   Doing this returns the state of the gamepad connected at that player index.  So we'll need a property to track the player index this gamepad info is for.
+Recall from the [previous chapter](../10_handling_input/index.md#gamepad-input) that a [**PlayerIndex**](xref:Microsoft.Xna.Framework.PlayerIndex) value needs to be supplied when calling [**Gamepad.GetState**](xref:Microsoft.Xna.Framework.Input.GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex)).   Doing this returns the state of the gamepad connected at that player index.  So we'll need a property to track the player index this gamepad info is for.
 
 [!code-csharp[](./snippets/gamepadinfo.cs#properties_playerindex)]
 
@@ -318,7 +318,7 @@ That's it for the `GamePadInfo` class.  Next, let's create the actual input mana
 
 ## The InputManager Class
 
-Now that we have classes to handle keyboard, mouse, and gamepad input individually, we can create a centralized manager class to coordinate all input handling. The `InputManager` class will be a [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent) like we discussed previously in [Chapter 05](../05_game_components/index.md).
+Now that we have classes to handle keyboard, mouse, and gamepad input individually, we can create a centralized manager class to coordinate all input handling.
 
 In the *Input* directory of the *MonoGameLibrary* project, add a new file named *InputManager.cs* with this initial structure:
 
@@ -335,19 +335,15 @@ The `InputManager` class needs properties to access each type of input device. A
 
 ### InputManager Constructor
 
-The `InputManager` needs a constructor that accept a [**Game**](xref:Microsoft.Xna.Framework.Game) parameter due to inheriting from the [**GameComponent**](xref:Microsoft.Xna.Framework.GameComponent) class.  Add the following constructor:
+The constructor for the `InputManager` initializes the keybaord, mouse, and gamepad states. Add the following constructor:
 
 [!code-csharp[](./snippets/inputmanager.cs#ctors)]
 
 ### InputManager Methods
 
-First, override the `Initialize` method so that we can ensure that the states for each input devices are initialized:
+The `Update` method for the `InputManager` calls update for each device so that they can update their internal states.
 
-[!code-csharp[](./snippets/inputmanager.cs#methods_initialize)]
-
-Next override the `Update` method so that the states of the input devices are updated:
-
-[!code-csharp[](./snippets/inputmanager.cs#methods_update)]
+[!code-csharp[](./snippets/inputmanager.cs#methods)]
 
 ## Implementing the InputManager Class
 
@@ -381,7 +377,7 @@ Now let's update our `Game1` class to use the new input management system throug
 
 The key changes to the `Game1` class are:
 
-1. In [**Update**](xref:xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the check for the gamepad back button or keyboard escape key being pressed was removed.  This is now handled by the `ExitOnEscape` property and the `Update` method of the `Core` class.
+1. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the check for the gamepad back button or keyboard escape key being pressed was removed.  This is now handled by the `ExitOnEscape` property and the `Update` method of the `Core` class.
 2. In `CheckKeyboardInput` and `CheckGamepadInput`, instead of getting the keyboard and gamepad states and then using the states, calls to check those devices are now done through the input 
 
 Running the game now, you will be able to control it the same as before, only now we're using our new `InputManager` class instead.

@@ -47,11 +47,11 @@ A texture atlas (also known as a sprite sheet) is a large image file that contai
 > [!NOTE]
 > Using a texture atlas not only eliminates texture swaps but also reduces memory usage and simplifies asset management since you're loading and tracking a single texture instead of many individual ones.
 
-In the Pong example, imagine taking the paddle and ball image and combining them into a single image file like in Figure 8-1 below:
+In the Pong example, imagine taking the paddle and ball image and combining them into a single image file like in Figure 7-1 below:
 
-| ![Figure 8-1: Pong Texture Atlas Example](./images/pong-atlas.png) |
+| ![Figure 7-1: Pong Texture Atlas Example](./images/pong-atlas.png) |
 |:------------------------------------------------------------------:|
-|             **Figure 8-1: Pong Texture Atlas Example**             |
+|             **Figure 7-1: Pong Texture Atlas Example**             |
 
 Now when we draw these images, we would be using the same texture and just specify the source rectangles for the paddle or ball when needed, completely eliminating texture swaps.
 
@@ -63,7 +63,7 @@ To better organize this complexity, we can apply object-oriented design principl
 
 ## The TextureRegion Class
 
-In [Chapter 07](../07_working_with_textures/index.md#source-rectangle), we learned about using the `sourceRectangle` parameter to reuse the same texture when rendering sprites but specifying different regions within the texture to render.  Let's first build on this and create a class called `TextureRegion`.
+In [Chapter 06](../06_working_with_textures/index.md#source-rectangle), we learned about using the `sourceRectangle` parameter to reuse the same texture when rendering sprites but specifying different regions within the texture to render.  Let's first build on this and create a class called `TextureRegion`.
 
 We're going to add this class to the class library we created in [Chapter 04](../04_creating_a_class_library/index.md).  Perform the following:
 
@@ -151,9 +151,9 @@ Let's put our new `TextureAtlas` class to use by exploring two approaches; creat
 
 Download the texture atlas by right-clicking the following image and saving it as atlas.png:
 
-| ![Figure 8-2: The texture atlas for our game](./images/atlas.png) |
+| ![Figure 7-2: The texture atlas for our game](./images/atlas.png) |
 |:-----------------------------------------------------------------:|
-|          **Figure 8-2: The texture atlas for our game**           |
+|          **Figure 7-2: The texture atlas for our game**           |
 
 Add this texture atlas to your content project using the MGCB Editor:
 
@@ -163,7 +163,7 @@ Add this texture atlas to your content project using the MGCB Editor:
 4. Save the changes and close the MGCB Editor.
 
 > [!TIP]
-> If you need a refresher on adding content using the MGCB Editor, you can revisit the [Adding Assets in the MGCB Editor](../06_content_pipeline/index.md#adding-assets-in-the-mgcb-editor) section of Chapter 04.
+> If you need a refresher on adding content using the MGCB Editor, you can revisit the [Chapter 05: The Content Pipeline](../05_content_pipeline/index.md).
 
 First, we'll explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of *Game1.cs* with the following:
 
@@ -183,9 +183,9 @@ The key changes in this implementation are:
 
 Running the game now shows both sprites in the upper-left corner:
 
-| ![Figure 8-3: The slime and bat texture regions being rendered in the upper-left corner of the game window](./images/slime-and-bat-rendered.png) |
+| ![Figure 7-3: The slime and bat texture regions being rendered in the upper-left corner of the game window](./images/slime-and-bat-rendered.png) |
 |:------------------------------------------------------------------------------------------------------------------------------------------------:|
-|                   **Figure 8-3: The slime and bat texture regions being rendered in the upper-left corner of the game window**                   |
+|                   **Figure 7-3: The slime and bat texture regions being rendered in the upper-left corner of the game window**                   |
 
 While manual creation works for a few sprites, managing many regions becomes cumbersome. Let's now explore the `TextureAtlas.FromFile` method to load our atlas configuration from XML instead. Perform the following:
 
@@ -199,9 +199,9 @@ While manual creation works for a few sprites, managing many regions becomes cum
 5. Navigate to and choose the *atlas-definition.xml* file you just created to add it.
 6. In the properties panel at the bottom for the *atlas-definition.xml* file, change the *Build Action* property from *Build* to *Copy*.
 
-    | ![Figure 8-4: The atlas-definition.xml file added to the content project with the Build Action property set to Copy](./images/mgcb-editor-copy.png) |
+    | ![Figure 7-4: The atlas-definition.xml file added to the content project with the Build Action property set to Copy](./images/mgcb-editor-copy.png) |
     |:---------------------------------------------------------------------------------------------------------------------------------------------------:|
-    |                **Figure 8-4: The atlas-definition.xml file added to the content project with the Build Action property set to Copy**                |
+    |                **Figure 7-4: The atlas-definition.xml file added to the content project with the Build Action property set to Copy**                |
 
 7. Save the changes and close the MGCB Editor
 
@@ -219,7 +219,7 @@ The key improvements here is in [**LoadContent**](xref:Microsoft.Xna.Framework.G
 
 This configuration based approached is advantageous because we can now add new and modify existing regions within the atlas without having to change code and/or recompile.  This also keeps the sprite definitions separate from the game logic.
 
-Running the game now will show the same results as Figure 8-3 above, with the slime and bat texture regions rendered in the upper-left corner of the game window.
+Running the game now will show the same results as Figure 7-4 above, with the slime and bat texture regions rendered in the upper-left corner of the game window.
 
 ## Conclusion
 

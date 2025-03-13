@@ -138,8 +138,10 @@
           href: tutorials/building_2d_games/12_collision_detection/
         - name: "13: Sound Effects and Music"
           href: tutorials/building_2d_games/13_soundeffects_and_music/
-        - name: "14: Working with SpriteFonts"
-          href: tutorials/building_2d_games/14_working_with_spritefonts/
+        - name: "14: Audio Controller"
+          href: tutorials/building_2d_games/14_audio_controller/
+        - name: "15: Working with SpriteFonts"
+          href: tutorials/building_2d_games/15_working_with_spritefonts/
 - name: Console Access
   href: console_access.md
 - name: Help and Support

@@ -28,9 +28,9 @@ On the other side of this coin, MonoGame offers the **Content Pipeline**; a work
 
 The following image illustrates this workflow:
 
-| ![Figure 6-1: MonoGame Content Pipeline Workflow](./images/content-pipeline-workflow-full.png) |
+| ![Figure 5-1: MonoGame Content Pipeline Workflow](./images/content-pipeline-workflow-full.png) |
 |:----------------------------------------------------------------------------------------------:|
-|                       **Figure 6-1: MonoGame Content Pipeline Workflow**                       |
+|                       **Figure 5-1: MonoGame Content Pipeline Workflow**                       |
 
 For the same amount of steps, you also get the benefit of the assets being pre-processed and compiled to an optimized format for the target platform.  For instance, image files can be compiled using [DXT compression](https://en.wikipedia.org/wiki/S3\_Texture\_Compression), which is a format that is understood by GPUs without needing to be decompressed first, reducing the memory footprint.
 
@@ -60,10 +60,9 @@ There are different methods of opening the MGCB Editor tool depending on your ID
 
 To open the *Content.mgcb* content project file in the MGCB Editor with Visual Studio Code, you can use the *MonoGame for VSCode* extension.  You should have installed this extension in [Chapter 02](../02_getting_started/index.md#installing-the-monogame-for-vscode-extension).  With this extension install, anytime you have a code file open, you will see the MonoGame logo in the top-right of the code window like below:
 
-
-| ![Figure 6-2: MonoGame for VSCode extension icon](./images/mgcb-editor-icon.png) |
+| ![Figure 5-2: MonoGame for VSCode extension icon](./images/mgcb-editor-icon.png) |
 |:--------------------------------------------------------------------------------:|
-|                **Figure 6-2: MonoGame for VSCode extension icon**                |
+|                **Figure 5-2: MonoGame for VSCode extension icon**                |
 
 Clicking the MonoGame logo here will open the *Content.mgcb* content project file from the current project in the MGCB Editor.
 
@@ -80,11 +79,11 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 
 ---
 
-| ![Figure 6-3: MonoGame Content Builder Editor (MGCB Editor) Window](./images/mgcb-editor.png) |
+| ![Figure 5-3: MonoGame Content Builder Editor (MGCB Editor) Window](./images/mgcb-editor.png) |
 |:---------------------------------------------------------------------------------------------:|
-|             **Figure 6-3: MonoGame Content Builder Editor (MGCB Editor) Window**              |
+|             **Figure 5-3: MonoGame Content Builder Editor (MGCB Editor) Window**              |
 
-In Figure 6-2 above, you can see the user interface for the MGCB Editor:
+In Figure 5-3 above, you can see the user interface for the MGCB Editor:
 
 - **Toolbar**: Contains icon buttons for common actions such as creating new items, opening files, saving changes, and building content.
 - **Project Panel**: Located on the left of the MGCB Editor, displays a hierarchial tree view of all content items added to the content project.  The root node *Content* represents the root of the content project.
@@ -106,9 +105,9 @@ When adding existing assets to the content project, a pop-up dialog will appear 
 - **Add a link**: Creates a reference to the original file without making a copy. This maintains a connection to the source file, so any updates to the original will be included when you build. Note that the link uses a path relative to the Content.mgcb file, so if either the source file or your project moves, you'll need to reestablish the link.
 - **Skip**: Cancels adding the current file while continuing with any other selected files.
 
-| ![Figure 6-4: Add existing file pop-up](./images/add-file-popup.png) |
+| ![Figure 5-4: Add existing file pop-up](./images/add-file-popup.png) |
 |:--------------------------------------------------------------------:|
-|               **Figure 6-4: Add existing file pop-up**               |
+|               **Figure 5-4: Add existing file pop-up**               |
 
 ### Adding Built-In Asset Types
 
@@ -125,9 +124,9 @@ To create a new asset using one of the built-in types in the MGCB Editor:
 4. Enter a name for your new asset in the *Name* field.
 5. Click *Create* to add the new asset to your project.
 
-| ![Figure 6-5: New file pop-up](./images/new-file-popup.png) |
+| ![Figure 5-5: New file pop-up](./images/new-file-popup.png) |
 |:-----------------------------------------------------------:|
-|               **Figure 6-5: New file pop-up**               |
+|               **Figure 5-5: New file pop-up**               |
 
 > [!NOTE]
 > Each built-in asset type comes with a template that includes the minimum required structure and settings.
@@ -140,9 +139,9 @@ Organizing your game assets into folders helps keep your content project managea
 2. Right-click on the selected location and choose *Add > New Folder...* from the context menu.
 3. Type a name for the new folder and click *Ok*.
 
-| ![Figure 6-6: New folder pop-up](./images/new-folder-popup.png) |
+| ![Figure 5-6: New folder pop-up](./images/new-folder-popup.png) |
 |:---------------------------------------------------------------:|
-|                 **Figure 6-6: New folder pop-up                 |
+|                 **Figure 5-6: New folder pop-up                 |
 
 The new folder will appear in your content tree, and you can now add items to it by:
 
@@ -216,9 +215,9 @@ When the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManage
 
 Let's walk through the process of editing our content project using the MGCB Editor to add a new image asset and then load it in our game.  To get started, we'll first need an image to load.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your computer:
 
-| ![Figure 6-7: MonoGame Horizontal Logo](./images/logo.png) |
+| ![Figure 5-7: MonoGame Horizontal Logo](./images/logo.png) |
 |:----------------------------------------------------------:|
-|          **Figure 6-7: MonoGame Horizontal Logo**          |
+|          **Figure 5-7: MonoGame Horizontal Logo**          |
 
 Now that we have an image file to add, perform the following:
 
@@ -236,9 +235,9 @@ Now that we have an image file to add, perform the following:
 > [!IMPORTANT]
 > After changes have been made in the MGBC Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and haven't saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved
 
-| ![Figure 6-8: The logo image added to the content project in the MGCB Editor](./images/mgcb-logo-added.png) |
+| ![Figure 5-8: The logo image added to the content project in the MGCB Editor](./images/mgcb-logo-added.png) |
 |:-----------------------------------------------------------------------------------------------------------:|
-|               **Figure 6-8: The logo image added to the content project in the MGCB Editor**                |
+|               **Figure 5-8: The logo image added to the content project in the MGCB Editor**                |
 
 With the MonoGame logo image now added to the content project, we can load it in our game and draw it.  Open the *Game1.cs* file and make the following changes:
 
@@ -247,17 +246,17 @@ With the MonoGame logo image now added to the content project, we can load it in
 The key changes made here are:
 
 1. The private field `_logo` was added to store the logo [**Texture2D**](xref:Microsoft.Xna.Framework.Graphics.Texture2D) once it is loaded.
-2. In [**LoadContent**](xref:xref:Microsoft.Xna.Framework.Game.LoadContent), the logo texture is loaded using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
-3. In [**Draw**](xref:xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) the logo is drawn using the [**SpriteBatch**](xref:xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
+2. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the logo texture is loaded using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
+3. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) the logo is drawn using the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
     > [!NOTE]
     > We'll go more into detail about the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) in the next chapter.
 
 Running the game now will show the MonoGame logo displayed in the upper-left corner of the game window.
 
-| ![Figure 6-9: The MonoGame logo drawn to the game window](./images/logo-drawn.png) |
+| ![Figure 5-9: The MonoGame logo drawn to the game window](./images/logo-drawn.png) |
 |:----------------------------------------------------------------------------------:|
-|             **Figure 6-9: The MonoGame logo drawn to the game window**             |
+|             **Figure 5-9: The MonoGame logo drawn to the game window**             |
 
 ## Conclusion
 

@@ -14,7 +14,7 @@ At the core of a MonoGame project is the [**Game**](xref:Microsoft.Xna.Framework
 
 Locate the *Game1.cs* file that was generated when you created the MonoGame project and open it.  The default content will be:
 
-[!code-csharp[](./files/game1.cs)]
+[!code-csharp[](./snippets/game1.cs)]
 
 This class provides the following structure:
 
@@ -33,7 +33,7 @@ Figure 3-1 below shows the lifecycle of a MonoGame game including the [**Update*
 
 The graphics pipeline in monogame starts with two components: the [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
-[!code-csharp[](./files/Game1.cs?start=9&end=10)]
+[!code-csharp[](./snippets/game1.cs?start=9&end=10)]
 
 The [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) initializes and the connection to the graphics hardware.  It handles tasks such as setting the screen resolution, toggling between fullscreen and windowed mode, and managing the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice), which is the interface between your game and the Graphics Processing Unit (GPU) the game is running on. The [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) optimizes 2D rendering by batching similar draw calls together, improving draw performance when rendering multiple sprites.
 
@@ -41,11 +41,11 @@ The [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManag
 
 MonoGame's initialization process for your game follows a specific sequence.  The constructor runs first, which handles basic setup like creating the [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager), setting the content directory, and the visibility of the mouse.
 
-[!code-csharp[](./files/Game1.cs?start=12&end=17)]
+[!code-csharp[](./snippets/game1.cs?start=12&end=17)]
 
 After that, the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method executes, providing a dedicated place for additional configuration and initializations.  
 
-[!code-csharp[](./files/Game1.cs?start=19&end=22)]
+[!code-csharp[](./snippets/game1.cs?start=19&end=22)]
 
 This separation allows you to perform setup tasks in a logical order; core systems in the constructor and game-specific initializations in the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method.  The call to `base.Initialize()` should never be removed, as this is where the graphics device is initialized for the target platform.
 
@@ -56,7 +56,7 @@ This separation allows you to perform setup tasks in a logical order; core syste
 
 The [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method serves as the place for asset management. Here you can load textures, sound effects, music, and other game assets.  We will cover loading assets in the coming chapters as we discuss each asset type that can be loaded.  In a new project, the only task it performs is initializing a new instance of the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
-[!code-csharp[](./files/Game1.cs?start=24&end=27)]
+[!code-csharp[](./snippets/game1.cs?start=24&end=27)]
 
 This method is only call once during the startup of the game, but *when* it is called can be a little confusing at first.  In the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method shown above, when the `base.Initialize` call is executed, the final task it performs is calling the [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method.  This means any initializations you need to perform that have a dependency on assets being loaded should be done *after* the `base.Initialize` call and not *before* it.
 
@@ -66,7 +66,7 @@ MonoGame implements a *game loop* by calling [**Update**](xref:Microsoft.Xna.Fra
 
 MonoGame is executing the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) method and then the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method 60 times per second.
 
-[!code-csharp[](./files/Game1.cs?start=29&end=42)]
+[!code-csharp[](./snippets/game1.cs?start=29&end=42)]
 
 The [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) method at the moment is not doing much, only checking for input from a controller or keyboard to determine if the game should exit. However, the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method is doing more than what it appears to at first glance.
 

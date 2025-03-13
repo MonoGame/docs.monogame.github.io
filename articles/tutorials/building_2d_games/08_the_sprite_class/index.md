@@ -58,7 +58,7 @@ Finally, the `Sprite` class provides the following two methods:
 
 ## Create Sprites With The TextureAtlas Class
 
-While the `GetRegion` method of the `TextureAtlas` class we created in [Chapter 08](../08_optimizing_texture_rendering/index.md#the-textureatlas-class) works well for retrieving regions, creating sprites requires multiple steps:
+While the `GetRegion` method of the `TextureAtlas` class we created in [Chapter 07](../07_optimizing_texture_rendering/index.md#the-textureatlas-class) works well for retrieving regions, creating sprites requires multiple steps:
 
 1. Get the region by name.
 2. Store it in a variable.
@@ -82,9 +82,9 @@ The key changes in this implementation are:
 
 Running the game now will produce the same result as in the previous chapter.  
 
-| ![Figure 9-1: The slime and bat sprites being rendered in the upper-left corner of the game window](./images/slime-and-bat-rendered.png) |
+| ![Figure 8-1: The slime and bat sprites being rendered in the upper-left corner of the game window](./images/slime-and-bat-rendered.png) |
 |:----------------------------------------------------------------------------------------------------------------------------------------:|
-|                   **Figure 9-1: The slime and bat sprites being rendered in the upper-left corner of the game window**                   |
+|                   **Figure 8-1: The slime and bat sprites being rendered in the upper-left corner of the game window**                   |
 
 Try adjusting the various properties available for the slime and the bat sprites to see how they affect the rendering.
 

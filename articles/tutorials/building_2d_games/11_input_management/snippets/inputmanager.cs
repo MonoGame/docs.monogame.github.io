@@ -3,7 +3,10 @@ using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary.Input;
 
-public class InputManager : GameComponent { }
+public class InputManager
+{
+
+}
 #endregion
 {
     #region properties
@@ -28,14 +31,7 @@ public class InputManager : GameComponent { }
     /// Creates a new InputManager.
     /// </summary>
     /// <param name="game">The game this input manager belongs to.</param>
-    public InputManager(Game game) : base(game) { }
-    #endregion
-
-    #region methods_initialize
-    /// <summary>
-    /// Initializes this input manager.
-    /// </summary>
-    public override void Initialize()
+    public InputManager()
     {
         Keyboard = new KeyboardInfo();
         Mouse = new MouseInfo();
@@ -48,12 +44,12 @@ public class InputManager : GameComponent { }
     }
     #endregion
 
-    #region methods_update
+    #region methods
     /// <summary>
     /// Updates the state information for the keyboard, mouse, and gamepad inputs.
     /// </summary>
     /// <param name="gameTime">A snapshot of the timing values for the current frame.</param>
-    public override void Update(GameTime gameTime)
+    public void Update(GameTime gameTime)
     {
         Keyboard.Update();
         Mouse.Update();

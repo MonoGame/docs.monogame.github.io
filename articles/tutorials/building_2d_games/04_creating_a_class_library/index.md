@@ -167,7 +167,7 @@ Running the game now will show the same window as before, only now it is at a 12
 
 | ![Figure 4-3: The game window at 1280x720 with the title Dungeon Slime](./images/game-window.png) |
 |:-------------------------------------------------------------------------------------------------:|
-|       **Figure 4-3: Figure 4-3: The game window at 1280x720 with the title Dungeon Slime**        |
+|       **Figure 4-3: The game window at 1280x720 with the title Dungeon Slime**        |
 
 > [!IMPORTANT]
 > If you receive an error stating that the following:

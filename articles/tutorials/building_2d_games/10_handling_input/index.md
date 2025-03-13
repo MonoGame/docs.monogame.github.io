@@ -146,7 +146,7 @@ For example, if you wanted to move a sprite using the left thumbstick, you could
 [!code-csharp[](./snippets/thumbstick.cs)]
 
 > [!IMPORTANT]
-> Notice that we inverted the y-axis value of the thumbstick by multiplying it by `-1.0f`. This is necessary because the thumbstick y-axis values range from `-1.0f` (down) to `1.0f` (up).  The y-axis of the screen coordinates in MonoGame **increases** downward, as we saw in [Chapter 07](../07_working_with_textures/index.md#drawing-a-texture).
+> Notice that we inverted the y-axis value of the thumbstick by multiplying it by `-1.0f`. This is necessary because the thumbstick y-axis values range from `-1.0f` (down) to `1.0f` (up).  The y-axis of the screen coordinates in MonoGame **increases** downward, as we saw in [Chapter 06](../06_working_with_textures/index.md#drawing-a-texture).
 >
 > This inversion aligns the thumbstick's y-axis value with the screen movement.
 
@@ -212,7 +212,7 @@ For example, if we wanted to check if the A button on the the first gamepad is p
 
 ### GamePad Vibration
 
-Another capability of gamepads is haptic feedback through vibration motors.  MonoGame allows you to control this feature using the [**GamePad.SetVibration**](xref:xref:Microsoft.Xna.Framework.Input.GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex,System.Single,System.Single)) method.  This method takes three parameters:
+Another capability of gamepads is haptic feedback through vibration motors.  MonoGame allows you to control this feature using the [**GamePad.SetVibration**](xref:Microsoft.Xna.Framework.Input.GamePad.SetVibration(Microsoft.Xna.Framework.PlayerIndex,System.Single,System.Single)) method.  This method takes three parameters:
 
 1. The [**PlayerIndex**](xref:Microsoft.Xna.Framework.PlayerIndex) of the gamepad to vibrate.
 2. The intensity of the left motor (from `0.0f` for no vibration to `1.0f` for maximum vibration).

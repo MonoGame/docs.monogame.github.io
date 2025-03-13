@@ -165,7 +165,7 @@ After selecting *Create Project*, a new C# project will be created based on the 
 
 Now that we have the project created, press the `F5` key on your keyboard, or choose *Run > Start Debugging* from the top menu. If prompted for a configuration, choose *C#*. The project will compile and run, displaying a screen similar to the following
 
-| ![Figure 2-2: The default MonoGame cornflower blue game window](./images/cornflower-blue.png) |
+| ![Figure 2-2: The default MonoGame cornflower blue game window](./images/game-window.png) |
 | :---: |
 | **Figure 2-2: The default MonoGame cornflower blue game window** |
 
