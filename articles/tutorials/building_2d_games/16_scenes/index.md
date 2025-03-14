@@ -117,10 +117,25 @@ Now that we have the scene architecture setup, let's break our current game into
 
 ### The Title Scene
 
-The title scene that will serve as our game's main menu. This scene will display the game title, a prompt to start the game, and an animated slime to give the scene some life. In the main game project:
+The title scene that will serve as our game's main menu. This scene will display the game title, a prompt to start the game, and an animated slime to give the scene some life.
+
+Before we implement the Title Scene, we need to create a font for the title text. Open the *Content.mgcb* content project in the MGCB Editor and:
+
+1. Right-click the *fonts* directory and choose *Add > New Item...*.
+2. Select *SpriteFont Description (.spritefont)* from the options.
+3. Name the file *titleFont.spritefont* and click *Create*.
+4. Open the *titleFont.spritefont* file and change it to the following:
+
+    [!code-xml[](./snippets/titleFont.spritefont)]
+
+Next, download the *04B_30.ttf* font below by right-clicking it, choosing "Save Link as...", and saving it in the same directory that you just created the *titleFont.spritefont* file.
+
+- [04B_30.ttf](./files/04B_30.TTF)
+
+Now let's implement the Title Scene.  In the main game project:
 
 1. Create a new directory named *Scenes*.  We'll put all of our game specific scenes here.
-2. Add a new class file named *TitleScene.cs* to the *Scenes* directory you just created with the
+2. Add a new class file named *TitleScene.cs* to the *Scenes* directory you just created.
 3. Add the following code as the initial structure for the class.
 
     [!code-csharp[](./snippets/titlescene.cs#declaration)]
