@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas>
+    <Texture>images/atlas</Texture>
+    <Regions>
+        <Region name="wall-upper-left" x="0" y="0" width="40" height="40" />
+        <Region name="wall-upper-middle" x="40" y="0" width="40" height="40" />
+        <Region name="wall-upper-middle-alt" x="80" y="0" width="40" height="40" />
+        <Region name="wall-upper-right" x="120" y="0" width="40" height="40" />
+        <Region name="wall-left-middle" x="0" y="40" width="40" height="40" />
+        <Region name="wall-front" x="40" y="40" width="40" height="40" />
+        <Region name="wall-front-alt" x="80" y="40" width="40" height="40" />
+        <Region name="wall-right-middle" x="120" y="40" width="40" height="40" />
+        <Region name="wall-left-middle-alt" x="0" y="80" width="40" height="40" />
+        <Region name="floor-tile" x="40" y="80" width="40" height="40" />
+        <Region name="floor-tile-cracked" x="80" y="80" width="40" height="40" />
+        <Region name="wall-right-middle-alt" x="120" y="80" width="40" height="40" />
+        <Region name="wall-bottom-left" x="0" y="120" width="40" height="40" />
+        <Region name="wall-bottom-middle" x="40" y="120" width="40" height="40" />
+        <Region name="wall-bottom-middle-alt" x="80" y="120" width="40" height="40" />
+        <Region name="wall-bottom-right" x="120" y="120" width="40" height="40" />
+        <Region name="slime-1" x="0" y="160" width="40" height="40" />
+        <Region name="slime-2" x="40" y="160" width="40" height="40" />
+        <Region name="bat-1" x="80" y="160" width="40" height="40" />
+        <Region name="bat-2" x="120" y="160" width="40" height="40" />
+        <Region name="bat-3" x="0" y="200" width="40" height="40" />
+    </Regions>
+    <Animations>
+        <Animation name="slime-animation" delay="200">
+            <Frame region="slime-1" />
+            <Frame region="slime-2" />
+        </Animation>
+        <Animation name="bat-animation" delay="200">
+            <Frame region="bat-1" />
+            <Frame region="bat-2" />
+            <Frame region="bat-1" />
+            <Frame region="bat-3" />
+        </Animation>
+    </Animations>
+</TextureAtlas>
