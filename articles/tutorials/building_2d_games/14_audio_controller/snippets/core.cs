@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary.Audio;
@@ -9,12 +10,12 @@ namespace MonoGameLibrary;
 
 public class Core : Game
 {
-    internal static Core _instance;
+    internal static Core s_instance;
 
     /// <summary>
     /// Gets a reference to the Core instance.
     /// </summary>
-    public static Core Instance => _instance;
+    public static Core Instance => s_instance;
 
     /// <summary>
     /// Gets the graphics device manager to control the presentation of graphics.
@@ -22,9 +23,19 @@ public class Core : Game
     public static GraphicsDeviceManager Graphics { get; private set; }
 
     /// <summary>
+    /// Gets the graphics device used to create graphical resources and perform primitive rendering.
+    /// </summary>
+    public static new GraphicsDevice GraphicsDevice { get; private set; }
+
+    /// <summary>
     /// Gets the sprite batch used for all 2D rendering.
     /// </summary>
     public static SpriteBatch SpriteBatch { get; private set; }
+
+    /// <summary>
+    /// Gets the content manager used to load global assets.
+    /// </summary>
+    public static new ContentManager Content { get; private set; }
 
     /// <summary>
     /// Gets a reference to to the input management system.
@@ -51,13 +62,13 @@ public class Core : Game
     public Core(string title, int width, int height, bool fullScreen)
     {
         // Ensure that multiple cores are not created.
-        if (_instance != null)
+        if (s_instance != null)
         {
             throw new InvalidOperationException($"Only a single Core instance can be created");
         }
 
         // Store reference to engine for global member access.
-        _instance = this;
+        s_instance = this;
 
         // Create a new graphics device manager.
         Graphics = new GraphicsDeviceManager(this);
@@ -73,6 +84,10 @@ public class Core : Game
         // Set the window title
         Window.Title = title;
 
+        // Set the core's content manager to a reference of hte base Game's
+        // content manager.
+        Content = base.Content;
+
         // Set the root directory for content
         Content.RootDirectory = "Content";
 
@@ -82,19 +97,20 @@ public class Core : Game
 
     protected override void Initialize()
     {
+        base.Initialize();
+
+        // Set the core's graphics device to a reference of the base Game's
+        // graphics device.
+        GraphicsDevice = base.GraphicsDevice;
+
+        // Create the sprite batch instance.
+        SpriteBatch = new SpriteBatch(GraphicsDevice);
+
         // Create a new input manager
         Input = new InputManager();
 
         // Create a new audio controller.
         Audio = new AudioController();
-
-        base.Initialize();
-    }
-
-    protected override void LoadContent()
-    {
-        // Create the sprite batch instance.
-        SpriteBatch = new SpriteBatch(GraphicsDevice);
     }
 
     protected override void UnloadContent()
