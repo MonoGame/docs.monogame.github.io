@@ -113,7 +113,7 @@ Now that we have the audio controller class complete, let's update the game to u
 
 The `Core` class serves as our the base game class, so we'll update it first to add and expose the `AudioController` globally.  Open the *Core.cs* file in the *MonoGameLibrary* project and update it to the following:
 
-[!code-csharp[](./snippets/core.cs?highlight=5,39-42,88-89,100-106,113-114)]
+[!code-csharp[](./snippets/core.cs?highlight=6,50-53,112-113,116-122,129-130)]
 
 The key changes made here are:
 
@@ -127,13 +127,15 @@ The key changes made here are:
 
 Next, update the `Game1` class to use the audio controller for audio playback.  Open *Game1.cs* and make the following updates:
 
-[!code-csharp[](./snippets/game1.cs?76-77,180,204,257-273)]
+[!code-csharp[](./snippets/game1.cs?highlight=39-40,58-59,79-80,183,207,260-276)]
 
 The key changes made here are:
 
-1. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the audio manager is used to play the background theme song.
-2. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) the audio manager is used to play the bounce and collect sound effects.
-3. In `CheckKeyboardInput` the following checks were added
+1. The `_themeSong` field is added to store a reference to the background song to play.
+2. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the background theme song is loaded using hte content manager.
+3. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize), the audio manager is used to play the background theme song.
+4. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) the audio manager is used to play the bounce and collect sound effects.
+5. In `CheckKeyboardInput` the following checks were added
    1. If the M key on the keyboard is pressed, it will toggle mute for all audio.
    2. If the + key is pressed, the global volume is increased by `0.1f`.
    3. If the - key is pressed, the global volume is decreased by `0.1f`.

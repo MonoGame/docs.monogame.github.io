@@ -140,8 +140,13 @@ The `Core` class provides the following features
 
 1. It extends the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class, so it inherits all of the base functionality.
 2. It implements a singleton pattern through the `Instance` property, ensure only one core exists.
-3. It provides static access to the graphics device manager and the sprite batch.
+3. It provides static access to the graphics device manager, the graphics device, the sprite batch, and the content manager.
 4. It simplifies the game window setup with a constructor that handles common initializations.
+
+> [!NOTE]
+> The `new` keyword in the property declaration `public static new GraphicsDevice GraphicsDevice` and `public static new ContentManager Content` is used to intentionally hide (or "shadow") the inherited `GraphicsDevice` and `Content` properties from the base `Game` class. This creates new properties with the same name but different accessibility (static vs. instance) in the derived class.
+>
+> When you access `Core.GraphicsDevice` or `Core.Content` you'll be using this static properties, while `base.GraphicsDevice` or `base.Content` within instance methods of the `Core` class would still access the original property. This pattern allows us to provide convenient static access to the graphics device and content manager throughout our game without having to reference the Core instance every time.
 
 This approach provides a consistent foundation for all our games, handling common setup tasks and providing convenient access to core functionality.
 

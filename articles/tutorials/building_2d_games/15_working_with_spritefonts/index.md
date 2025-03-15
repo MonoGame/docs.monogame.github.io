@@ -207,7 +207,7 @@ The key changes here are:
 
 Finally, open the *Game1.cs* file and make the following changes:
 
-[!code-csharp[](./snippets/game1.cs?highlight=39-43,54-61,90-91,220-221,360-361)]
+[!code-csharp[](./snippets/game1.cs?highlight=42-46,57-64,96-97,226-227,366-367)]
 
 The key changes made are:
 
@@ -237,7 +237,6 @@ Let's review what you accomplished in this chapter:
 - Implementing a score display and boost indicator in our game.
 
 In the next chapter we'll discuss MonoGame's service container and how we can use it to start breaking our monolithic game file into modules for better maintainability.
-
 
 ## Test Your Knowledge
 
