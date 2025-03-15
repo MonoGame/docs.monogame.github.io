@@ -17,4 +17,13 @@ public class Game1 : Core
         // Start the game with the title scene.
         ChangeScene(new TitleScene());
     }
+
+    protected override void LoadContent()
+    {
+        // Load the game's background theme music.
+        Song theme = Content.Load<Song>("audio/theme");
+
+        // Start playing the background theme music using the audio controller.
+        Audio.PlaySong(theme);        
+    }
 }

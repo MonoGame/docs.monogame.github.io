@@ -106,12 +106,6 @@ public class TitleScene : Scene
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite("slime-animation");
-
-        // Load the background theme music
-        Song theme = globalContent.Load<Song>("audio/theme");
-
-        // Start playing the background music
-        Core.Audio.PlaySong(theme);
     }
     #endregion
 
