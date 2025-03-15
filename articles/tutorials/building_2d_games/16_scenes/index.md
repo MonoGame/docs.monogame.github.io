@@ -91,7 +91,7 @@ Add the following methods to the `Scene` class to complete the implementation of
 
 Now that we have the base `Scene` class defined, let's update the `Core` class to handle management of the scenes including update, drawing, and changing scenes.  Open the *Core.cs* file in the *MonoGameLibrary* project and make the following changes:
 
-[!code-csharp[](./snippets/core.cs?highlight=7,20-24,128-139,144-153,155-163,165-189)]
+[!code-csharp[](./snippets/core.cs?highlight=8,21-25,144-155,160-169,171-179,181-205)]
 
 The key changes here are:
 

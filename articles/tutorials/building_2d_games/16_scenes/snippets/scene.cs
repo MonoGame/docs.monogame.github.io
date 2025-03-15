@@ -33,11 +33,11 @@ public abstract class Scene : IDisposable
     public Scene()
     {
         // Create a content manager for the scene
-        Content = new ContentManager(Core.Instance.Services);
+        Content = new ContentManager(Core.Content.ServiceProvider);
 
         // Set the root directory for content to the same as the root directory
         // for the game's content.
-        Content.RootDirectory = Core.Instance.Content.RootDirectory;
+        Content.RootDirectory = Core.Content.RootDirectory;
     }
 
     // Finalizer, called when object is cleaned up by garbage collector.
