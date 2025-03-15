@@ -24,6 +24,8 @@ public class Game1 : Core
         Song theme = Content.Load<Song>("audio/theme");
 
         // Start playing the background theme music using the audio controller.
-        Audio.PlaySong(theme);        
+        Audio.PlaySong(theme);
+
+        base.LoadContent();        
     }
 }
