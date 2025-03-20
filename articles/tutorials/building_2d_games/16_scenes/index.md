@@ -91,7 +91,7 @@ Add the following methods to the `Scene` class to complete the implementation of
 
 Now that we have the base `Scene` class defined, let's update the `Core` class to handle management of the scenes including update, drawing, and changing scenes.  Open the *Core.cs* file in the *MonoGameLibrary* project and make the following changes:
 
-[!code-csharp[](./snippets/core.cs?highlight=7,20-24,128-139,144-153,155-163,165-189)]
+[!code-csharp[](./snippets/core.cs?highlight=8,21-25,144-155,160-169,171-179,181-205)]
 
 The key changes here are:
 
@@ -177,7 +177,6 @@ Add the following override for the `LoadContent` method to the `TitleScene` clas
 - We capture a reference to the content manager from the `Core` class.  This content manager is used to load content that is used in multiple scenes, so it acts as a global content manager.
 - The fonts are loaded. The title font is only used on the title screen, so it's loaded using the scene's content manager, while the standard font is loaded using the global content manager.
 - The texture atlas is loaded and the slime animated sprite is created.
-- The background theme song is loaded and played using the core audio system we created previously.
 
 > [!TIP]
 > Recall from [Chapter 05](../05_content_pipeline/index.md#contentmanager-methods) that when a [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) loads an asset for the first time, it caches it internally and the subsequent calls to load that asset will return the cached one instead of performing another disk read.  
@@ -302,8 +301,9 @@ With our scene system and scene classes in place, we can now simplify our main `
 The `Game1` class is now much simpler as most of the game logic has been moved to the appropriate scene classes. It:
 
 1. Inherits from our `Core` class instead of the MonoGame Game class.
-1. Sets up the game window with the constructor parameters.
-1. Overrides the `Initialize` method to set the title scene as the starting scene.
+2. Sets up the game window with the constructor parameters.
+3. Overrides the `Initialize` method to set the title scene as the starting scene.
+4. Overrides the `LoadContent` method to load the background theme song and start playing it.
 
 Running the game now, we can see that once the game screen comes up, the title scene is displayed with the animated slime and the press enter prompt.  The background music starts playing on this scene as well.  Pressing enter from here will switch to the game scene where the game starts and we can play the game implemented thus far.
 

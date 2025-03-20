@@ -36,6 +36,9 @@ public class Game1 : Core
     // The sound effect to play when the slime eats a bat.
     private SoundEffect _collectSoundEffect;
 
+    // The background theme song
+    private Song _themeSong;
+
     // The SpriteFont Description used to draw text
     private SpriteFont _font;
 
@@ -62,6 +65,9 @@ public class Game1 : Core
 
         // Assign the initial random velocity to the bat.
         AssignRandomBatVelocity();
+
+        // Start playing the background music
+        Audio.PlaySong(_themeSong);
     }
 
     protected override void LoadContent()
@@ -84,8 +90,8 @@ public class Game1 : Core
         // Load the background theme music
         Song theme = Content.Load<Song>("audio/theme");
 
-        // Start playing the background music
-        Audio.PlaySong(theme);
+        // Load the background theme music
+        _themeSong = Content.Load<Song>("audio/theme");
 
         // Load the font
         _font = Content.Load<SpriteFont>("fonts/gameFont");

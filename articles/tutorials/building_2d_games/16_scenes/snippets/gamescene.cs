@@ -77,14 +77,8 @@ public class GameScene : Scene
     #region loadcontent
     public override void LoadContent()
     {
-        // Get a reference to the global content manager.  For content that is
-        // used throughout the game in multiple scenes, we'll load with the
-        // global content manager.  For any content that is used on within this
-        // scene, we'll use the scene's specific content manager.
-        ContentManager globalContent = Core.Instance.Content;
-
         // Create the texture atlas from the XML configuration file
-        TextureAtlas atlas = TextureAtlas.FromFile(globalContent, "images/atlas-definition.xml");
+        TextureAtlas atlas = TextureAtlas.FromFile(Core.Content, "images/atlas-definition.xml");
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite("slime-animation");
@@ -99,7 +93,7 @@ public class GameScene : Scene
         _collectSoundEffect = Content.Load<SoundEffect>("audio/collect");
 
         // Load the font
-        _font = globalContent.Load<SpriteFont>("fonts/gameFont");
+        _font = Core.Content.Load<SpriteFont>("fonts/gameFont");
     }
     #endregion
 
@@ -356,11 +350,8 @@ public class GameScene : Scene
     #region draw
     public override void Draw(GameTime gameTime)
     {
-        // Get a reference to the graphics device
-        GraphicsDevice graphicsDevice = Core.Instance.GraphicsDevice;
-
         // Clear the back buffer.
-        graphicsDevice.Clear(Color.CornflowerBlue);
+        Core.GraphicsDevice.Clear(Color.CornflowerBlue);
 
         // Begin the sprite batch to prepare for rendering.
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);

@@ -356,18 +356,17 @@ Now tha we have our input management system complete, let's update our game to u
 
 The `Core` class serves as our base game class, so we will update it to add and expose the `InputManager` globally.  Open the *Core.cs* file in the *MonoGameLibrary* project and update it to the following:
 
-[!code-csharp[](./snippets/core.cs?highlight=5,28-36,77-83,91-102)]
+[!code-csharp[](./snippets/core.cs?highlight=6,39-47,103-104,112-115)]
 
 The key changes to the `Core` class are:
 
 1. Added the `using MonoGameLibrary.Input;` directive to access the `InputManager` class.
 2. Added a static `Input` property to provide global access to the input manager.
 3. Added a static `ExitOnEscape` property to set whether the game should exit when the Escape key on the keyboard is pressed.
-4. Added an override for the `Initialize` method where the input manager is created.
+4. In `Initialize` the input manager is created.
 5. Added an override for the `Update` method where:
    1. The input manager is updated
    2. A check is made to see if `ExitOnEscape` is true and if the Escape keyboard key is pressed.
-
 
 ### Updating the Game1 Class
 
