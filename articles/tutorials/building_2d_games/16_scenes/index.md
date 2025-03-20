@@ -56,7 +56,7 @@ Add the following properties to the `Scene` class:
 [!code-csharp[](./snippets/scene.cs#properties)]
 
 - The `Content` property is the scene's personal [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) that can be used to load scene specific content that will be unloaded when the scene ends.  This helps manage memory usage by only loading what is needed for a specific scene.
-- The `IsDisposable` property is used to track if the scene has been disposed of since it implements the `IDisposable` interface.
+- The `IsDisposed` property is used to track if the scene has been disposed of since it implements the `IDisposable` interface.
 
 ### Scene Constructor
 
