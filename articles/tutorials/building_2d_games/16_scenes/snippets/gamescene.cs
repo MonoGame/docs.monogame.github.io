@@ -106,9 +106,6 @@ public class GameScene : Scene
     #region update
     public override void Update(GameTime gameTime)
     {
-        // Get a reference to the graphics device
-        GraphicsDevice graphicsDevice = Core.Instance.GraphicsDevice;
-
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 
@@ -122,12 +119,7 @@ public class GameScene : Scene
         CheckGamePadInput();
 
         // Create a bounding rectangle for the screen
-        Rectangle screenBounds = new Rectangle(
-            0,
-            0,
-            graphicsDevice.PresentationParameters.BackBufferWidth,
-            graphicsDevice.PresentationParameters.BackBufferHeight
-        );
+        Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
 
         // Creating a bounding circle for the slime
         Circle slimeBounds = new Circle(
@@ -211,8 +203,8 @@ public class GameScene : Scene
         {
             // Divide the width  and height of the screen into equal columns and
             // rows based on the width and height of the bat.
-            int totalColumns = graphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
-            int totalRows = graphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
+            int totalColumns = screenBounds.Width / (int)_bat.Width;
+            int totalRows = screenBounds.Height / (int)_bat.Height;
 
             // Choose a random row and column based on the total number of each
             int column = Random.Shared.Next(0, totalColumns);

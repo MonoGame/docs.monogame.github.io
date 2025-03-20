@@ -55,34 +55,33 @@ public class TitleScene : Scene
         // can close the game by pressing the escape key.
         Core.ExitOnEscape = true;
 
-        // Get a reference to the graphics device
-        GraphicsDevice graphicsDevice = Core.Instance.GraphicsDevice;
+        // Get the bounds of the screen for position calculations
+        Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
 
         // Precalculate the positions and origins for texts and the slime sprite
         // so we're not calculating it every draw frame.
         _titlePos = new Vector2(
-            graphicsDevice.PresentationParameters.BackBufferWidth * 0.5f,
+            screenBounds.Width * 0.5f,
             100);
 
         Vector2 titleSize = _titleFont.MeasureString(TITLE);
         _titleOrigin = titleSize * 0.5f;
 
         _pressEnterPos = new Vector2(
-            graphicsDevice.PresentationParameters.BackBufferWidth * 0.5f,
-            graphicsDevice.PresentationParameters.BackBufferHeight - 100
+            screenBounds.Width * 0.5f,
+            screenBounds.Height - 100
         );
 
         Vector2 pressEnterSize = _standardFont.MeasureString(PRESS_ENTER);
         _pressEnterOrigin = pressEnterSize * 0.5f;
 
         _slimePos = new Vector2(
-            graphicsDevice.PresentationParameters.BackBufferWidth,
-            graphicsDevice.PresentationParameters.BackBufferHeight
+            screenBounds.Width,
+            screenBounds.Height
         ) * 0.5f;
 
         _slime.CenterOrigin();
         _slime.Scale = new Vector2(5.0f, 5.0f);
-
     }
     #endregion
 
