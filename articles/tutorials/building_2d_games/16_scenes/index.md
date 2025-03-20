@@ -18,7 +18,7 @@ Our game logic is currently contained within the single `Game1` class.  Adding m
 - Create a title scene and gameplay scene for our game
 - Refactor our existing game to use the scene system
 
-Let's start by first defining the lifecycle of a scene that will be followed.
+We will being by first defining the lifecycle of a scene that will be followed.
 
 ## Scene Lifecycle
 
@@ -31,8 +31,6 @@ In Chapter 03, you learned the basic [lifecycle of the `Game` class](../03_the_g
     1. The current scene is unloaded and disposed of.
     2. The new scene is initialized and content loaded.
     3. The new scene becomes the active scene and the cycle begins again until the game is told to exit.
-
-With this in mind, let's start by  creating the base `Scene` class.
 
 ## The Scene Base Class
 
@@ -89,7 +87,7 @@ Add the following methods to the `Scene` class to complete the implementation of
 
 ## Scene Management
 
-Now that we have the base `Scene` class defined, let's update the `Core` class to handle management of the scenes including update, drawing, and changing scenes.  Open the *Core.cs* file in the *MonoGameLibrary* project and make the following changes:
+With the base `Scene` class defined, the `Core` class needs to be updated to handle management of the scenes, including update, drawing, and changing scenes.  Open the *Core.cs* file in the *MonoGameLibrary* project and make the following changes:
 
 [!code-csharp[](./snippets/core.cs?highlight=8,21-25,144-155,160-169,171-179,181-205)]
 
@@ -113,7 +111,7 @@ The key changes here are:
 
 ## Adding Scenes To Our Game
 
-Now that we have the scene architecture setup, let's break our current game into actual scenes.  We'll create two scenes; a title scene and a gameplay scene.
+With the scene architecture in place, the game can be broken down into scenes.  We will create two scenes; a title scene and a gameplay scene.
 
 ### The Title Scene
 
@@ -132,7 +130,7 @@ Next, download the *04B_30.ttf* font below by right-clicking it, choosing "Save 
 
 - [04B_30.ttf](./files/04B_30.TTF)
 
-Now let's implement the Title Scene.  In the main game project:
+Next, create the `TitleScene` class file. In the main game project:
 
 1. Create a new directory named *Scenes*.  We'll put all of our game specific scenes here.
 2. Add a new class file named *TitleScene.cs* to the *Scenes* directory you just created.
@@ -175,7 +173,7 @@ Add the following override for the `LoadContent` method to the `TitleScene` clas
 [!code-csharp[](./snippets/titlescene.cs#loadcontent)]
 
 - We capture a reference to the content manager from the `Core` class.  This content manager is used to load content that is used in multiple scenes, so it acts as a global content manager.
-- The fonts are loaded. The title font is only used on the title screen, so it's loaded using the scene's content manager, while the standard font is loaded using the global content manager.
+- The fonts are loaded. The title font is only used on the title screen, so it is loaded using the scene's content manager, while the standard font is loaded using the global content manager.
 - The texture atlas is loaded and the slime animated sprite is created.
 
 > [!TIP]
@@ -252,7 +250,7 @@ Add the following override for the `LoadContent` method to the `GameScene` class
 - Similar to the title scene, we capture a reference to the global content manager from the `Core` class.
 - The texture atlas is loaded using the global content manager, and the slime and bat animated sprites are created from it.
 - The sound effects are loaded using the scene's content manager since they're specific to the gameplay scene.
-- The font is loaded using the global content manager since it's used in multiple scenes.
+- The font is loaded using the global content manager since it is used in multiple scenes.
 
 > [!TIP]
 > Notice how we're following a consistent pattern across scenes: global assets are loaded with `Core.Instance.Content` while scene-specific assets are loaded with the scene's `Content` property.
@@ -313,9 +311,9 @@ Running the game now, we can see that once the game screen comes up, the title s
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
-- Learned about scene management and why it's important for organizing game code.
+- Learned about scene management and why it is important for organizing game code.
 - Created an abstract `Scene` base class that provides a consistent lifecycle similar to the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class.
 - Implemented the `IDisposable` interface to properly handle resource cleanup.
 - Extended the `Core` class to handle scene transitions and management.
@@ -352,7 +350,7 @@ In the next chapter, we'll explore [**RenderTarget2D**](xref:Microsoft.Xna.Frame
     - `UnloadContent` is called when transitioning away from the scene.
     :::
 
-3. What's the purpose of having a separate [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) for each scene?
+3. What is the purpose of having a separate [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) for each scene?
 
     :::question-answer
     Having a separate [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) for each scene:
