@@ -20,7 +20,7 @@ This documentation will introduce game development concepts using the MonoGame f
 > This is currently a work in progress and is not finished.
 
 | Chapter                                                                      | Summary                                                                                                                                                                                           | Source Files |
-| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+|------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
 | [01: What Is MonoGame](01_what_is_monogame/index.md)                         | Learn about the history of MonoGame and explore the features it provides developers when creating games.                                                                                          |              |
 | [02: Getting Started](02_getting_started/index.md)                           | Setup your development environment for dotnet development and MonoGame using Visual Studio Code as your IDE.                                                                                      |              |
 | [03: The Game1 File](03_the_game1_file/index.md)                             | Explore the contents of the Game1 file generated when creating a new MonoGame project.                                                                                                            |              |
@@ -36,11 +36,12 @@ This documentation will introduce game development concepts using the MonoGame f
 | [13: Sound Effects and Music](13_soundeffects_and_music/index.md)            | Learn how to load and play sound effects and background music in MonoGame including managing audio volume, looping, and handling multiple sound effects at once.                                  |              |
 | [14: Audio Controller](14_audio_controller/index.md)                         | Learn how to create a reusable audio controller class to manage sound effects and music, including volume control, muting/unmuting, and proper resource cleanup.                                  |              |
 | [15: Working with SpriteFonts](15_working_with_spritefonts/index.md)         | Learn how to create and use SpriteFonts to render text in your MonoGame project, including loading custom fonts and controlling text appearance.                                                  |              |
+| [16: Scenes](16_scenes/index.md)                                             | Learn how to implement scene management to handle different game screens like menus, gameplay, and transitions between scenes.                                                                    |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
 | Appendix | Summary |
-| -------- | ------- |
+|----------|---------|
 |          |         |
 
 ## Conventions Used in This Documentation

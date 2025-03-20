@@ -32,7 +32,7 @@ To get started, in the *MonoGameLibrary* project:
     [!code-csharp[](./snippets/audiocontroller.cs#declaration)]
 
     > [!NOTE]
-    > The `AudioController` class will implement the `IDisposable` interface.
+    > The `AudioController` class will implement the `IDisposable` interface,  This interface is part of .NET and provides a standardized implementation for an object to release resources.  Implementing `IDisposable` allows other code to properly clean up the resources held by our audio controller when it's no longer needed.  For more information on `IDisposable`, you can read the [Implement a Dispose Method](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose) article on Microsoft Learn.
 
 ### AudioController Properties and Fields
 
