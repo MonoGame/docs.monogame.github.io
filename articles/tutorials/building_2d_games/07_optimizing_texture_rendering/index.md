@@ -155,6 +155,11 @@ Download the texture atlas by right-clicking the following image and saving it a
 |:-----------------------------------------------------------------:|
 |          **Figure 7-2: The texture atlas for our game**           |
 
+> [!TIP]
+> You may notice that our texture atlas image has some empty areas, which seems like a waste.  Its dimensions are 256x256 pixels when it could have just been 240x160 pixels.  This is intentional.
+>
+>Game graphics often use texture dimensions that are powers of 2 (128, 256, 512, 1024, etc.) for technical reasons. While modern graphics hardware can handle any texture size, power-of-2 dimensions provide better memory efficiency and more precise rendering. When pixel coordinates are converted to texture coordinates during rendering, powers of 2 can be represented more precisely in floating-point calculations, helping prevent visual artifacts like texture seams. This isn't critical for simple 2D games, but adopting this practice early will serve you well as your games become more complex.
+
 Add this texture atlas to your content project using the MGCB Editor:
 
 1. Open the *Content.mgcb* file in the MGCB Editor

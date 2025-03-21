@@ -345,6 +345,12 @@ The key changes made here are:
 5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime))  `CheckKeyboardInput` and `CheckGamePadInput` methods are called.
 6. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), the slime is now drawn using `_slimePosition` as the position.
 
+Running the game now, you can move the slime around using the keyboard with the arrow keys or WASD keys.  If you have a gamepad plugged in you can also use the DPad and left thumbstick.
+
+| ![Figure 10-1: The slime moving around based on device input](./videos/input-moving-slime.webm) |
+|:-----------------------------------------------------------------------------------------------:|
+|                 **Figure 10-1: The slime moving around based on device input**                  |
+
 ## Conclusion
 
 In this chapter, you learned how to:

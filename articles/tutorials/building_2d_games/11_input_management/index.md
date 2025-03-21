@@ -377,9 +377,13 @@ Now let's update our `Game1` class to use the new input management system throug
 The key changes to the `Game1` class are:
 
 1. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the check for the gamepad back button or keyboard escape key being pressed was removed.  This is now handled by the `ExitOnEscape` property and the `Update` method of the `Core` class.
-2. In `CheckKeyboardInput` and `CheckGamepadInput`, instead of getting the keyboard and gamepad states and then using the states, calls to check those devices are now done through the input 
+2. In `CheckKeyboardInput` and `CheckGamepadInput`, instead of getting the keyboard and gamepad states and then using the states, calls to check those devices are now done through the input.
 
 Running the game now, you will be able to control it the same as before, only now we're using our new `InputManager` class instead.
+
+| ![Figure 11-1: The slime moving around based on device input](./videos/input-moving-slime.webm) |
+|:-----------------------------------------------------------------------------------------------:|
+|                 **Figure 11-1: The slime moving around based on device input**                  |
 
 ## Conclusion
 
