@@ -1,0 +1,261 @@
+#region declaration
+using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
+
+namespace MonoGameLibrary.Audio;
+
+public class AudioController : IDisposable
+{
+
+}
+#endregion
+{
+    #region properties
+    // Tracks sound effect instances created so they can be paused, unpaused, and/or disposed.
+    private readonly List<SoundEffectInstance> _activeSoundEffectInstances;
+
+    // Tracks the volume for song playback when muting and unmuting.
+    private float _previousSongVolume;
+
+    // Tracks the volume for sound effect playback when muting and unmuting.
+    private float _previousSoundEffectVolume;
+    
+    /// <summary>
+    /// Gets a value that indicates if audio is muted.
+    /// </summary>
+    public bool IsMuted { get; private set; }
+
+    /// <summary>
+    /// Gets a value that indicates if this audio controller has been disposed.
+    /// </summary>
+    public bool IsDisposed {get; private set; }
+    #endregion
+
+    #region ctors
+    /// <summary>
+    /// Creates a new audio controller instance.
+    /// </summary>
+    public AudioController()
+    {
+        _activeSoundEffectInstances = new List<SoundEffectInstance>();
+    }
+
+    // Finalizer called when object is collected by the garbage collector
+    ~AudioController() => Dispose(false);
+    #endregion
+
+    #region update
+    /// <summary>
+    /// Updates this audio controller
+    /// </summary>
+    public void Update()
+    {
+        int index = 0;
+
+        while (index < _activeSoundEffectInstances.Count)
+        {
+            SoundEffectInstance instance = _activeSoundEffectInstances[index];
+
+            if (instance.State == SoundState.Stopped && !instance.IsDisposed)
+            {
+                instance.Dispose();
+            }
+
+            _activeSoundEffectInstances.RemoveAt(index);
+        }
+    }
+    #endregion
+
+    #region idisposable
+    /// <summary>
+    /// Disposes of this audio controller and cleans up resources.
+    /// </summary>
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    /// Disposes this audio controller and cleans up resources.
+    /// </summary>
+    /// <param name="disposing">Indicates whether managed resources should be disposed.</param>
+    protected void Dispose(bool disposing)
+    {
+        if(IsDisposed)
+        {
+            return;
+        }
+
+        if (disposing)
+        {
+            foreach (SoundEffectInstance soundEffectInstance in _activeSoundEffectInstances)
+            {
+                soundEffectInstance.Dispose();
+            }
+            _activeSoundEffectInstances.Clear();
+        }
+
+        IsDisposed = true;
+    }
+    #endregion
+
+    #region playback
+    /// <summary>
+    /// Plays the given sound effect.
+    /// </summary>
+    /// <param name="soundEffect">The sound effect to play.</param>
+    /// <returns>The sound effect instance created by this method.</returns>
+    public SoundEffectInstance PlaySoundEffect(SoundEffect soundEffect)
+    {
+        return PlaySoundEffect(soundEffect, 1.0f, 1.0f, 0.0f, false);
+    }
+
+    /// <summary>
+    /// Plays the given sound effect with the specified properties.
+    /// </summary>
+    /// <param name="soundEffect">The sound effect to play.</param>
+    /// <param name="volume">The volume, ranging from 0.0 (silence) to 1.0 (full volume).</param>
+    /// <param name="pitch">The pitch adjustment, ranging from -1.0 (down an octave) to 0.0 (no change) to 1.0 (up an octave).</param>
+    /// <param name="pan">The panning, ranging from -1.0 (left speaker) to 0.0 (centered), 1.0 (right speaker).</param>
+    /// <param name="isLooped">Whether the the sound effect should loop after playback.</param>
+    /// <returns>The sound effect instance created by playing the sound effect.</returns>
+    /// <returns>The sound effect instance created by this method.</returns>
+    public SoundEffectInstance PlaySoundEffect(SoundEffect soundEffect, float volume, float pitch, float pan, bool isLooped)
+    {
+        // Create an instance from the sound effect given.
+        SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
+
+        // Apply the volume, pitch, pan, and loop values specified.
+        soundEffectInstance.Volume = volume;
+        soundEffectInstance.Pitch = pitch;
+        soundEffectInstance.Pan = pan;
+        soundEffectInstance.IsLooped = isLooped;
+
+        // Tell the instance to play
+        soundEffectInstance.Play();
+
+        // Add it to the active instances for tracking
+        _activeSoundEffectInstances.Add(soundEffectInstance);
+
+        return soundEffectInstance;
+    }
+
+    public void PlaySong(Song song)
+    {
+        // Check if the media player is already playing, if so, stop it.
+        // If we don't stop it, this could cause issues on some platforms
+        if (MediaPlayer.State == MediaState.Playing)
+        {
+            MediaPlayer.Stop();
+        }
+
+        MediaPlayer.Play(song);
+    }
+    #endregion
+
+    #region state
+    /// <summary>
+    /// Pauses all audio.
+    /// </summary>
+    public void PauseAudio()
+    {
+        // Pause any active songs playing
+        MediaPlayer.Pause();
+
+        // Pause any active sound effects
+        foreach (SoundEffectInstance soundEffectInstance in _activeSoundEffectInstances)
+        {
+            soundEffectInstance.Pause();
+        }
+    }
+
+    /// <summary>
+    /// Resumes play of all previous paused audio.
+    /// </summary>
+    public void ResumeAudio()
+    {
+        // Resume paused music
+        MediaPlayer.Resume();
+
+        // Resume any active sound effects
+        foreach (SoundEffectInstance soundEffectInstance in _activeSoundEffectInstances)
+        {
+            soundEffectInstance.Resume();
+        }
+    }
+
+    /// <summary>
+    /// Mutes all audio.
+    /// </summary>
+    public void MuteAudio()
+    {
+        // Store the volume so they can be restored during ResumeAudio
+        _previousSongVolume = MediaPlayer.Volume;
+        _previousSoundEffectVolume = SoundEffect.MasterVolume;
+
+        // Set all volumes to 0
+        MediaPlayer.Volume = 0.0f;
+        SoundEffect.MasterVolume = 0.0f;
+
+        IsMuted = true;
+    }
+
+    /// <summary>
+    /// Unmutes all audio to the volume level prior to muting.
+    /// </summary>
+    public void UnmuteAudio()
+    {
+        // Restore the previous volume values
+        MediaPlayer.Volume = _previousSongVolume;
+        SoundEffect.MasterVolume = _previousSoundEffectVolume;
+
+        IsMuted = false;
+    }
+
+    /// <summary>
+    /// Toggles the current audio mute state.
+    /// </summary>
+    public void ToggleMute()
+    {
+        if (IsMuted)
+        {
+            UnmuteAudio();
+        }
+        else
+        {
+            MuteAudio();
+        }
+    }
+    #endregion
+
+    #region volume
+    /// <summary>
+    /// Increases volume of all audio by the specified amount.
+    /// </summary>
+    /// <param name="amount">The amount to increase the audio by.</param>
+    public void IncreaseVolume(float amount)
+    {
+        if (!IsMuted)
+        {
+            MediaPlayer.Volume = Math.Min(MediaPlayer.Volume + amount, 1.0f);
+            SoundEffect.MasterVolume = Math.Min(SoundEffect.MasterVolume + amount, 1.0f);
+        }
+    }
+
+    /// <summary>
+    /// Decreases the volume of all audio by the specified amount.
+    /// </summary>
+    /// <param name="amount">The amount to decrease the audio by.</param>
+    public void DecreaseVolume(float amount)
+    {
+        if (!IsMuted)
+        {
+            MediaPlayer.Volume = Math.Max(MediaPlayer.Volume - amount, 0.0f);
+            SoundEffect.MasterVolume = Math.Max(SoundEffect.MasterVolume - amount, 0.0f);
+        }
+    }
+    #endregion
+}
