@@ -138,6 +138,8 @@
           href: tutorials/building_2d_games/12_collision_detection/
         - name: "13: Sound Effects and Music"
           href: tutorials/building_2d_games/13_soundeffects_and_music/
+        - name: "13: Working With Tilemaps"
+          href: tutorials/building_2d_games/13_working_with_tilemaps/          
         - name: "14: Audio Controller"
           href: tutorials/building_2d_games/14_audio_controller/
         - name: "15: Working with SpriteFonts"
