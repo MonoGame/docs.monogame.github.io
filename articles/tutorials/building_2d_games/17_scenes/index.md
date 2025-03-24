@@ -109,28 +109,23 @@ The key changes here are:
 > [!TIP]
 > Notice that we use a two-step process for scene transitions with separate `_activeScene` and `_nextScene` fields. This design allows the current scene to complete its update/draw cycle before the transition occurs, preventing potential issues that could arise from changing scenes in the middle of processing. The actual transition happens at a controlled point in the game loop, ensuring clean disposal of the old scene before initializing the new one.
 
-## Adding Scenes To Our Game
+## Updating the Game
 
-With the scene architecture in place, the game can be broken down into scenes.  We will create two scenes; a title scene and a gameplay scene.
+With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We'll create two scenes; a title scene and a gameplay scene.
 
 ### The Title Scene
 
-The title scene that will serve as our game's main menu. This scene will display the game title, a prompt to start the game, and an animated slime to give the scene some life.
+The title scene serves as the game's initial starting point, making the first impression on the player when they first launch the game.  For our game, this scene will display stylized text for the title of the game and a prompt for an action for the user to perform to start the game.  The stylized text is a graphic that was created and added to the texture atlas which features the title of the game with a drop shadow effect on the text.  So first, let's update the texture atlas to the new version with the title graphic.  Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* directory of the game project, overwriting the existing one:
 
-Before we implement the Title Scene, we need to create a font for the title text. Open the *Content.mgcb* content project in the MGCB Editor and:
+| ![Figure 17-1: The texture atlas for our game updated to include the title sprite](./images/atlas.png) |
+|:------------------------------------------------------------------------------------------------------:|
+|          **Figure 17-1: The texture atlas for our game updated to include the title sprite**           |
 
-1. Right-click the *fonts* directory and choose *Add > New Item...*.
-2. Select *SpriteFont Description (.spritefont)* from the options.
-3. Name the file *titleFont.spritefont* and click *Create*.
-4. Open the *titleFont.spritefont* file and change it to the following:
+Next, open the *atlas-definition.xml* file and add the region for the title sprite:
 
-    [!code-xml[](./snippets/titleFont.spritefont)]
+[!code-xml[](./snippets/atlas-definition.xml?highlight=10)]
 
-Next, download the *04B_30.ttf* font below by right-clicking it, choosing "Save Link as...", and saving it in the same directory that you just created the *titleFont.spritefont* file.
-
-- [04B_30.ttf](./files/04B_30.TTF)
-
-Next, create the `TitleScene` class file. In the main game project:
+With the atlas now updated, create the `TitleScene` class file.  In the main game project:
 
 1. Create a new directory named *Scenes*.  We'll put all of our game specific scenes here.
 2. Add a new class file named *TitleScene.cs* to the *Scenes* directory you just created.
@@ -144,11 +139,11 @@ Add the following fields to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene.cs#fields)]
 
-- The `TITLE` and `PRESS_ENTER` constants are the text that we'll draw to display the game title and the prompt to press enter.
-- The `_titleFont` and `_standardFont`  fields are the two fonts we'll load and use to draw the game title and the prompt with.
-- `_titlePos`, `_titleOrigin`, `_pressEnterPos`, and `_pressEnterOrigin` fields will contain the precalculated positions and origins to use when rendering the game title and the press enter prompt.
-- The `_slime` field will store the animated sprite for the slime that will be drawn.
-- The `_simePos` field will store the precalculated position to draw the slime at.
+- The `PRESS_ENTER` constant is the text we'll draw for the press enter prompt for the user.
+- The `_font` field stores a reference to the sprite font we'll load to render the press enter prompt with.
+- The `_titleSprite` field stores a reference the sprite we'll render for the stylized title from the texture atlas
+- The `_titlePos` and `_pressEnterPos` fields store the precalculated positions for the title sprite and the press enter prompt text when they are drawn.  Since they are stationary, we can just calculate the positions once and store it instead of calculating it each frame.
+- The `_pressEnterOrigin` field stores the precalculated origin for hte press enter prompt text when it is drawn.  Like with the position, we only need to calculate this once and store it instead of calculating it each frame.
 
 #### Title Scene Methods
 
@@ -161,10 +156,9 @@ Add the following override for the `Initialize` method to the `TitleScene` class
 [!code-csharp[](./snippets/titlescene.cs#initialize)]
 
 - We set the `Core.ExitOnEscape` to true to allow players to exit the game when on the title screen by pressing the escape key.
-- A reference to the graphics device from the `Core` instance is captured so we don't have to type `Core.Instance.GraphicsDevice` each time to use it.
-- The position and origins of the title text and the press enter prompt are precalculated. Their positions and origins are static as they don't move around on the screen, so we can pre-calculate them here instead of doing it each cycle in the `Draw` method.
-- The position of the slime is also precalculated as it doesn't move.
-- The scale of the slime is set to `5.0f` since we're on the title screen to fill in more space.
+- The bounds of the screen is captures by using the `Core.GraphicsDevice.PresentationParameters.Bounds` value.
+- The position to draw the title sprite is precalculated so that it will be centered horizontally and 80px down from the top of the screen.  The origin is set to center.
+- The position to draw the press enter prompt is precalculated so that it will be centered horizontally and 100 px above the bottom of the screen.  The string is measured and used to center the origin for the text.
 
 ##### Title Scene LoadContent
 
@@ -172,9 +166,9 @@ Add the following override for the `LoadContent` method to the `TitleScene` clas
 
 [!code-csharp[](./snippets/titlescene.cs#loadcontent)]
 
-- We capture a reference to the content manager from the `Core` class.  This content manager is used to load content that is used in multiple scenes, so it acts as a global content manager.
-- The fonts are loaded. The title font is only used on the title screen, so it is loaded using the scene's content manager, while the standard font is loaded using the global content manager.
-- The texture atlas is loaded and the slime animated sprite is created.
+- The font used to draw the press enter prompt is loaded.
+- The texture atlas is loaded using the XML configuration file.
+- The `_titleSprite` is generated from the `"title-card"` region in the atlas.
 
 > [!TIP]
 > Recall from [Chapter 05](../05_content_pipeline/index.md#contentmanager-methods) that when a [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) loads an asset for the first time, it caches it internally and the subsequent calls to load that asset will return the cached one instead of performing another disk read.  
@@ -187,7 +181,6 @@ Add the following override for the `Update` method to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene.cs#update)]
 
-- The animated slime is updated.
 - A check is made to see if the enter key is pressed, and if so, the `Core` is told to change to the game scene.  
 
 > [!NOTE]
@@ -199,9 +192,9 @@ Add the following override for the `Draw` method to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene.cs#draw)]
 
-- A reference to the graphics device from the `Core` instance is captured so we don't have to type `Core.Instance.GraphicsDevice` each time to use it.
 - The back buffer is cleared.
-- The title text, press enter prompt, and the animated slime are drawn using the sprite batch provided from the `Core` class.
+- The title sprite is drawn at its precalculated position.
+- The press enter prompt is drawn at its precalculated position.
 
 ### The Game Scene
 
@@ -305,9 +298,9 @@ The `Game1` class is now much simpler as most of the game logic has been moved t
 
 Running the game now, we can see that once the game screen comes up, the title scene is displayed with the animated slime and the press enter prompt.  The background music starts playing on this scene as well.  Pressing enter from here will switch to the game scene where the game starts and we can play the game implemented thus far.
 
-| ![Figure 17-1: The game launching with the title screen first, then transitioning to the game play screen when enter is pressed](./videos/gameplay.webm) |
-|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|            **Figure 17-1: The game launching with the title screen first, then transitioning to the game play screen when enter is pressed**             |
+| ![Figure 17-2: The game launching with the title screen first, then transitioning to the game play screen when enter is pressed](./videos/gameplay.webm) |
+|:--------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|            **Figure 17-2: The game launching with the title screen first, then transitioning to the game play screen when enter is pressed**             |
 
 ## Conclusion
 
