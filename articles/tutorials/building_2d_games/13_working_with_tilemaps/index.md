@@ -29,7 +29,7 @@ A tileset is a collection of small images (tiles) that can be combined and arran
 Each tile in a tileset is assigned an ID number, which the tilemap uses to reference which tile goes where. For example, in Figure 13-1 below, the tileset we'll add to our game in a moment is shown on the left and on the right is the same tileset with an overlay showing how each tile is assigned an ID number.
 
 | ![Figure 13-1: Left: Original dungeon tileset. Right: The same tileset with an overlay showing how each tile is assigned a numeric ID](./images/tileset-grid-comparison.png) |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |                   **Figure 13-1: Left: Original dungeon tileset.  Right: The same tileset with an overlay showing how each tile is assigned a numeric ID**                   |
 
 ### What is a Tilemap?
@@ -137,7 +137,7 @@ Now that we have the `Tilemap` and `Tileset` classes defined, let's update our g
 Currently, the texture atlas we've been using only contains the sprites for the slime and bat animations. Let's update it to a new version that contains the tileset as well.  Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* directory of the game project, overwriting the existing one.
 
 | ![Figure 13-3: The texture atlas for our game updated to include the tileset for the tilemap](./images/atlas.png) |
-| :---------------------------------------------------------------------------------------------------------------: |
+|:-----------------------------------------------------------------------------------------------------------------:|
 |          **Figure 13-3: The texture atlas for our game updated to include the tileset for the tilemap**           |
 
 Since the texture atlas image was updated and the location of the slime and bat sprites were repositioned, we need to update the atlas configuration file as well.  Open the *atlas-definition.xml* configuration file and update it to the following:
@@ -172,7 +172,7 @@ Next, we need to add this configuration file to our content project with the MGC
 5. Save the changes in the MGCB Editor.
 
 | ![Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy](./images/mgcb-editor.png) |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |             **Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy**              |
 
 ### Update the Game1 Class
@@ -195,8 +195,8 @@ The key changes to the `Game1` class include:
 Running the game now with these changes, our game now visually transforms from a simple screen with sprites to a proper game environment with walls and floors. The slime and bat are now confined within the walls of the dungeon defined by our tilemap.
 
 | ![Figure 13-5: Gameplay with the tilemap rendered and the bat and slime contained within the dungeon walls](./videos/gameplay.webm) |
-| :-----------------------------------------------------------------------------------------------------------------------------------: |
-|             **Figure 13-5: Gameplay with the tilemap rendered and the bat and slime contained within the dungeon walls**              |
+|:-----------------------------------------------------------------------------------------------------------------------------------:|
+|            **Figure 13-5: Gameplay with the tilemap rendered and the bat and slime contained within the dungeon walls**             |
 
 ## Additional Notes
 
