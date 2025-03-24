@@ -48,9 +48,9 @@ For example, a simple tilemap may look like this conceptually:
 
 If we took the above tilemap data and mapped each cell to the tile in the related tileset, it would look something similar to Figure 13-2 below:
 
-| ![Figure 13-2: From tileset to tilemap. Left: Tileset with an overlay showing the tile IDs.  Right: The tilemap created using the tiles arranged with the pattern from the code example above](./images/tileset-grid-comparison.png) |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                   **Figure 13-2: From tileset to tilemap. Left: Tileset with an overlay showing the tile IDs.  Right: The tilemap created using the tiles arranged with the pattern from the code example above**                    |
+| ![Figure 13-2: From tileset to tilemap. Left: Tileset with an overlay showing the tile IDs.  Right: The tilemap created using the tiles arranged with the pattern from the code example above](./images/tileset-to-tilemap-example.png) |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|                     **Figure 13-2: From tileset to tilemap. Left: Tileset with an overlay showing the tile IDs.  Right: The tilemap created using the tiles arranged with the pattern from the code example above**                     |
 
 This approach offers several advantage:
 
