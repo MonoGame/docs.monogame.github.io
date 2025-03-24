@@ -1,5 +1,5 @@
 ---
-title: "Chapter 14: Audio Controller"
+title: "Chapter 15: Audio Controller"
 description: "Learn how to create a reusable audio controller class to manage sound effects and music, including volume control, muting/unmuting, and proper resource cleanup."
 ---
 

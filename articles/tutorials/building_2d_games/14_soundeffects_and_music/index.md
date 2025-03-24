@@ -1,5 +1,5 @@
 ---
-title: "Chapter 13: SoundEffects and Music"
+title: "Chapter 14: SoundEffects and Music"
 description: "Learn how to load and play sound effects and background music in MonoGame including managing audio volume, looping, and handling multiple sound effects at once."
 ---
 

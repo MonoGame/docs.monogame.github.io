@@ -1,5 +1,5 @@
 ---
-title: "Chapter 16: Scene Management"
+title: "Chapter 17: Scene Management"
 description: "Learn how to implement scene management to handle different game screens like menus, gameplay, and transitions between scenes."
 ---
 
