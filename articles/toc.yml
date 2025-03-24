@@ -144,8 +144,8 @@
           href: tutorials/building_2d_games/15_audio_controller/
         - name: "16: Working with SpriteFonts"
           href: tutorials/building_2d_games/16_working_with_spritefonts/
-        - name: "14: Scenes"
-          href: tutorials/building_2d_games/14_scenes/
+        - name: "17: Scenes"
+          href: tutorials/building_2d_games/17_scenes/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
