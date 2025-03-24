@@ -55,7 +55,7 @@ MonoGame provides a setup script that can be executed to setup the Wine environm
     brew install wget p7zip curl && brew install --cask wine-stable
     ```
 
-1. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net8_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
+1. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net9_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
 
     ```sh
     wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
