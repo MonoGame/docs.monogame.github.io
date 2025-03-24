@@ -189,17 +189,17 @@ public class Tilemap
                 Tileset tileset = new Tileset(textureRegion, tileWidth, tileHeight);
 
                 // The <Tiles> element contains lines of strings where each line
-                // represents a row in the tilemap.  Each line is a comma
+                // represents a row in the tilemap.  Each line is a space
                 // separated string where each element represents a column in that
                 // row.  The value of the column is the id of the tile in the
                 // tileset to draw for that location.
                 //
                 // Example:
                 // <Tiles>
-                //      00,01,01,02
-                //      03,04,04,05
-                //      03,04,04,05
-                //      06,07,07,08
+                //      00 01 01 02
+                //      03 04 04 05
+                //      03 04 04 05
+                //      06 07 07 08
                 // </Tiles>
                 XElement tilesElement = root.Element("Tiles");
 
@@ -208,7 +208,7 @@ public class Tilemap
                 string[] rows = tilesElement.Value.Trim().Split('\n', StringSplitOptions.RemoveEmptyEntries);
 
                 // Split the value of the first row to determine the total number of columns
-                int columnCount = rows[0].Split(',', StringSplitOptions.RemoveEmptyEntries).Length;
+                int columnCount = rows[0].Split(" ", StringSplitOptions.RemoveEmptyEntries).Length;
 
                 // Create the tilemap
                 Tilemap tilemap = new Tilemap(tileset, columnCount, rows.Length, tileSize);
@@ -217,7 +217,7 @@ public class Tilemap
                 for (int row = 0; row < rows.Length; row++)
                 {
                     // Split the row into individual columns
-                    string[] columns = rows[row].Trim().Split(',', StringSplitOptions.RemoveEmptyEntries);
+                    string[] columns = rows[row].Trim().Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
                     // Process each column of the current row
                     for (int column = 0; column < columnCount; column++)
