@@ -61,9 +61,9 @@ Linear filtering mode blends neighboring pixels when the texture is scaled.  Thi
 
 Anisotropic filtering mode provides higher-quality filter for textures viewed from oblique angles.  This is primarily used in 3D rendering.  It helps textures look more detailed by reducing blur and aliasing that occurs when a surface is angled away from the viewer. 
 
-| ![Figure 18-2: Illustration of using Anisotropic filtering mode. Left: Sphere using Point filtering  Right: Sphere using Anisotropic](./images/filter-mode-anisotropic.png) |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                   **Figure 18-2: Illustration of using Anisotropic filtering mode. Left: Sphere using Point filtering  Right: Sphere using Anisotropic**                    |
+| ![Figure 18-3: Illustration of the MonoGame Fuel cell demo using Linear filtering](./images/filter-mode-anisotropic-linear-comparison.png) | ![Figure 18-4: Illustration of the MonoGame Fuel cell demo using Anisotropic filtering](./images/filter-mode-anisotropic-comparison.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
+|                            **Figure 18-3: Illustration of the MonoGame Fuel cell demo using Linear filtering**                             |                         **Figure 18-4: Illustration of the MonoGame Fuel cell demo using Anisotropic filtering**                         |
 
 ### Addressing Modes
 
