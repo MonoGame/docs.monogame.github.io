@@ -38,6 +38,7 @@ This documentation will introduce game development concepts using the MonoGame f
 | [15: Audio Controller](15_audio_controller/index.md)                         | Learn how to create a reusable audio controller class to manage sound effects and music, including volume control, muting/unmuting, and proper resource cleanup.                                  |              |
 | [16: Working with SpriteFonts](16_working_with_spritefonts/index.md)         | Learn how to create and use SpriteFonts to render text in your MonoGame project, including loading custom fonts and controlling text appearance.                                                  |              |
 | [17: Scenes](17_scenes/index.md)                                             | Learn how to implement scene management to handle different game screens like menus, gameplay, and transitions between scenes.                                                                    |              |
+| [18: Texture Sampling](18_texture_sampling/index.md)                         | Learn how to use texture sampling states and add a scrolling background effect to the game.                                                                                                       |              |
 
 In additional to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
