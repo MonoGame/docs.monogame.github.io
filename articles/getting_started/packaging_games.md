@@ -13,10 +13,7 @@ To publish desktop games, it is recommended that you build your project as a [se
 
 From the .NET CLI:
 
-`dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained`
-
-> [!IMPORTANT]
-> We are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
+`dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false --self-contained`
 
 You can then zip the content of the publish folder and distribute the archive as-is.
 
@@ -47,12 +44,9 @@ mkdir -p bin/Release/YourGame.app/Contents/Resources/Content
 Next we need to publish our application for both `arm64` (Apple Silicon) and `x64` (Intel). From the .NET CLI:
 
 ```cli
-dotnet publish -c Release -r osx-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained
-dotnet publish -c Release -r osx-arm64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained
+dotnet publish -c Release -r osx-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false --self-contained
+dotnet publish -c Release -r osx-arm64 -p:PublishReadyToRun=false -p:TieredCompilation=false --self-contained
 ```
-
-> [!IMPORTANT]
-> We are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
 
 Next we need to combine the two binaries into one Universal Binary which will work on both arm64 and x64 machines.
 We can do this using the `xcode` utility `lipo`.
@@ -145,10 +139,7 @@ For archiving, we recommend using the `.tar.gz` format to preserve the execution
 
 From the .NET CLI:
 
-`dotnet publish -c Release -r linux-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false -p:PublishAot=true --self-contained`
-
-> [!IMPORTANT]
-> We are making use of the `PublishAot` option. Using `Aot` has some restrictions which may require changes to your game code. Especially if you are using Reflection.
+`dotnet publish -c Release -r linux-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false --self-contained`
 
 You can then archive the content of the publish folder and distribute the archive as-is.
 
@@ -160,27 +151,19 @@ We recommend using the `.tar.gz` archiving format to preserve the execution perm
 
 .NET proposes several parameters when publishing apps that may sound helpful, but have many issues when it comes to games (because they were never meant for games in the first place, but for small lightweight applications).
 
-### PublishAot
+### PublishAot and PublishTrimmed
 
-This option optimises your game code "Ahead of Time". It allows you to ship your game without the need to JIT (Just In Time compile).
-However, you do need to currently add some additional settings to your `.csproj`.
+The ```PublishAot``` option optimises your game code "Ahead of Time" for performance. It allows you to ship your game without the need to JIT (Just In Time compile), and will basically natively compile your game.
 
-```xml
-  <ItemGroup>
-    <TrimmerRootAssembly Include="MonoGame.Framework" />
-    <TrimmerRootAssembly Include="mscorlib" />
-  </ItemGroup>
-```
+```PublishAot``` binaries are much faster, which is typically desired for games. It however comes with limitations, like the inability to use runtime reflection and runtime code generation (IL emition).
 
-The `TrimmerRootAssembly` stops the trimmer removing code from these assemblies. This should allow the game to run without 
-any issues. However if you are using any Third Party or additional assemblies, you might need to add them to this list or fix your code to be `Aot` compliant.
-It is recommended that you publish using AOT as it simplifies the app bundle.
+```PublishAot``` makes use of ```PublishTrimmed```, which is another option that strip binaries of unused code to make much lighter executables and assemblies. Trimming can be aggressive and might remove types if the compiler can't detect if they are used (e.g. if you are using reflection or generics).
 
-You may see some trim and AOT analysis warnings related to MonoGame when using PublishAOT, even after adding `TrimmerRootAssembly` - these are normal and should not present any issue.
+MonoGame is mostly compatible with ```PublishAot``` and ```PublishTrimmed```, and will just work in most cases. It may however crash at runtime if you are using custom content importers that use generic collections. If you are using ```PublishAot``` and you are running into runtime exceptions occuring when loading content saying that a type is missing, the solution is to call ```ContentTypeReaderManager.AddTypeCreator()``` on that type before trying to load your content. This will tell the AOT compiler to include that type.
 
-See [Trim self-contained deployments and executables](https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained) for more information.
+Besides MonoGame itself, it may happen that the third party libraries that you are using are not compatible with AOT or trimming. In that case, you should refer to those libraries maintainers for workarounds, or replace them with compatible libraries.
 
-There are some known areas you need to watchout for: 
+Overall, AOT and trimming have similar limitations you need to watchout for: 
 
 1. Using `XmlSerializer` in your game will probably cause issues. Since it uses reflection it will be difficult for the Trimmer to figure out what needs to be kept.
    It is recommended that, instead of using the `Deserialize` method, you write your own custom deserializer using `XDocument` or `XmlReader`.
@@ -188,9 +171,13 @@ There are some known areas you need to watchout for:
 2. Dynamically loading assemblies via `Assembly.LoadFile`.
 3. No run-time code generation, for example, System.Reflection.Emit.
 
+You can also refer to the [Preparing for consoles](preparing_for_consoles.md) documentation, which leverage AOT and has the same limitations. If your game runs with ```PublishAot```, you'll be well ahead into porting your game to consoles.
+
+For more information, please see [Native AOT deployment](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/) and [Trim self-contained deployments](https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained).
+
 ### ReadyToRun (R2R)
 
-[ReadyToRun](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#readytorun-images) is advertised as improving application startup time, but slightly increasing binary size. We recommend not using it for games because it produces micro stutters when your game is running.
+[ReadyToRun](https://learn.microsoft.com/en-us/dotnet/core/deploying/ready-to-run) is advertised as improving application startup time, but slightly increasing binary size. We recommend not using it for games because it produces micro stutters when your game is running.
 
 ReadyToRun code is of low quality and makes the Just-In-Time compiler (JIT) trigger regularly to promote the code to a higher quality. Whenever the JIT runs, it produces potentially very visible stutters.
 
@@ -209,11 +196,13 @@ MonoGame templates for .NET projects explicitly set this to `false`.
 
 ### PublishSingleFile
 
-PublishSingleFile packages your game into a single executable file with all dependencies and content integrated.
+[PublishSingleFile](https://learn.microsoft.com/en-us/dotnet/core/deploying/single-file/overview) packages your game into a single executable file with all dependencies and content integrated.
 
 While it sounds very convenient, be aware that it's not magical and is in fact a hidden self-extracting zip archive. As such, it may make app startup take **a lot** longer if your game is large, and may fail to launch on systems where user permissions don't allow extracting files (or if there is not enough storage space available).
 
 We highly recommend not using it for better compatibility across systems.
+
+If you need to reduce the footprint of your game, please refer to ```PublishAot``` and ```PublishTrimmed``` instead.
 
 ## Mobile games
 
