@@ -5,7 +5,7 @@ description: Where to get help and support when using MonoGame.
 
 # Help and Support
 
-There is a wealth of [community created content, blogs and tutorials](tutorials.md) available.
+There is a wealth of [community created content, blogs and tutorials](tutorials/index.md) available.
 
 If you want to find an answer to a more specific problem, you can ask it on our [GitHub Discussions](https://github.com/MonoGame/MonoGame/discussions) page.
 
