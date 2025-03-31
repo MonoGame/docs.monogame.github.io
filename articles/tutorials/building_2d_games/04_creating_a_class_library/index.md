@@ -177,7 +177,7 @@ Running the game now will show the same window as before, only now it is at a 12
 > [!IMPORTANT]
 > If you receive an error stating that the following:
 >
-> *The type or namespace name 'FramesPerSecondCounter' could not be found (are you missing a using directive or an assembly reference?)*
+> *The type or namespace name 'Core' could not be found (are you missing a using directive or an assembly reference?)*
 >
 > This means either you forgot to add the `using MonoGameLibrary;` using directive to the top of the *Game1.cs* class file, or you did not add the project reference correctly.  Ensure that the project reference was added correctly by revisiting the [Add a Reference to the Class Library](#adding-a-reference-to-the-class-library) section above and that you added the using directive.
 
