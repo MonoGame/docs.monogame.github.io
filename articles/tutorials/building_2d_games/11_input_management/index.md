@@ -93,13 +93,13 @@ Next, we'll add methods to check various key states:
 
 These methods serve two distinct purposes.  For checking continuous states:
 
-- `IsKeyDown`: Returns true as long as a key is being held down.
-- `IsKeyUp`: Returns true as long as a key is not being pressed.
+- `IsKeyDown`: Returns true as long as the specified key is being held down.
+- `IsKeyUp`: Returns true as long as the specified key is not being pressed.
 
 And for detecting state changes:
 
-- `WasKeyJustPressed`: Returns true only on the frame when a key changes from up-to-down.
-- `WasKeyJustReleased`: Returns true only on the frame when a key changes from down-to-up.
+- `WasKeyJustPressed`: Returns true only on the frame when the specified key changes from up-to-down.
+- `WasKeyJustReleased`: Returns true only on the frame when the specified key changes from down-to-up.
 
 > [!TIP]
 > Use continuous state checks (`IsKeyDown`/`IsKeyUp`) for actions that should repeat while a key is held, like movement. Use single-frame checks (`WasKeyJustPressed`/`WasKeyJustReleased`) for actions that should happen once per key press, like jumping or shooting.
