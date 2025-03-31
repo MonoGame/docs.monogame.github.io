@@ -207,13 +207,13 @@ Next, we'll add methods to check various button states:
 
 These methods serve two distinct purposes. For checking continuous states:
 
-- `IsKeyDown`: Returns true as long as a key is being held down.
-- `IsKeyUp`: Returns true as long as a key is not being pressed.
+- `IsButtonDown`: Returns true as long as the specified button is being held down.
+- `IsButtonUp`: Returns true as long as the specified button is not being pressed.
 
 And for detecting state changes:
 
-- `WasKeyJustPressed`: Returns true only on the frame when a key changes from up-to-down.
-- `WasKeyJustReleased`: Returns true only on the frame when a key changes from down-to-up.
+- `WasButtonJustPressed`: Returns true only on the frame when the specified button changes from up-to-down.
+- `WasButtonJustReleased`: Returns true only on the frame when the specified button changes from down-to-up.
 
 > [!NOTE]
 > Each method uses a switch statement to check the appropriate button property from the [**MouseState**](xref:Microsoft.Xna.Framework.Input.MouseState) based on which `MouseButton` enum value is provided. This provides a consistent API while handling the different button properties internally.
