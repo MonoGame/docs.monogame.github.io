@@ -93,13 +93,13 @@ Next, we'll add methods to check various key states:
 
 These methods serve two distinct purposes.  For checking continuous states:
 
-- `IsKeyDown`: Returns true as long as a key is being held down.
-- `IsKeyUp`: Returns true as long as a key is not being pressed.
+- `IsKeyDown`: Returns true as long as the specified key is being held down.
+- `IsKeyUp`: Returns true as long as the specified key is not being pressed.
 
 And for detecting state changes:
 
-- `WasKeyJustPressed`: Returns true only on the frame when a key changes from up-to-down.
-- `WasKeyJustReleased`: Returns true only on the frame when a key changes from down-to-up.
+- `WasKeyJustPressed`: Returns true only on the frame when the specified key changes from up-to-down.
+- `WasKeyJustReleased`: Returns true only on the frame when the specified key changes from down-to-up.
 
 > [!TIP]
 > Use continuous state checks (`IsKeyDown`/`IsKeyUp`) for actions that should repeat while a key is held, like movement. Use single-frame checks (`WasKeyJustPressed`/`WasKeyJustReleased`) for actions that should happen once per key press, like jumping or shooting.
@@ -207,13 +207,13 @@ Next, we'll add methods to check various button states:
 
 These methods serve two distinct purposes. For checking continuous states:
 
-- `IsKeyDown`: Returns true as long as a key is being held down.
-- `IsKeyUp`: Returns true as long as a key is not being pressed.
+- `IsButtonDown`: Returns true as long as the specified button is being held down.
+- `IsButtonUp`: Returns true as long as the specified button is not being pressed.
 
 And for detecting state changes:
 
-- `WasKeyJustPressed`: Returns true only on the frame when a key changes from up-to-down.
-- `WasKeyJustReleased`: Returns true only on the frame when a key changes from down-to-up.
+- `WasButtonJustPressed`: Returns true only on the frame when the specified button changes from up-to-down.
+- `WasButtonJustReleased`: Returns true only on the frame when the specified button changes from down-to-up.
 
 > [!NOTE]
 > Each method uses a switch statement to check the appropriate button property from the [**MouseState**](xref:Microsoft.Xna.Framework.Input.MouseState) based on which `MouseButton` enum value is provided. This provides a consistent API while handling the different button properties internally.
@@ -372,7 +372,7 @@ The key changes to the `Core` class are:
 
 Now let's update our `Game1` class to use the new input management system through the `Core` class.  Open *Game1.cs* in the game project and update it to the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=74,80,86,92,98,106,111,114,118,124,126-127,132,138,144,150)]
+[!code-csharp[](./snippets/game1.cs?highlight=71,77,83,89,95,103,108,111,115,121,123-124,129,135,141,147)]
 
 The key changes to the `Game1` class are:
 

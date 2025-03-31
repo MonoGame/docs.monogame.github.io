@@ -6,7 +6,7 @@ description: This tutorial will go over the code that is generated when you star
 > [!NOTE]
 > For help with creating a project, please look at the Creating a New Project section of the [Getting Started guide](index.md).
 
-Within the `Game.cs` class file, which is the core of any MonoGame project, you will find several critical sections necessary for your game to run:
+Within the `Game1.cs` class file, which is the core of any MonoGame project, you will find several critical sections necessary for your game to run:
 
 - `Using statements` - which provide easy access to the various components of MonoGame.
 
@@ -63,10 +63,11 @@ public Game1()
 {
     graphics = new GraphicsDeviceManager(this);
     Content.RootDirectory = "Content";
+    IsMouseVisible = true;
 }
 ```
 
-The main game constructor is used to initialize the starting variables. In this case, a new `GraphicsDeviceManager` is created, and the root directory containing the game's content files is set.
+The main game constructor is used to initialize the starting variables. In this case, a new `GraphicsDeviceManager` is created, the root directory containing the game's content files is set, and the mouse cursor is set to visible.
 
 ## Initialize Method
 
@@ -116,7 +117,7 @@ The `Update` method is called multiple times per second, and it is used to updat
 ```csharp
 protected override void Draw(GameTime gameTime)
 {
-    graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
+    GraphicsDevice.Clear(Color.CornflowerBlue);
 
     // TODO: Add your drawing code here
 
