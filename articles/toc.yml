@@ -146,6 +146,8 @@
           href: tutorials/building_2d_games/16_working_with_spritefonts/
         - name: "17: Scenes"
           href: tutorials/building_2d_games/17_scenes/
+        - name: "18: Texture Sampling"
+          href: tutorials/building_2d_games/18_texture_sampling/
 - name: Console Access
   href: console_access.md
 - name: Help and Support

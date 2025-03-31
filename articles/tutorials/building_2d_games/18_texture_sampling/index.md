@@ -1,6 +1,6 @@
 ---
 title: "Chapter 18: Texture Sampling and Tiling Backgrounds"
-description:
+description: "Learn how to use texture sampling states and add a scrolling background effect to the game."
 ---
 
 In previous chapters, we've drawn individual sprites and textures with the sprite batch, but for creating repeating background patterns, we need a more efficient approach than manually drawing the same texture multiple times. We could reuse the tilemap system that was created to make repeated background patterns, but this has a limitation in that the tiles are stationary and would require constantly updating the tiles and positions if we wanted to animate it.  Instead, this chapter introduces texture sampling states, specifically focusing on how to create and animate tiled backgrounds using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).
@@ -59,7 +59,7 @@ Linear filtering mode blends neighboring pixels when the texture is scaled.  Thi
 
 #### Anisotropic Filtering Mode
 
-Anisotropic filtering mode provides higher-quality filter for textures viewed from oblique angles.  This is primarily used in 3D rendering.  It helps textures look more detailed by reducing blur and aliasing that occurs when a surface is angled away from the viewer. 
+Anisotropic filtering mode provides higher-quality filter for textures viewed from oblique angles.  This is primarily used in 3D rendering.  It helps textures look more detailed by reducing blur and aliasing that occurs when a surface is angled away from the viewer.
 
 | ![Figure 18-3: Illustration of the MonoGame Fuel cell demo using Linear filtering](./images/filter-mode-anisotropic-linear-comparison.png) | ![Figure 18-4: Illustration of the MonoGame Fuel cell demo using Anisotropic filtering](./images/filter-mode-anisotropic-comparison.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
@@ -75,9 +75,9 @@ When using Wrap mode, at every whole integer of the texture coordinates (0.0 and
 
 For example, if we were to take the MonoGame logo at 128x128 pixels and draw it to a destination rectangle that was three times the size at 384x384 pixels, then the texture coordinates of the destination rectangle become (0.0, 0.0) (top-left), (3.0, 0.0) (top-right), (0.0) (bottom-left), and (3.0, 3.0) bottom-right.  The MonoGame logo texture would repeat three times horizontally and vertically within the destination.
 
-| ![Figure 18-1: Illustration of the MonoGame logo drawn using wrapped addressing mode](./images/address-mode-wrap.png) |
+| ![Figure 18-5: Illustration of the MonoGame logo drawn using wrapped addressing mode](./images/address-mode-wrap.png) |
 | :-------------------------------------------------------------------------------------------------------------------: |
-|                **Figure 18-1: Illustration of the MonoGame logo drawn using wrapped addressing mode**                 |
+|                **Figure 18-5: Illustration of the MonoGame logo drawn using wrapped addressing mode**                 |
 
 #### Mirror Mode
 
@@ -85,9 +85,9 @@ Mirror mode is similar to Wrap mode.  However instead of repeating the texture a
 
 Using the same example as above, taking the MonoGame logo at 128x128 pixels and drawing it to a destination rectangle three times the size with Mirror mode would produce the following:
 
-| ![Figure 18-2: Illustration of the MonoGame logo drawn using mirror addressing mode](./images/address-mode-mirror.png) |
+| ![Figure 18-6: Illustration of the MonoGame logo drawn using mirror addressing mode](./images/address-mode-mirror.png) |
 | :--------------------------------------------------------------------------------------------------------------------: |
-|                 **Figure 18-2: Illustration of the MonoGame logo drawn using mirror addressing mode**                  |
+|                 **Figure 18-6: Illustration of the MonoGame logo drawn using mirror addressing mode**                  |
 
 #### Clamp Mode
 
@@ -95,9 +95,9 @@ When using Clamp mode, the texture coordinates are clamped to the 0.0 and 1.0 ra
 
 The simplest demonstration of this is to use a checkerboard pattern.  If we were to take a texture that was a checkerboard pattern at 128x128 pixels and draw it to a destination rectangle three times the size with Clamped mode, then any pixels that extend outside the clamped range would smeared, producing the following:
 
-| ![Figure 18-3: Illustration of a checkerboard pattern drawn using clamped addressing mode](./images/address-mode-clamped.png) |
+| ![Figure 18-7: Illustration of a checkerboard pattern drawn using clamped addressing mode](./images/address-mode-clamped.png) |
 | :---------------------------------------------------------------------------------------------------------------------------: |
-|                  **Figure 18-3: Illustration of a checkerboard pattern drawn using clamped addressing mode**                  |
+|                  **Figure 18-7: Illustration of a checkerboard pattern drawn using clamped addressing mode**                  |
 
 #### Border Color
 
@@ -105,6 +105,125 @@ When using Border Color mode, similar to Clamped mode, the texture coordinates a
 
 For example, if we use the checkerboard pattern again, using Border Color mode with a border color of red, then it would produce the following:
 
-| ![Figure 18-4: Illustration of a checkerboard pattern drawn using border addressing mode with the border color set to green](./images/address-mode-border.png) |
+| ![Figure 18-8: Illustration of a checkerboard pattern drawn using border addressing mode with the border color set to green](./images/address-mode-border.png) |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                 **Figure 18-4: Illustration of a checkerboard pattern drawn using border addressing mode with the border color set to green**                  |
+|                 **Figure 18-8: Illustration of a checkerboard pattern drawn using border addressing mode with the border color set to green**                  |
+
+## Using SamplerStates
+
+MonoGame offers several predefined sampler states as part of the [**SamplerState**](xref:Microsoft.Xna.Framework.Graphics.SamplerState) class that cover common scenarios:
+
+| SamplerState                                                                                | Description                                                      | Common Use Case                                                                                                                             |
+| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| [**AnisotropicClamp**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.AnisotropicClamp) | Combines Anisotropic filter mode with the Clamp addressing mode. | 3D textures viewed at oblique angles, like ground textures in a 3D world where you want high-quality filtering but no repeating patterns.   |
+| [**AnisotropicWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.AnisotropicWrap)   | Combines Anisotropic filter mode with the Wrap addressing mode.  | Terrain textures in 3D games where you need high-quality filtering and repeating patterns over large surfaces.                              |
+| [**LinearClamp**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.LinearClamp)           | Combines Linear filter mode with the Clamp addressing mode.      | UI elements and single sprites where you want smooth scaling but no repeating patterns. Good for realistic graphics that need to scale.     |
+| [**LinearWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.LinearWrap)             | Combines Linear filter mode with the Wrap addressing mode.       | Scrolling backgrounds with smooth transitions, like water or cloud textures that need to tile seamlessly with blended edges.                |
+| [**PointClamp**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp)             | Combines Point filter mode with the Clamp addressing mode.       | Pixel art sprites and UI elements where you want to preserve crisp pixel edges without any blurring when scaled. Default for most 2D games. |
+| [**PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap)               | Combines Point filter mode with the Wrap addressing mode.        | Tiled pixel art backgrounds and patterns where you want crisp pixels and repeating patterns                                                 |
+
+When using the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), you specify which sampler state you want to use as the `samplerState` parameter for the [**SpriteBatch.Begin**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})) method
+
+```cs
+// Example of using the Point Clamp sampler state
+spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+```
+
+> [!NOTE]
+> The default sampler state for [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) is [**SamplerState.LinearClamp**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.LinearClamp) in MonoGame, though [**SamplerState.PointClamp**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp) is often preferred for pixel art games to prevent blurring.
+
+## Adding a Scrolling Background to the Title Scene
+
+Let's update title scene of our game by adding a scrolling background pattern using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  Then, by adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.
+
+First, download the following image of a repeatable background pattern by right-clicking it and saving it as *background-pattern.png* in the *Content/images* directory of the game project:
+
+| ![Figure 18-9: The repeatable background pattern we'll use for the title screen](./images/background-pattern.png) |
+| :---------------------------------------------------------------------------------------------------------------: |
+|                 **Figure 18-9: The repeatable background pattern we'll use for the title screen**                 |
+
+Next, add this texture to your content project using the MGCB Editor:
+
+1. Open the *Content.mgcb* content project file in the MGCB Editor.
+2. Right-click the images folder and choose *Add* > *Existing item...*.
+3. Navigate to and select the *background-pattern.png* file.
+4. Save the changes and close the MGCB Editor.
+
+| ![Figure 18-9: The MGCB Editor with the *background-pattern* image added](./images/mgcb-editor.png) |
+| :-------------------------------------------------------------------------------------------------: |
+|             **Figure 18-9: The MGCB Editor with the *background-pattern* image added**              |
+
+### Updating the Title Scene
+
+Now that we have the background pattern texture added, let's update the `TitleScene` class to implement the scrolling background. Open the *TitleScene.cs* file in the game project and update it to the following
+
+[!code-csharp[](./snippets/titlescene.cs?highlight=29-40,75-80,93-94,105-114,120-124)]
+
+The key changes here are
+
+- The `_backgroundPattern` field was added to store a reference to the texture of the background pattern once its loaded.
+- The `_backgroundDestination` field was added to define the destination rectangle to draw the background pattern to.
+- The `_backgroundOffset` field was added to apply an offset to the source rectangle when rendering the background pattern to give it the appearance that it is scrolling.
+- The `_scrollSpeed` field was dded to set the speed at which the background pattern scrolls.
+- In `Initialize`, the initial offset of the background is set to [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero) and the background destination rectangle is set to the bounds of the screen.
+- In `LoadContent`, the *background-pattern* texture is loaded and stored in `_backgroundPattern`.
+- In `Update`, the X and Y offset for the background source rectangle is calculated by adjusting the based on the scroll speed multiplied by the delta time.  Modulo division is then used to ensure that the new offset calculations remain within the width and height bounds of the background texture so that the wrap is seamless.
+- In `Draw`, a new sprite batch begin/end block is added that uses [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap) and draws the background pattern to the destination rectangle using a source rectangle with the offset calculations.
+
+> [!NOTE]
+> We use two separate sprite batch begin/end blocks for this.  The first [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap) to draw the background and the second uses [**SamplerState.PointClamp**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp) to draw the rest of the scene.
+>
+> This separation is necessary because changing the sampler state requires ending the current sprite batch and beginning a new one.
+
+Running the game now with these changes, the title screen now has a scroll background that adds more visual depth and interest to it than just the plain colored background we had before.
+
+| ![Figure 18-10: The title screen now with the repeating background texture of the slime and bat scrolling diagonally down and to the right](./videos/titlescreen.webm) |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|              **Figure 18-10: The title screen now with the repeating background texture of the slime and bat scrolling diagonally down and to the right**              |
+
+## Conclusion
+
+In this chapter, you accomplished the following:
+
+- Learned about texture coordinates and how they map from normalized 0.0 to 1.0 space to actual pixel locations.
+- Understood the difference between various filtering modes (Point, Linear, Anisotropic) and their visual impact.
+- Explored different addressing modes (Wrap, Mirror, Clamp, Border) and when to use each.
+- Discovered how to use predefined sampler states to simplify common rendering tasks.
+- Implemented a scrolling background pattern using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).
+
+## Test Your Knowledge
+
+1. What is the difference between normalized texture coordinates and pixel coordinates?
+
+    :::question-answer
+    Normalized texture coordinates always range from 0.0 to 1.0 regardless of the texture's actual pixel dimensions. The top-left corner is (0.0, 0.0) and the bottom-right is (1.0, 1.0). Pixel coordinates, on the other hand, directly reference specific pixel locations within the texture using integer values based on the actual texture dimensions. MonoGame automatically converts between these coordinate systems when drawing textures.
+    :::
+
+2. Which filtering mode would be most appropriate for a pixel art game, and why?
+
+    :::question-answer
+    Point filtering (also called nearest neighbor) is most appropriate for pixel art games. It selects the closest pixel when scaling rather than blending neighboring pixels, which preserves the crisp, pixelated aesthetic that defines pixel art. Linear or Anisotropic filtering would blur the intentionally sharp edges of pixel art graphics.
+    :::
+
+3. Why do we use modulo (%) operation on the background offset values when implementing the scrolling background?
+
+    :::question-answer
+    The modulo operation ensures that the offset values always remain within the bounds of the original texture dimensions. This prevents potential graphical artifacts that could appear when the offset exceeds the texture size, and it guarantees seamless wrapping as the background continuously scrolls. Without this, the background pattern might show visible seams or discontinuities when it repeats.
+    :::
+
+4. Why do we need to use two separate sprite batch begin/end blocks when drawing the background and the other elements in the title scene?
+
+    :::question-answer
+    We need separate blocks because changing the sampler state requires ending the current batch and beginning a new one. Since we want to use [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap) for the tiling background but [**SamplerState.PointClamp**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp) for the UI elements, we must use two distinct sprite batch blocks with different sampler state settings. Using a single batch would apply the same sampler state to all drawn elements.
+    :::
+
+5. How does using a tiled background with [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap) compare to manually drawing multiple copies of a texture to create a background?
+
+    :::question-answer
+    Using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap) offers several advantages:
+
+    - It requires only a single draw call instead of multiple calls for each tile.
+    - No need to calculate positions for each individual tile
+    - Manually drawing multiple copies would be more code-intensive, less performant, and harder to maintain, especially for animations.
+
+    :::
