@@ -215,9 +215,12 @@ Add the following fields to the `GameScene` class:
 - The `_slimePosition` and `_batPosition` fields track the current position of the slime and bat.
 - The `MOVEMENT_SPEED` constant defines the base movement speed for both the slime and bat.
 - The `_batVelocity` field tracks the current velocity of the bat as it moves around the screen.
+- The `_tilemap` field stores the tilemap that we'll load and draw for the level background environment.
+- The `_roomBounds` field defines a rectangular boundary that represents the boundary of the room that the slime and bat stays within.
 - The `_bounceSoundEffect` and `_collectSoundEffect` fields store the sound effects to play when the bat bounces off a screen edge or is eaten by the slime.
 - The `_font` field stores the font used to display the player's score.
 - The `_score` field tracks the player's current score, which increases when the slime eats a bat.
+- The `_scoreTextPosition` and `_scoreTextOrigin` defines the position and origin to use when drawing the score text.
 
 #### Game Scene Methods
 
@@ -230,8 +233,10 @@ Add the following override for the `Initialize` method to the `GameScene` class:
 [!code-csharp[](./snippets/gamescene.cs#initialize)]
 
 - We set `Core.ExitOnEscape` to false because in the gameplay scene, we want to handle the escape key differently; instead of exiting the game, it will return to the title screen.
-- The height of the font is measured to calculate proper vertical positioning for the game elements.
-- The initial positions of the slime and bat are set, placing the slime below where the score will be displayed and the bat a small distance to the right of the slime.
+- The room bounds is calculated using the bounds of the screen and adjusting that so that it shrinks by one tile width and height on each edge, which will match with the tilemap wall boundary.
+- The slime's initial position is set to be the center tile by calculating the center row and column.
+- The bat's initial position is placed at the top left of the room bounds.
+- The position and origin of the score text is precalculated.  The height of the text is measured to properly calculate the center origin for vertical positioning.
 - The `AssignRandomBatVelocity` method is called to give the bat its initial velocity.
 
 ##### Game Scene LoadContent
@@ -240,9 +245,9 @@ Add the following override for the `LoadContent` method to the `GameScene` class
 
 [!code-csharp[](./snippets/gamescene.cs#loadcontent)]
 
-- Similar to the title scene, we capture a reference to the global content manager from the `Core` class.
 - The texture atlas is loaded using the global content manager, and the slime and bat animated sprites are created from it.
-- The sound effects are loaded using the scene's content manager since they're specific to the gameplay scene.
+- The tilemap is loaded using the scene's content manager since they are specific to the gameplay scene.
+- The sound effects are loaded using the scene's content manager since they are specific to the gameplay scene.
 - The font is loaded using the global content manager since it is used in multiple scenes.
 
 > [!TIP]
@@ -257,10 +262,10 @@ Add the following override for the `Update` method to the `GameScene` class:
 - The animated sprites for the slime and bat are updated.
 - Input from keyboard and gamepad is checked with dedicated methods `CheckKeyboardInput` and `CheckGamePadInput`.
 - Collision detection is performed to:
-  - Keep the slime within the screen bounds.
-  - Make the bat bounce off screen edges.
+  - Keep the slime within the room bounds.
+  - Make the bat bounce off edges of the room bounds.
   - Detect when the slime eats the bat.
-- When the slime eats the bat, the bat respawns in a random location, given a new velocity, the collect sound is played, and the score is increased.
+- When the slime eats the bat, the bat respawns in a random location within the room bounds, given a new velocity, the collect sound is played, and the score is increased.
 
 ##### Game Scene Helper Methods
 
@@ -278,10 +283,10 @@ Add the following override for the `Draw` method to the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene.cs#draw)]
 
-- A reference to the graphics device from the `Core` instance is captured so we don't have to type `Core.Instance.GraphicsDevice` each time to use it.
 - The back buffer is cleared.
-- The slime and bat animated sprites are drawn at the current position.
-- The player's score is drawn in the top-left corner of the screen.
+- The tilemap is drawn.
+- The slime and bat animated sprites are drawn at their current positions.
+- The player's score is drawn at using its precalculated position and origin so that it is in the top left of the room bounds centered on the wall sprite.
 
 ### Updating the Game1 Class
 

@@ -37,6 +37,12 @@ public class GameScene : Scene
     // Tracks the velocity of the bat.
     private Vector2 _batVelocity;
 
+    // Defines the tilemap to draw.
+    private Tilemap _tilemap;
+
+    // Defines the bounds of the room that the slime and bat are contained within.
+    private Rectangle _roomBounds;
+
     // The sound effect to play when the bat bounces off the edge of the screen.
     private SoundEffect _bounceSoundEffect;
 
@@ -48,6 +54,12 @@ public class GameScene : Scene
 
     // Tracks the players score.
     private int _score;
+
+    // Defines the position to draw the score text at.
+    private Vector2 _scoreTextPosition;
+
+    // Defines the origin used when drawing the score text.
+    private Vector2 _scoreTextOrigin;
     #endregion
 
     #region initialize
@@ -60,14 +72,30 @@ public class GameScene : Scene
         // the escape key will be used to return back to the title screen
         Core.ExitOnEscape = false;
 
-        // Determine the height of the font
-        float textHeight = _font.MeasureString("A").Y;
+        Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
 
-        // Place the slime at a position below where the score will be displayed
-        _slimePosition = new Vector2(0, textHeight + 10);
+        _roomBounds = new Rectangle(
+            _tilemap.TileSize,
+            _tilemap.TileSize,
+            screenBounds.Width - _tilemap.TileSize * 2,
+            screenBounds.Height - _tilemap.TileSize * 2
+        );
 
-        // Set the initial position of the bat to be 10px to the right of the slime.
-        _batPosition = _slimePosition + new Vector2(_slime.Width + 10.0f, 0.0f);
+        // Initial slime position will be the center tile of the tile map.
+        int centerRow = _tilemap.Rows / 2;
+        int centerColumn = _tilemap.Columns / 2;
+        _slimePosition = new Vector2(centerColumn, centerRow) * _tilemap.TileSize;
+
+        // Initial bat position will the in the top left corner of the room
+        _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
+
+        // Set the position of the score text to align to the left edge of the
+        // room bounds, and to vertically be at the center of the first tile.
+        _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileSize * 0.5f);
+
+        // Set the origin of the text so it's left-centered.
+        float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
+        _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
 
         // Assign the initial random velocity to the bat.
         AssignRandomBatVelocity();
@@ -85,6 +113,9 @@ public class GameScene : Scene
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite("bat-animation");
+
+        // Load the tilemap from the XML configuration file.
+        _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
 
         // Load the bounce sound effect
         _bounceSoundEffect = Content.Load<SoundEffect>("audio/bounce");
@@ -112,9 +143,6 @@ public class GameScene : Scene
         // Check for gamepad input and handle it.
         CheckGamePadInput();
 
-        // Create a bounding rectangle for the screen
-        Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
-
         // Creating a bounding circle for the slime
         Circle slimeBounds = new Circle(
             (int)(_slimePosition.X + (_slime.Width * 0.5f)),
@@ -125,22 +153,22 @@ public class GameScene : Scene
         // Use distance based checks to determine if the slime is within the
         // bounds of the game screen, and if it's outside that screen edge,
         // move it back inside.
-        if (slimeBounds.Left < screenBounds.Left)
+        if (slimeBounds.Left < _roomBounds.Left)
         {
-            _slimePosition.X = screenBounds.Left;
+            _slimePosition.X = _roomBounds.Left;
         }
-        else if (slimeBounds.Right > screenBounds.Right)
+        else if (slimeBounds.Right > _roomBounds.Right)
         {
-            _slimePosition.X = screenBounds.Right - _slime.Width;
+            _slimePosition.X = _roomBounds.Right - _slime.Width;
         }
 
-        if (slimeBounds.Top < screenBounds.Top)
+        if (slimeBounds.Top < _roomBounds.Top)
         {
-            _slimePosition.Y = screenBounds.Top;
+            _slimePosition.Y = _roomBounds.Top;
         }
-        else if (slimeBounds.Bottom > screenBounds.Bottom)
+        else if (slimeBounds.Bottom > _roomBounds.Bottom)
         {
-            _slimePosition.Y = screenBounds.Bottom - _slime.Height;
+            _slimePosition.Y = _roomBounds.Bottom - _slime.Height;
         }
 
         // Calculate the new position of the bat based on the velocity
@@ -158,26 +186,26 @@ public class GameScene : Scene
         // Use distance based checks to determine if the bat is within the
         // bounds of the game screen, and if it's outside that screen edge,
         // reflect it about the screen edge normal
-        if (batBounds.Left < screenBounds.Left)
+        if (batBounds.Left < _roomBounds.Left)
         {
             normal.X = Vector2.UnitX.X;
-            newBatPosition.X = screenBounds.Left;
+            newBatPosition.X = _roomBounds.Left;
         }
-        else if (batBounds.Right > screenBounds.Right)
+        else if (batBounds.Right > _roomBounds.Right)
         {
             normal.X = -Vector2.UnitX.X;
-            newBatPosition.X = screenBounds.Right - _bat.Width;
+            newBatPosition.X = _roomBounds.Right - _bat.Width;
         }
 
-        if (batBounds.Top < screenBounds.Top)
+        if (batBounds.Top < _roomBounds.Top)
         {
             normal.Y = Vector2.UnitY.Y;
-            newBatPosition.Y = screenBounds.Top;
+            newBatPosition.Y = _roomBounds.Top;
         }
-        else if (batBounds.Bottom > screenBounds.Bottom)
+        else if (batBounds.Bottom > _roomBounds.Bottom)
         {
             normal.Y = -Vector2.UnitY.Y;
-            newBatPosition.Y = screenBounds.Bottom - _bat.Height;
+            newBatPosition.Y = _roomBounds.Bottom - _bat.Height;
         }
 
         // If the normal is anything but Vector2.Zero, this means the bat had
@@ -195,14 +223,9 @@ public class GameScene : Scene
 
         if (slimeBounds.Intersects(batBounds))
         {
-            // Divide the width  and height of the screen into equal columns and
-            // rows based on the width and height of the bat.
-            int totalColumns = screenBounds.Width / (int)_bat.Width;
-            int totalRows = screenBounds.Height / (int)_bat.Height;
-
             // Choose a random row and column based on the total number of each
-            int column = Random.Shared.Next(0, totalColumns);
-            int row = Random.Shared.Next(0, totalRows);
+            int column = Random.Shared.Next(1, _tilemap.Columns - 1);
+            int row = Random.Shared.Next(1, _tilemap.Rows - 1);
 
             // Change the bat position by setting the x and y values equal to
             // the column and row multiplied by the width and height.
@@ -237,6 +260,9 @@ public class GameScene : Scene
 
     private void CheckKeyboardInput()
     {
+        // Get a reference to the keyboard inof
+        KeyboardInfo keyboard = Core.Input.Keyboard;
+
         // If the escape key is pressed, return to the title screen
         if (Core.Input.Keyboard.WasKeyJustPressed(Keys.Escape))
         {
@@ -245,49 +271,49 @@ public class GameScene : Scene
 
         // If the space key is held down, the movement speed increases by 1.5
         float speed = MOVEMENT_SPEED;
-        if (Core.Input.Keyboard.IsKeyDown(Keys.Space))
+        if (keyboard.IsKeyDown(Keys.Space))
         {
             speed *= 1.5f;
         }
 
         // If the W or Up keys are down, move the slime up on the screen.
-        if (Core.Input.Keyboard.IsKeyDown(Keys.W) || Core.Input.Keyboard.IsKeyDown(Keys.Up))
+        if (keyboard.IsKeyDown(Keys.W) || keyboard.IsKeyDown(Keys.Up))
         {
             _slimePosition.Y -= speed;
         }
 
         // if the S or Down keys are down, move the slime down on the screen.
-        if (Core.Input.Keyboard.IsKeyDown(Keys.S) || Core.Input.Keyboard.IsKeyDown(Keys.Down))
+        if (keyboard.IsKeyDown(Keys.S) || keyboard.IsKeyDown(Keys.Down))
         {
             _slimePosition.Y += speed;
         }
 
         // If the A or Left keys are down, move the slime left on the screen.
-        if (Core.Input.Keyboard.IsKeyDown(Keys.A) || Core.Input.Keyboard.IsKeyDown(Keys.Left))
+        if (keyboard.IsKeyDown(Keys.A) || keyboard.IsKeyDown(Keys.Left))
         {
             _slimePosition.X -= speed;
         }
 
         // If the D or Right keys are down, move the slime right on the screen.
-        if (Core.Input.Keyboard.IsKeyDown(Keys.D) || Core.Input.Keyboard.IsKeyDown(Keys.Right))
+        if (keyboard.IsKeyDown(Keys.D) || keyboard.IsKeyDown(Keys.Right))
         {
             _slimePosition.X += speed;
         }
 
         // If the M key is pressed, toggle mute state for audio.
-        if (Core.Input.Keyboard.WasKeyJustPressed(Keys.M))
+        if (keyboard.WasKeyJustPressed(Keys.M))
         {
             Core.Audio.ToggleMute();
         }
 
         // If the + button is pressed, increase the volume.
-        if (Core.Input.Keyboard.WasKeyJustPressed(Keys.OemPlus))
+        if (keyboard.WasKeyJustPressed(Keys.OemPlus))
         {
             Core.Audio.IncreaseVolume(0.1f);
         }
 
         // If the - button was pressed, decrease the volume.
-        if (Core.Input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
+        if (keyboard.WasKeyJustPressed(Keys.OemMinus))
         {
             Core.Audio.DecreaseVolume(0.1f);
         }
@@ -295,6 +321,7 @@ public class GameScene : Scene
 
     private void CheckGamePadInput()
     {
+        // Get the gamepad info for gamepad one.
         GamePadInfo gamePadOne = Core.Input.GamePads[(int)PlayerIndex.One];
 
         // If the A button is held down, the movement speed increases by 1.5
@@ -356,6 +383,9 @@ public class GameScene : Scene
         // Begin the sprite batch to prepare for rendering.
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
+        // Draw the tilemap
+        _tilemap.Draw(Core.SpriteBatch);
+
         // Draw the slime sprite.
         _slime.Draw(Core.SpriteBatch, _slimePosition);
 
@@ -363,7 +393,17 @@ public class GameScene : Scene
         _bat.Draw(Core.SpriteBatch, _batPosition);
 
         // Draw the score
-        Core.SpriteBatch.DrawString(_font, $"Score: {_score}", Vector2.Zero, Color.White);
+        Core.SpriteBatch.DrawString(
+            _font,              // spriteFont
+            $"Score: {_score}", // text
+            _scoreTextPosition, // position
+            Color.White,        // color
+            0.0f,               // rotation
+            _scoreTextOrigin,   // origin
+            1.0f,               // scale
+            SpriteEffects.None, // effects
+            0.0f                // layerDepth
+        );
 
         // Always end the sprite batch when finished.
         Core.SpriteBatch.End();
