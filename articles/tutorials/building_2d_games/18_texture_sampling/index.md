@@ -103,7 +103,7 @@ The simplest demonstration of this is to use a checkerboard pattern.  If we were
 
 When using Border Color mode, similar to Clamped mode, the texture coordinates are clamped to the 0.0 and 1.0f range. However, in Border Color mode, texture coordinates that would go beyond this (edge pixels) are instead drawn using the color set as the border color for the sampler state.
 
-For example, if we use the checkerboard pattern again, using Border Color mode with a border color of red, then it would produce the following:
+For example, if we use the checkerboard pattern again, using Border Color mode with a border color of green, then it would produce the following:
 
 | ![Figure 18-8: Illustration of a checkerboard pattern drawn using border addressing mode with the border color set to green](./images/address-mode-border.png) |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------: |
