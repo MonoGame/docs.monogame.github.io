@@ -183,7 +183,7 @@ The [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) of
 > When an asset is loaded for the first time, the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) will internally cache the loaded asset.  Loading that same asset later will return the cached asset instead of having to perform another disk read to load the asset again.
 
 > [!TIP]
-> When an asset is unloaded, if the asset type implements the `IDisposable` interface, the `Dispose` method will automatically be called on the asset during hte unload process.
+> When an asset is unloaded, if the asset type implements the `IDisposable` interface, the `Dispose` method will automatically be called on the asset during the unload process.
 
 When loading an asset, the load methods require two parts:
 
@@ -223,17 +223,17 @@ Now that we have an image file to add, perform the following:
 
 1. Open the content project in the MGCB Editor.
 2. Select the *Content* node in the Project Panel.
-3. Right-click on the selected *Content* node and choose *Add > New Folder...* from teh context menu.
+3. Right-click on the selected *Content* node and choose *Add > New Folder...* from the context menu.
 4. Name the folder *images* and click the *Ok* button.
 5. Select the new *images* node in the Project Panel.
-6. Right-click on the selected *images* node and choose *Add > Existing Item..* from teh context menu.
+6. Right-click on the selected *images* node and choose *Add > Existing Item..* from the context menu.
 7. In the file browser that appears, navigate to the location of the *logo.png* file you just downloaded.
 8. Select the *logo.png*  file click *Open*.
 9. When prompted choose the *Copy the file to the directory* option from the add exiting file pop-up.
 10. Save the changes made to the content project by selecting *File > Save* from the top menu.
 
 > [!IMPORTANT]
-> After changes have been made in the MGBC Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and haven't saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved
+> After changes have been made in the MGCB Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and haven't saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved
 
 | ![Figure 5-8: The logo image added to the content project in the MGCB Editor](./images/mgcb-logo-added.png) |
 |:-----------------------------------------------------------------------------------------------------------:|
