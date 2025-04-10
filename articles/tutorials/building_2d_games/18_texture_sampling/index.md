@@ -164,7 +164,7 @@ The key changes here are
 - The `_backgroundPattern` field was added to store a reference to the texture of the background pattern once its loaded.
 - The `_backgroundDestination` field was added to define the destination rectangle to draw the background pattern to.
 - The `_backgroundOffset` field was added to apply an offset to the source rectangle when rendering the background pattern to give it the appearance that it is scrolling.
-- The `_scrollSpeed` field was dded to set the speed at which the background pattern scrolls.
+- The `_scrollSpeed` field was added to set the speed at which the background pattern scrolls.
 - In `Initialize`, the initial offset of the background is set to [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero) and the background destination rectangle is set to the bounds of the screen.
 - In `LoadContent`, the *background-pattern* texture is loaded and stored in `_backgroundPattern`.
 - In `Update`, the X and Y offset for the background source rectangle is calculated by adjusting the based on the scroll speed multiplied by the delta time.  Modulo division is then used to ensure that the new offset calculations remain within the width and height bounds of the background texture so that the wrap is seamless.
