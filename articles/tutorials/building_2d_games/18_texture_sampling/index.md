@@ -13,7 +13,9 @@ In this chapter, you will:
 
 ## Understanding Texture Sampling
 
-When a texture is drawn to the screen, MonoGame uses a process called "sampling" to determine which pixels from the texture should be displayed, especially when the texture is scaled, rotated, or only partially visible. The rules governing this process are defined by sampler states.
+When a texture is drawn to the screen, MonoGame uses a process called "sampling" to determine which pixels from the texture should be displayed.  Sampling is the process by which a graphics pipeline determines what color value to use from a texture when mapping it onto a surface.  Think of it like placing a grid over an image and selecting which pixels to use when that image needs to be transformed in some way.  When textures are drawn at their exact pixel size and position, with no rotation, sampling is straightforward, a direct 1:1 mapping for each pixel.  However, when a texture is scaled, rotated, or only partially visible, the graphics hardware needs to decide how to interpret the texture data.
+
+For example, if you draw a texture twice its size, there aren't enough pixels to fill the new larger space, so the graphics hardware must determine how to fill those gaps.  Similarly, if you were to scale down a texture, multiple source pixels might map to a single output pixel, requiring the hardware to decide which ones to use or how to blend them.  The rules that govern these decisions are defined by sampler states.
 
 ### Texture Coordinates
 
