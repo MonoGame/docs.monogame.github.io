@@ -201,14 +201,9 @@ public class Game1 : Core
 
         if (slimeBounds.Intersects(batBounds))
         {
-            // Divide the width  and height of the screen into equal columns and
-            // rows based on the width and height of the bat.
-            int totalColumns = GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
-            int totalRows = GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
-
             // Choose a random row and column based on the total number of each
-            int column = Random.Shared.Next(0, totalColumns);
-            int row = Random.Shared.Next(0, totalRows);
+            int column = Random.Shared.Next(1, _tilemap.Columns - 1);
+            int row = Random.Shared.Next(1, _tilemap.Rows - 1);
 
             // Change the bat position by setting the x and y values equal to
             // the column and row multiplied by the width and height.
@@ -280,13 +275,15 @@ public class Game1 : Core
         // If the + button is pressed, increase the volume.
         if (Input.Keyboard.WasKeyJustPressed(Keys.OemPlus))
         {
-            Audio.IncreaseVolume(0.1f);
+            Audio.SongVolume += 0.1f;
+            Audio.SoundEffectVolume += 0.1f;
         }
 
         // If the - button was pressed, decrease the volume.
         if (Input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
         {
-            Audio.DecreaseVolume(0.1f);
+            Audio.SongVolume += 0.1f;
+            Audio.SoundEffectVolume += 0.1f;
         }
     }
 

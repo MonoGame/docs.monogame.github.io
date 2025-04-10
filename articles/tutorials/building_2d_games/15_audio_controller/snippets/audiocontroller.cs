@@ -27,6 +27,64 @@ public class AudioController : IDisposable
     /// </summary>
     public bool IsMuted { get; private set; }
 
+/// <summary>
+    /// Gets or Sets the global volume of songs.
+    /// </summary>
+    /// <remarks>
+    /// If IsMuted is true, the getter will always return back 0.0f and the
+    /// setter will ignore setting the volume.
+    /// </remarks>
+    public float SongVolume
+    {
+        get
+        {
+            if(IsMuted)
+            {
+                return 0.0f;
+            }
+
+            return MediaPlayer.Volume;
+        }
+        set
+        {
+            if(IsMuted)
+            {
+                return;
+            }
+
+            MediaPlayer.Volume = Math.Clamp(value, 0.0f, 1.0f);
+        }
+    }
+
+    /// <summary>
+    /// Gets or Sets the global volume of sound effects.
+    /// </summary>
+    /// <remarks>
+    /// If IsMuted is true, the getter will always return back 0.0f and the
+    /// setter will ignore setting the volume.
+    /// </remarks>
+    public float SoundEffectVolume
+    {
+        get
+        {
+            if(IsMuted)
+            {
+                return 0.0f;
+            }
+
+            return SoundEffect.MasterVolume;
+        }
+        set
+        {
+            if(IsMuted)
+            {
+                return;
+            }
+
+            SoundEffect.MasterVolume = Math.Clamp(value, 0.0f, 1.0f);
+        }
+    }    
+
     /// <summary>
     /// Gets a value that indicates if this audio controller has been disposed.
     /// </summary>
@@ -233,34 +291,6 @@ public class AudioController : IDisposable
         else
         {
             MuteAudio();
-        }
-    }
-    #endregion
-
-    #region volume
-    /// <summary>
-    /// Increases volume of all audio by the specified amount.
-    /// </summary>
-    /// <param name="amount">The amount to increase the audio by.</param>
-    public void IncreaseVolume(float amount)
-    {
-        if (!IsMuted)
-        {
-            MediaPlayer.Volume = Math.Min(MediaPlayer.Volume + amount, 1.0f);
-            SoundEffect.MasterVolume = Math.Min(SoundEffect.MasterVolume + amount, 1.0f);
-        }
-    }
-
-    /// <summary>
-    /// Decreases the volume of all audio by the specified amount.
-    /// </summary>
-    /// <param name="amount">The amount to decrease the audio by.</param>
-    public void DecreaseVolume(float amount)
-    {
-        if (!IsMuted)
-        {
-            MediaPlayer.Volume = Math.Max(MediaPlayer.Volume - amount, 0.0f);
-            SoundEffect.MasterVolume = Math.Max(SoundEffect.MasterVolume - amount, 0.0f);
         }
     }
     #endregion

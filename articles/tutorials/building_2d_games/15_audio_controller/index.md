@@ -77,12 +77,6 @@ The `AudioController` provides methods to control the state of audio playback in
 
 [!code-csharp[](./snippets/audiocontroller.cs#state)]
 
-#### AudioController Volume Control
-
-The `AudioController` also provides methods to increase and decrease the global volume of songs and sound effects.  Add the following methods:
-
-[!code-csharp[](./snippets/audiocontroller.cs#volume)]
-
 #### AudioController IDisposable Implementation
 
 Finally, the `AudioController` implements the `IDisposable` interface.  Add the following methods:
@@ -127,7 +121,7 @@ The key changes made here are:
 
 Next, update the `Game1` class to use the audio controller for audio playback.  Open *Game1.cs* and make the following updates:
 
-[!code-csharp[](./snippets/game1.cs?highlight=45-46,77-78,101-102,196-197,220-221,274-290)]
+[!code-csharp[](./snippets/game1.cs?highlight=45-46,77-78,101-102,196-197,215-216,269-287)]
 
 The key changes made here are:
 
@@ -137,8 +131,8 @@ The key changes made here are:
 4. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) the audio manager is used to play the bounce and collect sound effects.
 5. In `CheckKeyboardInput` the following checks were added
    1. If the M key on the keyboard is pressed, it will toggle mute for all audio.
-   2. If the + key is pressed, the global volume is increased by `0.1f`.
-   3. If the - key is pressed, the global volume is decreased by `0.1f`.
+   2. If the + key is pressed, the song and sound effect volumes are increased by `0.1f`.
+   3. If the - key is pressed, the song and sound effect volumes are decreased by `0.1f`.
 
 Running the game now will produce the same result as the previous chapter, only now the lifetime of sound effects and the state management of audio is done through the new audio controller.  You can also mute and unumte the audio with the M key and increase and decrease the volume using the + and - keys.
 
