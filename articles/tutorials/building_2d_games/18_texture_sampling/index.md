@@ -49,7 +49,7 @@ There are three filtering modes available in MonoGame; Point, Linear, and Anisot
 
 #### Point Filtering Mode
 
-Point mode uses what is called nearest neighbor sampling.  This means that when a texture is scaled, the closest pixel is selected resulting in a pixelated appearance when scaled up.  This is typically the ideal mode to use for pixel-art games when you want to preserve the exact pixel appearance of a scaled texture.
+Point mode uses what is called nearest neighbor sampling.  This means that when a texture is scaled, the closest pixel is selected resulting in a pixelated appearance when scaled up.  This is typically the ideal mode to use for pixel-art games when you want to preserve the exact pixel appearance of a scaled texture.  Point filtering is the least computationally expensive filtering mode of the three since it only samples a single pixel without any blending calculations. This makes it the fastest option, especially on lower-end hardware or when rendering many textures simultaneously.
 
 | ![Figure 18-1: Illustration of using Point filtering mode. Left: MonoGame logo at 32x32 pixels.  Right: MonoGame logo at 128x128 pixels](./images/filter-mode-point.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -57,7 +57,7 @@ Point mode uses what is called nearest neighbor sampling.  This means that when 
 
 #### Linear Filtering Mode
 
-Linear filtering mode blends neighboring pixels when the texture is scaled.  This creates a smoother, but potentially blurrier appearance.  This is better for realistic or high-resolution textures.
+Linear filtering mode blends neighboring pixels when the texture is scaled.  This creates a smoother, but potentially blurrier appearance.  This is better for realistic or high-resolution textures.  Linear filtering requires more processing power than point filtering since it needs to sample multiple pixels and calculated weighted averages between them.  However, on modern hardware, this performance difference is usually negligible for 2D games, making it a good balance between quality and performance for most non-pixel art games or assets.
 
 | ![Figure 18-2: Illustration of using Linear filtering mode. Left: MonoGame logo at 32x32 pixels.  Right: MonoGame logo at 128x128 pixels](./images/filter-mode-linear.png) |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -65,7 +65,7 @@ Linear filtering mode blends neighboring pixels when the texture is scaled.  Thi
 
 #### Anisotropic Filtering Mode
 
-Anisotropic filtering mode provides higher-quality filter for textures viewed from oblique angles.  This is primarily used in 3D rendering.  It helps textures look more detailed by reducing blur and aliasing that occurs when a surface is angled away from the viewer.
+Anisotropic filtering mode provides higher-quality filter for textures viewed from oblique angles.  This is primarily used in 3D rendering.  It helps textures look more detailed by reducing blur and aliasing that occurs when a surface is angled away from the viewer.  Anisotropic filtering is the most computationally intensive option, as it samples many more pixels and performs complex calculations to determine the appropriate blending.  The performance cost increases with the anisotropic level (typically 2x, 4x, 8x, or 16x), which determines how many samples are taken.  This can significantly impact frame rates in complex 3D scenes, especially on mobile or lower-end devices, so it should be used selectively where visual quality at angles is most important.
 
 | ![Figure 18-3: Illustration of the MonoGame Fuel cell demo using Linear filtering](./images/filter-mode-anisotropic-linear-comparison.png) | ![Figure 18-4: Illustration of the MonoGame Fuel cell demo using Anisotropic filtering](./images/filter-mode-anisotropic-comparison.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: |
