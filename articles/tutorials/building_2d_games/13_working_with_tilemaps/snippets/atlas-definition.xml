@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas>
+    <Texture>images/atlas</Texture>
+    <Regions>
+        <Region name="slime-1" x="320" y="0" width="80" height="80" />
+        <Region name="slime-2" x="320" y="80" width="80" height="80" />
+        <Region name="bat-1" x="320" y="160" width="80" height="80" />
+        <Region name="bat-2" x="320" y="240" width="80" height="80" />
+        <Region name="bat-3" x="400" y="0" width="80" height="80" />
+    </Regions>
+    <Animations>
+        <Animation name="slime-animation" delay="200">
+            <Frame region="slime-1" />
+            <Frame region="slime-2" />
+        </Animation>
+        <Animation name="bat-animation" delay="200">
+            <Frame region="bat-1" />
+            <Frame region="bat-2" />
+            <Frame region="bat-1" />
+            <Frame region="bat-3" />
+        </Animation>
+    </Animations>
+</TextureAtlas>
