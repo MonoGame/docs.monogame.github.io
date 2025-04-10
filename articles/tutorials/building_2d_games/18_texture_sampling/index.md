@@ -73,7 +73,7 @@ Anisotropic filtering mode provides higher-quality filter for textures viewed fr
 
 ### Addressing Modes
 
-The other aspect is the addressing mode, which determines what happens when texture coordinates fall outside the normal 0.0 to 1.0 range.  There are four addressing modes available; Wrap, Mirror, Clamp, and Border Color:
+The other aspect is the addressing mode, which determines what happens when texture coordinates fall outside the normal 0.0 to 1.0 range.  When drawing textures, sometimes the calculated texture coordinates end up being less than 0.0 or greater than 1.0.  The addressing mode tells the graphics hardware what to do in these situations; whether to repeat the texture, mirror it, stretch the edge pixels, or use a specific border color.  Think of it as instructions for what to display in areas where the texture doesn't naturally exist.  These modes are particularly important for creating effects like seamless tiling backgrounds, scrolling texture, or handling the edges of transformed sprites properly.  There are four addressing modes available; Wrap, Mirror, Clamp, and Border Color:
 
 #### Wrap Mode
 
