@@ -41,7 +41,11 @@ In MonoGame, these sampler states are represented by the [**SamplerState**](xref
 
 ### Filtering Modes
 
-One aspect of sampler states if the filtering mode.  The filter mode used determines how pixels are interpolated when a texture is scaled.  There are three filtering modes available; Point, Linear, and Anisotropic.
+One aspect of sampler states if the filtering mode.  Filtering in computer graphics refers to how the graphics hardware decides to blend or select pixels when a texture is displayed at a different size than its original dimensions.  The filter mode determines how pixels are interpolated (calculated and combined) when a texture is scaled up or down.
+
+Think of filtering as the graphics hardware's strategy for filling in missing information when a texture is transformed.  When you enlarge a texture, the system needs to create new pixels that didn't exist in the original.  When you shrink a texture, multiple original pixels must be combined into fewer output pixels.  The filtering mode controls how this process happens.
+
+There are three filtering modes available in MonoGame; Point, Linear, and Anisotropic.  Each mode offers a different balance between performance and visual quality.
 
 #### Point Filtering Mode
 
