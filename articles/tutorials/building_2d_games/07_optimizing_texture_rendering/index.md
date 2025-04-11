@@ -191,6 +191,9 @@ Running the game now shows both sprites in the upper-left corner:
 |:------------------------------------------------------------------------------------------------------------------------------------------------:|
 |                   **Figure 7-3: The slime and bat texture regions being rendered in the upper-left corner of the game window**                   |
 
+> [!NOTE]
+> Both the slime and the bat sprites are very small. In fact, both are only 20x20 pixels each.  This is not going to be ideal for the game we're building, however do not fret, we will resolve this in the next chapter.
+
 While manual creation works for a few sprites, managing many regions becomes cumbersome. Let's now explore the `TextureAtlas.FromFile` method to load our atlas configuration from XML instead. Perform the following:
 
 1. Create a new file named *atlas-definition.xml* in the *Content/images* directory.

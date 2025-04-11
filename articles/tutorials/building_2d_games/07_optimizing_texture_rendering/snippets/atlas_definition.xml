@@ -2,7 +2,7 @@
 <TextureAtlas>
     <Texture>images/atlas</Texture>
     <Regions>
-        <Region name="slime" x="0" y="0" width="80" height="80" />
-        <Region name="bat" x="0" y="80" width="80" height="80" />
+        <Region name="slime" x="0" y="0" width="20" height="20" />
+        <Region name="bat" x="20" y="0" width="20" height="20" />
     </Regions>
 </TextureAtlas>

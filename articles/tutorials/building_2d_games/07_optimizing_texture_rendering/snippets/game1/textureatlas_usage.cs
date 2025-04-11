@@ -35,10 +35,10 @@ public class Game1 : Core
         TextureAtlas atlas = new TextureAtlas(atlasTexture);
 
         // add the slime region to the atlas.
-        atlas.AddRegion("slime", 0, 0, 80, 80);
+        atlas.AddRegion("slime", 0, 0, 20, 20);
 
         // add the bat region to the atlas.
-        atlas.AddRegion("bat", 0, 80, 80, 80);
+        atlas.AddRegion("bat", 20, 0, 20, 20);
 
         // retrieve the slime region from the atlas.
         _slime = atlas.GetRegion("slime");
