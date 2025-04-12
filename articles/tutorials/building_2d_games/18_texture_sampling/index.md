@@ -163,7 +163,7 @@ Next, add this texture to your content project using the MGCB Editor:
 
 Now that we have the background pattern texture added, let's update the `TitleScene` class to implement the scrolling background. Open the *TitleScene.cs* file in the game project and update it to the following
 
-[!code-csharp[](./snippets/titlescene.cs?highlight=39-50,79-81,92-93,104-113,120-13)]
+[!code-csharp[](./snippets/titlescene.cs?highlight=39-50,79-81,92-93,104-113,120-123)]
 
 The key changes here are
 
@@ -177,7 +177,7 @@ The key changes here are
 - In `Draw`, a new sprite batch begin/end block is added that uses [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap) and draws the background pattern to the destination rectangle using a source rectangle with the offset calculations.
 
 > [!NOTE]
-> We use two separate sprite batch begin/end blocks for this.  The first [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap) to draw the background and the second uses [**SamplerState.PointClamp**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp) to draw the rest of the scene.
+> We use two separate sprite batch begin/end blocks for this.  The first uses [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap) to draw the background and the second uses [**SamplerState.PointClamp**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointClamp) to draw the rest of the scene.
 >
 > This separation is necessary because changing the sampler state requires ending the current sprite batch and beginning a new one.
 

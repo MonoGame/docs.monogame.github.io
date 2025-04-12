@@ -111,7 +111,19 @@ The key changes here are:
 
 ## Updating the Game
 
-With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We'll create two scenes; a title scene and a gameplay scene.
+With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We'll create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
+
+1. Right-click the *fonts* directory and choose *Add* > *New Item...*.
+2. Select *SpriteFont Description (.spritefont)* from the options
+3. Name the file *04B_30_5x.spritefont* and click *Create*.
+
+| ![Figure 17-1: The *04B_30_5x.spritefont* file created in the MGCB Editor](./images/font_added.png) |
+| :-------------------------------------------------------------------------------------------------: |
+|             **Figure 17-1: The *04B_30_5x.spritefont* file created in the MGCB Editor**             |
+
+Next, open the *04B_30_5x.spritefont* file and make the following changes:
+
+[!code-xml[](./snippets/04B_30_5x.spritefont?highlight=4-5)]
 
 ### The Title Scene
 
@@ -296,7 +308,7 @@ The `Game1` class is now much simpler as most of the game logic has been moved t
 Running the game now, we can see that once the game screen comes up, the title scene is displayed with the animated slime and the press enter prompt.  The background music starts playing on this scene as well.  Pressing enter from here will switch to the game scene where the game starts and we can play the game implemented thus far.
 
 | ![Figure 17-2: The game launching with the title screen first, then transitioning to the game play screen when enter is pressed](./videos/gameplay.webm) |
-|:--------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| :------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |            **Figure 17-2: The game launching with the title screen first, then transitioning to the game play screen when enter is pressed**             |
 
 ## Conclusion
