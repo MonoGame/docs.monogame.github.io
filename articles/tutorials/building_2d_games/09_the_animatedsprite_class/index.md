@@ -166,13 +166,13 @@ We can simplify this process by adding an animated spirte creation method to the
 
 Let's adjust our game now to use the `AnimatedSprite` class to see our sprites come to life. Replaces the contents of *Game1.cs* with the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=11-15,34-38,48-52)]
+[!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,50-54)]
 
 Let's examine the key changes in this implementation:
 
 - The `_slime` and `_bat` members were changed from `Sprite`  to `AnimatedSprite`.
 - In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) the `_slime` and `_bat` sprites are now created using the new `TextureAtlas.CreateAnimatedSprite` method.
-- In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the animations are updated based on the game time using hte `AnimatedSprite.Update` method.
+- In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the animations are updated based on the game time using the `AnimatedSprite.Update` method.
 
 Running the game now shows both sprites animating automatically:
 

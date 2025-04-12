@@ -2,11 +2,11 @@
 <TextureAtlas>
     <Texture>images/atlas</Texture>
     <Regions>
-        <Region name="slime-1" x="0" y="0" width="80" height="80" />
-        <Region name="slime-2" x="80" y="0" width="80" height="80" />
-        <Region name="bat-1" x="0" y="80" width="80" height="80" />
-        <Region name="bat-2" x="80" y="80" width="80" height="80" />
-        <Region name="bat-3" x="160" y="80" width="80" height="80" />
+        <Region name="slime-1" x="0" y="0" width="20" height="20" />
+        <Region name="slime-2" x="0" y="20" width="20" height="20" />
+        <Region name="bat-1" x="20" y="0" width="20" height="20" />
+        <Region name="bat-2" x="20" y="20" width="20" height="20" />
+        <Region name="bat-3" x="40" y="0" width="20" height="20" />
     </Regions>
     <Animations>
         <Animation name="slime-animation" delay="200">

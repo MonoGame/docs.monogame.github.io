@@ -2,23 +2,33 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
-using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Scenes;
 
 namespace DungeonSlime.Scenes;
 
 public class TitleScene : Scene
 {
-    private const string PRESS_ENTER = "Press Enter To Start";
+    private const string DUNGEON_TEXT = "Dungeon";
+    private const string SLIME_TEXT = "Slime";
+    private const string PRESS_ENTER_TEXT = "Press Enter To Start";
 
     // The font to use to render normal text.
     private SpriteFont _font;
 
-    // The sprite to draw for the stylized title
-    private Sprite _titleSprite;
+    // The font used to render the title text.
+    private SpriteFont _font5x;
 
-    // The position to draw the title sprite at.
-    private Vector2 _titlePos;
+    // The position to draw the dungeon text at.
+    private Vector2 _dungeonTextPos;
+
+    // The origin to set for the dungeon text.
+    private Vector2 _dungeonTextOrigin;
+
+    // The position to draw the slime text at.
+    private Vector2 _slimeTextPos;
+
+    // The origin to set for the slime text.
+    private Vector2 _slimeTextOrigin;
 
     // The position to draw the press enter text at.
     private Vector2 _pressEnterPos;
@@ -48,29 +58,20 @@ public class TitleScene : Scene
         // can close the game by pressing the escape key.
         Core.ExitOnEscape = true;
 
-        // Get the bounds of the screen for position calculations
-        Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
+        // Set the position and origin for the Dungeon text.
+        Vector2 size = _font5x.MeasureString(DUNGEON_TEXT);
+        _dungeonTextPos = new Vector2(640, 100);
+        _dungeonTextOrigin = size * 0.5f;
 
-        // Precalculate the positions and origins for texts and the slime sprite
-        // so we're not calculating it every draw frame.
-        _titlePos = new Vector2(
-            screenBounds.Width * 0.5f,
-            80 + _titleSprite.Height * 0.5f);
+        // Set the position and origin for the Slime text.
+        size = _font5x.MeasureString(SLIME_TEXT);
+        _slimeTextPos = new Vector2(757, 207);
+        _slimeTextOrigin = size * 0.5f;
 
-        // Center the origin of the title sprite.
-        _titleSprite.CenterOrigin();
-
-        // Precalculate the position of for the press enter text so that it is
-        // centered horizontally and place 100 pixels above the bottom of the
-        // screen.
-        _pressEnterPos = new Vector2(
-            screenBounds.Width * 0.5f,
-            screenBounds.Height - 100
-        );
-
-        // Precalculate the center origin of the press enter text.
-        Vector2 pressEnterSize = _font.MeasureString(PRESS_ENTER);
-        _pressEnterOrigin = pressEnterSize * 0.5f;
+        // Set the position and origin for the press enter text.
+        size = _font.MeasureString(PRESS_ENTER_TEXT);
+        _pressEnterPos = new Vector2(640, 620);
+        _pressEnterOrigin = size * 0.5f;
 
         // Initialize the offset of the background pattern at zero
         _backgroundOffset = Vector2.Zero;
@@ -82,13 +83,11 @@ public class TitleScene : Scene
 
     public override void LoadContent()
     {
-        // Load the font for the standard txt.
-        _font = Core.Content.Load<SpriteFont>("fonts/gameFont");
+        // Load the font for the standard text.
+        _font = Core.Content.Load<SpriteFont>("fonts/04B_30");
 
-        // Create a texture atlas from the XML configuration file.
-        TextureAtlas atlas = TextureAtlas.FromFile(Core.Content, "images/atlas-definition.xml");
-
-        _titleSprite = atlas.CreateSprite("title-card");
+        // Load the font for the title text
+        _font5x = Content.Load<SpriteFont>("fonts/04B_30_5x");
 
         // Load the background pattern texture.
         _backgroundPattern = Content.Load<Texture2D>("images/background-pattern");
@@ -126,10 +125,25 @@ public class TitleScene : Scene
         // Begin the sprite batch to prepare for rendering.
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-        _titleSprite.Draw(Core.SpriteBatch, _titlePos);
+        // The color to use for the drop shadow text.
+        Color dropShadowColor = Color.Black * 0.5f;
+
+        // Draw the Dungeon text slightly offset from it's original position and
+        // with a transparent color to give it a drop shadow
+        Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
+
+        // Draw the Dungeon text on top of that at its original position
+        Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
+
+        // Draw the Slime text slightly offset from it's original position and
+        // with a transparent color to give it a drop shadow
+        Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
+
+        // Draw the Slime text on top of that at its original position
+        Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos, Color.White, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
         // Draw the press enter text
-        Core.SpriteBatch.DrawString(_font, PRESS_ENTER, _pressEnterPos, Color.White, 0.0f, _pressEnterOrigin, 1.0f, SpriteEffects.None, 0.0f);
+        Core.SpriteBatch.DrawString(_font, PRESS_ENTER_TEXT, _pressEnterPos, Color.White, 0.0f, _pressEnterOrigin, 1.0f, SpriteEffects.None, 0.0f);
 
         // Always end the sprite batch when finished.
         Core.SpriteBatch.End();

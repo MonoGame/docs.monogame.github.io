@@ -59,7 +59,7 @@ public class Tileset
         {
             int x = i % Columns * tileWidth;
             int y = i / Columns * tileHeight;
-            _tiles[i] = new TextureRegion(textureRegion.Texture, x, y, tileWidth, tileHeight);
+            _tiles[i] = new TextureRegion(textureRegion.Texture, textureRegion.SourceRectangle.X + x, textureRegion.SourceRectangle.Y + y, tileWidth, tileHeight);
         }
     }
     #endregion

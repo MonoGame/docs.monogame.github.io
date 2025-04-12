@@ -33,9 +33,11 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite("slime-animation");
+        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite("bat-animation");
+        _bat.Scale = new Vector2(4.0f, 4.0f);
 
         base.LoadContent();
     }

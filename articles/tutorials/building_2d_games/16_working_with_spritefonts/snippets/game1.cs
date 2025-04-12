@@ -70,16 +70,16 @@ public class Game1 : Core
         Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
 
         _roomBounds = new Rectangle(
-            _tilemap.TileSize,
-            _tilemap.TileSize,
-            screenBounds.Width - _tilemap.TileSize * 2,
-            screenBounds.Height - _tilemap.TileSize * 2
+            (int)_tilemap.TileWidth,
+            (int)_tilemap.TileHeight,
+            screenBounds.Width - (int)_tilemap.TileWidth * 2,
+            screenBounds.Height - (int)_tilemap.TileHeight * 2
         );
 
         // Initial slime position will be the center tile of the tile map.
         int centerRow = _tilemap.Rows / 2;
         int centerColumn = _tilemap.Columns / 2;
-        _slimePosition = new Vector2(centerColumn, centerRow) * _tilemap.TileSize;
+        _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
 
         // Initial bat position will the in the top left corner of the room
         _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
@@ -92,7 +92,7 @@ public class Game1 : Core
 
         // Set the position of the score text to align to the left edge of the
         // room bounds, and to vertically be at the center of the first tile.
-        _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileSize * 0.5f);
+        _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
 
         // Set the origin of the text so it's left-centered.
         float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
@@ -107,12 +107,15 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite("slime-animation");
+        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite("bat-animation");
+        _bat.Scale = new Vector2(4.0f, 4.0f);
 
-        // Load the tilemap from the XML configuration file.
+        // Create the tilemap from the XML configuration file.
         _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
+        _tilemap.Scale = new Vector2(4.0f, 4.0f);
 
         // Load the bounce sound effect
         _bounceSoundEffect = Content.Load<SoundEffect>("audio/bounce");
@@ -124,7 +127,7 @@ public class Game1 : Core
         _themeSong = Content.Load<Song>("audio/theme");
 
         // Load the font
-        _font = Content.Load<SpriteFont>("fonts/gameFont");
+        _font = Content.Load<SpriteFont>("fonts/04B_30");
 
         base.LoadContent();
     }

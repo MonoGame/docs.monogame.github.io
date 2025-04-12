@@ -140,11 +140,8 @@ Currently, the texture atlas we've been using only contains the sprites for the 
 |:-----------------------------------------------------------------------------------------------------------------:|
 |          **Figure 13-3: The texture atlas for our game updated to include the tileset for the tilemap**           |
 
-Since the texture atlas image was updated and the location of the slime and bat sprites were repositioned, we need to update the atlas configuration file as well.  Open the *atlas-definition.xml* configuration file and update it to the following:
-
-[!code-xml[](./snippets/atlas-definition.xml)]
-
-This change just adjusts the x and y coordinate positions to match the new locations of the slime and bat sprites in the atlas.
+> [!NOTE]
+> Since the slime and bat sprites are in the same position in the new texture atlas, we do not need to update the atlas XML configuration file.
 
 ## Creating a Tilemap XML Configuration
 
@@ -179,7 +176,7 @@ Next, we need to add this configuration file to our content project with the MGC
 
 With all of the assets now in place and configured, let's update the `Game1` class to load the tilemap and draw it.  We'll also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open *Game1.cs* and make the following updates:
 
-[!code-csharp[](./snippets/game1.cs?highlight=31-35,46-61,78-79,111,113,115,117,120,122,124,126,144,147,149,152,155,158,160,163,183-186,308-309)]
+[!code-csharp[](./snippets/game1.cs?highlight=31-35,46-61,80-82,114,116,118,120,123,125,127,129,147,150,152,155,158,161,163,166,181-183,305-306)]
 
 The key changes to the `Game1` class include:
 
@@ -188,7 +185,9 @@ The key changes to the `Game1` class include:
 3. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize):
    1. The `_roomBounds` is set based on the tilemap's tile size.
    2. The starting position of the slime is now set to be in the center of the room.
-4. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the tilemap is loaded from the XML configuration file.
+4. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent):
+   1. The tilemap is loaded from the XML configuration file.
+   2. The scale of the tilemap is set to a factor of 4.0.
 5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the `screenBounds` variable was removed and the collision logic has been updated to instead use the `_roomBounds` instead.
 6. In [**Draw**](Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) the tilemap is drawn.
 

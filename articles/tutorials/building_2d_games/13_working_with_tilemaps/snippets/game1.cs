@@ -45,17 +45,17 @@ public class Game1 : Core
 
         Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
 
-        _roomBounds = new Rectangle(
-            _tilemap.TileSize,
-            _tilemap.TileSize,
-            screenBounds.Width - _tilemap.TileSize * 2,
-            screenBounds.Height - _tilemap.TileSize * 2
+       _roomBounds = new Rectangle(
+            (int)_tilemap.TileWidth,
+            (int)_tilemap.TileHeight,
+            screenBounds.Width - (int)_tilemap.TileWidth * 2,
+            screenBounds.Height - (int)_tilemap.TileHeight * 2
         );
 
         // Initial slime position will be the center tile of the tile map.
         int centerRow = _tilemap.Rows / 2;
         int centerColumn = _tilemap.Columns / 2;
-        _slimePosition = new Vector2(centerColumn, centerRow) * _tilemap.TileSize;
+        _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
 
         // Initial bat position will the in the top left corner of the room
         _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
@@ -71,12 +71,15 @@ public class Game1 : Core
 
         // Create the slime animated sprite from the atlas.
         _slime = atlas.CreateAnimatedSprite("slime-animation");
+        _slime.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite("bat-animation");
+        _bat.Scale = new Vector2(4.0f, 4.0f);
 
         // Create the tilemap from the XML configuration file.
         _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
+        _tilemap.Scale = new Vector2(4.0f, 4.0f);
 
         base.LoadContent();
     }
@@ -175,13 +178,7 @@ public class Game1 : Core
 
         if (slimeBounds.Intersects(batBounds))
         {
-            // Divide the width  and height of the screen into equal columns and
-            // rows based on the width and height of the bat.
-            int totalColumns = GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
-            int totalRows = GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
-
             // Choose a random row and column based on the total number of each
-            // available within the bounds of the tilemap walls.
             int column = Random.Shared.Next(1, _tilemap.Columns - 1);
             int row = Random.Shared.Next(1, _tilemap.Rows - 1);
 

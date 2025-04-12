@@ -180,23 +180,26 @@ First, we'll need to create a SpriteFont Definition.  Open the *Content.mgcb* co
 1. Create a new directory called *fonts* (right-click *Content* > *Add* > *New Folder*).
 2. Right-click the new *fonts* directory and choose *Add* > *New Item...*.
 3. Select *SpriteFont Description (.spritefont)* from the options.
-4. Name the file *gameFont.spritefont* and click *Create*.
+4. Name the file *04B_30.spritefont* and click *Create*.
 
-| ![Figure 16-1: The gameFont.spritefont file created in the MGCB Editor](./images/font_added.png) |
-|:-----------------------------------------------------------------------------------------------:|
-|             **Figure 16-1: The gameFont.spritefont file created in the MGCB Editor**             |
+| ![Figure 16-1: The 04B_30.spritefont file created in the MGCB Editor](./images/font_added.png) |
+| :--------------------------------------------------------------------------------------------: |
+|             **Figure 16-1: The 04B_30.spritefont file created in the MGCB Editor**             |
+
+> [!NOTE]
+> We've named the SpriteFont Description file with the same name as the font we'll be using.  This makes it easier to remember when updating the code later.
 
 ### Download the Font File
 
 Next, right-click the following TTF font and choose "Save Link as..." and save it in the same directory as the *gameFont.spriteFont* file we just created.
 
-- [04B_11.ttf](./files/04B_11.TTF)
+- [04B_30.ttf](./files/04B_30.ttf)
 
 ### Update the SpriteFont Description
 
-Next, open the *gameFont.spritefont* file and make the following changes:
+Next, open the *04B_30.spritefont* file and make the following changes:
 
-[!code-csharp[](./snippets/gameFont.spritefont?highlight=4,5)]
+[!code-csharp[](./snippets/04B_30.spritefont?highlight=4,5)]
 
 The key changes here are:
 
@@ -207,7 +210,7 @@ The key changes here are:
 
 Finally, open the *Game1.cs* file and make the following changes:
 
-[!code-csharp[](./snippets/game1.cs?highlight=48-58,93-99,126-127,243-244,388-399)]
+[!code-csharp[](./snippets/game1.cs?highlight=48-58,93-99,129-130,246-247,391-402)]
 
 The key changes made are:
 
@@ -217,14 +220,14 @@ The key changes made are:
 4. The `_scoreTextOrigin` field was added to store the origin to use when drawing the score text.
 5. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize)
    1. The position to draw the score text is precalculated to align with the left side of the room bounds horizontally and to vertically be at the center of the first tile at the top.
-   2. The origin for the score text is precalculated by measuring the string `"Score"` and multiplying the `Y` component to get the vertical center of the tet, then the origin is set so that it is at the left-center.
+   2. The origin for the score text is precalculated by measuring the string `"Score"` and multiplying the `Y` component to get the vertical center of the text, then the origin is set so that it is at the left-center.
 6. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the font is loaded using the content manager.
 7. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the player's score is increased by `100` each time the slime eats the bat.
 8. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), the score text is drawn at the precalculated position using the precalculated origin so that it aligns in the center of the tile on the blue strip using the sprite batch.
 
 | ![Figure 16-2: The game with score displayed in the top-left corner](./videos/gameplay.webm) |
-|:----------------------------------------------------------------------------------------:|
-|           **Figure 16-2: The game with score displayed in the top-left corner**           |
+| :------------------------------------------------------------------------------------------: |
+|            **Figure 16-2: The game with score displayed in the top-left corner**             |
 
 ## Conclusion
 

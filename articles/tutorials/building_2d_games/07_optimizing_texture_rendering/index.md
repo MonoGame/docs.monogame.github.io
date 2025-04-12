@@ -183,16 +183,15 @@ The key changes in this implementation are:
     - Created a `TextureAtlas` with the atlas texture.
     - Added regions for both the slime and the bat.
     - Retrieved the regions using their names.
-4. Updated [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) to render both sprites, using the slime's `Width` property to position the bat.
+4. Updated [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) to:
+   - Draw the slime at a scale factor of 4.
+   - Draw the bat 10 pixels to the right of the bat based on the slime's `Width` property, at a scale of 4
 
 Running the game now shows both sprites in the upper-left corner:
 
 | ![Figure 7-3: The slime and bat texture regions being rendered in the upper-left corner of the game window](./images/slime-and-bat-rendered.png) |
 |:------------------------------------------------------------------------------------------------------------------------------------------------:|
 |                   **Figure 7-3: The slime and bat texture regions being rendered in the upper-left corner of the game window**                   |
-
-> [!NOTE]
-> Both the slime and the bat sprites are very small. In fact, both are only 20x20 pixels each.  This is not going to be ideal for the game we're building, however do not fret, we will resolve this in the next chapter.
 
 While manual creation works for a few sprites, managing many regions becomes cumbersome. Let's now explore the `TextureAtlas.FromFile` method to load our atlas configuration from XML instead. Perform the following:
 

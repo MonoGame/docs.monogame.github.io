@@ -58,11 +58,11 @@ public class Game1 : Core
         // Begin the sprite batch to prepare for rendering.
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-        // Draw the slime texture region.
-        _slime.Draw(SpriteBatch, Vector2.One, Color.White);
+        // Draw the slime texture region at a scale of 4.0
+        _slime.Draw(SpriteBatch, Vector2.Zero, Color.White, 0.0f, Vector2.One, 4.0f, SpriteEffects.None, 0.0f);
 
-        // Draw the bat texture region 10px to the right of the slime.
-        _bat.Draw(SpriteBatch, new Vector2(_slime.Width + 10, 0), Color.White);
+        // Draw the bat texture region 10px to the right of the slime at a scale of 4.0
+        _bat.Draw(SpriteBatch, new Vector2(_slime.Width * 4.0f + 10, 0), Color.White, 0.0f, Vector2.One, 4.0f, SpriteEffects.None, 1.0f);
 
         // Always end the sprite batch when finished.
         SpriteBatch.End();

@@ -115,17 +115,9 @@ With the scene architecture in place, the game can now be updated so that it is 
 
 ### The Title Scene
 
-The title scene serves as the game's initial starting point, making the first impression on the player when they first launch the game.  For our game, this scene will display stylized text for the title of the game and a prompt for an action for the user to perform to start the game.  The stylized text is a graphic that was created and added to the texture atlas which features the title of the game with a drop shadow effect on the text.  So first, let's update the texture atlas to the new version with the title graphic.  Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* directory of the game project, overwriting the existing one:
+The title scene serves as the game's initial starting point; the first impression the player gets when they launch the game.  For our game, the title scene will display the text for the title of the game and a prompt to inform the player what action to take to start the game.  We'll use a simple trick for the title text in order to draw it with a drop shadow to add a bit of visual flair.
 
-| ![Figure 17-1: The texture atlas for our game updated to include the title sprite](./images/atlas.png) |
-|:------------------------------------------------------------------------------------------------------:|
-|          **Figure 17-1: The texture atlas for our game updated to include the title sprite**           |
-
-Next, open the *atlas-definition.xml* file and add the region for the title sprite:
-
-[!code-xml[](./snippets/atlas-definition.xml?highlight=10)]
-
-With the atlas now updated, create the `TitleScene` class file.  In the main game project:
+To get started, first:
 
 1. Create a new directory named *Scenes*.  We'll put all of our game specific scenes here.
 2. Add a new class file named *TitleScene.cs* to the *Scenes* directory you just created.
@@ -139,11 +131,12 @@ Add the following fields to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene.cs#fields)]
 
-- The `PRESS_ENTER` constant is the text we'll draw for the press enter prompt for the user.
-- The `_font` field stores a reference to the sprite font we'll load to render the press enter prompt with.
-- The `_titleSprite` field stores a reference the sprite we'll render for the stylized title from the texture atlas
-- The `_titlePos` and `_pressEnterPos` fields store the precalculated positions for the title sprite and the press enter prompt text when they are drawn.  Since they are stationary, we can just calculate the positions once and store it instead of calculating it each frame.
-- The `_pressEnterOrigin` field stores the precalculated origin for hte press enter prompt text when it is drawn.  Like with the position, we only need to calculate this once and store it instead of calculating it each frame.
+- Three `const` fields (`DUNGEON_TEXT`, `SLIME_TEXT`, `PRESS_ENTER_TEXT`) are added for the text that will be displayed on the title screen.
+- The `_font` field stores a reference to the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) we will use to draw the press enter prompt with.
+- The `_font3x` field stores a reference to the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) we will use to draw the dungeon and slime text with that will make up the title of the game.
+- The `_dungeonTextPos` and `_dungeonTextOrigin` fields store the position and origin we will use to draw the "Dungeon" text at.
+- The `_slimeTextPos` and `_slimeTextOrigin` fields store the position and origin we will draw the "Slime" text at.
+- The `_pressEnterPos` and `_pressEnterOrigin` fields store the position and origin we will draw the "Press Enter To Start" text at.
 
 #### Title Scene Methods
 
@@ -156,9 +149,7 @@ Add the following override for the `Initialize` method to the `TitleScene` class
 [!code-csharp[](./snippets/titlescene.cs#initialize)]
 
 - We set the `Core.ExitOnEscape` to true to allow players to exit the game when on the title screen by pressing the escape key.
-- The bounds of the screen is captures by using the `Core.GraphicsDevice.PresentationParameters.Bounds` value.
-- The position to draw the title sprite is precalculated so that it will be centered horizontally and 80px down from the top of the screen.  The origin is set to center.
-- The position to draw the press enter prompt is precalculated so that it will be centered horizontally and 100 px above the bottom of the screen.  The string is measured and used to center the origin for the text.
+- The position and origin for the "Dungeon", "Slime", and "Press Enter To Start" texts are set.
 
 ##### Title Scene LoadContent
 
@@ -166,9 +157,8 @@ Add the following override for the `LoadContent` method to the `TitleScene` clas
 
 [!code-csharp[](./snippets/titlescene.cs#loadcontent)]
 
-- The font used to draw the press enter prompt is loaded.
-- The texture atlas is loaded using the XML configuration file.
-- The `_titleSprite` is generated from the `"title-card"` region in the atlas.
+- The [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) used to draw the "Press Enter To Start" text is loaded using the global content manager.
+- The [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) used to draw the "Dungeon" and "Slime" text is loaded using the scene's content manager.
 
 > [!TIP]
 > Recall from [Chapter 05](../05_content_pipeline/index.md#contentmanager-methods) that when a [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) loads an asset for the first time, it caches it internally and the subsequent calls to load that asset will return the cached one instead of performing another disk read.  
@@ -193,8 +183,10 @@ Add the following override for the `Draw` method to the `TitleScene` class:
 [!code-csharp[](./snippets/titlescene.cs#draw)]
 
 - The back buffer is cleared.
-- The title sprite is drawn at its precalculated position.
-- The press enter prompt is drawn at its precalculated position.
+- The `dropShadowColor` is created which is the color black with half transparency.
+- The "Dungeon" text is draw, first 10px down and to the left of the actual position using the drop shadow color, then it is drawn again at its normal position overtop.  Layering this way creates the drop shadow effect.
+- The "Slime" text is draw, again offset from its position first using the drop shadow color and then drawn again at its normal position overtop.
+- The "Press Enter To Start" text is drawn.
 
 ### The Game Scene
 
