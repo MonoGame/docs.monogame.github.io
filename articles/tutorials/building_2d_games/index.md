@@ -40,6 +40,7 @@ This documentation will introduce game development concepts using the MonoGame f
 | [17: Scenes](17_scenes/index.md)                                             | Learn how to implement scene management to handle different game screens like menus, gameplay, and transitions between scenes.                                                                    |              |
 | [18: Texture Sampling](18_texture_sampling/index.md)                         | Learn how to use texture sampling states and add a scrolling background effect to the game.                                                                                                       |              |
 | [19: User Interface](19_user_interface/index.md)                             | Learn how to implement a user interface system in MonoGame, including creating reusable UI components and building interactive game menus                                                         |              |
+| [20: The Game](20_the_game/index.md)                                         | Finalize game mechanics by updating our current demo into a snake-like inspired game                                                                                                              |              |
 
 In addition to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 
