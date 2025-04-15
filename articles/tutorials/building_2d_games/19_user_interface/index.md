@@ -4,7 +4,7 @@ description: "Learn how to implement a user interface in MonoGame using Gum and 
 ---
 
 > [!IMPORTANT]
-> This chapter is currently undergoing a rewrite with Vic ([Vchelaru](https://github.com/vchelaru)) co-authoring this chapter.  For now, this chapter is considered in complete and should be skipped.
+> This chapter is currently undergoing a rewrite with Vic ([Vchelaru](https://github.com/vchelaru)) co-authoring this chapter.  For now, this chapter is considered incomplete and should be skipped.
 
 A critical component of any game is the user interface (UI) that allows players to interact with the game beyond just controlling the the character.  UI elements include menus, buttons, panels, labels, and various other interactive components that provide information and control options to the player.
 
