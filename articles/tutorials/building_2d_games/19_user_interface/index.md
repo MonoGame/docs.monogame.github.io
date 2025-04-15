@@ -92,14 +92,9 @@ By considering accessibility early in development rather than as an afterthought
 
 In this chapter, you accomplished the following:
 
-- Created a flexible `UIElement` base class that establishes a parent-child hierarchy for organizing UI components.
-- Implemented specialized UI components including sprites, buttons, and sliders.
-- Developed an input-agnostic control system through the `IUIElementController` interface.
-- Built interactive menus for our game; a title menu with options screen and a pause menu.
-- Applied navigation logic to create a complete keyboard/gamepad friendly interface.
-- Discussed accessibility considerations for inclusive game design.
-
-In the next chapter, we'll complete our game by polishing the gameplay experience and implementing win and loss conditions.
+- TODO: Write once vic finishes coauthoring
+  
+In the next chapter, we'll complete our game by finalizing the game mechanics to update our current demo into a snake-like inspired game.
 
 ## Test Your Knowledge
 
@@ -113,19 +108,7 @@ In the next chapter, we'll complete our game by polishing the gameplay experienc
    - Logical grouping: Mirrors the conceptual organization of UI elements.
    :::
 
-2. In the UI system we implemented, how does a `UIElement` determine if it should be enabled or visible?
-
-    :::question-answer
-    The `UIElement` class first checks if it has a parent element.  If it does and that parent element is disabled or invisible, then the child element is automatically considered disabled or invisible, regardless of its own internal state.  Otherwise, it returns its own internal enabled or visible state.  This creates a cascade effect where disabling or hiding a parent automatically disables or hides its children.
-    :::
-
-3. In the UI system we implemented, what is the purposed of the `IUIElementController` interface?
-
-    :::question-answer
-    The `IUIElementController` interface provides a device agnostic method for handling UI navigation.  It abstracts input detection (keyboard, gamepad, touch, etc) into a consistent set of navigation and action methods.  This allows UI elements to respond to user input without being tied to specific input devices, making it a more flexible and maintainable system.
-    :::
-
-4. What are some accessibility considerations that should be implemented in game UI systems?
+2. What are some accessibility considerations that should be implemented in game UI systems?
 
     :::question-answer
     - Visual accessibility: High contrast colors, not relying solely on color for information, adjustable text size and UI scaling, and internationalization support.
