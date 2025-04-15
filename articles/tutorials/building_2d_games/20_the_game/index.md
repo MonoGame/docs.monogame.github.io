@@ -246,6 +246,10 @@ With all of these components in place, our Dungeon Slime game is now a complete 
 
 Let's see how it all looks and plays:
 
+| ![Figure 20-1: Gameplay demonstration of the completed Dungeon Slime game showing the snake-like slime growing as it eats bats and a game over when colliding with the wall ](./videos/gameplay.webm) |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|             **Figure 20-1: Gameplay demonstration of the completed Dungeon Slime game showing the snake-like slime growing as it eats bats and a game over when colliding with the wall**             |
+
 1. The game starts with a single slime segment in the center of the screen.
 2. The player controls the direction of the slime by using keyboard arrow or WASD keys, or by using a game pad DPad or left thumbstick.
 3. The slime moves at regular intervals, creating a grid-based movement pattern.
