@@ -148,6 +148,8 @@
           href: tutorials/building_2d_games/17_scenes/
         - name: "18: Texture Sampling"
           href: tutorials/building_2d_games/18_texture_sampling/
+        - name: "19: User Interface"
+          href: tutorials/building_2d_games/19_user_interface/          
 - name: Console Access
   href: console_access.md
 - name: Help and Support
