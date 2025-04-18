@@ -5,27 +5,27 @@ requireMSLicense: false
 ---
 
 The Android ecosystem is unique in that the hardware it runs on can be from many different manufactures.
-Unlike iOS or PC you cannot always guarantee what graphics card a user will be using. For this reason
+Unlike iOS or PC, you cannot always guarantee what graphics card a user will be using. For this reason,
 Android needs to have some special attention when shipping your game.
 
 ## Texture Compression
 
-As stated in "[Why use the Content Pipeline](https://docs.monogame.net/articles/getting_started/content_pipeline/why_content_pipeline.html)" you need to be aware of the performance limitations on mobile devices.
+As stated in "[Why use the Content Pipeline](https://docs.monogame.net/articles/getting_started/content_pipeline/why_content_pipeline.html)", you need to be aware of the performance limitations on mobile devices.
 The graphics cards on mobile phones do not have the same kind of capabilities as those on the PC or Consoles.
-They regularly have less memory and less power. So you need to make use of what you have in a more efficient way.
-One of these ways is to use Texture Compression. As stated in "[Why use the Content Pipeline](https://docs.monogame.net/articles/getting_started/content_pipeline/why_content_pipeline.html)" this allows you to fit more
+They usually have less memory and less power. So you need to make use of what you have in a more efficient way.
+One of these ways is to use Texture Compression. As stated in "[Why use the Content Pipeline](https://docs.monogame.net/articles/getting_started/content_pipeline/why_content_pipeline.html)", this allows you to fit more
 textures on the graphics card than you could if you just used raw `RGBA` textures.
 
 ## How Android deals with textures
 
 Fortunately the Android engineers recognized that supporting all of these texture compression formats
-was not an easy task. So with the introduction of the `.aab` file format they added the ability to
+was not an easy task. So, with the introduction of the `.aab` file format, they added the ability to
 add multiple texture format files to the package. The way the `.aab` works is that it is not the final
 `.apk`. The final `.apk` will be built from the `.aab` when the game is delivered to the end user device.
-As a result not all of the files in the `.aab` will make it to the device. It will filter out things like
+As a result, not all of the files in the `.aab` will make it to the device. It will filter out things like
 `.so` files for other cpu types, and yes, texture formats.
 
-The `.aab` supports the following directory suffixes for texture compression
+The `.aab` supports the following directory suffixes for texture compression:
 
 | Texture Format | Suffix |
 | -------------- | ------ |
@@ -39,8 +39,8 @@ The `.aab` supports the following directory suffixes for texture compression
 
 see [https://developer.android.com/guide/playcore/asset-delivery/texture-compression](https://developer.android.com/guide/playcore/asset-delivery/texture-compression)
 
-MonoGame has its own [TextureProcessorOutputFormat](https://docs.monogame.net/api/Microsoft.Xna.Framework.Content.Pipeline.Processors.TextureProcessorOutputFormat.html) enumeration which describes the type of Texture Compression
-you use when processing an image. This following table shows you how to map that to the Suffix
+MonoGame has its own [TextureProcessorOutputFormat](https://docs.monogame.net/api/Microsoft.Xna.Framework.Content.Pipeline.Processors.TextureProcessorOutputFormat.html) enumeration. It describes the type of Texture Compression
+you use when processing an image. This following table shows you how to map that to the Suffix:
 
 | TextureProcessorOutputFormat | Suffix |
 | -------------- | ------ |
