@@ -184,7 +184,7 @@ To Add the Gum NuGet package in Visual Studio 2022:
 2. Choose *Manage Nuget Packages...* from the context menu.
 3. In the NuGet Package Manager window, select the *Browse* tab if it is not already selected.
 4. In the search box, enter "Gum.MonoGame".
-5. Choose the "Gum.MonoGame" package from the search results.
+5. Select the "Gum.MonoGame" package from the search results.
 6. On the left, ensure that the latest version is chosen from the drop down menu ("2024.1.25.1" as of the writing of this tutorial) and click the *Install* button.
 
 ### [dotnet CLI](#tab/dotnetcli)
