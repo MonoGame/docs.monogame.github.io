@@ -168,7 +168,7 @@ To add the Gum NuGet package to our game project, follow the instructions below 
 
 ### [Visual Studio Code](#tab/vscode)
 
-To add the Gum NuGet package to the game project in Visual Studio Code, perform the following:
+To add the Gum NuGet package in Visual Studio Code:
 
 1. In the *Solution Explorer* panel, right-click the *DungeonSlime* project.
 2. Choose *Add NuGet Package* from the context menu.
@@ -178,7 +178,7 @@ To add the Gum NuGet package to the game project in Visual Studio Code, perform 
 
 ### [Visual Studio 2022](#tab/vs2022)
 
-To add the Gum NuGet package to the game project in Visual Studio 2022, perform the following:
+To Add the Gum NuGet package in Visual Studio 2022:
 
 1. In the *Solution Explorer* panel, right-click the *DungeonSlime* project.
 2. Choose *Manage Nuget Packages...* from the context menu. This will open the NuGet Package Manager window for the project.
@@ -189,7 +189,7 @@ To add the Gum NuGet package to the game project in Visual Studio 2022, perform 
 
 ### [dotnet CLI](#tab/dotnetcli)
 
-To add the Gum NuGet package to the game project with the dotnet CLI, perform the following:
+To add the Gum NuGet package using the dotnet CLI:
 
 1. Open a new COmmand Prompt or Terminal window in the same directory as the *DungeonSlime.csproj* project file.
 2. Enter the following command:
