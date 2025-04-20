@@ -211,7 +211,9 @@ This will install the latest version of the package, which is "2024.1.25.1" as o
 
 ## Initializing Gum
 
-With the Gum NuGet package now added to our project, we need to initialize Gum in our game.  To Do this, first open the *Game1.cs*.  Next, add the following using statements to the top of the file
+With the Gum NuGet package added to our project, we need to initialize Gum in our game.  This will enable the UI system and configure input handling for our controls.  Since this is an initialization that only needs to happen once, let's make the necessary changes to the `Game1` class.
+
+First, open the *Game1.cs* file and add the following using statements to the top:
 
 ```cs
 using MonoGameGum;
