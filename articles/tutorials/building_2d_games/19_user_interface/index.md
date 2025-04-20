@@ -198,7 +198,7 @@ To add the Gum NuGet package using the dotnet CLI:
     dotnet add DungeonSlime.csproj package Gum.MonoGame
     ```
 
-This will install the latest version of the package, which is "2024.1.25.1" as of the writing of this tutorial.
+This will install the latest version of the package, which is "2024.1.25.1" as of this writing.
 
 ---
 
