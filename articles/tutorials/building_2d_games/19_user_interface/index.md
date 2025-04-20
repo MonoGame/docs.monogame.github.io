@@ -83,9 +83,9 @@ Initially we weill work with unstyled controls first, then do a customization pa
 
 This tutorial uses the following Forms control types:
 
-- Button - a clickable form
-- Slider - a form used to set a value between a minimum and maximum
-- Panel - a container used to hold other forms control
+- `Button`:  An interactive control that responds to clicks and provides visual feedback when focused.
+- `Slider`:  An interactive control that allows players to select a numeric value within a defined range by dragging the thumb element.
+- `Panel`: A container element that organizes and groups related controls together, helping to structure the UI layout.
 
 This tutorial also uses the following visual types:
 
