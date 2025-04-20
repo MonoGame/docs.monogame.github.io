@@ -191,7 +191,7 @@ To Add the Gum NuGet package in Visual Studio 2022:
 
 To add the Gum NuGet package using the dotnet CLI:
 
-1. Open a new COmmand Prompt or Terminal window in the same directory as the *DungeonSlime.csproj* project file.
+1. Open a COmmand Prompt or Terminal window in the same directory as the *DungeonSlime.csproj* project file.
 2. Enter the following command:
 
     ```sh
