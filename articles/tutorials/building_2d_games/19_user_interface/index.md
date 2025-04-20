@@ -222,36 +222,7 @@ using MonoGameGum.Forms.Controls;
 
 Next, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method to configure the Gum system:
 
-```cs
-protected override void Initialize()
-{
-   base.Initialize();
-
-   // Start playing the background music
-   Audio.PlaySong(_themeSong);
-
-   GumService.Default.Initialize(this);
-
-   GumService.Default.ContentLoader.XnaContentManager = Core.Content;
-
-   FrameworkElement.KeyboardsForUiControl.Add(GumService.Default.Keyboard);
-   FrameworkElement.GamePadsForUiControl.AddRange(GumService.Default.Gamepads);
-
-   FrameworkElement.TabReverseKeyCombos.Add(
-      new KeyCombo() { PushedKey = Microsoft.Xna.Framework.Input.Keys.Up });
-
-   FrameworkElement.TabKeyCombos.Add(
-      new KeyCombo() { PushedKey = Microsoft.Xna.Framework.Input.Keys.Down });
-
-   // Everything is zoomed 4x, so account for that:
-   GumService.Default.CanvasWidth = 1280 / 4f;
-   GumService.Default.CanvasHeight = 720 / 4f;
-   GumService.Default.Renderer.Camera.Zoom = 4;
-
-   // Start the game with the title scene.
-   ChangeScene(new TitleScene());
-}
-```
+[!code-csharp[](./snippets/game1_initialize.cs?highlight=8-37)]
 
 Let's take a look at the key changes made to the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method:
 
