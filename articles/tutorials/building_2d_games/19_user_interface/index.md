@@ -81,7 +81,7 @@ Each Forms control contains one or more visual items. For example, a simple `But
 
 Initially we weill work with unstyled controls first, then do a customization pass so that our controls match our game's visual style.
 
-This tutorial uses the following forms types:
+This tutorial uses the following Forms control types:
 
 - Button - a clickable form
 - Slider - a form used to set a value between a minimum and maximum
