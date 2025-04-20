@@ -77,7 +77,7 @@ Gum provides two types of objects: **Forms** and **Visuals**.  Forms controls ar
 
 All Forms controls provide customization through their `Visual` property, which serves as a gateway to modifying their appearance and layout. With this property, you can move, resize, restyle, and even completely replace visuals through code.  As we'll see when building our UI, this separation between functionality and presentation allows us to create consistent behaviors while adapting the visual style to match our game's aesthetic.
 
-Each forms control contains one or more visual items. For example, a simple `Button` might contain a text instance (of type `TextRuntime`) and a background (of type `ColoredRectangleRuntime`). More complex forms controls may contain many more visual objects, as we will see later when we create our own custom `Slider`.
+Each Forms control contains one or more visual items. For example, a simple `Button` might contain a text instance (of type `TextRuntime`) and a background (of type `ColoredRectangleRuntime`). More complex Forms controls may contain many more visual objects, as we will see later when we create our own custom `Slider`.
 
 Initially we weill work with unstyled controls first, then do a customization pass so that our controls match our game's visual style.
 
