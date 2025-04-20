@@ -174,7 +174,7 @@ To add the Gum NuGet package in Visual Studio Code:
 2. Choose *Add NuGet Package* from the context menu.
 3. Enter "Gum.MonoGame" in the *Add NuGet Package* search prompt and press Enter.
 4. When the search finishes, select the *Gum.MonoGame* package in the results
-5. When asked to choose which version, choose the one marked as the latest version ("2024.1.25.1" as of the writing of this tutorial.)
+5. When prompted for a version, choose the latest version ("2024.1.25.1" as of this writing").
 
 ### [Visual Studio 2022](#tab/vs2022)
 
