@@ -202,11 +202,12 @@ This will install the latest version of the package, which is "2024.1.25.1" as o
 
 ---
 
-Once the package has bee added, you can verify that it is added by opening the *DungeonSlime.csproj* file and validating that it now includes the following:
-
-```xml
-<PackageReference Include="Gum.MonoGame" Version="2025.4.19.1" />
-```
+> [!TIP]
+> You can verify the package was successfully added by examining your *DungeonSlime.csproj* file, which should now contain a reference like:
+>
+> ```xml
+> <PackageReference Include="Gum.MonoGame" Version="2025.4.19.1" />
+> ```
 
 ## Initializing Gum
 
