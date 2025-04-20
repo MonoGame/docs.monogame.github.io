@@ -563,11 +563,6 @@ The UI uses several forms controls:
 
 Let's take a look at the implementation details for some of the form controls included with Gum.
 
-<!--
-Note from Chris
-I had to stop here, I haven't finished reviewing the sections below. I'll get to them later tonight
--->
-
 ### Panel
 
 A `Panel` is an invisible container for other Gum elements.Since our TitleScene can display either the Start/Options button, or the Options UI for changing volume, we use two separate `Panel` instances. By toggling the visibility of each we can switch between the two parts of the Title screen. As mentioned above, if a `Panel` is made invisible, then all of its children also become invisible.
