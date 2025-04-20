@@ -89,12 +89,10 @@ This tutorial uses the following Forms control types:
 
 This tutorial also uses the following Visual types:
 
-- ContainerRuntime - an invisible container which can hold other visual types or forms
-- NineSliceRuntime - a visual object made of nine parts which can stretch without distorting its edges
-- TextRuntime - a visual object used to display strings
-- ColoredRectangleRuntime - a solid-colored visual object used for backgrounds and fills
-
-Notice that all visual types have the `Runtime` suffix.
+- `ContainerRuntime`: An invisible container that can hold other visual elements or forms, providing structural organization without a visual presence.
+- `NineSliceRuntime`: A special visual element divided into nine sections that can stretch while maintaining the integrity of its corners and edges; ideal for frames and backgrounds.
+- `TextRuntime`: A visual element that renders text strings with configurable properties like font, size, and color.
+- `ColoredRectangleRuntime`: A simple rectangular visual element with a solid color fill, commonly used for backgrounds.
 
 ### States and Categories
 
