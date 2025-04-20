@@ -250,13 +250,10 @@ With Gum added and initialized in our game, let's implement UI elements for our 
 First, open the *TitleScene.cs* file in the game project and add the following using declarations to the top of the `TitleScene` class:
 
 ```cs
+using System;
 using MonoGameGum;
-using MonoGameGum.Forms;
 using MonoGameGum.Forms.Controls;
 using MonoGameGum.GueDeriving;
-using MonoGameLibrary;
-using MonoGameLibrary.Scenes;
-using System;
 ```
 
 Next, add the following fields:
