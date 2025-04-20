@@ -162,7 +162,7 @@ These layout functions simplify UI positioning, though you can still use direct 
 
 ## Adding the Gum NuGet Package
 
-Before we can use Gum in our project, we first need to add it using NuGet.  NuGet is a package manager for .NET projects that allow you to add libraries made by other developers to your project, much in the same way that we've created and added the class library project.
+Before we can use Gum in our project, we first need to add it using NuGet.  NuGet is a package manager for .NEt projects that allows you to add third-party libraries into your project, similar to how we [created and added our own class library](../04_creating_a_class_library/index.md).
 
 To add the NuGet package, follow the instructions below based on which development environment you are using:
 
