@@ -87,7 +87,7 @@ This tutorial uses the following Forms control types:
 - `Slider`:  An interactive control that allows players to select a numeric value within a defined range by dragging the thumb element.
 - `Panel`: A container element that organizes and groups related controls together, helping to structure the UI layout.
 
-This tutorial also uses the following visual types:
+This tutorial also uses the following Visual types:
 
 - ContainerRuntime - an invisible container which can hold other visual types or forms
 - NineSliceRuntime - a visual object made of nine parts which can stretch without distorting its edges
