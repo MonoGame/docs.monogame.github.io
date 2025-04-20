@@ -215,8 +215,6 @@ With the Gum NuGet package now added to our project, we need to initialize Gum i
 
 ```cs
 using MonoGameGum;
-using Gum.Wireframe;
-using RenderingLibrary;
 using MonoGameGum.Forms.Controls;
 ```
 
