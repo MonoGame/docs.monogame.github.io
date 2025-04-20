@@ -73,7 +73,7 @@ Now that we understand these fundamental UI principles, we will explore Gum, a s
 
 ### Forms and Visuals
 
-Gum provides two types of objects: Forms and Visuals. Forms controls are typical interactive UI controls such as Button, Slider, and TextBox. Forms controls usually provide interaction with the mouse (cursor), gamepads, and keyboard. Forms controls provide built-in functionality such as a `Button` responding visually to focus, or a `Slider` responding to clicks on its *track* to change its value. Forms controls can help standardize your code.
+Gum provides two types of objects: **Forms** and **Visuals**.  Forms controls are typical interactive UI elements such as buttons, sliders, and text boxes that handle user interaction through mouse, gamepad, and keyboard inputs.  These controls come with built-in functionality; a button responds visually when focused, while a slider changes its value when clicked on its *track*.  By using these standardized components, you can maintain consistency throughout your UI implementation.
 
 All customization for Forms controls is provided through their Visual property. The Visual property provides ultimate flexibility to Forms controls. Visuals can be moved, resized, restyled, and even completely replaced in code.
 
