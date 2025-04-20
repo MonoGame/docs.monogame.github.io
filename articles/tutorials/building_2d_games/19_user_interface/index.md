@@ -224,13 +224,22 @@ Next, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) 
 
 [!code-csharp[](./snippets/game1_initialize.cs?highlight=8-37)]
 
-Let's take a look at the key changes made to the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method:
+Let's examine each part of this initialization process:
 
-- GumService.Default.Initialize - This line of code is used to initialize all Gum system. Any game using Gum needs to make this call. Since we're not using the editor, we only need to pass our Game instance. Games which load a Gum project also need to include the Gum project file.
-- XnaContentManager - This line of code tells Gum which ContentManager to use when loading from the content pipeline. Gum supports both from-file and content pipeline loading, but we'll use the content pipeline on this project so we can access our already-loaded atlas texture.
-- KeyboardsForUiControl and GamePadsForUiControl - These properties specify which input devices are used globally by our forms controls. All forms controls automatically respond to the mouse and touch screen so we only need to specify keyboard and gamepads to use.
-- TabReverseKeyCombos and TabKeyCombos - These properties indicate which key combinations are used for tabbing. By default all controls respond to tab and shift-tab, but we can add additional key combinations for tabbing. These properties can also be cleared to remove default tabbing.
-- Canvas size and zoom - Our game runs at a resolution of 1280x720, but Gum allows us to independently scale our UI. We'll scale our UI by 4x so that we can use smaller textures when we perform our styling later.
+1. **Basic Initialization**: `GumService.Default.Initialize(this)` sets up the Gum system with our game instance.  This is required for any gum project.
+
+    > [!NOTE]
+    > We only need to pass our [**Game**](xref:Microsoft.Xna.Framework.Game) instance since we are using Gum as a code-first approach.  Gum also offers a visual editor that creates Gum project files. When using the editor, you will need to also pass the Gum Project file here.
+
+2. **Content Loading**: Gum needs to be made aware of which content manager to use to load assets through the content pipeline.  By setting `GumService.Default.ContentLoader.XnaContentManager = Core.Content`, we tell Gum to use our game's content manager when loading assets.  By using the game's existing content manager, Gum also gets the benefit of the caching that the content manager performs when loading assets.
+3. **Input Configuration**:
+   - By default, all Forms controls automatically respond to mouse and touch screen input devices.  We need to explicitly register keyboard and gamepad input devices by using th `FrameworkElement.KeyboardsForUiControl` and `Framework.GamePadsForUiControl` properties.
+   - By default, Forms controls will automatically respond to tab and shift-tab for navigation. By using the `FrameworkElement.TabKeyCombos` and `FrameworkElement.TabReverseKeyCombos` properties, we can add additional key combinations for tabbing.  Here map the Up arrow for reverse tabbing and the Down arrow for forward tabbing.  
+
+    > [!TIP]
+    > If you want to remove the default Tab and Shift+Tab key combinations, you can clear both of these properties by calling `FrameworkElement.TabKeyCombos.Clear()` and `FrameworkElement.TabReverseKeyCombos.Clear()` before adding additional key combinations.
+
+4. **UI Scaling**:  Gum allows us to independently scale the UI regardless of the resolution of the game.  Our game is set to a resolution of 1280x720, however as we'll see during the styling section later, the UI assets created were done at one-fourth the size to reduce the size of the texture atlas.  Here, we use the `GumService.Default.CanvasWidth` and `GumService.Default.CanvasHeight`  properties to set the canvas size to one-fourth that of our game's resolution. Then using by setting the `GumService.Default.Renderer.Camera.Zoom` property to four, we effectively make it render the UI at full resolution.
 
 Gum is now fully initialized and we can use it in our scenes to add UI to our game.
 
