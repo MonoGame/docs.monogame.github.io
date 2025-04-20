@@ -12,10 +12,10 @@ protected override void Initialize()
     // use the global content manager from our Core.
     GumService.Default.ContentLoader.XnaContentManager = Core.Content;
 
-    // Add the default keyboard controls for UI navigation.
+    // Register keyboard input for UI control.
     FrameworkElement.KeyboardsForUiControl.Add(GumService.Default.Keyboard);
 
-    // Add the default gamepad controls for UI navigation.
+    // Register gamepad input for Ui control.
     FrameworkElement.GamePadsForUiControl.AddRange(GumService.Default.Gamepads);
 
     // Customize the tab reverse UI navigation to also trigger when the keyboard
