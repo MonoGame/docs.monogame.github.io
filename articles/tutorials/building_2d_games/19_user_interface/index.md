@@ -96,17 +96,18 @@ This tutorial also uses the following Visual types:
 
 ### States and Categories
 
-Gum visuals can be customized by directly assigning values. For example, the following code might change the width of a button:
+Gum allows you to customize visuals in two ways: through direct property assignment and through states.  For simple property changes, you can directly assign values in code. For example, the following code example changes the width of a button.
 
 ```cs
 MyButton.Visual.Width = 100;
 ```
 
-Sometimes visual properties can be directly assigned, such as when creating the initial size or position of a button. Other times, visuals must be modified in response to a UI action, such as when the user clicks on a button.
+Direct property assignment works well for initial setup, such as positioning elements or setting their dimensions when first creating your UI.  However, when you need visual elements to respond to user interactions (like highlighting a button when it is focused), a different approach is required.
 
-If a visual property is modified in response to a change on a forms object, then this change must be performed on a state instance (of type `StateSave`).
+For these dynamic changes, Gum uses a system of **states** (implemented as `StateSave` objects).  Each Forms control maintains a collection of named states that are automatically applied in response to specific user actions.  When a button becomes focused, for instance, Gum looks for and applies a state named "Focused" to alter its appearance.
 
-Each type of forms control has a collection of states with specific names. During runtime, the internal forms logic looks for states by name and applies them according to what actions the user performs. We'll be creating states later in our customization pass to respond to controls being focused.
+> [!TIP]
+> This state-based approach separates the visual response logic from the game's core logic.  Later in this chapter during the customization pass, we'll create states to visually indicate when controls are focused, providing clear feedback to the player.
 
 ### Anchors and Docks
 
