@@ -115,7 +115,9 @@ Gum provides a flexible layout system that simplifies positioning UI elements re
 
 By default, all elements in Gum are positioned based on their top-left corner, relative to their parent's top-left corner.  For example, if a parent panel has an X position of 5 and its child button has an X position of 12, the button's absolute screen position would be 17 (5 + 12).
 
-Visuals include an Anchor function which allows objects to be positioned relative to any of the 9 points on a Parent:
+#### Anchoring Elements
+
+The `Anchor` function, accessed through the element's `Visual` property, allows you to position elements relative to any of nine reference points on their parent:
 
 - TopLeft
 - Top
@@ -131,28 +133,32 @@ Visuals include an Anchor function which allows objects to be positioned relativ
 | :------------------------------------------------------------------------------: |
 |           **Figure 19-1: Diagram showing the different anchor points**           |
 
-A visual's position is relative to the anchor point, so a visual with a `Right` dock and an `X` of -5 leaves a 5 pixel margin between itself and the right-side of its parent.
+When you set an anchor point, the element's position coordinates become relative to that anchor point.  For example, with a `Right` anchor and an X value of -5, your element would position itself 5 pixels to the left of the parent's right edge, creating a consistent margin regardless of the paren'ts size.
 
-[Diagram showing an object with a margin on the right side]
+> [!NOTE]
+> The `Anchor` function resets the X and Y values when called, so always set position coordinates *after* calling the `Anchor` function, not before.
 
-The Anchor function assigns internal visual values including resetting its X and Y values, so any changes to X and Y must be made after calling Anchor or Dock.
+#### Docking Elements
 
-Dock provides similar functionality to Anchor, but it also modifies the size of an object. The following Dock values are available:
+While anchoring sets a reference point, the `Dock` function, also accessed through the `Visual` property of the element, goes further by also adjusting an element's size to fill available space.  Docking provides the following options:
 
-- Top - Anchor to top, fill horizontally
-- Left - Anchor to the left, fill vertically
-- Right - Anchor to the right, fill vertically
-- Bottom - Anchor to the bottom, fill horizontally
-- Fill - Anchor to the center, fill horizontally and vertically
-- FillHorizontally - Fill horizontally
-- FillVertically - Fill vertically
-- SizeToChildren - Size according to contained children both vertically and horizontally
+- Top: Anchors to top edge and fills horizontally.
+- Left: Anchors to left edge and fills vertically.
+- Right: Anchors to right edge and fills vertically.
+- Bottom: Anchors to bottom edge and fills horizontally.
+- Fill: Anchors to the center and fills the entire parent area vertically and horizontally.
+- FillHorizontally: Stretches across parent's width, filling horizontally.
+- FillVertically: Stretches across parent's height, filling vertically.
+- SizeToChildren: Automatically sizes vertically and horizontally based on contained child elements.
 
 | ![Figure 19-2: Diagram showing the different docks](./images/dock.png) |
 | :--------------------------------------------------------------------: |
-|          **Figure 19-1: Diagram showing the different docks**          |
+|          **Figure 19-2: Diagram showing the different docks**          |
 
-As mentioned above, Anchor and Dock methods simplify Gum layouts, but direct control over individual values can be used for even more flexibility.
+> [!NOTE]
+> Just like with the `Anchor` function, the `Dock` function resets the X and Y values when called, so always set position coordinates *after* calling and not before.
+
+These layout functions simplify UI positioning, though you can still use direct property values when needed for more flexibility.  Throughout this chapter, we'll use both approaches where appropriate for different elements of our game's UI.
 
 ## Adding the Gum NuGet Package
 
