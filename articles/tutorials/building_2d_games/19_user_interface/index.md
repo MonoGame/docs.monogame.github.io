@@ -213,12 +213,9 @@ This will install the latest version of the package, which is "2024.1.25.1" as o
 
 With the Gum NuGet package added to our project, we need to initialize Gum in our game.  This will enable the UI system and configure input handling for our controls.  Since this is an initialization that only needs to happen once, let's make the necessary changes to the `Game1` class.
 
-First, open the *Game1.cs* file and add the following using statements to the top:
+First, open the *Game1.cs* file and add the following new using statements to the top:
 
-```cs
-using MonoGameGum;
-using MonoGameGum.Forms.Controls;
-```
+[!code-csharp[](./snippets/game1_usings.cs?highlight=3-5)]
 
 Next, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method to configure the Gum system:
 
@@ -249,56 +246,17 @@ With Gum added and initialized in our game, let's implement UI elements for our 
 
 First, open the *TitleScene.cs* file in the game project and add the following using declarations to the top of the `TitleScene` class:
 
-```cs
-using System;
-using MonoGameGum;
-using MonoGameGum.Forms.Controls;
-using MonoGameGum.GueDeriving;
-```
+[!code-csharp[](./snippets/titlescene_usings.cs?highlight=1,5-7)]
 
 Next, add the following fields:
 
-```cs
-private SoundEffect _uiSoundEffect;
-private Panel _titleScreenButtonsPanel;
-private Panel _optionsPanel;
-private Button _optionsButton;
-private Button _optionsBackButton;
-```
+[!code-csharp[](./snippets/titlescene_fields.cs)]
 
 ### Creating the Title Panel
 
 First, let's create a method that builds our main menu panel with start and options buttons.  Add the following method to the `TitleScene` class:
 
-```cs
-private void CreateTitlePanel()
-{
-    // Create a container to hold all of our buttons
-    _titleScreenButtonsPanel = new Panel();
-    _titleScreenButtonsPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
-    _titleScreenButtonsPanel.AddToRoot();
-
-    var startButton = new Button();
-    startButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomLeft);
-    startButton.Visual.X = 50;
-    startButton.Visual.Y = -12;
-    startButton.Visual.Width = 70;
-    startButton.Text = "Start";
-    startButton.Click += HandleStartClicked;
-    _titleScreenButtonsPanel.AddChild(startButton);
-
-    _optionsButton = new Button();
-    _optionsButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomRight);
-    _optionsButton.Visual.X = -50;
-    _optionsButton.Visual.Y = -12;
-    _optionsButton.Visual.Width = 70;
-    _optionsButton.Text = "Options";
-    _optionsButton.Click += HandleOptionsClicked;
-    _titleScreenButtonsPanel.AddChild(_optionsButton);
-
-    startButton.IsFocused = true;
-}
-```
+[!code-csharp[](./snippets/titlescene_createtitlepanel.cs)]
 
 Our title panel includes two buttons positioned at the bottom corners of the screen.  The "Start" button will allow players to begin the game while the "Options" button will hide the main menu and display the options menu.
 
@@ -307,20 +265,9 @@ Our title panel includes two buttons positioned at the bottom corners of the scr
 
 Each button registers a `Click` event handler to respond when the players selects it. Let's implement the vent handler method for these buttons next.  Add the following methods to the `TitleScene` class:
 
-```cs
-private void HandleStartClicked(object sender, EventArgs e)
-{
-    Core.ChangeScene(new GameScene());
-}
+[!code-csharp[](./snippets/titlescene_handlestartclicked.cs)]
 
-private void HandleOptionsClicked(object sender, EventArgs e)
-{
-    _titleScreenButtonsPanel.IsVisible = false;
-    
-    _optionsPanel.IsVisible = true;
-    _optionsBackButton.IsFocused = true;
-}
-```
+[!code-csharp[](./snippets/titlescene_handleoptionsclicked.cs)]
 
 These handlers are called when the `Click` event is triggered for each button.  The handler for the "Start" button changes to the game scene, while the handler for the options button toggles the visibility between the main menu and the options panel.
 
@@ -328,83 +275,19 @@ These handlers are called when the `Click` event is triggered for each button.  
 
 Next, we'll create the options panel with sliders to adjust the volume for music and sound effects.  Add the following method to the `TitleScene` class:
 
-```cs
-private void CreateOptionsPanel()
-{
-    _optionsPanel = new Panel();
-    _optionsPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
-    _optionsPanel.IsVisible = false;
-    _optionsPanel.AddToRoot();
-
-    var optionsText = new TextRuntime();
-    optionsText.X = 10;
-    optionsText.Y = 10;
-    optionsText.Text = "OPTIONS";
-    _optionsPanel.AddChild(optionsText);
-
-    var musicSlider = new Slider();
-    musicSlider.Visual.Anchor(Gum.Wireframe.Anchor.Top);
-    musicSlider.Visual.Y = 30f;
-    musicSlider.Minimum = 0;
-    musicSlider.Maximum = 1;
-    musicSlider.Value = Core.Audio.SongVolume;
-    musicSlider.SmallChange = .1;
-    musicSlider.LargeChange = .2;
-    musicSlider.ValueChanged += HandleMusicSliderValueChanged;
-    _optionsPanel.AddChild(musicSlider);
-
-    var sfxSlider = new Slider();
-    sfxSlider.Visual.Anchor(Gum.Wireframe.Anchor.Top);
-    sfxSlider.Visual.Y = 93;
-    sfxSlider.Minimum = 0;
-    sfxSlider.Maximum = 1;
-    sfxSlider.Value = Core.Audio.SoundEffectVolume;
-    sfxSlider.SmallChange = .1;
-    sfxSlider.LargeChange = .2;
-    sfxSlider.ValueChanged += HandleSfxSliderChanged;
-    sfxSlider.ValueChangeCompleted += HandleSfxSliderChangeCompleted;
-    _optionsPanel.AddChild(sfxSlider);
-
-    _optionsBackButton = new Button();
-    _optionsBackButton.Text = "BACK";
-    _optionsBackButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomRight);
-    _optionsBackButton.X = -28f;
-    _optionsBackButton.Y = -10f;
-    _optionsBackButton.Click += HandleOptionsButtonBack;
-    _optionsPanel.AddChild(_optionsBackButton);
-}
-```
+[!code-csharp[](./snippets/titlescene_createoptionspanel.cs)]
 
 This panel includes a text label, two sliders for adjusting audio volumes, and a back button for returning to the main menu. The panel is initially invisible since we start on the main menu.  Both the "Music Volume" slider and the "Sound Effects Volume" slider register events to be called when the value of the sliders change and when the value change has been completed.  The "Back" button registers a click event similar to the ones from the main menu.
 
 Now let's implement the event handlers for these controls
 
-```cs
-private void HandleSfxSliderChangeCompleted(object sender, EventArgs e)
-{
-    Core.Audio.PlaySoundEffect(_uiSoundEffect);
-}
+[!code-csharp[](./snippets/titlescene_handlesfxsliderchangecompleted.cs)]
 
-private void HandleSfxSliderChanged(object sender, EventArgs args)
-{
-    var slider = (Slider)sender;
-    Core.Audio.SoundEffectVolume = (float)slider.Value;
-}
+[!code-csharp[](./snippets/titlescene_handlesfxsliderchanged.cs)]
 
-private static void HandleMusicSliderValueChanged(object sender, EventArgs args)
-{
-    var slider = (Slider)sender;
-    Core.Audio.SongVolume = (float)slider.Value;
-}
+[!code-csharp[](./snippets/titlescene_handlemusicslidervaluechanged.cs)]
 
-private void HandleOptionsButtonBack(object sender, EventArgs e)
-{
-    _titleScreenButtonsPanel.IsVisible = true;
-    _optionsPanel.IsVisible = false;
-
-    _optionsButton.IsFocused = true;
-}
-```
+[!code-csharp[](./snippets/titlescene_handleoptionsbuttonback.cs)]
 
 These handlers update our audio settings in real-time as the player adjusts the sliders.
 
@@ -415,17 +298,7 @@ These handlers update our audio settings in real-time as the player adjusts the 
 
 Now that we've implemented the methods that will create both the main menu panel and the options menu panel, let's implement the main UI initializations method that will call them.  Add the following method to the `TitleScene` class:
 
-```cs
-private void InitializeUi()
-{
-    // Clear out any previous UI in case we came here from
-    // a different screen:
-    GumService.Default.Root.Children.Clear();
-
-    CreateTitlePanel();
-    CreateOptionsPanel();
-}
-```
+[!code-csharp[](./snippets/titlescene_initializeui.cs)]
 
 This method first clears any existing UI elements from Gum's root container to prevent duplication, then calls our panel creation methods to build the complete interface.
 
@@ -433,123 +306,25 @@ This method first clears any existing UI elements from Gum's root container to p
 
 Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First, add the call to `InitializeUI()` in the `Initialize` method:
 
-```cs
-public override void Initialize()
-{
-    // LoadContent is called during base.Initialize().
-    base.Initialize();
-
-    // While on the title screen, we can enable exit on escape so the player
-    // can close the game by pressing the escape key.
-    Core.ExitOnEscape = true;
-
-    // Set the position and origin for the Dungeon text.
-    Vector2 size = _font5x.MeasureString(DUNGEON_TEXT);
-    _dungeonTextPos = new Vector2(640, 100);
-    _dungeonTextOrigin = size * 0.5f;
-
-    // Set the position and origin for the Slime text.
-    size = _font5x.MeasureString(SLIME_TEXT);
-    _slimeTextPos = new Vector2(757, 207);
-    _slimeTextOrigin = size * 0.5f;
-
-    // Initialize the offset of the background pattern at zero
-    _backgroundOffset = Vector2.Zero;
-
-    // Set the background pattern destination rectangle to fill the entire
-    // screen background
-    _backgroundDestination = Core.GraphicsDevice.PresentationParameters.Bounds;
-
-    InitializeUi();
-}
-```
+[!code[](./snippets/titlescene_initialize.cs?highlight=27)]
 
 Next, update the `LoadContent` method to load the sound effect that will be used as auditory feedback for the UI:
 
-```cs
-public override void LoadContent()
-{
-   // Load the font for the standard text.
-   _font = Core.Content.Load<SpriteFont>("fonts/04B_30");
-
-   // Load the font for the title text
-   _font5x = Content.Load<SpriteFont>("fonts/04B_30_5x");
-
-   // Load the background pattern texture.
-   _backgroundPattern = Content.Load<Texture2D>("images/background-pattern");
-
-   // Load the sound effect to play when ui actions occur.
-   _uiSoundEffect = Core.Content.Load<SoundEffect>("audio/ui");
-}
-```
+[!code[](./snippets/titlescene_loadcontent.cs?highlight=12-13)]
 
 Next update the `Update` method to include Gum's update logic:
 
-```cs
-public override void Update(GameTime gameTime)
-{
-    // Update the offsets for the background pattern wrapping so that it
-    // scrolls down and to the right.
-    float offset = _scrollSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-    _backgroundOffset.X -= offset;
-    _backgroundOffset.Y -= offset;
-
-    // Ensure that the offsets do not go beyond the texture bounds so it is
-    // a seamless wrap
-    _backgroundOffset.X %= _backgroundPattern.Width;
-    _backgroundOffset.Y %= _backgroundPattern.Height;
-
-    GumService.Default.Update(gameTime);
-}
-```
+[!code[](./snippets/titlescene_update.cs?highlight=14)]
 
 Finally, add Gum's drawing call to the end of the `Draw` method:
 
-```cs
-public override void Draw(GameTime gameTime)
-{
-    Core.GraphicsDevice.Clear(new Color(32, 40, 78, 255));
-
-    // Draw the background pattern first using the PointWrap sampler state.
-    Core.SpriteBatch.Begin(samplerState: SamplerState.PointWrap);
-    Core.SpriteBatch.Draw(_backgroundPattern, _backgroundDestination, new Rectangle(_backgroundOffset.ToPoint(), _backgroundDestination.Size), Color.White * 0.5f);
-    Core.SpriteBatch.End();
-
-    if (_titleScreenButtonsPanel.IsVisible)
-    {
-        // Begin the sprite batch to prepare for rendering.
-        Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
-        // The color to use for the drop shadow text.
-        Color dropShadowColor = Color.Black * 0.5f;
-
-        // Draw the Dungeon text slightly offset from it's original position and
-        // with a transparent color to give it a drop shadow
-        Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
-
-        // Draw the Dungeon text on top of that at its original position
-        Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
-
-        // Draw the Slime text slightly offset from it's original position and
-        // with a transparent color to give it a drop shadow
-        Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
-
-        // Draw the Slime text on top of that at its original position
-        Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos, Color.White, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
-
-        // Always end the sprite batch when finished.
-        Core.SpriteBatch.End();
-    }
-
-    GumService.Default.Draw();
-}
-```
+[!code[](./snippets/titlescene_draw.cs?highlight=36)]
 
 With these changes, our UI system is now fully integrated into the scene's game loop.  Gum will update its controls during the `Update` method and draw them during the `Draw` method.  This produces a fully functional title screen with buttons that allows players to start the game or adjust audio settings.  
 
 | ![Figure 19-2: Title screen with default Gum buttons](./images/title-unstyled.png) |
-| :-----------------------------------------------------: |
-| **Figure 19-2: Title screen with default Gum buttons**  |
+| :--------------------------------------------------------------------------------: |
+|               **Figure 19-2: Title screen with default Gum buttons**               |
 
 > [!NOTE]
 > You may notice that the UI elements currently use Gum's default styling, which does not match our game's visual theme.  We'll explore customizing these controls to match our game's visual style in a moment.
