@@ -322,7 +322,7 @@ private void HandleOptionsClicked(object sender, EventArgs e)
 }
 ```
 
-These handlers are called when when the `Click` event is triggered for each button.  The handler for the "Start" button changes to the game scene, while the handler for the options button toggles the visibility between the main menu and the options panel.
+These handlers are called when the `Click` event is triggered for each button.  The handler for the "Start" button changes to the game scene, while the handler for the options button toggles the visibility between the main menu and the options panel.
 
 ### Creating the Options Panel
 
