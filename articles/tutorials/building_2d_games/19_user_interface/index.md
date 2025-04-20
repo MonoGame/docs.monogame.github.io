@@ -94,7 +94,7 @@ This tutorial also uses the following Visual types:
 - `TextRuntime`: A visual element that renders text strings with configurable properties like font, size, and color.
 - `ColoredRectangleRuntime`: A simple rectangular visual element with a solid color fill, commonly used for backgrounds.
 
-### States and Categories
+### Property Changes vs States
 
 Gum allows you to customize visuals in two ways: through direct property assignment and through states.  For simple property changes, you can directly assign values in code. For example, the following code example changes the width of a button.
 
