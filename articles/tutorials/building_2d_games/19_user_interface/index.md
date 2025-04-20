@@ -329,14 +329,9 @@ With these changes, our UI system is now fully integrated into the scene's game 
 > [!NOTE]
 > You may notice that the UI elements currently use Gum's default styling, which does not match our game's visual theme.  We'll explore customizing these controls to match our game's visual style in a moment.
 
-The UI uses several forms controls:
+## Understanding Gum Control Types
 
-- `Panel`: Container elements that hold other UI controls.
-- `Button`: Interactive controls that respond to clicks.
-- `Slider` Controls that allow selecting a value with a range.
-- `TextRuntime` Visual elements that display text.
-
-Let's take a look at the implementation details for some of the form controls included with Gum.
+The UI created for the title menu uses several Forms controls.  Let's explore these control types to better understand how they function and interact.
 
 ### Panel
 
