@@ -18,7 +18,7 @@ In this chapter you will
 > [!IMPORTANT]
 > This tutorial uses the Gum NuGet package to help with layout and responding to user interactions.  This tutorial does not require the use of the Gum tool - we'll be doing everything in code.
 >
-> Keep in mind that wile it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial series.  Instead, we'll be taking advantage of the Gum NuGe package.
+> Keep in mind that while it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial series.  Instead, we'll be taking advantage of the Gum NuGet package.
 >
 > Gum is a powerful system enabling the creation of virtually any game UI.  We will be covering some of the basics in this tutorial.  The full Gum documentation can be found here: [https://docs.flatredball.com/gum/code/monogame](https://docs.flatredball.com/gum/code/monogame)
 
