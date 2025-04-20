@@ -220,7 +220,7 @@ using MonoGameGum;
 using MonoGameGum.Forms.Controls;
 ```
 
-Next, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method to the following:
+Next, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method to configure the Gum system:
 
 ```cs
 protected override void Initialize()
