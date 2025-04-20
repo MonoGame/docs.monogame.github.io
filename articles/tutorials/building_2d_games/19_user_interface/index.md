@@ -111,9 +111,9 @@ For these dynamic changes, Gum uses a system of **states** (implemented as `Stat
 
 ### Anchors and Docks
 
-Gum uses a layout system which provides flexibility on positioning. We won't be going through all of the Gum layout options, only the most common.
+Gum provides a flexible layout system that simplifies positioning UI elements relative to each other.  While Gum offers many layout options, we will focus on the most common and useful approaches for our game.
 
-By default, all Gum layout is based on an object's to-left corner, and is relative to its parent's top-left corner. For example, if a parent has an X of 5 and its child has an X of 12, then the child's absolute X position would be 17 (12+5).
+By default, all elements in Gum are positioned based on their top-left corner, relative to their parent's top-left corner.  For example, if a parent panel has an X position of 5 and its child button has an X position of 12, the button's absolute screen position would be 17 (5 + 12).
 
 Visuals include an Anchor function which allows objects to be positioned relative to any of the 9 points on a Parent:
 
