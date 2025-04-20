@@ -427,7 +427,7 @@ private void InitializeUi()
 }
 ```
 
-This method first clears any existing UI elements from Gum's root contain to prevent duplication, then calls our panel creation methods to build the complete interface.
+This method first clears any existing UI elements from Gum's root container to prevent duplication, then calls our panel creation methods to build the complete interface.
 
 ### Integrating with the Game Loop
 
