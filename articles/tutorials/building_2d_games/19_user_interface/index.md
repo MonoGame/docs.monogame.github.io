@@ -69,7 +69,7 @@ For example, a settings panel might contain multiple buttons, labels, and slider
 
 ## Gum Concepts
 
-Now that we understand these fundamental UI principles, we will explore Gum, a specialized UI framework that implements many of these concepts while adding other features of its own.  Gum simplifies UI development by providing ready-made controls and layout systems tht would otherwise require significant effort to build from scratch. We will first cover the concepts specific to Gum at a high level, then dive into more detail during implementation.
+Now that we understand these fundamental UI principles, we will explore Gum, a specialized UI framework that implements many of these concepts while adding other features of its own.  Gum simplifies UI development by providing ready-made controls and layout systems that would otherwise require significant effort to build from scratch. We will first cover the concepts specific to Gum at a high level, then dive into more detail during implementation.
 
 ### Forms and Visuals
 
