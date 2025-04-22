@@ -33,7 +33,7 @@ By the end of this tutorial set, you will have a working project to build for yo
 
 - [Windows](./1_setting_up_your_os_for_development_windows.md)
 - [macOS](./1_setting_up_your_os_for_development_macos.md)
-- [Ubuntu (min 20.04)](./1_setting_up_your_os_for_development_ubuntu.md)
+- [Ubuntu](./1_setting_up_your_os_for_development_ubuntu.md)
 
 ### 2. Choosing your IDE for development
 

@@ -3,6 +3,9 @@ title: Setting up your OS for development on Ubuntu
 description: This section provides a step-by-step guide for setting up your development environment on Ubuntu.
 ---
 
+> [!TIP]
+> The minimum version of Ubuntu that is supported by MonoGame is `20.04`.
+
 To develop with MonoGame in C#, you will need to install the .NET SDK. As of MonoGame 3.8.2 the minimum supported version is .NET 8.
 
 ## Install .NET 8 SDK
