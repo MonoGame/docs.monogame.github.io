@@ -259,6 +259,7 @@ For these dynamic changes, Gum uses a system of **states** (implemented as `Stat
 
 ## Updating Our Game To Use Gum
 
+Now that we understand the UI concepts and how Gum will help implement them, let's integrate Gum into our game project.  We'll add the framework, initialize it, and prepare it for use in our scenes.  For now we will use the default styling in Gum to quickly iterate and build the UI and do a customization styling pass in the next chapter.
 
 ### Adding the Gum NuGet Package
 
@@ -274,7 +275,7 @@ To add the Gum NuGet package in Visual Studio Code:
 2. Choose *Add NuGet Package* from the context menu.
 3. Enter "Gum.MonoGame" in the *Add NuGet Package* search prompt and press Enter.
 4. When the search finishes, select the *Gum.MonoGame* package in the results
-5. When prompted for a version, choose the latest version ("2024.1.25.1" as of this writing").
+5. When prompted for a version, choose the latest version ("2025.4.20.2" as of this writing").
 
 #### [Visual Studio 2022](#tab/vs2022)
 
@@ -285,7 +286,7 @@ To Add the Gum NuGet package in Visual Studio 2022:
 3. In the NuGet Package Manager window, select the *Browse* tab if it is not already selected.
 4. In the search box, enter "Gum.MonoGame".
 5. Select the "Gum.MonoGame" package from the search results.
-6. Ensure the latest version is selected in the dropdown menu ("2024.1.25.1" as of this writing") and click the *Install* button.
+6. Ensure the latest version is selected in the dropdown menu ("2025.4.20.2" as of this writing") and click the *Install* button.
 
 #### [dotnet CLI](#tab/dotnetcli)
 
@@ -298,7 +299,7 @@ To add the Gum NuGet package using the dotnet CLI:
     dotnet add DungeonSlime.csproj package Gum.MonoGame
     ```
 
-This will install the latest version of the package, which is "2024.1.25.1" as of this writing.
+This will install the latest version of the package, which is "2025.4.20.2" as of this writing.
 
 ---
 
@@ -306,8 +307,30 @@ This will install the latest version of the package, which is "2024.1.25.1" as o
 > You can verify the package was successfully added by examining your *DungeonSlime.csproj* file, which should now contain a reference like:
 >
 > ```xml
-> <PackageReference Include="Gum.MonoGame" Version="2025.4.19.1" />
+> <PackageReference Include="Gum.MonoGame" Version="2025.4.20.2" />
 > ```
+
+### Adding UI Sound Effect
+
+To make our UI more responsive and engaging, we'll add audio feedback that plays when players interact with buttons and other UI elements. Sound effects provide immediate confirmation that an input has been recognized, creating a more engaging experience.
+
+First, download the UI sound effect by right-clicking the following link and saving it as *ui.wav* in the game project's *Content/audio* director:
+
+- ![ui.wav](./files/ui.wav)
+
+Next, add this sound effect to your content project using the MGCB Editor:
+
+1. Open the *Content.mgcb* content project file in the MGCB Editor.
+2. Right-click the *audio* folder and choose *Add* > *Existing Item...*.
+3. Navigate to and select the *ui.wav* file you just downloaded.
+4. In the Properties panel, verify that the *Processor* is set to `Sound Effect`.
+5. Save the changes and close the MGCB Editor.
+
+| ![Figure 20-2: The MGCB Editor with ui.wav added to the audio folder](./images/mgcb-editor.png) |
+| :---------------------------------------------------------------------------------------------: |
+|             **Figure 20-2: The MGCB Editor with ui.wav added to the audio folder**              |
+
+We will load and use this sound effect in our UI implementation to provide auditory feedback when players interact with buttons and sliders.
 
 ### Initializing Gum
 
@@ -346,7 +369,7 @@ With Gum added and initialized in our game, let's implement UI elements for our 
 
 First, open the *TitleScene.cs* file in the game project and add the following using declarations to the top of the `TitleScene` class:
 
-[!code-csharp[](./snippets/titlescene/usings.cs?highlight=1,5-7)]
+[!code-csharp[](./snippets/titlescene/usings.cs?highlight=1,6-8)]
 
 Next, add the following fields:
 
@@ -381,18 +404,20 @@ This panel includes a text label, two sliders for adjusting audio volumes, and a
 
 Now let's implement the event handlers for these controls
 
-[!code-csharp[](./snippets/titlescene/handlesfxsliderchangecompleted.cs)]
-
 [!code-csharp[](./snippets/titlescene/handlesfxsliderchanged.cs)]
 
+[!code-csharp[](./snippets/titlescene/handlesfxsliderchangecompleted.cs)]
+
 [!code-csharp[](./snippets/titlescene/handlemusicslidervaluechanged.cs)]
+
+[!code-csharp[](./snippets/titlescene/handlemusicslidervaluechangecompleted.cs)]
 
 [!code-csharp[](./snippets/titlescene/handleoptionsbuttonback.cs)]
 
 These handlers update our audio settings in real-time as the player adjusts the sliders.
 
 > [!TIP]
-> Notice that for the "Sound Effect Slider", we registered a method for the `ValueChangeCompleted` event.  This is so we can play the UI sound effect only when the player has finished adjusting the sound effect volume. This provide immediate auditory feedback to the new sound level and also prevents the UI sound effect from constantly being played over and over while the slider is being adjusted if they are using a mouse to drag it.
+> Notice that for both sliders, we registered a method for the `ValueChangeCompleted` event.  This is so we can play the UI sound effect only when the player has finished adjusting the slider value. If we had instead played the UI sound effect in the `ValueChanged` event, then the UI sound effect would trigger constantly while the slider is being adjusted if they are using a mouse to drag it.
 
 #### Initializing the UI
 
@@ -473,6 +498,10 @@ Just like with the `TitleScene`, we first clear any existing UI elements from Gu
 Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First add the call to `InitializeUI()` in the `Initialize` method:
 
 [!code-csharp[](./snippets/gamescene/initialize.cs?highlight=38)]
+
+Next, update the `LoadContent` method to load the sound effect that will be used as auditory feedback for the UI:
+
+[!code-csharp[](./snippets/gamescene/loadcontent.cs?highlight=27-28)]
 
 Next, update the `Update` method to include Gum's update logic and to only update the game if it is not paused.  We'll use the visibility of the pause menu to determine if the game is paused or not:
 

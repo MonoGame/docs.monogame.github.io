@@ -1,4 +1,4 @@
-private void InitializeUi()
+private void InitializeUI()
 {
     // Clear out any previous UI in case we came here from
     // a different screen:

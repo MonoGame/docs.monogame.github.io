@@ -20,7 +20,8 @@
         - name: Ubuntu 20.04
           href: getting_started/1_setting_up_your_os_for_development_ubuntu.md
     - name: 2. Choosing your IDE
-      items:- name: Visual Studio for Windows
+      items:
+        - name: Visual Studio for Windows
           href: getting_started/2_choosing_your_ide_visual_studio.md
         - name: Visual Studio Code
           href: getting_started/2_choosing_your_ide_vscode.md
@@ -136,7 +137,7 @@
         - name: "12: Collision Detection"
           href: tutorials/building_2d_games/12_collision_detection/
         - name: "13: Working With Tilemaps"
-          href: tutorials/building_2d_games/13_working_with_tilemaps/          
+          href: tutorials/building_2d_games/13_working_with_tilemaps/
         - name: "14: Sound Effects and Music"
           href: tutorials/building_2d_games/14_soundeffects_and_music/
         - name: "15: Audio Controller"
@@ -148,7 +149,9 @@
         - name: "18: Texture Sampling"
           href: tutorials/building_2d_games/18_texture_sampling/
         - name: "19: User Interface Fundamentals"
-          href: tutorials/building_2d_games/19_user_interface_fundamentals/          
+          href: tutorials/building_2d_games/19_user_interface_fundamentals/
+        - name: "20: Implementing UI with Gum"
+          href: tutorials/building_2d_games/20_implementing_ui_with_gum/
 - name: Console Access
   href: console_access.md
 - name: Help and Support

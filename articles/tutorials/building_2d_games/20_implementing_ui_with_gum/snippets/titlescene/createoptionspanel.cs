@@ -20,6 +20,7 @@ private void CreateOptionsPanel()
     musicSlider.SmallChange = .1;
     musicSlider.LargeChange = .2;
     musicSlider.ValueChanged += HandleMusicSliderValueChanged;
+    musicSlider.ValueChangeCompleted += HandleMusicSliderValueChangeCompleted;
     _optionsPanel.AddChild(musicSlider);
 
     var sfxSlider = new Slider();

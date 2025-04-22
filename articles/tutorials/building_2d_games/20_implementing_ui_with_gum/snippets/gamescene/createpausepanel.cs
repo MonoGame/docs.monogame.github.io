@@ -1,7 +1,9 @@
 private void CreatePausePanel()
 {
     _pausePanel = new Panel();
-    _pausePanel.Visual.Anchor(Gum.Wireframe.Anchor.Center);
+    _pausePanel.Visual.Anchor(Anchor.Center);
+    _pausePanel.Visual.WidthUnits = DimensionUnitType.Absolute;
+    _pausePanel.Visual.HeightUnits = DimensionUnitType.Absolute;
     _pausePanel.Visual.Height = 70;
     _pausePanel.Visual.Width = 264;
     _pausePanel.IsVisible = false;
@@ -24,7 +26,7 @@ private void CreatePausePanel()
     _resumeButton.Visual.X = 9f;
     _resumeButton.Visual.Y = -9f;
     _resumeButton.Visual.Width = 80;
-    _resumeButton.Click += (sender, args) => _pausePanel.IsVisible = false;
+    _resumeButton.Click += HandleResumeClicked;
     _pausePanel.AddChild(_resumeButton);
 
     var quitButton = new Button();
@@ -33,6 +35,7 @@ private void CreatePausePanel()
     quitButton.Visual.X = -9f;
     quitButton.Visual.Y = -9f;
     quitButton.Width = 80;
-    quitButton.Click += (sender, args) => Core.ChangeScene(new TitleScene());
+    quitButton.Click += HandleQuitClicked;
+
     _pausePanel.AddChild(quitButton);
 }

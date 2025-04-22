@@ -24,5 +24,5 @@ public override void Initialize()
     // screen background
     _backgroundDestination = Core.GraphicsDevice.PresentationParameters.Bounds;
 
-    InitializeUi();
+    InitializeUI();
 }
