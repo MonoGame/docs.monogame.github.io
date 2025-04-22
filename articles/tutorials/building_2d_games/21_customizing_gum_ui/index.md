@@ -53,7 +53,7 @@ Gum provides several visual element types that we can use to build our custom co
 - **NineSliceRuntime**: A special graphic that can stretch while preserving its corners and edges.
 - **TextRuntime**: An element for displaying text with custom fonts.
 - **ColoredRectangleRuntime**: A simple colored rectangle for backgrounds or fills.
-  
+
 The `NineSliceRuntime` is particularly useful for UI elements that need to resize dynamically. It divides a graphic into nine sections (four corners, four edges, and a center), allowing the element to stretch without distorting its borders.
 
 #### Animation Chains
@@ -123,7 +123,7 @@ The slime and bat sprites are no longer in the same position, and we have some n
 
 ### Adding Bitmap Fonts
 
-While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to draw text, Gum uses the [AngelCode Bitmap Font (.fnt)](https://www.angelcode.com/products/bmfont/) font file format. This means we'll need to supply Gum with the *.fnt* file that defines our font.  
+While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to draw text, Gum uses the [AngelCode Bitmap Font (.fnt)](https://www.angelcode.com/products/bmfont/) font file format. This means we'll need to supply Gum with the *.fnt* file that defines our font.
 
 First, download the *.fnt* file by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/fonts* directory:
 
@@ -311,9 +311,13 @@ Next, update the `CreateTitlePanel` method so that instead of using the default 
 
 [!code-csharp[](./snippets/titlescene/createtitlepanel.cs?highlight=8,16)]
 
-Finally, update the `CreateOptionsPanel` method so that instead of using the default Gum `Button` and `Slider` Forms controls, it now uses our custom `AnimatedButton` and `OptionsSlider` controls.
+Finally, update the `CreateOptionsPanel` method so that:
 
-[!code-csharp[](./snippets/titlescene/createoptionspanel.cs?highlight=14,26,38)]
+- It uses a `TextRuntime` to display the text "OPTIONS" using the bitmap font
+- Instead of using the default Gum `Button` and `Slider` Forms controls, it now uses our custom `AnimatedButton` and `OptionsSlider` controls.
+- Both the `musicSlider` and `sfxSlider` have been given `Name` and `Text` properties.
+
+[!code-csharp[](./snippets/titlescene/createoptionspanel.cs?highlight=8-15,17-19,31-33,45)]
 
 ### Updating the GameScene
 
@@ -345,6 +349,10 @@ When you run the game now, you'll see a dramatic improvement in the visual appea
 2. The sliders have a cleaner, mores stylized appearance with teh OFF and MAX labels.
 3. All text uses our custom bitmap font.
 4. Visual feedback clearly indicates which element has focus.
+
+| ![Figure 12-3: The game using Gum now with custom styled UI components](./videos/gameplay.webm) |
+| :---------------------------------------------------------------------------------------------: |
+|            **Figure 12-3: The game using Gum now with custom styled UI components**             |
 
 The entire UI now has a cohesive stylet hat complements the visuals of the game.
 
