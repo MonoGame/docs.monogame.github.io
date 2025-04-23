@@ -3,7 +3,7 @@ title: "Chapter 20: Implementing UI with Gum"
 descrption: "Learn how to integrate and use the Gum UI framework to create functional menus, buttons, and sliders for your MonoGame projects."
 ---
 
-In the [previous chapter](../19_user_interface_fundamentals/index.md) we explored the fundamental concepts of user interface design.  Now we're ready to put these principles into practice by implementing a UI system for our game.  While it's possible to build a UI system from scratch, we'll take advantage of Gum, a specialized UI framework that simplifies many of the complex aspects of UI implementation.
+In the [previous chapter](../19_user_interface_fundamentals/index.md) we explored the fundamental concepts of user interface design. Now we're ready to put these principles into practice by implementing a UI system for our game. While it's possible to build a UI system from scratch, we'll take advantage of Gum, a specialized UI framework that simplifies many of the complex aspects of UI implementation.
 
 In this chapter you will:
 
@@ -14,16 +14,42 @@ In this chapter you will:
 - Handle input from keyboard, mouse, and gamepads
 - Integrate the UI system with our existing game architecture.
 
+## What is Gum?
+
+Gum is a powerful UI layout engine and framework. It provides a flexible, efficient system capable of producing virtually any UI layout you might need in your games. While originally developed alongside the FlatRedBall game engine, Gum has evolved to work seamlessly with multiple platforms including MonoGame, which we're using in this tutorial.
+
+### Why Use Gum?
+
+Creating a UI system from scratch requires solving many complex problems:
+
+1. **Layout Management**: Calculating positions for elements that need to adapt to different screen sizes or content changes.
+2. **Input Handling**: Detecting and responding to mouse, keyboard, and gamepad inputs across multiple UI elements.
+3. **Visual State Management**: Changing appearances based on user interactions (hovering, focusing, clicking).
+4. **Component Hierarchy**: Managing parent-child relationships between elements.
+
+Gum addresses these challenges with ready-made solutions, allowing us to focus on the specific needs of our game rather than reinventing the UI wheel. While MonoGame provides the basic tools for drawing graphics and detecting input, it doesn't include high-level UI abstractions; this is where tools like Gum fill the gap.
+
 > [!IMPORTANT]
-> This tutorial uses the Gum NuGet package to help with layout and responding to user interactions.  This tutorial does not require the use of the Gum tool - we will be doing everything in code.  
+> This tutorial uses the Gum NuGet package to help with layout and responding to user interactions. This tutorial does not require the use of the Gum tool - we will be doing everything in code.
 >
-> Keep in mind that while it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial. INstead, we will be taking advantage of the Gum NuGet package.
+> Keep in mind that while it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial. Instead, we will be taking advantage of the Gum NuGet package.
 >
-> Gum is a powerful system enabling the creation of virtually any game UI.  We will be covering some of the basics in this tutorial.  The full Gum documentation can be found here: [https://docs.flatredball.com/gum/code/monogame](https://docs.flatredball.com/gum/code/monogame)
+> Gum is a powerful system enabling the creation of virtually any game UI. We will be covering some of the basics in this tutorial. The full Gum documentation can be found here: [https://docs.flatredball.com/gum/code/monogame](https://docs.flatredball.com/gum/code/monogame)
 
 ## Gum Concepts
 
 Before we dive into implementation, let's explore the core concepts that Gum provides.  Gum simplifies UI development by providing read-made controls and layout systems that would otherwise require significant effort to build from scratch.
+
+### Understanding Gum's Structure
+
+Gum organizes UI elements in a hierarchical tree structure, similar to how HTML organizes web elements or how GUI frameworks like WPF or JavaFX structure their interfaces. This hierarchy consists of:
+
+1. **The Root Element**: The topmost container in the hierarchy that serves as the entry point for all UI elements.
+2. **Containers**: Elements that can hold other elements (like panels or screens).
+3. **Controls**: Interactive elements that respond to user input (like buttons or sliders).
+4. **Visuals**: The actual graphical representations of UI elements (like text, images, or shapes).
+
+When a game using Gum runs, this hierarchy is maintained in memory, with each element knowing its parent and children. The framework automatically handles the flow of events through this hierarchy and manages the drawing of elements according to their positions in the tree.
 
 ### Gum Root Element
 
