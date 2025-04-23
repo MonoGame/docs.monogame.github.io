@@ -17,7 +17,7 @@ Let's start by understanding what a user interface is and how it functions in ga
 
 ## Understanding Game User Interfaces
 
-A user interface in games serves a sa bridge between the player and the game's systems.  Well designed UIs help players navigate the game's mechanics, understand their current status, and make informed decisions.  For new game developers, understanding UI principles is crucial because even the most mechanically sound game can fail if players can' effectively interact with it.
+A user interface in games serves as a bridge between the player and the game's systems.  Well designed UIs help players navigate the game's mechanics, understand their current status, and make informed decisions.  For new game developers, understanding UI principles is crucial because even the most mechanically sound game can fail if players can' effectively interact with it.
 
 Game UIs consist of various visual elements that serve different purposes:
 
