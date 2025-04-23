@@ -316,7 +316,7 @@ To make our UI more responsive and engaging, we'll add audio feedback that plays
 
 First, download the UI sound effect by right-clicking the following link and saving it as *ui.wav* in the game project's *Content/audio* directory:
 
-- ![ui.wav](./files/ui.wav)
+- [ui.wav](./files/ui.wav)
 
 Next, add this sound effect to your content project using the MGCB Editor:
 
