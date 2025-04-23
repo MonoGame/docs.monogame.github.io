@@ -89,6 +89,18 @@ To install VSCode, follow the instructions for your operating system below:
 
 For C# development using VSCode, it's recommended to use the official *C# Dev Kit* extension provided by Microsoft. Installing this extension will add additional features to VSCode such as a project system and *Solution Explorer* for C# projects. It also provides code editing features such as syntax highlighting, code completion, code navigation, refactoring, NuGet package management, and debugging tools.
 
+> [!NOTE]  
+> The *Solution Explorer* panel is a hierarchial view provided by the C# Dev Kit extension that displays your solution structure similar  to Visual Studio's Solution Explorer.
+>
+> When you open a workspace in Visual Studio Code containing a .NET solution file (*.sln*), the *Solution Explorer* panel automatically appears and loads your solution.  From this panel, you can perform common operations like:
+>
+> * Adding new files.
+> * Managing project references.
+> * Viewing dependencies.
+> * Executing build commands.
+>
+> For more information about the *Solution Explorer* panel in Visual Studio Code offered through the C# Dev Kit extension, you can view the official documentation in the [Project Management](https://code.visualstudio.com/docs/csharp/project-management) documentation.
+
 To install the C# Dev Kit extension, perform the following:
 
 1. Launch the Visual Studio Code application.
