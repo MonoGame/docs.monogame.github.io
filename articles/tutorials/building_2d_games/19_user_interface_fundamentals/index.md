@@ -40,7 +40,7 @@ When designing and implementing game UI systems, developers must decide how UI e
 
 ## Parent-Child Relationships
 
-Parent-child relationships are part of many UI system. This relationship is implemented with UI elements containing other UI elements, creating a tree-like structure. This hierarchial approach mirrors how interface elements naturally group together in designs.
+Parent-child relationships are a part of many UI system. This relationship is implemented with UI elements containing other UI elements, creating a tree-like structure. This hierarchial approach mirrors how interface elements naturally group together in designs.
 
 For example, a settings panel might contain multiple buttons, labels, and sliders.  By making these elements children of the panel, they can be managed as a cohesive unit.  This organizational structure provides several significant advantages:
 
