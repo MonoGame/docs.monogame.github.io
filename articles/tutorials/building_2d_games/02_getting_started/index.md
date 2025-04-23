@@ -14,7 +14,15 @@ While the environment setup process is similar to the standard setup process for
 
 ## Installing the .NET SDK
 
-The first thing we need to do is install the .NET *Software Development Kit* (SDK). At the time of this writing, MonoGame targets the .NET 8.0 SDK. To install it, follow the instructions based on your operating system below
+The first thing we need to do is install the .NET *Software Development Kit* (SDK). At the time of this writing, MonoGame targets the .NET 8.0 SDK.
+
+> [!NOTE]
+> At the time of writing this tutorial, .NET 9.0 is released, however this tutorial still recommends installing .NET 8.0 for two reasons
+>
+> 1. .NET 8.0 is the current Long-Term Support (LTS) release of .NET. This means it receives security updates and bug fixes for 3 years, while Standard-Term Support (STS) releases like .NET 9.0 provide a shorter support window, typically around 18 months.  For more information see the [.NET and .NET Core official support policy](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core#cadence) page.
+> 2. MonoGame targets the LTS version of .NET, meaning it targets .NET 8.0, so we are using the same version for consistency.
+
+To install it, follow the instructions based on your operating system below
 
 ### [Windows](#tab/windows)
 
@@ -32,6 +40,7 @@ The first thing we need to do is install the .NET *Software Development Kit* (SD
 > For the time being, MonoGame requires that you install the **Intel** version even if you are using an Apple Silicon (M1/M2) Mac. For Apple Silicon Macs, it also requires that [Rosetta](https://support.apple.com/en-us/HT211861) is enabled.
 
 ### [Linux](#tab/linux)
+
 1. Open a new *Terminal* window
 2. Enter the following command to install the .NET SDK
 
@@ -52,7 +61,7 @@ dotnet workload install android
 
 ## Install MonoGame Project Templates
 
-MonoGame provides project templates that can be installed to create new projects that are pre-configured to target the current version of MonoGame as a base to begin creating games. As of this writing, the current version of MonoGame targeted is 3.8.2.1105. To install the MonoGame templates, open a *Command Prompt* or *Terminal* window and enter the following command
+MonoGame provides project templates that can be installed to create new projects that are pre-configured to target the current version of MonoGame as a base to begin creating games. As of this writing, the current version of MonoGame targeted is 3.8.3. To install the MonoGame templates, open a *Command Prompt* or *Terminal* window and enter the following command
 
 ```sh
 dotnet new install MonoGame.Templates.CSharp
@@ -88,6 +97,18 @@ To install VSCode, follow the instructions for your operating system below:
 ## Install the C# Dev Kit Extension
 
 For C# development using VSCode, it's recommended to use the official *C# Dev Kit* extension provided by Microsoft. Installing this extension will add additional features to VSCode such as a project system and *Solution Explorer* for C# projects. It also provides code editing features such as syntax highlighting, code completion, code navigation, refactoring, NuGet package management, and debugging tools.
+
+> [!NOTE]  
+> The *Solution Explorer* panel is a hierarchial view provided by the C# Dev Kit extension that displays your solution structure similar  to Visual Studio's Solution Explorer.
+>
+> When you open a workspace in Visual Studio Code containing a .NET solution file (*.sln*), the *Solution Explorer* panel automatically appears and loads your solution.  From this panel, you can perform common operations like:
+>
+> * Adding new files.
+> * Managing project references.
+> * Viewing dependencies.
+> * Executing build commands.
+>
+> For more information about the *Solution Explorer* panel in Visual Studio Code offered through the C# Dev Kit extension, you can view the official documentation in the [Project Management](https://code.visualstudio.com/docs/csharp/project-management) documentation.
 
 To install the C# Dev Kit extension, perform the following:
 
@@ -208,7 +229,7 @@ Now that your development environment is setup and ready to go, you can dive in 
 2. What is the current version of MonoGame?
 
     :::question-answer
-    3.8.2.1105
+    3.8.3
     :::
 
 3. What is the color of the game window when you run a MonoGame project for the first time?
