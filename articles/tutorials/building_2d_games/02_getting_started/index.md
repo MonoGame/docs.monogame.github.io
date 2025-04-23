@@ -14,7 +14,15 @@ While the environment setup process is similar to the standard setup process for
 
 ## Installing the .NET SDK
 
-The first thing we need to do is install the .NET *Software Development Kit* (SDK). At the time of this writing, MonoGame targets the .NET 8.0 SDK. To install it, follow the instructions based on your operating system below
+The first thing we need to do is install the .NET *Software Development Kit* (SDK). At the time of this writing, MonoGame targets the .NET 8.0 SDK.
+
+> [!NOTE]
+> At the time of writing this tutorial, .NET 9.0 is released, however this tutorial still recommends installing .NET 8.0 for two reasons
+>
+> 1. .NET 8.0 is the current Long-Term Support (LTS) release of .NET. This means it receives security updates and bug fixes for 3 years, while Standard-Term Support (STS) releases like .NET 9.0 provide a shorter support window, typically around 18 months.  For more information see the [.NET and .NET Core official support policy](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core#cadence) page.
+> 2. MonoGame targets the LTS version of .NET, meaning it targets .NET 8.0, so we are using the same version for consistency.
+
+To install it, follow the instructions based on your operating system below
 
 ### [Windows](#tab/windows)
 
@@ -32,6 +40,7 @@ The first thing we need to do is install the .NET *Software Development Kit* (SD
 > For the time being, MonoGame requires that you install the **Intel** version even if you are using an Apple Silicon (M1/M2) Mac. For Apple Silicon Macs, it also requires that [Rosetta](https://support.apple.com/en-us/HT211861) is enabled.
 
 ### [Linux](#tab/linux)
+
 1. Open a new *Terminal* window
 2. Enter the following command to install the .NET SDK
 
