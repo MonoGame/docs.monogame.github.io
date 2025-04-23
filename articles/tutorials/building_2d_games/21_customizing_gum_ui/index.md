@@ -106,7 +106,7 @@ Before we create our custom components, we need to update the game's resources t
 
 ### Update the Texture Atlas
 
-Before we can start, we first need to update the texture atlas for the game. This new texture atlas includes:
+Before we can start, we first need to update the *atlas.png* texture atlas file for the game. This new version of the texture atlas includes:
 
 - The characters for the font, generated using Bitmap Font Generator (BMFont)
 - The sprites for the UI components we will create
