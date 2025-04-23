@@ -51,7 +51,7 @@ To use the template to add the class library, perform the following:
 
 To add the class library using the MonoGame Game Library project template in Visual Studio Code, perform the following:
 
-1. In the *Solution Explorer* panel, right-click the *DungeonSlime* solution.
+1. In the [*Solution Explorer*](../02_getting_started/index.md#install-the-c-dev-kit-extension) panel, right-click the *DungeonSlime* solution.
 2. Chose *New Project* from the context menu.
 3. Enter "MonoGame Game Library" and select it as the template to use.
 4. Name the project "MonoGameLibrary".

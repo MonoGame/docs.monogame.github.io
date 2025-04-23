@@ -297,7 +297,7 @@ To add the Gum NuGet package to our game project, follow the instructions below 
 
 To add the Gum NuGet package in Visual Studio Code:
 
-1. In the *Solution Explorer* panel, right-click the *DungeonSlime* project.
+1. In the [*Solution Explorer*](../02_getting_started/index.md#install-the-c-dev-kit-extension) panel, right-click the *DungeonSlime* project.
 2. Choose *Add NuGet Package* from the context menu.
 3. Enter "Gum.MonoGame" in the *Add NuGet Package* search prompt and press Enter.
 4. When the search finishes, select the *Gum.MonoGame* package in the results
