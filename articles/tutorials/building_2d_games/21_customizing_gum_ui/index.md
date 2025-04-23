@@ -197,11 +197,7 @@ The most distinctive feature of our animated button is its ability to change app
 
 Each animation frame specifies the coordinates within our texture atlas to display:
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=62&end=74)]
-
-[!code-csharp[](./snippets/animatedbutton.cs?start=76&end=95)]
-
-[!code-csharp[](./snippets/animatedbutton.cs?start=97&end=102)]
+[!code-csharp[](./snippets/animatedbutton.cs?start=62&end=102)]
 
 #### States and Categories
 
@@ -211,13 +207,7 @@ In Gum, each control type has a specific category name that identifies its state
 
 Within this category, we define how the button appears in different states by creating `StateSave` objects with specific state names:
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=109&end=117)]
-
-[!code-csharp[](./snippets/animatedbutton.cs?start=119&end=128)]
-
-[!code-csharp[](./snippets/animatedbutton.cs?start=130&end=134)]
-
-[!code-csharp[](./snippets/animatedbutton.cs?start=136&end=140)]
+[!code-csharp[](./snippets/animatedbutton.cs?start=109&end=140)]
 
 Each state's `Apply` action defines what visual changes occur when the state becomes active.  In our case, we switch between animation chains to create the desired visual effect.
 
