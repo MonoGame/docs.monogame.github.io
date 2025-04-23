@@ -100,7 +100,7 @@ Creating accessible user interfaces is an essential aspect of inclusive game des
 
 - **Color contrast**: Ensure sufficient contrast between text and backgrounds
 - **Use shapes**: Don't rely solely on color to convey important information; add shapes, patterns, or text labels as well.  For example, if displaying warning text, also use something such as the common warning sign ⚠️.
-- **Text size and scaling**: Allow players to adjust text size or implement a UI scaling option.  In Gum, this can be achieved by applying scaling factors to your UI elements or by having multiple font sizes available. Also, Gum provides font scaling support, although we do not cover this topic here.
+- **Text size and scaling**: Allow players to adjust text size or implement a UI scaling option.
 - **Internationalization (i18n)**: Consider how your UI might be interpreted across different cultures and regions. Number formatting can vary significantly - some regions use periods for thousands separators (1.000.000) while others use commas (1,000,000). Control symbolism also differs culturally; for example, on console controllers, the Cross button typically means "Select" in Western regions but "Cancel" in Japan, with Circle having the opposite meaning.
 
 ### Input Accessibility
