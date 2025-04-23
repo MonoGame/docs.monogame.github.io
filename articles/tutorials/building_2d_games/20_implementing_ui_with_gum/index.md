@@ -356,8 +356,15 @@ Let's examine each part of this initialization process:
    - By default, all Forms controls automatically respond to mouse and touch screen input devices.  We need to explicitly register keyboard and gamepad input devices by using th `FrameworkElement.KeyboardsForUiControl` and `Framework.GamePadsForUiControl` properties.
    - By default, Forms controls will automatically respond to tab and shift-tab for navigation. By using the `FrameworkElement.TabKeyCombos` and `FrameworkElement.TabReverseKeyCombos` properties, we can add additional key combinations for tabbing.  Here map the Up arrow for reverse tabbing and the Down arrow for forward tabbing.  
 
-    > [!TIP]
-    > If you want to remove the default Tab and Shift+Tab key combinations, you can clear both of these properties by calling `FrameworkElement.TabKeyCombos.Clear()` and `FrameworkElement.TabReverseKeyCombos.Clear()` before adding additional key combinations.
+   > [!TIP]
+   > If you prefer different navigation keys, you can remove the built-in Tab/Shift+Tab navigation.
+   >
+   > Simply call these methods before adding your custom combinations:
+   >
+   > ```cs
+   > FrameworkElement.TabKeyCombos.Clear();
+   > FrameworkElement.TabReverseKeyCombos.Clear();
+   > ```
 
 4. **UI Scaling**:  Gum allows us to independently scale the UI regardless of the resolution of the game.  Our game is set to a resolution of 1280x720, however as we'll see during the styling section later, the UI assets created were done at one-fourth the size to reduce the size of the texture atlas.  Here, we use the `GumService.Default.CanvasWidth` and `GumService.Default.CanvasHeight`  properties to set the canvas size to one-fourth that of our game's resolution. Then using by setting the `GumService.Default.Renderer.Camera.Zoom` property to four, we effectively make it render the UI at full resolution.
 
