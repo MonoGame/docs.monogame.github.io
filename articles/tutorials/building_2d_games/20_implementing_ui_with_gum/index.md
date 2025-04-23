@@ -314,7 +314,7 @@ This will install the latest version of the package, which is "2025.4.20.2" as o
 
 To make our UI more responsive and engaging, we'll add audio feedback that plays when players interact with buttons and other UI elements. Sound effects provide immediate confirmation that an input has been recognized, creating a more engaging experience.
 
-First, download the UI sound effect by right-clicking the following link and saving it as *ui.wav* in the game project's *Content/audio* director:
+First, download the UI sound effect by right-clicking the following link and saving it as *ui.wav* in the game project's *Content/audio* directory:
 
 - ![ui.wav](./files/ui.wav)
 
