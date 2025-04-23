@@ -346,7 +346,7 @@ Finally, update the `CreatePausePanel` method so that
 When you run the game now, you'll see a dramatic improvement in the visual appearance of the UI:
 
 1. The buttons now use our custom animated background that pulses when focused.
-2. The sliders have a cleaner, mores stylized appearance with teh OFF and MAX labels.
+2. The sliders have a cleaner, mores stylized appearance with the OFF and MAX labels.
 3. All text uses our custom bitmap font.
 4. Visual feedback clearly indicates which element has focus.
 
