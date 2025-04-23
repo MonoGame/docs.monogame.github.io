@@ -61,7 +61,7 @@ dotnet workload install android
 
 ## Install MonoGame Project Templates
 
-MonoGame provides project templates that can be installed to create new projects that are pre-configured to target the current version of MonoGame as a base to begin creating games. As of this writing, the current version of MonoGame targeted is 3.8.2.1105. To install the MonoGame templates, open a *Command Prompt* or *Terminal* window and enter the following command
+MonoGame provides project templates that can be installed to create new projects that are pre-configured to target the current version of MonoGame as a base to begin creating games. As of this writing, the current version of MonoGame targeted is 3.8.3. To install the MonoGame templates, open a *Command Prompt* or *Terminal* window and enter the following command
 
 ```sh
 dotnet new install MonoGame.Templates.CSharp
@@ -229,7 +229,7 @@ Now that your development environment is setup and ready to go, you can dive in 
 2. What is the current version of MonoGame?
 
     :::question-answer
-    3.8.2.1105
+    3.8.3
     :::
 
 3. What is the color of the game window when you run a MonoGame project for the first time?
