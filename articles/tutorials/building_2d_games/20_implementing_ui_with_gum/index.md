@@ -366,9 +366,13 @@ First, open the *Game1.cs* file and add the following new using statements to th
 
 [!code-csharp[](./snippets/game1/usings.cs?highlight=3-5)]
 
-Next, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method to configure the Gum system:
+Next, add the following method to the `Game1` class to encapsulate the initializations of the Gum UI service:
 
-[!code-csharp[](./snippets/game1/initialize.cs?highlight=8-37)]
+[!code-csharp[](./snippets/game1/initializegum.cs)]
+
+Finally, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method to call the `InitializeGum` method we just created:
+
+[!code-csharp[](./snippets/game1/initialize.cs?highlight=8-9)]
 
 Let's examine each part of this initialization process:
 
