@@ -209,7 +209,7 @@ In Gum, each control type has a specific category name that identifies its state
 
 [!code-csharp[](./snippets/animatedbutton.cs?start=104&end=107)]
 
-Within this category,w e define how the button appears in different states by creating `StateSave` objects with specific state names:
+Within this category, we define how the button appears in different states by creating `StateSave` objects with specific state names:
 
 [!code-csharp[](./snippets/animatedbutton.cs?start=109&end=117)]
 
