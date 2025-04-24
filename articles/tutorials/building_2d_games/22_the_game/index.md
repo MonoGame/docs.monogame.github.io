@@ -72,7 +72,7 @@ By implementing an abstraction layer such as this class, it offers benefits such
 1. **Abstraction**: It separates game actions from physical inputs, making code more readable and maintainable.
 2. **Consolidation**: All input handling is unified in one place, rather than spread across multiple methods.
 3. **Extensibility**: Adding a new input device or changing key bindings only requires changes in one place.
-4. **Clarity**: game code expresses intent clearly with methods like `MoveUp` instead of device specific checks like `keyboard.WasKeyJustPressed(Keys.Up)`.
+4. **Clarity**: Game code expresses intent clearly with methods like `MoveUp` instead of device specific checks like `keyboard.WasKeyJustPressed(Keys.Up)`.
 
 ## Implementing Snake Mechanics in the Game Scene
 
