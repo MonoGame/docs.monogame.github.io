@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
 using MonoGameLibrary.Input;
@@ -8,80 +9,71 @@ namespace DungeonSlime;
 /// Provides a game-specific input abstraction that maps physical inputs
 /// to game actions, bridging our input system with game-specific functionality.
 /// </summary>
-public class GameController
+public static class GameController
 {
-    private KeyboardInfo _keyboard;
-    private GamePadInfo _gamePad;
-
-    /// <summary>
-    /// Creates a new GameController that handles input for the game.
-    /// </summary>
-    public GameController()
-    {
-        _keyboard = Core.Input.Keyboard;
-        _gamePad = Core.Input.GamePads[0];
-    }
+    private static KeyboardInfo s_keyboard => Core.Input.Keyboard;
+    private static GamePadInfo s_gamePad => Core.Input.GamePads[(int)PlayerIndex.One];
 
     /// <summary>
     /// Returns true if the player has triggered the "move up" action.
     /// </summary>
-    public bool MoveUp()
+    public static bool MoveUp()
     {
-        return _keyboard.WasKeyJustPressed(Keys.Up) ||
-               _keyboard.WasKeyJustPressed(Keys.W) ||
-               _gamePad.WasButtonJustPressed(Buttons.DPadUp) ||
-               _gamePad.WasButtonJustPressed(Buttons.LeftThumbstickUp);
+        return s_keyboard.WasKeyJustPressed(Keys.Up) ||
+               s_keyboard.WasKeyJustPressed(Keys.W) ||
+               s_gamePad.WasButtonJustPressed(Buttons.DPadUp) ||
+               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickUp);
     }
 
     /// <summary>
     /// Returns true if the player has triggered the "move down" action.
     /// </summary>
-    public bool MoveDown()
+    public static bool MoveDown()
     {
-        return _keyboard.WasKeyJustPressed(Keys.Down) ||
-               _keyboard.WasKeyJustPressed(Keys.S) ||
-               _gamePad.WasButtonJustPressed(Buttons.DPadDown) ||
-               _gamePad.WasButtonJustPressed(Buttons.LeftThumbstickDown);
+        return s_keyboard.WasKeyJustPressed(Keys.Down) ||
+               s_keyboard.WasKeyJustPressed(Keys.S) ||
+               s_gamePad.WasButtonJustPressed(Buttons.DPadDown) ||
+               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickDown);
     }
 
     /// <summary>
     /// Returns true if the player has triggered the "move left" action.
     /// </summary>
-    public bool MoveLeft()
+    public static bool MoveLeft()
     {
-        return _keyboard.WasKeyJustPressed(Keys.Left) ||
-               _keyboard.WasKeyJustPressed(Keys.A) ||
-               _gamePad.WasButtonJustPressed(Buttons.DPadLeft) ||
-               _gamePad.WasButtonJustPressed(Buttons.LeftThumbstickLeft);
+        return s_keyboard.WasKeyJustPressed(Keys.Left) ||
+               s_keyboard.WasKeyJustPressed(Keys.A) ||
+               s_gamePad.WasButtonJustPressed(Buttons.DPadLeft) ||
+               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickLeft);
     }
 
     /// <summary>
     /// Returns true if the player has triggered the "move right" action.
     /// </summary>
-    public bool MoveRight()
+    public static bool MoveRight()
     {
-        return _keyboard.WasKeyJustPressed(Keys.Right) ||
-               _keyboard.WasKeyJustPressed(Keys.D) ||
-               _gamePad.WasButtonJustPressed(Buttons.DPadRight) ||
-               _gamePad.WasButtonJustPressed(Buttons.LeftThumbstickRight);
+        return s_keyboard.WasKeyJustPressed(Keys.Right) ||
+               s_keyboard.WasKeyJustPressed(Keys.D) ||
+               s_gamePad.WasButtonJustPressed(Buttons.DPadRight) ||
+               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickRight);
     }
 
     /// <summary>
     /// Returns true if the player has triggered the "pause" action.
     /// </summary>
-    public bool Pause()
+    public static bool Pause()
     {
-        return _keyboard.WasKeyJustPressed(Keys.Escape) ||
-               _gamePad.WasButtonJustPressed(Buttons.Start);
+        return s_keyboard.WasKeyJustPressed(Keys.Escape) ||
+               s_gamePad.WasButtonJustPressed(Buttons.Start);
     }
 
     /// <summary>
     /// Returns true if the player has triggered the "action" button,
     /// typically used for menu confirmation.
     /// </summary>
-    public bool Action()
+    public static bool Action()
     {
-        return _keyboard.WasKeyJustPressed(Keys.Enter) ||
-               _gamePad.WasButtonJustPressed(Buttons.A);
+        return s_keyboard.WasKeyJustPressed(Keys.Enter) ||
+               s_gamePad.WasButtonJustPressed(Buttons.A);
     }
 }
