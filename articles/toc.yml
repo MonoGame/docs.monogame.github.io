@@ -150,8 +150,8 @@
           href: tutorials/building_2d_games/18_texture_sampling/
         - name: "19: User Interface"
           href: tutorials/building_2d_games/19_user_interface/ 
-        - name: "20: The Game"
-          href: tutorials/building_2d_games/20_the_game/                     
+        - name: "22: The Game"
+          href: tutorials/building_2d_games/22_the_game/                     
 - name: Console Access
   href: console_access.md
 - name: Help and Support
