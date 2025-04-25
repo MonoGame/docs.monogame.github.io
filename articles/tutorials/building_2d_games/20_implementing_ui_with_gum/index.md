@@ -100,7 +100,7 @@ public class GameScene
 
 ### Anchoring
 
-In the previous chapter we discussed [anchoring](../19_user_interface_fundamentals/index.md#anchoring), a fundamental UI concept that allows you to position elements relative to specific reference points of their parents.  Gum supports anchoring of elements through the `Anchor()` method of their `Visual` property:
+In the previous chapter we discussed [anchoring](../19_user_interface_fundamentals/index.md#anchoring), a fundamental UI concept that allows you to position elements relative to specific reference points of their parents.  Gum supports anchoring of Forms controls through their `Anchor()` method.
 
 ```cs
 // Creating a panel and adding it to the root
@@ -110,7 +110,7 @@ mainMenuPanel.AddToRoot();
 // Creating a button and adding it as a child of the panel
 // anchored ot the bottom-left of the panel
 Button startButton = new Button();
-startButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomLeft);
+startButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
 mainMenuPanel.AddChild(startButton);
 ```
 
@@ -130,7 +130,7 @@ Gum supports the following anchors:
 
 ### Docking
 
-In the previous chapter, we also discussed [docking](../19_user_interface_fundamentals/index.md#docking), a fundamental UI concept that adjusts an element's size to fill the available space.  Gum supports docking of elements through the `Dock()` method of their `Visual` property:
+In the previous chapter, we also discussed [docking](../19_user_interface_fundamentals/index.md#docking), a fundamental UI concept that adjusts an element's size to fill the available space.  Gum supports docking of Forms controls through their `Dock()` method.
 
 ```cs
 // Creating a panel and adding it to the root
@@ -138,7 +138,7 @@ Panel mainMenuPanel = new Panel();
 mainMenuPanel.AddToRoot();
 
 // Docking the panel to fill the entire root space
-mainMenuPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+mainMenuPanel.Dock(Gum.Wireframe.Dock.Fill);
 ```
 
 Gum supports the following docs:
@@ -183,7 +183,7 @@ A common pattern is to set a panel's docking to `Fill`, which makes it span the 
 
 ```cs
 // Make the panel fill the entire screen
-mainMenuPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+mainMenuPanel.Dock(Gum.Wireframe.Dock.Fill);
 ```
 
 This creates a consistent coordinate space for all child elements, allowing them to be positioned relative to the screen.
@@ -201,7 +201,7 @@ Buttons can be positioned using anchoring to create layouts that adapt to differ
 ```cs
 // Creating a button that is anchored to the bottom left.
 Button startButton = new Button;
-startButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomLeft);
+startButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
 
 // Set the X and Y position so it is 20px from the left edge
 // and 20px from the bottom edge.

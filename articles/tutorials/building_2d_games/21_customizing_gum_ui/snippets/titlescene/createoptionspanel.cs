@@ -1,7 +1,7 @@
 private void CreateOptionsPanel()
 {
     _optionsPanel = new Panel();
-    _optionsPanel.Visual.Dock(Gum.Wireframe.Dock.Fill);
+    _optionsPanel.Dock(Gum.Wireframe.Dock.Fill);
     _optionsPanel.IsVisible = false;
     _optionsPanel.AddToRoot();
 
@@ -17,7 +17,7 @@ private void CreateOptionsPanel()
     OptionsSlider musicSlider = new OptionsSlider(_atlas);
     musicSlider.Name = "MusicSlider";
     musicSlider.Text = "MUSIC";
-    musicSlider.Visual.Anchor(Gum.Wireframe.Anchor.Top);
+    musicSlider.Anchor(Gum.Wireframe.Anchor.Top);
     musicSlider.Visual.Y = 30f;
     musicSlider.Minimum = 0;
     musicSlider.Maximum = 1;
@@ -31,7 +31,7 @@ private void CreateOptionsPanel()
     OptionsSlider sfxSlider = new OptionsSlider(_atlas);
     sfxSlider.Name = "SfxSlider";
     sfxSlider.Text = "SFX";
-    sfxSlider.Visual.Anchor(Gum.Wireframe.Anchor.Top);
+    sfxSlider.Anchor(Gum.Wireframe.Anchor.Top);
     sfxSlider.Visual.Y = 93;
     sfxSlider.Minimum = 0;
     sfxSlider.Maximum = 1;
@@ -44,7 +44,7 @@ private void CreateOptionsPanel()
 
     _optionsBackButton = new AnimatedButton(_atlas);
     _optionsBackButton.Text = "BACK";
-    _optionsBackButton.Visual.Anchor(Gum.Wireframe.Anchor.BottomRight);
+    _optionsBackButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
     _optionsBackButton.X = -28f;
     _optionsBackButton.Y = -10f;
     _optionsBackButton.Click += HandleOptionsButtonBack;

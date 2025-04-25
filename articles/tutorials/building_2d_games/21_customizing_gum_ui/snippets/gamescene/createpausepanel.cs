@@ -1,7 +1,7 @@
 private void CreatePausePanel()
 {
     _pausePanel = new Panel();
-    _pausePanel.Visual.Anchor(Anchor.Center);
+    _pausePanel.Anchor(Anchor.Center);
     _pausePanel.Visual.WidthUnits = DimensionUnitType.Absolute;
     _pausePanel.Visual.HeightUnits = DimensionUnitType.Absolute;
     _pausePanel.Visual.Height = 70;
@@ -32,7 +32,7 @@ private void CreatePausePanel()
 
     _resumeButton = new AnimatedButton(_atlas);
     _resumeButton.Text = "RESUME";
-    _resumeButton.Visual.Anchor(Anchor.BottomLeft);
+    _resumeButton.Anchor(Anchor.BottomLeft);
     _resumeButton.Visual.X = 9f;
     _resumeButton.Visual.Y = -9f;
     _resumeButton.Click += HandleResumeButtonClicked;
@@ -40,7 +40,7 @@ private void CreatePausePanel()
 
     AnimatedButton quitButton = new AnimatedButton(_atlas);
     quitButton.Text = "QUIT";
-    quitButton.Visual.Anchor(Anchor.BottomRight);
+    quitButton.Anchor(Anchor.BottomRight);
     quitButton.Visual.X = -9f;
     quitButton.Visual.Y = -9f;
     quitButton.Click += HandleQuitButtonClicked;
