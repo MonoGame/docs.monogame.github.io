@@ -38,9 +38,11 @@ One powerful feature of Gum is how it handles size relationships between parent 
 - **RelativeToChildren**: A parent container can size itself based on its children
 - **PercentageOfParent**: A child element can size itself as a percentage of its parent
 - **Absolute**: An element can have a fixed pixel size
-- **RelativeToContainer**: An element can size itself relative to a specific container
+- **RelativeToParent**: An element can size itself relative to a specific container
 
 For example, a button might use a text element with `WidthUnits` set to `RelativeToChildren`, which means the text will be exactly the size needed to display its content. The button's container might use `RelativeToChildren` with some additional padding, allowing the button to automatically resize based on its text content.
+
+Although we haven't explicitly assigned WidthUnits and HeightUnits in our code, we have indirectly set these values by calling the Visual's `Dock` method. Specifically, by passing `Dock.Fill` as the parameter, `WidthUnits` and `HeightUnits` are both set to `RelativeToParent`.
 
 > [!NOTE]
 > These size relationships can create circular dependencies when a child depends on its parent and the parent depends on the child. In such cases, Gum resolves the conflict by making the child depend on the parent, and the parent ignores that particular child when calculating its size.
@@ -233,7 +235,7 @@ This creates a more responsive interface by immediately focusing elements that t
 
 ### The OptionsSlider Class
 
-Now let's create a custom `OptionsSlider` class to style the volume sliders.  This class will inherit from Gum's base `Slider` class and provide a styled appearance consistent with the game's visual theme.
+Now let's create a custom `OptionsSlider` class to style the volume sliders.  This class inherits from Gum's base `Slider` class and provides a styled appearance consistent with the game's visual theme.
 
 Create a new file named *OptionsSlider.cs* in the *UI* folder with the following code:
 
@@ -344,7 +346,7 @@ When you run the game now, you'll see a dramatic improvement in the visual appea
 | :---------------------------------------------------------------------------------------------: |
 |            **Figure 12-3: The game using Gum now with custom styled UI components**             |
 
-The entire UI now has a cohesive stylet hat complements the visuals of the game.
+The entire UI now has a cohesive style that matches the rest of the game.
 
 ## Conclusion
 
