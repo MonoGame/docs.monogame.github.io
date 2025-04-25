@@ -58,6 +58,12 @@ Gum provides several visual element types that we can use to build our custom co
 
 The `NineSliceRuntime` is particularly useful for UI elements that need to resize dynamically. It divides a graphic into nine sections (four corners, four edges, and a center), allowing the element to stretch without distorting its borders.
 
+> [!NOTE]
+> A MonoGame and Gum community member Kaltinril also has a video series discussing Gum.  With permission, the following video segment is included to demonstrate the advantages of using a *Nineslice* when creating UI elements.
+> <div class="embeddedvideo">
+> <iframe width="560" height="315" src="https://www.youtube.com/embed/pI8yxdaGSVU?si=1wKj6EPkryepxVmg&amp;start=1114&amp;end=1209" title="Nineslice Overview" frameborder="0" allowfullscreen></iframe>
+> </div>
+
 #### Animation Chains
 
 An `AnimationChain` is a sequence of animation frames that play in order, typically looping after the last frame. Each frame in the chain defines:
