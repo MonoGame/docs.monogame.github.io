@@ -137,7 +137,7 @@
         - name: "12: Collision Detection"
           href: tutorials/building_2d_games/12_collision_detection/
         - name: "13: Working With Tilemaps"
-          href: tutorials/building_2d_games/13_working_with_tilemaps/          
+          href: tutorials/building_2d_games/13_working_with_tilemaps/
         - name: "14: Sound Effects and Music"
           href: tutorials/building_2d_games/14_soundeffects_and_music/
         - name: "15: Audio Controller"
@@ -148,8 +148,12 @@
           href: tutorials/building_2d_games/17_scenes/
         - name: "18: Texture Sampling"
           href: tutorials/building_2d_games/18_texture_sampling/
-        - name: "19: User Interface"
-          href: tutorials/building_2d_games/19_user_interface/ 
+        - name: "19: User Interface Fundamentals"
+          href: tutorials/building_2d_games/19_user_interface_fundamentals/
+        - name: "20: Implementing UI with Gum"
+          href: tutorials/building_2d_games/20_implementing_ui_with_gum/
+        - name: "21: Customizing Gum UI"
+          href: tutorials/building_2d_games/21_customizing_gum_ui/
         - name: "22: The Game"
           href: tutorials/building_2d_games/22_the_game/                     
 - name: Console Access
