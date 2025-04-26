@@ -56,39 +56,25 @@ In UI systems, two important concepts help with positioning elements: anchoring 
 
 ### Anchoring
 
-Anchoring allows you to position UI elements relative to specific reference points on their parents. Common anchor points include
+Anchoring allows you to position UI elements relative to specific reference points on their parents. The following diagram demonstrates common anchor points:
 
-- TopLeft
-- Top
-- TopRight
-- Left
-- Center
-- Right
-- BottomLeft
-- Bottom
-- BottomRight
+| ![Figure 19-1: Diagram showing common anchor points](./images/user_interface_anchor.svg) |
+| :--------------------------------------------------------------------------------------: |
+|                  **Figure 19-1: Diagram showing common anchor points**                   |
 
-| ![Figure 19-1: Diagram showing the different anchor points](./images/anchor.png) |
-| :------------------------------------------------------------------------------: |
-|           **Figure 19-1: Diagram showing the different anchor points**           |
+When you set an anchor point, the elements' position coordinates become relative to that anchor point.  For example with a "Right" anchor and an X value of -5, you element would position itself 5 pixels to the left of the parent's right edge, creating a consistent margin regardless of the parent's size, as demonstrated in the following diagram:
 
-When you set an anchor point, the elements' position coordinates become relative to that anchor point.  For example with a "Right" anchor and an X value of -5, you element would position itself 5 pixels to the left of the parent's right edge, creating a consistent margin regardless of the parent's size.
+| ![Figure 19-2: Diagram showing anchored element positioning relative to anchor regardless of parent size](./images/user_interface_anchor_positioning.svg) |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                        **Figure 19-2: Diagram showing anchored element positioning relative to anchor regardless of parent size**                         |
 
 ### Docking
 
-Docking takes anchoring a step further by also adjusting an element's size to fill available space.  Common docking options include:
+Docking takes anchoring a step further by also adjusting an element's size to fill available space.  The following diagram demonstrates common docking options:
 
-- Top: Anchors to top edge and fills horizontally.
-- Left: Anchors to left edge and fills vertically.
-- Right: Anchors to right edge and fills vertically.
-- Bottom: Anchors to bottom edge and fills horizontally.
-- Fill: Anchors to the center and fills the entire parent area vertically and horizontally.
-- FillHorizontally: Stretches across parent's width, filling horizontally.
-- FillVertically: Stretches across parent's height, filling vertically.
-
-| ![Figure 19-2: Diagram showing the different docks](./images/dock.png) |
-| :--------------------------------------------------------------------: |
-|          **Figure 19-2: Diagram showing the different docks**          |
+| ![Figure 19-3: Diagram showing the common docking options](./images/user_interface_dock.svg) |
+| :------------------------------------------------------------------------------------------: |
+|                 **Figure 19-3: Diagram showing the common docking options**                  |
 
 These positioning strategies enable you to create layouts that can maintain their visual relationships even when parent elements change size or position.
 
