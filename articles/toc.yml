@@ -1,5 +1,6 @@
+items:
 - name: Introduction
-  href: 
+  href: index.md
 - name: Roadmap
   href: /roadmap/
 - name: What's New
@@ -86,8 +87,6 @@
   - name: How to
     href: getting_to_know/howto/
     items:
-    - name: Installing Preview Packages
-      href: getting_to_know/howto/how_to_install_preview_packages.md
     - name: Audio
       href: getting_to_know/howto/audio/
     - name: Content Pipeline

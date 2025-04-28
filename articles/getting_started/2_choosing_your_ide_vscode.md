@@ -49,6 +49,11 @@ By the end, you will be fully equipped to start creating games with MonoGame usi
     dotnet new install MonoGame.Templates.CSharp
     ```
 
+> [!TIP]
+> Alternatively, consider using the Preview Packages provided by MonoGame to get access to the latest developments.
+>
+> - [How to install MonoGame Preview packages](../getting_to_know/howto/HowTo_Install_Preview_Release.md)
+
 ## Install Visual Studio Code C# Extensions
 
 To transform Visual Studio Code from a simple text editor into a powerful development environment for C# projects, you must install the Visual Studio Code C# extension. This extension enhances the editor by providing syntax highlighting, code analysis, IntelliSense, and other features that significantly improve the development experience and productivity when working with C#.

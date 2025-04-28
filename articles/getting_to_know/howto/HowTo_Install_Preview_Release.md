@@ -1,11 +1,11 @@
 ---
 title: How to install a preview release of MonoGame from NuGet
-description: This topic describes how use a preview release of MonoGame in a new or existing project.
+description: This topic describes how to use a preview release of MonoGame in a new or existing project.
 ---
 
 ## Overview
 
-MonoGame provides preview deployments as testing releases prior to the full release of a new version, this gives developers early access to new features before they are made officially available.
+MonoGame provides preview deployments for testing releases prior to the full release of a new version. This gives developers early access to new features before they are made officially available.
 
 > [!WARNING]
 > While preview releases still undergo the same rigorous testing used for full releases, some features may not work as expected as it is still classed as developmental code.
