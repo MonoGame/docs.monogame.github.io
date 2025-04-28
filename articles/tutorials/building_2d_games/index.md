@@ -42,7 +42,7 @@ This documentation will introduce game development concepts using the MonoGame f
 | [19: User Interface Fundamentals](19_user_interface_fundamentals/index.md)   | Learn the core principles of game user interface design.                                                                                                                                          |              |
 | [20: Implementing UI with Gum](20_implementing_ui_with_gum/index.md)         | Learn how to integrate and use the Gum UI framework to create functional menus, buttons, and sliders for your MonoGame projects.                                                                  |              |
 | [21: Customizing Gum UI](21_customizing_gum_ui/index.md)                     | Learn how to create custom UI components with animations and visual styling in Gum.                                                                                                               |              |
-| [22: The Game](22_the_game/index.md)                                         | Finalize game mechanics by updating our current demo into a snake-like inspired game                                                                                                              |              |
+| [22: The Game](22_completing_the_game/index.md)                                         | Finalize game mechanics by updating our current demo into a snake-like inspired game                                                                                                              |              |
 
 In addition to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
 

@@ -155,7 +155,7 @@
         - name: "21: Customizing Gum UI"
           href: tutorials/building_2d_games/21_customizing_gum_ui/
         - name: "22: The Game"
-          href: tutorials/building_2d_games/22_the_game/                     
+          href: tutorials/building_2d_games/22_completing_the_game/                     
 - name: Console Access
   href: console_access.md
 - name: Help and Support
