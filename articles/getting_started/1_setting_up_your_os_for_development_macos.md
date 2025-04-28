@@ -34,7 +34,7 @@ If you intend to also work with platforms such as `Android` or `iOS`, you will n
 > [!NOTE]
 > You can use `dotnet workload search` to detect any other available workloads you wish to use.
 
-# Apple Silicon Known Issues
+## Apple Silicon Known Issues
 
  For the time being, MonoGame requires that you install the x64 version of the .NET runtime if you are running on an Apple Silicon mac in order to be able to build content. It is also required that [Rosetta](https://support.apple.com/en-us/HT211861) is enabled. 
 
