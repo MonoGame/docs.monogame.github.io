@@ -72,3 +72,7 @@ This section contains articles to help make your MonoGame project successful.
 * [How to apply Best Practices for MonoGame Games](HowTo_MobileBestPractices.md)
 
   The practices discussed here will help you have the most success possible with your MonoGame game.
+
+* [How to install MonoGame Preview packages](HowTo_Install_Preview_Release.md)
+
+  This topic describes how to use a preview release of MonoGame in a new or existing project.

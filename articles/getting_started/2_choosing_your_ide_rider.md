@@ -26,6 +26,11 @@ You can download and install Rider from: [https://www.jetbrains.com/rider/downlo
     dotnet new install MonoGame.Templates.CSharp
     ```
 
+> [!TIP]
+> Alternatively, consider using the Preview Packages provided by MonoGame to get access to the latest developments.
+>
+> * [How to install MonoGame Preview packages](../getting_to_know/howto/HowTo_Install_Preview_Release.md)
+
 ## Creating a new MonoGame project
 
 To get you started with Rider, here are the steps for setting up a new Rider MonoGame project.
