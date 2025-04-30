@@ -1,12 +1,12 @@
-private void CreateGameOverPanel(TextureAtlas atlas)
+private Panel CreateGameOverPanel(TextureAtlas atlas)
 {
-    _gameOverPanel = new Panel();
-    _gameOverPanel.Anchor(Gum.Wireframe.Anchor.Center);
-    _gameOverPanel.Visual.WidthUnits = DimensionUnitType.Absolute;
-    _gameOverPanel.Visual.HeightUnits = DimensionUnitType.Absolute;
-    _gameOverPanel.Visual.Width = 264.0f;
-    _gameOverPanel.Visual.Height = 70.0f;
-    _gameOverPanel.IsVisible = false;
+    Panel panel = new Panel();
+    panel.Anchor(Gum.Wireframe.Anchor.Center);
+    panel.Visual.WidthUnits = DimensionUnitType.Absolute;
+    panel.Visual.HeightUnits = DimensionUnitType.Absolute;
+    panel.Visual.Width = 264.0f;
+    panel.Visual.Height = 70.0f;
+    panel.IsVisible = false;
 
     TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
 
@@ -18,7 +18,7 @@ private void CreateGameOverPanel(TextureAtlas atlas)
     background.TextureWidth = backgroundRegion.Width;
     background.TextureTop = backgroundRegion.SourceRectangle.Top;
     background.TextureLeft = backgroundRegion.SourceRectangle.Left;
-    _gameOverPanel.AddChild(background);
+    panel.AddChild(background);
 
     TextRuntime text = new TextRuntime();
     text.Text = "GAME OVER";
@@ -28,7 +28,7 @@ private void CreateGameOverPanel(TextureAtlas atlas)
     text.FontScale = 0.5f;
     text.X = 10.0f;
     text.Y = 10.0f;
-    _gameOverPanel.AddChild(text);
+    panel.AddChild(text);
 
     _retryButton = new AnimatedButton(atlas);
     _retryButton.Text = "RETRY";
@@ -39,7 +39,7 @@ private void CreateGameOverPanel(TextureAtlas atlas)
     _retryButton.Click += OnRetryButtonClicked;
     _retryButton.GotFocus += OnElementGotFocus;
 
-    _gameOverPanel.AddChild(_retryButton);
+    panel.AddChild(_retryButton);
 
     AnimatedButton quitButton = new AnimatedButton(atlas);
     quitButton.Text = "QUIT";
@@ -50,5 +50,7 @@ private void CreateGameOverPanel(TextureAtlas atlas)
     quitButton.Click += OnQuitButtonClicked;
     quitButton.GotFocus += OnElementGotFocus;
 
-    _gameOverPanel.AddChild(quitButton);
+    panel.AddChild(quitButton);
+
+    return panel;
 }

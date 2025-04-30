@@ -1,10 +1,7 @@
-/// <summary>
-/// Creates a new GameSceneUI instance.
-/// </summary>
 public GameSceneUI()
 {
     // The game scene UI inherits from ContainerRuntime, so we set its
-    // dock to fill so it fills the entire screen.
+    // doc to fill so it fills the entire screen.
     Dock(Gum.Wireframe.Dock.Fill);
 
     // Add it to the root element.
@@ -21,23 +18,23 @@ public GameSceneUI()
 
     // Create the text that will display the players score and add it as
     // a child to this container.
-    CreateScoreText();
+    _scoreText = CreateScoreText();
     AddChild(_scoreText);
 
     // Create the background overlay that fills the container with a
     // transparent blue background when the pause panel or game over
     // panel is shown to visually take focus away from the active game and
     // add it as a child to this container.
-    CreateOverlay();
+    _overlay = CreateOverlay();
     AddChild(_overlay);
 
     // Create the Pause panel that is displayed when the game is paused and
     // add it as a child to this container
-    CreatePausePanel(atlas);
+    _pausePanel = CreatePausePanel(atlas);
     AddChild(_pausePanel.Visual);
 
     // Create the Game Over panel that is displayed when a game over occurs
     // and add it as a child to this container
-    CreateGameOverPanel(atlas);
+    _gameOverPanel = CreateGameOverPanel(atlas);
     AddChild(_gameOverPanel.Visual);
 }

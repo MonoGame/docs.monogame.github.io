@@ -1,12 +1,12 @@
-private void CreatePausePanel(TextureAtlas atlas)
+private Panel CreatePausePanel(TextureAtlas atlas)
 {
-    _pausePanel = new Panel();
-    _pausePanel.Anchor(Gum.Wireframe.Anchor.Center);
-    _pausePanel.Visual.WidthUnits = DimensionUnitType.Absolute;
-    _pausePanel.Visual.HeightUnits = DimensionUnitType.Absolute;
-    _pausePanel.Visual.Width = 264.0f;
-    _pausePanel.Visual.Height = 70.0f;
-    _pausePanel.IsVisible = false;
+    Panel panel = new Panel();
+    panel.Anchor(Gum.Wireframe.Anchor.Center);
+    panel.Visual.WidthUnits = DimensionUnitType.Absolute;
+    panel.Visual.HeightUnits = DimensionUnitType.Absolute;
+    panel.Visual.Width = 264.0f;
+    panel.Visual.Height = 70.0f;
+    panel.IsVisible = false;
 
     TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
 
@@ -18,7 +18,7 @@ private void CreatePausePanel(TextureAtlas atlas)
     background.TextureWidth = backgroundRegion.Width;
     background.TextureTop = backgroundRegion.SourceRectangle.Top;
     background.TextureLeft = backgroundRegion.SourceRectangle.Left;
-    _pausePanel.AddChild(background);
+    panel.AddChild(background);
 
     TextRuntime text = new TextRuntime();
     text.Text = "PAUSED";
@@ -27,7 +27,7 @@ private void CreatePausePanel(TextureAtlas atlas)
     text.FontScale = 0.5f;
     text.X = 10.0f;
     text.Y = 10.0f;
-    _pausePanel.AddChild(text);
+    panel.AddChild(text);
 
     _resumeButton = new AnimatedButton(atlas);
     _resumeButton.Text = "RESUME";
@@ -38,7 +38,7 @@ private void CreatePausePanel(TextureAtlas atlas)
     _resumeButton.Click += OnResumeButtonClicked;
     _resumeButton.GotFocus += OnElementGotFocus;
 
-    _pausePanel.AddChild(_resumeButton);
+    panel.AddChild(_resumeButton);
 
     AnimatedButton quitButton = new AnimatedButton(atlas);
     quitButton.Text = "QUIT";
@@ -49,5 +49,7 @@ private void CreatePausePanel(TextureAtlas atlas)
     quitButton.Click += OnQuitButtonClicked;
     quitButton.GotFocus += OnElementGotFocus;
 
-    _pausePanel.AddChild(quitButton);
+    panel.AddChild(quitButton);
+
+    return panel;
 }
