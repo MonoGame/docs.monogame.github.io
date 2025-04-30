@@ -133,7 +133,7 @@ By tracking both the current (`At`) and target (`To`) positions, we can implemen
 
 ### The Slime Class
 
-Next, let's implement a class to encapsulate the properties and functionality of our snake-like slime.  In the *GameObjects* directory, create a new file named *Slime.cs* and add the following initial code:
+Next, let's implement a class to encapsulate the properties and functionality of our snake-like slime. In the *GameObjects* directory of the DungeonSlime project (your main game project), create a new file named *Slime.cs* and add the following initial code:
 
 [!code-csharp[](./snippets/slime/definition.cs)]
 
