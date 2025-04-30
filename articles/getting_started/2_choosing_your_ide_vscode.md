@@ -94,6 +94,19 @@ You can find this extension by following the steps above and searching for "Mono
 4. Once the files are created, open up the `Game1.cs` file and wait a second for the C# extension to load
 5. You can now press F5, select C# and then your projects name if Visual Studio Code asks you, and it should start up your brand new game!
 
+## Update Project Tool references
+
+The MonoGame Content Editor (MGCB) it a tool delivered through NuGet for your project using the tools configuration held in your `dotnet-tools.json` file (located in the `.config` folder of your project).
+
+Once you have created your project you should run the following terminal/command-line command to ensure the tool (and the pipeline) is setup and read for your project:
+
+```dotnetcli
+    dotnet tool restore
+```
+
+> [!NOTE]
+> If you ever change the version of the tools or want to upgrade them by editing the `dotnet-tools.json` configuration, you MUST run this command again to update te tools.
+
 ## Next Steps
 
 Next, get to know MonoGame's code structure and project layout:

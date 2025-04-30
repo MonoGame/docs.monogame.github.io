@@ -47,6 +47,19 @@ To get you started with Rider, here are the steps for setting up a new Rider Mon
 4. Press "Create"
 5. You can now press `F5` to compile and debug your game, happy coding  :)
 
+## Update Project Tool references
+
+The MonoGame Content Editor (MGCB) it a tool delivered through NuGet for your project using the tools configuration held in your `dotnet-tools.json` file (located in the `.config` folder of your project).
+
+Once you have created your project you should run the following terminal/command-line command to ensure the tool (and the pipeline) is setup and read for your project:
+
+```dotnetcli
+    dotnet tool restore
+```
+
+> [!NOTE]
+> If you ever change the version of the tools or want to upgrade them by editing the `dotnet-tools.json` configuration, you MUST run this command again to update te tools.
+
 ## Next Steps
 
 Next, get to know MonoGame's code structure and project layout:
