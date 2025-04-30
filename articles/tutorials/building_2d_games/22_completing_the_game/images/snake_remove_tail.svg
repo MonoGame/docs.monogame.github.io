@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="301.57mm" height="210.15mm" version="1.1" viewBox="0 0 301.57 210.15" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(326.35 304.91)" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="-326.04" y="-304.6" width="300.93" height="209.52" rx="1.0555" ry=".79791" fill="#2f3435" stop-color="#000000" stroke-width=".63326" style="paint-order:stroke fill markers"/>
+  <g transform="translate(165 -307.9)">
+   <rect x="-458.55" y="141.88" width="45.593" height="41.185" fill="#e73c00" stop-color="#000000" stroke-width="2" style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"/>
+   <path d="m-436.99 87.192v50.193" fill="none" stroke-dasharray="1.99999, 4" stroke-width="2" style="paint-order:stroke fill markers"/>
+   <g fill="#2f3435" stroke-width="2">
+    <rect x="-315.77" y="33.058" width="45.593" height="41.185" stop-color="#000000" style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"/>
+    <rect x="-268.18" y="33.058" width="45.593" height="41.185" stop-color="#000000" style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"/>
+    <rect x="-410.96" y="33.058" width="45.593" height="41.185" stop-color="#000000" style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"/>
+    <rect x="-363.36" y="33.058" width="45.593" height="41.185" stop-color="#000000" style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"/>
+   </g>
+  </g>
+ </g>
+</svg>
