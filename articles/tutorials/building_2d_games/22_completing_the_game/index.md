@@ -115,7 +115,7 @@ By implementing this pattern in our game, we are not only making our current inp
 
 Next, we will need to implement a structure that can represent each segment of the slime.  This structure will store the position and movement data for each segment.
 
-In the game project, create a new directory named *GameObjects*.  We will be putting all of our code related to the objects within the game here.  Next, create a new file named *SlimeSegment.cs* inside the *GameObjects* directory you just created and add the following code:
+In the DungeonSlime project (your main game project), create a new directory named *GameObjects*. We will be putting all of our code related to the objects within the game here. Next, create a new file named *SlimeSegment.cs* inside the *GameObjects* directory you just created and add the following code:
 
 [!code-csharp[](./snippets/slimesegment.cs)]
 
