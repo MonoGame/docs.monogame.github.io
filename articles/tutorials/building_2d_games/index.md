@@ -65,7 +65,7 @@ Code blocks are used to show code examples with syntax highlighting.
 
 ## MonoGame
 
-If you ever have questions about MonoGame or would like to talk with other developers to share ideas or just hang out with us, you can find us in the various MonoGame communities below
+If you ever have questions about MonoGame or would like to talk with other developers to share ideas or just hang out with us, you can find us in the various MonoGame communities below:
 
 - [Discord](https://discord.gg/monogame)
 - [GitHub Discussions Forum](https://github.com/MonoGame/MonoGame/discussions)
