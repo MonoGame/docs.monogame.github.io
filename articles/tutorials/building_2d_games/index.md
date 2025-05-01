@@ -52,7 +52,7 @@ The following conventions are used in this documentation.
 
 ### Inline Code Blocks
 
-`Inline code` blocks are used for methods, functions, and variable names when they are discussed within the body of a paragraph.
+`Inline code` blocks are used for methods, functions, and variable names when they are discussed within the paragraphs of text.  For example, when referring to a method such as `Foo` in a sentence,it will appear with this formatting.
 
 ### Code Blocks
 
@@ -61,7 +61,7 @@ The following conventions are used in this documentation.
 public void Foo() { }
 ```
 
-Code blocks are used to show code examples with syntax highlighting.
+Code blocks are used to show code examples with syntax highlight.  These appear as separated blocks rather than inline with text, allowing for multi-line examples and better readability of complete code snippets.
 
 ## MonoGame
 
@@ -83,17 +83,16 @@ If you ever have questions about MonoGame or would like to talk with other devel
 >
 > \- Christopher Whitley (Aristurtle)
 
-## Acknowledgements
+### Acknowledgements
 
-> [!NOTE]
-> This documentation would not have been possible without the support and contributions from numerous individuals withing the MonoGame community.
->
-> First and foremost, I want to express my gratitude to the MonoGame Foundation, its maintainers, and the countless others contributors, who have preserved and evolved this framework, ensuring developers like myself have the tools needed to bring our creative visions to life.  Their dedication to keeping the spirit of XNA alive has been invaluable to indie game developers worldwide.
->
-> I am particularly grateful to the members of the MonoGame Discord community who reviewed early drafts of this content, providing feedback that helped shape these chapters into more a accessible and comprehensive learning resource.
->
-> To the many developers of games, such as Celeste, thank you for demonstrating what's possible with MonoGame and inspiring newcomers to explore this framework.
->
-> Finally, I would like to thank all the creators and contributors to open-source libraries and tools for MonoGame, including the the creators of Gum, Nez, and MonoGame.Extended and many other libraries that have helped make game development in MonoGame more accessible.
->
-> This documentation stands on the shoulders of a vibrant community that continues to share knowledge, and it is my hope that these tutorials will contribute meaningfully to that ongoing exchange.
+This documentation would not have been possible without the support and contributions from numerous individuals withing the MonoGame community.
+
+First and foremost, I want to express my gratitude to the MonoGame Foundation, its maintainers, and the countless others contributors, who have preserved and evolved this framework, ensuring developers like myself have the tools needed to bring our creative visions to life.  Their dedication to keeping the spirit of XNA alive has been invaluable to indie game developers worldwide.
+
+I am particularly grateful to the members of the MonoGame Discord community who reviewed early drafts of this content, providing feedback that helped shape these chapters into more a accessible and comprehensive learning resource.
+
+To the many developers of games, such as Celeste, thank you for demonstrating what's possible with MonoGame and inspiring newcomers to explore this framework.
+
+Finally, I would like to thank all the creators and contributors to open-source libraries and tools for MonoGame, including the the creators of Gum, Nez, and MonoGame.Extended and many other libraries that have helped make game development in MonoGame more accessible.
+
+This documentation stands on the shoulders of a vibrant community that continues to share knowledge, and it is my hope that these tutorials will contribute meaningfully to that ongoing exchange.
