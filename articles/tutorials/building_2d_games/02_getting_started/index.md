@@ -8,7 +8,7 @@ Unlike game engines, MonoGame is a *framework*. This means it does not come as a
 * **Flexibility**: Developers are not locked into using a specific editor or interface, allowing them to use their preferred development tools.
 * **Integration**: As a .NET library itself, MonoGame can easily integrate with other .NET libraries and tools.
 * **Cross-platform Development**: Since C# is cross-platform, and MonoGame is cross-platform, developers can develop MonoGame projects on Windows, macOS, or Linux, with only slight differences in the setup process for each operating system.
-* **Version Control Friendly**: The code-first approach makes it easier to use version control systems like Git for you game projects.
+* **Version Control Friendly**: The code-first approach makes it easier to use version control systems like Git for your game projects.
 
 While the environment setup process is similar to the standard setup process for C# development, there are some MonoGame specific steps. These can vary slightly depending on your operating system and the *Integrated Development Environment* (IDE).
 
