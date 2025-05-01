@@ -42,12 +42,6 @@ This documentation will introduce game development concepts using the MonoGame f
 | [Chapter 20: Implementing UI with Gum](20_implementing_ui_with_gum/index.md)         | Learn how to integrate and use the Gum UI framework to create functional menus, buttons, and sliders for your MonoGame projects.                                                                  | [20-Implementing-UI-With-Gum](https://github.com/shyfox-studio/learn-monogame-2d/tree/main/src/20-Implementing-UI-With-Gum/)       |
 | [Chapter 21: Customizing Gum UI](21_customizing_gum_ui/index.md)                     | Learn how to create custom UI components with animations and visual styling in Gum.                                                                                                               | [21-Customizing-Gum-UI](https://github.com/shyfox-studio/learn-monogame-2d/tree/main/src/21-Customizing-Gum-UI/)                   |
 
-In addition to the chapter documentation, supplemental documentation is also provided to give a more in-depth look at different topics with MonoGame. These are provided through the Appendix documentation below:
-
-| Appendix | Summary |
-| -------- | ------- |
-|          |         |
-
 ## Conventions Used in This Documentation
 
 The following conventions are used in this documentation.
