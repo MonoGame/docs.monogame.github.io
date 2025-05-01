@@ -230,16 +230,22 @@ Now that your development environment is setup and ready to go, you can dive in 
 
 ## Test Your Knowledge
 
-1. What version of the .NET SDK is currently targeted by MonoGame applications?
+1. What are two advantages of MonoGame being a framework rather than an engine?
 
     :::question-answer
-    .NET 8.0
+    Any two of the following:
+
+    - Flexibility: Developers can use their preferred development tools
+    - Integration: MonoGame easily integrates with other .NET libraries
+    - Cross-platform Development: Projects can be developed on Windows, macOS, or Linux
+    - Version Control Friendly: The code-first approach works well with systems like Git
+  
     :::
 
-2. What is the current version of MonoGame?
+2. What is the primary reason that game applications implement a *game loop* structure instead of using an event-based approach like traditional desktop applications?
 
     :::question-answer
-    3.8.3
+    Game application implement a *game loop* structure because games need to continuously update and render, event when there is no user input.  In games, objects might be moving, animations playing, and physics calculating regardless of user interaction, requiring constant updating and rendering until the game is told to exit.
     :::
 
 3. What is the color of the game window when you run a MonoGame project for the first time?
