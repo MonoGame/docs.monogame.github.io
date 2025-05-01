@@ -19,13 +19,13 @@ Think of a class library like a toolbox for your game development. Just as a mec
 
 The following diagrams show how this works:
 
-| ![Figure 4-1: Without using a class library, common modules are duplicated across projects](./images/without-class-library.png) |
-|:-------------------------------------------------------------------------------------------------------------------------------:|
-|                  **Figure 4-1: Without using a class library, common modules are duplicated across projects**                   |
+| ![Figure 4-1: Diagram displays the block for Game 1 on the left and Game 2 on the right.  In this example, when not using a class library, code for input, physics and audio systems are duplicated between both game projects.  If a bug is fixed in one system, the effort has to be duplicated in the same system in other game projects](./images/without-class-library-diagram.svg) |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                      **Figure 4-1: Diagram displays the block for Game 1 on the left and Game 2 on the right.  In this example, when not using a class library, code for input, physics and audio systems are duplicated between both game projects.  If a bug is fixed in one system, the effort has to be duplicated in the same system in other game projects**                       |
 
-| ![Figure 4-2: Using a class library, common modules are shared across projects](./images/with-class-library.png) |
-|:----------------------------------------------------------------------------------------------------------------:|
-|                 **Figure 4-2: Using a class library, common modules are shared across projects**                 |
+| ![Figure 4-2: Diagram displays a block for a class library which contains common modules at the top, which are then shared between the two game projects below.  If a bug is found in a module, fixing the bug will fix it across all game projects that use the class library](./images/with-class-library-diagram.svg) |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                     **Figure 4-2: Diagram displays a block for a class library which contains common modules at the top, which are then shared between the two game projects below.  If a bug is found in a module, fixing the bug will fix it across all game projects that use the class library**                     |
 
 > [!NOTE]
 > A class library is a project type that compiles into a [Dynamic Link Library](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries) (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.
@@ -171,8 +171,8 @@ The key changes made here are:
 Running the game now will show the same window as before, only now it is at a 1280x720 resolution as per the configuration and it is using the `Core` class from our library.  This may not seem like a big change visually, but it demonstrates how our library can simplify and standardize game initializations.
 
 | ![Figure 4-3: The game window at 1280x720 with the title Dungeon Slime](./images/game-window.png) |
-|:-------------------------------------------------------------------------------------------------:|
-|       **Figure 4-3: The game window at 1280x720 with the title Dungeon Slime**        |
+| :-----------------------------------------------------------------------------------------------: |
+|             **Figure 4-3: The game window at 1280x720 with the title Dungeon Slime**              |
 
 > [!IMPORTANT]
 > If you receive an error stating that the following:
