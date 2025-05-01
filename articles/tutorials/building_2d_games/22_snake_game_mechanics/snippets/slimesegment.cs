@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace DungeonSlime;
+namespace DungeonSlime.GameObjects
 
 public struct SlimeSegment
 {

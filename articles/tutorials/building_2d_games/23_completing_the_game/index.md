@@ -11,6 +11,7 @@ In this chapter, you will:
 - Implement pause and game over screens with appropriate controls.
 - Refactor the `GameScene` class to coordinate all game elements.
 - Add game state management to handle playing, paused, and game over conditions
+- Implement input buffering to improve control responsiveness
 - Connect all elements to create a complete, playable game.
 
 ## The GameSceneUI Class
@@ -279,6 +280,75 @@ By refactoring our game into these encapsulated components, we have created a mo
 
 This architecture makes it easier to add new features or fix bugs, as changes to one component are less likely to affect others.
 
+## Adding Input Buffering to the Slime Class
+
+The game at this point is now playable.  If you test it out though, you may notice a small issue with inputs.  In games where movement updates happen at fixed intervals that are less frequent than input polling, inputs can sometimes feel unresponsive, expecially when trying to make multiple inputs in succession.
+
+For instance, if a player wants to navigate a tight corner by pressing up and then immediately left, pressing these keys in rapid succession often results in only the second input being registered.  When this happens, the slime will only turn left without first moving upward, missing the intended two-part movement completely.  This occurs because the second input overwrites the first one before the game has a change to process it, leading to frustrating gameplay where the slime does not respond to the player's complete sequence of commands.
+
+### Understanding Input Buffering
+
+Input buffering is a technique used in game development to temporarily store player inputs that cannot be immediately processed. Instead of discarding these inputs, they are placed in a queue and processed in order when the game is ready to handle them.
+
+In our snake-like game, the slime moves at fixed intervals rather than continuously. This creates a disconnect between when the player presses a button (which is checked every frame) and when the game can actually respond (which happens on a less frequent movement cycle). Without input buffering:
+
+- Players must time their inputs perfectly to align with the game's update cycle.
+- Rapid inputs are lost because only the last input is remembered.
+- The game feels unresponsive during quick turns.
+
+A well-implemented input buffer gives players a more forgiving and responsive experience by:
+
+1. Storing inputs that arrive between movement updates.
+2. Preserving the order of inputs for more predictable behavior.
+3. Creating a sense that the game is actually listening to the player.
+
+The size of an input buffer is an important design decision. If it is too small, players still might feel the game isn't responsive enough during complex sequences. If it is too large, the game might feel like it is playing itself as it works through the backlog of buffered commands.
+
+For our snake-style game, a buffer size of two is typically ideal - enough to handle quick two-direction turns (like up-then-left to navigate a corner) without letting players queue too many moves ahead.
+
+### Implementing Input Buffering in the Slime Class
+
+Let's modify our `Slime` class to include an input buffer system. First, we'll add the necessary fields to store our input queue.  In the *GameObjects* directory of the *DungeonSlime* project (your main game project), open the *Slime.cs* file and add the folliwing fields after the `_sprite` field:
+
+[!code-csharp[](./snippets/slime/fields.cs)]
+
+> [!NOTE]
+> The [`Queue<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1?view=net-9.0>) is a First In, First Out (FIFO) collection in C#. When you add items with `Enqueue()`, they join the end of the line, and when you retrieve items with `Dequeue()`, you always get the oldest item (the one at the front of the line). Think of it like people waiting in line - the first person to arrive is the first one served.
+>
+> This contrasts with a [`Stack<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-9.0>), which follows Last In, First Out (LIFO) behavior, where the most recently added item is the first one retrieved.
+
+This queue will store the directional vectors (up, down, left, right) that we will apply to the slime's movement in the order they were received.
+
+Next, we need to initialize this queue.  In the `Slime` class, locate the `Initialize` method and and update it to the following:
+
+[!code-csharp[](./snippets/slime/initialize.cs?highlight=30-31)]
+
+Next, we need to update the input handling method to store the inputs in the queue instead of immediately overwritting the `_nextDirection` field.  In the `Slime` class, locate the `HandleInput` method and update it to the following
+
+[!code-csharp[](./snippets/slime/handleinput.cs?hightlight=3,22-38)]
+
+1. The `potentialNewDirection` is now given the initial value of [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero).
+2. A check is made to see if the player has pressed a direction key and if the input buffer is not already at maximum capacity.
+3. If a new direction key is pressed and the buffer has space:
+   1. The validation is made using [**Vector2.Dot**](xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) just like before to ensure it is a valid direction
+   2. If it is a valid direciton, then it is added to the queue.
+
+Finally, we need to modifiy how we apply the movement direction during the movement update cycle.  In the `Slime` class, locate the `Move` method and update it to the following:
+
+[!code-csharp[](./snippets/slime/move.cs?highlight=3-7)]
+
+The key change here is that we now dequeue a direction from the input buffer rather than directly using the `_nextDirection` value. This ensures we process inputs in the order they were received, preserving the player's intent.
+
+With these changes in place, our game now supports input buffering. This small enhancement improves how the game feels to play, particularly when making rapid directional changes.
+
+Players will notice:
+
+- When navigating a corner, they can quickly press up followed by left (or any other valid combination), and both inputs will be respected
+- The game feels more responsive since it remembers inputs between movement update cycles
+- Complex maneuvers are easier to execute since timing is more forgiving
+
+The difference might seem subtle, but it significantly reduces frustration during gameplay.
+
 ## Putting It All Together
 
 With all of these components now in place, our Dungeon Slime game has transformed from a simple demo built on learning MonoGame concepts into a complete snake-like game experience.  The player controls the slime that moves through the dungeon, consuming bats to grow longer.  If the slime collides with the wall or its own body, the game ends.
@@ -308,6 +378,7 @@ In this chapter, we have transformed our technical demo into a complete game by 
 - Implemented pause and game over screens that provide clear feedback to the player.
 - Refactored the `GameScene` class to coordinate all game components.
 - Added game state management to handle different gameplay conditions.
+- Enhanced player control through input buffering for more responsive gameplay
 - Connected all of the elements to create a complete playable game.
   
 The refactoring process we undertook demonstrates an important game development principle: separating concerns into specialized components makes code more maintainable and easier to extend. The `Slime` class manages snake-like behavior, the `Bat` class handles movement and collision response, and the `GameSceneUI` class encapsulates all UI-related functionality.
@@ -342,4 +413,16 @@ The refactoring process we undertook demonstrates an important game development 
     - It ensures the player faces an appropriate level of challenge that increases as the slime grows longer
     - It prevents potential frustration from random spawns that might be either too easy or too difficult to reach
     - It creates a more balanced and predictable game experience while still maintaining variety
+    :::
+
+3. What problem does input buffering solve and how does our implementation address it?
+
+    :::question-answer
+    Input buffering solves the timing disconnect between when players press buttons and when the game can actually process those inputs in games with fixed movement cycles. Without buffering, inputs that occur between movement cycles are lost, especially when players make rapid sequential inputs like navigating corners.
+
+    Our implementation addresses this by:
+
+    - Using a queue data structure to store up to two directional inputs
+    - Processing inputs in First-In-First-Out order to preserve the player's intended sequence
+    - Validating each input against the previous one to prevent impossible movements
     :::

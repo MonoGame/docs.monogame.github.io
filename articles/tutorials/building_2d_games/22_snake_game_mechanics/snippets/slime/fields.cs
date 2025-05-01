@@ -1,6 +1,6 @@
 // A constant value that represents the amount of time to wait between
 // movement updates.
-private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(10000);
+private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(200);
 
 // The amount of time that has elapsed since the last movement update.
 private TimeSpan _movementTimer;
