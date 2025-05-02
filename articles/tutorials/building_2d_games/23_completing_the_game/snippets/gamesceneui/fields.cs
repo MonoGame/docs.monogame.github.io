@@ -4,10 +4,6 @@ private static readonly string s_scoreFormat = "SCORE: {0:D6}";
 // The sound effect to play for auditory feedback of the user interface.
 private SoundEffect _uiSoundEffect;
 
-// A colored rectangle used to overlay the game scene when the pause or
-// game over panels are visible.
-private ColoredRectangleRuntime _overlay;
-
 // The pause panel
 private Panel _pausePanel;
 

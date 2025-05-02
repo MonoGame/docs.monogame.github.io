@@ -12,8 +12,6 @@ public void UpdateScoreText(int score)
 /// </summary>
 public void ShowPausePanel()
 {
-    // Make the overlay and the pause panel visible.
-    _overlay.Visible = true;
     _pausePanel.IsVisible = true;
 
     // Give the resume button focus for keyboard/gamepad input.
@@ -28,8 +26,6 @@ public void ShowPausePanel()
 /// </summary>
 public void HidePausePanel()
 {
-    // Hide the overlay and the pause panel.
-    _overlay.Visible = false;
     _pausePanel.IsVisible = false;
 }
 
@@ -38,8 +34,6 @@ public void HidePausePanel()
 /// </summary>
 public void ShowGameOverPanel()
 {
-    // Make the overlay and the game over panel visible.
-    _overlay.Visible = true;
     _gameOverPanel.IsVisible = true;
 
     // Give the retry button focus for keyboard/gamepad input.
@@ -54,8 +48,6 @@ public void ShowGameOverPanel()
 /// </summary>
 public void HideGameOverPanel()
 {
-    // Hide the overlay and game over panel.
-    _overlay.Visible = false;
     _gameOverPanel.IsVisible = false;
 }
 

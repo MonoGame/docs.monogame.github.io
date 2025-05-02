@@ -21,13 +21,6 @@ public GameSceneUI()
     _scoreText = CreateScoreText();
     AddChild(_scoreText);
 
-    // Create the background overlay that fills the container with a
-    // transparent blue background when the pause panel or game over
-    // panel is shown to visually take focus away from the active game and
-    // add it as a child to this container.
-    _overlay = CreateOverlay();
-    AddChild(_overlay);
-
     // Create the Pause panel that is displayed when the game is paused and
     // add it as a child to this container
     _pausePanel = CreatePausePanel(atlas);

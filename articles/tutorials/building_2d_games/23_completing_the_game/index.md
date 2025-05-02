@@ -39,7 +39,6 @@ Let's break down what each of these fields is responsible for:
 
 - `s_scoreFormat`: A string format template used to display the player's score with leading zeros.
 - `_uiSoundEffect`: Stores the sound effect played for UI interactions like button clicks and focus changes.
-- `_overlay`: A semi-transparent overlay that darkens the game screen when a menu is displayed.
 - `_pausePanel`: The panel containing the UI elements shown when the game is paused.
 - `_resumeButton`: A reference to the resume button, allowing us to set focus on it when the pause panel is shown.
 - `_gameOverPanel`: The panel containing the UI elements shown when a game over occurs.
@@ -78,10 +77,6 @@ Next add the methods to create the various UI elements that are managed by the `
 [!code-csharp[](./snippets/gamesceneui/createscoretext.cs)]
 
 This method takes creates a `TextRuntime` element that we can use to display the player's score and returns it back.  After this method, add the following method:
-
-[!code-csharp[](./snippets/gamesceneui/createoverlay.cs)]
-
-This method creates a `ColoredRectangleRuntime` element that is semi-transparent and returns it back.  This will be used to dim the game when the pause and game over panels are shown.  After this method, add the following method:
 
 [!code-csharp[](./snippets/gamesceneui/createpausepanel.cs)]
 
@@ -140,7 +135,7 @@ The `GameScene` class now contains the following key fields:
 - `_ui`: A reference to the game scene UI component.
 - `_state`: The current state of the game represented by the `GameState` enum.
 
-Now we'll add the various methods needed to complete the `GameScene` class. Add each section in the sequence presented below. This will build up the scene's functionality step by step.
+Now we will add the various methods needed to complete the `GameScene` class. Add each section in the sequence presented below. This will build up the scene's functionality step by step.
 
 > [!NOTE]
 > As with previous classes, you might encounter compiler errors until all sections are in place. These errors will be resolved once all components of the class have been added.
@@ -308,7 +303,7 @@ For our snake-style game, a buffer size of two is typically ideal - enough to ha
 
 ### Implementing Input Buffering in the Slime Class
 
-Let's modify our `Slime` class to include an input buffer system. First, we'll add the necessary fields to store our input queue.  In the *GameObjects* directory of the *DungeonSlime* project (your main game project), open the *Slime.cs* file and add the folliwing fields after the `_sprite` field:
+Let's modify our `Slime` class to include an input buffer system. First, we will add the necessary fields to store our input queue.  In the *GameObjects* directory of the *DungeonSlime* project (your main game project), open the *Slime.cs* file and add the folliwing fields after the `_sprite` field:
 
 [!code-csharp[](./snippets/slime/fields.cs)]
 
@@ -380,7 +375,7 @@ In this chapter, we have transformed our technical demo into a complete game by 
 - Added game state management to handle different gameplay conditions.
 - Enhanced player control through input buffering for more responsive gameplay
 - Connected all of the elements to create a complete playable game.
-  
+
 The refactoring process we undertook demonstrates an important game development principle: separating concerns into specialized components makes code more maintainable and easier to extend. The `Slime` class manages snake-like behavior, the `Bat` class handles movement and collision response, and the `GameSceneUI` class encapsulates all UI-related functionality.
 
 ## Test Your Knowledge
@@ -400,7 +395,7 @@ The refactoring process we undertook demonstrates an important game development 
     - Creates a clear flow between different game conditions
     - Simplifies conditional logic by using explicit states rather than multiple boolean flags
     - Makes the game's behavior more predictable and easier to debug
-  
+
     :::
 
 2. Why is it important to position the bat away from the slime after it's been eaten rather than at a completely random location?
