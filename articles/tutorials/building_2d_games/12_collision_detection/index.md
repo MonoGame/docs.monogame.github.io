@@ -288,7 +288,7 @@ Now that we have a struct to represent a circle and check for overlapping, we wi
 
 ## Adding Collision To Our Game
 
-If you run the game right now and move the slime around, you'll notice a few issues that can be fixed by adding collision detection and response:
+If you run the game right now and move the slime around, you will notice a few issues that can be fixed by adding collision detection and response:
 
 1. You can move the slime outside the bounds of the screen.
 2. Nothing occurs when the slime collides with the bat.

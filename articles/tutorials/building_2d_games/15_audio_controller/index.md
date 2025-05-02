@@ -19,7 +19,7 @@ In this chapter you will:
 - Integrate the audio controller with your game's core systems.
 - Implement keyboard shortcuts for audio control.
 
-By the end of this chapter, you'll have an audio control system that can be easily reused in future game projects.
+By the end of this chapter, you will have an audio control system that can be easily reused in future game projects.
 
 ## The AudioController Class
 

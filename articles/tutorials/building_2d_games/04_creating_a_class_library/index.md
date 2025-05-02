@@ -15,7 +15,7 @@ In this chapter you will:
 
 ## What Is a Class Library
 
-Think of a class library like a toolbox for your game development. Just as a mechanic keeps their most-used tools in a toolbox they bring to every job, a class library stores code components you'll want to use in multiple game projects. Instead of recreating these tools for each new game (or copying and pasting code), you organize them in one place where they are easy to find, use, and improve over time.
+Think of a class library like a toolbox for your game development. Just as a mechanic keeps their most-used tools in a toolbox they bring to every job, a class library stores code components you will want to use in multiple game projects. Instead of recreating these tools for each new game (or copying and pasting code), you organize them in one place where they are easy to find, use, and improve over time.
 
 The following diagrams show how this works:
 
@@ -39,7 +39,7 @@ Creating a class library offers several important advantages, especially as your
 3. **Maintainability**: When you improve or fix a bug in your library code, all games using that library benefit automatically. This means fixing one bug once instead of in multiple places.
 4. **Testing**: You can test your library code independently from any specific game. This helps ensure your core systems are solid before you build a game on top of them.
 
-As your library grows, you'll accumulate a personal collection of well-tested modules that make starting new projects much faster. The modules we will create in this library will handle common game tasks like input, audio, sprites, and animations.
+As your library grows, you will accumulate a personal collection of well-tested modules that make starting new projects much faster. The modules we will create in this library will handle common game tasks like input, audio, sprites, and animations.
 
 ## Adding the Class Library
 
@@ -146,7 +146,7 @@ The `Core` class provides the following features
 > [!NOTE]
 > The `new` keyword in the property declaration `public static new GraphicsDevice GraphicsDevice` and `public static new ContentManager Content` is used to intentionally hide (or "shadow") the inherited `GraphicsDevice` and `Content` properties from the base `Game` class. This creates new properties with the same name but different accessibility (static vs. instance) in the derived class.
 >
-> When you access `Core.GraphicsDevice` or `Core.Content` you'll be using this static properties, while `base.GraphicsDevice` or `base.Content` within instance methods of the `Core` class would still access the original property. This pattern allows us to provide convenient static access to the graphics device and content manager throughout our game without having to reference the Core instance every time.
+> When you access `Core.GraphicsDevice` or `Core.Content` you will be using this static properties, while `base.GraphicsDevice` or `base.Content` within instance methods of the `Core` class would still access the original property. This pattern allows us to provide convenient static access to the graphics device and content manager throughout our game without having to reference the Core instance every time.
 
 This approach provides a consistent foundation for all our games, handling common setup tasks and providing convenient access to core functionality.
 

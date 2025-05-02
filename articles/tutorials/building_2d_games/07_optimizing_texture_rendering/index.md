@@ -11,7 +11,7 @@ In this chapter, you will:
 - Explore texture atlases as a solution for optimizing texture rendering.
 - Create reusable classes to optimize and simplify texture management and rendering.
 
-By the end of this chapter, you'll understand how to organize your game's textures for optimal performance and have a flexible texture atlas management system for your future game projects.
+By the end of this chapter, you will understand how to organize your game's textures for optimal performance and have a flexible texture atlas management system for your future game projects.
 
 ## Texture Swapping
 

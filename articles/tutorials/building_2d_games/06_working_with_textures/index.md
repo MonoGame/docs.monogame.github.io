@@ -276,7 +276,7 @@ When [**SpriteSortMode.Deferred**](xref:Microsoft.Xna.Framework.Graphics.SpriteS
 
 [!code-csharp[](./snippets/layerdepth.cs?highlight=29)]
 
-Doing this should tell it to render on a layer above the wordmark since the icon is at `1.0f` and the wordmark is at `0.0f` for the `layerDepth`.  However, if you run the game now, you'll see that no change actually happens; the wordmark is still drawn on top of the icon.
+Doing this should tell it to render on a layer above the wordmark since the icon is at `1.0f` and the wordmark is at `0.0f` for the `layerDepth`.  However, if you run the game now, you will see that no change actually happens; the wordmark is still drawn on top of the icon.
 
 To make use of the `layerDepth` parameter, you need to set the `sortMode` to either [**SpriteSortMode.BackToFront**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.BackToFront) or [**SpriteSortMode.FrontToBack**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.FrontToBack).
 

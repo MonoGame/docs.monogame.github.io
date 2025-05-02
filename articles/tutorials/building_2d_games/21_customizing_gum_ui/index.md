@@ -341,7 +341,7 @@ Finally, update the `CreatePausePanel` method so that
 
 ## Testing the Styled UI
 
-When you run the game now, you'll see a dramatic improvement in the visual appearance of the UI:
+When you run the game now, you will see a dramatic improvement in the visual appearance of the UI:
 
 1. The buttons now use our custom animated background that pulses when focused.
 2. The sliders have a cleaner, mores stylized appearance with the OFF and MAX labels.
