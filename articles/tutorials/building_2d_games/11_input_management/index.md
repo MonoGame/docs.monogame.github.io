@@ -400,7 +400,7 @@ In this chapter, you learned how to:
 
 ## Test Your Knowledge
 
-1. What's the difference between checking if an input is "down" versus checking if it was "just pressed"?
+1. What is the difference between checking if an input is "down" versus checking if it was "just pressed"?
 
     :::question-answer
     "Down" checks if an input is currently being held, returning true every frame while held. "Just pressed" only returns true on the first frame when the input changes from up to down, requiring comparison between current and previous states.

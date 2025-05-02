@@ -91,7 +91,7 @@ First and foremost, I want to express my gratitude to the MonoGame Foundation, i
 
 I am particularly grateful to the members of the MonoGame Discord community who reviewed early drafts of this content, providing feedback that helped shape these chapters into more a accessible and comprehensive learning resource.
 
-To the many developers of games, such as Celeste, thank you for demonstrating what's possible with MonoGame and inspiring newcomers to explore this framework.
+To the many developers of games, such as Celeste, thank you for demonstrating what is possible with MonoGame and inspiring newcomers to explore this framework.
 
 Finally, I would like to thank all the creators and contributors to open-source libraries and tools for MonoGame, including the the creators of Gum, Nez, and MonoGame.Extended and many other libraries that have helped make game development in MonoGame more accessible.
 

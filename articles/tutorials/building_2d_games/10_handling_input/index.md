@@ -3,7 +3,7 @@ title: "Chapter 10: Handling Input"
 description: "Learn how to handle keyboard, mouse, and gamepad input in MonoGame."
 ---
 
-When you play a game, you need ways to control what's happening; using a keyboard or gamepad to control a character or clicking the mouse to navigate a menu, MonoGame helps us handle all these different types of controls through dedicated input classes:
+When you play a game, you need ways to control what is happening; using a keyboard or gamepad to control a character or clicking the mouse to navigate a menu, MonoGame helps us handle all these different types of controls through dedicated input classes:
 
 - [**Keyboard**](xref:Microsoft.Xna.Framework.Input.Keyboard): Detects which keys are being pressed.
 - [**Mouse**](xref:Microsoft.Xna.Framework.Input.Mouse): Tracks mouse movement, button clicks, and scroll wheel use.
@@ -374,7 +374,7 @@ In the next chapter, we will learn how to track previous input states to handle 
     Storing the state in a variable is more efficient and ensures consistent input checking within a frame. Each `GetState` call polls the device, which can impact performance if called repeatedly.
     :::
 
-2. What's the main difference between how keyboard and mouse/gamepad button states are checked?
+2. What is the main difference between how keyboard and mouse/gamepad button states are checked?
 
     :::question-answer
     Keyboard input uses [**IsKeyUp**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys))/[**IsKeyDown**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)) methods, while mouse and gamepad buttons return a [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) enum value (Pressed or Released).
@@ -386,13 +386,13 @@ In the next chapter, we will learn how to track previous input states to handle 
     The thumbstick Y-axis values (-1.0f down to 1.0f up) are inverted compared to MonoGame's screen coordinate system (Y increases downward). Multiplying by -1 aligns the thumbstick direction with screen movement.
     :::
 
-4. What's the difference between analog and digital trigger input on a gamepad?
+4. What is the difference between analog and digital trigger input on a gamepad?
 
     :::question-answer
     Analog triggers provide values between 0.0f and 1.0f based on how far they're pressed, while digital triggers only report 0.0f (not pressed) or 1.0f (pressed). This affects how you handle trigger input in your game.
     :::
 
-5. What's the key difference between [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) and [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture)?
+5. What is the key difference between [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) and [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture)?
 
     :::question-answer
     [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) returns information about current touch points on the screen, while [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture) provides information about specific gesture patterns like taps, drags, and pinches that have been performed.
