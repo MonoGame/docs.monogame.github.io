@@ -79,7 +79,7 @@ If you ever have questions about MonoGame or would like to talk with other devel
 >
 > Since then, I have written various small self contained tutorials on different topics for MonoGame to try and give back to the community for those getting started. I also participate regularly in the community discussion channels, answering questions and offering technical advice, so I am very familiar with the topics and pain points that users get hung up on when first starting out.
 >
-> With this documentation, I hope to take the lessons I've learned and provide a tutorial series that I wish was available when I first started, and to present using MonoGame in a straight forward way, introducing concepts and building off of them as we go along in a way that makes sense and is easy to follow.
+> With this documentation, I hope to take the lessons I have learned and provide a tutorial series that I wish was available when I first started, and to present using MonoGame in a straight forward way, introducing concepts and building off of them as we go along in a way that makes sense and is easy to follow.
 >
 > \- Christopher Whitley (Aristurtle)
 
