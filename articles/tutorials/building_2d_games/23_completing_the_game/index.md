@@ -80,7 +80,7 @@ This method takes creates a `TextRuntime` element that we can use to display the
 
 [!code-csharp[](./snippets/gamesceneui/createpausepanel.cs)]
 
-This method builds the `Panel` that is shown hen the game is paused, including the "Resume" and "Quit" buttons, then returns it back. Finally, after this method, add the following method:
+This method builds the `Panel` that is shown when the game is paused, including the "Resume" and "Quit" buttons, then returns it back. Finally, after this method, add the following method:
 
 [!code-csharp[](./snippets/gamesceneui/creategameoverpanel.cs)]
 
