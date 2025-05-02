@@ -18,7 +18,7 @@ For instance, to load an image file directly at runtime, you would need to:
 > [!IMPORTANT]
 > A big disadvantage to loading an image file as a texture directly, is when that when it loads it, it does so in its compressed format such as *.png* or *.jpg*.  These compression formats are not understood by a Graphics Processing Unit (GPU); they will need to be decompressed into raw bytes as a format the GPU does understand before it can store the data.  Doing this can potentially leave a larger memory footprint for your assets.  You will also need to handle how different compression formats work on the platform you are targeting such as desktops, mobile, and consoles.  
 >
-> Alternatively, as we'll explore below, using the **Content Pipeline** handles this for you automatically.
+> Alternatively, as we will explore below, using the **Content Pipeline** handles this for you automatically.
 
 On the other side of this coin, MonoGame offers the **Content Pipeline**; a workflow for managing assets. The workflow is made up of a set of tools and utilities that are automatically added by default when you create a new MonoGame project using the MonoGame project templates.  To use this workflow, you need to:
 
@@ -213,7 +213,7 @@ When the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManage
 
 ## Loading Our First Asset
 
-Let's walk through the process of editing our content project using the MGCB Editor to add a new image asset and then load it in our game.  To get started, we'll first need an image to load.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your computer:
+Let's walk through the process of editing our content project using the MGCB Editor to add a new image asset and then load it in our game.  To get started, we will first need an image to load.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your computer:
 
 | ![Figure 5-7: MonoGame Horizontal Logo](./images/logo.png) |
 |:----------------------------------------------------------:|
@@ -250,7 +250,7 @@ The key changes made here are:
 3. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) the logo is drawn using the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
     > [!NOTE]
-    > We'll go more into detail about the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) in the next chapter.
+    > We will go more into detail about the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) in the next chapter.
 
 Running the game now will show the MonoGame logo displayed in the upper-left corner of the game window.
 
@@ -267,7 +267,7 @@ Let's review what you accomplished in this chapter:
 - You learned about the **Content Pipeline** workflow and how MonoGame automates the process for you.
 - You loaded the image file asset using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager)
 
-In the next chapter, we'll go more into detail on working with textures and the various options available when rendering them.
+In the next chapter, we will go more into detail on working with textures and the various options available when rendering them.
 
 ## Test Your Knowledge
 

@@ -53,7 +53,7 @@ The [**MouseState**](xref:Microsoft.Xna.Framework.Input.MouseState) struct conta
 | [**XButton2**](xref:Microsoft.Xna.Framework.Input.MouseState.XButton2)                 | [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) | Returns the state of the second extended button on the mouse.                                                           |
 
 > [!NOTE]
-> [**ScrollWheelValue**](xref:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue) returns the cumulative value of the scroll wheel since the start of the game, not how much it moved since the last update.  To determine how much it moved between one update and the next, you would need to compare it with the previous frame's value.  We'll discuss comparing previous and current frame values for inputs in the next chapter.
+> [**ScrollWheelValue**](xref:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue) returns the cumulative value of the scroll wheel since the start of the game, not how much it moved since the last update.  To determine how much it moved between one update and the next, you would need to compare it with the previous frame's value.  We will discuss comparing previous and current frame values for inputs in the next chapter.
 
 Unlike keyboard input which uses [**IsKeyDown(Keys)**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys))/[**IsKeyUp(Keys)**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys)) methods mouse buttons return a [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState):
 
@@ -364,7 +364,7 @@ In this chapter, you learned how to:
 - Implement movement controls using different input methods.
 - Consider controller-specific details like coordinate systems and analog vs digital input.
 
-In the next chapter, we'll learn how to track previous input states to handle single-press events and implement an input management system to simplify some of the complexity of handling input.
+In the next chapter, we will learn how to track previous input states to handle single-press events and implement an input management system to simplify some of the complexity of handling input.
 
 ## Test Your Knowledge
 

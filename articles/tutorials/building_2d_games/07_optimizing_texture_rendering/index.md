@@ -107,7 +107,7 @@ These methods provide flexible options for rendering the texture region, similar
 
 ## The TextureAtlas Class
 
-In the [What is a Texture Atlas](#what-is-a-texture-atlas) section above, a texture atlas was described as a scrap book that holds all of the individual sprites for the game.  These individual sprites can now be represented by the `TextureRegion` class we just created.  Now, we'll create the `TextureAtlas` class to represent the collection of the regions that make up all of our sprites.
+In the [What is a Texture Atlas](#what-is-a-texture-atlas) section above, a texture atlas was described as a scrap book that holds all of the individual sprites for the game.  These individual sprites can now be represented by the `TextureRegion` class we just created.  Now, we will create the `TextureAtlas` class to represent the collection of the regions that make up all of our sprites.
 
 Just like the `TextureRegion` class, we're going to add this to the class library.  In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *TextureAtlas.cs*.  Add the following code for the foundation fo the `TextureAtlas` class to the *TextureAtlas.cs* file:
 
@@ -143,11 +143,11 @@ These methods serve different purposes in managing the texture atlas:
     - `RemoveRegion`: Removes a specific region by its name.
     - `Clear`: Removes all regions from the atlas.
 2. Atlas Creation
-    - `FromFile`: creates a new `TextureAtlas` from an XML configuration file. This method will load the source texture then create and add the regions based on the XML configuration.  We'll look more into using the XML configuration in a moment.
+    - `FromFile`: creates a new `TextureAtlas` from an XML configuration file. This method will load the source texture then create and add the regions based on the XML configuration.  We will look more into using the XML configuration in a moment.
 
 ## Using the TextureAtlas Class
 
-Let's put our new `TextureAtlas` class to use by exploring two approaches; creating an atlas manually and using XML configuration.  So far, we've been practicing using textures with the MonoGame logo. Now we will use a new texture atlas that contains various sprites we'll need for our game.
+Let's put our new `TextureAtlas` class to use by exploring two approaches; creating an atlas manually and using XML configuration.  So far, we've been practicing using textures with the MonoGame logo. Now we will use a new texture atlas that contains various sprites we will need for our game.
 
 Download the texture atlas by right-clicking the following image and saving it as atlas.png:
 
@@ -170,7 +170,7 @@ Add this texture atlas to your content project using the MGCB Editor:
 > [!TIP]
 > If you need a refresher on adding content using the MGCB Editor, you can revisit the [Chapter 05: The Content Pipeline](../05_content_pipeline/index.md).
 
-First, we'll explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of *Game1.cs* with the following:
+First, we will explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of *Game1.cs* with the following:
 
 [!code-csharp[](./snippets/game1/textureatlas_usage.cs?highlight=5,11-15,31-47,67-77)]
 
@@ -237,7 +237,7 @@ Let's review what you accomplished in this chapter:
 - Created reusable `TextureRegion` and `TextureAtlas` classes to optimize and simplify texture management.
 - Learned how to include assets in the content pipeline that should only be copied and not processed.
 
-In the next chapter, we'll build on the concepts of the `TextureAtlas` and explore creating the `Sprite` and `AnimatedSprite` classes to further simplify managing and rendering sprites.
+In the next chapter, we will build on the concepts of the `TextureAtlas` and explore creating the `Sprite` and `AnimatedSprite` classes to further simplify managing and rendering sprites.
 
 ## Test Your Knowledge
 

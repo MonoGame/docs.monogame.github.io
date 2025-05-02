@@ -131,7 +131,7 @@ The slime and bat sprites are no longer in the same position, and we have some n
 
 ### Adding Bitmap Fonts
 
-While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to draw text, Gum uses the [AngelCode Bitmap Font (.fnt)](https://www.angelcode.com/products/bmfont/) font file format. This means we'll need to supply Gum with the *.fnt* file that defines our font.
+While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to draw text, Gum uses the [AngelCode Bitmap Font (.fnt)](https://www.angelcode.com/products/bmfont/) font file format. This means we will need to supply Gum with the *.fnt* file that defines our font.
 
 First, download the *.fnt* file by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/fonts* folder:
 
@@ -168,7 +168,7 @@ Open the *TextureRegion.cs* file in the *MonoGameLibrary* project and add the fo
 
 ## Creating Custom UI Components
 
-Now that we have all our resources prepared, let's create custom versions of the UI controls we're using in our game. We'll start with an animated button that uses our game's visual style, then move on to creating a custom slider.
+Now that we have all our resources prepared, let's create custom versions of the UI controls we're using in our game. We will start with an animated button that uses our game's visual style, then move on to creating a custom slider.
 
 ### The AnimatedButton Class
 

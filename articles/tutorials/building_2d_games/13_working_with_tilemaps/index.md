@@ -26,7 +26,7 @@ A tileset is a collection of small images (tiles) that can be combined and arran
 - Decorative elements like plants and furniture.
 - Special tiles like doors, ladders, or water.
 
-Each tile in a tileset is assigned an ID number, which the tilemap uses to reference which tile goes where. For example, in Figure 13-1 below, the tileset we'll add to our game in a moment is shown on the left and on the right is the same tileset with an overlay showing how each tile is assigned an ID number.
+Each tile in a tileset is assigned an ID number, which the tilemap uses to reference which tile goes where. For example, in Figure 13-1 below, the tileset we will add to our game in a moment is shown on the left and on the right is the same tileset with an overlay showing how each tile is assigned an ID number.
 
 | ![Figure 13-1: Left: Original dungeon tileset. Right: The same tileset with an overlay showing how each tile is assigned a numeric ID](./images/tileset-grid-comparison.png) |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -126,7 +126,7 @@ The `Tilemap` class should also provide a method to load and create an instance 
 
 ## Updating the Game
 
-Now that we have the `Tilemap` and `Tileset` classes defined, let's update our game to use them. We'll need to
+Now that we have the `Tilemap` and `Tileset` classes defined, let's update our game to use them. We will need to
 
 1. Update the texture atlas to include the tileset.
 2. Create a tilemap xml configuration file.
@@ -174,7 +174,7 @@ Next, we need to add this configuration file to our content project with the MGC
 
 ### Update the Game1 Class
 
-With all of the assets now in place and configured, let's update the `Game1` class to load the tilemap and draw it.  We'll also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open *Game1.cs* and make the following updates:
+With all of the assets now in place and configured, let's update the `Game1` class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open *Game1.cs* and make the following updates:
 
 [!code-csharp[](./snippets/game1.cs?highlight=31-35,46-61,80-82,114,116,118,120,123,125,127,129,147,150,152,155,158,161,163,166,181-183,305-306)]
 
@@ -213,7 +213,7 @@ Let's review what you accomplished in this chapter:
 - Created an XML-based tilemap definition system for storing level layouts.
 - Updated our game to use tilemaps for the game environment.
   
-In the next chapter, we'll start exploring audio to add sound effects when a collision occurs and background music to our game.
+In the next chapter, we will start exploring audio to add sound effects when a collision occurs and background music to our game.
 
 ## Test Your Knowledge
 

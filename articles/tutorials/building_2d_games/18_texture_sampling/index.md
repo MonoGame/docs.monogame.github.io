@@ -144,9 +144,9 @@ Let's update title scene of our game by adding a scrolling background pattern us
 
 First, download the following image of a repeatable background pattern by right-clicking it and saving it as *background-pattern.png* in the *Content/images* folder of the game project:
 
-| ![Figure 18-9: The repeatable background pattern we'll use for the title screen](./images/background-pattern.png) |
+| ![Figure 18-9: The repeatable background pattern we will use for the title screen](./images/background-pattern.png) |
 | :---------------------------------------------------------------------------------------------------------------: |
-|                 **Figure 18-9: The repeatable background pattern we'll use for the title screen**                 |
+|                 **Figure 18-9: The repeatable background pattern we will use for the title screen**                 |
 
 Next, add this texture to your content project using the MGCB Editor:
 

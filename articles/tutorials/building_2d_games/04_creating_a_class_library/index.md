@@ -3,7 +3,7 @@ title: "04: Creating a Class Library"
 description: "Learn how to create and structure a reusable MonoGame class library to organize game components and share code between projects."
 ---
 
-One of the goals of this tutorial is to create reusable modules that you can use to jump start your next game project after this. Rather than starting from scratch each time, we'll build a collection of game components you can take with you from project to project.
+One of the goals of this tutorial is to create reusable modules that you can use to jump start your next game project after this. Rather than starting from scratch each time, we will build a collection of game components you can take with you from project to project.
 
 In this chapter you will:
 
@@ -39,7 +39,7 @@ Creating a class library offers several important advantages, especially as your
 3. **Maintainability**: When you improve or fix a bug in your library code, all games using that library benefit automatically. This means fixing one bug once instead of in multiple places.
 4. **Testing**: You can test your library code independently from any specific game. This helps ensure your core systems are solid before you build a game on top of them.
 
-As your library grows, you'll accumulate a personal collection of well-tested modules that make starting new projects much faster. The modules we'll create in this library will handle common game tasks like input, audio, sprites, and animations.
+As your library grows, you'll accumulate a personal collection of well-tested modules that make starting new projects much faster. The modules we will create in this library will handle common game tasks like input, audio, sprites, and animations.
 
 ## Adding the Class Library
 
@@ -151,7 +151,7 @@ The `Core` class provides the following features
 This approach provides a consistent foundation for all our games, handling common setup tasks and providing convenient access to core functionality.
 
 > [!NOTE]
-> As this tutorial progress, we'll be coming back to this `Core` class to add more to it.
+> As this tutorial progress, we will be coming back to this `Core` class to add more to it.
 
 ## Updating Our Game to Use the Core Class
 
@@ -194,7 +194,7 @@ Let's review what you accomplished in this chapter:
 - Added the library as a reference to your game project
 - Created your first reusable component and referenced and used it in the game project.
 
-In the next chapter, we'll learn about the Content Pipeline and how to load game assets.
+In the next chapter, we will learn about the Content Pipeline and how to load game assets.
 
 ## Test Your Knowledge
 

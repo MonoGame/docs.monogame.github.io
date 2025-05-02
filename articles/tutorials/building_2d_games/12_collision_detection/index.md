@@ -348,7 +348,7 @@ Let's review what you accomplished in this chapter:
   - Implemented bouncing behavior for the bat.
   - Created a trigger response when the slime "eats" the bat.
 
-In the next chapter, we'll explore using tilesets and tilemaps to create tile based environments for our game.
+In the next chapter, we will explore using tilesets and tilemaps to create tile based environments for our game.
 
 ## Test Your Knowledge
 

@@ -171,11 +171,11 @@ Below is an example of centering text on the screen by drawing the text at the c
 
 ## Implementing Text in Our Game
 
-Let's add some text to our game to display information to the player.  We'll add a score counter that increases when the slime eats the bat.
+Let's add some text to our game to display information to the player.  We will add a score counter that increases when the slime eats the bat.
 
 ### Adding the SpriteFont Description
 
-First, we'll need to create a SpriteFont Definition.  Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
+First, we will need to create a SpriteFont Definition.  Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
 
 1. Create a new folder called *fonts* (right-click *Content* > *Add* > *New Folder*).
 2. Right-click the new *fonts* folder and choose *Add* > *New Item...*.
@@ -187,7 +187,7 @@ First, we'll need to create a SpriteFont Definition.  Open the *Content.mgcb* co
 |             **Figure 16-1: The 04B_30.spritefont file created in the MGCB Editor**             |
 
 > [!NOTE]
-> We've named the SpriteFont Description file with the same name as the font we'll be using.  This makes it easier to remember when updating the code later.
+> We've named the SpriteFont Description file with the same name as the font we will be using.  This makes it easier to remember when updating the code later.
 
 ### Download the Font File
 
@@ -240,7 +240,7 @@ Let's review what you accomplished in this chapter:
 - Learned how to measure text dimensions.
 - Implementing a score display and boost indicator in our game.
 
-In the next chapter we'll discuss MonoGame's service container and how we can use it to start breaking our monolithic game file into modules for better maintainability.
+In the next chapter we will discuss MonoGame's service container and how we can use it to start breaking our monolithic game file into modules for better maintainability.
 
 ## Test Your Knowledge
 

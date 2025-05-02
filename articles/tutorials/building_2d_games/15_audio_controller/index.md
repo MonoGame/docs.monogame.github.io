@@ -98,14 +98,14 @@ For our `AudioController`, implementing `IDisposable` means we can ensure all so
 
 ## Implementing the AudioController Class
 
-Now that we have the audio controller class complete, let's update the game to use it.  We'll do this in two steps:
+Now that we have the audio controller class complete, let's update the game to use it.  We will do this in two steps:
 
 1. First, update the `Core` class to add the `AudioController` globally.
 1. Update the `Game1` class to use the global audio controller from `Core`.
 
 ### Updating the Core Class
 
-The `Core` class serves as our the base game class, so we'll update it first to add and expose the `AudioController` globally.  Open the *Core.cs* file in the *MonoGameLibrary* project and update it to the following:
+The `Core` class serves as our the base game class, so we will update it first to add and expose the `AudioController` globally.  Open the *Core.cs* file in the *MonoGameLibrary* project and update it to the following:
 
 [!code-csharp[](./snippets/core.cs?highlight=6,50-53,112-113,116-122,129-130)]
 
@@ -154,4 +154,4 @@ Let's review what you accomplished in this chapter:
 
 The `AudioController` class you created is a significant improvement over directly using MonoGame's audio APIs. It handles common audio management tasks that would otherwise need to be implemented repeatedly in different parts of your game. By centralizing these functions, you make your code more maintainable and provide a consistent audio experience across your game.
 
-In the next chapter, we'll start exploring fonts and adding text to the game.
+In the next chapter, we will start exploring fonts and adding text to the game.

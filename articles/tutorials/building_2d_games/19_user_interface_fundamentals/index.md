@@ -112,7 +112,7 @@ In this chapter, you learned the fundamentals of user interface design for games
 
 You also discovered the importance of accessible UI design and how to implement practices that make your game playable for a wider audience. These foundational concepts will serve as the building blocks for implementing the UI in our game.
 
-In the next chapter, we'll put these concepts into practice by implementing a UI system using Gum, a specialized UI framework that will help us create interactive menus, buttons, and other UI elements for our game.
+In the next chapter, we will put these concepts into practice by implementing a UI system using Gum, a specialized UI framework that will help us create interactive menus, buttons, and other UI elements for our game.
 
 ## Test Your Knowledge
 

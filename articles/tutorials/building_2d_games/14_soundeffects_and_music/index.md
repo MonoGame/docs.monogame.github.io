@@ -207,7 +207,7 @@ Let's review what you accomplished in this chapter:
   - Sound effects for bat bouncing and collection events.
 - Learned best practices for handling audio playback across different platforms.
 
-In the next chapter, we'll explore additional ways to manage audio by creating an audio controller module that will help with common tasks such as volume control, muting, and state management.
+In the next chapter, we will explore additional ways to manage audio by creating an audio controller module that will help with common tasks such as volume control, muting, and state management.
 
 ## Test Your Knowledge
 

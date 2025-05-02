@@ -12,7 +12,7 @@ In [Chapter 07](../07_optimizing_texture_rendering/index.md), you learned how to
 - Sprite effects to flip horizontally and/or vertically.
 - Layer depth for draw order layering.
 
-Imagine scaling this up to dozens of sprites, each with multiple instances on screen.  Tracking all these properties through individual variables quickly becomes unmanageable. In this chapter, we'll solve this by creating a class that encapsulates sprite information and handles rendering.
+Imagine scaling this up to dozens of sprites, each with multiple instances on screen.  Tracking all these properties through individual variables quickly becomes unmanageable. In this chapter, we will solve this by creating a class that encapsulates sprite information and handles rendering.
 
 ## The Sprite Class
 
@@ -97,7 +97,7 @@ Try adjusting the various properties available for the slime and the bat sprites
 
 In this chapter, we created a reusable `Sprite` class that encapsulates the properties for each sprite that we would render.  The `TextureAtlas` class was updated to simplify sprite creation based on the `Sprite` class we created.
 
-In the next chapter, we'll build upon the `Sprite` class to create an `AnimatedSprite` class that will allow us to bring our sprites to life through animation.
+In the next chapter, we will build upon the `Sprite` class to create an `AnimatedSprite` class that will allow us to bring our sprites to life through animation.
 
 ## Test Your Knowledge
 
