@@ -50,14 +50,14 @@ Try adjusting the position and color parameters and see how they can affect the 
 
 MonoGame uses a coordinate system where (0, 0) is at the screen's upper-left corner. X values increase moving right, and Y values increase moving down. Understanding this, we wil try to center the logo on the game window.
 
-To center content on the screen, we need to find the window's center point. We can access this using the [**Window.ClientBounds**](xref:Microsoft.Xna.Framework.GameWindow.ClientBounds) property from the [**Game**](xref:Microsoft.Xna.Framework.Game) class, which represents the rectangular bounds of the game window.  [**Window.ClientBounds**](xref:Microsoft.Xna.Framework.GameWindow.ClientBounds) exposes both  [**Width**](xref:Microsoft.Xna.Framework.Rectangle.Width) and [**Height**](xref:Microsoft.Xna.Framework.Rectangle.Height) properties for the window's dimensions in pixels.  By dividing these dimensions in half, we can can calculate the window's center coordinates.  Let's update our [**Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)) method to use this:
+To center content on the screen, we need to find the window's center point. We can access this using the [**Window.ClientBounds**](xref:Microsoft.Xna.Framework.GameWindow.ClientBounds) property from the [**Game**](xref:Microsoft.Xna.Framework.Game) class, which represents the rectangular bounds of the game window.  [**Window.ClientBounds**](xref:Microsoft.Xna.Framework.GameWindow.ClientBounds) exposes both  [**Width**](xref:Microsoft.Xna.Framework.Rectangle.Width) and [**Height**](xref:Microsoft.Xna.Framework.Rectangle.Height) properties for the window's dimensions in pixels.  By dividing these dimensions in half, we can can calculate the window's center coordinates.  We can update our [**Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)) method to use this:
 
 [!code-csharp[](./snippets/draw_center_wrong.cs?highlight=9-16)]
 
 > [!TIP]  
 > In the example above, we multiply the [**Vector2**](xref:Microsoft.Xna.Framework.Vector2) created by `0.5f` to halve the value instead of dividing it by `2.0f`. If you are not used to seeing this, it might seem strange at first, but it is actually an optimization technique. CPUs are able to perform multiplication operations much faster than division operations and reading `* 0.5f` is easily understood to be the same thing as `/ 2.0f` when reading.
 
-We have now set the position to half the window's dimensions, which should center the logo. Let's run the game to see the result.
+We have now set the position to half the window's dimensions, which should center the logo. Run the game to see the result.
 
 | ![Figure 6-2: Attempting to draw the MonoGame logo centered on the game window](./images/logo-off-center.png) |
 | :-----------------------------------------------------------------------------------------------------------: |
@@ -95,7 +95,7 @@ This overload produces the same centered result but exposes all parameters that 
 
 ### Rotation
 
-First we will explore the `rotation` parameter.  This value is the amount of rotation to apply to the sprite when rendering it.  Let's rotate the texture 90° to make it vertical. Since rotation is measured in radians, not degrees, we can use the built-in math library in MonoGame to make the conversion for us by calling [**MathHelper.ToRadians**](xref:Microsoft.Xna.Framework.MathHelper.ToRadians(System.Single)).  Update the code to:
+First we will explore the `rotation` parameter.  This value is the amount of rotation to apply to the sprite when rendering it.  We will rotate the texture 90° to make it vertical. Since rotation is measured in radians, not degrees, we can use the built-in math library in MonoGame to make the conversion for us by calling [**MathHelper.ToRadians**](xref:Microsoft.Xna.Framework.MathHelper.ToRadians(System.Single)).  Update the code to:
 
 [!code-csharp[](./snippets/rotation.cs?highlight=17)]
 
@@ -236,9 +236,9 @@ Which will produce the following result:
 
 ### Source Rectangle
 
-The `sourceRectangle` parameter specifies a specific boundary within the texture that should be rendered.  So far, we've just set this parameter to `null`, which specifies that the full texture should be rendered.  If we only wanted to render a portion of the texture as the sprite, we can set this parameter value.  
+The `sourceRectangle` parameter specifies a specific boundary within the texture that should be rendered.  So far, we have just set this parameter to `null`, which specifies that the full texture should be rendered.  If we only wanted to render a portion of the texture as the sprite, we can set this parameter value.  
 
-For instance, take the logo image we've been using.  We can break it down into two distinct regions; the MonoGame icon and the MonoGame wordmark.
+For instance, take the logo image we have been using.  We can break it down into two distinct regions; the MonoGame icon and the MonoGame wordmark.
 
 | ![Figure 6-14: The MonoGame logo broken down into the icon and wordmark regions](./images/logo-texture-regions.png) |
 | :-----------------------------------------------------------------------------------------------------------------: |
@@ -246,14 +246,14 @@ For instance, take the logo image we've been using.  We can break it down into t
 
 We can see from Figure 6-14 above that the actual icon starts at position (0, 0) and is 128px wide and 128px tall. Likewise, the wordmark starts at position (150, 34) and is 458px wide and 58px tall. Knowing the starting position and the width and height of the region gives us a defined rectangle that we can use as the `sourceRectangle`.
 
-Let's see this in action by drawing the icon and the wordmark separately from the same texture. Update the code to the following:
+We can see this in action by drawing the icon and the wordmark separately from the same texture. Update the code to the following:
 
 [!code-csharp[](./snippets/sourcerectangle.cs?highlight=6-7,9-10,15-30,32-47)]
 
 The following changes were made:
 
 - Two new [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) values called `iconSourceRect` and `wordmarkSourceRect` that represent the boundaries of the MonoGame icon and wordmark regions within the logo texture were added.
-- The *sourceRectangle* parameter of the `_spriteBatch.Draw` was updated to use the new `iconSourceRect` value. **Notice that we are still telling it to draw the `_logo` for the *texture*, we've just supplied it with a source rectangle this time.**
+- The *sourceRectangle* parameter of the `_spriteBatch.Draw` was updated to use the new `iconSourceRect` value. **Notice that we are still telling it to draw the `_logo` for the *texture*, we have just supplied it with a source rectangle this time.**
 - The *origin* parameter was updated to use the width and height of the `iconSourceRect`. Since the overall dimensions of what we will be rendering has changed due to supplying a source rectangle, the origin needs to be adjusted to those dimensions as well.
 - Finally, a second `_spriteBatch.Draw` call is made, this time using the `wordmarkSourceRect` as the source rectangle so that the wordmark is drawn.
 
@@ -285,7 +285,7 @@ To make use of the `layerDepth` parameter, you need to set the `sortMode` to eit
 | [**SpriteSortMode.BackToFront**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.BackToFront) | Sprites are sorted by depth in back-to-front order prior to drawing. |
 | [**SpriteSortMode.FrontToBack**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.FrontToBack) | Sprites are sorted by depth in front-to-back order prior to drawing. |
 
-Let's see this in action.  We've already set the `layerDepth` parameter of the icon to `1.0f`.  Find the `_spriteBatch.Begin()` method call and update it to the following:
+Now we can see this in action. We have already set the `layerDepth` parameter of the icon to `1.0f`. Find the `_spriteBatch.Begin()` method call and update it to the following:
 
 [!code-csharp[](./snippets/sortmode.cs?highlight=13)]
 
@@ -303,7 +303,7 @@ The second is [**SpriteSortMode.Immediate**](xref:Microsoft.Xna.Framework.Graphi
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - You learned about the different parameters of the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method and how they affect sprite rendering.
 - You learned how the `rotation` parameter works and how to convert between degrees and radians using [**MathHelper.ToRadians**](xref:Microsoft.Xna.Framework.MathHelper.ToRadians(System.Single)).
@@ -314,7 +314,7 @@ Let's review what you accomplished in this chapter:
 - You used the `sourceRectangle` parameter to draw specific regions from a texture.
 - You explored sprite layering using the `layerDepth` parameter and different [**SpriteSortMode**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) options.
 
-In the next chapter, we will take what we've learned about working with textures and learn techniques to optimize rendering to reduce texture swapping.
+In the next chapter, we will take what we have learned about working with textures and learn techniques to optimize rendering to reduce texture swapping.
 
 ## Test Your Knowledge
 

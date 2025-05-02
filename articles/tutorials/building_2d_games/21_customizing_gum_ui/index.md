@@ -174,11 +174,11 @@ Now that we have all our resources prepared, we can create custom versions of th
 
 Our first custom component will be an `AnimatedButton` that inherits from Gum's base `Button` class. This button will use the game's existing texture atlas for its visual appearance and provide animation when focused.
 
-First, create a new folder in the game project called *UI* to store our custom UI components. Then, add a new file called *AnimatedButton.cs* with the following code:
+First, in the *DungeonSlime* project (your main game project), create a new folder named *UI* to store our custom UI components.  Next, in that *UI* folder, create a new file called *AnimatedButton.cs* and add the following code to it:
 
 [!code-csharp[](./snippets/animatedbutton.cs)]
 
-Let's examine the key aspects of this implementation:
+Next, we will examine the key aspects of this implementation:
 
 #### Top-level Container
 
@@ -243,11 +243,11 @@ This creates a more responsive interface by immediately focusing elements that t
 
 Now we will create a custom `OptionsSlider` class to style the volume sliders.  This class inherits from Gum's base `Slider` class and provides a styled appearance consistent with the game's visual theme.
 
-Create a new file named *OptionsSlider.cs* in the *UI* folder with the following code:
+In the *UI* folder fo the *DungeonSlime* project (your main game project), create a new file called *OptionsSlider.cs* and add the following code to it:
 
 [!code-csharp[](./snippets/optionsslider.cs)]
 
-The `OptionsSlider` is more complex than then [`AnimatedButton`](#the-animatedbutton-class) because it contains more visual elements.  Let's examine the key aspects of this implementation:
+The `OptionsSlider` is more complex than then [`AnimatedButton`](#the-animatedbutton-class) because it contains more visual elements.  Below are the key aspects of this implementation:
 
 #### Slider Components
 
@@ -364,9 +364,9 @@ In this chapter, you learned how to transform basic UI components into custom, s
 - Building complex custom controls by extending base classes.
 - Integrating custom fonts and graphics from a texture atlas.
 
-By creating reusable custom controls, you've not only improved the look of your game, but you've also developed components that can be used in future projects. This approach of separating functionality from appearance allows you to maintain consistent behavior while completely changing the visual style to match different games.
+By creating reusable custom controls, you have not only improved the look of your game, but you have also developed components that can be used in future projects. This approach of separating functionality from appearance allows you to maintain consistent behavior while completely changing the visual style to match different games.
 
-The principles you've learned in this chapter extend beyond the specific components we created. You can apply the same techniques to create other custom UI elements like checkboxes, radio buttons, scroll panels, and more. By understanding how to build on Gum's foundation, you have the tools to create any UI component your game might need.
+The principles you have learned in this chapter extend beyond the specific components we created. You can apply the same techniques to create other custom UI elements like checkboxes, radio buttons, scroll panels, and more. By understanding how to build on Gum's foundation, you have the tools to create any UI component your game might need.
 
 ## Test Your Knowledge
 

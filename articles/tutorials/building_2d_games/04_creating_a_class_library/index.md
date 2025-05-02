@@ -130,7 +130,7 @@ When using the *MonoGame Game Library* project template, the generated project c
 
 ## Creating Our First Library Module
 
-Let's create a class for our library called `Core`.  This class will extend the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class and provide a starting point for game development with some common functionality built in.  Creating this will also let us validate that our class library reference setup was correct.
+We will create a class for our library called `Core`.  This class will extend the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class and provide a starting point for game development with some common functionality built in.  Creating this will also let us validate that our class library reference setup was correct.
 
 Create a new file called *Core.cs* in the *MonoGameLibrary* project and add the following code:
 
@@ -183,7 +183,7 @@ Running the game now will show the same window as before, only now it is at a 12
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Learned about class libraries and their advantages for game development:
   - Code reusability across projects

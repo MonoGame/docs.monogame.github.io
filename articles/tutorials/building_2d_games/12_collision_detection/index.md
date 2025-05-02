@@ -13,7 +13,7 @@ In this chapter you will:
 - Learn how to handle object overlap and response.
 - Build a reusable collision system for your game.
 
-Let's start by understanding the basics of collision detection and the different approaches we can use.
+We will first start by understanding the basics of collision detection and the different approaches that can be used.
 
 ## Understanding Collision Detection
 
@@ -294,7 +294,7 @@ If you run the game right now and move the slime around, you will notice a few i
 2. Nothing occurs when the slime collides with the bat.
 3. The bat does not move, providing no challenge in the game.
 
-Let's update our game to implement these changes using collision detection and response. Open *Game1.cs* and make the following changes:
+To resolve this, we can update our game to implement these changes using collision detection and response.  In the *DungeonSlime* project (your main game project), open the *Game1.cs* file and make the following changes to the `Game1` class:
 
 [!code-csharp[](./snippets/game1.cs?highlight=1,5,25-29,40-45,81-181,186-198,298-299)]
 
@@ -327,7 +327,7 @@ Running the game now
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Learned about different approaches to collision detection:
   - Distance-based checks for simple proximity detection.
@@ -391,10 +391,10 @@ In the next chapter, we will explore using tilesets and tilemaps to create tile 
     ::: question-answer
     Circle collision might be chosen because:
 
-    - It's more accurate for round objects
+    - It is more accurate for round objects
     - It handles rotating objects better
-    - It's simpler for continuous collision detection
-    - It's natural for radius-based interactions
+    - It is simpler for continuous collision detection
+    - It is natural for radius-based interactions
 
     :::
 

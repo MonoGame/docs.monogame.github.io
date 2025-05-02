@@ -20,13 +20,13 @@ In this chapter, we will build off of the `Sprite` class we created in [Chapter 
 
 ## The Animation Class
 
-Before we can create animated sprites, we need a way to manage animation data. Let's create an `Animation` class to encapsulate this information. In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *Animation.cs* with this initial structure:
+Before we can create animated sprites, we need a way to manage animation data. We will create an `Animation` class to encapsulate this information. In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *Animation.cs* with this initial structure:
 
 [!code-csharp[](./snippets/animation.cs#declaration)]
 
 ### Animation Properties
 
-An animation requires two key pieces of information: the sequence of frames to display and the timing between them. Let's add these properties to the `Animation` class:
+An animation requires two key pieces of information: the sequence of frames to display and the timing between them. Add these properties to the `Animation` class:
 
 [!code-csharp[](./snippets/animation.cs#members)]
 
@@ -50,7 +50,7 @@ The default constructor creates an animation with an empty collection of frames 
 
 ## Creating Animations With The TextureAtlas Class
 
-The `TextureAtlas` class we created in [Chapter 07](../07_optimizing_texture_rendering/index.md#the-textureatlas-class) can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The *atlas.png* image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. Let's first update our *atlas-definition.xml* file to include all regions in the atlas, as well as add new `<Animation>` elements to define the animations.  Open the *atlas-definition.xml* file and replace the contents with the following:
+The `TextureAtlas` class we created in [Chapter 07](../07_optimizing_texture_rendering/index.md#the-textureatlas-class) can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The *atlas.png* image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. We will first update our *atlas-definition.xml* file to include all regions in the atlas, as well as add new `<Animation>` elements to define the animations.  Open the *atlas-definition.xml* file and replace the contents with the following:
 
 [!code-xml[](./snippets/atlas_definition.xml)]
 
@@ -102,13 +102,13 @@ With our `Animation` class handling animation data, and the `TextureAtlas` updat
 
 The key to this design is the `Sprite.Region` property. Our `Sprite` class already knows how to render whatever region is currently set, so our `AnimatedSprite` class just needs to update this region property to the correct animation frame at the right time.
 
-Let's create the initial structure for our `AnimatedSprite` class. In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *AnimatedSprite.cs*:
+Now we will create the initial structure for our `AnimatedSprite` class. In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *AnimatedSprite.cs*:
 
 [!code-csharp[](./snippets/animatedsprite.cs#declaration)]
 
 ### AnimatedSprite Members
 
-An animated sprite needs to track both its current animation state and timing information. Let's add the following members to the `AnimatedSprite` class:
+An animated sprite needs to track both its current animation state and timing information. Add the following members to the `AnimatedSprite` class:
 
 [!code-csharp[](./snippets/animatedsprite.cs#members)]
 
@@ -146,7 +146,7 @@ The `Update` method manages the animation timing and frame progression:
 2. When enough time has passed (defined by the animation's delay):
    - Resets the elapsed time counter
    - Advances to the next frame
-   - Loops back to the first frame if we've reached the end
+   - Loops back to the first frame if we have reached the end
    - Updates the sprite's region to display the current frame
 
 > [!NOTE]
@@ -168,11 +168,11 @@ We can simplify this process by adding an animated spirte creation method to the
 
 ## Using the AnimatedSprite Class
 
-Let's adjust our game now to use the `AnimatedSprite` class to see our sprites come to life. Replaces the contents of *Game1.cs* with the following:
+We can now adjust our game now to use the `AnimatedSprite` class to see our sprites come to life. Replaces the contents of *Game1.cs* with the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,50-54)]
 
-Let's examine the key changes in this implementation:
+Here are the key changes in this implementation:
 
 - The `_slime` and `_bat` members were changed from `Sprite`  to `AnimatedSprite`.
 - In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) the `_slime` and `_bat` sprites are now created using the new `TextureAtlas.CreateAnimatedSprite` method.
@@ -189,7 +189,7 @@ Running the game now shows both sprites animating automatically:
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Created an `Animation` class to manage frame sequences and timing.
 - Extended the `TextureAtlas` class to support animation definitions.

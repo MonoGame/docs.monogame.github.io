@@ -13,7 +13,7 @@ In this chapter you will:
 - Understand the parent-child relationship for UI elements.
 - Learn about accessibility considerations in game UI design.
 
-Let's start by understanding what a user interface is and how it functions in game development.
+We will first start by understanding what a user interface is and how it functions in game development.
 
 ## Understanding Game User Interfaces
 

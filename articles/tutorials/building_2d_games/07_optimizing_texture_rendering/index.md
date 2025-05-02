@@ -63,7 +63,7 @@ To better organize this complexity, we can apply object-oriented design principl
 
 ## The TextureRegion Class
 
-In [Chapter 06](../06_working_with_textures/index.md#source-rectangle), we learned about using the `sourceRectangle` parameter to reuse the same texture when rendering sprites but specifying different regions within the texture to render.  Let's first build on this and create a class called `TextureRegion`.
+In [Chapter 06](../06_working_with_textures/index.md#source-rectangle), we learned about using the `sourceRectangle` parameter to reuse the same texture when rendering sprites but specifying different regions within the texture to render.  For our next step, we will build on this and create a class called `TextureRegion`.
 
 We are going to add this class to the class library we created in [Chapter 04](../04_creating_a_class_library/index.md).  Perform the following:
 
@@ -147,7 +147,7 @@ These methods serve different purposes in managing the texture atlas:
 
 ## Using the TextureAtlas Class
 
-Let's put our new `TextureAtlas` class to use by exploring two approaches; creating an atlas manually and using XML configuration.  So far, we've been practicing using textures with the MonoGame logo. Now we will use a new texture atlas that contains various sprites we will need for our game.
+No we can put our new `TextureAtlas` class to use by exploring two approaches; creating an atlas manually and using XML configuration.  So far, we have been practicing using textures with the MonoGame logo. Now we will use a new texture atlas that contains various sprites we will need for our game.
 
 Download the texture atlas by right-clicking the following image and saving it as atlas.png:
 
@@ -193,7 +193,7 @@ Running the game now shows both sprites in the upper-left corner:
 |:------------------------------------------------------------------------------------------------------------------------------------------------:|
 |                   **Figure 7-3: The slime and bat texture regions being rendered in the upper-left corner of the game window**                   |
 
-While manual creation works for a few sprites, managing many regions becomes cumbersome. Let's now explore the `TextureAtlas.FromFile` method to load our atlas configuration from XML instead. Perform the following:
+While manual creation works for a few sprites, managing many regions becomes cumbersome. Now we will explore the `TextureAtlas.FromFile` method to load our atlas configuration from XML instead. Perform the following:
 
 1. Create a new file named *atlas-definition.xml* in the *Content/images* folder.
 2. Add the following content to that file:
@@ -229,7 +229,7 @@ Running the game now will show the same results as Figure 7-4 above, with the sl
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Learned about texture swapping and its impact on performance
 - Explored texture atlases as a solution for optimizing texture rendering

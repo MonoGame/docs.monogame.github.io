@@ -3,7 +3,7 @@ title: "Chapter 16: Working with SpriteFonts"
 description: "Learn how to create and use SpriteFonts to render text in your MonoGame project, including loading custom fonts and controlling text appearance."
 ---
 
-In [Chapter 06](../06_working_with_textures/index.md), you learned how to load and render textures to display sprites in your game. While images are essential for visual elements, most games also need text for things like scores, player instructions, dialogue, and UI elements. MonoGame provides the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) class to handle text rendering, which works together with the familiar [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) we've already been using for drawing textures.
+In [Chapter 06](../06_working_with_textures/index.md), you learned how to load and render textures to display sprites in your game. While images are essential for visual elements, most games also need text for things like scores, player instructions, dialogue, and UI elements. MonoGame provides the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) class to handle text rendering, which works together with the familiar [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) we have already been using for drawing textures.
 
 In this chapter, you will:
 
@@ -13,7 +13,7 @@ In this chapter, you will:
 - Render text using various parameters to control appearance.
 - Implement text rendering in our game.
 
-Let's start by understanding how text rendering works in MonoGame.
+We will first start by understanding how text rendering works in MonoGame.
 
 ## Understanding SpriteFonts
 
@@ -133,7 +133,7 @@ The most basic DrawString overload looks like this:
 
 [!code-csharp[](./snippets/drawstring_basic.cs)]
 
-Let's look at the parameters:
+This overload contains the following parameters:
 
 1. **font**: The [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to use for rendering.
 2. **text**: The text to display (as a string or `StringBuilder`).
@@ -171,7 +171,7 @@ Below is an example of centering text on the screen by drawing the text at the c
 
 ## Implementing Text in Our Game
 
-Let's add some text to our game to display information to the player.  We will add a score counter that increases when the slime eats the bat.
+To explore implementing text, we will add text to our game to display information to the player.  We will add a score counter that increases when the slime eats the bat.
 
 ### Adding the SpriteFont Description
 
@@ -187,7 +187,7 @@ First, we will need to create a SpriteFont Definition.  Open the *Content.mgcb* 
 |             **Figure 16-1: The 04B_30.spritefont file created in the MGCB Editor**             |
 
 > [!NOTE]
-> We've named the SpriteFont Description file with the same name as the font we will be using.  This makes it easier to remember when updating the code later.
+> We have named the SpriteFont Description file with the same name as the font we will be using.  This makes it easier to remember when updating the code later.
 
 ### Download the Font File
 
@@ -231,7 +231,7 @@ The key changes made are:
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Learned how to create SpriteFont definitions with the MGCB Editor.
 - Learned how to reference font files for better cross-platform compatibility.

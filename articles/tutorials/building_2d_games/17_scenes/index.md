@@ -323,7 +323,7 @@ In this chapter, you accomplished the following:
 - Created a `GameScene` that encapsulates the gameplay mechanics.
 - Refactored the main `Game1` class to be much simpler by using the scene system.
 
-The approach we've taken follows a common pattern in game development, where each scene has control over its own lifecycle and resources. This pattern simplify state management by isolating different game states from one another.  As your game grows in complexity, you could easily extend this system to include additional scenes like a pause menu or a game over screen.
+The approach we have taken follows a common pattern in game development, where each scene has control over its own lifecycle and resources. This pattern simplify state management by isolating different game states from one another.  As your game grows in complexity, you could easily extend this system to include additional scenes like a pause menu or a game over screen.
 
 In the next chapter, we will explore [**RenderTarget2D**](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D) and how we can use it to add different types of transitions when switching scenes.
 

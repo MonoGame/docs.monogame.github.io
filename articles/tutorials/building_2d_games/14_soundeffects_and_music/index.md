@@ -14,7 +14,7 @@ In this chapter, you will:
 - Implement sound effects for collision events.
 - Add background music to enhance atmosphere.
 
-Let's start by understanding how MonoGame approaches audio content.
+We will first start by understanding how MonoGame approaches audio content.
 
 ## Understanding Audio in MonoGame
 
@@ -194,7 +194,7 @@ Running the game now, the theme music plays in the background, you can hear the 
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Learned about MonoGame's audio system including sound effects and music.
 - Explored the key differences between:

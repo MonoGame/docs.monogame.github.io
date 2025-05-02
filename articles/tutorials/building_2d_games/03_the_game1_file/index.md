@@ -95,7 +95,7 @@ Each time the game loops completes and the game is drawn to the screen, we call 
 
 ## Conclusion
 
-Here is a review of what was accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - You read through the default code provided in a *Game1.cs* file created by a MonoGame template.
 - You learned about the lifecycle of a MonoGame game project.

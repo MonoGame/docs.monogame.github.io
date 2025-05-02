@@ -374,7 +374,7 @@ Finally, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initializ
 
 [!code-csharp[](./snippets/game1/initialize.cs?highlight=8-9)]
 
-Let's examine each part of this initialization process:
+The following is a breakdown of this initialization process:
 
 1. **Basic Initialization**: `GumService.Default.Initialize(this)` sets up the Gum system with our game instance.  This is required for any gum project.
 
@@ -423,7 +423,7 @@ Our title panel includes two buttons positioned at the bottom corners of the scr
 > [!NOTE]
 > Notice how we use `Anchor` to position the buttons relative to the panel's edges, with the "Start" button anchored at the bottom left and the "Options" button anchored at the bottom right.  Then the positioning of the elements is adjusted relative to its anchor point.
 
-Each button registers a `Click` event handler to respond when the players selects it. Let's implement the event handler method for these buttons next.  Add the following methods to the `TitleScene` class:
+Each button registers a `Click` event handler to respond when the players selects it. We should implement the event handler method for these buttons next.  Add the following methods to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene/handlestartclicked.cs)]
 
@@ -458,7 +458,7 @@ These handlers update our audio settings in real-time as the player adjusts the 
 
 #### Initializing the UI
 
-Now that we've implemented the methods that will create both the main menu panel and the options menu panel, we need to implement the main UI initializations method that will call them.  Add the following method to the `TitleScene` class:
+Now that we have implemented the methods that will create both the main menu panel and the options menu panel, we need to implement the main UI initializations method that will call them.  Add the following method to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene/initializeui.cs)]
 
@@ -493,7 +493,7 @@ With these changes, our UI system is now fully integrated into the scene's game 
 
 ### Adding GameScene UI
 
-Now that we've setup the UI for the title scene, we will add a pause menu to our game scene.  This UI will start invisible but will be shown when the player presses the escape key.  For consistency, we will implement the UI for the game scene in the same order that we implemented the UI for the title scene.
+Now that we have setup the UI for the title scene, we will add a pause menu to our game scene.  This UI will start invisible but will be shown when the player presses the escape key.  For consistency, we will implement the UI for the game scene in the same order that we implemented the UI for the title scene.
 
 First, open the *GameScene.cs* file in the game project and add the following using declarations to the top of the `GameScene` class.
 
@@ -525,7 +525,7 @@ Next, we will create a method that builds our pause panel with resume and quit b
 
 #### Initializing the UI
 
-Now that we've implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.  Add the following method to the `GameScene` class:
+Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.  Add the following method to the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene/initializeui.cs)]
 
@@ -557,7 +557,7 @@ WIth these changes, the pause menu is now fully integrated into the game scene's
 
 ## Conclusion
 
-In this chapter, you've successfully implemented a functional UI system for our game using the Gum framework. You've learned how to:
+In this chapter, you accomplished the following:
 
 - Add and configure the Gum NuGet package in your project.
 - Understand key Gum concepts like Forms controls and Visuals.

@@ -142,7 +142,7 @@ Running the game now will produce the same result as the previous chapter, only 
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Created a reusable `AudioController` class to centralize audio management.
 - Learned about proper resource management for audio using the `IDisposable` pattern.

@@ -148,7 +148,7 @@ The new folder will appear in your content tree, and you can now add items to it
 - Adding existing assets directly to the folder
 - Creating new assets within the folder
 
-The folder structure you create in the MGCB Editor affects how you will access your content in code. It's good practice to establish a folder structure early in your project development to avoid having to reorganize and update content paths later.
+The folder structure you create in the MGCB Editor affects how you will access your content in code. It is good practice to establish a folder structure early in your project development to avoid having to reorganize and update content paths later.
 
 ## The ContentManager Class
 
@@ -213,7 +213,7 @@ When the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManage
 
 ## Loading Our First Asset
 
-Let's walk through the process of editing our content project using the MGCB Editor to add a new image asset and then load it in our game.  To get started, we will first need an image to load.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your computer:
+Now, we will walk through the process of editing our content project using the MGCB Editor to add a new image asset and then load it in our game.  To get started, we will first need an image to load.  Right-click the following image of the MonoGame logo and save it named *logo.png* somewhere on your computer:
 
 | ![Figure 5-7: MonoGame Horizontal Logo](./images/logo.png) |
 |:----------------------------------------------------------:|
@@ -260,7 +260,7 @@ Running the game now will show the MonoGame logo displayed in the upper-left cor
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - You learned about the advantages of loading assets using the **Content Pipeline**.
 - You added an image file asset to the *Content.mgcb* content project using the MGCB Editor.

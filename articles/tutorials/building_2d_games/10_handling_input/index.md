@@ -355,7 +355,7 @@ Running the game now, you can move the slime around using the keyboard with the 
 
 ## Conclusion
 
-In this chapter, you learned how to:
+In this chapter, you accomplished the following:
 
 - Handle keyboard input to detect key presses.
 - Handle mouse input including button clicks and cursor position.

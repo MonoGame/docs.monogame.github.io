@@ -219,7 +219,7 @@ You can exit the game at any time by pressing the `Esc` key on your keyboard.
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 * You setup your operating system to develop .NET applications by installing the .NET SDK
 * You installed the MonoGame project templates.
