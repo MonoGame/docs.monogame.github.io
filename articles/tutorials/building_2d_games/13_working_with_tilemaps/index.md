@@ -126,7 +126,7 @@ The `Tilemap` class should also provide a method to load and create an instance 
 
 ## Updating the Game
 
-Now that we have the `Tilemap` and `Tileset` classes defined, let's update our game to use them. We will need to
+Now that we have the `Tilemap` and `Tileset` classes defined, we can update our game to use them. We will need to
 
 1. Update the texture atlas to include the tileset.
 2. Create a tilemap xml configuration file.
@@ -145,7 +145,7 @@ Currently, the texture atlas we've been using only contains the sprites for the 
 
 ## Creating a Tilemap XML Configuration
 
-Now that we have the texture atlas updated to include the tileset, let's create a tilemap configuration that our game can load.  The configuration will be an XML file that specifies the tileset to use and the arrangement of tiles in the tilemap.
+Now that we have the texture atlas updated to include the tileset, we need to create a tilemap configuration that our game can load.  The configuration will be an XML file that specifies the tileset to use and the arrangement of tiles in the tilemap.
 
 Create a new file named *tilemap-definition.xml* in the *Content/images* folder of the game project and add the following:
 
@@ -174,7 +174,7 @@ Next, we need to add this configuration file to our content project with the MGC
 
 ### Update the Game1 Class
 
-With all of the assets now in place and configured, let's update the `Game1` class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open *Game1.cs* and make the following updates:
+With all of the assets now in place and configured, we can update the `Game1` class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open *Game1.cs* and make the following updates:
 
 [!code-csharp[](./snippets/game1.cs?highlight=31-35,46-61,80-82,114,116,118,120,123,125,127,129,147,150,152,155,158,161,163,166,181-183,305-306)]
 

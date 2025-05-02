@@ -48,7 +48,7 @@ The [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Dra
 
 Try adjusting the position and color parameters and see how they can affect the image being drawn.
 
-MonoGame uses a coordinate system where (0, 0) is at the screen's upper-left corner. X values increase moving right, and Y values increase moving down. Understanding this, let's try to center the logo on the game window.
+MonoGame uses a coordinate system where (0, 0) is at the screen's upper-left corner. X values increase moving right, and Y values increase moving down. Understanding this, we wil try to center the logo on the game window.
 
 To center content on the screen, we need to find the window's center point. We can access this using the [**Window.ClientBounds**](xref:Microsoft.Xna.Framework.GameWindow.ClientBounds) property from the [**Game**](xref:Microsoft.Xna.Framework.Game) class, which represents the rectangular bounds of the game window.  [**Window.ClientBounds**](xref:Microsoft.Xna.Framework.GameWindow.ClientBounds) exposes both  [**Width**](xref:Microsoft.Xna.Framework.Rectangle.Width) and [**Height**](xref:Microsoft.Xna.Framework.Rectangle.Height) properties for the window's dimensions in pixels.  By dividing these dimensions in half, we can can calculate the window's center coordinates.  Let's update our [**Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Color)) method to use this:
 
@@ -95,7 +95,7 @@ This overload produces the same centered result but exposes all parameters that 
 
 ### Rotation
 
-First let's explore the `rotation` parameter.  This value is the amount of rotation to apply to the sprite when rendering it.  Let's rotate the texture 90° to make it vertical. Since rotation is measured in radians, not degrees, we can use the built-in math library in MonoGame to make the conversion for us by calling [**MathHelper.ToRadians**](xref:Microsoft.Xna.Framework.MathHelper.ToRadians(System.Single)).  Update the code to:
+First we will explore the `rotation` parameter.  This value is the amount of rotation to apply to the sprite when rendering it.  Let's rotate the texture 90° to make it vertical. Since rotation is measured in radians, not degrees, we can use the built-in math library in MonoGame to make the conversion for us by calling [**MathHelper.ToRadians**](xref:Microsoft.Xna.Framework.MathHelper.ToRadians(System.Single)).  Update the code to:
 
 [!code-csharp[](./snippets/rotation.cs?highlight=17)]
 
@@ -137,7 +137,7 @@ By moving the sprite's origin point to its center, this not only corrects the po
 
 The `scale` parameter specifies the amount of scaling to apply to the sprite when it is rendered.  The default value is `1.0f`, which can be read as "rendering the sprite at 1x the size".  Increasing this will scale up the size of the sprite and decreasing it will scale down the sprite.  
 
-For this example, let's first reset the rotation back to `0.0f` (removing the 90° rotation we applied above) so we can clearly see the scaling effect.  Then we will set the scale of the logo sprite to `1.5f`
+For this example, we will first reset the rotation back to `0.0f` (removing the 90° rotation we applied above) so we can clearly see the scaling effect.  Then we will set the scale of the logo sprite to `1.5f`
 
 [!code-csharp[](./snippets/scale.cs?highlight=17,21)]
 
@@ -155,7 +155,7 @@ Then the scaling is applied from the origin in the upper-left corner producing t
 | :----------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                      **Figure 6-8: The MonoGame logo drawn scaled at 1.5x the size with the origin set in the upper-left corner**                      |
 
-Scaling can also be applied to the x- and y-axes independently by providing it with a [**Vector2**](xref:Microsoft.Xna.Framework.Vector2) value instead of a float value.  For instance, let's scale the x-axis of the sprite by 1.5x and reduce the scale of the y-axis to 0.5x:
+Scaling can also be applied to the x- and y-axes independently by providing it with a [**Vector2**](xref:Microsoft.Xna.Framework.Vector2) value instead of a float value.  For instance, we can scale the x-axis of the sprite by 1.5x and reduce the scale of the y-axis to 0.5x:
 
 [!code-csharp[](./snippets/scale_vector2.cs?highlight=21)]
 
@@ -175,7 +175,7 @@ The `effects` parameter is used to flip the sprite when rendered on either the h
 | [**SpriteEffects.FlipHorizontally**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally) | The sprite is rendered flipped along the horizontal axis. |
 | [**SpriteEffects.FlipVertically**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipVertically)     | The sprite is rendered flipped along the vertical axis.   |
 
-For this example, let's reset the scale back to `1.0f` and apply the  [**SpriteEffects.FlipHorizontally**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally) value to the sprite:
+For this example, we will reset the scale back to `1.0f` and apply the  [**SpriteEffects.FlipHorizontally**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally) value to the sprite:
 
 [!code-csharp[](./snippets/spriteeffects.cs?highlight=21,22)]
 
@@ -209,7 +209,7 @@ Final Blue = Sprite Blue * 1.0f;
 
 Since multiplying by `1.0f` doesn't change the value, [**Color.White**](xref:Microsoft.Xna.Framework.Color.White) essentially preserves the original colors of the sprite.
 
-For this example, let's reset the `effects`  parameter back to [**SpriteEffects.None**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects.None) and update the `color` parameter to use [**Color.Green**](xref:Microsoft.Xna.Framework.Color.Green):
+For this example, we will reset the `effects`  parameter back to [**SpriteEffects.None**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects.None) and update the `color` parameter to use [**Color.Green**](xref:Microsoft.Xna.Framework.Color.Green):
 
 [!code-csharp[](./snippets/color.cs?highlight=16,22)]
 

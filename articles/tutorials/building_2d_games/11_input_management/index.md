@@ -40,7 +40,7 @@ This same concept applies to mouse buttons and gamepad input as well. Any time y
 
 So far, we've only been working with our game within the *Game1.cs* file.  This has been fine for the examples given.  Overtime, as the game grows, we're going to have a more complex system setup with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable `InputManager` class to simplify this for us.
 
-Before we create the `InputManager` class, let's first create classes for the keyboard, mouse, and gamepad that encapsulates the information about those inputs which will then be exposed through the `InputManager`.  
+Before we create the `InputManager` class, we should first create classes for the keyboard, mouse, and gamepad that encapsulates the information about those inputs which will then be exposed through the `InputManager`.  
 
 To get started, create a new folder called *Input* in the *MonoGameLibrary* project.  We will put all of our input related classes here.
 
@@ -104,7 +104,7 @@ And for detecting state changes:
 > [!TIP]
 > Use continuous state checks (`IsKeyDown`/`IsKeyUp`) for actions that should repeat while a key is held, like movement. Use single-frame checks (`WasKeyJustPressed`/`WasKeyJustReleased`) for actions that should happen once per key press, like jumping or shooting.
 
-That's it for the `KeyboardInfo` class, let's move on to mouse input next.
+That's it for the `KeyboardInfo` class, now we can move on to mouse input next.
 
 ## MouseButton Enum
 
@@ -314,7 +314,7 @@ The vibration methods provide control over the gamepad's haptic feedback:
 > [!TIP]
 > When setting vibration, you can specify both the strength (`0.0f` to `1.0f`) and duration. The vibration will automatically stop after the specified time has elapsed, so you don't need to manage stopping it manually.
 
-That's it for the `GamePadInfo` class.  Next, let's create the actual input manager.
+That's it for the `GamePadInfo` class.  Next, we can create the actual input manager.
 
 ## The InputManager Class
 
@@ -347,7 +347,7 @@ The `Update` method for the `InputManager` calls update for each device so that 
 
 ## Implementing the InputManager Class
 
-Now tha we have our input management system complete, let's update our game to use it.  We will do this in two steps:
+Now tha we have our input management system complete, we will update our game to use it.  We will do this in two steps:
 
 1. First, update the `Core` class to add the `InputManager` globally.
 2. Update the `Game1` class to use the global input manager from `Core`.
@@ -370,7 +370,7 @@ The key changes to the `Core` class are:
 
 ### Updating the Game1 Class
 
-Now let's update our `Game1` class to use the new input management system through the `Core` class.  Open *Game1.cs* in the game project and update it to the following:
+Now we can update our `Game1` class to use the new input management system through the `Core` class.  Open *Game1.cs* in the game project and update it to the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=76,82,88,94,100,108,113,116,120,126,128-129,134,140,146,152)]
 

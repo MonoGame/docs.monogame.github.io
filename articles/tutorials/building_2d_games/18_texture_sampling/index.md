@@ -161,7 +161,7 @@ Next, add this texture to your content project using the MGCB Editor:
 
 ### Updating the Title Scene
 
-Now that we have the background pattern texture added, let's update the `TitleScene` class to implement the scrolling background. Open the *TitleScene.cs* file in the game project and update it to the following
+Now that we have the background pattern texture added, we can update the `TitleScene` class to implement the scrolling background. Open the *TitleScene.cs* file in the game project and update it to the following
 
 [!code-csharp[](./snippets/titlescene.cs?highlight=39-50,79-81,92-93,104-113,120-123)]
 

@@ -106,7 +106,7 @@ Custom UI components can enhance their interactivity by handling specific input 
 
 Gum distinguishes between highlighting (visual response to mouse hover) and focus (ability to receive keyboard/gamepad input). For a seamless experience across input devices, a common pattern is to automatically focus elements when the mouse hovers over them, ensuring that visual highlighting and input focus remain synchronized.
 
-Now that we understand the key concepts behind Gum's customization system, let's apply them to create custom UI components for our game.
+Now that we understand the key concepts behind Gum's customization system, we can apply them to create custom UI components for our game.
 
 ## Updating the Game Resources
 
@@ -160,7 +160,7 @@ Next, add this font file to your content project using the MGCB Editor:
 
 In [Chapter 18](../18_texture_sampling/index.md#texture-coordinates) we discussed texture coordinates and that graphic devices use a normalized coordinate system between 0.0 and 1.0.
 
-Sine [Gum also uses this coordinate system](#animation-chains), let's update the `TextureRegion` class to easily provide these values for any given region.
+Since [Gum also uses this coordinate system](#animation-chains), we will update the `TextureRegion` class to easily provide these values for any given region.
 
 Open the *TextureRegion.cs* file in the *MonoGameLibrary* project and add the following properties to the `TextureRegion` class:
 
@@ -168,7 +168,7 @@ Open the *TextureRegion.cs* file in the *MonoGameLibrary* project and add the fo
 
 ## Creating Custom UI Components
 
-Now that we have all our resources prepared, let's create custom versions of the UI controls we're using in our game. We will start with an animated button that uses our game's visual style, then move on to creating a custom slider.
+Now that we have all our resources prepared, we can create custom versions of the UI controls we're using in our game. We will start with an animated button that uses our game's visual style, then move on to creating a custom slider.
 
 ### The AnimatedButton Class
 
@@ -241,7 +241,7 @@ This creates a more responsive interface by immediately focusing elements that t
 
 ### The OptionsSlider Class
 
-Now let's create a custom `OptionsSlider` class to style the volume sliders.  This class inherits from Gum's base `Slider` class and provides a styled appearance consistent with the game's visual theme.
+Now we will create a custom `OptionsSlider` class to style the volume sliders.  This class inherits from Gum's base `Slider` class and provides a styled appearance consistent with the game's visual theme.
 
 Create a new file named *OptionsSlider.cs* in the *UI* folder with the following code:
 

@@ -98,7 +98,7 @@ For our `AudioController`, implementing `IDisposable` means we can ensure all so
 
 ## Implementing the AudioController Class
 
-Now that we have the audio controller class complete, let's update the game to use it.  We will do this in two steps:
+Now that we have the audio controller class complete, we can update the game to use it.  We will do this in two steps:
 
 1. First, update the `Core` class to add the `AudioController` globally.
 1. Update the `Game1` class to use the global audio controller from `Core`.

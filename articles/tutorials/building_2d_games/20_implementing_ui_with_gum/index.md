@@ -38,7 +38,7 @@ Gum addresses these challenges with ready-made solutions, allowing us to focus o
 
 ## Gum Concepts
 
-Before we dive into implementation, let's explore the core concepts that Gum provides.  Gum simplifies UI development by providing ready-made controls and layout systems that would otherwise require significant effort to build from scratch.
+Before we dive into implementation, we will explore the core concepts that Gum provides.  Gum simplifies UI development by providing ready-made controls and layout systems that would otherwise require significant effort to build from scratch.
 
 ### Understanding Gum's Structure
 
@@ -160,7 +160,7 @@ Gum provides two types of objects: **Forms** and **Visuals**.  Forms controls ar
 
 All Forms controls provide customization through their `Visual` property, which serves as a gateway to modifying their appearance and layout. With this property, you can move, resize, restyle, and even completely replace visuals through code.  As we will see when building our UI in the next chapter, this separation between functionality and presentation allows us to create consistent behaviors while adapting the visual style to match our game's aesthetic.
 
-For now, let's examine some of the Forms control types we will use in this chapter.
+For now, we will examine some of the Forms control types we will use in this chapter.
 
 #### Panel
 
@@ -285,7 +285,7 @@ For these dynamic changes, Gum uses a system of **states** (implemented as `Stat
 
 ## Updating Our Game To Use Gum
 
-Now that we understand the UI concepts and how Gum will help implement them, let's integrate Gum into our game project.  We will add the framework, initialize it, and prepare it for use in our scenes.  For now we will use the default styling in Gum to quickly iterate and build the UI and do a customization styling pass in the next chapter.
+Now that we understand the UI concepts and how Gum will help implement them, we can integrate Gum into our game project.  We will add the framework, initialize it, and prepare it for use in our scenes.  For now we will use the default styling in Gum to quickly iterate and build the UI and do a customization styling pass in the next chapter.
 
 ### Adding the Gum NuGet Package
 
@@ -360,7 +360,7 @@ We will load and use this sound effect in our UI implementation to provide audit
 
 ### Initializing Gum
 
-With the Gum NuGet package added to our project, we need to initialize Gum in our game.  This will enable the UI system and configure input handling for our controls.  Since this is an initialization that only needs to happen once, let's make the necessary changes to the `Game1` class.
+With the Gum NuGet package added to our project, we need to initialize Gum in our game.  This will enable the UI system and configure input handling for our controls.  Since this is an initialization that only needs to happen once, we can make the necessary changes to the `Game1` class.
 
 First, open the *Game1.cs* file and add the following new using statements to the top:
 
@@ -402,7 +402,7 @@ Gum is now fully initialized and we can use it in our scenes to add UI to our ga
 
 ### Adding TitleScene UI
 
-With Gum added and initialized in our game, let's implement UI elements for our title scene.  We will create panels for both the main menu and options menu, implement the necessary event handlers, and integrate everything with our existing title scene.
+With Gum added and initialized in our game, we can now implement UI elements for our title scene.  We will create panels for both the main menu and options menu, implement the necessary event handlers, and integrate everything with our existing title scene.
 
 First, open the *TitleScene.cs* file in the game project and add the following using declarations to the top of the `TitleScene` class:
 
@@ -414,7 +414,7 @@ Next, add the following fields:
 
 #### Creating the Title Panel
 
-First, let's create a method that builds our main menu panel with start and options buttons.  Add the following method to the `TitleScene` class:
+First, wew ill create a method that builds our main menu panel with start and options buttons.  Add the following method to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene/createtitlepanel.cs)]
 
@@ -439,7 +439,7 @@ Next, we will create the options panel with sliders to adjust the volume for mus
 
 This panel includes a text label, two sliders for adjusting audio volumes, and a back button for returning to the main menu. The panel is initially invisible since we start on the main menu.  Both the "Music Volume" slider and the "Sound Effects Volume" slider register events to be called when the value of the sliders change and when the value change has been completed.  The "Back" button registers a click event similar to the ones from the main menu.
 
-Now let's implement the event handlers for these controls
+Now we should implement the event handlers for these controls:
 
 [!code-csharp[](./snippets/titlescene/handlesfxsliderchanged.cs)]
 
@@ -458,7 +458,7 @@ These handlers update our audio settings in real-time as the player adjusts the 
 
 #### Initializing the UI
 
-Now that we've implemented the methods that will create both the main menu panel and the options menu panel, let's implement the main UI initializations method that will call them.  Add the following method to the `TitleScene` class:
+Now that we've implemented the methods that will create both the main menu panel and the options menu panel, we need to implement the main UI initializations method that will call them.  Add the following method to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene/initializeui.cs)]
 
@@ -493,7 +493,7 @@ With these changes, our UI system is now fully integrated into the scene's game 
 
 ### Adding GameScene UI
 
-Now that we've setup the UI for the title scene, let's add a pause menu to our game scene.  This UI will start invisible but will be shown when the player presses the escape key.  For consistency, we will implement the UI for the game scene in the same order that we implemented the UI for the title scene.
+Now that we've setup the UI for the title scene, we will add a pause menu to our game scene.  This UI will start invisible but will be shown when the player presses the escape key.  For consistency, we will implement the UI for the game scene in the same order that we implemented the UI for the title scene.
 
 First, open the *GameScene.cs* file in the game project and add the following using declarations to the top of the `GameScene` class.
 
@@ -505,7 +505,7 @@ Next, add the following fields:
 
 #### Pausing the Game
 
-To pause the game, first let's create a method that makes the pause panel visible. Add the following method to the `GameScene` class:
+To pause the game, first we will create a method that makes the pause panel visible. Add the following method to the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene/pausegame.cs)]
 
@@ -519,13 +519,13 @@ Finally, update the `CheckGamePadInput` method so the game is paused when the st
 
 #### Creating the Pause Panel
 
-Next, let's create a method that builds our pause panel with resume and quit buttons. Add the following method to the `GameScene` class:
+Next, we will create a method that builds our pause panel with resume and quit buttons. Add the following method to the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene/createpausepanel.cs)]
 
 #### Initializing the UI
 
-Now that we've implemented the method to create the pause panel, let's implement the main UI initializations method that will call them.  Add the following method to the `GameScene` class:
+Now that we've implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.  Add the following method to the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene/initializeui.cs)]
 

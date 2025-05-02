@@ -17,7 +17,7 @@ Let's start by understanding the basics of collision detection and the different
 
 ## Understanding Collision Detection
 
-Before we start implementing collision detection, let's discuss what collision detection actually is. In 2D games, collision detection involves checking if two objects interact with each other in some way. There are several approaches to detecting collisions, ranging from simple to complex:
+Before we start implementing collision detection, we should discuss what collision detection actually is. In 2D games, collision detection involves checking if two objects interact with each other in some way. There are several approaches to detecting collisions, ranging from simple to complex:
 
 ### Proximity Collision Detection
 
@@ -284,7 +284,7 @@ Finally, add the following  operator overloads to support using == and != with c
 >
 > [!code-csharp[](./snippets/circle_equal_example.cs)]
 
-Now that we have a struct to represent a circle and check for overlapping, let's update our game to implement collision detection and responses.
+Now that we have a struct to represent a circle and check for overlapping, we will update our game to implement collision detection and responses.
 
 ## Adding Collision To Our Game
 

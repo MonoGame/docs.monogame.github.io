@@ -155,7 +155,7 @@ This approach provides a consistent foundation for all our games, handling commo
 
 ## Updating Our Game to Use the Core Class
 
-Now that we have our `Core` class, let's modify our game project to use it.  Doing this will also help ensure that the project references were setup correctly.
+Now that we have our `Core` class, we can modify our game project to use it.  Doing this will also help ensure that the project references were setup correctly.
 
 Open the *Game1.cs* file and make the following changes:
 
