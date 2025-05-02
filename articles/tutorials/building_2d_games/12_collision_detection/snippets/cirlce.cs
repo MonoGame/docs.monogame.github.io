@@ -4,7 +4,10 @@ using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary;
 
-public readonly struct Circle : IEquatable<Circle> { }
+public readonly struct Circle : IEquatable<Circle> 
+{
+    
+}
 #endregion
 {
     #region fields_static
