@@ -400,7 +400,7 @@ With the `Bat` class complete, we've now encapsulated all the behavior needed fo
 
 ## Conclusion
 
-IN this chapter, we have learned about and implemented the core mechanics of a class snake-like game.  We created:
+In this chapter, we have learned about and implemented the core mechanics of a class snake-like game.  We created:
 
 - A [`GameController`](#the-gamecontroller-class) class that provides a unified input interface, separating game actions from specific input devices.
 - A [`SlimeSegment`](#the-slimesegment-struct) struct to efficiently store and manage individual segments of our snake-like character.
