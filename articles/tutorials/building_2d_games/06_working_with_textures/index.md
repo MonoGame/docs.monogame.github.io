@@ -268,7 +268,7 @@ If you run the game now, you should see the following:
 
 ### Layer Depth
 
-The final parameter to discuss is the `layerDepth` parameter. Notice that in Figure 5-14 above, the word mark is rendered on top of the icon.  This is because of the order the draw calls were made; first the icon was rendered, then the word mark was rendered.
+The final parameter to discuss is the `layerDepth` parameter. Notice that in Figure 6-15 above, the word mark is rendered on top of the icon.  This is because of the order the draw calls were made; first the icon was rendered, then the word mark was rendered.
 
 The [**SpriteBatch.Begin**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})) method contains several optional parameters, one of which is the `sortMode` parameter.  By default, this value is [**SpriteSortMode.Deferred**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Deferred), which means what is drawn is done so in the order of the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.DrawString(Microsoft.Xna.Framework.Graphics.SpriteFont,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)) calls.  Each subsequent call will be drawn visually on top of the previous call.
 
