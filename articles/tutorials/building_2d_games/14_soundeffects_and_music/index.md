@@ -230,7 +230,7 @@ In the next chapter, we will explore additional ways to manage audio by creating
 3. What file formats are best suited for sound effects and music, respectively, and why?
 
     :::question-answer
-    For sound effects, .wav files are generally best because they're uncompressed and load quickly into memory for immediate playback. For music, compressed formats like .mp3 or .ogg are better suited because they greatly reduce file size while maintaining good audio quality, which is important for longer audio that's streamed rather than fully loaded.
+    For sound effects, .wav files are generally best because they are uncompressed and load quickly into memory for immediate playback. For music, compressed formats like .mp3 or .ogg are better suited because they greatly reduce file size while maintaining good audio quality, which is important for longer audio that's streamed rather than fully loaded.
     :::
 
 4. What is the difference between using [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play) directly and creating a [**SoundEffectInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance)?

@@ -197,7 +197,7 @@ Now the sprite is flipped both horizontally and vertically
 
 ### Color and Opacity
 
-The `color` parameter applies a color mask to the sprite when it's rendered.  Note that this is not setting the actual color of the image, just a mask that is applied, like a tint.  The default value is [**Color.White**](xref:Microsoft.Xna.Framework.Color.White).  So if we're setting it to [**Color.White**](xref:Microsoft.Xna.Framework.Color.White), why does this not affect the tinting of the sprite drawn?
+The `color` parameter applies a color mask to the sprite when it's rendered.  Note that this is not setting the actual color of the image, just a mask that is applied, like a tint.  The default value is [**Color.White**](xref:Microsoft.Xna.Framework.Color.White).  So if we are setting it to [**Color.White**](xref:Microsoft.Xna.Framework.Color.White), why does this not affect the tinting of the sprite drawn?
 
 When the `color` parameter is applied, each color channel (Red, Green, Blue) of the sprite is multiplied by the corresponding channel in the `color` parameter, where each channel is represented as a value between `0.0f` and `1.0f`.  For [**Color.White**](xref:Microsoft.Xna.Framework.Color.White), all color channels are set to `1.0f` (255 in byte form), so the multiplication looks like this:
 
@@ -289,7 +289,7 @@ Let's see this in action.  We've already set the `layerDepth` parameter of the i
 
 [!code-csharp[](./snippets/sortmode.cs?highlight=13)]
 
-Now we're telling it to use the [**SpriteSortMode.FrontToBack**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.FrontToBack) sort mode, which will sort the draw calls so that those with a higher `layerDepth` will be drawn on top of those with a lower one.  Even though we didn't change the order of the `_spriteBatch.Draw` calls, if you run the game now, you will see the following:
+Now we are telling it to use the [**SpriteSortMode.FrontToBack**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.FrontToBack) sort mode, which will sort the draw calls so that those with a higher `layerDepth` will be drawn on top of those with a lower one.  Even though we didn't change the order of the `_spriteBatch.Draw` calls, if you run the game now, you will see the following:
 
 | ![Figure 5-17: The MonoGame icon drawn on top of the wordmark](./images/icon-on-top-of-wordmark.png) |
 | :--------------------------------------------------------------------------------------------------: |
@@ -297,7 +297,7 @@ Now we're telling it to use the [**SpriteSortMode.FrontToBack**](xref:Microsoft.
 
 There are also two additional [**SpriteSortMode**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) values that can be used.  These, however, are situational and can have draw backs when using them, so understanding what they are for is important.
 
-The first is [**SpriteSortMode.Texture**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Texture).  This works similar to [**SpriteSortMode.Deferred**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Deferred) in that draw calls happen in the order they are made.  However, before the draw calls are made, they are sorted by texture.  This can be helpful when using multiple textures to reduce texture swapping, however it can have unintended results with layering if you're not careful.
+The first is [**SpriteSortMode.Texture**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Texture).  This works similar to [**SpriteSortMode.Deferred**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Deferred) in that draw calls happen in the order they are made.  However, before the draw calls are made, they are sorted by texture.  This can be helpful when using multiple textures to reduce texture swapping, however it can have unintended results with layering if you are not careful.
 
 The second is [**SpriteSortMode.Immediate**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Immediate).  When using this sort mode, when a draw call is made, it is immediately flushed to the GPU and rendered to the screen, ignoring the layer depth, instead of batched and drawn when [**SpriteBatch.End**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End) is called. Using this can cause performance issues and should only be used when necessary.  We will discuss an example of using this in a later chapter when we discuss shaders, since with [**SpriteSortMode.Immediate**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Immediate) you can adjust shader parameters for each individual draw call.
 

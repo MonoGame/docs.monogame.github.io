@@ -121,7 +121,7 @@ In the next chapter, we will put these concepts into practice by implementing a 
     :::question-answer
     The two main types are:
     - **Diegetic UI**: Elements that exist within the game world itself and are part of the narrative (like health meters integrated into a character's suit or cockpit instruments in racing games). These enhance immersion by making UI feel like a natural part of the game world.
-    - **Non-diegetic UI**: Elements that exist outside the game world, overlaid on top of gameplay (like traditional menus, health bars in screen corners, score displays). While less immersive, they're often clearer and easier to read.
+    - **Non-diegetic UI**: Elements that exist outside the game world, overlaid on top of gameplay (like traditional menus, health bars in screen corners, score displays). While less immersive, they are often clearer and easier to read.
     :::
 
 2. What are the some advantages of using a parent-child relationship in UI systems?

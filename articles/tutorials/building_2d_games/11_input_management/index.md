@@ -38,7 +38,7 @@ If both conditions are true, we know the key was just pressed.  If we were to mo
 
 This same concept applies to mouse buttons and gamepad input as well. Any time you need to detect a "just pressed" or "just released" state, you'll need to compare the current input state with the previous frame's state.
 
-So far, we've only been working with our game within the *Game1.cs* file.  This has been fine for the examples given.  Overtime, as the game grows, we're going to have a more complex system setup with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable `InputManager` class to simplify this for us.
+So far, we've only been working with our game within the *Game1.cs* file.  This has been fine for the examples given.  Overtime, as the game grows, we are going to have a more complex system setup with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable `InputManager` class to simplify this for us.
 
 Before we create the `InputManager` class, we should first create classes for the keyboard, mouse, and gamepad that encapsulates the information about those inputs which will then be exposed through the `InputManager`.  
 
@@ -379,7 +379,7 @@ The key changes to the `Game1` class are:
 1. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the check for the gamepad back button or keyboard escape key being pressed was removed.  This is now handled by the `ExitOnEscape` property and the `Update` method of the `Core` class.
 2. In `CheckKeyboardInput` and `CheckGamepadInput`, instead of getting the keyboard and gamepad states and then using the states, calls to check those devices are now done through the input.
 
-Running the game now, you will be able to control it the same as before, only now we're using our new `InputManager` class instead.
+Running the game now, you will be able to control it the same as before, only now we are using our new `InputManager` class instead.
 
 | ![Figure 11-1: The slime moving around based on device input](./videos/input-moving-slime.webm) |
 |:-----------------------------------------------------------------------------------------------:|

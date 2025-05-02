@@ -168,7 +168,7 @@ Open the *TextureRegion.cs* file in the *MonoGameLibrary* project and add the fo
 
 ## Creating Custom UI Components
 
-Now that we have all our resources prepared, we can create custom versions of the UI controls we're using in our game. We will start with an animated button that uses our game's visual style, then move on to creating a custom slider.
+Now that we have all our resources prepared, we can create custom versions of the UI controls we are using in our game. We will start with an animated button that uses our game's visual style, then move on to creating a custom slider.
 
 ### The AnimatedButton Class
 

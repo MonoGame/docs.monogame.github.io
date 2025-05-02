@@ -10,7 +10,7 @@ After you created a new MonoGame project using the *MonoGame Cross-Platform Desk
 At the core of a MonoGame project is the [**Game**](xref:Microsoft.Xna.Framework.Game) class.  This class handles the initialization of graphics services, initialization of the game, loading content, updating, and rendering the game.  When you create a new Monogame project, this [**Game**](xref:Microsoft.Xna.Framework.Game) class is implemented as the `Game1` class that you can customize as needed for your specific game.
 
 > [!TIP]
-> While the default template names the class `Game1`, you're free to rename it to something more appropriate for your project.  However, for consistency, the documentation will continue to refer to it as `Game1`.
+> While the default template names the class `Game1`, you are free to rename it to something more appropriate for your project.  However, for consistency, the documentation will continue to refer to it as `Game1`.
 
 Locate the *Game1.cs* file that was generated when you created the MonoGame project and open it.  The default content will be:
 

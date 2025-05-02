@@ -318,7 +318,7 @@ The following is an example of using a gesture to detect horizontal and vertical
 
 ## Implementing Input in Our Game
 
-For our game, we're going to implement keyboard and gamepad controls based on the following criteria:
+For our game, we are going to implement keyboard and gamepad controls based on the following criteria:
 
 | Keyboard Input            | Gamepad Input                               | Description                          |
 |---------------------------|---------------------------------------------|--------------------------------------|
@@ -389,7 +389,7 @@ In the next chapter, we will learn how to track previous input states to handle 
 4. What is the difference between analog and digital trigger input on a gamepad?
 
     :::question-answer
-    Analog triggers provide values between 0.0f and 1.0f based on how far they're pressed, while digital triggers only report 0.0f (not pressed) or 1.0f (pressed). This affects how you handle trigger input in your game.
+    Analog triggers provide values between 0.0f and 1.0f based on how far they are pressed, while digital triggers only report 0.0f (not pressed) or 1.0f (pressed). This affects how you handle trigger input in your game.
     :::
 
 5. What is the key difference between [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) and [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture)?

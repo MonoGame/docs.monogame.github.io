@@ -7,7 +7,7 @@ In the previous chapters, you've learned how to draw individual sprites and anim
 
 In this chapter you will:
 
-- Learn what tilemaps are and how they're used in game development.
+- Learn what tilemaps are and how they are used in game development.
 - Create a `Tileset` class to manage collections of related tiles.
 - Build a `Tilemap` class to render tile-based game worlds.
 - Implement an XML-based tilemap loading system.
@@ -207,7 +207,7 @@ Although these tools are more robust than our implementation, the underlying con
 
 Let's review what you accomplished in this chapter:
 
-- Learned about tilemaps and how they're used in 2D game development.
+- Learned about tilemaps and how they are used in 2D game development.
 - Created a `Tileset` class to manage collections of tiles from a texture atlas.
 - Implemented a `Tilemap` class to render grid-based game environments.
 - Created an XML-based tilemap definition system for storing level layouts.

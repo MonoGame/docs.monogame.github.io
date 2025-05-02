@@ -3,7 +3,7 @@ title: "Chapter 20: Implementing UI with Gum"
 descrption: "Learn how to integrate and use the Gum UI framework to create functional menus, buttons, and sliders for your MonoGame projects."
 ---
 
-In the [previous chapter](../19_user_interface_fundamentals/index.md) we explored the fundamental concepts of user interface design. Now we're ready to put these principles into practice by implementing a UI system for our game. While it's possible to build a UI system from scratch, we will take advantage of Gum, a specialized UI framework that simplifies many of the complex aspects of UI implementation.
+In the [previous chapter](../19_user_interface_fundamentals/index.md) we explored the fundamental concepts of user interface design. Now we are ready to put these principles into practice by implementing a UI system for our game. While it's possible to build a UI system from scratch, we will take advantage of Gum, a specialized UI framework that simplifies many of the complex aspects of UI implementation.
 
 In this chapter you will:
 
@@ -16,7 +16,7 @@ In this chapter you will:
 
 ## What is Gum?
 
-Gum is a powerful UI layout engine and framework. It provides a flexible, efficient system capable of producing virtually any UI layout you might need in your games. While originally developed alongside the FlatRedBall game engine, Gum has evolved to work seamlessly with multiple platforms including MonoGame, which we're using in this tutorial.
+Gum is a powerful UI layout engine and framework. It provides a flexible, efficient system capable of producing virtually any UI layout you might need in your games. While originally developed alongside the FlatRedBall game engine, Gum has evolved to work seamlessly with multiple platforms including MonoGame, which we are using in this tutorial.
 
 ### Why Use Gum?
 

@@ -45,7 +45,7 @@ However this is not a scalable solution. In a real game with dozens of different
 A texture atlas (also known as a sprite sheet) is a large image file that contains multiple smaller images packed together. Instead of loading separate textures for each sprite, you load the single texture file with all the images combined like a scrapbook where all your photos are arranged on the same page.
 
 > [!NOTE]
-> Using a texture atlas not only eliminates texture swaps but also reduces memory usage and simplifies asset management since you're loading and tracking a single texture instead of many individual ones.
+> Using a texture atlas not only eliminates texture swaps but also reduces memory usage and simplifies asset management since you are loading and tracking a single texture instead of many individual ones.
 
 In the Pong example, imagine taking the paddle and ball image and combining them into a single image file like in Figure 7-1 below:
 
@@ -57,7 +57,7 @@ Now when we draw these images, we would be using the same texture and just speci
 
 [!code-csharp[](./snippets/pong_texture_atlas_example.cs)]
 
-While using the single texture with source rectangles solves the potential performance issues, managing multiple source rectangles in variables can become complex as your game grows.  In the Pong example above, we're already tracking the source rectangles for both the paddle and ball sprites. Imagine scaling this up to a game with dozens of different images, each potentially needing their own position, rotation, scale, and other rendering properties.  
+While using the single texture with source rectangles solves the potential performance issues, managing multiple source rectangles in variables can become complex as your game grows.  In the Pong example above, we are already tracking the source rectangles for both the paddle and ball sprites. Imagine scaling this up to a game with dozens of different images, each potentially needing their own position, rotation, scale, and other rendering properties.  
 
 To better organize this complexity, we can apply object-oriented design principles to create classes that encapsulates the information needed.
 
@@ -65,7 +65,7 @@ To better organize this complexity, we can apply object-oriented design principl
 
 In [Chapter 06](../06_working_with_textures/index.md#source-rectangle), we learned about using the `sourceRectangle` parameter to reuse the same texture when rendering sprites but specifying different regions within the texture to render.  Let's first build on this and create a class called `TextureRegion`.
 
-We're going to add this class to the class library we created in [Chapter 04](../04_creating_a_class_library/index.md).  Perform the following:
+We are going to add this class to the class library we created in [Chapter 04](../04_creating_a_class_library/index.md).  Perform the following:
 
 1. Add new folder in the *MonoGameLibrary* project named `Graphics`
 2. Create a new file named *TextureRegion.cs* inside the *Graphics* folder you just created.
@@ -109,7 +109,7 @@ These methods provide flexible options for rendering the texture region, similar
 
 In the [What is a Texture Atlas](#what-is-a-texture-atlas) section above, a texture atlas was described as a scrap book that holds all of the individual sprites for the game.  These individual sprites can now be represented by the `TextureRegion` class we just created.  Now, we will create the `TextureAtlas` class to represent the collection of the regions that make up all of our sprites.
 
-Just like the `TextureRegion` class, we're going to add this to the class library.  In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *TextureAtlas.cs*.  Add the following code for the foundation fo the `TextureAtlas` class to the *TextureAtlas.cs* file:
+Just like the `TextureRegion` class, we are going to add this to the class library.  In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *TextureAtlas.cs*.  Add the following code for the foundation fo the `TextureAtlas` class to the *TextureAtlas.cs* file:
 
 [!code-csharp[](./snippets/textureatlas.cs#declaration)]
 
@@ -212,7 +212,7 @@ While manual creation works for a few sprites, managing many regions becomes cum
 7. Save the changes and close the MGCB Editor
 
     > [!TIP]
-    > Using the content pipeline to copy files ensures they're placed in the correct location alongside other game content. While there are other methods (like editing the .csproj), this approach keeps asset management centralized
+    > Using the content pipeline to copy files ensures they are placed in the correct location alongside other game content. While there are other methods (like editing the .csproj), this approach keeps asset management centralized
 
 8. Replace the contents of *Game1.cs* with the following code:
 

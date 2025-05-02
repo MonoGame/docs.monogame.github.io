@@ -255,7 +255,7 @@ Add the following override for the `LoadContent` method to the `GameScene` class
 - The font is loaded using the global content manager since it is used in multiple scenes.
 
 > [!TIP]
-> Notice how we're following a consistent pattern across scenes: global assets are loaded with `Core.Instance.Content` while scene-specific assets are loaded with the scene's `Content` property.
+> Notice how we are following a consistent pattern across scenes: global assets are loaded with `Core.Instance.Content` while scene-specific assets are loaded with the scene's `Content` property.
 
 ##### Game Scene Update
 

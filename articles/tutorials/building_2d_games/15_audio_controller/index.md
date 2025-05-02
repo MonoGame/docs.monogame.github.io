@@ -83,9 +83,9 @@ Finally, the `AudioController` implements the `IDisposable` interface.  Add the 
 
 [!code-csharp[](./snippets/audiocontroller.cs#idisposable)]
 
-Games often use limited system resources like audio channels. When we're done with these resources, we need to clean them up properly. In .NET, the standard way to handle resource cleanup is through the `IDisposable` interface.
+Games often use limited system resources like audio channels. When we are done with these resources, we need to clean them up properly. In .NET, the standard way to handle resource cleanup is through the `IDisposable` interface.
 
-Think of `IDisposable` like a cleanup checklist that runs when you're finished with something:
+Think of `IDisposable` like a cleanup checklist that runs when you are finished with something:
 
 1. The interface provides a `Dispose` method that contains all cleanup logic.
 2. When called, `Dispose` releases any resources the class was using.
