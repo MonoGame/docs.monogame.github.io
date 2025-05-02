@@ -101,6 +101,8 @@ The [**GamePadState.Buttons**](xref:Microsoft.Xna.Framework.Input.GamePadState.B
 > [!NOTE]
 > Recall from [Chapter 01](../01_what_is_monogame/index.md) that MonoGame is a implementation the XNA API.  Since XNA was originally created for making games on Windows PC and Xbox 360, the names of the gamepad buttons match those of an Xbox 360 controller.
 >
+> The [**BigButton**](xref:Microsoft.Xna.Framework.Input.GamePadButtons.BigButton) refers to the large, centrally located button on special Xbox 360 controllers created for games like "Scene It?" - this button is not present on standard controllers and isn't mapped to any button on modern controllers. It remains in the API for backward compatibility with XNA.
+>
 > | Front                                                      | Back                                                     |
 > | :--------------------------------------------------------- | :------------------------------------------------------- |
 > | Xbox                                                       |                                                          |
