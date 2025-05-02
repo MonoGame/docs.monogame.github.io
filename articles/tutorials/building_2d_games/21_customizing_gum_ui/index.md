@@ -3,7 +3,7 @@ title: "Chapter 21: Customizing Gum UI"
 description: "Learn how to create custom UI components with animations and visual styling in Gum."
 ---
 
-In the [previous chapter](../20_implementing_ui_with_gum/index.md), we implemented a functional UI system for our game using the Gum framework. While the UI is now fully operational, it uses Gum's default styling.  This default styling is good for quickly iterating when building the UI, but it doesn't match the game's visuals.  A well designed UI should not only be functional but also complement the game's overall visual style to create a cohesive experience.
+In the [previous chapter](../20_implementing_ui_with_gum/index.md), we implemented a functional UI system for our game using the Gum framework. While the UI is now fully operational, it uses Gum's default styling.  This default styling is good for quickly iterating when building the UI, but it does not match the game's visuals.  A well designed UI should not only be functional but also complement the game's overall visual style to create a cohesive experience.
 
 In this chapter you will:
 
@@ -42,7 +42,7 @@ One powerful feature of Gum is how it handles size relationships between parent 
 
 For example, a button might use a text element with `WidthUnits` set to `RelativeToChildren`, which means the text will be exactly the size needed to display its content. The button's container might use `RelativeToChildren` with some additional padding, allowing the button to automatically resize based on its text content.
 
-Although we haven't explicitly assigned WidthUnits and HeightUnits in our code, we have indirectly set these values by calling the Visual's `Dock` method. Specifically, by passing `Dock.Fill` as the parameter, `WidthUnits` and `HeightUnits` are both set to `RelativeToParent`.
+Although we have not explicitly assigned WidthUnits and HeightUnits in our code, we have indirectly set these values by calling the Visual's `Dock` method. Specifically, by passing `Dock.Fill` as the parameter, `WidthUnits` and `HeightUnits` are both set to `RelativeToParent`.
 
 > [!NOTE]
 > These size relationships can create circular dependencies when a child depends on its parent and the parent depends on the child. In such cases, Gum resolves the conflict by making the child depend on the parent, and the parent ignores that particular child when calculating its size.
@@ -375,7 +375,7 @@ The principles you've learned in this chapter extend beyond the specific compone
     :::question-answer
     The two main approaches are:
 
-    - **Direct property assignment**: Setting properties directly in code (like `button.Visual.Width = 100`). This approach is best for initial setup of UI elements and static properties that don't change during gameplay.
+    - **Direct property assignment**: Setting properties directly in code (like `button.Visual.Width = 100`). This approach is best for initial setup of UI elements and static properties that do not change during gameplay.
     - **States (StateSave objects)**: Defining different visual states that are applied automatically in response to interactions. This approach is best for dynamic changes that happen during gameplay, like highlighting a button when it's focused or changing colors when a slider is adjusted.
 
     :::

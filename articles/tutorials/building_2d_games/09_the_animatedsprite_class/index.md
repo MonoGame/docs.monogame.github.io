@@ -213,7 +213,7 @@ Now that we can efficiently manage and render sprites and animations, in the nex
     `TimeSpan` provides precise timing control and makes it easier to synchronize animations with game time. It also makes the delay values more explicit (milliseconds vs arbitrary numbers) and helps prevent timing errors.
     :::
 
-3. Why does the `AnimatedSprite` class need an `Update` method while the base `Sprite` class doesn't?
+3. Why does the `AnimatedSprite` class need an `Update` method while the base `Sprite` class does not?
 
     :::question-answer
     The `AnimatedSprite` needs to track elapsed time and change frames based on the animation's timing. This requires updating its state over time, while a regular sprite's appearance remains static until explicitly changed.

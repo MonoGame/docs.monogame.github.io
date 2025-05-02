@@ -58,7 +58,7 @@ To calculate the squared distance between to points, MonoGame provides the [**Ve
 [!code-csharp[](./snippets/vector2_distance.cs)]
 
 > [!TIP]
-> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared.  So why don't we use this instead?
+> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared.  So why do not we use this instead?
 >
 > Square root operations are more computationally complex for a CPU.  So instead of getting the normal distance, which would require the square root operation, it's more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.
 
@@ -194,10 +194,10 @@ For example, if we had a ball moving around the screen and wanted it to bounce o
 
 When checking for collisions between multiple objects, testing every object against every other object (often called brute force checking) becomes inefficient as your game grows. Brute force checking can be calculated as $(n * (n - 1)) / 2$ where $n$ is the total number of objects.  For example, if you have 100 objects in your game, that's $(100 * 99) / 2 = 4950$ collision checks every frame.  To improve performance, we can use a two-phase approach:
 
-1. Broad Phase: A quick, simple check to rule out objects that definitely aren't colliding.
+1. Broad Phase: A quick, simple check to rule out objects that definitely are not colliding.
 2. Narrow Phase: A more precise check only performed on objects that passed the broad phase.
 
-For our simple game with just two objects, this optimization isn't necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.  Later in this tutorial series we will implement an algorithm called spatial hashing to perform broad phase checks.
+For our simple game with just two objects, this optimization is not necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.  Later in this tutorial series we will implement an algorithm called spatial hashing to perform broad phase checks.
 
 ## The Circle Struct
 
@@ -292,7 +292,7 @@ If you run the game right now and move the slime around, you'll notice a few iss
 
 1. You can move the slime outside the bounds of the screen.
 2. Nothing occurs when the slime collides with the bat.
-3. The bat doesn't move, providing no challenge in the game.
+3. The bat does not move, providing no challenge in the game.
 
 Let's update our game to implement these changes using collision detection and response. Open *Game1.cs* and make the following changes:
 

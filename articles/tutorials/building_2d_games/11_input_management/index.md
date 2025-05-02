@@ -25,7 +25,7 @@ Let's look at the difference using keyboard input as an example. With our curren
 
 [!code[](./snippets/key_down_every_frame.cs)]
 
-However, many game actions shouldn't repeat while a key is held. For instance, if the Space key makes your character jump, you probably don't want them to jump repeatedly just because the player is holding the key down. Instead, you want the jump to happen only on the first frame when Space is pressed.
+However, many game actions should not repeat while a key is held. For instance, if the Space key makes your character jump, you probably do not want them to jump repeatedly just because the player is holding the key down. Instead, you want the jump to happen only on the first frame when Space is pressed.
 
 To detect this "just pressed" state, we need to compare two states:
 
@@ -312,7 +312,7 @@ The vibration methods provide control over the gamepad's haptic feedback:
 - `StopVibration`: Immediately stops all vibration.
 
 > [!TIP]
-> When setting vibration, you can specify both the strength (`0.0f` to `1.0f`) and duration. The vibration will automatically stop after the specified time has elapsed, so you don't need to manage stopping it manually.
+> When setting vibration, you can specify both the strength (`0.0f` to `1.0f`) and duration. The vibration will automatically stop after the specified time has elapsed, so you do not need to manage stopping it manually.
 
 That's it for the `GamePadInfo` class.  Next, we can create the actual input manager.
 

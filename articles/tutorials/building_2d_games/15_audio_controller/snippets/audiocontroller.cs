@@ -209,7 +209,7 @@ public class AudioController : IDisposable
     public void PlaySong(Song song, bool isRepeating = true)
     {
         // Check if the media player is already playing, if so, stop it.
-        // If we don't stop it, this could cause issues on some platforms
+        // If we do not stop it, this could cause issues on some platforms
         if (MediaPlayer.State == MediaState.Playing)
         {
             MediaPlayer.Stop();

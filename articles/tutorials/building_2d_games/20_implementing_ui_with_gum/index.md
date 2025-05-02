@@ -27,7 +27,7 @@ Creating a UI system from scratch requires solving many complex problems:
 3. **Visual State Management**: Changing appearances based on user interactions (hovering, focusing, clicking).
 4. **Component Hierarchy**: Managing parent-child relationships between elements.
 
-Gum addresses these challenges with ready-made solutions, allowing us to focus on the specific needs of our game rather than reinventing the UI wheel. While MonoGame provides the basic tools for drawing graphics and detecting input, it doesn't include high-level UI abstractions; this is where tools like Gum fill the gap.
+Gum addresses these challenges with ready-made solutions, allowing us to focus on the specific needs of our game rather than reinventing the UI wheel. While MonoGame provides the basic tools for drawing graphics and detecting input, it does not include high-level UI abstractions; this is where tools like Gum fill the gap.
 
 > [!IMPORTANT]
 > This tutorial uses the Gum NuGet package to help with layout and responding to user interactions. This tutorial does not require the use of the Gum tool - we will be doing everything in code.
@@ -81,7 +81,7 @@ Gum's root element can be cleared at any time to remove all UI elements:
 GumService.Default.Root.Children.Clear();
 ```
 
-This can be useful when navigating between different scenes to ensure UI elements don't persist from previous scenes:
+This can be useful when navigating between different scenes to ensure UI elements do not persist from previous scenes:
 
 ```cs
 public class GameScene
@@ -567,7 +567,7 @@ In this chapter, you've successfully implemented a functional UI system for our 
 - Create transitions between different UI screens.
 - Integrate the UI system with the game's scene architecture.
   
-While this UI is now functional, you may have noticed that it uses Gum's default styling which doesn't match our game's visual theme.  In the next chapter, we will learn how to customize the appearance of our UI elements to create a cohesive visual style that complements our game's aesthetic.
+While this UI is now functional, you may have noticed that it uses Gum's default styling which does not match our game's visual theme.  In the next chapter, we will learn how to customize the appearance of our UI elements to create a cohesive visual style that complements our game's aesthetic.
 
 ## Test Your Knowledge
 

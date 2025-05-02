@@ -101,7 +101,7 @@ To add an existing asset to the content project:
 
 When adding existing assets to the content project, a pop-up dialog will appear with the following options:
 
-- **Copy the file to the folder**: Creates a duplicate of the file inside your project's Content folder. This creates an independent copy, meaning any later changes to the original file won't affect your project.
+- **Copy the file to the folder**: Creates a duplicate of the file inside your project's Content folder. This creates an independent copy, meaning any later changes to the original file wo not affect your project.
 - **Add a link**: Creates a reference to the original file without making a copy. This maintains a connection to the source file, so any updates to the original will be included when you build. Note that the link uses a path relative to the Content.mgcb file, so if either the source file or your project moves, you'll need to reestablish the link.
 - **Skip**: Cancels adding the current file while continuing with any other selected files.
 
@@ -233,7 +233,7 @@ Now that we have an image file to add, perform the following:
 10. Save the changes made to the content project by selecting *File > Save* from the top menu.
 
 > [!IMPORTANT]
-> After changes have been made in the MGCB Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and haven't saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved
+> After changes have been made in the MGCB Editor, ensure that you save the changes.  They are not automatically saved, though you will be warned if you close the editor and have not saved changes. You can tell that changes have not been saved by looking at the title bar of the MGCB editor window.  If it has an '*' at the end of the window title, this means changes have not been saved
 
 | ![Figure 5-8: The logo image added to the content project in the MGCB Editor](./images/mgcb-logo-added.png) |
 |:-----------------------------------------------------------------------------------------------------------:|

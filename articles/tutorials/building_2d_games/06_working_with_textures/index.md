@@ -207,7 +207,7 @@ Final Green = Sprite Green * 1.0f
 Final Blue = Sprite Blue * 1.0f;
 ```
 
-Since multiplying by `1.0f` doesn't change the value, [**Color.White**](xref:Microsoft.Xna.Framework.Color.White) essentially preserves the original colors of the sprite.
+Since multiplying by `1.0f` does not change the value, [**Color.White**](xref:Microsoft.Xna.Framework.Color.White) essentially preserves the original colors of the sprite.
 
 For this example, we will reset the `effects`  parameter back to [**SpriteEffects.None**](xref:Microsoft.Xna.Framework.Graphics.SpriteEffects.None) and update the `color` parameter to use [**Color.Green**](xref:Microsoft.Xna.Framework.Color.Green):
 
@@ -289,7 +289,7 @@ Let's see this in action.  We've already set the `layerDepth` parameter of the i
 
 [!code-csharp[](./snippets/sortmode.cs?highlight=13)]
 
-Now we are telling it to use the [**SpriteSortMode.FrontToBack**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.FrontToBack) sort mode, which will sort the draw calls so that those with a higher `layerDepth` will be drawn on top of those with a lower one.  Even though we didn't change the order of the `_spriteBatch.Draw` calls, if you run the game now, you will see the following:
+Now we are telling it to use the [**SpriteSortMode.FrontToBack**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.FrontToBack) sort mode, which will sort the draw calls so that those with a higher `layerDepth` will be drawn on top of those with a lower one.  Even though we did not change the order of the `_spriteBatch.Draw` calls, if you run the game now, you will see the following:
 
 | ![Figure 5-17: The MonoGame icon drawn on top of the wordmark](./images/icon-on-top-of-wordmark.png) |
 | :--------------------------------------------------------------------------------------------------: |

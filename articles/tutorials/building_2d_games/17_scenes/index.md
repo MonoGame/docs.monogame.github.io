@@ -186,7 +186,7 @@ Add the following override for the `Update` method to the `TitleScene` class:
 - A check is made to see if the enter key is pressed, and if so, the `Core` is told to change to the game scene.  
 
 > [!NOTE]
-> Your editor might show an error here since we haven't created the `GameScene` class yet.  We will create it in a moment after finishing the title scene.
+> Your editor might show an error here since we have not created the `GameScene` class yet.  We will create it in a moment after finishing the title scene.
 
 ##### Title Scene Draw
 

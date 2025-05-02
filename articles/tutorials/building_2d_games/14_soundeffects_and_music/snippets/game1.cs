@@ -98,7 +98,7 @@ public class Game1 : Core
         // Load the background theme music
         Song theme = Content.Load<Song>("audio/theme");
 
-        // Ensure media player isn't already playing on device, if so, stop it
+        // Ensure media player is not already playing on device, if so, stop it
         if (MediaPlayer.State == MediaState.Playing)
         {
             MediaPlayer.Stop();

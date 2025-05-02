@@ -104,11 +104,11 @@ The `<UseKerning>` element determines whether to use kerning information from th
 
 #### Style
 
-The `<Style>` element sets the font style. Valid options are "Regular", "Bold", "Italic", or "Bold, Italic". Note that not all fonts have all styles available, and using a style that doesn't exist will fall back to Regular.
+The `<Style>` element sets the font style. Valid options are "Regular", "Bold", "Italic", or "Bold, Italic". Note that not all fonts have all styles available, and using a style that does not exist will fall back to Regular.
 
 #### DefaultCharacter
 
-The `<DefaultCharacter>` element (commented out by default) specifies what character to use as a fallback when trying to render a character that isn't included in the font. This is useful for handling special characters or international text.
+The `<DefaultCharacter>` element (commented out by default) specifies what character to use as a fallback when trying to render a character that is not included in the font. This is useful for handling special characters or international text.
 
 #### CharacterRegions
 
@@ -256,7 +256,7 @@ In the next chapter we will discuss MonoGame's service container and how we can 
 2. Why is it recommended to include the font file in your content project rather than referencing system fonts?
 
     :::question-answer
-    Including the font file (TTF/OTF) directly in your content project and referencing it with the file extension ensures portability across different development environments. This approach doesn't depend on fonts being installed on the system where the content is built.
+    Including the font file (TTF/OTF) directly in your content project and referencing it with the file extension ensures portability across different development environments. This approach does not depend on fonts being installed on the system where the content is built.
     :::
 
 3. What method would you use to determine how much space a text string will occupy when rendered, and what does it return?

@@ -67,7 +67,7 @@ The `Update` method will check for existing sound effect instances that have exp
 
 #### AudioController Playback
 
-While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way doesn't work if you need to pause them because the game paused.  Instead, we can add playback methods through the `AudioController` that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.  Add the following methods:
+While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way does not work if you need to pause them because the game paused.  Instead, we can add playback methods through the `AudioController` that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.  Add the following methods:
 
 [!code-csharp[](./snippets/audiocontroller.cs#playback)]
 
