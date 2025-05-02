@@ -72,19 +72,25 @@ This constructor initializes all UI components:
 
 ### GameSceneUI UI Creation Methods
 
-Next add the methods to create the various UI elements that are managed by the `GameSceneUI` class.  Add the following method after the constructor:
+To keep the code more organized, we will create separate functions to build the individual UI elements that will be managed by the `GameSceneUI` class.
+
+#### Creating the Score Text
+
+First, we will add a method to create a `TextRuntime` element that is used to display the player's score.  Add the following method to the `GameSceneUI`  after the constructor:
 
 [!code-csharp[](./snippets/gamesceneui/createscoretext.cs)]
 
-This method takes creates a `TextRuntime` element that we can use to display the player's score and returns it back.  After this method, add the following method:
+#### Creating the Pause Panel
+
+Next, we will add a method to create a `Panel` element that is shown when the game is paused, including the "Resume" and "Quit" buttons.  Add the following method to the `GameSceneUI` class after the `CreateScoreText` method:
 
 [!code-csharp[](./snippets/gamesceneui/createpausepanel.cs)]
 
-This method builds the `Panel` that is shown when the game is paused, including the "Resume" and "Quit" buttons, then returns it back. Finally, after this method, add the following method:
+#### Creating the Game Over Panel
+
+Finally, we will add a method to create a `Panel` element that is shown when a game over occurs, including the "Retry" and "Quit" buttons.  Add the following method to the `GameSceneUI` class after the `CreatePausePanel` method:
 
 [!code-csharp[](./snippets/gamesceneui/creategameoverpanel.cs)]
-
-This method builds the `Panel` that is shown when a game over occurs, including the "Retry" and "Quit" buttons.
 
 Both the pause panel and the game over panel use event handlers for their buttons.  Let's add those next.
 
