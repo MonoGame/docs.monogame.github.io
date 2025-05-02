@@ -3,7 +3,7 @@ title: "Chapter 23: Completing the Game"
 description: "Finalize game mechanics by updating our current demo into a snake-like inspired game."
 ---
 
-IN [Chapter 22](../22_snake_game_mechanics/index.md) we implemented the core mechanics of a snake-like game by creating the [`Slime`](../22_snake_game_mechanics/index.md#the-slime-class), [`Bat`](../22_snake_game_mechanics/index.md#the-bat-class) and [`GameController`](../22_snake_game_mechanics/index.md#the-gamecontroller-class) classes.  While these classes handle the foundational gameplay, a complete game needs additional elements to provide player feedback, manage game states, and create a polished experience.
+In [Chapter 22](../22_snake_game_mechanics/index.md) we implemented the core mechanics of a snake-like game by creating the [`Slime`](../22_snake_game_mechanics/index.md#the-slime-class), [`Bat`](../22_snake_game_mechanics/index.md#the-bat-class) and [`GameController`](../22_snake_game_mechanics/index.md#the-gamecontroller-class) classes.  While these classes handle the foundational gameplay, a complete game needs additional elements to provide player feedback, manage game states, and create a polished experience.
 
 In this chapter, you will:
 
