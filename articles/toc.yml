@@ -154,6 +154,8 @@
           href: tutorials/building_2d_games/20_implementing_ui_with_gum/
         - name: "21: Customizing Gum UI"
           href: tutorials/building_2d_games/21_customizing_gum_ui/
+        - name: "24: Shaders"
+          href: tutorials/building_2d_games/24_shaders/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
