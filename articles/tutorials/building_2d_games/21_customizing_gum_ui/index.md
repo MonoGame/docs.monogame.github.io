@@ -119,7 +119,7 @@ Before we can start, we first need to update the *atlas.png* texture atlas file 
 - The characters for the font, generated using Bitmap Font Generator (BMFont)
 - The sprites for the UI components we will create
 
-Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* directory of the game project, overwriting the existing one.
+Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* folder of the game project, overwriting the existing one.
 
 | ![Figure 21-1: The texture atlas for the game updated to include the UI sprites](./images/atlas.png) |
 | :--------------------------------------------------------------------------------------------------: |
@@ -133,7 +133,7 @@ The slime and bat sprites are no longer in the same position, and we have some n
 
 While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to draw text, Gum uses the [AngelCode Bitmap Font (.fnt)](https://www.angelcode.com/products/bmfont/) font file format. This means we'll need to supply Gum with the *.fnt* file that defines our font.
 
-First, download the *.fnt* file by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/fonts* directory:
+First, download the *.fnt* file by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/fonts* folder:
 
 - [04b_30.fnt](./files/04b_30.fnt)
 

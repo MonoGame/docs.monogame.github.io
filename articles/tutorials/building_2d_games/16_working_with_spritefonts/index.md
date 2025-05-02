@@ -60,10 +60,10 @@ The `<FontName>` element specifies which font to use. By default, it references 
 Alternatively, for better portability across development environments, it's recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.  To do this
 
 1. Download or locate a TTF or OTF font file.
-2. Place it in the same directory as the *.spritefont* file.
+2. Place it in the same folder as the *.spritefont* file.
 
     > [!IMPORTANT]
-    > You place the font file in the same directory as the *.spritefont* file directly, not through the MGCB Editor.
+    > You place the font file in the same folder as the *.spritefont* file directly, not through the MGCB Editor.
 
 3. Update the `<FontName>` element to include the exact filename with extension.
 
@@ -177,8 +177,8 @@ Let's add some text to our game to display information to the player.  We'll add
 
 First, we'll need to create a SpriteFont Definition.  Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
 
-1. Create a new directory called *fonts* (right-click *Content* > *Add* > *New Folder*).
-2. Right-click the new *fonts* directory and choose *Add* > *New Item...*.
+1. Create a new folder called *fonts* (right-click *Content* > *Add* > *New Folder*).
+2. Right-click the new *fonts* folder and choose *Add* > *New Item...*.
 3. Select *SpriteFont Description (.spritefont)* from the options.
 4. Name the file *04B_30.spritefont* and click *Create*.
 
@@ -191,7 +191,7 @@ First, we'll need to create a SpriteFont Definition.  Open the *Content.mgcb* co
 
 ### Download the Font File
 
-Next, right-click the following TTF font and choose "Save Link as..." and save it in the same directory as the *04B_30.spriteFont* file we just created.
+Next, right-click the following TTF font and choose "Save Link as..." and save it in the same folder as the *04B_30.spriteFont* file we just created.
 
 - [04B_30.ttf](./files/04B_30.ttf)
 

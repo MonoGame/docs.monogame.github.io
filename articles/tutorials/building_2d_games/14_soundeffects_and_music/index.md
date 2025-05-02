@@ -162,8 +162,8 @@ Before we can add audio to our game, we need some sound files to work with. Down
 Add these files to your content project using the MGCB Editor:
 
 1. Open the *Content.mgcb* file in the MGCB Editor.
-2. Create a new directory called `audio` (right-click *Content* > *Add* > *New Folder*).
-3. Right-click the new *audio* directory and choose *Add* > *Existing Item...*.
+2. Create a new folder called `audio` (right-click *Content* > *Add* > *New Folder*).
+3. Right-click the new *audio* folder and choose *Add* > *Existing Item...*.
 4. Navigate to and select the audio files you downloaded.
 5. For each file that is added, check its properties in the Properties panel:
    - For `.wav` files, ensure the *Processor* is set to `Sound Effect`.

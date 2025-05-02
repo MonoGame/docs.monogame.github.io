@@ -64,7 +64,7 @@ Let's implement this concept in our game by creating a `Tileset` class and a `Ti
 
 The `Tileset` class will manage a collection of tiles from a texture atlas.  Each tile will be represented as a `TextureRegion`, building on the tools in the library we created earlier.
 
-In the *Graphics* directory of the *MonoGameLibrary* project, create a new file named *Tileset.cs* with the following code as the initial structure:
+In the *Graphics* folder of the *MonoGameLibrary* project, create a new file named *Tileset.cs* with the following code as the initial structure:
 
 [!code-csharp[](./snippets/tileset.cs#declaration)]
 
@@ -90,7 +90,7 @@ The `Tileset` class needs to provide methods to retrieve the `TextureRegion` of 
 
 Now that we have a `Tileset` class to define our tile collection, we need a `Tilemap` class to arrange these tiles into a game level.  The `Tilemap` class will store which tile goes where in our game world and provide methods to draw the entire map.
 
-In the *Graphics* directory of the *MonoGameLibrary* project, create a new file named *Tilemap.cs* with the following code as the initial structure:
+In the *Graphics* folder of the *MonoGameLibrary* project, create a new file named *Tilemap.cs* with the following code as the initial structure:
 
 [!code-csharp[](./snippets/tilemap.cs#declaration)]
 
@@ -134,7 +134,7 @@ Now that we have the `Tilemap` and `Tileset` classes defined, let's update our g
 
 ### Update the Texture Atlas
 
-Currently, the texture atlas we've been using only contains the sprites for the slime and bat animations. Let's update it to a new version that contains the tileset as well.  Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* directory of the game project, overwriting the existing one.
+Currently, the texture atlas we've been using only contains the sprites for the slime and bat animations. Let's update it to a new version that contains the tileset as well.  Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* folder of the game project, overwriting the existing one.
 
 | ![Figure 13-3: The texture atlas for our game updated to include the tileset for the tilemap](./images/atlas.png) |
 |:-----------------------------------------------------------------------------------------------------------------:|
@@ -147,7 +147,7 @@ Currently, the texture atlas we've been using only contains the sprites for the 
 
 Now that we have the texture atlas updated to include the tileset, let's create a tilemap configuration that our game can load.  The configuration will be an XML file that specifies the tileset to use and the arrangement of tiles in the tilemap.
 
-Create a new file named *tilemap-definition.xml* in the *Content/images* directory of the game project and add the following:
+Create a new file named *tilemap-definition.xml* in the *Content/images* folder of the game project and add the following:
 
 [!code-xml[](./snippets/tilemap-definition.xml)]
 

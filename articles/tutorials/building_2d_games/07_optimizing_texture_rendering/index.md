@@ -67,15 +67,15 @@ In [Chapter 06](../06_working_with_textures/index.md#source-rectangle), we learn
 
 We're going to add this class to the class library we created in [Chapter 04](../04_creating_a_class_library/index.md).  Perform the following:
 
-1. Add new directory in the *MonoGameLibrary* project named `Graphics`
-2. Create a new file named *TextureRegion.cs* inside the *Graphics* directory you just created.
+1. Add new folder in the *MonoGameLibrary* project named `Graphics`
+2. Create a new file named *TextureRegion.cs* inside the *Graphics* folder you just created.
 
 Add the following code for the foundation of the `TextureRegion` class to the *TextureRegion.cs* file:
 
 [!code-csharp[](./snippets/textureregion.cs#declaration)]
 
 > [!NOTE]
-> The *TextureRegion.cs* class file is placed in the *MonoGame/Graphics* directory and the class uses the `MonoGameLibrary.Graphics` [namespace](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview) to keep graphics-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
+> The *TextureRegion.cs* class file is placed in the *MonoGame/Graphics* folder and the class uses the `MonoGameLibrary.Graphics` [namespace](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview) to keep graphics-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
 
 ### TextureRegion Members
 
@@ -109,7 +109,7 @@ These methods provide flexible options for rendering the texture region, similar
 
 In the [What is a Texture Atlas](#what-is-a-texture-atlas) section above, a texture atlas was described as a scrap book that holds all of the individual sprites for the game.  These individual sprites can now be represented by the `TextureRegion` class we just created.  Now, we'll create the `TextureAtlas` class to represent the collection of the regions that make up all of our sprites.
 
-Just like the `TextureRegion` class, we're going to add this to the class library.  In the *Graphics* directory within the *MonoGameLibrary* project, add a new file named *TextureAtlas.cs*.  Add the following code for the foundation fo the `TextureAtlas` class to the *TextureAtlas.cs* file:
+Just like the `TextureRegion` class, we're going to add this to the class library.  In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *TextureAtlas.cs*.  Add the following code for the foundation fo the `TextureAtlas` class to the *TextureAtlas.cs* file:
 
 [!code-csharp[](./snippets/textureatlas.cs#declaration)]
 
@@ -163,7 +163,7 @@ Download the texture atlas by right-clicking the following image and saving it a
 Add this texture atlas to your content project using the MGCB Editor:
 
 1. Open the *Content.mgcb* file in the MGCB Editor
-2. In the editor, right-click the *images* directory and choose *Add > Existing item...*.
+2. In the editor, right-click the *images* folder and choose *Add > Existing item...*.
 3. Navigate to and choose the *atlas.png* file you downloaded to add it.
 4. Save the changes and close the MGCB Editor.
 
@@ -195,13 +195,13 @@ Running the game now shows both sprites in the upper-left corner:
 
 While manual creation works for a few sprites, managing many regions becomes cumbersome. Let's now explore the `TextureAtlas.FromFile` method to load our atlas configuration from XML instead. Perform the following:
 
-1. Create a new file named *atlas-definition.xml* in the *Content/images* directory.
+1. Create a new file named *atlas-definition.xml* in the *Content/images* folder.
 2. Add the following content to that file:
 
     [!code-xml[](./snippets/atlas_definition.xml)]
 
 3. Open the *Content.mgcb* file in the MGCB Editor
-4. In the editor, right-click the *images* directory and choose *Add . Existing item...*.
+4. In the editor, right-click the *images* folder and choose *Add . Existing item...*.
 5. Navigate to and choose the *atlas-definition.xml* file you just created to add it.
 6. In the properties panel at the bottom for the *atlas-definition.xml* file, change the *Build Action* property from *Build* to *Copy*.
 

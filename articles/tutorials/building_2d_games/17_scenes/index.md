@@ -38,8 +38,8 @@ The base `Scene` class is an abstract class for scenes that provides common func
 
 To get started, in the *MonoGameLibrary* project:
 
-1. Create a new directory named *Scenes*.
-2. Add a new class file named *Scene.cs* to the *Scenes* directory you just created.
+1. Create a new folder named *Scenes*.
+2. Add a new class file named *Scene.cs* to the *Scenes* folder you just created.
 3. Add the following code as the initial structure for the class:
 
     [!code-csharp[](./snippets/scene.cs#declaration)]
@@ -62,7 +62,7 @@ Add the following constructor and finalizer to the `Scene` class:
 
 [!code-csharp[](./snippets/scene.cs#ctors)]
 
-- The constructor initializes the scene's content manager and sets the root directory to match that of the base game's content manager.
+- The constructor initializes the scene's content manager and sets the root folder to match that of the base game's content manager.
 - The finalizer is called by the garbage collector automatically when a scene object is collected which just calls the `Dispose` method to ensure resources are disposed of properly.
 
 ### Scene Methods
@@ -113,7 +113,7 @@ The key changes here are:
 
 With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We'll create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
 
-1. Right-click the *fonts* directory and choose *Add* > *New Item...*.
+1. Right-click the *fonts* folder and choose *Add* > *New Item...*.
 2. Select *SpriteFont Description (.spritefont)* from the options
 3. Name the file *04B_30_5x.spritefont* and click *Create*.
 
@@ -131,8 +131,8 @@ The title scene serves as the game's initial starting point; the first impressio
 
 To get started, first:
 
-1. Create a new directory named *Scenes*.  We'll put all of our game specific scenes here.
-2. Add a new class file named *TitleScene.cs* to the *Scenes* directory you just created.
+1. Create a new folder named *Scenes*.  We'll put all of our game specific scenes here.
+2. Add a new class file named *TitleScene.cs* to the *Scenes* folder you just created.
 3. Add the following code as the initial structure for the class.
 
     [!code-csharp[](./snippets/titlescene.cs#declaration)]
@@ -202,7 +202,7 @@ Add the following override for the `Draw` method to the `TitleScene` class:
 
 ### The Game Scene
 
-The Game Scene will contain our actual gameplay logic. This scene will handle updating and rendering the slime that the player controls, the bat the slime can eat, collision detection, score tracking, and input handling. Most of this logic has already been implemented in our `Game1` class in previous chapters, but now we'll move it into a dedicated scene class. In the *Scenes* directory:
+The Game Scene will contain our actual gameplay logic. This scene will handle updating and rendering the slime that the player controls, the bat the slime can eat, collision detection, score tracking, and input handling. Most of this logic has already been implemented in our `Game1` class in previous chapters, but now we'll move it into a dedicated scene class. In the *Scenes* folder:
 
 1. Add a new class file named *GameScene.cs*.
 2. Add the following code as the initial structure for the class:

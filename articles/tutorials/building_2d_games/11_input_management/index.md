@@ -42,7 +42,7 @@ So far, we've only been working with our game within the *Game1.cs* file.  This 
 
 Before we create the `InputManager` class, let's first create classes for the keyboard, mouse, and gamepad that encapsulates the information about those inputs which will then be exposed through the `InputManager`.  
 
-To get started, create a new directory called *Input* in the *MonoGameLibrary* project.  We'll put all of our input related classes here.
+To get started, create a new folder called *Input* in the *MonoGameLibrary* project.  We'll put all of our input related classes here.
 
 ## The KeyboardInfo Class
 
@@ -52,7 +52,7 @@ Let's start our input management system by creating a class to handle keyboard i
 - Detect when keys are pressed or released
 - Check if keys are being held down
 
-In the *Input* directory of the *MonoGameLibrary* project, add a new file named *KeyboardInfo.cs* with this initial structure:
+In the *Input* folder of the *MonoGameLibrary* project, add a new file named *KeyboardInfo.cs* with this initial structure:
 
 [!code-csharp[](./snippets/keyboardinfo.cs#declaration)]
 
@@ -110,7 +110,7 @@ That's it for the `KeyboardInfo` class, let's move on to mouse input next.
 
 Recall from the [Mouse Input](../10_handling_input/index.md#mouse-input) section of the previous chapter that the [**MouseState**](xref:Microsoft.Xna.Framework.Input.MouseState) struct provides button states through properties rather than methods like `IsButtonDown`/`IsButtonUp`. To keep our input management API consistent across devices, we'll create a `MouseButton` enum that lets us reference mouse buttons in a similar way to how we use [**Keys**](xref:Microsoft.Xna.Framework.Input.Keys) for keyboard input and [**Buttons**](xref:Microsoft.Xna.Framework.Input.Buttons) for gamepad input.
 
-In the *Input* directory of the *MonoGameLibrary* project, add a new file named *MouseButton.cs* with the following code:
+In the *Input* folder of the *MonoGameLibrary* project, add a new file named *MouseButton.cs* with the following code:
 
 [!code-csharp[](./snippets/mousebutton.cs)]
 
@@ -134,7 +134,7 @@ To manage mouse input effectively, we need to track both current and previous st
 - Detect when mouse buttons are pressed or released
 - Check if mouse buttons are being held down
   
-Let's create this class in the *Input* directory of the *MonoGameLibrary* project. Add a new file named *MouseInfo.cs* with the following initial structure:
+Let's create this class in the *Input* folder of the *MonoGameLibrary* project. Add a new file named *MouseInfo.cs* with the following initial structure:
 
 [!code-csharp[](./snippets/mouseinfo.cs#declaration)]
 
@@ -239,7 +239,7 @@ To manage gamepad input effectively, we need to track both current and previous 
 - Check if gamepad buttons are being held down.
 - Start and Stop vibration of a gamepad.
 
-Let's create this class in the *Input* directory of the *MonoGameLibrary* project. Add a new file named *GamePadInfo.cs* with the following initial structure:
+Let's create this class in the *Input* folder of the *MonoGameLibrary* project. Add a new file named *GamePadInfo.cs* with the following initial structure:
 
 [!code-csharp[](./snippets/gamepadinfo.cs#declaration)]
 
@@ -320,7 +320,7 @@ That's it for the `GamePadInfo` class.  Next, let's create the actual input mana
 
 Now that we have classes to handle keyboard, mouse, and gamepad input individually, we can create a centralized manager class to coordinate all input handling.
 
-In the *Input* directory of the *MonoGameLibrary* project, add a new file named *InputManager.cs* with this initial structure:
+In the *Input* folder of the *MonoGameLibrary* project, add a new file named *InputManager.cs* with this initial structure:
 
 [!code-csharp[](./snippets/inputmanager.cs#declaration)]
 

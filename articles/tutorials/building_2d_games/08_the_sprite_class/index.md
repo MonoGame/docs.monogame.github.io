@@ -20,7 +20,7 @@ A sprite in our game represents a visual object created from a texture region al
 
 By creating a `Sprite` class, we can encapsulate both the texture region and its rendering parameters into a single, reusable component. This not only makes our code more organized but also makes it easier to manage multiple instances of the same type of sprite.
 
-In the *Graphics* directory within the *MonoGameLibrary* project, add a new file named *Sprite.cs*.  Add the following code for the foundation of the `Sprite` class to the *Sprite.cs* file:
+In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *Sprite.cs*.  Add the following code for the foundation of the `Sprite` class to the *Sprite.cs* file:
 
 [!code-csharp[](./snippets/sprite.cs#declaration)]
 

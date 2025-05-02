@@ -318,7 +318,7 @@ To Add the Gum NuGet package in Visual Studio 2022:
 
 To add the Gum NuGet package using the dotnet CLI:
 
-1. Open a Command Prompt or Terminal window in the same directory as the *DungeonSlime.csproj* project file.
+1. Open a Command Prompt or Terminal window in the same folder as the *DungeonSlime.csproj* project file.
 2. Enter the following command:
 
     ```sh
@@ -340,7 +340,7 @@ This will install the latest version of the package, which is "2025.4.23.1" as o
 
 To make our UI more responsive and engaging, we'll add audio feedback that plays when players interact with buttons and other UI elements. Sound effects provide immediate confirmation that an input has been recognized, creating a more engaging experience.
 
-First, download the UI sound effect by right-clicking the following link and saving it as *ui.wav* in the game project's *Content/audio* directory:
+First, download the UI sound effect by right-clicking the following link and saving it as *ui.wav* in the game project's *Content/audio* folder:
 
 - [ui.wav](./files/ui.wav)
 

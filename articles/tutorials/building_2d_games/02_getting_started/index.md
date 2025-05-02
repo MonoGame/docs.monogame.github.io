@@ -90,7 +90,7 @@ To install VSCode, follow the instructions for your operating system below:
 1. Open a web browser and navigate to https://code.visualstudio.com/.
 2. Click the *Download for macOS* button to start the download of the *.zip* archive.
 3. Once the download finishes, double click the *.zip* archive to extract the *Visual Studio Code.app* application package
-4. Drag-and-drop the *Visual Studio Code.app* application package into your *Application* directory to make it available in the macOS *LaunchPad*.
+4. Drag-and-drop the *Visual Studio Code.app* application package into your *Application* folder to make it available in the macOS *LaunchPad*.
 
 ### [Linux](#tab/linux)
 
@@ -160,7 +160,7 @@ wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 ```
 
 > [!NOTE]
-> After performing these steps, a new directory called *.winemonogame* will be created in your home directory. If you ever wish to undo the setup performed by this script, you can simply delete this directory.
+> After performing these steps, a new folder called *.winemonogame* will be created in your home folder. If you ever wish to undo the setup performed by this script, you can simply delete this folder.
 
 ### [Linux](#tab/linux)
 
@@ -172,7 +172,7 @@ wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 ```
 
 > [!NOTE]
-> After performing these steps, a new directory called *.winemonogame* will be created in your home directory. If you ever wish to undo the setup performed by this script, you can simply delete this directory.
+> After performing these steps, a new folder called *.winemonogame* will be created in your home folder. If you ever wish to undo the setup performed by this script, you can simply delete this folder.
 
 ---
 

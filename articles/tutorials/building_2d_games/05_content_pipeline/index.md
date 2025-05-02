@@ -12,7 +12,7 @@ Loading assets can be done during runtime directly from file, or it can be loade
 For instance, to load an image file directly at runtime, you would need to:
 
 1. Add the image file to your project.
-2. Configure the project to copy the image file on build to the build output directory.
+2. Configure the project to copy the image file on build to the build output folder.
 3. Load the image file as a texture at runtime using the [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)) method.
 
 > [!IMPORTANT]
@@ -23,12 +23,12 @@ For instance, to load an image file directly at runtime, you would need to:
 On the other side of this coin, MonoGame offers the **Content Pipeline**; a workflow for managing assets. The workflow is made up of a set of tools and utilities that are automatically added by default when you create a new MonoGame project using the MonoGame project templates.  To use this workflow, you need to:
 
 1. Add the asset file to your content project (*Content.mgcb* file) using the *MonoGame Content Builder Editor* (MGCB Editor).
-2. Perform a project build. Doing this, the *MonoGame.Content.Builder.Tasks* NuGet reference will compile the assets defined in the content project, optimized for the target platform, and automatically copy them to the game project build directory.
+2. Perform a project build. Doing this, the *MonoGame.Content.Builder.Tasks* NuGet reference will compile the assets defined in the content project, optimized for the target platform, and automatically copy them to the game project build folder.
 3. Load the compiled asset at runtime using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
 
 The following image illustrates this workflow:
 
-| ![Figure 5-1: MonoGame Content Pipeline Workflow](./images/content-pipeline-workflow-full.png) |
+| ![Figure 5-1: MonoGame Content Pipeline Workflow](./images/content-pipeline-workflow-full.svg) |
 |:----------------------------------------------------------------------------------------------:|
 |                       **Figure 5-1: MonoGame Content Pipeline Workflow**                       |
 
@@ -50,7 +50,7 @@ The MGCB Editor is a GUI tool that can be used to edit your content project.  Th
 - **Xml Content (.xml)**: A structured data file for storing game information like levels, dialogues, or configuration settings.
 
 > [!NOTE]
-> The content project is the *Content.mgcb* file in your game project directory.  This file can be edited manually by hand, however it's much easier to use the MGCB Editor instead.  
+> The content project is the *Content.mgcb* file in your game project folder.  This file can be edited manually by hand, however it's much easier to use the MGCB Editor instead.  
 
 ### Opening the MGCB Editor
 
@@ -74,7 +74,7 @@ To open the *Content.mgcb* content project file in the MGCB Editor with Visual S
 
 To open the *Content.mgcb* content project file in the MGCB Editor using the dotnet CLI commands, perform the following:
 
-1. Open a new Command Prompt or Terminal window in the same directory as your game project's *.csproj* file.
+1. Open a new Command Prompt or Terminal window in the same folder as your game project's *.csproj* file.
 2. Enter the command `dotnet mgcb-editor ./Content/Content.mgcb`
 
 ---
@@ -101,7 +101,7 @@ To add an existing asset to the content project:
 
 When adding existing assets to the content project, a pop-up dialog will appear with the following options:
 
-- **Copy the file to the directory**: Creates a duplicate of the file inside your project's Content directory. This creates an independent copy, meaning any later changes to the original file won't affect your project.
+- **Copy the file to the folder**: Creates a duplicate of the file inside your project's Content folder. This creates an independent copy, meaning any later changes to the original file won't affect your project.
 - **Add a link**: Creates a reference to the original file without making a copy. This maintains a connection to the source file, so any updates to the original will be included when you build. Note that the link uses a path relative to the Content.mgcb file, so if either the source file or your project moves, you'll need to reestablish the link.
 - **Skip**: Cancels adding the current file while continuing with any other selected files.
 
@@ -163,7 +163,7 @@ The [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) of
 
 | Property                                                                                   | Type               | Description                                                 |
 |--------------------------------------------------------------------------------------------|--------------------|-------------------------------------------------------------|
-| [**RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory)     | `string`           | The root directory the content manager searches for assets. |
+| [**RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory)     | `string`           | The root folder the content manager searches for assets. |
 | [**ServiceProvider**](xref:Microsoft.Xna.Framework.Content.ContentManager.ServiceProvider) | `IServiceProvider` | The service provider used by the content manager.           |
 
 ### ContentManager Methods
@@ -194,8 +194,8 @@ When loading an asset, the load methods require two parts:
 
 The folder structure you create in the MGCB Editor directly affects how you load content in your game. When you perform a build of your game project, the *MonoGame.Content.Builder.Tasks* NuGet package reference will:
 
-1. Compile the assets into an optimized format in the **content project's** output directory (typically *ProjectRoot/Content/bin/Platform/Content*) as an *.xnb* file.
-2. Copy the compiled assets to your **game's** output directory (typically *ProjectRoot/bin/Debug/net8.0/Content* or *ProjectRoot/bin/Release/net8.0/Content*).
+1. Compile the assets into an optimized format in the **content project's** output folder (typically *ProjectRoot/Content/bin/Platform/Content*) as an *.xnb* file.
+2. Copy the compiled assets to your **game's** output folder (typically *ProjectRoot/bin/Debug/net8.0/Content* or *ProjectRoot/bin/Release/net8.0/Content*).
 
 For example, if your content project contains:
 
@@ -205,7 +205,7 @@ then when the tasks first compiles the assets, they will be output to:
 
 [!code-sh[](./snippets/content_build_dir_tree.sh)]
 
-Then after compiling them and copying them to the game projects output directory, it will look like the following:
+Then after compiling them and copying them to the game projects output folder, it will look like the following:
 
 [!code-sh[](./snippets/project_build_dir_tree.sh)]
 
@@ -281,7 +281,7 @@ In the next chapter, we'll go more into detail on working with textures and the 
     2. Using the content pipeline with [**Content.Load<Texture2D>**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)).  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.
     :::
 
-2. During the MonoGame content pipeline workflow, assets are compiled and then copied to the project output directory.  What is responsible for performing this task?
+2. During the MonoGame content pipeline workflow, assets are compiled and then copied to the project output folder.  What is responsible for performing this task?
 
     :::question-answer
     The *MonoGame.Content.Builder.Tasks* NuGet reference.

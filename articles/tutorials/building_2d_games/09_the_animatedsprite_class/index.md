@@ -20,7 +20,7 @@ In this chapter, we'll build off of the `Sprite` class we created in [Chapter 08
 
 ## The Animation Class
 
-Before we can create animated sprites, we need a way to manage animation data. Let's create an `Animation` class to encapsulate this information. In the *Graphics* directory within the *MonoGameLibrary* project, add a new file named *Animation.cs* with this initial structure:
+Before we can create animated sprites, we need a way to manage animation data. Let's create an `Animation` class to encapsulate this information. In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *Animation.cs* with this initial structure:
 
 [!code-csharp[](./snippets/animation.cs#declaration)]
 
@@ -98,7 +98,7 @@ With our `Animation` class handling animation data, and the `TextureAtlas` updat
 
 The key to this design is the `Sprite.Region` property. Our `Sprite` class already knows how to render whatever region is currently set, so our `AnimatedSprite` class just needs to update this region property to the correct animation frame at the right time.
 
-Let's create the initial structure for our `AnimatedSprite` class. In the *Graphics* directory within the *MonoGameLibrary* project, add a new file named *AnimatedSprite.cs*:
+Let's create the initial structure for our `AnimatedSprite` class. In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *AnimatedSprite.cs*:
 
 [!code-csharp[](./snippets/animatedsprite.cs#declaration)]
 
