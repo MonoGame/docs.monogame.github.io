@@ -282,6 +282,10 @@ Now that we have our grayscale shader, we can implement it in our game when the 
 
 With these changes, when the game enters a paused or game over state, the screen will gradually fade to gray using the grayscale shader effect.  This provides a clear indication that the game is inactive during these states.  
 
+| ![Figure 24-1: The game, now using a grayscale effect when paused or a game over state occurs to visually indicate that the game is inactive](./videos/gameplay.webm) |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|            **Figure 24-1: The game, now using a grayscale effect when paused or a game over state occurs to visually indicate that the game is inactive**             |
+
 ## Important Considerations
 
 When working with effects in [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), there are some important points to keep in mind:
