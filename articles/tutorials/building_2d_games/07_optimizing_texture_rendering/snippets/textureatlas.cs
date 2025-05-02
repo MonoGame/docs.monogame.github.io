@@ -9,7 +9,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameLibrary.Graphics;
 
-public class TextureAtlas { }
+public class TextureAtlas 
+{
+
+}
 #endregion
 {
     #region members
