@@ -65,19 +65,23 @@ The key changes here are:
 
 Now that we have a fully configured XML configuration for the atlas, we need to update the `TextureAtlas` class to manage animation data.  Open the *TextureAtlas.cs* file and make the following changes:
 
-1. Add storage for animations
+1. Add the following using statement so we can reference the `TimeSpan` struct:
+
+    [!code-csharp[](./snippets/textureatlas/usings.cs?highlight=1)]
+
+2. Add storage for animations
 
     [!code-csharp[](./snippets/textureatlas/add_animation_storage.cs)]
 
-2. Update the constructors so that the animations dictionary is initialized:
+3. Update the constructors so that the animations dictionary is initialized:
 
     [!code-csharp[](./snippets//textureatlas/update_ctors.cs?highlight=7,18)]
 
-3. Add methods to manage animations, similar to those that we use to manage regions:
+4. Add methods to manage animations, similar to those that we use to manage regions:
 
     [!code-csharp[](./snippets/textureatlas/add_animation_management.cs)]
 
-4. Update the `FromFile` method to parse the new `<Animation>` animation definitions from the XML configuration file
+5. Update the `FromFile` method to parse the new `<Animation>` animation definitions from the XML configuration file
 
     [!code-csharp[](./snippets//textureatlas/update_from_file.cs?highlight=55-95)]
 
