@@ -45,7 +45,7 @@ The default constructor creates an empty sprite that can be configured later, wh
 
 ### Methods
 
-Finally, the `Sprite` class provides the following two methods:
+Finally, add the following two method to the `Sprite` class:
 
 [!code-csharp[](./snippets/sprite.cs#methods)]
 
