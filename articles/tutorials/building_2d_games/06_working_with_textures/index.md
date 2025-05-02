@@ -137,7 +137,7 @@ By moving the sprite's origin point to its center, this not only corrects the po
 
 The `scale` parameter specifies the amount of scaling to apply to the sprite when it is rendered.  The default value is `1.0f`, which can be read as "rendering the sprite at 1x the size".  Increasing this will scale up the size of the sprite and decreasing it will scale down the sprite.  
 
-Fir this example, let's first reset the rotation back to `0.0f` (removing the 90° rotation we applied above) so we can clearly see the scaling effect.  Then we will set the scale of the logo sprite to `1.5f`
+For this example, let's first reset the rotation back to `0.0f` (removing the 90° rotation we applied above) so we can clearly see the scaling effect.  Then we will set the scale of the logo sprite to `1.5f`
 
 [!code-csharp[](./snippets/scale.cs?highlight=17,21)]
 
