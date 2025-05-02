@@ -283,40 +283,17 @@ This architecture makes it easier to add new features or fix bugs, as changes to
 
 ## Adding Input Buffering to the Slime Class
 
-The game at this point is now playable.  If you test it out though, you may notice a small issue with inputs.  In games where movement updates happen at fixed intervals that are less frequent than input polling, inputs can sometimes feel unresponsive, expecially when trying to make multiple inputs in succession.
+The game at this point is now playable. If you test it out though, you may notice a small issue with inputs. As we discussed in [Chapter 10](../10_handling_input/index.md#input-buffering), in games where movement updates happen at fixed intervals, inputs can sometimes feel unresponsive, especially when trying to make multiple inputs in succession.
 
-For instance, if a player wants to navigate a tight corner by pressing up and then immediately left, pressing these keys in rapid succession often results in only the second input being registered.  When this happens, the slime will only turn left without first moving upward, missing the intended two-part movement completely.  This occurs because the second input overwrites the first one before the game has a change to process it, leading to frustrating gameplay where the slime does not respond to the player's complete sequence of commands.
+For instance, if a player wants to navigate a tight corner by pressing up and then immediately left, pressing these keys in rapid succession often results in only the second input being registered. When this happens, the slime will only turn left without first moving upward, missing the intended two-part movement completely. This occurs because the second input overwrites the first one before the game has a chance to process it, leading to frustrating gameplay.
 
-### Understanding Input Buffering
-
-Input buffering is a technique used in game development to temporarily store player inputs that cannot be immediately processed. Instead of discarding these inputs, they are placed in a queue and processed in order when the game is ready to handle them.
-
-In our snake-like game, the slime moves at fixed intervals rather than continuously. This creates a disconnect between when the player presses a button (which is checked every frame) and when the game can actually respond (which happens on a less frequent movement cycle). Without input buffering:
-
-- Players must time their inputs perfectly to align with the game's update cycle.
-- Rapid inputs are lost because only the last input is remembered.
-- The game feels unresponsive during quick turns.
-
-A well-implemented input buffer gives players a more forgiving and responsive experience by:
-
-1. Storing inputs that arrive between movement updates.
-2. Preserving the order of inputs for more predictable behavior.
-3. Creating a sense that the game is actually listening to the player.
-
-The size of an input buffer is an important design decision. If it is too small, players still might feel the game isn't responsive enough during complex sequences. If it is too large, the game might feel like it is playing itself as it works through the backlog of buffered commands.
-
-For our snake-style game, a buffer size of two is typically ideal - enough to handle quick two-direction turns (like up-then-left to navigate a corner) without letting players queue too many moves ahead.
+Let's implement the input buffering technique we introduced in [Chapter 10](../10_handling_input/index.md#input-buffering) to solve this problem in our `Slime` class.
 
 ### Implementing Input Buffering in the Slime Class
 
-Let's modify our `Slime` class to include an input buffer system. First, we will add the necessary fields to store our input queue.  In the *GameObjects* directory of the *DungeonSlime* project (your main game project), open the *Slime.cs* file and add the folliwing fields after the `_sprite` field:
+First, we will add the necessary fields to store our input queue. In the *GameObjects* directory of the *DungeonSlime* project (your main game project), open the *Slime.cs* file and add the following fields after the `_sprite` field:
 
 [!code-csharp[](./snippets/slime/fields.cs)]
-
-> [!NOTE]
-> The [`Queue<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1?view=net-9.0>) is a First In, First Out (FIFO) collection in C#. When you add items with `Enqueue()`, they join the end of the line, and when you retrieve items with `Dequeue()`, you always get the oldest item (the one at the front of the line). Think of it like people waiting in line - the first person to arrive is the first one served.
->
-> This contrasts with a [`Stack<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-9.0>), which follows Last In, First Out (LIFO) behavior, where the most recently added item is the first one retrieved.
 
 This queue will store the directional vectors (up, down, left, right) that we will apply to the slime's movement in the order they were received.
 
@@ -324,7 +301,7 @@ Next, we need to initialize this queue.  In the `Slime` class, locate the `Initi
 
 [!code-csharp[](./snippets/slime/initialize.cs?highlight=30-31)]
 
-Next, we need to update the input handling method to store the inputs in the queue instead of immediately overwritting the `_nextDirection` field.  In the `Slime` class, locate the `HandleInput` method and update it to the following
+Next, we need to update the input handling method to store the inputs in the queue instead of immediately overwriting the `_nextDirection` field.  In the `Slime` class, locate the `HandleInput` method and update it to the following
 
 [!code-csharp[](./snippets/slime/handleinput.cs?hightlight=3,22-38)]
 
