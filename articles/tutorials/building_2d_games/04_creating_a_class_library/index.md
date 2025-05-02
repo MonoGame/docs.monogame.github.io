@@ -45,7 +45,7 @@ As your library grows, you'll accumulate a personal collection of well-tested mo
 
 MonoGame offers the *MonoGame Game Library* project template to add a new class library project that is configured with the correct monoGame framework references.  Using this template saves time and ensures compatibility with MonoGame projects.  
 
-To use the template to add the class library, perform the following:
+To use the template to add the class library, perform the following based on which development environment you are using:
 
 ### [Visual Studio Code](#tab/vscode)
 
@@ -81,7 +81,7 @@ To add the class library using the MonoGame Game Library project template with t
 
 ## Adding a Reference To The Class Library
 
-Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, our game project will be unaware of anything we add to the class library.  To do this:
+Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, our game project will be unaware of anything we add to the class library.  To do this, perform the following based on which development environment you are using:
 
 ### [Visual Studio Code](#tab/vscode)
 
