@@ -115,11 +115,19 @@ The `origin` parameter specifies the point of origin in which the sprite is rend
 |:------------------------------------------------------------------------------------------------------------------------:|
 |                        **Figure 6-5: Demonstration of how a sprite is rotated around its origin**                        |
 
-To resolve the rotation issue we had, we only need to change the `origin` parameter so that instead of defaulting to the upper-left corner of the sprite, it is set to the center of the sprite.  When doing this, we need to set the values based on the sprites width and height, so the center origin will be half the width and height of the sprite. Update the code to:
+To resolve the rotation issue we had, we need to need to change two things:
 
-[!code-csharp[](./snippets/origin.cs?highlight=18-20)]
+1. Set the `origin` parameter to the center of the sprite instead of defaulting to the upper-left corner.
+2. Change the `position` parameter back to the center of the screen.
 
-By moving the sprite's origin point to its center, this not only corrects the point of rotation, but also eliminates the need to offset the position by half the sprite's dimensions. Running the game now shows the log properly centered and rotated 90°.
+Update the code to:
+
+[!code-csharp[](./snippets/origin.cs?highlight=12-14,18-20)]
+
+By moving the sprite's origin point to its center, this not only corrects the point of rotation, but also allows us to use the screen center position directly without needing additional position offset calculations.  Running the game now shows the log properly centered and rotated 90°.
+
+> [!NOTE]
+> When setting the `origin` parameter, it is based on the sprites width and height, so the center origin will be half the width and half the height of the sprite.
 
 | ![Figure 6-6: The MonoGame logo drawn rotated 90° and centered on the game window](./images/logo-rotated-centered.png) |
 |:----------------------------------------------------------------------------------------------------------------------:|
