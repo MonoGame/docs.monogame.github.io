@@ -127,7 +127,7 @@ The `TextureAtlas` class will provide two ways to create a new atlas.  Add the f
 
 [!code-csharp[](./snippets/textureatlas.cs#ctors)]
 
-The default constructor creates an empty atlas that can be configured later, while the parameterized constructor allows you to specify the source texture immediately. Both constructors initialize the `_regions` dictionary so that it's ready to be used either way.
+The default constructor creates an empty atlas that can be configured later, while the parameterized constructor allows you to specify the source texture immediately. Both constructors initialize the `_regions` dictionary so that it is ready to be used either way.
 
 ### TextureAtlas Methods
 

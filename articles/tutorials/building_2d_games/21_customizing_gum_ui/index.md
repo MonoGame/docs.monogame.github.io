@@ -376,7 +376,7 @@ The principles you've learned in this chapter extend beyond the specific compone
     The two main approaches are:
 
     - **Direct property assignment**: Setting properties directly in code (like `button.Visual.Width = 100`). This approach is best for initial setup of UI elements and static properties that do not change during gameplay.
-    - **States (StateSave objects)**: Defining different visual states that are applied automatically in response to interactions. This approach is best for dynamic changes that happen during gameplay, like highlighting a button when it's focused or changing colors when a slider is adjusted.
+    - **States (StateSave objects)**: Defining different visual states that are applied automatically in response to interactions. This approach is best for dynamic changes that happen during gameplay, like highlighting a button when it is focused or changing colors when a slider is adjusted.
 
     :::
 

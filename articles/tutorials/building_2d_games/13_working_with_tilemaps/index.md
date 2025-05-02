@@ -3,7 +3,7 @@ title: "Chapter 13: Working with Tilemaps"
 description: "Learn how to implement tile-based game environments using tilemaps and tilesets, including creating reusable classes for managing tiles and loading level designs from XML configuration files."
 ---
 
-In the previous chapters, you've learned how to draw individual sprites and animated sprites from a texture atlas and handle collision detection.  However, the game so far is lacking an actual world or environment to exist in; it's just sprites on a cornflower blue background.  Most 2D games feature game worlds built from many tiles arranged in a grid-like patten.  These *tilemaps* allow you to efficiently create large game environments without managing thousands of individual sprites.
+In the previous chapters, you've learned how to draw individual sprites and animated sprites from a texture atlas and handle collision detection.  However, the game so far is lacking an actual world or environment to exist in; it is just sprites on a cornflower blue background.  Most 2D games feature game worlds built from many tiles arranged in a grid-like patten.  These *tilemaps* allow you to efficiently create large game environments without managing thousands of individual sprites.
 
 In this chapter you will:
 

@@ -57,7 +57,7 @@ The `<FontName>` element specifies which font to use. By default, it references 
 > [!IMPORTANT]
 > MonoGame recommends changing the default Arial font if you are targeting any platforms other than Windows. Arial is a legacy from XNA and is only guaranteed to be available in Windows builds.  As an alternative, MonoGame recommends using [Roboto](https://fonts.google.com/specimen/Roboto).
 
-Alternatively, for better portability across development environments, it's recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.  To do this
+Alternatively, for better portability across development environments, it is recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.  To do this
 
 1. Download or locate a TTF or OTF font file.
 2. Place it in the same folder as the *.spritefont* file.

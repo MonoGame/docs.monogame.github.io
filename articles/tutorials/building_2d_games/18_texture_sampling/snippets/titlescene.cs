@@ -128,14 +128,14 @@ public class TitleScene : Scene
         // The color to use for the drop shadow text.
         Color dropShadowColor = Color.Black * 0.5f;
 
-        // Draw the Dungeon text slightly offset from it's original position and
+        // Draw the Dungeon text slightly offset from it is original position and
         // with a transparent color to give it a drop shadow
         Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
         // Draw the Dungeon text on top of that at its original position
         Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-        // Draw the Slime text slightly offset from it's original position and
+        // Draw the Slime text slightly offset from it is original position and
         // with a transparent color to give it a drop shadow
         Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 

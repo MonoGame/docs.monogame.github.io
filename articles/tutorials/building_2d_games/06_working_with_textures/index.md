@@ -109,7 +109,7 @@ The reason the sprite did not rotate as expected is because of the `origin` para
 
 ### Origin
 
-The `origin` parameter specifies the point of origin in which the sprite is rendered from, rotated from, and scaled from.  By default, if no origin is set, it will be [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero), the upper-left corner of the sprite.  To visualize this, see Figure 6-5 below.  The red square represents where the origin is for the sprite, and we can see how it's rotated around this origin point.
+The `origin` parameter specifies the point of origin in which the sprite is rendered from, rotated from, and scaled from.  By default, if no origin is set, it will be [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero), the upper-left corner of the sprite.  To visualize this, see Figure 6-5 below.  The red square represents where the origin is for the sprite, and we can see how it is rotated around this origin point.
 
 | ![Figure 6-5: Demonstration of how a sprite is rotated around its origin](./videos/top-left-origin-rotation-example.webm) |
 | :-----------------------------------------------------------------------------------------------------------------------: |
@@ -197,7 +197,7 @@ Now the sprite is flipped both horizontally and vertically
 
 ### Color and Opacity
 
-The `color` parameter applies a color mask to the sprite when it's rendered.  Note that this is not setting the actual color of the image, just a mask that is applied, like a tint.  The default value is [**Color.White**](xref:Microsoft.Xna.Framework.Color.White).  So if we are setting it to [**Color.White**](xref:Microsoft.Xna.Framework.Color.White), why does this not affect the tinting of the sprite drawn?
+The `color` parameter applies a color mask to the sprite when it is rendered.  Note that this is not setting the actual color of the image, just a mask that is applied, like a tint.  The default value is [**Color.White**](xref:Microsoft.Xna.Framework.Color.White).  So if we are setting it to [**Color.White**](xref:Microsoft.Xna.Framework.Color.White), why does this not affect the tinting of the sprite drawn?
 
 When the `color` parameter is applied, each color channel (Red, Green, Blue) of the sprite is multiplied by the corresponding channel in the `color` parameter, where each channel is represented as a value between `0.0f` and `1.0f`.  For [**Color.White**](xref:Microsoft.Xna.Framework.Color.White), all color channels are set to `1.0f` (255 in byte form), so the multiplication looks like this:
 
@@ -220,9 +220,9 @@ This produces the following result:
 |               **Figure 6-12: The MonoGame logo with a green color tint applied**                |
 
 > [!NOTE]
-> The icon and the word "GAME" in the logo look black after using a [**Color.Green**](xref:Microsoft.Xna.Framework.Color.Green) because the Red, Blue Green components of that color are (`0.0f`, `0.5f`, `0.0f`).  The Orange color used in the logo is [**Color.MonoGameOrange**](xref:Microsoft.Xna.Framework.Color.MonoGameOrange), which has the component values of (`0.9f`, `0.23f`, `0.0f`).  When multiplying the component values, the result is (`0.0f`, `0.125f`, `0.0f`) which would be Red 0, Green 31, Blue 0 in byte values.  So it's not quite fully black, but it is very close.
+> The icon and the word "GAME" in the logo look black after using a [**Color.Green**](xref:Microsoft.Xna.Framework.Color.Green) because the Red, Blue Green components of that color are (`0.0f`, `0.5f`, `0.0f`).  The Orange color used in the logo is [**Color.MonoGameOrange**](xref:Microsoft.Xna.Framework.Color.MonoGameOrange), which has the component values of (`0.9f`, `0.23f`, `0.0f`).  When multiplying the component values, the result is (`0.0f`, `0.125f`, `0.0f`) which would be Red 0, Green 31, Blue 0 in byte values.  So it is not quite fully black, but it is very close.
 >
-> This is why it's important to understand how the `color` parameter values are applied to the sprite when it is rendered.
+> This is why it is important to understand how the `color` parameter values are applied to the sprite when it is rendered.
 
 To adjust the opacity of a sprite, we can multiply the `color` parameter value by a value between `0.0f` (fully transparent) and `1.0f` (fully opaque).  For instance, if we wanted to render the logo with 50% transparency we can multiply the `color` parameter by `0.5f` like this:
 

@@ -1,6 +1,6 @@
 private void HandleMusicSliderValueChanged(object sender, EventArgs args)
 {
-    // Intentionally not playing the UI sound effect here so that it's not
+    // Intentionally not playing the UI sound effect here so that it is not
     // constantly triggered as the user adjusts the slider's thumb on the
     // track.
 

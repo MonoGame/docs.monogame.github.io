@@ -3,7 +3,7 @@ title: "Chapter 20: Implementing UI with Gum"
 descrption: "Learn how to integrate and use the Gum UI framework to create functional menus, buttons, and sliders for your MonoGame projects."
 ---
 
-In the [previous chapter](../19_user_interface_fundamentals/index.md) we explored the fundamental concepts of user interface design. Now we are ready to put these principles into practice by implementing a UI system for our game. While it's possible to build a UI system from scratch, we will take advantage of Gum, a specialized UI framework that simplifies many of the complex aspects of UI implementation.
+In the [previous chapter](../19_user_interface_fundamentals/index.md) we explored the fundamental concepts of user interface design. Now we are ready to put these principles into practice by implementing a UI system for our game. While it is possible to build a UI system from scratch, we will take advantage of Gum, a specialized UI framework that simplifies many of the complex aspects of UI implementation.
 
 In this chapter you will:
 
@@ -262,7 +262,7 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =>
     UpdateVolume(volumeSlider.Value);
 
     // Useful to do things like this here since this fires once
-    // the slider value change has completed so it's not constantly
+    // the slider value change has completed so it is not constantly
     // triggering ui sound effects.
     PlayUISoundEffect();
 };

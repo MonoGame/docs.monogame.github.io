@@ -50,7 +50,7 @@ The MGCB Editor is a GUI tool that can be used to edit your content project.  Th
 - **Xml Content (.xml)**: A structured data file for storing game information like levels, dialogues, or configuration settings.
 
 > [!NOTE]
-> The content project is the *Content.mgcb* file in your game project folder.  This file can be edited manually by hand, however it's much easier to use the MGCB Editor instead.  
+> The content project is the *Content.mgcb* file in your game project folder.  This file can be edited manually by hand, however it is much easier to use the MGCB Editor instead.  
 
 ### Opening the MGCB Editor
 
