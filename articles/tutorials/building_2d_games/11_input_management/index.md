@@ -356,7 +356,7 @@ Now that we have our input management system complete, we will update our game t
 
 The `Core` class serves as our base game class, so we will update it to add and expose the `InputManager` globally.  Open the *Core.cs* file in the *MonoGameLibrary* project and update it to the following:
 
-[!code-csharp[](./snippets/core.cs?highlight=6,39-47,103-104,112-115)]
+[!code-csharp[](./snippets/core.cs?highlight=5-6,39-47,103-104,112-115)]
 
 The key changes to the `Core` class are:
 
