@@ -347,7 +347,7 @@ The `Update` method for the `InputManager` calls update for each device so that 
 
 ## Implementing the InputManager Class
 
-Now tha we have our input management system complete, we will update our game to use it.  We will do this in two steps:
+Now that we have our input management system complete, we will update our game to use it.  We will do this in two steps:
 
 1. First, update the `Core` class to add the `InputManager` globally.
 2. Update the `Game1` class to use the global input manager from `Core`.
