@@ -1,16 +1,116 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="301.57mm" height="210.15mm" version="1.1" viewBox="0 0 301.57 210.15" xmlns="http://www.w3.org/2000/svg">
- <g transform="translate(326.35 304.91)" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="-326.04" y="-304.6" width="300.93" height="209.52" rx="1.0555" ry=".79791" fill="#2f3435" stop-color="#000000" stroke-width=".63326" style="paint-order:stroke fill markers"/>
-  <g transform="translate(165 -307.9)">
-   <rect x="-458.55" y="141.88" width="45.593" height="41.185" fill="#e73c00" stop-color="#000000" stroke-width="2" style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"/>
-   <path d="m-436.99 87.192v50.193" fill="none" stroke-dasharray="1.99999, 4" stroke-width="2" style="paint-order:stroke fill markers"/>
-   <g fill="#2f3435" stroke-width="2">
-    <rect x="-315.77" y="33.058" width="45.593" height="41.185" stop-color="#000000" style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"/>
-    <rect x="-268.18" y="33.058" width="45.593" height="41.185" stop-color="#000000" style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"/>
-    <rect x="-410.96" y="33.058" width="45.593" height="41.185" stop-color="#000000" style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"/>
-    <rect x="-363.36" y="33.058" width="45.593" height="41.185" stop-color="#000000" style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"/>
-   </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="301.57mm"
+   height="210.15mm"
+   version="1.1"
+   viewBox="0 0 301.57 210.15"
+   id="svg22"
+   sodipodi:docname="snake_remove_tail.svg"
+   inkscape:export-filename="snake_remove_tail.png"
+   inkscape:export-xdpi="45.481979"
+   inkscape:export-ydpi="45.481979"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs26" />
+  <sodipodi:namedview
+     id="namedview24"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.3257495"
+     inkscape:cx="570.62062"
+     inkscape:cy="396.7567"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg22" />
+  <g
+     transform="translate(326.35 304.91)"
+     stroke="#fff"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     id="g20">
+    <rect
+       x="-326.04"
+       y="-304.6"
+       width="300.93"
+       height="209.52"
+       rx="1.0555"
+       ry=".79791"
+       fill="#2f3435"
+       stop-color="#000000"
+       stroke-width=".63326"
+       style="paint-order:stroke fill markers"
+       id="rect2" />
+    <g
+       transform="translate(165 -307.9)"
+       id="g18">
+      <rect
+         x="-458.55"
+         y="141.88"
+         width="45.593"
+         height="41.185"
+         fill="#e73c00"
+         stop-color="#000000"
+         stroke-width="2"
+         style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"
+         id="rect4" />
+      <path
+         d="m-436.99 87.192v50.193"
+         fill="none"
+         stroke-dasharray="1.99999, 4"
+         stroke-width="2"
+         style="paint-order:stroke fill markers"
+         id="path6" />
+      <g
+         fill="#2f3435"
+         stroke-width="2"
+         id="g16">
+        <rect
+           x="-315.77"
+           y="33.058"
+           width="45.593"
+           height="41.185"
+           stop-color="#000000"
+           style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"
+           id="rect8" />
+        <rect
+           x="-268.18"
+           y="33.058"
+           width="45.593"
+           height="41.185"
+           stop-color="#000000"
+           style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"
+           id="rect10" />
+        <rect
+           x="-410.96"
+           y="33.058"
+           width="45.593"
+           height="41.185"
+           stop-color="#000000"
+           style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"
+           id="rect12" />
+        <rect
+           x="-363.36"
+           y="33.058"
+           width="45.593"
+           height="41.185"
+           stop-color="#000000"
+           style="-inkscape-stroke:none;font-variation-settings:normal;paint-order:stroke fill markers"
+           id="rect14" />
+      </g>
+    </g>
   </g>
- </g>
 </svg>

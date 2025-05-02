@@ -36,7 +36,7 @@ In snake, players input a cardinal direction (up, down, left, and right), to ind
 
 For example, if the snake is moving to the right, an invalid input would allow a player to move it to the left.  Doing so would cause the head of the snake to reverse direction and immediately collide with the first body segment. This means the only valid inputs are those where the next direction would be the same as the current direction or perpendicular to the current direction.
 
-| ![Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right.  Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right.](./images/snake_directions.svg) |
+| ![Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right.  Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right.](./images/snake_directions.png) |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                **Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right.  Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right.**                |
 
@@ -50,20 +50,20 @@ Instead, a more common approach is to:
 
 1. Make a copy of the head segment.
 
-    | ![Figure 22-2: From a snake with four segments, a copy of the head segment is made, represented by the orange block](./images/snake_copy_head.svg) |
+    | ![Figure 22-2: From a snake with four segments, a copy of the head segment is made, represented by the orange block](./images/snake_copy_head.png) |
     | :------------------------------------------------------------------------------------------------------------------------------------------------: |
     |                **Figure 22-2 From a snake with four segments, a copy of the head segment is made, represented by the orange block**                |
 
 2. Update the properties of the copy so that it is positioned where the original head segment would have moved to.
 3. Insert the copy at the front of the segment collection.
 
-    | ![Figure 22-3: The copy of the head segment, represented by the orange block, is inserted at the front of the segment collection as the new head, which now makes it five segments (one too many)](./images/snake_insert_head.svg) |
+    | ![Figure 22-3: The copy of the head segment, represented by the orange block, is inserted at the front of the segment collection as the new head, which now makes it five segments (one too many)](./images/snake_insert_head.png) |
     | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
     |                **Figure 22-3: The copy of the head segment, represented by the orange block, is inserted at the front of the segment collection as the new head, which now makes it five segments (one too many)**                 |
 
 4. Remove the tail segment.
 
-    | ![Figure 22-4: The tail segment of the snake is removed, bringing it back to the original four segments, giving the illusion that the entire snake moved forward ](./images/snake_remove_tail.svg) |
+    | ![Figure 22-4: The tail segment of the snake is removed, bringing it back to the original four segments, giving the illusion that the entire snake moved forward ](./images/snake_remove_tail.png) |
     | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
     |                 **Figure 22-4: The tail segment of the snake is removed, bringing it back to the original four segments, giving the illusion that the entire snake moved forward**                 |
 
