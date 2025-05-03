@@ -213,9 +213,9 @@ spriteBatch.Begin(effect: exampleEffect);
 // Draw calls will use the effect with Saturation = 0.5f when processed
 ```
 
-## Creating a Grayscale Shader
+## Implementing a Shader In Our Game
 
-Now that we understand the basics of shaders, we will create a simple grayscale effect that we can apply when the game is paused or there is a game over to provide visual feedback to the player that the game is inactive.
+Now it is time to implement a shader for our game.  The shader we will create is a simple grayscale effect that can be applied when the game is paused or there is a game over to provide visual feedback to the player that the game is inactive.
 
 ### Creating the Shader File
 
