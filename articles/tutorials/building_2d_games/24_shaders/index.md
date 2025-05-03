@@ -14,9 +14,11 @@ In this chapter, you will:
 - Create a custom grayscale shader for visual feedback.
 
 > [!IMPORTANT]
-> This chapter is an introduction to shaders in MonoGame and will focus on the basic foundation of understanding how to create shader effect (.fx) files, loading them through the content pipeline, and using them in your game.
+> This chapter is an introduction to shaders in MonoGame and will focus on the basic foundation fo understanding how to create shader effect (*.fx*) files, loading them through the content pipeline, and using them in your game.
 >
-> It is out of scope for this tutorial series to go into depth about the syntax and many built in functions for the shader language itself.  If you would like to dive deeper into learning the language itself, a good place to start would be the [Microsoft Learn: High-level shader language (HLSL)](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) documentation.
+> If you want to learn more about the shader language itself, a good place to start would be the [High-level shader language](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) documentation on Microsoft Learn.  
+>
+> For inspiration on what can be achieved with shaders, check out [ShaderToy](https://www.shadertoy.com), which showcases real-time shader effects created by others.  Note that ShaderToy uses OpenGL Shading Language (GLSL) which has some syntactic differences from HLSL, but the underlying concepts and mathematics are very similar for inspiration.
 
 Let's start by understanding what shaders are and how they work in MonoGame.
 
