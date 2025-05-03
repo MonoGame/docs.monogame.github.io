@@ -36,13 +36,6 @@ public class Game1 : Core
     protected override void Initialize()
     {
         base.Initialize();
-
-        // Set the initial position of the bat to be 10px
-        // to the right of the slime.
-        _batPosition = new Vector2(_slime.Width + 10, 0);
-
-        // Assign the initial random velocity to the bat.
-        AssignRandomBatVelocity();
     }
 
     protected override void LoadContent()
@@ -57,6 +50,13 @@ public class Game1 : Core
         // Create the bat animated sprite from the atlas.
         _bat = atlas.CreateAnimatedSprite("bat-animation");
         _bat.Scale = new Vector2(4.0f, 4.0f);
+
+        // Set the initial position of the bat to be 10px
+        // to the right of the slime.
+        _batPosition = new Vector2(_slime.Width + 10, 0);
+
+        // Assign the initial random velocity to the bat.
+        AssignRandomBatVelocity();
 
         base.LoadContent();
     }

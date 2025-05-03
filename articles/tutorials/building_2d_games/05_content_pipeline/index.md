@@ -253,7 +253,7 @@ Now that we have an image file to add, perform the following:
 |:-----------------------------------------------------------------------------------------------------------:|
 |               **Figure 5-8: The logo image added to the content project in the MGCB Editor**                |
 
-With the MonoGame logo image now added to the content project, we can load it in our game and draw it.  Return to your code editor and open the *Game1.cs* file and make the following changes:
+With the MonoGame logo image now added to the content project, we can load it in our game and draw it.  Return to your code editor and open the `Game1.cs` file and make the following changes:
 
 [!code-csharp[](./snippets/game1.cs?highlight=10-11,27,45-52)]
 

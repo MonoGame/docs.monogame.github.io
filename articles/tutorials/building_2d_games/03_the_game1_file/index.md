@@ -3,7 +3,7 @@ title: "Chapter 03: The Game1 File"
 description: Explore the contents of the Game1 file generated when creating a new MonoGame project.
 ---
 
-After you created a new MonoGame project using the *MonoGame Cross-Platform Desktop Application* template in [Chapter 02](../02_getting_started/index.md#creating-your-first-monogame-application), you will notice the generated files and project structure that serve as a starting point for your game application.  While MonoGame offers different templates based on target platform, all projects will contain the *Game1.cs* file.
+After you created a new MonoGame project using the *MonoGame Cross-Platform Desktop Application* template in [Chapter 02](../02_getting_started/index.md#creating-your-first-monogame-application), you will notice the generated files and project structure that serve as a starting point for your game application.  While MonoGame offers different templates based on target platform, all projects will contain the `Game1.cs` file.
 
 ## Exploring the Game1 Class
 
@@ -12,7 +12,7 @@ At the core of a MonoGame project is the [**Game**](xref:Microsoft.Xna.Framework
 > [!TIP]
 > While the default template names the class `Game1`, you are free to rename it to something more appropriate for your project.  However, for consistency, the documentation will continue to refer to it as `Game1`.
 
-Locate the *Game1.cs* file that was generated when you created the MonoGame project and open it.  The default content will be:
+Locate the `Game1.cs` file that was generated when you created the MonoGame project and open it.  The default content will be:
 
 [!code-csharp[](./snippets/game1.cs)]
 
@@ -97,7 +97,7 @@ Each time the game loops completes and the game is drawn to the screen, we call 
 
 In this chapter, you accomplished the following:
 
-- You read through the default code provided in a *Game1.cs* file created by a MonoGame template.
+- You read through the default code provided in a `Game1.cs` file created by a MonoGame template.
 - You learned about the lifecycle of a MonoGame game project.
 - You learned what a game loop is and how it is implemented in MonoGame.
 

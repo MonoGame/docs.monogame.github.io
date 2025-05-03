@@ -117,11 +117,11 @@ To add the game library project as a reference to the game project with the dotn
 
 ### Clean Up
 
-When using the *MonoGame Game Library* project template, the generated project contains file similar to a standard MonoGame game project, including a *dotnet-tools.json* manifest file, a *Content.mgcb* file, and a *Game1.cs* file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the *MonoGameLibrary* project folder and delete them:
+When using the *MonoGame Game Library* project template, the generated project contains file similar to a standard MonoGame game project, including a *dotnet-tools.json* manifest file, a *Content.mgcb* file, and a `Game1.cs` file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the *MonoGameLibrary* project folder and delete them:
 
 1. The *.config/* folder.
 2. The *Content/* folder
-3. The *Game1.cs* file.
+3. The `Game1.cs` file.
 
 > [!TIP]
 > These files are needed in more advanced scenarios such as creating a central code base for game logic that is referenced by other projects of which each target different platforms such as desktop, mobile, and console.  Creating a project structure of this type is out of scope for this tutorial.  
@@ -134,7 +134,7 @@ When using the *MonoGame Game Library* project template, the generated project c
 
 We will create a class for our library called `Core`.  This class will extend the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class and provide a starting point for game development with some common functionality built in.  Creating this will also let us validate that our class library reference setup was correct.
 
-Create a new file called *Core.cs* in the *MonoGameLibrary* project and add the following code:
+Create a new file called `Core.cs` in the *MonoGameLibrary* project and add the following code:
 
 [!code-csharp[](./snippets/core.cs)]
 
@@ -159,7 +159,7 @@ This approach provides a consistent foundation for all our games, handling commo
 
 Now that we have our `Core` class, we can modify our game project to use it.  Doing this will also help ensure that the project references were setup correctly.
 
-Open the *Game1.cs* file and make the following changes:
+Open the `Game1.cs` file and make the following changes:
 
 [!code-csharp[](./snippets/game1.cs?highlight=4,8,10,22-25)]
 
@@ -184,7 +184,7 @@ Running the game now will show the same window as before, only now it is at a 12
 >
 > *The type or namespace name 'Core' could not be found (are you missing a using directive or an assembly reference?)*
 >
-> This means either you forgot to add the `using MonoGameLibrary;` using directive to the top of the *Game1.cs* class file, or you did not add the project reference correctly.  Ensure that the project reference was added correctly by revisiting the [Add a Reference to the Class Library](#adding-a-reference-to-the-class-library) section above and that you added the using directive.
+> This means either you forgot to add the `using MonoGameLibrary;` using directive to the top of the `Game1.cs` class file, or you did not add the project reference correctly.  Ensure that the project reference was added correctly by revisiting the [Add a Reference to the Class Library](#adding-a-reference-to-the-class-library) section above and that you added the using directive.
 
 ## Conclusion
 

@@ -28,7 +28,7 @@ Three methods are are used when rendering with the [**SpriteBatch**](xref:Micros
 
 As mentioned in [Chapter 03](../03_the_game1_file/index.md#the-game-loop), all rendering should be done inside the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method. The [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method's responsibility is to render the game state that was calculated in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)); it should not contain any game logic or complex calculations.
 
-At the end of [Chapter 05](../05_content_pipeline/index.md#loading-assets), you added the following code to [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) in the *Game1.cs* file:
+At the end of [Chapter 05](../05_content_pipeline/index.md#loading-assets), you added the following code to [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) in the `Game1.cs` file:
 
 [!code-csharp[](./snippets/draw.cs?highlight=6-7,9-10,12-13)]
 
