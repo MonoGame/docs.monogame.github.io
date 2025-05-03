@@ -118,7 +118,7 @@ Let's break down what each section of this template is:
 
     [!code-c[](./snippets/defaultshader.fx?start=10&end=10)]
 
-3. **Sampler state**: This creates a `sampler2D` called `SpriteTextureSampler` that is used sample the texture received from the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).  Think of this as similar to the [**SamplerState**](xref:Microsoft.Xna.Framework.Graphics.SamplerState) we discussed in [Chapter 18](../18_texture_sampling/index.md).
+3. **Sampler state**: This creates a `sampler2D` called `SpriteTextureSampler` that controls how the shader reads pixel data from the texture received from the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).  It defines properties like [filtering](../18_texture_sampling/index.md#filtering-modes) and [addressing](../18_texture_sampling/index.md#addressing-modes) modes for texture sampling, similar to the [**SamplerState**](xref:Microsoft.Xna.Framework.Graphics.SamplerState) we discussed in [Chapter 18](../18_texture_sampling/index.md).
 
     [!code-c[](./snippets/defaultshader.fx?start=12&end=15)]
 
