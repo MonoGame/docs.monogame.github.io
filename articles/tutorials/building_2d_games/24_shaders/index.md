@@ -18,7 +18,7 @@ In this chapter, you will:
 >
 > If you want to learn more about the shader language itself, a good place to start would be the [High-level shader language](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) documentation on Microsoft Learn.  
 >
-> For inspiration on what can be achieved with shaders, check out [ShaderToy](https://www.shadertoy.com), which showcases real-time shader effects created by others.  Note that ShaderToy uses OpenGL Shading Language (GLSL) which has some syntactic differences from HLSL, but the underlying concepts and mathematics are very similar for inspiration.
+> For inspiration on what can be achieved with shaders, check out [ShaderToy](https://www.shadertoy.com), which showcases real-time shader effects created by others.  Note that ShaderToy uses [OpenGL Shading Language](https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language) (GLSL) which has some syntactic differences from HLSL, but the underlying concepts and mathematics are very similar for inspiration.
 
 Let's start by understanding what shaders are and how they work in MonoGame.
 
