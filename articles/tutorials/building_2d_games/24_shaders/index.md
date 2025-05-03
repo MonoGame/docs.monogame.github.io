@@ -86,10 +86,10 @@ When targeting OpenGL platforms, MonoGame supports:
 | `vs_2_0`            | `ps_2_0`           |
 | `vs_3_0`            | `ps_3_0`           |
 
-For maximum compatibility, it's best to target the lower shader models:
+For maximum compatibility, it's best to target the following shader models:
 
 - For DirectX platforms: `vs_4_0_level_9_1` (vertex) and `ps_4_0_level_9_1` (pixel)
-- For OpenGL platforms: `vs_2_0` (vertex) and `ps_2_0` (pixel)
+- For OpenGL platforms: `vs_3_0` (vertex) and `ps_3_0` (pixel)
 
 > [!NOTE]
 > In shader model notation, "vs" stands for "vertex shader" and "ps" stands for "pixel shader". The numbers represent the version and feature level of the shader model, with higher numbers indicating more advanced capabilities.
