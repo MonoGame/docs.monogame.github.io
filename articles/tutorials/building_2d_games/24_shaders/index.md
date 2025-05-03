@@ -168,7 +168,7 @@ In simple shaders, such as a grayscale shader, you would only need one technique
 
 The line `PixelShader = compile PS_SHADERMODEL MainPS();` simply tells the GPU which pixel shader function to use for this pass (in this case the `MainPS` function) and compiles it using the appropriate shader model defined earlier.
 
-## Using Shaders in Monogame
+## Using Shaders in MonoGame
 
 Now that we understand what shaders are, we can explore how to integrate them into a MonoGame project. Before implementing a shader in our game, we will first take a look at the process of loading and using shaders with [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
