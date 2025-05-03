@@ -5,11 +5,11 @@ description: Learn about the history of MonoGame and explore the features it pro
 
 ## A Brief History
 
-In 2006, Microsoft released a game development framework named *XNA Game Studio* to facilitate game development for Windows PC and the Xbox 360 console. It revolutionized game development for indie creators by bringing a simplified approach to building games and offering a set of tools that lowered the entry barrier for aspiring game developers. Out of XNA Game Studio came critically acclaimed titles such as [Bastion](https://www.supergiantgames.com/games/bastion/) and [Terraria](https://terraria.org/). In 2008, XNA was expanded to support development for both the Zune and Windows Phone.
+In 2006, Microsoft released a game development framework named *[XNA Game Studio](https://learn.microsoft.com/en-us/previous-versions/windows/xna/bb203894(v=xnagamestudio.42))* to facilitate game development for Windows PC and the Xbox 360 console. It revolutionized game development for indie creators by bringing a simplified approach to building games and offering a set of tools that lowered the entry barrier for aspiring game developers. Out of XNA Game Studio came critically acclaimed titles such as [Bastion](https://www.supergiantgames.com/games/bastion/) and [Terraria](https://terraria.org/). In 2008, XNA was expanded to support development for both the Zune and Windows Phone.
 
 > [!NOTE]
 >
-> Fun fact, provided by community member stromkos, The release of XNA 3.0 in 2008, which added the support for Windows Phone, is also the release that specified the default window resolution of 800x480 for new projects as this was the preferred resolution on Windows Phone. [It is still the default resolution used in MonoGame projects today](https://github.com/MonoGame/MonoGame/blob/8b35cf50783777507cd6b21828ed0109b3b07b50/MonoGame.Framework/GraphicsDeviceManager.cs#L44).
+> Fun fact, provided by community member [stromkos](https://github.com/stromkos), The release of XNA 3.0 in 2008, which added the support for Windows Phone, is also the release that specified the default window resolution of 800x480 for new projects as this was the preferred resolution on Windows Phone. [It is still the default resolution used in MonoGame projects today](https://github.com/MonoGame/MonoGame/blob/8b35cf50783777507cd6b21828ed0109b3b07b50/MonoGame.Framework/GraphicsDeviceManager.cs#L44).
 
 As XNA became more popular, the need for cross-platform development started to grow. In 2009, [José Antonio Leal de Farias](https://github.com/jalf) introduced *XNA Touch*, an open-source project that aimed to make games with XNA playable on iOS devices. This marked the beginning of what would later become MonoGame. [Dominique Louis](https://github.com/CartBlanche) came on board in 2009 and soon took over as full-time project lead, driving its initial development and expansion. The project attracted other developers, such as [Tom Spilman](https://github.com/tomspilman), who were interested in expanding the scope of the project as well as its reach.
 
@@ -22,6 +22,10 @@ Today, MonoGame is a mature cross-platform framework, that is built with the spi
 |               **Figure 1-1 Celeste.**               |               **Figure 1-2: Stardew Valley**               |
 | ![Figure 1-3: Streets of Rage 4](./images/sor4.jpg) |        [Figure 1-4: Bastion](./images/bastion.jpg)         |
 |          **Figure 1-3: Streets of Rage 4**          |                   **Figure 1-4: Bastion**                    |
+
+> [!NOTE]
+>
+> For more details about MonoGame's history, check the [About](https://monogame.net/about/) on the official MonoGame website.
 
 ## Features
 

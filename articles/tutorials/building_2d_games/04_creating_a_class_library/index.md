@@ -127,6 +127,8 @@ When using the *MonoGame Game Library* project template, the generated project c
 > These files are needed in more advanced scenarios such as creating a central code base for game logic that is referenced by other projects of which each target different platforms such as desktop, mobile, and console.  Creating a project structure of this type is out of scope for this tutorial.  
 >
 > If you would like more information on this, Simon Jackson has written the article [Going cross-platform with MonoGame](https://darkgenesis.zenithmoon.com/going-cross-platform-with-monogame.html) which covers this in more detail.
+>
+> Also the `2D Start Kit` and `2D Blank Start Kit` templates provide you with a richer startup project targetting all platforms, using a common Class Library to reuse code across them all.  Although we recommend completing this tutorial first before tackling that beast.
 
 ## Creating Our First Library Module
 
@@ -139,7 +141,7 @@ Create a new file called *Core.cs* in the *MonoGameLibrary* project and add the 
 The `Core` class provides the following features
 
 1. It extends the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class, so it inherits all of the base functionality.
-2. It implements a singleton pattern through the `Instance` property, ensure only one core exists.
+2. It implements a [singleton pattern](https://en.wikipedia.org/wiki/Singleton_pattern) through the `Instance` property, ensure only one core exists.
 3. It provides static access to the graphics device manager, the graphics device, the sprite batch, and the content manager.
 4. It simplifies the game window setup with a constructor that handles common initializations.
 
@@ -169,6 +171,9 @@ The key changes made here are:
 1. Updated the constructor to call the `Core` base constructor with our game configuration.
 
 Running the game now will show the same window as before, only now it is at a 1280x720 resolution as per the configuration and it is using the `Core` class from our library.  This may not seem like a big change visually, but it demonstrates how our library can simplify and standardize game initializations.
+
+> [!NOTE]
+> If you get any additional prompts when starting the project, simply accept the defaults.  Adding the Game Library gives the compiler more projects to choose from when starting the project, however, we can only "run" the Game Project, libraries are not executables.
 
 | ![Figure 4-3: The game window at 1280x720 with the title Dungeon Slime](./images/game-window.png) |
 | :-----------------------------------------------------------------------------------------------: |

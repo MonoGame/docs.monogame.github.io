@@ -22,6 +22,8 @@ public class Game1 : Core
     protected override void LoadContent()
     {
         // TODO: use this.Content to load your game content here
+
+        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
