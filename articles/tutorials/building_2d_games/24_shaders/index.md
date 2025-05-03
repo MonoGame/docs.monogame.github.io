@@ -307,6 +307,9 @@ Now that we have our grayscale shader, we can implement it in our game when the 
 
     [!code-csharp[](./snippets/gamescene/draw.cs?highlight=6-18)]
 
+    > [!NOTE]
+    > Notice how we set the shader parameters with the current saturation value every frame before beginning the sprite batch.  This is because shaders are stateless; they do not remember any values from the previous draw cycle.  Each time the GPU processes a shader, it only works with the parameters provided in that specific frame.  Event if the saturation value has not changed since the last frame, we still need to send it to the shader again to apply it.  This is why we update the shader parameters in the `Draw` method rather than only when the value is changed.
+
 With these changes, when the game enters a paused or game over state, the screen will gradually fade to gray using the grayscale shader effect.  This provides a clear indication that the game is inactive during these states.  
 
 | ![Figure 24-1: The game, now using a grayscale effect when paused or a game over state occurs to visually indicate that the game is inactive](./videos/gameplay.webm) |
