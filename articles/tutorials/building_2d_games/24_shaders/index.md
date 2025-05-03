@@ -163,6 +163,9 @@ Think of it like baking a cake:
 
 In simple shaders, such as a grayscale shader, you would only need one technique with one pass.  For more complex effects like blur, you might use multiple passes: one to blur horizontally and another to blur vertically.
 
+> [!TIP]
+> For a real-world example of a blur shader with multiple techniques and passes, take a look at the [Blur shader from the MonoGme Ship Game](https://github.com/MonoGame/MonoGame.Samples/blob/3.8.2/ShipGame/ShipGame.Core/Content/shaders/Blur.fx) sample.  This shader demonstrates how visual effects can be built by combining multiple rendering passes, with separate horizontal and vertical blur passes that work together to create a final blur effect.
+
 The line `PixelShader = compile PS_SHADERMODEL MainPS();` simply tells the GPU which pixel shader function to use for this pass (in this case the `MainPS` function) and compiles it using the appropriate shader model defined earlier.
 
 ## Loading Shader Effects
