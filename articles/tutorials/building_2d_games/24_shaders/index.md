@@ -258,7 +258,7 @@ The heart of the grayscale effect is this line:
 
 [!code-c[](./snippets/grayscaleeffect.fx?start=33&end=34)]
 
-This uses the [`dot`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-dot) function to calculate the do product between the color's RGB values and the vector $(0.3, 0.59, 0.11)$.  This effectively calculates a weighted average where:
+This uses the [`dot`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-dot) function to calculate the dot product between the color's RGB values and the vector $(0.3, 0.59, 0.11)$.  This effectively calculates a weighted average where:
 
 - Red contributes 30%.
 - Green contributes 59%.
