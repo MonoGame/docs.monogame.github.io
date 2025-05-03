@@ -168,9 +168,13 @@ In simple shaders, such as a grayscale shader, you would only need one technique
 
 The line `PixelShader = compile PS_SHADERMODEL MainPS();` simply tells the GPU which pixel shader function to use for this pass (in this case the `MainPS` function) and compiles it using the appropriate shader model defined earlier.
 
-## Loading Shader Effects
+## Using Shaders in Monogame
 
-Shader effects are loaded in MonoGame using the content manager, much like any other asset that is compiled using the content pipeline.  The type to use when loading a shader is [**Effect**](xref:Microsoft.Xna.Framework.Graphics.Effect).
+Now that we understand what shaders are, we can explore how to integrate them into a MonoGame project. Before implementing a shader in our game, we will first take a look at the process of loading and using shaders with [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
+
+### Loading Shader Effects
+
+Like other game assets such as textures and sounds, shader effects are loaded through the content pipeline using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).  When loading a shader, we specify [**Effect**](xref:Microsoft.Xna.Framework.Graphics.Effect) as the target type
 
 ```cs
 // Example of loading an effect
@@ -179,7 +183,7 @@ Effect exampleEffect = Content.Load<Effect>("exampleEffect");
 
 You should typically load shader effects during your game's [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method along with other game assets, and store them in class fields so they can be accessed during the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method.
 
-## Using Effects With SpriteBatch
+### Using Effects With SpriteBatch
 
 Once you have loaded a shader effect, applying it to your game's visuals requires integrating it with the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). The effect is specified during the `Begin` call, but is actually applied during drawing operations or when `End` is called (depending on the SpriteSortMode).
 
