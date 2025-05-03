@@ -58,6 +58,9 @@ Pixel shaders are useful in 2D games for creating effects like:
 
 For our Dungeon Slime game, we'll focus primarily on pixel shaders since we want to create a color effect for our game over state.
 
+> [!NOTE]
+> There are other types of shaders beyond vertex and pixel shaders, such as compute shaders, geometry shaders, and hull/domain shaders.  These more advanced shader types enabled powerful features like physics simulations, procedural geometry, and complex post-processing effects.  However, they are not currently supported in the standard MonoGame implementation and are beyond the scope of this beginner tutorial.  As the MonoGame graphics pipeline evolves, support for these advanced shader types may be added in future versions.
+
 ### Shader Languages and Cross-Platform Considerations
 
 MonoGame uses the [High-Level Shader Language (HLSL)](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) for writing shader effects. HLSL is a C-like programming language developed by Microsoft for DirectX. As MonoGame also supports OpenGL which uses the [OpenGL Shading Language (GLSL)](https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language) instead of DirectX, it needs a way to make shaders work everywhere.
@@ -127,7 +130,7 @@ Let's break down what each section of this template is:
     [!code-c[](./snippets/defaultshader.fx?start=17&end=22)]
 
     > [!TIP]
-    > Notice the unusual syntax like `float4 Position : SV_POSITION` where there's a colon followed by something after each variable declaration.  These are called *semantics* in HLSL and they're special labels that define how the data should be used by the graphics hardware or passed between shader stages (like from vertex shader to pixel shader).
+    > Notice the unusual syntax like `float4 Position : SV_POSITION` where there's a colon followed by something after each variable declaration.  These are called [*semantics*](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics) in HLSL and they are special labels that define how the data should be used by the graphics hardware or passed between shader stages (like from vertex shader to pixel shader).
     >
     > For example, `SV_POSITION` tells the system "this contains the final screen position," `COLOR0` means "this contains color data," and `TEXCOORD0` means "this contains texture coordinates."
     >
