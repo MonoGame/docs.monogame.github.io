@@ -370,7 +370,10 @@ When working with effects in [**SpriteBatch**](xref:Microsoft.Xna.Framework.Grap
     spriteBatch.End();
     ```
 
-4. There is an exception to #2 above.  In [Chapter 06: Working with Textures](../06_working_with_textures/index.md#layer-depth), we discussed the different [**SpriteSortMode**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) values that can be used when rendering.  From this chapter, we learned that when using [**SpriteSortMode.Immediate**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) that when a draw call is made, it is immediately flushed to the GPU and rendered to the screen, ignoring batching.  This means that if you are using [**SpriteSortMode.Immediate**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) then changing parameters between draw calls will apply the parameter change after it is made for the next draw call.  However, as mentioned in that chapter, [**SpriteSortMode.Immediate**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) can cause performance issues and should only be used when absolutely necessary.
+4. There is an exception to #2 above.  In [Chapter 06: Working with Textures](../06_working_with_textures/index.md#layer-depth), we discussed the different [**SpriteSortMode**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) values that can be used when rendering.  From this chapter, we learned that when using [**SpriteSortMode.Immediate**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) that when a draw call is made, it is immediately flushed to the GPU and rendered to the screen, ignoring batching.  This means that if you are using [**SpriteSortMode.Immediate**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) then changing parameters between draw calls will apply the parameter change after it is made for the next draw call.  
+
+    > [!IMPORTANT]
+    > As mentioned in [Chapter 06](../06_working_with_textures/index.md#layer-depth), [**SpriteSortMode.Immediate**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) can cause performance issues and should only be used when absolutely necessary.
 
     ```cs
     // Begins sprite batch with the effect AND intentionally specifying SpriteSortMode.Immediate
