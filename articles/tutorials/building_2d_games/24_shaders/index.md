@@ -106,6 +106,14 @@ Let's break down what each section of this template is:
 
     [!code-c[](./snippets/defaultshader.fx?start=1&end=8)]
 
+    > [!IMPORTANT]
+    > These preprocessor directives ensure your shader works across different platforms by defining appropriate shader models and semantics.  When MonoGame compiles your shader:
+    >
+    > - On OpenGL platforms (macOS, Linux, etc.), it uses the `OPENGL` defiition, setting shader models to `vs_3_0` and `ps_3_0`.
+    > - On DirectX platforms (Windows, Xbox), it uses the DirectX path, setting shader models to `vs_4_0_level_9_1` and `ps_4_0_level_9_1`.
+    >
+    > This compatibility block directly impacts which HLSL features you can use in your shader.  To maintain cross-platform compatibility, you should restrict yourself to features available at the lowest shader model you target.  Using advanced features only available in higher shader models will require additional conditional compilation blocks and platform-specific code paths.
+
 2. **Texture declaration**: This declares a `Texture2D` variable called `SpriteTexture` that will receive the texture being drawn by the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
     [!code-c[](./snippets/defaultshader.fx?start=10&end=10)]
