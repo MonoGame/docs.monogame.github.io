@@ -181,7 +181,7 @@ You should typically load shader effects during your game's [**LoadContent**](xr
 
 ## Using Effects With SpriteBatch
 
-Once you've loaded a shader effect, applying it to your game's visuals requires integrating it with the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). The effect is specified during the `Begin` call, but is actually applied during drawing operations or when `End` is called (depending on the SpriteSortMode).
+Once you have loaded a shader effect, applying it to your game's visuals requires integrating it with the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch). The effect is specified during the `Begin` call, but is actually applied during drawing operations or when `End` is called (depending on the SpriteSortMode).
 
 ```cs
 // Specify the effect during Begin
