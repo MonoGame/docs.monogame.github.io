@@ -16,9 +16,9 @@ In this chapter, you will:
 > [!IMPORTANT]
 > This chapter is an introduction to shaders in MonoGame and will focus on the basic foundation fo understanding how to create shader effect (*.fx*) files, loading them through the content pipeline, and using them in your game.
 >
-> If you want to learn more about the shader language itself, a good place to start would be the [High-level shader language](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) documentation on Microsoft Learn.  
+> If you want to learn more about the shader language itself, a good place to start would be the [High-level shader language (HLSL)](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) documentation on Microsoft Learn.  
 >
-> For inspiration on what can be achieved with shaders, check out [ShaderToy](https://www.shadertoy.com), which showcases real-time shader effects created by others.  Note that ShaderToy uses [OpenGL Shading Language](https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language) (GLSL) which has some syntactic differences from HLSL, but the underlying concepts and mathematics are very similar for inspiration.
+> For inspiration on what can be achieved with shaders, check out [ShaderToy](https://www.shadertoy.com), which showcases real-time shader effects created by others.  Note that ShaderToy uses [OpenGL Shading Language (GLSL)](https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language) which has some syntactic differences from HLSL, but the underlying concepts and mathematics are very similar for inspiration.
 
 Let's start by understanding what shaders are and how they work in MonoGame.
 
@@ -60,7 +60,7 @@ For our Dungeon Slime game, we'll focus primarily on pixel shaders since we want
 
 ### Shader Languages and Cross-Platform Considerations
 
-MonoGame uses High-Level Shader Language (HLSL) for writing shader effects. HLSL is a C-like programming language developed by Microsoft for DirectX. However, since MonoGame supports multiple platforms, including those that use OpenGL instead of DirectX, it needs a way to make shaders work everywhere.
+MonoGame uses the [High-Level Shader Language (HLSL)](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) for writing shader effects. HLSL is a C-like programming language developed by Microsoft for DirectX. As MonoGame also supports OpenGL which uses the [OpenGL Shading Language (GLSL)](https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language) instead of DirectX, it needs a way to make shaders work everywhere.
 
 This is where MojoShader comes in. MojoShader is a library that automatically translates your HLSL shader code into whatever format the target platform requires (like GLSL for OpenGL platforms). This translation happens during the content build process when you compile your game.
 
