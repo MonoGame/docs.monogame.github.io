@@ -91,6 +91,9 @@ For maximum compatibility, it's best to target the lower shader models:
 > [!NOTE]
 > In shader model notation, "vs" stands for "vertex shader" and "ps" stands for "pixel shader". The numbers represent the version and feature level of the shader model, with higher numbers indicating more advanced capabilities.
 
+> [!NOTE]
+> MonoGame is currently planning to upgrade its graphics pipeline to support Vulkan and DirectX 12, which will significantly enhance graphical capabilities and shader support across platforms, enabling more advanced visual effects and better performance in future versions.
+
 ## Understanding the Default Shader Template
 
 When you create a new Sprite Effect (.fx) file in MonoGame using the MGCB Editor, it generates a default template file.  Let's example this template to understand the foundation we'll build upon:
