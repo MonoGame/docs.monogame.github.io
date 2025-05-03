@@ -238,7 +238,11 @@ In the *DungeonSlime* project (your main game project), open the *Content/effect
 
 The key modifications made to create this grayscale effect include:
 
-1. **Added a Parameter**: A `Saturation` parameter was added that controls he intensity fo the grayscale effect.  When set to 0, the image will be fully grayscale.  When set to 1, the image will be its original color.  Values in between create a partial grayscale effect.
+1. **Added a Parameter**: A `Saturation` parameter was added that controls he intensity of the grayscale effect.  
+
+   - When set to 0, the image will be fully grayscale.  
+   - When set to 1, the image will be its original color.  
+   - Values in between create a partial grayscale effect.
 
 2. **Modified the Pixel Shader**: The `MainPS` function has been updated to:
 
