@@ -71,20 +71,20 @@ This is where MojoShader comes in. MojoShader is a library that automatically tr
 
 Different platforms support different shader capabilities, known as "shader models." When writing shaders for MonoGame, you need to consider compatibility across platforms. MonoGame supports the following shader models when targeting DirectX platforms:
 
-| Vertex Shader Model | Pixel Shader Model |
-| ------------------- | ------------------ |
-| `vs_4_0_level_9_1`  | `ps_4_0_level_9_1` |
-| `vs_4_0_level_9_3`  | `ps_4_0_level_9_3` |
-| `vs_4_0`            | `ps_4_0`           |
-| `vs_4_1`            | `ps_4_1`           |
-| `vs_5_0`            | `ps_5_0`           |
+| Vertex Shader Profile | Pixel Shader Profile |
+| --------------------- | -------------------- |
+| `vs_4_0_level_9_1`    | `ps_4_0_level_9_1`   |
+| `vs_4_0_level_9_3`    | `ps_4_0_level_9_3`   |
+| `vs_4_0`              | `ps_4_0`             |
+| `vs_4_1`              | `ps_4_1`             |
+| `vs_5_0`              | `ps_5_0`             |
 
 When targeting OpenGL platforms, MonoGame supports:
 
-| Vertex Shader Model | Pixel Shader Model |
-| ------------------- | ------------------ |
-| `vs_2_0`            | `ps_2_0`           |
-| `vs_3_0`            | `ps_3_0`           |
+| Vertex Shader Profile | Pixel Shader Profile |
+| --------------------- | -------------------- |
+| `vs_2_0`              | `ps_2_0`             |
+| `vs_3_0`              | `ps_3_0`             |
 
 For maximum compatibility, it's best to target the following shader models:
 
