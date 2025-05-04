@@ -64,7 +64,7 @@ We will now take this concept and implement it in our game by creating a `Tilese
 
 The `Tileset` class will manage a collection of tiles from a texture atlas.  Each tile will be represented as a `TextureRegion`, building on the tools in the library we created earlier.
 
-In the *Graphics* folder of the *MonoGameLibrary* project, create a new file named *Tileset.cs* with the following code as the initial structure:
+In the `Graphics` folder of the *MonoGameLibrary* project, create a new file named `Tileset.cs` with the following code as the initial structure:
 
 [!code-csharp[](./snippets/tileset.cs#declaration)]
 
@@ -76,7 +76,9 @@ The `Tileset` class needs to store a `TextureRegion` for each of the individual 
 
 ### Tileset Constructor
 
-The `Tileset` class constructor should require a source `TextureRegion` that represents the tileset and the width and height of the tiles.  Based on these parameters provided, it can automatically divide the source `TextureRegion` into a grid of smaller texture regions and calculate the total number of rows, columns, and tiles. Add the following constructor:
+The `Tileset` class constructor requires a source `TextureRegion` that represents the tileset and the width and height of the tiles.  Based on these parameters provided, it can automatically divide the source `TextureRegion` into a grid of smaller texture regions and calculate the total number of rows, columns, and tiles.
+
+Add the following constructor:
 
 [!code-csharp[](./snippets/tileset.cs#ctors)]
 
@@ -90,7 +92,7 @@ The `Tileset` class needs to provide methods to retrieve the `TextureRegion` of 
 
 Now that we have a `Tileset` class to define our tile collection, we need a `Tilemap` class to arrange these tiles into a game level.  The `Tilemap` class will store which tile goes where in our game world and provide methods to draw the entire map.
 
-In the *Graphics* folder of the *MonoGameLibrary* project, create a new file named *Tilemap.cs* with the following code as the initial structure:
+In the `Graphics` folder of the *MonoGameLibrary* project, create a new file named `Tilemap.cs` with the following code as the initial structure:
 
 [!code-csharp[](./snippets/tilemap.cs#declaration)]
 
@@ -102,7 +104,9 @@ The `Tilemap` class needs to store a reference to the tileset being used, along 
 
 ### Tilemap Constructor
 
-The `Tilemap` constructor should require the `Tilemap` to reference for each tile, the total number of columns and rows in the map, and the size (width and height) of each tile.  Add the following constructor:
+The `Tilemap` constructor requires the `Tilemap` to reference for each tile, the total number of columns and rows in the map, and the size (width and height) of each tile.
+
+Add the following constructor:
 
 [!code-csharp[](./snippets/tilemap.cs#ctors)]
 
@@ -114,13 +118,13 @@ The `Tilemap` class should provide methods to set and retrieve tiles, either by 
 
 ### Tilemap Draw Method
 
-The `Tilemap` class should provide a method to draw the tilemap by iterating through each of the tiles and drawing the `TextureRegion` for that tile at its correct position.  Add the following method:
+The `Tilemap` class needs a method to draw the tilemap by iterating through each of the tiles and drawing the `TextureRegion` for that tile at its correct position.  Add the following method:
 
 [!code-csharp[](./snippets/tilemap.cs#draw)]
 
 ### Tilemap FromFile Method
 
-The `Tilemap` class should also provide a method to load and create an instance of the tilemap from an external configuration file.  This allows us to separate level design from code. Add the following method:
+The `Tilemap` class also requires a method to load and create an instance of the tilemap from an external configuration file.  This allows us to separate level design from code. Add the following method:
 
 [!code-csharp[](./snippets/tilemap.cs#from-file)]
 
@@ -134,7 +138,12 @@ Now that we have the `Tilemap` and `Tileset` classes defined, we can update our 
 
 ### Update the Texture Atlas
 
-Currently, the texture atlas we have been using only contains the sprites for the slime and bat animations. We need update it to a new version that contains the tileset as well.  RIght-click the following image and save it as *atlas.png* in the *Content/images* directory of the *DungeonSlime* project (your main game project), overwriting the existing on.
+Currently, the texture atlas we have been using only contains the sprites for the slime and bat animations. We need update it to a new version that contains the tileset as well.
+
+Right-click the following image and save it as `atlas.png` in the `Content/images` directory of the *DungeonSlime* project (your main game project), overwriting the existing one.
+
+> [!NOTE]
+> You do not need to do this in the MGCB editor as you are simply replacing the file and not altering any of its import properties.
 
 | ![Figure 13-3: The texture atlas for our game updated to include the tileset for the tilemap](./images/atlas.png) |
 |:-----------------------------------------------------------------------------------------------------------------:|
@@ -147,7 +156,20 @@ Currently, the texture atlas we have been using only contains the sprites for th
 
 Now that we have the texture atlas updated to include the tileset, we need to create a tilemap configuration that our game can load.  The configuration will be an XML file that specifies the tileset to use and the arrangement of tiles in the tilemap.
 
-Create a new file named *tilemap-definition.xml* in the *Content/images* folder of the game project and add the following:
+We need to add this configuration file to our content project in the *Content/images* folder with the MGCB Editor, in the same way we did with the "atlas-definition.xml":
+
+1. Open the *Content.mgcb* content project file in the MGCB Editor.
+2. Right-click the *images* folder and choose *Add > New Item...*.
+3. Select the *Xml Content (.xml)* type and name it `tilemap-definition`
+4. Select the `tilemap-definition.xml` file you just created.
+5. In the Properties panel, change the *Build Action* property from *Build* to *Copy*.
+6. Save the changes in the MGCB Editor.
+
+| ![Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy](./images/mgcb-editor.png) |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|             **Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy**              |
+
+7. Open the `tilemap-definition.xml` file in your code editor and replace its contents with the following and save it:
 
 [!code-xml[](./snippets/tilemap-definition.xml)]
 
@@ -160,21 +182,9 @@ This tilemap configuration creates a simple dungeon layout with walls around the
 - `09`: Standard floor tile.
 - `10`: Decorated floor tile with a crack in it.
 
-Next, we need to add this configuration file to our content project with the MGCB Editor:
-
-1. Open the *Content.mgcb* content project file in the MGCB Editor.
-2. Right-click the *images* folder and choose *Add > Existing Item...*.
-3. Select the *tilemap-definition.xml* file you just created.
-4. In the Properties panel, change the *Build Action* property from *Build* to *Copy*.
-5. Save the changes in the MGCB Editor.
-
-| ![Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy](./images/mgcb-editor.png) |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|             **Figure 13-4: The Content project in the MGCB Editor with the tilemap-definition.xml file added and the Build Action property set to copy**              |
-
 ### Update the Game1 Class
 
-With all of the assets now in place and configured, we can update the `Game1` class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open *Game1.cs* and make the following updates:
+With all of the assets now in place and configured, we can update the `Game1` class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open `Game1.cs` and make the following updates:
 
 [!code-csharp[](./snippets/game1.cs?highlight=31-35,46-61,80-82,114,116,118,120,123,125,127,129,147,150,152,155,158,161,163,166,181-183,305-306)]
 
@@ -200,6 +210,9 @@ Running the game now with these changes, our game now visually transforms from a
 ## Additional Notes
 
 While the method provided in this chapter offers a straightforward approach to loading tilemaps from external configuration files, several dedicated tools exist specifically for creating tilemaps for games. Popular options include [Tiled](https://www.mapeditor.org/), [LDtk](https://ldtk.io/), and [Ogmo](https://ogmo-editor-3.github.io/). These specialized tools export map configurations in various formats such as XML (similar to what we implemented) or JSON, and often include additional features like multiple layers, object placement, and custom properties for tiles.
+
+> [!NOTE]
+> In order to utilize Tilemaps from other tools, you will need a way to import those maps as MonoGame does not natively support them, one option is to use [MonoGame.Extended](https://www.monogameextended.net/) which provides Tilemap importers for Tiled (and more in the future) as well as a host of other features.
 
 Although these tools are more robust than our implementation, the underlying concept remains the same: a tilemap is fundamentally a grid layout where each cell references a tile ID from a tileset. The principles you have learned in this chapter form the foundation for working with any tilemap system, regardless of which tool you might use.
 

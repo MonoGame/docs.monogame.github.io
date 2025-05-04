@@ -88,7 +88,9 @@ The `Texture` and `SourceRectangle` properties work together to define where the
 
 ### TextureRegion Constructor
 
-The `TextureRegion` class will provide two ways to create a new texture region.  Add the following constructors:
+The `TextureRegion` class provides two ways to create a new texture region.
+
+Add the following constructors:
 
 [!code-csharp[](./snippets/textureregion.cs#ctors)]
 
@@ -131,7 +133,9 @@ The private `_regions` dictionary stores named texture regions, allowing us to r
 
 ### TextureAtlas Constructors
 
-The `TextureAtlas` class will provide two ways to create a new atlas.  Add the following constructors:
+The `TextureAtlas` class provides two ways to create a new atlas.
+
+Add the following constructors:
 
 [!code-csharp[](./snippets/textureatlas.cs#ctors)]
 

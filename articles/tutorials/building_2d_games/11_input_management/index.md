@@ -69,7 +69,9 @@ To detect changes in keyboard input between frames, we need to track both the pr
 
 ### KeyboardInfo Constructor
 
-The `KeyboardInfo` class needs a constructor to initialize the keyboard states. Add this constructor:
+The `KeyboardInfo` class constructor needs to initialize the keyboard states.
+
+Add this constructor:
 
 [!code-csharp[](./snippets/keyboardinfo.cs#ctors)]
 
@@ -186,7 +188,9 @@ The scroll wheel properties serve different purposes:
 
 ### MouseInfo Constructor
 
-The `MouseInfo` class needs a constructor to initialize the mouse states. Add this constructor:
+The `MouseInfo` class constructor needs to initialize the mouse states.
+
+Add this constructor:
 
 [!code-csharp[](./snippets/mouseinfo.cs#ctors)]
 
@@ -269,7 +273,9 @@ The values of the thumbsticks and triggers can be accessed through the `CurrentS
 
 ### GamePadInfo Constructor
 
-The `GamePadInfo` class needs a constructor to initialize the gamepad states.  Add this constructor
+The `GamePadInfo` class constructor needs to initialize the gamepad states.
+
+Add this constructor:
 
 [!code-csharp[](./snippets/gamepadinfo.cs#ctors)]
 
@@ -337,7 +343,9 @@ The `InputManager` class needs properties to access each type of input device. A
 
 ### InputManager Constructor
 
-The constructor for the `InputManager` initializes the keybaord, mouse, and gamepad states. Add the following constructor:
+The constructor for the `InputManager` initializes the keybaord, mouse, and gamepad states.
+
+Add the following constructor:
 
 [!code-csharp[](./snippets/inputmanager.cs#ctors)]
 

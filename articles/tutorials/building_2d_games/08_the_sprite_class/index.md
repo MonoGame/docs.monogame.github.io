@@ -37,7 +37,9 @@ The `TextureRegion` property works to provide the texture and source rectangle w
 
 ### Constructors
 
-The `Sprite` class will provide two ways to create a new sprite.  Add the following constructors:
+The `Sprite` class provides two ways to create a new sprite.
+
+Add the following constructors:
 
 [!code-csharp[](./snippets/sprite.cs#ctors)]
 

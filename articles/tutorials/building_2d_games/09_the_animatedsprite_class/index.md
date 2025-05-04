@@ -39,7 +39,9 @@ An animation requires two key pieces of information: the sequence of frames to d
 
 ### Animation Constructors
 
-The `Animation` class will provide two ways to create an animation.  Add the following constructors:
+The `Animation` class provides two ways to create an animation.
+
+Add the following constructors:
 
 [!code-csharp[](./snippets/animation.cs#ctors)]
 
@@ -128,7 +130,9 @@ The `Animation` property provides access to the current animation while ensuring
 
 ### AnimatedSprite Constructors
 
-The `AnimatedSprite` class will provide two ways to create an animated sprite.  Add the following constructors:
+The `AnimatedSprite` class provides two ways to create an animated sprite.
+
+Add the following constructors:
 
 [!code-csharp[](./snippets/animatedsprite.cs#ctors)]
 
