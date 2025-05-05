@@ -1,5 +1,5 @@
 ---
-title "Chapter 26: Publishing Your Game to itch.io"
+title: "Chapter 26: Publishing Your Game to itch.io"
 description: "Learn how to deploy your MonoGame project to itch.io and configure it for players across different platforms."
 ---
 
