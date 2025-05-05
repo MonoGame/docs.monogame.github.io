@@ -388,7 +388,7 @@ For the Dungeon Slime game, adapting to mobile would require:
 - Potentially rethinking game mechanics to suit mobile play patterns.
 
 > [!NOTE]
-> Mobile deployment for MonoGame games is significantly more complex than desktop deployment and typically requires platform-specific development environs (Android Studio for Android and Xcode for iOS).  A comprehensive guide to mobile deployment would require its own dedicated tutorial series.
+> Mobile deployment for MonoGame games is significantly more complex than desktop deployment and typically requires platform-specific development environs (Android Studio for Android and Xcode for iOS).  A comprehensive guide to mobile deployment will be covered in a future tutorial.
 
 If you are interested in extending the Dungeon Slime game, or future games, to mobile paltforms after completing this tutorial series, these resources provide a good starting point:
 
