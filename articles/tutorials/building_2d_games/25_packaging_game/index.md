@@ -336,6 +336,9 @@ However, AOT has limitations:
 
 For MonoGame game, AOT can work well if you avoid these limitations.
 
+> [!NOTE]
+> Native AoT is recommended for mobile platforms due to its performance benefits and smaller binary size, which are important for mobile devices with limited resources.  Additionally, it is mandatory when targeting console platforms (Xbox, PlayStation, Switch) as these platforms typically do not support JIT compilation for security and performance reasons.
+
 For more information on Native AOT, refer to the [Native AOT deployment overview](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=windows%2Cnet8) documentation on Microsoft Learn.
 
 ### Trimming
