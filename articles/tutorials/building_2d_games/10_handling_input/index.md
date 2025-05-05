@@ -159,7 +159,7 @@ The [**Triggers**](xref:Microsoft.Xna.Framework.Input.GamePadState.Triggers) pro
 | [**Left**](xref:Microsoft.Xna.Framework.Input.GamePadTriggers.Left)   | `float` | The value of the left trigger. |
 | [**Right**](xref:Microsoft.Xna.Framework.Input.GamePadTriggers.Right) | `float` | The value of the left trigger. |
 
-The trigger values are represented as a float value between `0.0f` (not pressed) to `1.0f` (fully pressed). The triggers on a gamepad, however, can be either *analog* or *digital* depending the gamepad manufacturer.  For gamepads with *digital* triggers, the value will always be either `0.0f` or `1.0f`, as a digital trigger does not register values in between based on the amount of pressure applied to the trigger.  
+The trigger values are represented as a float value between `0.0f` (not pressed) to `1.0f` (fully pressed). The triggers on a gamepad, however, can be either *analog* or *digital* depending the gamepad manufacturer.  For gamepads with *digital* triggers, the value will always be either `0.0f` or `1.0f`, as a digital trigger does not register values in between based on the amount of pressure applied to the trigger.
 
 For example, if we were creating a racing game, the right trigger could be used for acceleration like the following:
 
@@ -224,7 +224,7 @@ Most modern gamepads have two vibration motors, a larger one (usually the left m
 
 ## TouchPanel Input
 
-For mobile devices such as Android/iOS phones and tablets, the primary input device is the touch panel screen.  Touching a location on the screen is similar to clicking a location on your computer with a mouse.  MonoGame provides the [**TouchPanel**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel) class to handle touch input.  
+For mobile devices such as Android/iOS phones and tablets, the primary input device is the touch panel screen.  Touching a location on the screen is similar to clicking a location on your computer with a mouse.  MonoGame provides the [**TouchPanel**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel) class to handle touch input.
 
 The [**TouchPanel**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel) class offers two ways of retrieving information about touch input:
 
@@ -233,7 +233,7 @@ The [**TouchPanel**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel) class 
 
 ### TouchCollection
 
-When calling [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) a [**TouchCollection**](xref:Microsoft.Xna.Framework.Input.Touch.TouchCollection) struct is returned.  This collection contains a [**TouchLocation**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation) value for each point of touch.  
+When calling [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) a [**TouchCollection**](xref:Microsoft.Xna.Framework.Input.Touch.TouchCollection) struct is returned.  This collection contains a [**TouchLocation**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation) value for each point of touch.
 
 #### TouchLocation
 
@@ -310,7 +310,7 @@ The following is an example of using a gesture to detect horizontal and vertical
 [!code-csharp[](./snippets/gestures.cs)]
 
 > [!IMPORTANT]
-> Notice above that we use a `while` loop with [**TouchPanel.IsGestureAvailable**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.IsGestureAvailable) as the condition for the loop.  The reason we do this is because when a user performs a gesture, such as a horizontal drag across the screen, very quickly, what can often occurs is a series of multiple small drag gestures are registered and queued.  
+> Notice above that we use a `while` loop with [**TouchPanel.IsGestureAvailable**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.IsGestureAvailable) as the condition for the loop.  The reason we do this is because when a user performs a gesture, such as a horizontal drag across the screen, very quickly, what can often occurs is a series of multiple small drag gestures are registered and queued.
 >
 > Each time [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture) is called, it will dequeue the next gesture.  So to ensure that we handle the complete gesture, we loop the gesture queue until there are none left.
 
@@ -393,7 +393,7 @@ Consider implementing input buffering in your game when:
 - Actions require precise timing that is difficult for players to hit consistently.
 - You want to allow players to "queue up" their next few moves.
 
-We'll see a practical implementation of input buffering in [Chapter 23](../23_completing_the_game/index.md) when we finalize our snake-like game mechanics, where timing and direction changes are critical to gameplay.
+We will implement input buffering in [Chapter 23](../23_completing_the_game/index.md) when we finalize our snake-like game mechanics, where timing and direction changes are critical to gameplay.
 
 ## Conclusion
 
