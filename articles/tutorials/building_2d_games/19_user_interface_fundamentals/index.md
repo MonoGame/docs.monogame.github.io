@@ -62,7 +62,7 @@ Anchoring allows you to position UI elements relative to specific reference poin
 | :--------------------------------------------------------------------------------------: |
 |                  **Figure 19-1: Diagram showing common anchor points**                   |
 
-When you set an anchor point, the elements' position coordinates become relative to that anchor point.  For example with a "Right" anchor and an X value of -5, you element would position itself 5 pixels to the left of the parent's right edge, creating a consistent margin regardless of the parent's size, as demonstrated in the following diagram:
+When you set an anchor point, the elements' position coordinates become relative to that anchor point.  For example with a "Right" anchor and an X value of *-5*, you element would position itself *5 pixels* to the left of the parent's right edge, creating a consistent margin regardless of the parent's size, as demonstrated in the following diagram:
 
 | ![Figure 19-2: Diagram showing anchored element positioning relative to anchor regardless of parent size](./images/user_interface_anchor_positioning.svg) |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -84,7 +84,7 @@ Creating accessible user interfaces is an essential aspect of inclusive game des
 
 ### Visual Accessibility
 
-- **Color contrast**: Ensure sufficient contrast between text and backgrounds
+- **Color contrast**: Ensure sufficient contrast between text and backgrounds.
 - **Use shapes**: Do not rely solely on color to convey important information; add shapes, patterns, or text labels as well.  For example, if displaying warning text, also use something such as the common warning sign ⚠️.
 - **Text size and scaling**: Allow players to adjust text size or implement a UI scaling option.
 - **Internationalization (i18n)**: Consider how your UI might be interpreted across different cultures and regions. Number formatting can vary significantly - some regions use periods for thousands separators (1.000.000) while others use commas (1,000,000). Control symbolism also differs culturally; for example, on console controllers, the Cross button typically means "Select" in Western regions but "Cancel" in Japan, with Circle having the opposite meaning.
