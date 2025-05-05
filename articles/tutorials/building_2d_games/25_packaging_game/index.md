@@ -345,7 +345,7 @@ For more information on Native AOT, refer to the [Native AOT deployment overview
 
 Trimming (specified with `-p:Trimming:true`) removes unused code from your distribution to reduce size.  It is automatically enabled when using AOT.
 
-While trimming can significantly reduce your game's size, it may remove types that appear unused bot are accessed indirectly through reflection or generics causing runtime errors.
+While trimming can significantly reduce your game's size, it may remove types that appear unused but are accessed indirectly through reflection or generics causing runtime errors.
 
 > [!IMPORTANT]
 > Trimming can cause issues with content pipeline extensions that are used at runtime.  When the compiler cannot detect that certain types are used (especially with reflection or generic collections), thy might be trimmed away, resulting in "type not found" exceptions when loading content.
