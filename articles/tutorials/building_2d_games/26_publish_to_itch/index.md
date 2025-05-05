@@ -3,7 +3,7 @@ title: "Chapter 26: Publishing Your Game to itch.io"
 description: "Learn how to deploy your MonoGame project to itch.io and configure it for players across different platforms."
 ---
 
-After packaging your game for various platforms in [Chapter 25](../25_packaging_game/index.md), the next step is to make it available for other players.  While there are many distribution platforms available ([Steam](https://store.steampowered.com/), [Unreal](https://publish.unrealengine.com/v3/welcome), [Good Old Games (GOG)](https://www.gog.com/en)), [itch.io](https://itch.io/) has become a popular choice for indie developers due to its simple publishing processes, developer-friendly revenue model, and strong community focus.
+After packaging your game for various platforms in [Chapter 25](../25_packaging_game/index.md), the next step is to make it available for other players.  While there are many distribution platforms available ([Steam](https://store.steampowered.com/), [Epic Games store](https://store.epicgames.com/en-US/), [Good Old Games (GOG)](https://www.gog.com/en)), [itch.io](https://itch.io/) has become a popular choice for indie developers due to its simple publishing processes, developer-friendly revenue model, and strong community focus.
 
 In this chapter, you will:
 
