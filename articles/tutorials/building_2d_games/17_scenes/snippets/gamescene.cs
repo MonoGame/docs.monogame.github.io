@@ -93,7 +93,7 @@ public class GameScene : Scene
         // room bounds, and to vertically be at the center of the first tile.
         _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
 
-        // Set the origin of the text so it's left-centered.
+        // Set the origin of the text so it is left-centered.
         float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
         _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
 
@@ -154,7 +154,7 @@ public class GameScene : Scene
         );
 
         // Use distance based checks to determine if the slime is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // move it back inside.
         if (slimeBounds.Left < _roomBounds.Left)
         {
@@ -187,7 +187,7 @@ public class GameScene : Scene
         Vector2 normal = Vector2.Zero;
 
         // Use distance based checks to determine if the bat is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // reflect it about the screen edge normal
         if (batBounds.Left < _roomBounds.Left)
         {

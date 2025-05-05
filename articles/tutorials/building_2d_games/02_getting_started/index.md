@@ -8,32 +8,35 @@ Unlike game engines, MonoGame is a *framework*. This means it does not come as a
 * **Flexibility**: Developers are not locked into using a specific editor or interface, allowing them to use their preferred development tools.
 * **Integration**: As a .NET library itself, MonoGame can easily integrate with other .NET libraries and tools.
 * **Cross-platform Development**: Since C# is cross-platform, and MonoGame is cross-platform, developers can develop MonoGame projects on Windows, macOS, or Linux, with only slight differences in the setup process for each operating system.
-* **Version Control Friendly**: The code-first approach makes it easier to use version control systems like Git for you game projects.
+* **Version Control Friendly**: The code-first approach makes it easier to use version control systems like Git for your game projects.
 
 While the environment setup process is similar to the standard setup process for C# development, there are some MonoGame specific steps. These can vary slightly depending on your operating system and the *Integrated Development Environment* (IDE).
 
 ## Installing the .NET SDK
 
-The first thing we need to do is install the .NET *Software Development Kit* (SDK). At the time of this writing, MonoGame targets the .NET 8.0 SDK.
+The first thing we need to do is install the .NET *Software Development Kit* (SDK). To install it, follow the instructions based on your operating system below:
 
-> [!NOTE]
-> At the time of writing this tutorial, .NET 9.0 is released, however this tutorial still recommends installing .NET 8.0 for two reasons
->
-> 1. .NET 8.0 is the current Long-Term Support (LTS) release of .NET. This means it receives security updates and bug fixes for 3 years, while Standard-Term Support (STS) releases like .NET 9.0 provide a shorter support window, typically around 18 months.  For more information see the [.NET and .NET Core official support policy](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core#cadence) page.
-> 2. MonoGame targets the LTS version of .NET, meaning it targets .NET 8.0, so we are using the same version for consistency.
-
-To install it, follow the instructions based on your operating system below
+> [!IMPORTANT]
+> As of MonoGame 3.8.2, the minimum supported version of the .NET SDK is .NET 8.
 
 ### [Windows](#tab/windows)
 
 1. Open a web browser and navigate to https://dotnet.microsoft.com/en-us/download.
-2. Click the *Download .NET SDK x64* button to start the download of the .NET SDK Installer.
+2. Choose the version of the .NET SDK to install and click the **Download .NET SDK x64** button to start the download.
+
+    > [!NOTE]
+    > The minimum supported version is .NET 8
+
 3. Once the download finishes, run the installer
 
 ### [macOS](#tab/macos)
 
 1. Open a web browser and navigate to https://dotnet.microsoft.com/en-us/download.
-2. Click the *Download .NET SDK x64 (Intel)* button start the download of the .NET SDK Installer
+2. Choose the version of the .NET SDK to install and click lick the *Download .NET SDK x64 (Intel)* button start the download of the .NET SDK Installer.
+
+    > [!NOTE]
+    > The minimum supported version is .NET 8
+
 3. Once the download finishes, run the installer.  
 
 > [!NOTE]  
@@ -48,6 +51,9 @@ To install it, follow the instructions based on your operating system below
 sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
 ```
 
+> [!NOTE]
+> The minimum supported version is .NET 8
+
 ---
 
 ## Install Additional Workloads (Optional)
@@ -61,7 +67,7 @@ dotnet workload install android
 
 ## Install MonoGame Project Templates
 
-MonoGame provides project templates that can be installed to create new projects that are pre-configured to target the current version of MonoGame as a base to begin creating games. As of this writing, the current version of MonoGame targeted is 3.8.3. To install the MonoGame templates, open a *Command Prompt* or *Terminal* window and enter the following command
+MonoGame provides project templates that can be installed to create new projects that are pre-configured to target the current version of MonoGame as a base to begin creating games. To install the MonoGame templates, open a *Command Prompt* or *Terminal* window and enter the following command
 
 ```sh
 dotnet new install MonoGame.Templates.CSharp
@@ -84,7 +90,7 @@ To install VSCode, follow the instructions for your operating system below:
 1. Open a web browser and navigate to https://code.visualstudio.com/.
 2. Click the *Download for macOS* button to start the download of the *.zip* archive.
 3. Once the download finishes, double click the *.zip* archive to extract the *Visual Studio Code.app* application package
-4. Drag-and-drop the *Visual Studio Code.app* application package into your *Application* directory to make it available in the macOS *LaunchPad*.
+4. Drag-and-drop the *Visual Studio Code.app* application package into your *Application* folder to make it available in the macOS *LaunchPad*.
 
 ### [Linux](#tab/linux)
 
@@ -116,6 +122,10 @@ To install the C# Dev Kit extension, perform the following:
 2. Open the *Extensions Panel* by clicking the icon in the *Activity Bar* on the left or choosing *View > Extensions* from the top menu.
 3. Enter `C#` in the *Search Box*
 4. Click install for the *C# Dev Kit* extension.
+
+| ![Figure 2-1: The C# Dev Kit Extension listed in Visual Studio Code](./images/devkit-extension.png) |
+| :-------------------------------------------------------------------------------------------------: |
+|                **Figure 2-1: The C# Dev Kit Extension listed in Visual Studio Code**                |
 
 > [!NOTE]  
 > When you search `C#` in the *Extension Panel* you may notice there is the C# Dev Kit extension and a base standard C# extension. When installing the C# Dev Kit extension, the base extension will also be installed as a requirement.
@@ -150,7 +160,7 @@ wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 ```
 
 > [!NOTE]
-> After performing these steps, a new directory called *.winemonogame* will be created in your home directory. If you ever wish to undo the setup performed by this script, you can simply delete this directory.
+> After performing these steps, a new folder called *.winemonogame* will be created in your home folder. If you ever wish to undo the setup performed by this script, you can simply delete this folder.
 
 ### [Linux](#tab/linux)
 
@@ -162,7 +172,7 @@ wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 ```
 
 > [!NOTE]
-> After performing these steps, a new directory called *.winemonogame* will be created in your home directory. If you ever wish to undo the setup performed by this script, you can simply delete this directory.
+> After performing these steps, a new folder called *.winemonogame* will be created in your home folder. If you ever wish to undo the setup performed by this script, you can simply delete this folder.
 
 ---
 
@@ -180,17 +190,17 @@ With your development environment setup, it is time to create your first MonoGam
 
 After selecting *Create Project*, a new C# project will be generated based on the chosen MonoGame template and opened automatically in VSCode.
 
-| ![Figure 2-1: A new MonoGame project after being created in Visual Studio Code](./images/vscode.png) |
-| :---: |
-| **Figure 2-1: A new MonoGame project after being created in Visual Studio Code** |
+| ![Figure 2-2: A new MonoGame project after being created in Visual Studio Code](./images/vscode.png) |
+| :--------------------------------------------------------------------------------------------------: |
+|           **Figure 2-2: A new MonoGame project after being created in Visual Studio Code**           |
 
 Now that we have the project created, press the `F5` key on your keyboard, or choose *Run > Start Debugging* from the top menu. If prompted for a configuration, choose *C#*. The project will compile and run, displaying a screen similar to the following:
 
-| ![Figure 2-2: The default MonoGame cornflower blue game window](./images/game-window.png) |
-| :---: |
-| **Figure 2-2: The default MonoGame cornflower blue game window** |
+| ![Figure 2-3: The default MonoGame cornflower blue game window](./images/game-window.png) |
+| :---------------------------------------------------------------------------------------: |
+|             **Figure 2-3: The default MonoGame cornflower blue game window**              |
 
-Be amazed, the default MonoGame Cornflower Blue game window. You have just created your very first MonoGame application. While there isn't much happening here visually, there is a log going on behind the scenes that the MonoGame framework is handling for you. When you ran the application, the following occurred:
+Be amazed, the default MonoGame Cornflower Blue game window. You have just created your very first MonoGame application. While there is not much happening here visually, there is a log going on behind the scenes that the MonoGame framework is handling for you. When you ran the application, the following occurred:
 
 1. The application started
 2. The game window was created and graphics were initialized
@@ -209,7 +219,7 @@ You can exit the game at any time by pressing the `Esc` key on your keyboard.
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 * You setup your operating system to develop .NET applications by installing the .NET SDK
 * You installed the MonoGame project templates.
@@ -220,16 +230,22 @@ Now that your development environment is setup and ready to go, you can dive in 
 
 ## Test Your Knowledge
 
-1. What version of the .NET SDK is currently targeted by MonoGame applications?
+1. What are two advantages of MonoGame being a framework rather than an engine?
 
     :::question-answer
-    .NET 8.0
+    Any two of the following:
+
+    - Flexibility: Developers can use their preferred development tools
+    - Integration: MonoGame easily integrates with other .NET libraries
+    - Cross-platform Development: Projects can be developed on Windows, macOS, or Linux
+    - Version Control Friendly: The code-first approach works well with systems like Git
+  
     :::
 
-2. What is the current version of MonoGame?
+2. What is the primary reason that game applications implement a *game loop* structure instead of using an event-based approach like traditional desktop applications?
 
     :::question-answer
-    3.8.3
+    Game application implement a *game loop* structure because games need to continuously update and render, event when there is no user input.  In games, objects might be moving, animations playing, and physics calculating regardless of user interaction, requiring constant updating and rendering until the game is told to exit.
     :::
 
 3. What is the color of the game window when you run a MonoGame project for the first time?

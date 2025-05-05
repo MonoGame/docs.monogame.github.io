@@ -17,11 +17,11 @@ The official first release of MonoGame occurred in 2011, as an open-source versi
 
 Today, MonoGame is a mature cross-platform framework, that is built with the spirit of preserving XNA while adopting modern game development practices. Some popular titles created using MonoGame includes [Celeste](https://store.steampowered.com/app/504230/Celeste/), [Stardew Valley](https://store.steampowered.com/app/413150/Stardew\_Valley/), and [Streets of Rage 4](https://store.steampowered.com/app/985890/Streets\_of\_Rage\_4/).
 
-| ![Figure 1-1: Celeste](./images/celeste.png) | ![Figure 1-2: Stardew Valley](./images/stardew-valley.png) |
-| :---: | :---: |
-| **Figure 1-1 Celeste.** | **Figure 1-2: Stardew Valley** |
-| ![Figure 1-3: Streets of Rage 4](./images/sor4.jpg) | |
-| **Figure 1-3: Streets of Rage 4** | |
+|    ![Figure 1-1: Celeste](./images/celeste.png)     | ![Figure 1-2: Stardew Valley](./images/stardew-valley.png) |
+| :-------------------------------------------------: | :--------------------------------------------------------: |
+|               **Figure 1-1 Celeste.**               |               **Figure 1-2: Stardew Valley**               |
+| ![Figure 1-3: Streets of Rage 4](./images/sor4.jpg) |        [Figure 1-4: Bastion](./images/bastion.jpg)         |
+|          **Figure 1-3: Streets of Rage 4**          |                   **Figure 1-4: Bastion**                    |
 
 ## Features
 

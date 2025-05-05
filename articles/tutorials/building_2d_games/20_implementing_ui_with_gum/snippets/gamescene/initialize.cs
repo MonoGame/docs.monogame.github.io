@@ -28,7 +28,7 @@ public override void Initialize()
     // room bounds, and to vertically be at the center of the first tile.
     _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
 
-    // Set the origin of the text so it's left-centered.
+    // Set the origin of the text so it is left-centered.
     float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
     _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
 

@@ -9,8 +9,8 @@ After you created a new MonoGame project using the *MonoGame Cross-Platform Desk
 
 At the core of a MonoGame project is the [**Game**](xref:Microsoft.Xna.Framework.Game) class.  This class handles the initialization of graphics services, initialization of the game, loading content, updating, and rendering the game.  When you create a new Monogame project, this [**Game**](xref:Microsoft.Xna.Framework.Game) class is implemented as the `Game1` class that you can customize as needed for your specific game.
 
-> [!TIP]  
-> While the default template names the class `Game1`, you're free to rename it to something more appropriate for your project.  However, for consistency, the documentation will continue to refer to it as `Game1`.
+> [!TIP]
+> While the default template names the class `Game1`, you are free to rename it to something more appropriate for your project.  However, for consistency, the documentation will continue to refer to it as `Game1`.
 
 Locate the *Game1.cs* file that was generated when you created the MonoGame project and open it.  The default content will be:
 
@@ -26,8 +26,8 @@ This class provides the following structure:
 Figure 3-1 below shows the lifecycle of a MonoGame game including the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) and [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) methods that make up the *game loop*.
 
 | ![Figure 3-1: Lifecycle of a MonoGame game](./images/monogame-lifecycle.png) |
-| :---: |
-| **Figure 3-1: Lifecycle of a MonoGame game** |
+| :--------------------------------------------------------------------------: |
+|                 **Figure 3-1: Lifecycle of a MonoGame game**                 |
 
 ## Graphics and Rendering
 
@@ -43,7 +43,7 @@ MonoGame's initialization process for your game follows a specific sequence.  Th
 
 [!code-csharp[](./snippets/game1.cs?start=12&end=17)]
 
-After that, the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method executes, providing a dedicated place for additional configuration and initializations.  
+After that, the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method executes, providing a dedicated place for additional configuration and initializations.
 
 [!code-csharp[](./snippets/game1.cs?start=19&end=22)]
 
@@ -73,10 +73,21 @@ The [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framewor
 The first line is executing the [**Clear**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)) method of the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice) property using the color [**CornflowerBlue**](xref:Microsoft.Xna.Framework.Color.CornflowerBlue). Recall that the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice) object is your direct interface between the game and what is rendered to the screen. Every time the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method is called, this line of code of erasing the contents of the game window and refilling it with the color specified. Without clearing the contents of the screen first, every draw call would draw the new frame render over top of the previous render, and you'd end up with something like the old solitaire win screen
 
 | ![Figure 3-2: Windows XP Solitaire Win Screen](./images/solitaire.webp) |
-| :---: |
-| **Figure 3-2: Windows XP Solitaire Win Screen** |
+| :---------------------------------------------------------------------: |
+|             **Figure 3-2: Windows XP Solitaire Win Screen**             |
 
-While this can make for a neat effect, it is not something you want all the time. So, the screen is cleared and refilled with a solid color. You can test this yourself by modifying the code to use a different color, such as [**Color.MonoGameOrange**](xref:Microsoft.Xna.Framework.Color.MonoGameOrange), then running the game. (yes, there is a MonoGame Orange color).
+While this can make for a neat effect, it is not something you want all the time. So, the screen is cleared and refilled with a solid color.
+
+> [!NOTE]
+> You can test this yourself by modifying the code to use a different color, such as [**Color.MonoGameOrange**](xref:Microsoft.Xna.Framework.Color.MonoGameOrange). (yes, there is a MonoGame Orange color).
+>
+> [!code-csharp[](./snippets/draw.cs?highlight=3)]
+>
+> After making this change and running the game, the screen is cleared to the MonoGame Orange color.
+>
+> | ![Figure 3-3: The game window clearing the screen using the MonoGame Orange color](./images/monogame-orange.png) |
+> | :---: |
+> | **Figure 3-3: The game window clearing the screen using the MonoGame Orange color** |
 
 Each time the game loops completes and the game is drawn to the screen, we call this a *frame*. So if MonoGame is running the game loop at 60 frames per second, that means it is performing and update and a render of each frame in 16ms. Notice that both the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) and the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) methods both receive a parameter of the type [**GameTime**](xref:Microsoft.Xna.Framework.GameTime). The [**GameTime**](xref:Microsoft.Xna.Framework.GameTime) parameter provides a snapshot of the timing values for the game, including the amount of time that it took for the previous frame to execute. This is commonly referred to as the *delta time*.
 
@@ -84,7 +95,7 @@ Each time the game loops completes and the game is drawn to the screen, we call 
 
 ## Conclusion
 
-Here is a review of what was accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - You read through the default code provided in a *Game1.cs* file created by a MonoGame template.
 - You learned about the lifecycle of a MonoGame game project.
@@ -97,7 +108,7 @@ In the next chapter, you will start working with sprites and learn how to load a
 1. Can the `Game1` class be renamed or is it required to be called `Game1`
 
     :::question-answer
-    It is not a requirement that it be called `Game1`.  This is just the default name given to it by the templates when creating a new MonoGame game project.  
+    It is not a requirement that it be called `Game1`.  This is just the default name given to it by the templates when creating a new MonoGame game project.
     :::
 
 2. What is the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) used for?

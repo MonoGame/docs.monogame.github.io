@@ -13,11 +13,11 @@ In this chapter you will:
 - Learn how to handle object overlap and response.
 - Build a reusable collision system for your game.
 
-Let's start by understanding the basics of collision detection and the different approaches we can use.
+We will first start by understanding the basics of collision detection and the different approaches that can be used.
 
 ## Understanding Collision Detection
 
-Before we start implementing collision detection, let's discuss what collision detection actually is. In 2D games, collision detection involves checking if two objects interact with each other in some way. There are several approaches to detecting collisions, ranging from simple to complex:
+Before we start implementing collision detection, we should discuss what collision detection actually is. In 2D games, collision detection involves checking if two objects interact with each other in some way. There are several approaches to detecting collisions, ranging from simple to complex:
 
 ### Proximity Collision Detection
 
@@ -58,17 +58,17 @@ To calculate the squared distance between to points, MonoGame provides the [**Ve
 [!code-csharp[](./snippets/vector2_distance.cs)]
 
 > [!TIP]
-> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared.  So why don't we use this instead?
+> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared.  So why do not we use this instead?
 >
-> Square root operations are more computationally complex for a CPU.  So instead of getting the normal distance, which would require the square root operation, it's more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.
+> Square root operations are more computationally complex for a CPU.  So instead of getting the normal distance, which would require the square root operation, it is more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.
 
 #### Rectangle Collision Detection
 
-Rectangles, often called *bounding boxes*, typically uses what's called *Axis-Aligned Bounding Box* (AABB) collision detection to determine if two rectangle shapes overlap.  Unlike circles, to perform AABB collision detection, the x- and y-axes of both rectangles must be aligned with the x- and y-axes of the screen.  This is just another way of saying that the rectangles cannot be rotated.
+Rectangles, often called *bounding boxes*, typically uses what is called *Axis-Aligned Bounding Box* (AABB) collision detection to determine if two rectangle shapes overlap.  Unlike circles, to perform AABB collision detection, the x- and y-axes of both rectangles must be aligned with the x- and y-axes of the screen.  This is just another way of saying that the rectangles cannot be rotated.
 
-| ![Figure 12-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axe.](./images/aabb-vs-non-aabb.svg) |
+| ![Figure 12-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned since it is rotated and the axes do not align with the screen axe.](./images/aabb-vs-non-aabb.svg) |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                **Figure 12-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned sine it is rotated and the axes do not align with the screen axes**                |
+|                **Figure 12-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned since it is rotated and the axes do not align with the screen axes**                |
 
 MonoGame provides the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct which represents a rectangle by its position (X,Y) and size (Width,Height). The following table shows some of the properties of the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct:
 
@@ -194,10 +194,10 @@ For example, if we had a ball moving around the screen and wanted it to bounce o
 
 When checking for collisions between multiple objects, testing every object against every other object (often called brute force checking) becomes inefficient as your game grows. Brute force checking can be calculated as $(n * (n - 1)) / 2$ where $n$ is the total number of objects.  For example, if you have 100 objects in your game, that's $(100 * 99) / 2 = 4950$ collision checks every frame.  To improve performance, we can use a two-phase approach:
 
-1. Broad Phase: A quick, simple check to rule out objects that definitely aren't colliding.
+1. Broad Phase: A quick, simple check to rule out objects that definitely are not colliding.
 2. Narrow Phase: A more precise check only performed on objects that passed the broad phase.
 
-For our simple game with just two objects, this optimization isn't necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.  Later in this tutorial series we will implement an algorithm called spatial hashing to perform broad phase checks.
+For our simple game with just two objects, this optimization is not necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.  Later in this tutorial series we will implement an algorithm called spatial hashing to perform broad phase checks.
 
 ## The Circle Struct
 
@@ -284,17 +284,17 @@ Finally, add the following  operator overloads to support using == and != with c
 >
 > [!code-csharp[](./snippets/circle_equal_example.cs)]
 
-Now that we have a struct to represent a circle and check for overlapping, let's update our game to implement collision detection and responses.
+Now that we have a struct to represent a circle and check for overlapping, we will update our game to implement collision detection and responses.
 
 ## Adding Collision To Our Game
 
-If you run the game right now and move the slime around, you'll notice a few issues that can be fixed by adding collision detection and response:
+If you run the game right now and move the slime around, you will notice a few issues that can be fixed by adding collision detection and response:
 
 1. You can move the slime outside the bounds of the screen.
 2. Nothing occurs when the slime collides with the bat.
-3. The bat doesn't move, providing no challenge in the game.
+3. The bat does not move, providing no challenge in the game.
 
-Let's update our game to implement these changes using collision detection and response. Open *Game1.cs* and make the following changes:
+To resolve this, we can update our game to implement these changes using collision detection and response.  In the *DungeonSlime* project (your main game project), open the *Game1.cs* file and make the following changes to the `Game1` class:
 
 [!code-csharp[](./snippets/game1.cs?highlight=1,5,25-29,40-45,81-181,186-198,298-299)]
 
@@ -327,7 +327,7 @@ Running the game now
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Learned about different approaches to collision detection:
   - Distance-based checks for simple proximity detection.
@@ -348,7 +348,7 @@ Let's review what you accomplished in this chapter:
   - Implemented bouncing behavior for the bat.
   - Created a trigger response when the slime "eats" the bat.
 
-In the next chapter, we'll explore using tilesets and tilemaps to create tile based environments for our game.
+In the next chapter, we will explore using tilesets and tilemaps to create tile based environments for our game.
 
 ## Test Your Knowledge
 
@@ -391,10 +391,10 @@ In the next chapter, we'll explore using tilesets and tilemaps to create tile ba
     ::: question-answer
     Circle collision might be chosen because:
 
-    - It's more accurate for round objects
+    - It is more accurate for round objects
     - It handles rotating objects better
-    - It's simpler for continuous collision detection
-    - It's natural for radius-based interactions
+    - It is simpler for continuous collision detection
+    - It is natural for radius-based interactions
 
     :::
 

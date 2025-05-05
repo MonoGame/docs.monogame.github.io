@@ -4,7 +4,10 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoGameLibrary.Input;
 
-public class MouseInfo { }
+public class MouseInfo 
+{
+    
+}
 #endregion
 {
     #region properties_states

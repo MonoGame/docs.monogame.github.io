@@ -3,7 +3,7 @@ title: "Chapter 21: Customizing Gum UI"
 description: "Learn how to create custom UI components with animations and visual styling in Gum."
 ---
 
-In the [previous chapter](../20_implementing_ui_with_gum/index.md), we implemented a functional UI system for our game using the Gum framework. While the UI is now fully operational, it uses Gum's default styling.  This default styling is good for quickly iterating when building the UI, but it doesn't match the game's visuals.  A well designed UI should not only be functional but also complement the game's overall visual style to create a cohesive experience.
+In the [previous chapter](../20_implementing_ui_with_gum/index.md), we implemented a functional UI system for our game using the Gum framework. While the UI is now fully operational, it uses Gum's default styling.  This default styling is good for quickly iterating when building the UI, but it does not match the game's visuals.  A well designed UI should not only be functional but also complement the game's overall visual style to create a cohesive experience.
 
 In this chapter you will:
 
@@ -42,7 +42,7 @@ One powerful feature of Gum is how it handles size relationships between parent 
 
 For example, a button might use a text element with `WidthUnits` set to `RelativeToChildren`, which means the text will be exactly the size needed to display its content. The button's container might use `RelativeToChildren` with some additional padding, allowing the button to automatically resize based on its text content.
 
-Although we haven't explicitly assigned WidthUnits and HeightUnits in our code, we have indirectly set these values by calling the Visual's `Dock` method. Specifically, by passing `Dock.Fill` as the parameter, `WidthUnits` and `HeightUnits` are both set to `RelativeToParent`.
+Although we have not explicitly assigned WidthUnits and HeightUnits in our code, we have indirectly set these values by calling the Visual's `Dock` method. Specifically, by passing `Dock.Fill` as the parameter, `WidthUnits` and `HeightUnits` are both set to `RelativeToParent`.
 
 > [!NOTE]
 > These size relationships can create circular dependencies when a child depends on its parent and the parent depends on the child. In such cases, Gum resolves the conflict by making the child depend on the parent, and the parent ignores that particular child when calculating its size.
@@ -106,7 +106,7 @@ Custom UI components can enhance their interactivity by handling specific input 
 
 Gum distinguishes between highlighting (visual response to mouse hover) and focus (ability to receive keyboard/gamepad input). For a seamless experience across input devices, a common pattern is to automatically focus elements when the mouse hovers over them, ensuring that visual highlighting and input focus remain synchronized.
 
-Now that we understand the key concepts behind Gum's customization system, let's apply them to create custom UI components for our game.
+Now that we understand the key concepts behind Gum's customization system, we can apply them to create custom UI components for our game.
 
 ## Updating the Game Resources
 
@@ -119,7 +119,7 @@ Before we can start, we first need to update the *atlas.png* texture atlas file 
 - The characters for the font, generated using Bitmap Font Generator (BMFont)
 - The sprites for the UI components we will create
 
-Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* directory of the game project, overwriting the existing one.
+Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* folder of the game project, overwriting the existing one.
 
 | ![Figure 21-1: The texture atlas for the game updated to include the UI sprites](./images/atlas.png) |
 | :--------------------------------------------------------------------------------------------------: |
@@ -131,9 +131,9 @@ The slime and bat sprites are no longer in the same position, and we have some n
 
 ### Adding Bitmap Fonts
 
-While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to draw text, Gum uses the [AngelCode Bitmap Font (.fnt)](https://www.angelcode.com/products/bmfont/) font file format. This means we'll need to supply Gum with the *.fnt* file that defines our font.
+While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to draw text, Gum uses the [AngelCode Bitmap Font (.fnt)](https://www.angelcode.com/products/bmfont/) font file format. This means we will need to supply Gum with the *.fnt* file that defines our font.
 
-First, download the *.fnt* file by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/fonts* directory:
+First, download the *.fnt* file by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/fonts* folder:
 
 - [04b_30.fnt](./files/04b_30.fnt)
 
@@ -160,7 +160,7 @@ Next, add this font file to your content project using the MGCB Editor:
 
 In [Chapter 18](../18_texture_sampling/index.md#texture-coordinates) we discussed texture coordinates and that graphic devices use a normalized coordinate system between 0.0 and 1.0.
 
-Sine [Gum also uses this coordinate system](#animation-chains), let's update the `TextureRegion` class to easily provide these values for any given region.
+Since [Gum also uses this coordinate system](#animation-chains), we will update the `TextureRegion` class to easily provide these values for any given region.
 
 Open the *TextureRegion.cs* file in the *MonoGameLibrary* project and add the following properties to the `TextureRegion` class:
 
@@ -168,17 +168,17 @@ Open the *TextureRegion.cs* file in the *MonoGameLibrary* project and add the fo
 
 ## Creating Custom UI Components
 
-Now that we have all our resources prepared, let's create custom versions of the UI controls we're using in our game. We'll start with an animated button that uses our game's visual style, then move on to creating a custom slider.
+Now that we have all our resources prepared, we can create custom versions of the UI controls we are using in our game. We will start with an animated button that uses our game's visual style, then move on to creating a custom slider.
 
 ### The AnimatedButton Class
 
 Our first custom component will be an `AnimatedButton` that inherits from Gum's base `Button` class. This button will use the game's existing texture atlas for its visual appearance and provide animation when focused.
 
-First, create a new folder in the game project called *UI* to store our custom UI components. Then, add a new file called *AnimatedButton.cs* with the following code:
+First, in the *DungeonSlime* project (your main game project), create a new folder named *UI* to store our custom UI components.  Next, in that *UI* folder, create a new file called *AnimatedButton.cs* and add the following code to it:
 
 [!code-csharp[](./snippets/animatedbutton.cs)]
 
-Let's examine the key aspects of this implementation:
+Next, we will examine the key aspects of this implementation:
 
 #### Top-level Container
 
@@ -241,13 +241,13 @@ This creates a more responsive interface by immediately focusing elements that t
 
 ### The OptionsSlider Class
 
-Now let's create a custom `OptionsSlider` class to style the volume sliders.  This class inherits from Gum's base `Slider` class and provides a styled appearance consistent with the game's visual theme.
+Now we will create a custom `OptionsSlider` class to style the volume sliders.  This class inherits from Gum's base `Slider` class and provides a styled appearance consistent with the game's visual theme.
 
-Create a new file named *OptionsSlider.cs* in the *UI* folder with the following code:
+In the *UI* folder fo the *DungeonSlime* project (your main game project), create a new file called *OptionsSlider.cs* and add the following code to it:
 
 [!code-csharp[](./snippets/optionsslider.cs)]
 
-The `OptionsSlider` is more complex than then [`AnimatedButton`](#the-animatedbutton-class) because it contains more visual elements.  Let's examine the key aspects of this implementation:
+The `OptionsSlider` is more complex than then [`AnimatedButton`](#the-animatedbutton-class) because it contains more visual elements.  Below are the key aspects of this implementation:
 
 #### Slider Components
 
@@ -341,7 +341,7 @@ Finally, update the `CreatePausePanel` method so that
 
 ## Testing the Styled UI
 
-When you run the game now, you'll see a dramatic improvement in the visual appearance of the UI:
+When you run the game now, you will see a dramatic improvement in the visual appearance of the UI:
 
 1. The buttons now use our custom animated background that pulses when focused.
 2. The sliders have a cleaner, mores stylized appearance with the OFF and MAX labels.
@@ -364,9 +364,9 @@ In this chapter, you learned how to transform basic UI components into custom, s
 - Building complex custom controls by extending base classes.
 - Integrating custom fonts and graphics from a texture atlas.
 
-By creating reusable custom controls, you've not only improved the look of your game, but you've also developed components that can be used in future projects. This approach of separating functionality from appearance allows you to maintain consistent behavior while completely changing the visual style to match different games.
+By creating reusable custom controls, you have not only improved the look of your game, but you have also developed components that can be used in future projects. This approach of separating functionality from appearance allows you to maintain consistent behavior while completely changing the visual style to match different games.
 
-The principles you've learned in this chapter extend beyond the specific components we created. You can apply the same techniques to create other custom UI elements like checkboxes, radio buttons, scroll panels, and more. By understanding how to build on Gum's foundation, you have the tools to create any UI component your game might need.
+The principles you have learned in this chapter extend beyond the specific components we created. You can apply the same techniques to create other custom UI elements like checkboxes, radio buttons, scroll panels, and more. By understanding how to build on Gum's foundation, you have the tools to create any UI component your game might need.
 
 ## Test Your Knowledge
 
@@ -375,8 +375,8 @@ The principles you've learned in this chapter extend beyond the specific compone
     :::question-answer
     The two main approaches are:
 
-    - **Direct property assignment**: Setting properties directly in code (like `button.Visual.Width = 100`). This approach is best for initial setup of UI elements and static properties that don't change during gameplay.
-    - **States (StateSave objects)**: Defining different visual states that are applied automatically in response to interactions. This approach is best for dynamic changes that happen during gameplay, like highlighting a button when it's focused or changing colors when a slider is adjusted.
+    - **Direct property assignment**: Setting properties directly in code (like `button.Visual.Width = 100`). This approach is best for initial setup of UI elements and static properties that do not change during gameplay.
+    - **States (StateSave objects)**: Defining different visual states that are applied automatically in response to interactions. This approach is best for dynamic changes that happen during gameplay, like highlighting a button when it is focused or changing colors when a slider is adjusted.
 
     :::
 

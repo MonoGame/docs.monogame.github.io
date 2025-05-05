@@ -3,7 +3,7 @@ title: "Chapter 16: Working with SpriteFonts"
 description: "Learn how to create and use SpriteFonts to render text in your MonoGame project, including loading custom fonts and controlling text appearance."
 ---
 
-In [Chapter 06](../06_working_with_textures/index.md), you learned how to load and render textures to display sprites in your game. While images are essential for visual elements, most games also need text for things like scores, player instructions, dialogue, and UI elements. MonoGame provides the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) class to handle text rendering, which works together with the familiar [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) we've already been using for drawing textures.
+In [Chapter 06](../06_working_with_textures/index.md), you learned how to load and render textures to display sprites in your game. While images are essential for visual elements, most games also need text for things like scores, player instructions, dialogue, and UI elements. MonoGame provides the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) class to handle text rendering, which works together with the familiar [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) we have already been using for drawing textures.
 
 In this chapter, you will:
 
@@ -13,7 +13,7 @@ In this chapter, you will:
 - Render text using various parameters to control appearance.
 - Implement text rendering in our game.
 
-Let's start by understanding how text rendering works in MonoGame.
+We will first start by understanding how text rendering works in MonoGame.
 
 ## Understanding SpriteFonts
 
@@ -44,7 +44,7 @@ This will create a default SpriteFont Description file that look something like 
 
 [!code-xml[](./snippets/spritefont_description.spritefont)]
 
-When creating a SpriteFont Description for your game, you'll need to make several important decisions about font selection, size, formatting, and licensing. The following sections will guide you through customizing the SpriteFont Description using these considerations.
+When creating a SpriteFont Description for your game, you will need to make several important decisions about font selection, size, formatting, and licensing. The following sections will guide you through customizing the SpriteFont Description using these considerations.
 
 ### Customizing the SpriteFont
 
@@ -57,13 +57,13 @@ The `<FontName>` element specifies which font to use. By default, it references 
 > [!IMPORTANT]
 > MonoGame recommends changing the default Arial font if you are targeting any platforms other than Windows. Arial is a legacy from XNA and is only guaranteed to be available in Windows builds.  As an alternative, MonoGame recommends using [Roboto](https://fonts.google.com/specimen/Roboto).
 
-Alternatively, for better portability across development environments, it's recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.  To do this
+Alternatively, for better portability across development environments, it is recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.  To do this
 
 1. Download or locate a TTF or OTF font file.
-2. Place it in the same directory as the *.spritefont* file.
+2. Place it in the same folder as the *.spritefont* file.
 
     > [!IMPORTANT]
-    > You place the font file in the same directory as the *.spritefont* file directly, not through the MGCB Editor.
+    > You place the font file in the same folder as the *.spritefont* file directly, not through the MGCB Editor.
 
 3. Update the `<FontName>` element to include the exact filename with extension.
 
@@ -85,7 +85,7 @@ You may want to create multiple SpriteFont Description files for different use c
 - A smaller font for detailed information.
 
 > [!TIP]
-> Creating multiple SpriteFont Description files, however, can remove some of the benefits of fonts being a texture atlas since you will now have multiple atlases for each size. You'll also now have multiple assets to manage both as asset files and references in code.
+> Creating multiple SpriteFont Description files, however, can remove some of the benefits of fonts being a texture atlas since you will now have multiple atlases for each size. You will also now have multiple assets to manage both as asset files and references in code.
 >
 > An alternative approach is to create a single SpriteFont Description with a larger than needed size font, then scale it down during runtime in the game. This approach allows you to maintain the single SpriteFont Description file and single texture atlas, however, the size of the texture atlas will now be larger.
 >
@@ -97,18 +97,18 @@ The `<Spacing>` element adjusts the space between characters. The default value 
 
 #### UseKerning
 
-The `<UseKerning>` element determines whether to use kerning information from the font. Kerning adjusts the spacing between specific pairs of characters for more visually pleasing results. For most fonts, you'll want to leave this as `true`.
+The `<UseKerning>` element determines whether to use kerning information from the font. Kerning adjusts the spacing between specific pairs of characters for more visually pleasing results. For most fonts, you will want to leave this as `true`.
 
 > [!NOTE]
 > While kerning typically improves text appearance, some fonts (including Arial) may not respond optimally to kerning adjustments. If you notice unusual character spacing with a particular font, try setting this value to `false`.
 
 #### Style
 
-The `<Style>` element sets the font style. Valid options are "Regular", "Bold", "Italic", or "Bold, Italic". Note that not all fonts have all styles available, and using a style that doesn't exist will fall back to Regular.
+The `<Style>` element sets the font style. Valid options are "Regular", "Bold", "Italic", or "Bold, Italic". Note that not all fonts have all styles available, and using a style that does not exist will fall back to Regular.
 
 #### DefaultCharacter
 
-The `<DefaultCharacter>` element (commented out by default) specifies what character to use as a fallback when trying to render a character that isn't included in the font. This is useful for handling special characters or international text.
+The `<DefaultCharacter>` element (commented out by default) specifies what character to use as a fallback when trying to render a character that is not included in the font. This is useful for handling special characters or international text.
 
 #### CharacterRegions
 
@@ -133,7 +133,7 @@ The most basic DrawString overload looks like this:
 
 [!code-csharp[](./snippets/drawstring_basic.cs)]
 
-Let's look at the parameters:
+This overload contains the following parameters:
 
 1. **font**: The [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to use for rendering.
 2. **text**: The text to display (as a string or `StringBuilder`).
@@ -171,14 +171,14 @@ Below is an example of centering text on the screen by drawing the text at the c
 
 ## Implementing Text in Our Game
 
-Let's add some text to our game to display information to the player.  We'll add a score counter that increases when the slime eats the bat.
+To explore implementing text, we will add text to our game to display information to the player.  We will add a score counter that increases when the slime eats the bat.
 
 ### Adding the SpriteFont Description
 
-First, we'll need to create a SpriteFont Definition.  Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
+First, we will need to create a SpriteFont Definition.  Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
 
-1. Create a new directory called *fonts* (right-click *Content* > *Add* > *New Folder*).
-2. Right-click the new *fonts* directory and choose *Add* > *New Item...*.
+1. Create a new folder called *fonts* (right-click *Content* > *Add* > *New Folder*).
+2. Right-click the new *fonts* folder and choose *Add* > *New Item...*.
 3. Select *SpriteFont Description (.spritefont)* from the options.
 4. Name the file *04B_30.spritefont* and click *Create*.
 
@@ -187,11 +187,11 @@ First, we'll need to create a SpriteFont Definition.  Open the *Content.mgcb* co
 |             **Figure 16-1: The 04B_30.spritefont file created in the MGCB Editor**             |
 
 > [!NOTE]
-> We've named the SpriteFont Description file with the same name as the font we'll be using.  This makes it easier to remember when updating the code later.
+> We have named the SpriteFont Description file with the same name as the font we will be using.  This makes it easier to remember when updating the code later.
 
 ### Download the Font File
 
-Next, right-click the following TTF font and choose "Save Link as..." and save it in the same directory as the *04B_30.spriteFont* file we just created.
+Next, right-click the following TTF font and choose "Save Link as..." and save it in the same folder as the *04B_30.spriteFont* file we just created.
 
 - [04B_30.ttf](./files/04B_30.ttf)
 
@@ -231,7 +231,7 @@ The key changes made are:
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Learned how to create SpriteFont definitions with the MGCB Editor.
 - Learned how to reference font files for better cross-platform compatibility.
@@ -240,7 +240,7 @@ Let's review what you accomplished in this chapter:
 - Learned how to measure text dimensions.
 - Implementing a score display and boost indicator in our game.
 
-In the next chapter we'll discuss MonoGame's service container and how we can use it to start breaking our monolithic game file into modules for better maintainability.
+In the next chapter we will discuss MonoGame's service container and how we can use it to start breaking our monolithic game file into modules for better maintainability.
 
 ## Test Your Knowledge
 
@@ -256,7 +256,7 @@ In the next chapter we'll discuss MonoGame's service container and how we can us
 2. Why is it recommended to include the font file in your content project rather than referencing system fonts?
 
     :::question-answer
-    Including the font file (TTF/OTF) directly in your content project and referencing it with the file extension ensures portability across different development environments. This approach doesn't depend on fonts being installed on the system where the content is built.
+    Including the font file (TTF/OTF) directly in your content project and referencing it with the file extension ensures portability across different development environments. This approach does not depend on fonts being installed on the system where the content is built.
     :::
 
 3. What method would you use to determine how much space a text string will occupy when rendered, and what does it return?

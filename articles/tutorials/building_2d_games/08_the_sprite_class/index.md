@@ -12,7 +12,7 @@ In [Chapter 07](../07_optimizing_texture_rendering/index.md), you learned how to
 - Sprite effects to flip horizontally and/or vertically.
 - Layer depth for draw order layering.
 
-Imagine scaling this up to dozens of sprites, each with multiple instances on screen.  Tracking all these properties through individual variables quickly becomes unmanageable. In this chapter, we'll solve this by creating a class that encapsulates sprite information and handles rendering.
+Imagine scaling this up to dozens of sprites, each with multiple instances on screen.  Tracking all these properties through individual variables quickly becomes unmanageable. In this chapter, we will solve this by creating a class that encapsulates sprite information and handles rendering.
 
 ## The Sprite Class
 
@@ -20,7 +20,7 @@ A sprite in our game represents a visual object created from a texture region al
 
 By creating a `Sprite` class, we can encapsulate both the texture region and its rendering parameters into a single, reusable component. This not only makes our code more organized but also makes it easier to manage multiple instances of the same type of sprite.
 
-In the *Graphics* directory within the *MonoGameLibrary* project, add a new file named *Sprite.cs*.  Add the following code for the foundation of the `Sprite` class to the *Sprite.cs* file:
+In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *Sprite.cs*.  Add the following code for the foundation of the `Sprite` class to the *Sprite.cs* file:
 
 [!code-csharp[](./snippets/sprite.cs#declaration)]
 
@@ -45,7 +45,7 @@ The default constructor creates an empty sprite that can be configured later, wh
 
 ### Methods
 
-Finally, the `Sprite` class provides the following two methods:
+Finally, add the following two method to the `Sprite` class:
 
 [!code-csharp[](./snippets/sprite.cs#methods)]
 
@@ -70,7 +70,7 @@ We can simplify this process by adding a sprite creation method to the `TextureA
 
 ## Using the Sprite Class
 
-Let's adjust our game now to use the `Sprite` class instead of just the texture regions.  Replace the contents of *Game1.cs* with the following:
+Now we can adjust our game now to use the `Sprite` class instead of just the texture regions.  Replace the contents of *Game1.cs* with the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,63-67)]
 
@@ -97,7 +97,7 @@ Try adjusting the various properties available for the slime and the bat sprites
 
 In this chapter, we created a reusable `Sprite` class that encapsulates the properties for each sprite that we would render.  The `TextureAtlas` class was updated to simplify sprite creation based on the `Sprite` class we created.
 
-In the next chapter, we'll build upon the `Sprite` class to create an `AnimatedSprite` class that will allow us to bring our sprites to life through animation.
+In the next chapter, we will build upon the `Sprite` class to create an `AnimatedSprite` class that will allow us to bring our sprites to life through animation.
 
 ## Test Your Knowledge
 

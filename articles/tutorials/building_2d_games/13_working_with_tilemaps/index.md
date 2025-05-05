@@ -3,11 +3,11 @@ title: "Chapter 13: Working with Tilemaps"
 description: "Learn how to implement tile-based game environments using tilemaps and tilesets, including creating reusable classes for managing tiles and loading level designs from XML configuration files."
 ---
 
-In the previous chapters, you've learned how to draw individual sprites and animated sprites from a texture atlas and handle collision detection.  However, the game so far is lacking an actual world or environment to exist in; it's just sprites on a cornflower blue background.  Most 2D games feature game worlds built from many tiles arranged in a grid-like patten.  These *tilemaps* allow you to efficiently create large game environments without managing thousands of individual sprites.
+In the previous chapters, you have learned how to draw individual sprites and animated sprites from a texture atlas and handle collision detection.  However, the game so far is lacking an actual world or environment to exist in; it is just sprites on a cornflower blue background.  Most 2D games feature game worlds built from many tiles arranged in a grid-like patten.  These *tilemaps* allow you to efficiently create large game environments without managing thousands of individual sprites.
 
 In this chapter you will:
 
-- Learn what tilemaps are and how they're used in game development.
+- Learn what tilemaps are and how they are used in game development.
 - Create a `Tileset` class to manage collections of related tiles.
 - Build a `Tilemap` class to render tile-based game worlds.
 - Implement an XML-based tilemap loading system.
@@ -19,14 +19,14 @@ Tilemaps are a common technique used in 2D game development to create game world
 
 ### What is a Tileset?
 
-A tileset is a collection of small images (tiles) that can be combined and arranged to create game environments.  Typically these are stored in a single texture atlas, similar to how we've been handing sprites and animations.  Common examples of tiles might include:
+A tileset is a collection of small images (tiles) that can be combined and arranged to create game environments.  Typically these are stored in a single texture atlas, similar to how we have been handing sprites and animations.  Common examples of tiles might include:
 
 - Floor and ground tiles.
 - Walls and obstacle tiles.
 - Decorative elements like plants and furniture.
 - Special tiles like doors, ladders, or water.
 
-Each tile in a tileset is assigned an ID number, which the tilemap uses to reference which tile goes where. For example, in Figure 13-1 below, the tileset we'll add to our game in a moment is shown on the left and on the right is the same tileset with an overlay showing how each tile is assigned an ID number.
+Each tile in a tileset is assigned an ID number, which the tilemap uses to reference which tile goes where. For example, in Figure 13-1 below, the tileset we will add to our game in a moment is shown on the left and on the right is the same tileset with an overlay showing how each tile is assigned an ID number.
 
 | ![Figure 13-1: Left: Original dungeon tileset. Right: The same tileset with an overlay showing how each tile is assigned a numeric ID](./images/tileset-grid-comparison.png) |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -58,13 +58,13 @@ This approach offers several advantage:
 2. **Performance**: Drawing a tilemap can be optimized to reduce texture swapping compared to rendering many individual sprites.
 3. **Design flexibility**: Tilemaps make it easy to create, modify, and load level designs from external files.
 
-Let's implement this concept in our game by creating a `Tileset` class and a `Tilemap` class.
+We will now take this concept and implement it in our game by creating a `Tileset` class and a `Tilemap` class.
 
 ## The Tileset Class
 
 The `Tileset` class will manage a collection of tiles from a texture atlas.  Each tile will be represented as a `TextureRegion`, building on the tools in the library we created earlier.
 
-In the *Graphics* directory of the *MonoGameLibrary* project, create a new file named *Tileset.cs* with the following code as the initial structure:
+In the *Graphics* folder of the *MonoGameLibrary* project, create a new file named *Tileset.cs* with the following code as the initial structure:
 
 [!code-csharp[](./snippets/tileset.cs#declaration)]
 
@@ -90,7 +90,7 @@ The `Tileset` class needs to provide methods to retrieve the `TextureRegion` of 
 
 Now that we have a `Tileset` class to define our tile collection, we need a `Tilemap` class to arrange these tiles into a game level.  The `Tilemap` class will store which tile goes where in our game world and provide methods to draw the entire map.
 
-In the *Graphics* directory of the *MonoGameLibrary* project, create a new file named *Tilemap.cs* with the following code as the initial structure:
+In the *Graphics* folder of the *MonoGameLibrary* project, create a new file named *Tilemap.cs* with the following code as the initial structure:
 
 [!code-csharp[](./snippets/tilemap.cs#declaration)]
 
@@ -126,7 +126,7 @@ The `Tilemap` class should also provide a method to load and create an instance 
 
 ## Updating the Game
 
-Now that we have the `Tilemap` and `Tileset` classes defined, let's update our game to use them. We'll need to
+Now that we have the `Tilemap` and `Tileset` classes defined, we can update our game to use them. We will need to
 
 1. Update the texture atlas to include the tileset.
 2. Create a tilemap xml configuration file.
@@ -134,7 +134,7 @@ Now that we have the `Tilemap` and `Tileset` classes defined, let's update our g
 
 ### Update the Texture Atlas
 
-Currently, the texture atlas we've been using only contains the sprites for the slime and bat animations. Let's update it to a new version that contains the tileset as well.  Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* directory of the game project, overwriting the existing one.
+Currently, the texture atlas we have been using only contains the sprites for the slime and bat animations. We need update it to a new version that contains the tileset as well.  RIght-click the following image and save it as *atlas.png* in the *Content/images* directory of the *DungeonSlime* project (your main game project), overwriting the existing on.
 
 | ![Figure 13-3: The texture atlas for our game updated to include the tileset for the tilemap](./images/atlas.png) |
 |:-----------------------------------------------------------------------------------------------------------------:|
@@ -145,9 +145,9 @@ Currently, the texture atlas we've been using only contains the sprites for the 
 
 ## Creating a Tilemap XML Configuration
 
-Now that we have the texture atlas updated to include the tileset, let's create a tilemap configuration that our game can load.  The configuration will be an XML file that specifies the tileset to use and the arrangement of tiles in the tilemap.
+Now that we have the texture atlas updated to include the tileset, we need to create a tilemap configuration that our game can load.  The configuration will be an XML file that specifies the tileset to use and the arrangement of tiles in the tilemap.
 
-Create a new file named *tilemap-definition.xml* in the *Content/images* directory of the game project and add the following:
+Create a new file named *tilemap-definition.xml* in the *Content/images* folder of the game project and add the following:
 
 [!code-xml[](./snippets/tilemap-definition.xml)]
 
@@ -174,7 +174,7 @@ Next, we need to add this configuration file to our content project with the MGC
 
 ### Update the Game1 Class
 
-With all of the assets now in place and configured, let's update the `Game1` class to load the tilemap and draw it.  We'll also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open *Game1.cs* and make the following updates:
+With all of the assets now in place and configured, we can update the `Game1` class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open *Game1.cs* and make the following updates:
 
 [!code-csharp[](./snippets/game1.cs?highlight=31-35,46-61,80-82,114,116,118,120,123,125,127,129,147,150,152,155,158,161,163,166,181-183,305-306)]
 
@@ -201,19 +201,19 @@ Running the game now with these changes, our game now visually transforms from a
 
 While the method provided in this chapter offers a straightforward approach to loading tilemaps from external configuration files, several dedicated tools exist specifically for creating tilemaps for games. Popular options include [Tiled](https://www.mapeditor.org/), [LDtk](https://ldtk.io/), and [Ogmo](https://ogmo-editor-3.github.io/). These specialized tools export map configurations in various formats such as XML (similar to what we implemented) or JSON, and often include additional features like multiple layers, object placement, and custom properties for tiles.
 
-Although these tools are more robust than our implementation, the underlying concept remains the same: a tilemap is fundamentally a grid layout where each cell references a tile ID from a tileset. The principles you've learned in this chapter form the foundation for working with any tilemap system, regardless of which tool you might use.
+Although these tools are more robust than our implementation, the underlying concept remains the same: a tilemap is fundamentally a grid layout where each cell references a tile ID from a tileset. The principles you have learned in this chapter form the foundation for working with any tilemap system, regardless of which tool you might use.
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
-- Learned about tilemaps and how they're used in 2D game development.
+- Learned about tilemaps and how they are used in 2D game development.
 - Created a `Tileset` class to manage collections of tiles from a texture atlas.
 - Implemented a `Tilemap` class to render grid-based game environments.
 - Created an XML-based tilemap definition system for storing level layouts.
 - Updated our game to use tilemaps for the game environment.
   
-In the next chapter, we'll start exploring audio to add sound effects when a collision occurs and background music to our game.
+In the next chapter, we will start exploring audio to add sound effects when a collision occurs and background music to our game.
 
 ## Test Your Knowledge
 

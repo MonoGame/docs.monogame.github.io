@@ -14,7 +14,7 @@ In this chapter, you will:
 - Implement sound effects for collision events.
 - Add background music to enhance atmosphere.
 
-Let's start by understanding how MonoGame approaches audio content.
+We will first start by understanding how MonoGame approaches audio content.
 
 ## Understanding Audio in MonoGame
 
@@ -162,8 +162,8 @@ Before we can add audio to our game, we need some sound files to work with. Down
 Add these files to your content project using the MGCB Editor:
 
 1. Open the *Content.mgcb* file in the MGCB Editor.
-2. Create a new directory called `audio` (right-click *Content* > *Add* > *New Folder*).
-3. Right-click the new *audio* directory and choose *Add* > *Existing Item...*.
+2. Create a new folder called `audio` (right-click *Content* > *Add* > *New Folder*).
+3. Right-click the new *audio* folder and choose *Add* > *Existing Item...*.
 4. Navigate to and select the audio files you downloaded.
 5. For each file that is added, check its properties in the Properties panel:
    - For `.wav` files, ensure the *Processor* is set to `Sound Effect`.
@@ -194,7 +194,7 @@ Running the game now, the theme music plays in the background, you can hear the 
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Learned about MonoGame's audio system including sound effects and music.
 - Explored the key differences between:
@@ -207,7 +207,7 @@ Let's review what you accomplished in this chapter:
   - Sound effects for bat bouncing and collection events.
 - Learned best practices for handling audio playback across different platforms.
 
-In the next chapter, we'll explore additional ways to manage audio by creating an audio controller module that will help with common tasks such as volume control, muting, and state management.
+In the next chapter, we will explore additional ways to manage audio by creating an audio controller module that will help with common tasks such as volume control, muting, and state management.
 
 ## Test Your Knowledge
 
@@ -230,10 +230,10 @@ In the next chapter, we'll explore additional ways to manage audio by creating a
 3. What file formats are best suited for sound effects and music, respectively, and why?
 
     :::question-answer
-    For sound effects, .wav files are generally best because they're uncompressed and load quickly into memory for immediate playback. For music, compressed formats like .mp3 or .ogg are better suited because they greatly reduce file size while maintaining good audio quality, which is important for longer audio that's streamed rather than fully loaded.
+    For sound effects, .wav files are generally best because they are uncompressed and load quickly into memory for immediate playback. For music, compressed formats like .mp3 or .ogg are better suited because they greatly reduce file size while maintaining good audio quality, which is important for longer audio that's streamed rather than fully loaded.
     :::
 
-4. What's the difference between using [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play) directly and creating a [**SoundEffectInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance)?
+4. What is the difference between using [**SoundEffect.Play**](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play) directly and creating a [**SoundEffectInstance**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance)?
 
     :::question-answer
 

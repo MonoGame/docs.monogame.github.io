@@ -192,7 +192,7 @@ public class Core : Game
         // Change the currently active scene to the new scene
         s_activeScene = s_nextScene;
 
-        // Null out the next scene value so it doesn't trigger a change over and over.
+        // Null out the next scene value so it does not trigger a change over and over.
         s_nextScene = null;
 
         // If the active scene now is not null, initialize it.

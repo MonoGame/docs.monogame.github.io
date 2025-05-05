@@ -4,7 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameLibrary.Graphics;
 
-public class Sprite { }
+public class Sprite 
+{
+
+}
 #endregion
 {
     #region members

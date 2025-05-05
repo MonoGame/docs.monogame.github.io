@@ -7,7 +7,10 @@ namespace MonoGameLibrary.Graphics;
 /// <summary>
 /// Represents a rectangular region within a texture.
 /// </summary>
-public class TextureRegion { }
+public class TextureRegion 
+{
+
+}
 #endregion
 {
     #region properties

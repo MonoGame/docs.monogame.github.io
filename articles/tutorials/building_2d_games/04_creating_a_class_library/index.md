@@ -3,7 +3,7 @@ title: "04: Creating a Class Library"
 description: "Learn how to create and structure a reusable MonoGame class library to organize game components and share code between projects."
 ---
 
-One of the goals of this tutorial is to create reusable modules that you can use to jump start your next game project after this. Rather than starting from scratch each time, we'll build a collection of game components you can take with you from project to project.
+One of the goals of this tutorial is to create reusable modules that you can use to jump start your next game project after this. Rather than starting from scratch each time, we will build a collection of game components you can take with you from project to project.
 
 In this chapter you will:
 
@@ -15,17 +15,17 @@ In this chapter you will:
 
 ## What Is a Class Library
 
-Think of a class library like a toolbox for your game development. Just as a mechanic keeps their most-used tools in a toolbox they bring to every job, a class library stores code components you'll want to use in multiple game projects. Instead of recreating these tools for each new game (or copying and pasting code), you organize them in one place where they're easy to find, use, and improve over time.
+Think of a class library like a toolbox for your game development. Just as a mechanic keeps their most-used tools in a toolbox they bring to every job, a class library stores code components you will want to use in multiple game projects. Instead of recreating these tools for each new game (or copying and pasting code), you organize them in one place where they are easy to find, use, and improve over time.
 
 The following diagrams show how this works:
 
-| ![Figure 4-1: Without using a class library, common modules are duplicated across projects](./images/without-class-library.png) |
-|:-------------------------------------------------------------------------------------------------------------------------------:|
-|                  **Figure 4-1: Without using a class library, common modules are duplicated across projects**                   |
+| ![Figure 4-1: Diagram displays the block for Game 1 on the left and Game 2 on the right.  In this example, when not using a class library, code for input, physics and audio systems are duplicated between both game projects.  If a bug is fixed in one system, the effort has to be duplicated in the same system in other game projects](./images/without-class-library-diagram.svg) |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                      **Figure 4-1: Diagram displays the block for Game 1 on the left and Game 2 on the right.  In this example, when not using a class library, code for input, physics and audio systems are duplicated between both game projects.  If a bug is fixed in one system, the effort has to be duplicated in the same system in other game projects**                       |
 
-| ![Figure 4-2: Using a class library, common modules are shared across projects](./images/with-class-library.png) |
-|:----------------------------------------------------------------------------------------------------------------:|
-|                 **Figure 4-2: Using a class library, common modules are shared across projects**                 |
+| ![Figure 4-2: Diagram displays a block for a class library which contains common modules at the top, which are then shared between the two game projects below.  If a bug is found in a module, fixing the bug will fix it across all game projects that use the class library](./images/with-class-library-diagram.svg) |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                     **Figure 4-2: Diagram displays a block for a class library which contains common modules at the top, which are then shared between the two game projects below.  If a bug is found in a module, fixing the bug will fix it across all game projects that use the class library**                     |
 
 > [!NOTE]
 > A class library is a project type that compiles into a [Dynamic Link Library](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-libraries) (DLL) instead of an executable.  It contains reusable code that can be referenced by other projects, making it perfect for sharing common functionality across multiple games.
@@ -39,13 +39,13 @@ Creating a class library offers several important advantages, especially as your
 3. **Maintainability**: When you improve or fix a bug in your library code, all games using that library benefit automatically. This means fixing one bug once instead of in multiple places.
 4. **Testing**: You can test your library code independently from any specific game. This helps ensure your core systems are solid before you build a game on top of them.
 
-As your library grows, you'll accumulate a personal collection of well-tested modules that make starting new projects much faster. The modules we'll create in this library will handle common game tasks like input, audio, sprites, and animations.
+As your library grows, you will accumulate a personal collection of well-tested modules that make starting new projects much faster. The modules we will create in this library will handle common game tasks like input, audio, sprites, and animations.
 
 ## Adding the Class Library
 
 MonoGame offers the *MonoGame Game Library* project template to add a new class library project that is configured with the correct monoGame framework references.  Using this template saves time and ensures compatibility with MonoGame projects.  
 
-To use the template to add the class library, perform the following:
+To use the template to add the class library, perform the following based on which development environment you are using:
 
 ### [Visual Studio Code](#tab/vscode)
 
@@ -73,7 +73,7 @@ To add the class library using the MonoGame Game Library project template in Vis
 
 To add the class library using the MonoGame Game Library project template with the dotnet CLI, perform the following:
 
-1. Open a new Command Prompt or Terminal window in the same directory as the *DungeonSlime.sln* solution file.
+1. Open a new Command Prompt or Terminal window in the same folder as the *DungeonSlime.sln* solution file.
 2. Enter the command `dotnet new mglib -n MonoGameLibrary` to create the project, placing it in a folder next to your game project.
 3. Enter the command `dotnet sln DungeonSlime.sln add ./MonoGameLibrary/MonoGameLibrary.csproj` to add the newly created class library project to the *DungeonSlime.sln* solution file.
 
@@ -81,7 +81,7 @@ To add the class library using the MonoGame Game Library project template with t
 
 ## Adding a Reference To The Class Library
 
-Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, our game project will be unaware of anything we add to the class library.  To do this:
+Now that the game library project has been created, a reference to it needs to be added in our game project.  Without adding a reference, our game project will be unaware of anything we add to the class library.  To do this, perform the following based on which development environment you are using:
 
 ### [Visual Studio Code](#tab/vscode)
 
@@ -110,17 +110,17 @@ To add the game library project as a reference to the game project in Visual Stu
 
 To add the game library project as a reference to the game project with the dotnet CLI:
 
-1. Open a new Command Prompt or Terminal window in the same directory as the *DungeonSlime.csproj* C# project file.
+1. Open a new Command Prompt or Terminal window in the same folder as the *DungeonSlime.csproj* C# project file.
 2. Enter the command `dotnet add ./DungeonSlime.csproj reference ../MonoGameLibrary/MonoGameLibrary.csproj`.  This will add the *MonoGameLibrary* reference to the *DungeonSlime* game project.
 
 ---
 
 ### Clean Up
 
-When using the *MonoGame Game Library* project template, the generated project contains file similar to a standard MonoGame game project, including a *dotnet-tools.json* manifest file, a *Content.mgcb* file, and a *Game1.cs* file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the *MonoGameLibrary* project directory and delete them:
+When using the *MonoGame Game Library* project template, the generated project contains file similar to a standard MonoGame game project, including a *dotnet-tools.json* manifest file, a *Content.mgcb* file, and a *Game1.cs* file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the *MonoGameLibrary* project folder and delete them:
 
-1. The *.config/* directory.
-2. The *Content/* directory
+1. The *.config/* folder.
+2. The *Content/* folder
 3. The *Game1.cs* file.
 
 > [!TIP]
@@ -130,7 +130,7 @@ When using the *MonoGame Game Library* project template, the generated project c
 
 ## Creating Our First Library Module
 
-Let's create a class for our library called `Core`.  This class will extend the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class and provide a starting point for game development with some common functionality built in.  Creating this will also let us validate that our class library reference setup was correct.
+We will create a class for our library called `Core`.  This class will extend the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class and provide a starting point for game development with some common functionality built in.  Creating this will also let us validate that our class library reference setup was correct.
 
 Create a new file called *Core.cs* in the *MonoGameLibrary* project and add the following code:
 
@@ -146,16 +146,16 @@ The `Core` class provides the following features
 > [!NOTE]
 > The `new` keyword in the property declaration `public static new GraphicsDevice GraphicsDevice` and `public static new ContentManager Content` is used to intentionally hide (or "shadow") the inherited `GraphicsDevice` and `Content` properties from the base `Game` class. This creates new properties with the same name but different accessibility (static vs. instance) in the derived class.
 >
-> When you access `Core.GraphicsDevice` or `Core.Content` you'll be using this static properties, while `base.GraphicsDevice` or `base.Content` within instance methods of the `Core` class would still access the original property. This pattern allows us to provide convenient static access to the graphics device and content manager throughout our game without having to reference the Core instance every time.
+> When you access `Core.GraphicsDevice` or `Core.Content` you will be using this static properties, while `base.GraphicsDevice` or `base.Content` within instance methods of the `Core` class would still access the original property. This pattern allows us to provide convenient static access to the graphics device and content manager throughout our game without having to reference the Core instance every time.
 
 This approach provides a consistent foundation for all our games, handling common setup tasks and providing convenient access to core functionality.
 
 > [!NOTE]
-> As this tutorial progress, we'll be coming back to this `Core` class to add more to it.
+> As this tutorial progress, we will be coming back to this `Core` class to add more to it.
 
 ## Updating Our Game to Use the Core Class
 
-Now that we have our `Core` class, let's modify our game project to use it.  Doing this will also help ensure that the project references were setup correctly.
+Now that we have our `Core` class, we can modify our game project to use it.  Doing this will also help ensure that the project references were setup correctly.
 
 Open the *Game1.cs* file and make the following changes:
 
@@ -171,8 +171,8 @@ The key changes made here are:
 Running the game now will show the same window as before, only now it is at a 1280x720 resolution as per the configuration and it is using the `Core` class from our library.  This may not seem like a big change visually, but it demonstrates how our library can simplify and standardize game initializations.
 
 | ![Figure 4-3: The game window at 1280x720 with the title Dungeon Slime](./images/game-window.png) |
-|:-------------------------------------------------------------------------------------------------:|
-|       **Figure 4-3: The game window at 1280x720 with the title Dungeon Slime**        |
+| :-----------------------------------------------------------------------------------------------: |
+|             **Figure 4-3: The game window at 1280x720 with the title Dungeon Slime**              |
 
 > [!IMPORTANT]
 > If you receive an error stating that the following:
@@ -183,7 +183,7 @@ Running the game now will show the same window as before, only now it is at a 12
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Learned about class libraries and their advantages for game development:
   - Code reusability across projects
@@ -194,7 +194,7 @@ Let's review what you accomplished in this chapter:
 - Added the library as a reference to your game project
 - Created your first reusable component and referenced and used it in the game project.
 
-In the next chapter, we'll learn about the Content Pipeline and how to load game assets.
+In the next chapter, we will learn about the Content Pipeline and how to load game assets.
 
 ## Test Your Knowledge
 
@@ -214,8 +214,8 @@ In the next chapter, we'll learn about the Content Pipeline and how to load game
     The MonoGame Game Library template automatically configures the correct MonoGame framework references and ensures compatibility with MonoGame projects, saving time and preventing potential setup issues.
     :::
 
-3. What happens if you don't add a reference to your class library in your game project?
+3. What happens if you do not add a reference to your class library in your game project?
 
     :::question-answer
-    > Without adding a reference, your game project will be unaware of any code in the class library. You won't be able to use any of the classes or components from the library in your game.
+    > Without adding a reference, your game project will be unaware of any code in the class library. You wo not be able to use any of the classes or components from the library in your game.
     :::

@@ -34,12 +34,12 @@ In Chapter 03, you learned the basic [lifecycle of the `Game` class](../03_the_g
 
 ## The Scene Base Class
 
-The base `Scene` class is an abstract class for scenes that provides common functionality for all scenes.  In our actual game, we'll create concrete implementations of this, like a title scene.
+The base `Scene` class is an abstract class for scenes that provides common functionality for all scenes.  In our actual game, we will create concrete implementations of this, like a title scene.
 
 To get started, in the *MonoGameLibrary* project:
 
-1. Create a new directory named *Scenes*.
-2. Add a new class file named *Scene.cs* to the *Scenes* directory you just created.
+1. Create a new folder named *Scenes*.
+2. Add a new class file named *Scene.cs* to the *Scenes* folder you just created.
 3. Add the following code as the initial structure for the class:
 
     [!code-csharp[](./snippets/scene.cs#declaration)]
@@ -62,7 +62,7 @@ Add the following constructor and finalizer to the `Scene` class:
 
 [!code-csharp[](./snippets/scene.cs#ctors)]
 
-- The constructor initializes the scene's content manager and sets the root directory to match that of the base game's content manager.
+- The constructor initializes the scene's content manager and sets the root folder to match that of the base game's content manager.
 - The finalizer is called by the garbage collector automatically when a scene object is collected which just calls the `Dispose` method to ensure resources are disposed of properly.
 
 ### Scene Methods
@@ -111,9 +111,9 @@ The key changes here are:
 
 ## Updating the Game
 
-With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We'll create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
+With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We will create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
 
-1. Right-click the *fonts* directory and choose *Add* > *New Item...*.
+1. Right-click the *fonts* folder and choose *Add* > *New Item...*.
 2. Select *SpriteFont Description (.spritefont)* from the options
 3. Name the file *04B_30_5x.spritefont* and click *Create*.
 
@@ -127,12 +127,12 @@ Next, open the *04B_30_5x.spritefont* file and make the following changes:
 
 ### The Title Scene
 
-The title scene serves as the game's initial starting point; the first impression the player gets when they launch the game.  For our game, the title scene will display the text for the title of the game and a prompt to inform the player what action to take to start the game.  We'll use a simple trick for the title text in order to draw it with a drop shadow to add a bit of visual flair.
+The title scene serves as the game's initial starting point; the first impression the player gets when they launch the game.  For our game, the title scene will display the text for the title of the game and a prompt to inform the player what action to take to start the game.  We will use a simple trick for the title text in order to draw it with a drop shadow to add a bit of visual flair.
 
 To get started, first:
 
-1. Create a new directory named *Scenes*.  We'll put all of our game specific scenes here.
-2. Add a new class file named *TitleScene.cs* to the *Scenes* directory you just created.
+1. Create a new folder named *Scenes*.  We will put all of our game specific scenes here.
+2. Add a new class file named *TitleScene.cs* to the *Scenes* folder you just created.
 3. Add the following code as the initial structure for the class.
 
     [!code-csharp[](./snippets/titlescene.cs#declaration)]
@@ -186,7 +186,7 @@ Add the following override for the `Update` method to the `TitleScene` class:
 - A check is made to see if the enter key is pressed, and if so, the `Core` is told to change to the game scene.  
 
 > [!NOTE]
-> Your editor might show an error here since we haven't created the `GameScene` class yet.  We'll create it in a moment after finishing the title scene.
+> Your editor might show an error here since we have not created the `GameScene` class yet.  We will create it in a moment after finishing the title scene.
 
 ##### Title Scene Draw
 
@@ -202,7 +202,7 @@ Add the following override for the `Draw` method to the `TitleScene` class:
 
 ### The Game Scene
 
-The Game Scene will contain our actual gameplay logic. This scene will handle updating and rendering the slime that the player controls, the bat the slime can eat, collision detection, score tracking, and input handling. Most of this logic has already been implemented in our `Game1` class in previous chapters, but now we'll move it into a dedicated scene class. In the *Scenes* directory:
+The Game Scene will contain our actual gameplay logic. This scene will handle updating and rendering the slime that the player controls, the bat the slime can eat, collision detection, score tracking, and input handling. Most of this logic has already been implemented in our `Game1` class in previous chapters, but now we will move it into a dedicated scene class. In the *Scenes* folder:
 
 1. Add a new class file named *GameScene.cs*.
 2. Add the following code as the initial structure for the class:
@@ -219,7 +219,7 @@ Add the following fields to the `GameScene` class:
 - The `_slimePosition` and `_batPosition` fields track the current position of the slime and bat.
 - The `MOVEMENT_SPEED` constant defines the base movement speed for both the slime and bat.
 - The `_batVelocity` field tracks the current velocity of the bat as it moves around the screen.
-- The `_tilemap` field stores the tilemap that we'll load and draw for the level background environment.
+- The `_tilemap` field stores the tilemap that we will load and draw for the level background environment.
 - The `_roomBounds` field defines a rectangular boundary that represents the boundary of the room that the slime and bat stays within.
 - The `_bounceSoundEffect` and `_collectSoundEffect` fields store the sound effects to play when the bat bounces off a screen edge or is eaten by the slime.
 - The `_font` field stores the font used to display the player's score.
@@ -255,7 +255,7 @@ Add the following override for the `LoadContent` method to the `GameScene` class
 - The font is loaded using the global content manager since it is used in multiple scenes.
 
 > [!TIP]
-> Notice how we're following a consistent pattern across scenes: global assets are loaded with `Core.Instance.Content` while scene-specific assets are loaded with the scene's `Content` property.
+> Notice how we are following a consistent pattern across scenes: global assets are loaded with `Core.Instance.Content` while scene-specific assets are loaded with the scene's `Content` property.
 
 ##### Game Scene Update
 
@@ -323,9 +323,9 @@ In this chapter, you accomplished the following:
 - Created a `GameScene` that encapsulates the gameplay mechanics.
 - Refactored the main `Game1` class to be much simpler by using the scene system.
 
-The approach we've taken follows a common pattern in game development, where each scene has control over its own lifecycle and resources. This pattern simplify state management by isolating different game states from one another.  As your game grows in complexity, you could easily extend this system to include additional scenes like a pause menu or a game over screen.
+The approach we have taken follows a common pattern in game development, where each scene has control over its own lifecycle and resources. This pattern simplify state management by isolating different game states from one another.  As your game grows in complexity, you could easily extend this system to include additional scenes like a pause menu or a game over screen.
 
-In the next chapter, we'll explore [**RenderTarget2D**](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D) and how we can use it to add different types of transitions when switching scenes.
+In the next chapter, we will explore [**RenderTarget2D**](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D) and how we can use it to add different types of transitions when switching scenes.
 
 ## Test Your Knowledge
 

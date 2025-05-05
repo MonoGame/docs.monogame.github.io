@@ -10,7 +10,8 @@ protected override void Draw(GameTime gameTime)
     SpriteBatch.Draw(
         _logo,          // texture
         new Vector2(    // position
-        Window.ClientBounds.Width, Window.ClientBounds.Height) * 0.5f,
+            Window.ClientBounds.Width, 
+            Window.ClientBounds.Height) * 0.5f,
         Color.White     // color
     );
 

@@ -94,7 +94,7 @@ public class Game1 : Core
         );
 
         // Use distance based checks to determine if the slime is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // move it back inside.
         if (slimeBounds.Left < screenBounds.Left)
         {
@@ -127,7 +127,7 @@ public class Game1 : Core
         Vector2 normal = Vector2.Zero;
 
         // Use distance based checks to determine if the bat is within the
-        // bounds of the game screen, and if it's outside that screen edge,
+        // bounds of the game screen, and if it is outside that screen edge,
         // reflect it about the screen edge normal
         if (batBounds.Left < screenBounds.Left)
         {

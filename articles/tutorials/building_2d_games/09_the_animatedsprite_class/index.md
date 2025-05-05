@@ -16,21 +16,21 @@ In MonoGame, we can create these animations by cycling through different regions
 
 By drawing each frame sequentially over time, we create the illusion that the bat is flapping its wings. The speed at which we switch between frames determines how smooth or rapid the animation appears.
 
-In this chapter, we'll build off of the `Sprite` class we created in [Chapter 08](../08_the_sprite_class/index.md) to create an `AnimatedSprite` class we can use to bring animations to life.
+In this chapter, we will build off of the `Sprite` class we created in [Chapter 08](../08_the_sprite_class/index.md) to create an `AnimatedSprite` class we can use to bring animations to life.
 
 ## The Animation Class
 
-Before we can create animated sprites, we need a way to manage animation data. Let's create an `Animation` class to encapsulate this information. In the *Graphics* directory within the *MonoGameLibrary* project, add a new file named *Animation.cs* with this initial structure:
+Before we can create animated sprites, we need a way to manage animation data. We will create an `Animation` class to encapsulate this information. In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *Animation.cs* with this initial structure:
 
 [!code-csharp[](./snippets/animation.cs#declaration)]
 
 ### Animation Properties
 
-An animation requires two key pieces of information: the sequence of frames to display and the timing between them. Let's add these properties to the `Animation` class:
+An animation requires two key pieces of information: the sequence of frames to display and the timing between them. Add these properties to the `Animation` class:
 
 [!code-csharp[](./snippets/animation.cs#members)]
 
-The `Frames` property stores the collection of texture regions that make up the animation sequence. The order of regions in this collection is important; they'll be displayed in the same sequence they're added, creating the animation's movement. For example, in our bat animation, the frames would be ordered to show the wings moving up, then fully extended, then down.
+The `Frames` property stores the collection of texture regions that make up the animation sequence. The order of regions in this collection is important; they will be displayed in the same sequence they are added, creating the animation's movement. For example, in our bat animation, the frames would be ordered to show the wings moving up, then fully extended, then down.
 
 The `Delay` property defines how long each frame should be displayed before moving to the next one. This timing control allows us to adjust the speed of our animations; a shorter delay creates faster animations, while a longer delay creates slower ones.
 
@@ -50,7 +50,7 @@ The default constructor creates an animation with an empty collection of frames 
 
 ## Creating Animations With The TextureAtlas Class
 
-The `TextureAtlas` class we created in [Chapter 07](../07_optimizing_texture_rendering/index.md#the-textureatlas-class) can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The *atlas.png* image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. Let's first update our *atlas-definition.xml* file to include all regions in the atlas, as well as add new `<Animation>` elements to define the animations.  Open the *atlas-definition.xml* file and replace the contents with the following:
+The `TextureAtlas` class we created in [Chapter 07](../07_optimizing_texture_rendering/index.md#the-textureatlas-class) can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The *atlas.png* image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. We will first update our *atlas-definition.xml* file to include all regions in the atlas, as well as add new `<Animation>` elements to define the animations.  Open the *atlas-definition.xml* file and replace the contents with the following:
 
 [!code-xml[](./snippets/atlas_definition.xml)]
 
@@ -65,19 +65,23 @@ The key changes here are:
 
 Now that we have a fully configured XML configuration for the atlas, we need to update the `TextureAtlas` class to manage animation data.  Open the *TextureAtlas.cs* file and make the following changes:
 
-1. Add storage for animations
+1. Add the following using statement so we can reference the `TimeSpan` struct:
+
+    [!code-csharp[](./snippets/textureatlas/usings.cs?highlight=1)]
+
+2. Add storage for animations
 
     [!code-csharp[](./snippets/textureatlas/add_animation_storage.cs)]
 
-2. Update the constructors so that the animations dictionary is initialized:
+3. Update the constructors so that the animations dictionary is initialized:
 
     [!code-csharp[](./snippets//textureatlas/update_ctors.cs?highlight=7,18)]
 
-3. Add methods to manage animations, similar to those that we use to manage regions:
+4. Add methods to manage animations, similar to those that we use to manage regions:
 
     [!code-csharp[](./snippets/textureatlas/add_animation_management.cs)]
 
-4. Update the `FromFile` method to parse the new `<Animation>` animation definitions from the XML configuration file
+5. Update the `FromFile` method to parse the new `<Animation>` animation definitions from the XML configuration file
 
     [!code-csharp[](./snippets//textureatlas/update_from_file.cs?highlight=55-95)]
 
@@ -98,13 +102,13 @@ With our `Animation` class handling animation data, and the `TextureAtlas` updat
 
 The key to this design is the `Sprite.Region` property. Our `Sprite` class already knows how to render whatever region is currently set, so our `AnimatedSprite` class just needs to update this region property to the correct animation frame at the right time.
 
-Let's create the initial structure for our `AnimatedSprite` class. In the *Graphics* directory within the *MonoGameLibrary* project, add a new file named *AnimatedSprite.cs*:
+Now we will create the initial structure for our `AnimatedSprite` class. In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *AnimatedSprite.cs*:
 
 [!code-csharp[](./snippets/animatedsprite.cs#declaration)]
 
 ### AnimatedSprite Members
 
-An animated sprite needs to track both its current animation state and timing information. Let's add the following members to the `AnimatedSprite` class:
+An animated sprite needs to track both its current animation state and timing information. Add the following members to the `AnimatedSprite` class:
 
 [!code-csharp[](./snippets/animatedsprite.cs#members)]
 
@@ -142,7 +146,7 @@ The `Update` method manages the animation timing and frame progression:
 2. When enough time has passed (defined by the animation's delay):
    - Resets the elapsed time counter
    - Advances to the next frame
-   - Loops back to the first frame if we've reached the end
+   - Loops back to the first frame if we have reached the end
    - Updates the sprite's region to display the current frame
 
 > [!NOTE]
@@ -164,11 +168,11 @@ We can simplify this process by adding an animated spirte creation method to the
 
 ## Using the AnimatedSprite Class
 
-Let's adjust our game now to use the `AnimatedSprite` class to see our sprites come to life. Replaces the contents of *Game1.cs* with the following:
+We can now adjust our game now to use the `AnimatedSprite` class to see our sprites come to life. Replaces the contents of *Game1.cs* with the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,50-54)]
 
-Let's examine the key changes in this implementation:
+Here are the key changes in this implementation:
 
 - The `_slime` and `_bat` members were changed from `Sprite`  to `AnimatedSprite`.
 - In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) the `_slime` and `_bat` sprites are now created using the new `TextureAtlas.CreateAnimatedSprite` method.
@@ -185,7 +189,7 @@ Running the game now shows both sprites animating automatically:
 
 ## Conclusion
 
-Let's review what you accomplished in this chapter:
+In this chapter, you accomplished the following:
 
 - Created an `Animation` class to manage frame sequences and timing.
 - Extended the `TextureAtlas` class to support animation definitions.
@@ -193,7 +197,7 @@ Let's review what you accomplished in this chapter:
 - Applied inheritance to add animation capabilities while maintaining existing sprite functionality.
 - Used XML configuration to define animations separately from code.
 
-Now that we can efficiently manage and render sprites and animations, in the next chapter we'll start taking a look at user input.
+Now that we can efficiently manage and render sprites and animations, in the next chapter we will start taking a look at user input.
 
 ## Test Your Knowledge
 
@@ -209,7 +213,7 @@ Now that we can efficiently manage and render sprites and animations, in the nex
     `TimeSpan` provides precise timing control and makes it easier to synchronize animations with game time. It also makes the delay values more explicit (milliseconds vs arbitrary numbers) and helps prevent timing errors.
     :::
 
-3. Why does the `AnimatedSprite` class need an `Update` method while the base `Sprite` class doesn't?
+3. Why does the `AnimatedSprite` class need an `Update` method while the base `Sprite` class does not?
 
     :::question-answer
     The `AnimatedSprite` needs to track elapsed time and change frames based on the animation's timing. This requires updating its state over time, while a regular sprite's appearance remains static until explicitly changed.

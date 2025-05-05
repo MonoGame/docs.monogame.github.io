@@ -3,7 +3,7 @@ title: "Chapter 18: Texture Sampling and Tiling Backgrounds"
 description: "Learn how to use texture sampling states and add a scrolling background effect to the game."
 ---
 
-In previous chapters, we've [drawn individual sprites and textures](../08_the_sprite_class/index.md#using-the-sprite-class) with the sprite batch, but for creating repeating background patterns, we need a more efficient approach than manually drawing the same texture multiple times. We could reuse the [tilemap system](../13_working_with_tilemaps/index.md#the-tilemap-class) that was created to make repeated background patterns, but this has a limitation in that the tiles are stationary and would require constantly updating the tiles and positions if we wanted to animate it.  Instead, this chapter introduces texture sampling states, specifically focusing on how to create and animate tiled backgrounds using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).
+In previous chapters, we have [drawn individual sprites and textures](../08_the_sprite_class/index.md#using-the-sprite-class) with the sprite batch, but for creating repeating background patterns, we need a more efficient approach than manually drawing the same texture multiple times. We could reuse the [tilemap system](../13_working_with_tilemaps/index.md#the-tilemap-class) that was created to make repeated background patterns, but this has a limitation in that the tiles are stationary and would require constantly updating the tiles and positions if we wanted to animate it.  Instead, this chapter introduces texture sampling states, specifically focusing on how to create and animate tiled backgrounds using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).
 
 In this chapter, you will:
 
@@ -15,7 +15,7 @@ In this chapter, you will:
 
 When a texture is drawn to the screen, MonoGame uses a process called "sampling" to determine which pixels from the texture should be displayed.  Sampling is the process by which a graphics pipeline determines what color value to use from a texture when mapping it onto a surface.  Think of it like placing a grid over an image and selecting which pixels to use when that image needs to be transformed in some way.  When textures are drawn at their exact pixel size and position, with no rotation, sampling is straightforward, a direct 1:1 mapping for each pixel.  However, when a texture is scaled, rotated, or only partially visible, the graphics hardware needs to decide how to interpret the texture data.
 
-For example, if you draw a texture twice its size, there aren't enough pixels to fill the new larger space, so the graphics hardware must determine how to fill those gaps.  Similarly, if you were to scale down a texture, multiple source pixels might map to a single output pixel, requiring the hardware to decide which ones to use or how to blend them.  The rules that govern these decisions are defined by sampler states.
+For example, if you draw a texture twice its size, there are not enough pixels to fill the new larger space, so the graphics hardware must determine how to fill those gaps.  Similarly, if you were to scale down a texture, multiple source pixels might map to a single output pixel, requiring the hardware to decide which ones to use or how to blend them.  The rules that govern these decisions are defined by sampler states.
 
 ### Texture Coordinates
 
@@ -43,7 +43,7 @@ In MonoGame, these sampler states are represented by the [**SamplerState**](xref
 
 One aspect of sampler states if the filtering mode.  Filtering in computer graphics refers to how the graphics hardware decides to blend or select pixels when a texture is displayed at a different size than its original dimensions.  The filter mode determines how pixels are interpolated (calculated and combined) when a texture is scaled up or down.
 
-Think of filtering as the graphics hardware's strategy for filling in missing information when a texture is transformed.  When you enlarge a texture, the system needs to create new pixels that didn't exist in the original.  When you shrink a texture, multiple original pixels must be combined into fewer output pixels.  The filtering mode controls how this process happens.
+Think of filtering as the graphics hardware's strategy for filling in missing information when a texture is transformed.  When you enlarge a texture, the system needs to create new pixels that did not exist in the original.  When you shrink a texture, multiple original pixels must be combined into fewer output pixels.  The filtering mode controls how this process happens.
 
 There are three filtering modes available in MonoGame; Point, Linear, and Anisotropic.  Each mode offers a different balance between performance and visual quality.
 
@@ -73,7 +73,7 @@ Anisotropic filtering mode provides higher-quality filter for textures viewed fr
 
 ### Addressing Modes
 
-The other aspect is the addressing mode, which determines what happens when texture coordinates fall outside the normal 0.0 to 1.0 range.  When drawing textures, sometimes the calculated texture coordinates end up being less than 0.0 or greater than 1.0.  The addressing mode tells the graphics hardware what to do in these situations; whether to repeat the texture, mirror it, stretch the edge pixels, or use a specific border color.  Think of it as instructions for what to display in areas where the texture doesn't naturally exist.  These modes are particularly important for creating effects like seamless tiling backgrounds, scrolling texture, or handling the edges of transformed sprites properly.  There are four addressing modes available; Wrap, Mirror, Clamp, and Border Color:
+The other aspect is the addressing mode, which determines what happens when texture coordinates fall outside the normal 0.0 to 1.0 range.  When drawing textures, sometimes the calculated texture coordinates end up being less than 0.0 or greater than 1.0.  The addressing mode tells the graphics hardware what to do in these situations; whether to repeat the texture, mirror it, stretch the edge pixels, or use a specific border color.  Think of it as instructions for what to display in areas where the texture does not naturally exist.  These modes are particularly important for creating effects like seamless tiling backgrounds, scrolling texture, or handling the edges of transformed sprites properly.  There are four addressing modes available; Wrap, Mirror, Clamp, and Border Color:
 
 #### Wrap Mode
 
@@ -140,13 +140,13 @@ spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
 ## Adding a Scrolling Background to the Title Scene
 
-Let's update title scene of our game by adding a scrolling background pattern using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  Then, by adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.
+We will now update title scene of our game by adding a scrolling background pattern using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  Then, by adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.
 
-First, download the following image of a repeatable background pattern by right-clicking it and saving it as *background-pattern.png* in the *Content/images* directory of the game project:
+First, download the following image of a repeatable background pattern by right-clicking it and saving it as *background-pattern.png* in the *Content/images* folder of the game project:
 
-| ![Figure 18-9: The repeatable background pattern we'll use for the title screen](./images/background-pattern.png) |
+| ![Figure 18-9: The repeatable background pattern we will use for the title screen](./images/background-pattern.png) |
 | :---------------------------------------------------------------------------------------------------------------: |
-|                 **Figure 18-9: The repeatable background pattern we'll use for the title screen**                 |
+|                 **Figure 18-9: The repeatable background pattern we will use for the title screen**                 |
 
 Next, add this texture to your content project using the MGCB Editor:
 
@@ -161,7 +161,7 @@ Next, add this texture to your content project using the MGCB Editor:
 
 ### Updating the Title Scene
 
-Now that we have the background pattern texture added, let's update the `TitleScene` class to implement the scrolling background. Open the *TitleScene.cs* file in the game project and update it to the following
+Now that we have the background pattern texture added, we can update the `TitleScene` class to implement the scrolling background. Open the *TitleScene.cs* file in the game project and update it to the following
 
 [!code-csharp[](./snippets/titlescene.cs?highlight=39-50,79-81,92-93,104-113,120-123)]
 

@@ -3,7 +3,7 @@ title: "Chapter 20: Implementing UI with Gum"
 descrption: "Learn how to integrate and use the Gum UI framework to create functional menus, buttons, and sliders for your MonoGame projects."
 ---
 
-In the [previous chapter](../19_user_interface_fundamentals/index.md) we explored the fundamental concepts of user interface design. Now we're ready to put these principles into practice by implementing a UI system for our game. While it's possible to build a UI system from scratch, we'll take advantage of Gum, a specialized UI framework that simplifies many of the complex aspects of UI implementation.
+In the [previous chapter](../19_user_interface_fundamentals/index.md) we explored the fundamental concepts of user interface design. Now we are ready to put these principles into practice by implementing a UI system for our game. While it is possible to build a UI system from scratch, we will take advantage of Gum, a specialized UI framework that simplifies many of the complex aspects of UI implementation.
 
 In this chapter you will:
 
@@ -16,7 +16,7 @@ In this chapter you will:
 
 ## What is Gum?
 
-Gum is a powerful UI layout engine and framework. It provides a flexible, efficient system capable of producing virtually any UI layout you might need in your games. While originally developed alongside the FlatRedBall game engine, Gum has evolved to work seamlessly with multiple platforms including MonoGame, which we're using in this tutorial.
+Gum is a powerful UI layout engine and framework. It provides a flexible, efficient system capable of producing virtually any UI layout you might need in your games. While originally developed alongside the FlatRedBall game engine, Gum has evolved to work seamlessly with multiple platforms including MonoGame, which we are using in this tutorial.
 
 ### Why Use Gum?
 
@@ -27,7 +27,7 @@ Creating a UI system from scratch requires solving many complex problems:
 3. **Visual State Management**: Changing appearances based on user interactions (hovering, focusing, clicking).
 4. **Component Hierarchy**: Managing parent-child relationships between elements.
 
-Gum addresses these challenges with ready-made solutions, allowing us to focus on the specific needs of our game rather than reinventing the UI wheel. While MonoGame provides the basic tools for drawing graphics and detecting input, it doesn't include high-level UI abstractions; this is where tools like Gum fill the gap.
+Gum addresses these challenges with ready-made solutions, allowing us to focus on the specific needs of our game rather than reinventing the UI wheel. While MonoGame provides the basic tools for drawing graphics and detecting input, it does not include high-level UI abstractions; this is where tools like Gum fill the gap.
 
 > [!IMPORTANT]
 > This tutorial uses the Gum NuGet package to help with layout and responding to user interactions. This tutorial does not require the use of the Gum tool - we will be doing everything in code.
@@ -38,7 +38,7 @@ Gum addresses these challenges with ready-made solutions, allowing us to focus o
 
 ## Gum Concepts
 
-Before we dive into implementation, let's explore the core concepts that Gum provides.  Gum simplifies UI development by providing ready-made controls and layout systems that would otherwise require significant effort to build from scratch.
+Before we dive into implementation, we will explore the core concepts that Gum provides.  Gum simplifies UI development by providing ready-made controls and layout systems that would otherwise require significant effort to build from scratch.
 
 ### Understanding Gum's Structure
 
@@ -81,7 +81,7 @@ Gum's root element can be cleared at any time to remove all UI elements:
 GumService.Default.Root.Children.Clear();
 ```
 
-This can be useful when navigating between different scenes to ensure UI elements don't persist from previous scenes:
+This can be useful when navigating between different scenes to ensure UI elements do not persist from previous scenes:
 
 ```cs
 public class GameScene
@@ -158,9 +158,9 @@ Gum supports the following docs:
 
 Gum provides two types of objects: **Forms** and **Visuals**.  Forms controls are typical interactive UI elements such as buttons, sliders, and text boxes that handle user interaction through mouse, gamepad, and keyboard inputs.  These controls come with built-in functionality; a button responds visually when focused, while a slider changes its value when clicked on its *track*.  By using these standardized components, you can maintain consistency throughout your UI implementation.
 
-All Forms controls provide customization through their `Visual` property, which serves as a gateway to modifying their appearance and layout. With this property, you can move, resize, restyle, and even completely replace visuals through code.  As we'll see when building our UI in the next chapter, this separation between functionality and presentation allows us to create consistent behaviors while adapting the visual style to match our game's aesthetic.
+All Forms controls provide customization through their `Visual` property, which serves as a gateway to modifying their appearance and layout. With this property, you can move, resize, restyle, and even completely replace visuals through code.  As we will see when building our UI in the next chapter, this separation between functionality and presentation allows us to create consistent behaviors while adapting the visual style to match our game's aesthetic.
 
-For now, let's examine some of the Forms control types we'll use in this chapter.
+For now, we will examine some of the Forms control types we will use in this chapter.
 
 #### Panel
 
@@ -262,7 +262,7 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =>
     UpdateVolume(volumeSlider.Value);
 
     // Useful to do things like this here since this fires once
-    // the slider value change has completed so it's not constantly
+    // the slider value change has completed so it is not constantly
     // triggering ui sound effects.
     PlayUISoundEffect();
 };
@@ -281,11 +281,11 @@ Direct property assignment works well for initial setup, such as positioning ele
 For these dynamic changes, Gum uses a system of **states** (implemented as `StateSave` objects).  Each Forms control maintains a collection of named states that are automatically applied in response to specific user interactions.  When a button becomes focused, for instance, Gum looks for an applies a  state named "Focused" to alter its appearance.
 
 > [!NOTE]
-> In the next chapter during the customization pass, we'll create states to visually indicate when controls are focused, providing clear feedback to the player.
+> In the next chapter during the customization pass, we will create states to visually indicate when controls are focused, providing clear feedback to the player.
 
 ## Updating Our Game To Use Gum
 
-Now that we understand the UI concepts and how Gum will help implement them, let's integrate Gum into our game project.  We'll add the framework, initialize it, and prepare it for use in our scenes.  For now we will use the default styling in Gum to quickly iterate and build the UI and do a customization styling pass in the next chapter.
+Now that we understand the UI concepts and how Gum will help implement them, we can integrate Gum into our game project.  We will add the framework, initialize it, and prepare it for use in our scenes.  For now we will use the default styling in Gum to quickly iterate and build the UI and do a customization styling pass in the next chapter.
 
 ### Adding the Gum NuGet Package
 
@@ -318,7 +318,7 @@ To Add the Gum NuGet package in Visual Studio 2022:
 
 To add the Gum NuGet package using the dotnet CLI:
 
-1. Open a Command Prompt or Terminal window in the same directory as the *DungeonSlime.csproj* project file.
+1. Open a Command Prompt or Terminal window in the same folder as the *DungeonSlime.csproj* project file.
 2. Enter the following command:
 
     ```sh
@@ -338,9 +338,9 @@ This will install the latest version of the package, which is "2025.4.23.1" as o
 
 ### Adding UI Sound Effect
 
-To make our UI more responsive and engaging, we'll add audio feedback that plays when players interact with buttons and other UI elements. Sound effects provide immediate confirmation that an input has been recognized, creating a more engaging experience.
+To make our UI more responsive and engaging, we will add audio feedback that plays when players interact with buttons and other UI elements. Sound effects provide immediate confirmation that an input has been recognized, creating a more engaging experience.
 
-First, download the UI sound effect by right-clicking the following link and saving it as *ui.wav* in the game project's *Content/audio* directory:
+First, download the UI sound effect by right-clicking the following link and saving it as *ui.wav* in the game project's *Content/audio* folder:
 
 - [ui.wav](./files/ui.wav)
 
@@ -360,7 +360,7 @@ We will load and use this sound effect in our UI implementation to provide audit
 
 ### Initializing Gum
 
-With the Gum NuGet package added to our project, we need to initialize Gum in our game.  This will enable the UI system and configure input handling for our controls.  Since this is an initialization that only needs to happen once, let's make the necessary changes to the `Game1` class.
+With the Gum NuGet package added to our project, we need to initialize Gum in our game.  This will enable the UI system and configure input handling for our controls.  Since this is an initialization that only needs to happen once, we can make the necessary changes to the `Game1` class.
 
 First, open the *Game1.cs* file and add the following new using statements to the top:
 
@@ -374,7 +374,7 @@ Finally, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initializ
 
 [!code-csharp[](./snippets/game1/initialize.cs?highlight=8-9)]
 
-Let's examine each part of this initialization process:
+The following is a breakdown of this initialization process:
 
 1. **Basic Initialization**: `GumService.Default.Initialize(this)` sets up the Gum system with our game instance.  This is required for any gum project.
 
@@ -396,13 +396,13 @@ Let's examine each part of this initialization process:
    > FrameworkElement.TabReverseKeyCombos.Clear();
    > ```
 
-4. **UI Scaling**:  Gum allows us to independently scale the UI regardless of the resolution of the game.  Our game is set to a resolution of 1280x720, however as we'll see during the styling section later, the UI assets created were done at one-fourth the size to reduce the size of the texture atlas.  Here, we use the `GumService.Default.CanvasWidth` and `GumService.Default.CanvasHeight`  properties to set the canvas size to one-fourth that of our game's resolution. Then using by setting the `GumService.Default.Renderer.Camera.Zoom` property to four, we effectively make it render the UI at full resolution.
+4. **UI Scaling**:  Gum allows us to independently scale the UI regardless of the resolution of the game.  Our game is set to a resolution of 1280x720, however as we will see during the styling section later, the UI assets created were done at one-fourth the size to reduce the size of the texture atlas.  Here, we use the `GumService.Default.CanvasWidth` and `GumService.Default.CanvasHeight`  properties to set the canvas size to one-fourth that of our game's resolution. Then using by setting the `GumService.Default.Renderer.Camera.Zoom` property to four, we effectively make it render the UI at full resolution.
 
 Gum is now fully initialized and we can use it in our scenes to add UI to our game.
 
 ### Adding TitleScene UI
 
-With Gum added and initialized in our game, let's implement UI elements for our title scene.  We will create panels for both the main menu and options menu, implement the necessary event handlers, and integrate everything with our existing title scene.
+With Gum added and initialized in our game, we can now implement UI elements for our title scene.  We will create panels for both the main menu and options menu, implement the necessary event handlers, and integrate everything with our existing title scene.
 
 First, open the *TitleScene.cs* file in the game project and add the following using declarations to the top of the `TitleScene` class:
 
@@ -414,7 +414,7 @@ Next, add the following fields:
 
 #### Creating the Title Panel
 
-First, let's create a method that builds our main menu panel with start and options buttons.  Add the following method to the `TitleScene` class:
+First, wew ill create a method that builds our main menu panel with start and options buttons.  Add the following method to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene/createtitlepanel.cs)]
 
@@ -423,7 +423,7 @@ Our title panel includes two buttons positioned at the bottom corners of the scr
 > [!NOTE]
 > Notice how we use `Anchor` to position the buttons relative to the panel's edges, with the "Start" button anchored at the bottom left and the "Options" button anchored at the bottom right.  Then the positioning of the elements is adjusted relative to its anchor point.
 
-Each button registers a `Click` event handler to respond when the players selects it. Let's implement the event handler method for these buttons next.  Add the following methods to the `TitleScene` class:
+Each button registers a `Click` event handler to respond when the players selects it. We should implement the event handler method for these buttons next.  Add the following methods to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene/handlestartclicked.cs)]
 
@@ -433,13 +433,13 @@ These handlers are called when the `Click` event is raised for each button.  The
 
 #### Creating the Options Panel
 
-Next, we'll create the options panel with sliders to adjust the volume for music and sound effects.  Add the following method to the `TitleScene` class:
+Next, we will create the options panel with sliders to adjust the volume for music and sound effects.  Add the following method to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene/createoptionspanel.cs)]
 
 This panel includes a text label, two sliders for adjusting audio volumes, and a back button for returning to the main menu. The panel is initially invisible since we start on the main menu.  Both the "Music Volume" slider and the "Sound Effects Volume" slider register events to be called when the value of the sliders change and when the value change has been completed.  The "Back" button registers a click event similar to the ones from the main menu.
 
-Now let's implement the event handlers for these controls
+Now we should implement the event handlers for these controls:
 
 [!code-csharp[](./snippets/titlescene/handlesfxsliderchanged.cs)]
 
@@ -458,7 +458,7 @@ These handlers update our audio settings in real-time as the player adjusts the 
 
 #### Initializing the UI
 
-Now that we've implemented the methods that will create both the main menu panel and the options menu panel, let's implement the main UI initializations method that will call them.  Add the following method to the `TitleScene` class:
+Now that we have implemented the methods that will create both the main menu panel and the options menu panel, we need to implement the main UI initializations method that will call them.  Add the following method to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene/initializeui.cs)]
 
@@ -489,11 +489,11 @@ With these changes, our UI system is now fully integrated into the scene's game 
 |               **Figure 20-1: Title screen with default Gum buttons**               |
 
 > [!NOTE]
-> You may notice that the UI elements currently use Gum's default styling, which does not match our game's visual theme.  We'll explore customizing these controls to match our game's visual style in the next chapter.
+> You may notice that the UI elements currently use Gum's default styling, which does not match our game's visual theme.  We will explore customizing these controls to match our game's visual style in the next chapter.
 
 ### Adding GameScene UI
 
-Now that we've setup the UI for the title scene, let's add a pause menu to our game scene.  This UI will start invisible but will be shown when the player presses the escape key.  For consistency, we'll implement the UI for the game scene in the same order that we implemented the UI for the title scene.
+Now that we have setup the UI for the title scene, we will add a pause menu to our game scene.  This UI will start invisible but will be shown when the player presses the escape key.  For consistency, we will implement the UI for the game scene in the same order that we implemented the UI for the title scene.
 
 First, open the *GameScene.cs* file in the game project and add the following using declarations to the top of the `GameScene` class.
 
@@ -505,7 +505,7 @@ Next, add the following fields:
 
 #### Pausing the Game
 
-To pause the game, first let's create a method that makes the pause panel visible. Add the following method to the `GameScene` class:
+To pause the game, first we will create a method that makes the pause panel visible. Add the following method to the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene/pausegame.cs)]
 
@@ -519,13 +519,13 @@ Finally, update the `CheckGamePadInput` method so the game is paused when the st
 
 #### Creating the Pause Panel
 
-Next, let's create a method that builds our pause panel with resume and quit buttons. Add the following method to the `GameScene` class:
+Next, we will create a method that builds our pause panel with resume and quit buttons. Add the following method to the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene/createpausepanel.cs)]
 
 #### Initializing the UI
 
-Now that we've implemented the method to create the pause panel, let's implement the main UI initializations method that will call them.  Add the following method to the `GameScene` class:
+Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.  Add the following method to the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene/initializeui.cs)]
 
@@ -541,7 +541,7 @@ Next, update the `LoadContent` method to load the sound effect that will be used
 
 [!code-csharp[](./snippets/gamescene/loadcontent.cs?highlight=27-28)]
 
-Next, update the `Update` method to include Gum's update logic and to only update the game if it is not paused.  We'll use the visibility of the pause menu to determine if the game is paused or not:
+Next, update the `Update` method to include Gum's update logic and to only update the game if it is not paused.  We will use the visibility of the pause menu to determine if the game is paused or not:
 
 [!code-csharp[](./snippets/gamescene/update.cs?highlight=3-10)]
 
@@ -557,7 +557,7 @@ WIth these changes, the pause menu is now fully integrated into the game scene's
 
 ## Conclusion
 
-In this chapter, you've successfully implemented a functional UI system for our game using the Gum framework. You've learned how to:
+In this chapter, you accomplished the following:
 
 - Add and configure the Gum NuGet package in your project.
 - Understand key Gum concepts like Forms controls and Visuals.
@@ -567,7 +567,7 @@ In this chapter, you've successfully implemented a functional UI system for our 
 - Create transitions between different UI screens.
 - Integrate the UI system with the game's scene architecture.
   
-While this UI is now functional, you may have noticed that it uses Gum's default styling which doesn't match our game's visual theme.  In the next chapter, we'll learn how to customize the appearance of our UI elements to create a cohesive visual style that complements our game's aesthetic.
+While this UI is now functional, you may have noticed that it uses Gum's default styling which does not match our game's visual theme.  In the next chapter, we will learn how to customize the appearance of our UI elements to create a cohesive visual style that complements our game's aesthetic.
 
 ## Test Your Knowledge
 
