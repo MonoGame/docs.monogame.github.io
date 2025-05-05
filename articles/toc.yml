@@ -160,6 +160,8 @@
           href: tutorials/building_2d_games/23_completing_the_game/
         - name: "24: Shaders"
           href: tutorials/building_2d_games/24_shaders/
+        - name: "25: Packaging Your Game for Distribution"
+          href: tutorials/building_2d_games/25_packaging_game/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
