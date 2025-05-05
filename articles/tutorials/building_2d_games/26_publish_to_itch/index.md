@@ -40,7 +40,7 @@ Before you can publish your game, you need to create an itch.io account and set 
     > The username can be changed later in your account settings if needed.
 
 3. After registering, you will automatically be logged in. However, for some additional configurations that need to be made, you must validate your email address.  Check the email address you entered when you registered for a new email from itch.io to validate the email address.
-4. After validating your email address, go to your account settings by clicking your username in the top-right corner, and then choosing "Settings"
+4. After validating your email address, go to your account settings by clicking your username in the top-right corner, and then choosing "Settings".
 5. The settings page opens with your developer profile configuration.  Complete your developer profile with:
    - A profile picture.
    - Links to your social media platforms or portfolio.
