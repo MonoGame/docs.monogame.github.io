@@ -401,6 +401,11 @@ Texture2D text = Content.Load<Texture2D>("images/atlas");
 
 Try to minimize external dependencies.  If your game requires additional libraries or runtimes, document these requirements clearly for players.
 
+> [!NOTE]
+> When publishing to distribution platforms and app stores (such as Steam, Epic Game Sore, App Store, or Google Play), you are typically required to disclose all external dependencies in your privacy policy or a dedicate dependencies section.  This includes third-party libraries, analytics tools, and any software components that your game depends on.
+>
+> Check specific requirements for each distribution platform you plant to target, as well as requirements by third-party libraries for using them, as disclosure requirements may vary.
+
 ## Mobile Platforms
 
 While this tutorial series has focused on creating a 2D game for desktop platforms, MonoGame also offers support for mobile development on Android and iOS.  The game we have built throughout this series could be adapted for touch controls and distributed through mobile app stores with additional work.
