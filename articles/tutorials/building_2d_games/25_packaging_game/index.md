@@ -388,6 +388,15 @@ string path = Path.Combine("Content", "images", "atlas-definition.xml");
 
 Windows is case-insensitive for filenames, but macOS and Linux are case-sensitive.  Ensure your asset references use the exact case that matches your files for maximum compatibility.
 
+```cs
+// If the content path on disk is:
+// images/Atlas.xnb
+
+// On Windows, this would work fine since windows is case-insensitive.
+// ON macOS and Linux, this would fail since they are case-sensitive.
+Texture2D text = Content.Load<Texture2D>("images/atlas");
+```
+
 ### External Dependencies
 
 Try to minimize external dependencies.  If your game requires additional libraries or runtimes, document these requirements clearly for players.
