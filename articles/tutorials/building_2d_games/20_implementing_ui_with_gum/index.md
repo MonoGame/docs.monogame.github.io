@@ -478,9 +478,14 @@ Next update the `Update` method to include Gum's update logic:
 
 [!code[](./snippets/titlescene/update.cs?highlight=14)]
 
-Finally, add Gum's drawing call to the end of the `Draw` method:
+Finally, the `Draw` method needs to be updated to:
 
-[!code[](./snippets/titlescene/draw.cs?highlight=36)]
+1. Only show the text for the game title when the title panel is visible
+2. Add Gum's drawing call to draw the user interface
+
+Update the `Draw` method to the following:
+
+[!code[](./snippets/titlescene/draw.cs?highlight=10-34,36)]
 
 With these changes, our UI system is now fully integrated into the scene's game loop.  Gum updates its controls in the `Update` method and draws them in the `Draw` method.  This produces a fully functional title screen with buttons that allows players to start the game or adjust audio settings.  
 
