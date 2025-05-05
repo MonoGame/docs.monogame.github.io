@@ -347,6 +347,17 @@ Trimming (specified with `-p:Trimming:true`) removes unused code from your distr
 
 While trimming can significantly reduce your game's size, it may remove types that appear unused bot are accessed indirectly through reflection or generics causing runtime errors.
 
+> [!IMPORTANT]
+> Trimming can cause issues with content pipeline extensions that are used at runtime.  When the compiler cannot detect that certain types are used (especially with reflection or generic collections), thy might be trimmed away, resulting in "type not found" exceptions when loading content.
+>
+> If you encounter runtime exceptions about missing types when loading content with trimming enabled, you can resolve this by ensuring the compiler recognizes the types being uset at runtime by making the following call:
+>
+> ```cs
+> ContentTypeReaderManager.AddTypeCreator(typeof(ReflectiveReader<ReaderType>).FullName, () => new ReflectiveReader<ReaderType>())
+> ```
+>
+> Where `ReaderType` the the `ContentTypeReader` of the content pipeline extension to be preserved.  This call should be made somewhere in your code before loading content that uses these types.  
+
 For more information on Trimming, refer to the [Trim self-contained applications](https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained) documentation on Microsoft Learn.
 
 ### Single File Publishing
