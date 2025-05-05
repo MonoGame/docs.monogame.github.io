@@ -24,6 +24,8 @@ Key benefits of itch.io for developers include:
 3. **Cross-Platform Support**: Easy distribution for Windows, macOS, and Linux builds.
 4. **Community Focused**: Built-in tools for building a community around you and your games, including devlogs and comments.
 5. **Developer-Friendly Revenue Split**: The platform lets developers choose their revenue share (the default 90% to developers, 10% to itch.io).
+6. **Analytics and Insights**: Basic analytics to track downloads, views, and purchases.
+7. **Game Jams**: Integrated tools for hosting and participating in game development competitions.
 
 ## Setting Up an itch.io Account
 
