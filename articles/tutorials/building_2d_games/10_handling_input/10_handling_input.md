@@ -3,7 +3,7 @@ title: "Chapter 10: Handling Input"
 description: "Learn how to handle keyboard, mouse, and gamepad input in MonoGame."
 ---
 
-When you play a game, you need ways to control what is happening; using a keyboard or gamepad to control a character or clicking the mouse to navigate a menu, MonoGame helps us handle all these different types of controls through dedicated input classes:
+When you play a game, you need ways to control what's happening; using a keyboard or gamepad to control a character or clicking the mouse to navigate a menu, MonoGame helps us handle all these different types of controls through dedicated input classes:
 
 - [**Keyboard**](xref:Microsoft.Xna.Framework.Input.Keyboard): Detects which keys are being pressed.
 - [**Mouse**](xref:Microsoft.Xna.Framework.Input.Mouse): Tracks mouse movement, button clicks, and scroll wheel use.
@@ -53,7 +53,7 @@ The [**MouseState**](xref:Microsoft.Xna.Framework.Input.MouseState) struct conta
 | [**XButton2**](xref:Microsoft.Xna.Framework.Input.MouseState.XButton2)                 | [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) | Returns the state of the second extended button on the mouse.                                                           |
 
 > [!NOTE]
-> [**ScrollWheelValue**](xref:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue) returns the cumulative value of the scroll wheel since the start of the game, not how much it moved since the last update.  To determine how much it moved between one update and the next, you would need to compare it with the previous frame's value.  We will discuss comparing previous and current frame values for inputs in the next chapter.
+> [**ScrollWheelValue**](xref:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue) returns the cumulative value of the scroll wheel since the start of the game, not how much it moved since the last update.  To determine how much it moved between one update and the next, you would need to compare it with the previous frame's value.  We'll discuss comparing previous and current frame values for inputs in the next chapter.
 
 Unlike keyboard input which uses [**IsKeyDown(Keys)**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys))/[**IsKeyUp(Keys)**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys)) methods mouse buttons return a [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState):
 
@@ -100,8 +100,6 @@ The [**GamePadState.Buttons**](xref:Microsoft.Xna.Framework.Input.GamePadState.B
 
 > [!NOTE]
 > Recall from [Chapter 01](../01_what_is_monogame/index.md) that MonoGame is a implementation the XNA API.  Since XNA was originally created for making games on Windows PC and Xbox 360, the names of the gamepad buttons match those of an Xbox 360 controller.
->
-> The [**BigButton**](xref:Microsoft.Xna.Framework.Input.GamePadButtons.BigButton) refers to the large, centrally located button on special Xbox 360 controllers created for games like "Scene It?" - this button is not present on standard controllers and is not mapped to any button on modern controllers. It remains in the API for backward compatibility with XNA.
 >
 > | Front                                                      | Back                                                     |
 > | :--------------------------------------------------------- | :------------------------------------------------------- |
@@ -318,7 +316,7 @@ The following is an example of using a gesture to detect horizontal and vertical
 
 ## Implementing Input in Our Game
 
-For our game, we are going to implement keyboard and gamepad controls based on the following criteria:
+For our game, we're going to implement keyboard and gamepad controls based on the following criteria:
 
 | Keyboard Input            | Gamepad Input                               | Description                          |
 |---------------------------|---------------------------------------------|--------------------------------------|
@@ -353,9 +351,53 @@ Running the game now, you can move the slime around using the keyboard with the 
 |:-----------------------------------------------------------------------------------------------:|
 |                 **Figure 10-1: The slime moving around based on device input**                  |
 
+## Input Buffering
+
+While checking for input every frame works well for continuous actions like movement, many games benefit from more sophisticated input handling techniques. One such technique is **input buffering**, which can significantly improve how responsive controls feel to players.
+
+### Understanding Input Buffering
+
+Input buffering is a technique where the game temporarily stores player inputs that cannot be immediately processed. Instead of discarding these inputs, they are placed in a queue and processed in order when the game is ready to handle them.
+
+Input buffering is particularly valuable in games where:
+
+- Actions occur at fixed intervals rather than continuously (like turn-based games or grid movement).
+- Precise timing is required for complex input sequences (like fighting games).
+- Multiple rapid inputs need to be remembered in order (like quick directional changes).
+
+Without input buffering, players must time their inputs perfectly to align with the game's update cycle. With buffering, the game becomes more forgiving and responsive by:
+
+1. Storing inputs that arrive between action updates.
+2. Preserving the order of inputs for more predictable behavior.
+3. Creating a sense that the game is actually listening to the player.
+
+### Implementing a Simple Input Buffer
+
+A basic input buffer can be implemented using a queue data structure, which follows a First-In-First-Out (FIFO) pattern:
+
+[!code-csharp[](./snippets/inputbuffer.cs)]
+
+> [!NOTE]
+> The [`Queue<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1?view=net-9.0>) is a First In, First Out (FIFO) collection in C#. When you add items with `Enqueue()`, they join the end of the line, and when you retrieve items with `Dequeue()`, you always get the oldest item (the one at the front of the line). Think of it like people waiting in line - the first person to arrive is the first one served.
+>
+> This contrasts with a [`Stack<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-9.0>), which follows Last In, First Out (LIFO) behavior, where the most recently added item is the first one retrieved.
+
+The size of an input buffer is an important design decision. If it's too small, players might still feel the game isn't responsive enough. If it's too large, the game might feel like it's playing itself by working through a backlog of commands.
+
+### When to Use Input Buffering
+
+Consider implementing input buffering in your game when:
+
+- Players complain about the game feeling "unresponsive".
+- Your game uses fixed-interval updates for certain mechanics.
+- Actions require precise timing that is difficult for players to hit consistently.
+- You want to allow players to "queue up" their next few moves.
+
+We'll see a practical implementation of input buffering in [Chapter 23](../23_completing_the_game/index.md) when we finalize our snake-like game mechanics, where timing and direction changes are critical to gameplay.
+
 ## Conclusion
 
-In this chapter, you accomplished the following:
+In this chapter, you learned how to:
 
 - Handle keyboard input to detect key presses.
 - Handle mouse input including button clicks and cursor position.
@@ -364,7 +406,7 @@ In this chapter, you accomplished the following:
 - Implement movement controls using different input methods.
 - Consider controller-specific details like coordinate systems and analog vs digital input.
 
-In the next chapter, we will learn how to track previous input states to handle single-press events and implement an input management system to simplify some of the complexity of handling input.
+In the next chapter, we'll learn how to track previous input states to handle single-press events and implement an input management system to simplify some of the complexity of handling input.
 
 ## Test Your Knowledge
 
@@ -374,7 +416,7 @@ In the next chapter, we will learn how to track previous input states to handle 
     Storing the state in a variable is more efficient and ensures consistent input checking within a frame. Each `GetState` call polls the device, which can impact performance if called repeatedly.
     :::
 
-2. What is the main difference between how keyboard and mouse/gamepad button states are checked?
+2. What's the main difference between how keyboard and mouse/gamepad button states are checked?
 
     :::question-answer
     Keyboard input uses [**IsKeyUp**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyUp(Microsoft.Xna.Framework.Input.Keys))/[**IsKeyDown**](xref:Microsoft.Xna.Framework.Input.KeyboardState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys)) methods, while mouse and gamepad buttons return a [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) enum value (Pressed or Released).
@@ -386,13 +428,13 @@ In the next chapter, we will learn how to track previous input states to handle 
     The thumbstick Y-axis values (-1.0f down to 1.0f up) are inverted compared to MonoGame's screen coordinate system (Y increases downward). Multiplying by -1 aligns the thumbstick direction with screen movement.
     :::
 
-4. What is the difference between analog and digital trigger input on a gamepad?
+4. What's the difference between analog and digital trigger input on a gamepad?
 
     :::question-answer
-    Analog triggers provide values between 0.0f and 1.0f based on how far they are pressed, while digital triggers only report 0.0f (not pressed) or 1.0f (pressed). This affects how you handle trigger input in your game.
+    Analog triggers provide values between 0.0f and 1.0f based on how far they're pressed, while digital triggers only report 0.0f (not pressed) or 1.0f (pressed). This affects how you handle trigger input in your game.
     :::
 
-5. What is the key difference between [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) and [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture)?
+5. What's the key difference between [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) and [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture)?
 
     :::question-answer
     [**TouchPanel.GetState**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState) returns information about current touch points on the screen, while [**TouchPanel.ReadGesture**](xref:Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture) provides information about specific gesture patterns like taps, drags, and pinches that have been performed.
@@ -407,7 +449,7 @@ In the next chapter, we will learn how to track previous input states to handle 
 7. How does touch input differ from mouse input in terms of handling multiple input points?
 
     :::question-answer
-    Touch input can handle multiple simultaneous touch points through the [**TouchCollection**](xref:Microsoft.Xna.Framework.Input.Touch.TouchCollection), while mouse input only tracks a single cursor position. This allows touch input to support features like multi-touch gestures that are not possible with a mouse.
+    Touch input can handle multiple simultaneous touch points through the [**TouchCollection**](xref:Microsoft.Xna.Framework.Input.Touch.TouchCollection), while mouse input only tracks a single cursor position. This allows touch input to support features like multi-touch gestures that aren't possible with a mouse.
     :::
 
 8. What are the different states a [**TouchLocation**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation) can have and what do they indicate?

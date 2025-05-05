@@ -37,7 +37,7 @@ public class Core : Game
     public static new ContentManager Content { get; private set; }
 
     /// <summary>
-    /// Gets a reference to to the input management system.
+    /// Gets a reference to the input management system.
     /// </summary>
     public static InputManager Input { get; private set; }
 

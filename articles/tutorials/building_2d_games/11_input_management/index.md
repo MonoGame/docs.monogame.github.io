@@ -347,7 +347,7 @@ The `Update` method for the `InputManager` calls update for each device so that 
 
 ## Implementing the InputManager Class
 
-Now tha we have our input management system complete, we will update our game to use it.  We will do this in two steps:
+Now that we have our input management system complete, we will update our game to use it.  We will do this in two steps:
 
 1. First, update the `Core` class to add the `InputManager` globally.
 2. Update the `Game1` class to use the global input manager from `Core`.
@@ -356,7 +356,7 @@ Now tha we have our input management system complete, we will update our game to
 
 The `Core` class serves as our base game class, so we will update it to add and expose the `InputManager` globally.  Open the *Core.cs* file in the *MonoGameLibrary* project and update it to the following:
 
-[!code-csharp[](./snippets/core.cs?highlight=6,39-47,103-104,112-115)]
+[!code-csharp[](./snippets/core.cs?highlight=5-6,39-47,103-104,107-118)]
 
 The key changes to the `Core` class are:
 
@@ -372,7 +372,7 @@ The key changes to the `Core` class are:
 
 Now we can update our `Game1` class to use the new input management system through the `Core` class.  Open *Game1.cs* in the game project and update it to the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=76,82,88,94,100,108,113,116,120,126,128-129,134,140,146,152)]
+[!code-csharp[](./snippets/game1.cs?highlight=6,76,82,88,94,100,108,113,116,120,126,128-129,134,140,146,152)]
 
 The key changes to the `Game1` class are:
 
