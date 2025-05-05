@@ -376,6 +376,14 @@ When distributing your games across multiple platforms, be aware of these additi
 
 Different operating systems use different path separators (Windows uses backslashes, macOS and Linux use forward slashes).  Always use `Path.Combine` in your code rather than hardcoding path separators.
 
+```cs
+// Incorrect approach - will fail on some platforms
+string path = "Content\\images\\atlas-definition.xml"; 
+
+// Correct approach, works on all platforms
+string path = Path.Combine("Content", "images", "atlas-definition.xml");
+```
+
 ### Case Sensitivity
 
 Windows is case-insensitive for filenames, but macOS and Linux are case-sensitive.  Ensure your asset references use the exact case that matches your files for maximum compatibility.
