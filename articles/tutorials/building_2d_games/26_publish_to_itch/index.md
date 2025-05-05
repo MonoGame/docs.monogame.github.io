@@ -29,7 +29,7 @@ Key benefits of itch.io for developers include:
 
 ## Setting Up an itch.io Account
 
-Before you can publish your game, you need to create an itch.io account and setup your developer profile.  To do this
+Before you can publish your game, you need to create an itch.io account and set up your developer profile.  To do this
 
 1. Navigate to [itch.io](https://itch.io) and click "Register" in the top-right corner.
 2. Fill in the registration form with your desired username, password, and email address.
