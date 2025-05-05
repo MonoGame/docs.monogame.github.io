@@ -27,7 +27,7 @@ We will being by first defining the lifecycle of a scene that will be followed.
 In Chapter 03, you learned the basic [lifecycle of the `Game` class](../03_the_game1_file/index.md#exploring-the-game1-class).  To be consistent, we can borrow from this lifecycle and adapt it for our scenes. The order of operations for this lifecycle will be:
 
 1. A scene is created and set as the active scene.
-2. The initial active scene is initialized and content loaded.
+2. The first screen is made active and is initialized and content loaded.
 3. The active scene is updated and drawn each cycle.
 4. When transitioning to a new scene, or when the scene ends:
     1. The current scene is unloaded and disposed of.
