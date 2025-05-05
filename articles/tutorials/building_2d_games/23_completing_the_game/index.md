@@ -76,7 +76,7 @@ To keep the code more organized, we will create separate functions to build the 
 
 #### Creating the Score Text
 
-First, we will add a method to create a `TextRuntime` element that is used to display the player's score.  Add the following method to the `GameSceneUI`  after the constructor:
+To display the player's score, we will begin by adding a method to create a `TextRuntime` element.  Add the following method to the `GameSceneUI`  after the constructor:
 
 [!code-csharp[](./snippets/gamesceneui/createscoretext.cs)]
 
@@ -291,7 +291,7 @@ Let's implement the input buffering technique we introduced in [Chapter 10](../1
 
 ### Implementing Input Buffering in the Slime Class
 
-First, we will add the necessary fields to store our input queue. In the *GameObjects* directory of the *DungeonSlime* project (your main game project), open the *Slime.cs* file and add the following fields after the `_sprite` field:
+To add input buffering for the `Slime` class, we will begin by adding the necessary fields to store our input queue. In the *GameObjects* directory of the *DungeonSlime* project (your main game project), open the *Slime.cs* file and add the following fields after the `_sprite` field:
 
 [!code-csharp[](./snippets/slime/fields.cs)]
 
