@@ -162,6 +162,8 @@
           href: tutorials/building_2d_games/24_shaders/
         - name: "25: Packaging Your Game for Distribution"
           href: tutorials/building_2d_games/25_packaging_game/
+        - name: "25: Publishing Your Game to itch.io"
+          href: tutorials/building_2d_games/26_publish_to_itch/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
