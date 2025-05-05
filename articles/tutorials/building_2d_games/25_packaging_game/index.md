@@ -484,7 +484,7 @@ Whether you choose to use the manual platform-specific packaging steps or automa
 4. What is the advantage of using a tar.gz archive over zip file when distributing for macOS and Linux?
 
     :::question-answer
-    A tar.gz archive preserves Unix fil permissions, which is crucial for maintaining the executable permissions set on game files.  Without these permissions, users would need to manually set execute permissions before running the game.  ZIP files do not reliably preserve these Unix-specific permissions, which could prevent the game from running directly after extraction on macOS and Linux platforms.
+    A tar.gz archive preserves Unix file permissions, which is crucial for maintaining the executable permissions set on game files.  Without these permissions, users would need to manually set execute permissions before running the game.  ZIP files do not reliably preserve these Unix-specific permissions, which could prevent the game from running directly after extraction on macOS and Linux platforms.
     :::
 
 5. What is the purpose of creating a universal binary for macOS distributions?
