@@ -15,7 +15,7 @@ In this chapter, you will:
 
 ## Understanding itch.io as a Distribution Platform
 
-Itch.io is an open marketplace for independent digital creators with a focus on indie games.  Unlike larger platforms with strict approval processes, itch.io allows any developer to publish their games instantly.  this makes it a good starting point for new developers looking to build an audience.
+Itch.io is an open marketplace for independent digital creators with a focus on indie games.  Unlike larger platforms with strict approval processes, itch.io allows any developer to publish their games instantly.  This makes it an ideal starting point for new developers looking to build an audience.
 
 Key benefits of itch.io for developers include:
 
