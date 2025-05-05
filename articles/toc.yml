@@ -158,6 +158,8 @@
           href: tutorials/building_2d_games/22_snake_game_mechanics/
         - name: "23: Completing the Game"
           href: tutorials/building_2d_games/23_completing_the_game/
+        - name: "24: Shaders"
+          href: tutorials/building_2d_games/24_shaders/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
