@@ -14,7 +14,7 @@ In this chapter, you will:
 - Create a custom grayscale shader for visual feedback.
 
 > [!IMPORTANT]
-> This chapter is an introduction to shaders in MonoGame and will focus on the basic foundation fo understanding how to create shader effect (*.fx*) files, loading them through the content pipeline, and using them in your game.
+> This chapter is an introduction to shaders in MonoGame and will focus on the basic foundation of understanding how to create shader effect (*.fx*) files, loading them through the content pipeline, and using them in your game.
 >
 > If you want to learn more about the shader language itself, a good place to start would be the [High-level shader language (HLSL)](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) documentation on Microsoft Learn.  
 >
@@ -258,7 +258,7 @@ In the *DungeonSlime* project (your main game project), open the *Content/effect
 
 The key modifications made to create this grayscale effect include:
 
-1. **Added a Parameter**: A `Saturation` parameter was added that controls he intensity of the grayscale effect.  
+1. **Added a Parameter**: A `Saturation` parameter was added that controls the intensity of the grayscale effect.  
 
    - When set to 0, the image will be fully grayscale.  
    - When set to 1, the image will be its original color.  
