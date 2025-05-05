@@ -48,7 +48,11 @@ The following conventions are used in this documentation.
 
 ### Italics
 
-*Italics* are used for emphasis, technical terms, and paths such as file paths, including filenames and extensions.
+*Italics* are used for emphasis and technical terms.
+
+### Highlights
+
+`Highlights` are used for paths such as file paths, including filenames, extensions and other critical information in the application of steps in a tutorial.  These are similar to Inline code blocks as they stand out more in Markdown and require emphasis.
 
 ### Inline Code Blocks
 
