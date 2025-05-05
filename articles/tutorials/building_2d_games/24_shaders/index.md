@@ -417,7 +417,7 @@ This chapter explored the fundamentals of creating and adding a shader to MonoGa
 
 - Shaders are specialized programs that run directly on the GPU, allowing for efficient visual effects that would be too performance-intensive to calculate on the CPU.
 - Effect parameters allow runtime control of shader behavior.
-- In Monogame, shaders are written in High-Level Shader Language (HLSL) and can be loaded through the content pipeline like other game assets.
+- In MonoGame, shaders are written in High-Level Shader Language (HLSL) and can be loaded through the content pipeline like other game assets.
 - Pixel shaders determine the color of each rendered pixel, making them ideal for effects like our grayscale shader.
 - The timing of the shader application depends on the [**SpriteSortMode**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) used with [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), with most effects being applied during the [**SpriteBatch.End**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.End) call.
 
