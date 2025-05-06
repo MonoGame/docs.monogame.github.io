@@ -437,9 +437,7 @@ While the platform-specific packaging steps outlined in this chapter give you co
 
 ### GameBundle
 
-[GameBundle](https://github.com/Ellpeck/GameBundle) is a .NET command-line tool created by [Ellpeck](https://github.com/Ellpeck) that simplifies packaging MonoGame and other .NET applications into several distributable formats.  As described in its documentation, "GameBundle is a tool to package MonoGame and other .NET applications into several distributable formats."
-
-This tool can automatically bundle your game for Windows, Linux, and macOS platforms, create applications bundles for macOS, and handle various packaging configurations with a single command.
+[GameBundle](https://github.com/Ellpeck/GameBundle) is a .NET command-line tool created by [Ellpeck](https://github.com/Ellpeck) that simplifies packaging MonoGame and other .NET applications into several distributable formats.  This tool can automatically bundle your game for Windows, Linux, and macOS platforms, create applications bundles for macOS, and handle various packaging configurations with a single command.
 
 For more information about GameBundle, including installation and usage instructions, visit the [official repository on GitHub](https://github.com/Ellpeck/GameBundle)
 
