@@ -225,7 +225,7 @@ Developed with MonoGame
 
 ### Metadata
 
-Itch.io provides several metadata fields that help categorize your game and make it more discoverable when users search the platform.  Properly configured metadata increases visibility and helps your game reach its intended audience.  Let's explore each of these important fields:
+Itch.io provides several metadata fields that help categorize your game and make it more discoverable when users search the platform.  Properly configured metadata increases visibility and helps your game reach its intended audience.  The following explores each of these fields:
 
 1. **Genre**: Select the genre that most accurately represents your game's core gameplay experience.  While many games span multiple genres, choose the one that best captures your game's primary appeal.  Common genres include:
 
