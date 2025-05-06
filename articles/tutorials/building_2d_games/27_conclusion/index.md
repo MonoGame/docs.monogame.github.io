@@ -89,4 +89,4 @@ Your journey from here will be uniquely yours, shaped by the games you want to m
 
 Instead of ending this like all other chapters with a section to "test your knowledge", I'll just leave you with one simple question: What will you create next?
 
--\ Christopher Whitley (Aristurtle)
+\- Christopher Whitley (Aristurtle)
