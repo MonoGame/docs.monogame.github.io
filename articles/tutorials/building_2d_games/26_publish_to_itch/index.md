@@ -97,7 +97,7 @@ The first section of the form contains fields for the basic information about th
     - **Tools**: Utility software that assists in game development or other creative processes.
     - **Comics**: Sequential art narratives in digital format.
     - **Books**: Literary works including novels, guides, or educational texts.
-    - **Other**: Projects that don't fit into the predefined categories.
+    - **Other**: Projects that do not fit into the predefined categories.
 
 6. **Release Status**: Set the development status of the project.  The available options are:
 
@@ -159,7 +159,7 @@ Once the upload has completed, you will be presented with options to set the fol
     - **Graphical assets**: Art, textures, models, or other visual elements used in your game.
     - **Audio assets**: Sound effects, voice recordings, or other audio components.
     - **Documentation or Instructions**: Help files, control references, or other guidance for players.
-    - **Other**: Any file type that doesn't fit into the above categories.
+    - **Other**: Any file type that does not fit into the above categories.
 
     > [!TIP]
     > Even if the project you are creating is a game, you can include additional downloads for users such as the soundtrack and an instruction manual.  Providing these supplementary materials can enhance the perceived value of your project and demonstrate professionalism and attention to detail.
@@ -265,7 +265,7 @@ Itch.io provides several metadata fields that help categorize your game and make
 
 The download and installation instructions section is where you provide clear guidance to users on how to get your game up and running after they download it.  Well-written instructions reduce confusion and ensure players can quickly start enjoying your game.
 
-Since MonoGame projects are typically distributed as archived files (ZIP for Windows, tar.gz for macOS and Linux), it's essential to provide step-by-step instructions for extracting and launching your game on each supported platform.
+Since MonoGame projects are typically distributed as archived files (ZIP for Windows, tar.gz for macOS and Linux), it is essential to provide step-by-step instructions for extracting and launching your game on each supported platform.
 
 - **Be platform-specific**: Separate instructions for each operating system you support.
 - **Use numbered steps**: Sequential numbering makes instructions easier to follow.
@@ -273,7 +273,7 @@ Since MonoGame projects are typically distributed as archived files (ZIP for Win
 - **Address common issues**: Mention any special permissions or requirements users might encounter.
 - **Use simple language**: Avoid technical jargon when possible, as players may have varying technical expertise.
 
-Here's an example template for installation instructions for a MonoGame project:
+Here is an example template for installation instructions for a MonoGame project:
 
 ```text
 Once the download has completed:
@@ -298,7 +298,7 @@ For macOS:
 ```
 
 [!TIP]
-Consider testing your installation instructions on a clean system or with someone who hasn't seen your game before.  This can help identify any missing steps or assumptions you might have made.
+Consider testing your installation instructions on a clean system or with someone who has not seen your game before.  This can help identify any missing steps or assumptions you might have made.
 
 | ![Figure 26-7: Example of download and installation instructions for a MonoGame project](./images/download-install-instructions.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------: |
@@ -310,7 +310,7 @@ Building a community around your game can significantly enhance its lifespan and
 
 The platform provides three community feature options:
 
-- **Disabled**: No community interaction features will be available on your project page.  This option is appropriate when you prefer to direct community engagement elsewhere (such as Discord or social media), or when you don't have the resources to moderate community content.  This is also suitable for projects in very early development stages where you're not yet ready for public feedback.
+- **Disabled**: No community interaction features will be available on your project page.  This option is appropriate when you prefer to direct community engagement elsewhere (such as Discord or social media), or when you do not have the resources to moderate community content.  This is also suitable for projects in very early development stages where you are not yet ready for public feedback.
 
 - **Comments**: This enables a simple comment section at the bottom of your project page where players can leave feedback, ask questions, or share their experiences.  As the developer, you receive notifications when new comments are posted, allowing you to respond promptly.  This option provides a good balance between community engagement and moderation requirements, making it ideal for most indie games.
 
@@ -329,7 +329,7 @@ The visibility settings control who can access your project page.  This feature 
 
 Itch.io offers three visibility levels:
 
-- **Draft**: This setting makes your project page visible only to you and any collaborators you've explicitly given edit access.  Draft mode is ideal during the initial setup phase when you're still uploading files, writing descriptions, and configuring your page.  It provides a safe environment to experiment with different layouts and content without public exposure.
+- **Draft**: This setting makes your project page visible only to you and any collaborators you have explicitly given edit access.  Draft mode is ideal during the initial setup phase when you are still uploading files, writing descriptions, and configuring your page.  It provides a safe environment to experiment with different layouts and content without public exposure.
 
 - **Restricted**: This option limits access to specific individuals you designate.  When you select this option, you can generate and share access keys with testers, reviewers, or early supporters.  Restricted access is valuable for beta testing, gathering feedback from a controlled group, or offering early access to supporters before a wider release.
 
@@ -339,7 +339,7 @@ Itch.io offers three visibility levels:
 > Itch.io intentionally limits your initial options to either "Draft" or "Restricted" mode.  This design encourages you to completely prepare your project page before making it public.  Only after saving your initial project setup can you then return to change the visibility to "Public." This workflow helps prevent incomplete or unpolished project pages from being publicly visible.
 
 > [!TIP]
-> Consider using a phased release approach: start in Draft mode while building your page, switch to Restricted for beta testing with a select audience, then finally move to Public when you're confident in your game's presentation and stability.
+> Consider using a phased release approach: start in Draft mode while building your page, switch to Restricted for beta testing with a select audience, then finally move to Public when you are confident in your game's presentation and stability.
 
 | ![Figure 26-9: Visibility and access settings for publishing your game](./images/visibility-access.png) |
 | :-----------------------------------------------------------------------------------------------------: |
@@ -394,7 +394,7 @@ To add screenshots to your project:
 |                **Figure 26-11: Example of multiple screenshots added to a game project**                 |
 
 > [!NOTE]
-> While itch.io doesn't strictly require these visual assets, projects with complete visual presentations receive more attention than those without.
+> While itch.io does not strictly require these visual assets, projects with complete visual presentations receive more attention than those without.
 
 ### Saving and Publishing Your Project
 
@@ -402,7 +402,7 @@ After filling out all the necessary form fields, uploading your game files, and 
 
 #### Initial Save and Preview
 
-Once you've completed the project creation form:
+Once you have completed the project creation form:
 
 1. Scroll to the bottom of the form and click the "Save & view page" button.
 2. This action saves all your current information and generates a preview of your project page.
@@ -420,7 +420,7 @@ Once you've completed the project creation form:
 
 #### Visual Customization
 
-The preview page provides additional customization options beyond the basic project information you've already entered.  As the project owner, you'll notice an "Edit theme" button at the top of your preview page.  This feature allows you to customize the visual presentation of your project page with options including:
+The preview page provides additional customization options beyond the basic project information you have already entered.  As the project owner, you will notice an "Edit theme" button at the top of your preview page.  This feature allows you to customize the visual presentation of your project page with options including:
 
 - **Background color**: Change the page's background to match your game's aesthetic.
 - **Font selection**: Choose typography that complements your game's style.
@@ -432,7 +432,7 @@ These visual customizations can significantly enhance your project's presentatio
 
 #### Publishing Your Project
 
-When you're satisfied with your project page and ready to make it publicly available:
+When you are satisfied with your project page and ready to make it publicly available:
 
 1. Click the "Edit game" link in the top navigation bar to return to the project form.
 2. Scroll to the bottom of the form to the **Visibility & access** section.
@@ -453,9 +453,9 @@ Your game is now publicly accessible to the itch.io community.  It will appear i
 
 ## Conclusion
 
-In this chapter, you learned how to publish your MonoGame project on itch.io, one of the most accessible digital distribution platforms for indie game developers.  You've gained a comprehensive understanding of the entire publishing process, from creating an account to making your game available to players worldwide.
+In this chapter, you learned how to publish your MonoGame project on itch.io, one of the most accessible digital distribution platforms for indie game developers.  You have gained a comprehensive understanding of the entire publishing process, from creating an account to making your game available to players worldwide.
 
-Through this chapter, you've learned how to:
+Through this chapter, you have learned how to:
 
 - Create and configure an itch.io developer account with the appropriate security measures.
 - Set up a project page with compelling descriptions and relevant metadata.
@@ -466,4 +466,4 @@ Through this chapter, you've learned how to:
 - Enable appropriate community features to engage with your audience.
 - Customize your project page's visual presentation.
 
-Publishing a game represents a significant milestone in your journey as a game developer.  While itch.io is just one of many distribution platforms available, it provides an excellent starting point for indie developers due to its accessible nature, developer-friendly policies, and supportive community.  The skills you've learned in this chapter extend beyond itch.io and establish a foundation for publishing on other platforms.
+Publishing a game represents a significant milestone in your journey as a game developer.  While itch.io is just one of many distribution platforms available, it provides an excellent starting point for indie developers due to its accessible nature, developer-friendly policies, and supportive community.  The skills you have learned in this chapter extend beyond itch.io and establish a foundation for publishing on other platforms.
