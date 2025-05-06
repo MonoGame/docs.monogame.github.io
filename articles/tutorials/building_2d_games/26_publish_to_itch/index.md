@@ -178,6 +178,8 @@ For each file that is uploaded, you are also given the following options:
 
 > [!NOTE]
 > Itch.io also provides a command-line tool called **butler** that can automate the upload process for your game builds.  This is particularly useful for developers who frequently update their games or need to manage multiple platforms.  For more information, see the [butler GitHub page](https://github.com/itchio/butler).
+>
+> MonoGame community member [Jean-David Moisan (Apos)](https://github.com/Apostolique) also has a guide written on automating releases using butler with GitHub Actions.  For more information, see the [Automate Release](https://learn-monogame.github.io/how-to/automate-release/) document.
 
 | ![FFigure 26-5: Example of uploaded files for Windows, Linux, and macOS platforms](./images/upload.png) |
 | :-----------------------------------------------------------------------------------------------------: |
