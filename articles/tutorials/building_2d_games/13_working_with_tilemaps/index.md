@@ -176,7 +176,7 @@ Next, we need to add this configuration file to our content project with the MGC
 
 With all of the assets now in place and configured, we can update the `Game1` class to load the tilemap and draw it.  We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap.  Open *Game1.cs* and make the following updates:
 
-[!code-csharp[](./snippets/game1.cs?highlight=31-35,46-61,80-82,114,116,118,120,123,125,127,129,147,150,152,155,158,161,163,166,181-183,305-306)]
+[!code-csharp[](./snippets/game1.cs?highlight=31-35,46-61,80-82,112,114,116,128,121,123,125,127,145,148,150,153,156,159,161,164,179-181,303-304)]
 
 The key changes to the `Game1` class include:
 

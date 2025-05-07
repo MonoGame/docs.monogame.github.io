@@ -211,7 +211,7 @@ Now that we have the MonoGame logo added as an asset in the content project, we 
 
 The complete updated `Game1.cs` file should now look like this
 
-[!code-csharp[](./snippets/game1.cs?highlight=10-11,27,45-52)]
+[!code-csharp[](./snippets/game1.cs?highlight=10-11,27,44-51)]
 
 Running the game now will show the MonoGame logo displayed in the upper-left corner of the game window.
 

@@ -45,8 +45,6 @@ public class Game1 : Core
 
         // retrieve the bat region from the atlas.
         _bat = atlas.GetRegion("bat");
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

@@ -27,8 +27,6 @@ public class Game1 : Core
 
     protected override void LoadContent()
     {
-        base.LoadContent();
-
         // Load the background theme music
         _themeSong = Content.Load<Song>("audio/theme");
     }

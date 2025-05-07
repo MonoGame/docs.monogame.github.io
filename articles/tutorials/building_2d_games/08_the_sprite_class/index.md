@@ -72,7 +72,7 @@ We can simplify this process by adding a sprite creation method to the `TextureA
 
 Now we can adjust our game now to use the `Sprite` class instead of just the texture regions.  Replace the contents of *Game1.cs* with the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,63-67)]
+[!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,61-65)]
 
 The key changes in this implementation are:
 

@@ -372,7 +372,7 @@ The key changes to the `Core` class are:
 
 Now we can update our `Game1` class to use the new input management system through the `Core` class.  Open *Game1.cs* in the game project and update it to the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=6,76,82,88,94,100,108,113,116,120,126,128-129,134,140,146,152)]
+[!code-csharp[](./snippets/game1.cs?highlight=6,74,80,86,92,98,106,111,114,118,124,126-127,132,138,144,150)]
 
 The key changes to the `Game1` class are:
 

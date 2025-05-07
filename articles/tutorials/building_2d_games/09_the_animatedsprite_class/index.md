@@ -170,7 +170,7 @@ We can simplify this process by adding an animated spirte creation method to the
 
 We can now adjust our game now to use the `AnimatedSprite` class to see our sprites come to life. Replaces the contents of *Game1.cs* with the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,50-54)]
+[!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,48-52)]
 
 Here are the key changes in this implementation:
 

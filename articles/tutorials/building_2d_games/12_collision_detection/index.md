@@ -296,7 +296,7 @@ If you run the game right now and move the slime around, you will notice a few i
 
 To resolve this, we can update our game to implement these changes using collision detection and response.  In the *DungeonSlime* project (your main game project), open the *Game1.cs* file and make the following changes to the `Game1` class:
 
-[!code-csharp[](./snippets/game1.cs?highlight=1,5,25-29,40-45,81-181,186-198,298-299)]
+[!code-csharp[](./snippets/game1.cs?highlight=1,5,25-29,40-45,79-179,184-196,296-297)]
 
 The key changes made here are:
 

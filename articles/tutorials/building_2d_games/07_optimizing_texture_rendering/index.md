@@ -172,7 +172,7 @@ Add this texture atlas to your content project using the MGCB Editor:
 
 First, we will explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of *Game1.cs* with the following:
 
-[!code-csharp[](./snippets/game1/textureatlas_usage.cs?highlight=5,11-15,31-47,67-77)]
+[!code-csharp[](./snippets/game1/textureatlas_usage.cs?highlight=5,11-15,31-47,65-75)]
 
 The key changes in this implementation are:
 
