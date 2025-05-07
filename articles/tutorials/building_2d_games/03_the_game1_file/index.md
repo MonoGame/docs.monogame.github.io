@@ -108,7 +108,7 @@ In the next chapter, you will start working with sprites and learn how to load a
 1. Can the `Game1` class be renamed or is it required to be called `Game1`
 
     :::question-answer
-    It is not a requirement that it be called `Game1`.  This is just the default name given to it by the templates when creating a new MonoGame game project.  However, you cannot change the name of the Base class `Game`, as this is a MonoGame construct.
+    It is not a requirement that it be called `Game1`.  This is just the default name given to it by the templates when creating a new MonoGame game project.  However, you cannot change the name of the *BASE* class `Game`, as this is a MonoGame construct.
     :::
 
 2. What is the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) used for?

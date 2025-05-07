@@ -65,7 +65,7 @@ Alternatively, for better portability across development environments, it is rec
 2. Place it in the **same folder** as the `.spritefont` file.
 
     > [!IMPORTANT]
-    > You place the font file in the **same folder** as the *.spritefont* file directly, not through the MGCB Editor.
+    > You place the font file in the **same folder** as the `.spritefont` file directly, not through the MGCB Editor.
 
 3. Update the `<FontName>` element to include the exact filename with extension.
 
