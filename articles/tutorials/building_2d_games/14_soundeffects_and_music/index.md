@@ -149,15 +149,15 @@ Unlike sound effects, music is played through the [**MediaPlayer**](xref:Microso
 
 Before we can add audio to our game, we need some sound files to work with. Download the following audio files:
 
-- [bounce.wav](./files/bounce.wav) - For when the bat bounces off screen edges
-- [collect.wav](./files/collect.wav) - For when the slime eats the bat
-- [theme.ogg](./files/theme.ogg) - Background music
+- [bounce.wav](./files/bounce.wav){download} - For when the bat bounces off screen edges
+- [collect.wav](./files/collect.wav){download} - For when the slime eats the bat
+- [theme.ogg](./files/theme.ogg){download} - Background music
 
 > [!NOTE]
 >
 > - *bounce.wav* is "Retro Impact Punch 07" by Davit Masia (<https://kronbits.itch.io/retrosfx>).
 > - *collect.wav* is "Retro Jump Classic 08" by Davit Masia (<https://kronbits.itch.io/retrosfx>).
-> - *theme.mp3* is "Exploration" by Luis Zuno ([@ansimuz](https://twitter.com/ansimuz)]).
+> - *theme.mp3* is "Exploration" by Luis Zuno ([@ansimuz](https://twitter.com/ansimuz)).
 
 Add these files to your content project using the MGCB Editor:
 
@@ -168,6 +168,7 @@ Add these files to your content project using the MGCB Editor:
 5. For each file that is added, check its properties in the Properties panel:
    - For `.wav` files, ensure the *Processor* is set to `Sound Effect`.
    - For `.mp3` files, ensure the *Processor* is set to `Song`.
+6. Save the changes and close the MGCB Editor.
 
 Next, open the *Game1.cs* file and update it to the following:
 

@@ -342,7 +342,7 @@ To make our UI more responsive and engaging, we will add audio feedback that pla
 
 First, download the UI sound effect by right-clicking the following link and saving it as *ui.wav* in the game project's *Content/audio* folder:
 
-- [ui.wav](./files/ui.wav)
+- [ui.wav](./files/ui.wav){download}
 
 Next, add this sound effect to your content project using the MGCB Editor:
 
@@ -404,17 +404,20 @@ Gum is now fully initialized and we can use it in our scenes to add UI to our ga
 
 With Gum added and initialized in our game, we can now implement UI elements for our title scene.  We will create panels for both the main menu and options menu, implement the necessary event handlers, and integrate everything with our existing title scene.
 
+> [!NOTE]
+> When adding these sections one by one, you may see compiler errors until all sections are in place. This is normal, as some parts of the code will reference fields or methods that haven't been added yet. Once all sections are complete, these errors will resolve.
+
 First, open the *TitleScene.cs* file in the game project and add the following using declarations to the top of the `TitleScene` class:
 
-[!code-csharp[](./snippets/titlescene/usings.cs?highlight=1,6-8)]
+[!code-csharp[](./snippets/titlescene/usings.cs?highlight=1,3,6-8)]
 
-Next, add the following fields:
+Next, add the following fields to the `TitleScene` class:
 
 [!code-csharp[](./snippets/titlescene/fields.cs)]
 
 #### Creating the Title Panel
 
-First, wew ill create a method that builds our main menu panel with start and options buttons.  Add the following method to the `TitleScene` class:
+First, wew ill create a method that builds our main menu panel with start and options buttons.  Add the following method to the `TitleScene` class after the fields:
 
 [!code-csharp[](./snippets/titlescene/createtitlepanel.cs)]
 
@@ -423,7 +426,7 @@ Our title panel includes two buttons positioned at the bottom corners of the scr
 > [!NOTE]
 > Notice how we use `Anchor` to position the buttons relative to the panel's edges, with the "Start" button anchored at the bottom left and the "Options" button anchored at the bottom right.  Then the positioning of the elements is adjusted relative to its anchor point.
 
-Each button registers a `Click` event handler to respond when the players selects it. We should implement the event handler method for these buttons next.  Add the following methods to the `TitleScene` class:
+Each button registers a `Click` event handler to respond when the players selects it. We should implement the event handler method for these buttons next.  Add the following methods to the `TitleScene` class after the `CreateTitlePanel` method:
 
 [!code-csharp[](./snippets/titlescene/handlestartclicked.cs)]
 
@@ -433,13 +436,13 @@ These handlers are called when the `Click` event is raised for each button.  The
 
 #### Creating the Options Panel
 
-Next, we will create the options panel with sliders to adjust the volume for music and sound effects.  Add the following method to the `TitleScene` class:
+Next, we will create the options panel with sliders to adjust the volume for music and sound effects.  Add the following method to the `TitleScene` class after the `HandleOptionsClicked` method:
 
 [!code-csharp[](./snippets/titlescene/createoptionspanel.cs)]
 
 This panel includes a text label, two sliders for adjusting audio volumes, and a back button for returning to the main menu. The panel is initially invisible since we start on the main menu.  Both the "Music Volume" slider and the "Sound Effects Volume" slider register events to be called when the value of the sliders change and when the value change has been completed.  The "Back" button registers a click event similar to the ones from the main menu.
 
-Now we should implement the event handlers for these controls:
+Now we should implement the event handlers for these controls.  Add the following methods to the `TitleScene` class after the `CreateOptionsPanel` method:
 
 [!code-csharp[](./snippets/titlescene/handlesfxsliderchanged.cs)]
 
@@ -458,7 +461,7 @@ These handlers update our audio settings in real-time as the player adjusts the 
 
 #### Initializing the UI
 
-Now that we have implemented the methods that will create both the main menu panel and the options menu panel, we need to implement the main UI initializations method that will call them.  Add the following method to the `TitleScene` class:
+Now that we have implemented the methods that will create both the main menu panel and the options menu panel, we need to implement the main UI initializations method that will call them.  Add the following method to the `TitleScene` class after the `HandleOptionsButtonBack` method:
 
 [!code-csharp[](./snippets/titlescene/initializeui.cs)]
 
@@ -466,7 +469,7 @@ This method first clears any existing UI elements from Gum's root container to p
 
 #### Integrating with the Game Loop
 
-Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First, add the call to `InitializeUI()` in the `Initialize` method:
+Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First, add the call to `InitializeUI()` in the `Initialize` method by updating it to the following:
 
 [!code[](./snippets/titlescene/initialize.cs?highlight=27)]
 
@@ -474,7 +477,7 @@ Next, update the `LoadContent` method to load the sound effect that will be used
 
 [!code[](./snippets/titlescene/loadcontent.cs?highlight=12-13)]
 
-Next update the `Update` method to include Gum's update logic:
+Next modify the `Update` method to include Gum's update logic:
 
 [!code[](./snippets/titlescene/update.cs?highlight=14)]
 
@@ -500,25 +503,28 @@ With these changes, our UI system is now fully integrated into the scene's game 
 
 Now that we have setup the UI for the title scene, we will add a pause menu to our game scene.  This UI will start invisible but will be shown when the player presses the escape key.  For consistency, we will implement the UI for the game scene in the same order that we implemented the UI for the title scene.
 
+> [!NOTE]
+> When adding these sections one by one, you may see compiler errors until all sections are in place. This is normal, as some parts of the code will reference fields or methods that haven't been added yet. Once all sections are complete, these errors will resolve.
+
 First, open the *GameScene.cs* file in the game project and add the following using declarations to the top of the `GameScene` class.
 
-[!code-csharp[](./snippets/gamescene/usings.cs?highlight=2,7-9)]
+[!code-csharp[](./snippets/gamescene/usings.cs?highlight=2-3,8-10)]
 
-Next, add the following fields:
+Next, add the following fields to the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene/fields.cs)]
 
 #### Pausing the Game
 
-To pause the game, first we will create a method that makes the pause panel visible. Add the following method to the `GameScene` class:
+To pause the game, first we will create a method that makes the pause panel visible.  Add the following method to the `GameScene` class after the fields:
 
 [!code-csharp[](./snippets/gamescene/pausegame.cs)]
 
-Next, update the `CheckKeyboardInput` method so that when the escape key is pressed, we pause the game instead of returning to the title scene:
+Next, update the `CheckKeyboardInput` method so that when the escape key is pressed, instead of returning to the title scene, we now pause the game:
 
 [!code-csharp[](./snippets/gamescene/checkkeyboardinput.cs?highlight=6-10)]
 
-Finally, update the `CheckGamePadInput` method so the game is paused when the start button is pressed:
+Finally, update the `CheckGamePadInput` method so that when the start button is pressed, it pauses the game:
 
 [!code-csharp[](./snippets/gamescene/checkgamepadinput.cs?highlight=6-10)]
 
@@ -530,7 +536,7 @@ Next, we will create a method that builds our pause panel with resume and quit b
 
 #### Initializing the UI
 
-Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.  Add the following method to the `GameScene` class:
+Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.   Add the following method to the `GameScene` class after the `CreatePausePanel` method:
 
 [!code-csharp[](./snippets/gamescene/initializeui.cs)]
 
@@ -538,7 +544,7 @@ Just like with the `TitleScene`, we first clear any existing UI elements from Gu
 
 #### Integrating with the Game Loop
 
-Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First add the call to `InitializeUI()` in the `Initialize` method:
+Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First add the call to `InitializeUI()` in the `Initialize` method by updating it to the following:
 
 [!code-csharp[](./snippets/gamescene/initialize.cs?highlight=38)]
 
@@ -546,7 +552,7 @@ Next, update the `LoadContent` method to load the sound effect that will be used
 
 [!code-csharp[](./snippets/gamescene/loadcontent.cs?highlight=27-28)]
 
-Next, update the `Update` method to include Gum's update logic and to only update the game if it is not paused.  We will use the visibility of the pause menu to determine if the game is paused or not:
+Next, modify the `Update` method to include Gum's update logic and to only update the game if it is not paused.  We will use the visibility of the pause menu to determine if the game is paused or not:
 
 [!code-csharp[](./snippets/gamescene/update.cs?highlight=3-10)]
 
@@ -554,7 +560,7 @@ Finally, add Gum's drawing call to the end fo the `Draw` method:
 
 [!code-csharp[](./snippets/gamescene/draw.cs?highlight=9-10)]
 
-WIth these changes, the pause menu is now fully integrated into the game scene's game loop.  Gum updates its controls during the `Update` method and draws them during the `Draw` method.  If the game is paused, as determined by the `IsVisible` property of the pause menu, then updating the actual game logic is skipped.
+With these changes, the pause menu is now fully integrated into the game scene's game loop.  Gum updates its controls during the `Update` method and draws them during the `Draw` method.  If the game is paused, as determined by the `IsVisible` property of the pause menu, then updating the actual game logic is skipped.
 
 | ![Figure 20-12: The pause menu during the game scene with default Gum buttons](./images/pause-unstyled.png) |
 | :---------------------------------------------------------------------------------------------------------: |

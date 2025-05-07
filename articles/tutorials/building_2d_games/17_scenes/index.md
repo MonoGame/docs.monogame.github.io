@@ -294,7 +294,7 @@ Add the following override for the `Draw` method to the `GameScene` class:
 
 ### Updating the Game1 Class
 
-With our scene system and scene classes in place, we can now simplify our main `Game1` class to just initialize the game and start with the title scene. Open the *Game1.cs* file and update it to the following:
+With our scene system and scene classes in place, we can now simplify our main `Game1` class to just initialize the game and start with the title scene. Open the *Game1.cs* file and replace its entire contents with this simplified implementation:
 
 [!code-csharp[](./snippets/game1.cs)]
 
