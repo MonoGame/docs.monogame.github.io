@@ -18,6 +18,11 @@ In this chapter you will:
 
 Gum is a powerful UI layout engine and framework. It provides a flexible, efficient system capable of producing virtually any UI layout you might need in your games. While originally developed alongside the FlatRedBall game engine, Gum has evolved to work seamlessly with multiple platforms, including MonoGame, which we will be using in this tutorial.
 
+> [!IMPORTANT]
+> While GUM is used in this tutorial it is only one of many UI libraries available to the MonoGame community, some notable others are [EmptyKeys ](https://github.com/EmptyKeys/UI_Engines), [GeonBit.UI](https://github.com/RonenNess/GeonBit.UI), as well as entire Game Frameworks/Engines like [Nez}() that have their own built in UI systems.
+>
+> Check out [awesome-monogame](https://github.com/aloisdeniel/awesome-monogame) from [Aloïs Deniel](https://github.com/aloisdeniel) as well as the [MonoGame Resources](https://monogame.net/resources/) page for even more community offerings.
+
 ### Why Use Gum?
 
 Creating a UI system from scratch requires solving many complex problems:
