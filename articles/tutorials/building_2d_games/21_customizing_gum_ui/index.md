@@ -135,7 +135,7 @@ While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graph
 
 First, download the *.fnt* file by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/fonts* folder:
 
-- [04b_30.fnt](./files/04b_30.fnt)
+- [04b_30.fnt](./files/04b_30.fnt){download}
 
 Next, add this font file to your content project using the MGCB Editor:
 
