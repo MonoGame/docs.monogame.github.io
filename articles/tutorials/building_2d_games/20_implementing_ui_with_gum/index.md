@@ -534,6 +534,18 @@ Next, we will create a method that builds our pause panel with resume and quit b
 
 [!code-csharp[](./snippets/gamescene/createpausepanel.cs)]
 
+Now we should implement the event handlers for these controls. First, we will implement the handler for the "Resume" button. Add the following method to the `GameScene` class after the `CreatePausePanel` method:
+
+[!code-csharp[](./snippets/gamescene/handleresumebuttonclicked.cs)]
+
+This method plays the UI sound effect for auditory feedback and then hides the pause panel so that the game can resume.
+
+Next is the handler for the "Quit" button.  Add the following method to the `GameScene` class after the `HandleResumeButtonClicked` method:
+
+[!code-csharp[](./snippets/gamescene/handlequitbuttonclicked.cs)]
+
+This method as well plays the UI sound effect for auditory feedback, then quits the game by changing scenes back to the title scene.
+
 #### Initializing the UI
 
 Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.   Add the following method to the `GameScene` class after the `CreatePausePanel` method:
