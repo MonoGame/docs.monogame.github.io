@@ -49,7 +49,7 @@ After creating a fully functioning game, we turned our attention to sharing our 
 
 ## Community and Continued Learning
 
-The MonoGame community represents on of the most valuable resources available to you as you continue your development journey.  Unlike closed commercial engines, MonoGame thrives through the collective efforts of developers who share knowledge, tools, and solutions.
+The MonoGame community represents one of the most valuable resources available to you as you continue your development journey.  Unlike closed commercial engines, MonoGame thrives through the collective efforts of developers who share knowledge, tools, and solutions.
 
 The official [MonoGame Discord server](https://discord.gg/MonoGame) offers a space where developers of all skill levels exchange ideas and troubleshoot challenges together.  Here, a question about optimization techniques might spark a conversation about architecture patterns, leading to insights you might never have discovered on your own.
 
