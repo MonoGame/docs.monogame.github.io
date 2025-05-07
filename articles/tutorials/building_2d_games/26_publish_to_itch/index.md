@@ -453,6 +453,12 @@ Your game is now publicly accessible to the itch.io community.  It will appear i
 >
 > This approach helps identify potential issues you may have missed before presenting it to a larger audience.
 
+## Dungeon Slime on itch.io
+
+To see a completed version of a project uploaded to itch.io, you can explore the Dungeon Slime example at [https://shyfoxstudio.itch.io/dungeon-slime](https://shyfoxstudio.itch.io/dungeon-slime).
+
+This published version demonstrates the concepts we covered in this chapter, showing how they come together in a finished project.
+
 ## Conclusion
 
 In this chapter, you learned how to publish your MonoGame project on itch.io, one of the most accessible digital distribution platforms for indie game developers.  You have gained a comprehensive understanding of the entire publishing process, from creating an account to making your game available to players worldwide.
