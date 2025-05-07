@@ -7,12 +7,12 @@ In the [previous chapter](../19_user_interface_fundamentals/index.md) we explore
 
 In this chapter you will:
 
-- Install and configure the Gum NuGet package.
-- Learn about Gum's core concepts including Forms and Visuals
-- Implement UI elements for our game's title scene.
-- Create a pause menu for the gameplay scene.
-- Handle input from keyboard, mouse, and gamepads
-- Integrate the UI system with our existing game architecture.
+* Install and configure the Gum NuGet package.
+* Learn about Gum's core concepts including Forms and Visuals
+* Implement UI elements for our game's title scene.
+* Create a pause menu for the gameplay scene.
+* Handle input from keyboard, mouse, and gamepads
+* Integrate the UI system with our existing game architecture.
 
 ## What is Gum?
 
@@ -170,10 +170,10 @@ Panels serve as invisible containers that group related UI elements together.  U
 
 A panel provides several key functions:
 
-- Groups related elements for easier management.
-- Controls visibility for entire sections of UI at once.
-- Establishes a coordinate system for child elements.
-- Provides a foundation for layout management.
+* Groups related elements for easier management.
+* Controls visibility for entire sections of UI at once.
+* Establishes a coordinate system for child elements.
+* Provides a foundation for layout management.
 
 Panels are especially useful for creating distinct UI screens, by toggling the visibility of different panels you can implement complete UI state changes with minimal code:
 
@@ -198,9 +198,9 @@ The `Button` Forms control type is the primary interactive control for triggerin
 
 Buttons provide:
 
-- Responses to clicks from mouse, touch, keyboard, or gamepad input.
-- Visual feedback when focused or hovered.
-- Raises a `Click` event when activated.
+* Responses to clicks from mouse, touch, keyboard, or gamepad input.
+* Visual feedback when focused or hovered.
+* Raises a `Click` event when activated.
 
 Buttons can be positioned using anchoring to create layouts that adapt to different screen sizes:
 
@@ -232,10 +232,10 @@ startButton.Click += (sender, args) =>
 
 The `Slider` Forms control type allows users to select a numeric value from a continuous range.  A slider:
 
-- Displays and modifies a `Value` property constrained between a `Minimum` and `Maximum` value.
-- Responds to mouse clicks on its track or by dragging its thumb.
-- Supports keyboard and gamepad input for incremental adjustments.
-- Raises events when its value changes.
+* Displays and modifies a `Value` property constrained between a `Minimum` and `Maximum` value.
+* Responds to mouse clicks on its track or by dragging its thumb.
+* Supports keyboard and gamepad input for incremental adjustments.
+* Raises events when its value changes.
 
 Basic slider setup includes defining its range and establishing event handlers:
 
@@ -252,8 +252,8 @@ The `SmallChange` property sets the increment for keyboard and gamepad adjustmen
 
 Sliders provide several events for different interaction scenarios:
 
-- `ValueChanged`: Fires continuously as the value changes (useful for live previews).
-- `ValueChangeCompleted`: Fires once when the user finishes adjusting the value (useful for applying final settings).
+* `ValueChanged`: Fires continuously as the value changes (useful for live previews).
+* `ValueChangeCompleted`: Fires once when the user finishes adjusting the value (useful for applying final settings).
 
 ```cs
 volumeSlider.ValueChanged += (sender, arg) =>
@@ -276,7 +276,7 @@ volumeSlider.ValueChangedCompleted += (sender, arg) =>
 
 ### Property Changes vs States
 
-Gum allows you to customize visuals in two ways: 
+Gum allows you to customize visuals in two ways:
 
 * Direct property assignment
 * Using states.
@@ -355,7 +355,7 @@ To make our UI more responsive and engaging, we will add audio feedback that pla
 
 First, download the UI sound effect by right-clicking the following link and saving it as `ui.wav` in the game project's `Content/audio` folder:
 
-- [ui.wav](./files/ui.wav)
+* [ui.wav](./files/ui.wav)
 
 Next, add this sound effect to your content project using the MGCB Editor:
 
@@ -396,8 +396,8 @@ The following is a breakdown of this initialization process:
 
 2. **Content Loading**: Gum needs to be made aware of which content manager to use to load assets through the content pipeline.  By setting `GumService.Default.ContentLoader.XnaContentManager = Core.Content`, we tell Gum to use our game's content manager when loading assets.  By using the game's existing content manager, Gum also gets the benefit of the caching that the content manager performs when loading assets.
 3. **Input Configuration**:
-   - By default, all Forms controls automatically respond to mouse and touch screen input devices.  We need to explicitly register keyboard and gamepad input devices by using th `FrameworkElement.KeyboardsForUiControl` and `Framework.GamePadsForUiControl` properties.
-   - By default, Forms controls will automatically respond to tab and shift-tab for navigation. By using the `FrameworkElement.TabKeyCombos` and `FrameworkElement.TabReverseKeyCombos` properties, we can add additional key combinations for tabbing.  Here map the Up arrow for reverse tabbing and the Down arrow for forward tabbing.  
+   * By default, all Forms controls automatically respond to mouse and touch screen input devices.  We need to explicitly register keyboard and gamepad input devices by using th `FrameworkElement.KeyboardsForUiControl` and `Framework.GamePadsForUiControl` properties.
+   * By default, Forms controls will automatically respond to tab and shift-tab for navigation. By using the `FrameworkElement.TabKeyCombos` and `FrameworkElement.TabReverseKeyCombos` properties, we can add additional key combinations for tabbing.  Here map the Up arrow for reverse tabbing and the Down arrow for forward tabbing.  
 
    > [!TIP]
    > If you prefer different navigation keys, you can remove the built-in Tab/Shift+Tab navigation.
@@ -547,7 +547,7 @@ Next, we will create a method that builds our pause panel with resume and quit b
 
 [!code-csharp[](./snippets/gamescene/createpausepanel.cs)]
 
-#### Initializing the UI
+#### Initializing the Game UI
 
 Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.  Add the following method to the `GameScene` class:
 
@@ -555,7 +555,7 @@ Now that we have implemented the method to create the pause panel, we can implem
 
 Just like with the `TitleScene`, we first clear any existing UI elements from Gum's root before creating the UI elements for this scene.
 
-#### Integrating with the Game Loop
+#### Integrating with the Game Loop for the GameScreen
 
 Finally, we need to integrate our UI initialization, update, and draw with the scene's lifecycle.  First add the call to `InitializeUI()` in the `Initialize` method:
 
@@ -565,7 +565,7 @@ Next, update the `LoadContent` method to load the sound effect that will be used
 
 [!code-csharp[](./snippets/gamescene/loadcontent.cs?highlight=27-28)]
 
-Next, update the `Update` method to include Gum's update logic and to only update the game if it is not paused.  We will use the visibility of the pause menu to determine if the game is paused or not:
+Next, add the following to the beginning of the `Update` method to include Gum's update logic and to only update the game if it is not paused, pausing will prevent any other Game update logic running.  We will use the visibility of the pause menu to determine if the game is paused or not:
 
 [!code-csharp[](./snippets/gamescene/update.cs?highlight=3-10)]
 
@@ -583,13 +583,13 @@ WIth these changes, the pause menu is now fully integrated into the game scene's
 
 In this chapter, you accomplished the following:
 
-- Add and configure the Gum NuGet package in your project.
-- Understand key Gum concepts like Forms controls and Visuals.
-- Create and position UI elements using anchoring and docking.
-- Implement interactive controls like buttons and sliders.
-- Handle user input from various input devices.
-- Create transitions between different UI screens.
-- Integrate the UI system with the game's scene architecture.
+* Add and configure the Gum NuGet package in your project.
+* Understand key Gum concepts like Forms controls and Visuals.
+* Create and position UI elements using anchoring and docking.
+* Implement interactive controls like buttons and sliders.
+* Handle user input from various input devices.
+* Create transitions between different UI screens.
+* Integrate the UI system with the game's scene architecture.
   
 While this UI is now functional, you may have noticed that it uses Gum's default styling which does not match our game's visual theme.  In the next chapter, we will learn how to customize the appearance of our UI elements to create a cohesive visual style that complements our game's aesthetic.
 
@@ -600,8 +600,8 @@ While this UI is now functional, you may have noticed that it uses Gum's default
     :::question-answer
     The two main types are:
 
-    - **Forms**: Interactive UI elements like buttons, sliders, and panels that handle user input. They provide built-in functionality for common UI interactions.
-    - **Visuals**: Display elements like TextRuntime, ColoredRectangleRuntime, and NineSliceRuntime that are used to render graphics. They have no built-in interaction behavior but can be customized visually.
+    * **Forms**: Interactive UI elements like buttons, sliders, and panels that handle user input. They provide built-in functionality for common UI interactions.
+    * **Visuals**: Display elements like TextRuntime, ColoredRectangleRuntime, and NineSliceRuntime that are used to render graphics. They have no built-in interaction behavior but can be customized visually.
   
     Forms controls contain Visuals, accessible through the `Visual` property, creating a separation between functionality and presentation.
     :::
@@ -611,10 +611,10 @@ While this UI is now functional, you may have noticed that it uses Gum's default
     :::question-answer
     Gum implements parent-child relationships through a hierarchical structure where:
 
-    - UI elements must be connected to the root container to be visible
-    - Children can be added directly to a parent's Visual.Children collection
-    - Position coordinates of child elements are relative to their parent
-    - Property changes like visibility cascade from parent to children
+    * UI elements must be connected to the root container to be visible
+    * Children can be added directly to a parent's Visual.Children collection
+    * Position coordinates of child elements are relative to their parent
+    * Property changes like visibility cascade from parent to children
 
     This relationship is important because it allows for organizing related UI elements as groups, controlling entire sections of UI with a single property change, and positioning elements relative to their container rather than absolute screen coordinates.
     :::
