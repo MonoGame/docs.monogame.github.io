@@ -502,7 +502,7 @@ Now that we have setup the UI for the title scene, we will add a pause menu to o
 
 First, open the *GameScene.cs* file in the game project and add the following using declarations to the top of the `GameScene` class.
 
-[!code-csharp[](./snippets/gamescene/usings.cs?highlight=2,7-9)]
+[!code-csharp[](./snippets/gamescene/usings.cs?highlight=2-3,8-10)]
 
 Next, add the following fields:
 
