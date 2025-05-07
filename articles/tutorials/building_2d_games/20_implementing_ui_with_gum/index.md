@@ -406,7 +406,7 @@ With Gum added and initialized in our game, we can now implement UI elements for
 
 First, open the *TitleScene.cs* file in the game project and add the following using declarations to the top of the `TitleScene` class:
 
-[!code-csharp[](./snippets/titlescene/usings.cs?highlight=1,6-8)]
+[!code-csharp[](./snippets/titlescene/usings.cs?highlight=1,3,6-8)]
 
 Next, add the following fields:
 
