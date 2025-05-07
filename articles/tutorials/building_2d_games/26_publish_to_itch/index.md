@@ -299,8 +299,8 @@ For macOS:
         2. Make the game executable with the command: chmod +x ./[YourGameName].app/Contents/MacOS/[YourGameName]
 ```
 
-[!TIP]
-Consider testing your installation instructions on a clean system or with someone who has not seen your game before.  This can help identify any missing steps or assumptions you might have made.
+> [!TIP]
+> Consider testing your installation instructions on a clean system or with someone who has not seen your game before.  This can help identify any missing steps or assumptions you might have made.
 
 | ![Figure 26-7: Example of download and installation instructions for a MonoGame project](./images/download-install-instructions.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------: |
