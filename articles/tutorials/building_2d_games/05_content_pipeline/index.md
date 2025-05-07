@@ -84,7 +84,7 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 >
 > To correct this, simply run the following from a terminal/command prompt in your projects directory (there the `.config` folder is located)
 >
-> ```dotnetcli
+> ```sh
 >   dotnet tool restore
 > ```
 >

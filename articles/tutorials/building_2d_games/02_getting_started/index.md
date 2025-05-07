@@ -188,7 +188,7 @@ With your development environment setup, it is time to create your first MonoGam
     > [!NOTE]
     > If the MonoGame templates are not showing up, then you skipped the step to install the templates, exit the project creation and click `Terminal -> New Terminal` in VSCode and run the following command:
     >
-    > ```dotnetcli
+    > ```sh
     >    dotnet new install MonoGame.Templates.CSharp
     > ```
 
