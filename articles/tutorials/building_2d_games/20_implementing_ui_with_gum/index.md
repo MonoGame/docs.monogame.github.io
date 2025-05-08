@@ -447,15 +447,17 @@ Our title panel includes two buttons positioned at the bottom corners of the scr
 > [!NOTE]
 > Notice how we use `Anchor` to position the buttons relative to the panel's edges, with the "Start" button anchored at the bottom left and the "Options" button anchored at the bottom right.  Then the positioning of the elements is adjusted relative to its anchor point.
 
-Each button registers a `Click` event handler to respond when the players selects it, we should implement the event handler method for these buttons next.
-
-Add the following methods to the `TitleScene` class:
+Each button registers a `Click` event handler to respond when the players selects it, we should implement the event handler method for these buttons next.  First we will implement the handler for the "Start" button.  Add the following method to the `TitleScene` class after the `CreateTitlePanel` method:
 
 [!code-csharp[](./snippets/titlescene/handlestartclicked.cs)]
 
+When the "Start" button is clicked and this method is called, it will play the UI sound effect for auditory feedback then change the scene tot he game scene so the player can start playing the game.
+
+Next is the handler for the "Options" button.  Add the following method to the `TitleScene` class after the `HandleStartClicked` method:
+
 [!code-csharp[](./snippets/titlescene/handleoptionsclicked.cs)]
 
-These handlers are called when the `Click` event is raised for each button.  The handler for the "Start" button changes to the game scene, while the handler for the options button toggles the visibility between the main menu and the options panel.
+When the "Options" button is clicked and this method is called, it will play the UI sound effect for auditory feedback then hide the title panel and show the options panel.  
 
 #### Creating the Options Panel
 
@@ -467,19 +469,35 @@ Add the following method to the `TitleScene` class:
 
 This panel includes a text label, two sliders for adjusting audio volumes, and a back button for returning to the main menu. The panel is initially invisible since we start on the main menu.  Both the "Music Volume" slider and the "Sound Effects Volume" slider register events to be called when the value of the sliders change and when the value change has been completed.  The "Back" button registers a click event similar to the ones from the main menu.
 
-Now we should implement the event handlers for these controls.  Add the following methods to the `TitleScene` class after the `CreateOptionsPanel` method:
+Now we should implement the event handlers for these controls.  First, we will implement the handler for when the value of the sound effect volume slider changes.  Add the following method to the `TitleScene` class after the `CreateOptionsPanel` method:
 
 [!code-csharp[](./snippets/titlescene/handlesfxsliderchanged.cs)]
 
+When the value of the "Sound Effects Volume" slider changes and this method is called, a reference to the slider is captured and then the the global sound effect volume is adjusted based on the value of the slider.
+
+Next is the handler when the "Sound Effects Volume" slider has completed a value change.  Add the following method to the `TitleScene` class after the `HandleSfxSliderChanged` method:
+
 [!code-csharp[](./snippets/titlescene/handlesfxsliderchangecompleted.cs)]
+
+When the value of the "Sound Effects Volume" slider has completed a change and this method is called, it plays the UI sound effect to provide auditory feedback so the player can hear the difference in volume.
+
+After this is the handler for when the "Music Volume" slider value changes.  Add the following method to the `TitleScene` class after the `HandleSfxSliderChangeCompleted` method:
 
 [!code-csharp[](./snippets/titlescene/handlemusicslidervaluechanged.cs)]
 
+Similar to how we handled the "Sound Effect Volume" slider value changes, when the "Music Volume" slider value changes and this method is called, a reference to the slider is captured and then the global music volume is adjusted based on the value of the slider.
+
+Next is the handler when the "Music Volume" slider value has completed a value change.  Add the following method to the `TitleScene` class after the `HandleMusicSliderValueChanged` method:
+
 [!code-csharp[](./snippets/titlescene/handlemusicslidervaluechangecompleted.cs)]
+
+When the value of the "Music Volume" slider has completed a change, the UI sound effect is played to provide auditory feedback.
+
+Finally, we need to add the handler for when the "Back" button is clicked on the options panel.  Add the following method to the `TitleScene` class after the `HandleMusicSliderValueChangeCompleted` method:
 
 [!code-csharp[](./snippets/titlescene/handleoptionsbuttonback.cs)]
 
-These handlers update our audio settings in real-time as the player adjusts the sliders.
+This method plays the UI sound effect for auditory feedback, then hides the options panel and shows the title panel.
 
 > [!TIP]
 > Notice that for both sliders, we registered a method for the `ValueChangeCompleted` event.  This is so we can play the UI sound effect only when the player has finished adjusting the slider value. If we had instead played the UI sound effect in the `ValueChanged` event, then the UI sound effect would trigger constantly while the slider is being adjusted if using a mouse to drag it.
@@ -541,7 +559,7 @@ Next, add the following fields to the `GameScene` class:
 
 #### Pausing the Game
 
-To pause the game, first we will create a method that makes the pause panel visible.  Add the following method to the `GameScene` class after the fields:
+To pause the game, first we will create a method that makes the pause panel visible.  Add the following method to the `GameScene` class after the `CheckGamePadInput` method:
 
 [!code-csharp[](./snippets/gamescene/pausegame.cs)]
 
@@ -555,7 +573,7 @@ Finally, update the `CheckGamePadInput` method so that when the start button is 
 
 #### Creating the Pause Panel
 
-Next, we will create a method that builds our pause panel with resume and quit buttons. Add the following method to the `GameScene` class:
+Next, we will create a method that builds our pause panel with resume and quit buttons. Add the following method to the `GameScene` class after the `LoadContent` method:
 
 [!code-csharp[](./snippets/gamescene/createpausepanel.cs)]
 
@@ -573,7 +591,7 @@ This method as well plays the UI sound effect for auditory feedback, then quits 
 
 #### Initializing the Game UI
 
-Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.   Add the following method to the `GameScene` class after the `CreatePausePanel` method:
+Now that we have implemented the method to create the pause panel, we can implement the main UI initializations method that will call them.   Add the following method to the `GameScene` class after the `HandleQuitButtonClicked` method:
 
 [!code-csharp[](./snippets/gamescene/initializeui.cs)]
 
