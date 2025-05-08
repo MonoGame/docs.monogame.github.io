@@ -131,9 +131,9 @@ Now that we have added our first asset, we can take a moment to understand what 
 
 The following diagram demonstrates this workflow:
 
-| ![Figure 5-7: MonoGame Content Pipeline Workflow](./images/content-pipeline-workflow-full.png) |
+| ![Figure 5-7: MonoGame Content Pipeline Workflow diagram showing the process flow from source files (Images, Audio, Fonts, Effects, Models) through the MGCB Editor to generate the Content.mgcb file, which is then processed by MonoGame.Content.Builder.Tasks to create compiled .xnb assets (Xnb formats for each type), which are finally loaded by the ContentManager at runtime](./images/content-pipeline-workflow-full.png) |
 | :--------------------------------------------------------------------------------------------: |
-|                       **Figure 5-7: MonoGame Content Pipeline Workflow**                       |
+|                       **Figure 5-7: MonoGame Content Pipeline Workflow diagram showing the process flow from source files (Images, Audio, Fonts, Effects, Models) through the MGCB Editor to generate the Content.mgcb file, which is then processed by MonoGame.Content.Builder.Tasks to create compiled .xnb assets (Xnb formats for each type), which are finally loaded by the ContentManager at runtime**                       |
 
 The Content Pipeline offers significant advantages:
 
