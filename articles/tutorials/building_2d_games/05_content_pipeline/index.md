@@ -88,7 +88,7 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 >   dotnet tool restore
 > ```
 >
-> This should restore the tool with the version that is configured.  If at any time you upte your `dotnet-tools.json` configuration, e.g. when upgrading to a newer version of MonoGame, **you will need to run this command again**
+> This should restore the tool with the version that is configured.  If at any time you update your `dotnet-tools.json` configuration, e.g. when upgrading to a newer version of MonoGame, **you will need to run this command again**
 
 | ![Figure 5-3: MonoGame Content Builder Editor (MGCB Editor) Window](./images/mgcb-editor.png) |
 |:---------------------------------------------------------------------------------------------:|
@@ -113,7 +113,7 @@ To add assets (such as textures, audio, etc) to the content project:
 When adding assets to the content project, a pop-up dialog will appear with the following options:
 
 - **Copy the file to the folder**: Creates a duplicate of the file inside your project's Content folder. This creates an independent copy, meaning any later changes to the original file wo not affect your project.
-- **Add a link**: Creates a reference to the original file without making a copy. This maintains a connection to the source file, so any updates to the original will be included when you build. Note that the link uses a path relative to the Content.mgcb file, so if either the source file or your project moves, you will need to re-establish the link.
+- **Add a link**: Creates a reference to the original file without making a copy. This maintains a connection to the source file, so any updates to the original will be included when you build. Note that the link uses a path relative to the `Content.mgcb` file, so if either the source file or your project moves, you will need to re-establish the link.
 - **Skip**: Cancels adding the current file while continuing with any other selected files.
 
 | ![Figure 5-4: Add existing file pop-up](./images/add-file-popup.png) |
@@ -125,7 +125,7 @@ When adding assets to the content project, a pop-up dialog will appear with the 
 To create a new asset using one of the built-in asset types in the MGCB Editor:
 
 1. In the Project panel, select the folder where you want to add the new asset. If you want to add it to the root, select the main *Content* node.
-2. Right-click on the selected folder and choose *Add > New Item...* from the context menu.
+2. Right-click on the selected folder and choose `Add > New Item...` from the context menu.
 3. In the dialog that appears, select the type of asset you want to create from the list of available built-in types:
     - **Effect (.fx)**: A shader file that creates custom visual effects by controlling how graphics are rendered on the GPU.
     - **SpriteFont Description (.spritefont)**: A configuration file that defines how text will be displayed in your game, including character set and font properties.
@@ -133,7 +133,7 @@ To create a new asset using one of the built-in asset types in the MGCB Editor:
     - **Xml Content (.xml)**: A structured data file for storing game information like levels, dialogues, or configuration settings.
     - **LocalizedSpriteFont Description (.spritefont)**: A configuration file for creating fonts with support for multiple languages.
 4. Enter a name for your new asset in the *Name* field.
-5. Click *Create* to add the new asset to your project.
+5. Click `Create` to add the new asset to your project.
 
 | ![Figure 5-5: New file pop-up](./images/new-file-popup.png) |
 |:-----------------------------------------------------------:|
