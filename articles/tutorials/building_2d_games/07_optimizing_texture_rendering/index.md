@@ -68,14 +68,15 @@ In [Chapter 06](../06_working_with_textures/index.md#source-rectangle), we learn
 We are going to add this class to the class library we created in [Chapter 04](../04_creating_a_class_library/index.md).  Perform the following:
 
 1. Add new folder in the *MonoGameLibrary* project named `Graphics`
-2. Create a new file named *TextureRegion.cs* inside the *Graphics* folder you just created.
-
-Add the following code for the foundation of the `TextureRegion` class to the *TextureRegion.cs* file:
+2. Create a new file named `TextureRegion.cs` inside the *Graphics* folder you just created.
+3. Add the following code for the foundation of the `TextureRegion` class to the file:
 
 [!code-csharp[](./snippets/textureregion.cs#declaration)]
 
 > [!NOTE]
-> The *TextureRegion.cs* class file is placed in the *MonoGame/Graphics* folder and the class uses the `MonoGameLibrary.Graphics` [namespace](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview) to keep graphics-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
+> The `TextureRegion.cs` class file is placed in the *MonoGame/Graphics* folder and the class uses the `MonoGameLibrary.Graphics` [namespace](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview) to keep graphics-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
+
+We will add several components to this class in sequence. Each section below should be added to the `TextureRegion` class in the order presented between the brackets ` { } ` of the class definition. As we go through each part, the class will gradually take shape to handle all the texture handling behavior we need.
 
 ### TextureRegion Members
 
@@ -87,11 +88,16 @@ The `Texture` and `SourceRectangle` properties work together to define where the
 
 ### TextureRegion Constructor
 
-The `TextureRegion` class will provide two ways to create a new texture region.  Add the following constructors:
+The `TextureRegion` class provides two ways to create a new texture region.
+
+Add the following constructors:
 
 [!code-csharp[](./snippets/textureregion.cs#ctors)]
 
-The default constructor creates an empty texture region that can be configured later, while the parameterized constructor allows you to define the region's source texture and boundary in a single step. This second constructor provides a convenient way to create texture regions when you know the exact location and dimensions within the source texture upfront.
+* The default constructor creates an empty texture region that can be configured later.
+* The parameterized constructor allows you to define the region's source texture and boundary in a single step.
+
+The second constructor provides a convenient way to create texture regions when you know the exact location and dimensions within the source texture upfront.
 
 ### TextureRegion Methods
 
@@ -105,13 +111,17 @@ These methods provide flexible options for rendering the texture region, similar
 - A second overload exposes all rendering parameters while allowing for a single float value to be applied to both axes for scaling.
 - The third overload is the most flexible, offering all rendering parameters and independent x- and y-axis scaling.
 
+Only the last `Draw` method actually uses the `Texture` specified in the class, as the other two methods both depend on this final implementation, simplifying the code needed to actually do the drawing.
+
 ## The TextureAtlas Class
 
 In the [What is a Texture Atlas](#what-is-a-texture-atlas) section above, a texture atlas was described as a scrap book that holds all of the individual sprites for the game.  These individual sprites can now be represented by the `TextureRegion` class we just created.  Now, we will create the `TextureAtlas` class to represent the collection of the regions that make up all of our sprites.
 
-Just like the `TextureRegion` class, we are going to add this to the class library.  In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *TextureAtlas.cs*.  Add the following code for the foundation fo the `TextureAtlas` class to the *TextureAtlas.cs* file:
+Just like the `TextureRegion` class, we are going to add this to the class library.  In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named `TextureAtlas.cs`, then add the following code for the foundation of the `TextureAtlas` class:
 
 [!code-csharp[](./snippets/textureatlas.cs#declaration)]
+
+As before, each section below adds more functionality to this class, one after the other within the `TextureAtlas` class.
 
 ### TextureAtlas Members
 
@@ -123,11 +133,16 @@ The private `_regions` dictionary stores named texture regions, allowing us to r
 
 ### TextureAtlas Constructors
 
-The `TextureAtlas` class will provide two ways to create a new atlas.  Add the following constructors:
+The `TextureAtlas` class provides two ways to create a new atlas.
+
+Add the following constructors:
 
 [!code-csharp[](./snippets/textureatlas.cs#ctors)]
 
-The default constructor creates an empty atlas that can be configured later, while the parameterized constructor allows you to specify the source texture immediately. Both constructors initialize the `_regions` dictionary so that it is ready to be used either way.
+* The default constructor creates an empty atlas that can be configured later.
+* The parameterized constructor allows you to specify the source texture immediately.
+
+Both constructors initialize the `_regions` dictionary so that it is ready to be used either way.
 
 ### TextureAtlas Methods
 
@@ -156,9 +171,13 @@ Download the texture atlas by right-clicking the following image and saving it a
 |          **Figure 7-2: The texture atlas for our game**           |
 
 > [!TIP]
-> You may notice that our texture atlas image has some empty areas, which seems like a waste.  Its dimensions are 256x256 pixels when it could have just been 240x160 pixels.  This is intentional.
+> You may notice that our texture atlas image has some empty areas, which seems like a waste.  Its dimensions are 256x256 pixels when it could have just been 240x160 pixels.
 >
->Game graphics often use texture dimensions that are powers of 2 (128, 256, 512, 1024, etc.) for technical reasons. While modern graphics hardware can handle any texture size, power-of-2 dimensions provide better memory efficiency and more precise rendering. When pixel coordinates are converted to texture coordinates during rendering, powers of 2 can be represented more precisely in floating-point calculations, helping prevent visual artifacts like texture seams. This is not critical for simple 2D games, but adopting this practice early will serve you well as your games become more complex.
+> **This is intentional.**
+>
+> Game graphics often use texture dimensions that are powers of 2 (128, 256, 512, 1024, etc.) for technical reasons. While modern graphics hardware can handle any texture size, power-of-2 dimensions provide better memory efficiency and more precise rendering. When pixel coordinates are converted to texture coordinates during rendering, powers of 2 can be represented more precisely in floating-point calculations, helping prevent visual artifacts like texture seams.
+>
+> This is not critical for simple 2D games, but adopting this practice early will serve you well as your games become more complex.
 
 Add this texture atlas to your content project using the MGCB Editor:
 
@@ -170,7 +189,7 @@ Add this texture atlas to your content project using the MGCB Editor:
 > [!TIP]
 > If you need a refresher on adding content using the MGCB Editor, you can revisit the [Chapter 05: The Content Pipeline](../05_content_pipeline/index.md).
 
-First, we will explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of *Game1.cs* with the following:
+First, we will explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of `Game1.cs` with the following:
 
 [!code-csharp[](./snippets/game1/textureatlas_usage.cs?highlight=5,11-15,31-47,67-77)]
 
@@ -195,26 +214,25 @@ Running the game now shows both sprites in the upper-left corner:
 
 While manual creation works for a few sprites, managing many regions becomes cumbersome. Now we will explore the `TextureAtlas.FromFile` method to load our atlas configuration from XML instead. Perform the following:
 
-1. Create a new file named *atlas-definition.xml* in the *Content/images* folder.
-2. Add the following content to that file:
+1. Open the *Content.mgcb* file in the MGCB Editor
+1. Create a new file named `atlas-definition` in the *Content/images* folder using "Add -> New Item -> XML Content".
+1. In the properties panel at the bottom for the `atlas-definition.xml` file, change the *`Build Action`* property from `Build` to *`Copy`*.
+1. Save the changes and close the MGCB Editor
+1. Open the new `atlas-definition.xml` file in your code editor (The MGCB editor cannot edit files, only manage the what content it builds)
+1. Replace the contents of the XML file with the following:
 
     [!code-xml[](./snippets/atlas_definition.xml)]
 
-3. Open the *Content.mgcb* file in the MGCB Editor
-4. In the editor, right-click the *images* folder and choose *Add . Existing item...*.
-5. Navigate to and choose the *atlas-definition.xml* file you just created to add it.
-6. In the properties panel at the bottom for the *atlas-definition.xml* file, change the *Build Action* property from *Build* to *Copy*.
 
     | ![Figure 7-4: The atlas-definition.xml file added to the content project with the Build Action property set to Copy](./images/mgcb-editor-copy.png) |
     |:---------------------------------------------------------------------------------------------------------------------------------------------------:|
     |                **Figure 7-4: The atlas-definition.xml file added to the content project with the Build Action property set to Copy**                |
 
-7. Save the changes and close the MGCB Editor
 
     > [!TIP]
     > Using the content pipeline to copy files ensures they are placed in the correct location alongside other game content. While there are other methods (like editing the .csproj), this approach keeps asset management centralized
 
-8. Replace the contents of *Game1.cs* with the following code:
+1. Update the contents of `Game1.cs` with the following code:
 
     [!code-csharp[](./snippets/game1/textureatlas_xml_usage.cs?highlight=31-32)]
 
@@ -222,10 +240,11 @@ The key improvements here is in [**LoadContent**](xref:Microsoft.Xna.Framework.G
 
 - Create an atlas from the XML configuration file.
 - Let the `TextureAtlas.FromFile` method handle texture loading and region creation.
+- Removed the manual creation of regions in code.
 
 This configuration based approached is advantageous because we can now add new and modify existing regions within the atlas without having to change code and/or recompile.  This also keeps the sprite definitions separate from the game logic.
 
-Running the game now will show the same results as Figure 7-4 above, with the slime and bat texture regions rendered in the upper-left corner of the game window.
+Running the game now will show the same results as `Figure 7-4` above, with the slime and bat texture regions rendered in the upper-left corner of the game window.
 
 ## Conclusion
 

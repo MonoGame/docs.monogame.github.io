@@ -45,7 +45,13 @@ One aspect of sampler states if the filtering mode.  Filtering in computer graph
 
 Think of filtering as the graphics hardware's strategy for filling in missing information when a texture is transformed.  When you enlarge a texture, the system needs to create new pixels that did not exist in the original.  When you shrink a texture, multiple original pixels must be combined into fewer output pixels.  The filtering mode controls how this process happens.
 
-There are three filtering modes available in MonoGame; Point, Linear, and Anisotropic.  Each mode offers a different balance between performance and visual quality.
+There are three filtering modes available in MonoGame:
+
+* Point
+* Linear
+* Anisotropic.
+
+Each mode offers a different balance between performance and visual quality.
 
 #### Point Filtering Mode
 
@@ -140,19 +146,19 @@ spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
 ## Adding a Scrolling Background to the Title Scene
 
-We will now update title scene of our game by adding a scrolling background pattern using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  Then, by adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.
+We will now update title scene of our game by adding a scrolling background pattern using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  By adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.
 
-First, download the following image of a repeatable background pattern by right-clicking it and saving it as *background-pattern.png* in the *Content/images* folder of the game project:
+First, download the following image of a repeatable background pattern by right-clicking it and saving it as `background-pattern.png` in the `Content/images` folder of the game project:
 
 | ![Figure 18-9: The repeatable background pattern we will use for the title screen](./images/background-pattern.png) |
-| :---------------------------------------------------------------------------------------------------------------: |
+| :---------------------------------------------------------------------------------------------------------------:   |
 |                 **Figure 18-9: The repeatable background pattern we will use for the title screen**                 |
 
 Next, add this texture to your content project using the MGCB Editor:
 
-1. Open the *Content.mgcb* content project file in the MGCB Editor.
-2. Right-click the images folder and choose *Add* > *Existing item...*.
-3. Navigate to and select the *background-pattern.png* file.
+1. Open the `Content.mgcb` content project file in the MGCB Editor.
+2. Right-click the images folder and choose `Add > Existing item...`.
+3. Navigate to and select the `background-pattern.png` file.
 4. Save the changes and close the MGCB Editor.
 
 | ![Figure 18-9: The MGCB Editor with the *background-pattern* image added](./images/mgcb-editor.png) |
@@ -161,9 +167,9 @@ Next, add this texture to your content project using the MGCB Editor:
 
 ### Updating the Title Scene
 
-Now that we have the background pattern texture added, we can update the `TitleScene` class to implement the scrolling background. Open the *TitleScene.cs* file in the game project and update it to the following
+Now that we have the background pattern texture added, we can update the `TitleScene` class to implement the scrolling background. Open the `TitleScene.cs` file in the game project and update it to the following
 
-[!code-csharp[](./snippets/titlescene.cs?highlight=39-50,79-81,92-93,104-113,120-123)]
+[!code-csharp[](./snippets/titlescene.cs?highlight=39-50,76-81,92-93,104-113,120-123)]
 
 The key changes here are
 

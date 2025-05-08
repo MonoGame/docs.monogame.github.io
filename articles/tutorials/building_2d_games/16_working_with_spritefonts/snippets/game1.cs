@@ -97,7 +97,6 @@ public class Game1 : Core
         // Set the origin of the text so it is left-centered.
         float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
         _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
-
     }
 
     protected override void LoadContent()

@@ -26,7 +26,7 @@ private void CreatePausePanel()
     _resumeButton.Visual.X = 9f;
     _resumeButton.Visual.Y = -9f;
     _resumeButton.Visual.Width = 80;
-    _resumeButton.Click += HandleResumeClicked;
+    _resumeButton.Click += HandleResumeButtonClicked;
     _pausePanel.AddChild(_resumeButton);
 
     var quitButton = new Button();
@@ -35,7 +35,7 @@ private void CreatePausePanel()
     quitButton.Visual.X = -9f;
     quitButton.Visual.Y = -9f;
     quitButton.Width = 80;
-    quitButton.Click += HandleQuitClicked;
+    quitButton.Click += HandleQuitButtonClicked;
 
     _pausePanel.AddChild(quitButton);
 }

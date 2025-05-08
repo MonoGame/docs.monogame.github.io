@@ -117,29 +117,31 @@ To add the game library project as a reference to the game project with the dotn
 
 ### Clean Up
 
-When using the *MonoGame Game Library* project template, the generated project contains file similar to a standard MonoGame game project, including a *dotnet-tools.json* manifest file, a *Content.mgcb* file, and a *Game1.cs* file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the *MonoGameLibrary* project folder and delete them:
+When using the *MonoGame Game Library* project template, the generated project contains file similar to a standard MonoGame game project, including a *dotnet-tools.json* manifest file, a *Content.mgcb* file, and a `Game1.cs` file.  For the purposes of this tutorial, we will not need these.   To clean these up, locate the following in the *MonoGameLibrary* project folder and delete them:
 
 1. The *.config/* folder.
 2. The *Content/* folder
-3. The *Game1.cs* file.
+3. The `Game1.cs` file.
 
 > [!TIP]
 > These files are needed in more advanced scenarios such as creating a central code base for game logic that is referenced by other projects of which each target different platforms such as desktop, mobile, and console.  Creating a project structure of this type is out of scope for this tutorial.  
 >
 > If you would like more information on this, Simon Jackson has written the article [Going cross-platform with MonoGame](https://darkgenesis.zenithmoon.com/going-cross-platform-with-monogame.html) which covers this in more detail.
+>
+> Also the `2D Start Kit` and `2D Blank Start Kit` templates provide you with a richer startup project targetting all platforms, using a common Class Library to reuse code across them all.  Although we recommend completing this tutorial first before tackling that beast.
 
 ## Creating Our First Library Module
 
 We will create a class for our library called `Core`.  This class will extend the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class and provide a starting point for game development with some common functionality built in.  Creating this will also let us validate that our class library reference setup was correct.
 
-Create a new file called *Core.cs* in the *MonoGameLibrary* project and add the following code:
+Create a new file called `Core.cs` in the *MonoGameLibrary* project and add the following code:
 
 [!code-csharp[](./snippets/core.cs)]
 
 The `Core` class provides the following features
 
 1. It extends the MonoGame [**Game**](xref:Microsoft.Xna.Framework.Game) class, so it inherits all of the base functionality.
-2. It implements a singleton pattern through the `Instance` property, ensure only one core exists.
+2. It implements a [singleton pattern](https://en.wikipedia.org/wiki/Singleton_pattern) through the `Instance` property, ensure only one core exists.
 3. It provides static access to the graphics device manager, the graphics device, the sprite batch, and the content manager.
 4. It simplifies the game window setup with a constructor that handles common initializations.
 
@@ -157,7 +159,7 @@ This approach provides a consistent foundation for all our games, handling commo
 
 Now that we have our `Core` class, we can modify our game project to use it.  Doing this will also help ensure that the project references were setup correctly.
 
-Open the *Game1.cs* file and make the following changes:
+Open the `Game1.cs` file and make the following changes:
 
 [!code-csharp[](./snippets/game1.cs?highlight=4,8,10,22-25)]
 
@@ -170,6 +172,9 @@ The key changes made here are:
 
 Running the game now will show the same window as before, only now it is at a 1280x720 resolution as per the configuration and it is using the `Core` class from our library.  This may not seem like a big change visually, but it demonstrates how our library can simplify and standardize game initializations.
 
+> [!NOTE]
+> If you get any additional prompts when starting the project, simply accept the defaults.  Adding the Game Library gives the compiler more projects to choose from when starting the project, however, we can only "run" the Game Project, libraries are not executables.
+
 | ![Figure 4-3: The game window at 1280x720 with the title Dungeon Slime](./images/game-window.png) |
 | :-----------------------------------------------------------------------------------------------: |
 |             **Figure 4-3: The game window at 1280x720 with the title Dungeon Slime**              |
@@ -179,7 +184,7 @@ Running the game now will show the same window as before, only now it is at a 12
 >
 > *The type or namespace name 'Core' could not be found (are you missing a using directive or an assembly reference?)*
 >
-> This means either you forgot to add the `using MonoGameLibrary;` using directive to the top of the *Game1.cs* class file, or you did not add the project reference correctly.  Ensure that the project reference was added correctly by revisiting the [Add a Reference to the Class Library](#adding-a-reference-to-the-class-library) section above and that you added the using directive.
+> This means either you forgot to add the `using MonoGameLibrary;` using directive to the top of the `Game1.cs` class file, or you did not add the project reference correctly.  Ensure that the project reference was added correctly by revisiting the [Add a Reference to the Class Library](#adding-a-reference-to-the-class-library) section above and that you added the using directive.
 
 ## Conclusion
 
