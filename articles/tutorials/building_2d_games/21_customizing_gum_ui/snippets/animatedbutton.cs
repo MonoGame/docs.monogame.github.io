@@ -43,7 +43,7 @@ internal class AnimatedButton : Button
         // Create the text element that will display the button's label
         TextRuntime textInstance = new TextRuntime();
         // Name is required so it hooks in to the base Button.Text property
-        textInstance.Name = nameof(textInstance);
+        textInstance.Name = "TextInstance";
         textInstance.Text = "START";
         textInstance.Blue = 130;
         textInstance.Green = 86;
