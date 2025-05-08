@@ -41,7 +41,7 @@ public class OptionsSlider : Slider
         topLevelContainer.Height = 55f;
         topLevelContainer.Width = 264f;
 
-        TextureRegion backgroundRegion = atlas.GetRegion("slider-background");
+        TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
 
         // Create the background panel that contains everything
         NineSliceRuntime background = new NineSliceRuntime();
