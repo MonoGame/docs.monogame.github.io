@@ -93,7 +93,7 @@ You hae now created a folder that will help organize the game's image assets.  A
 
 Now that we have a folder structure, we can add our first image asset to the project.  For this example, we will use the MonoGame logo.  Perform the following
 
-1. First, download the MonoGame logo by right-clicing the following image and saving it as `logo.png` somewhere on your computer:
+1. First, download the MonoGame logo by right-clicking the following image and saving it as `logo.png` somewhere on your computer:
 
     | ![Figure 5-4: MonoGame Horizontal Logo](./images/logo.png) |
     | :--------------------------------------------------------: |
@@ -122,13 +122,16 @@ Now that we have a folder structure, we can add our first image asset to the pro
 
 Now that we have added our first asset, we can take a moment to understand what happens to this asset in the Content Pipeline workflow:
 
-1. First, you add asset files to your content project using the MGCB Editor (as we just did).
-2. When you build your project, the *MonoGame.Content.Builder.Tasks* NuGet package reference will:
-   1. Compile the assets into optimized formats for your target platform.
-   2. Places them in the content project's output directory.
-   3. Copies them from the content project's output directory to your game's build directory.
+1. You create source files for your game assets such as images, audio, fonts, effects, and 3D models.
+2. Using the MGCB Editor, add these assets your content project (the `Content.mgcb` file).
+3. When you perform a build of your project, the `MonoGame.Content.Builder.Task` NuGet reference will:
+   1. Compile the assets defined in the content project using the **MonoGame Content Builder (MGCB)** tool into `.xnb` files.
+   2. Copy the compiled `.xnb` files from the content project's build folder to your game project's build folder.
+4. At runtime, you load the compiled assets using the [ContentManager](xref:Microsoft.Xna.Framework.Content.ContentManager).
 
-| ![Figure 5-7: MonoGame Content Pipeline Workflow](./images/content-pipeline-workflow-full.svg) |
+The following diagram demonstrates this workflow:
+
+| ![Figure 5-7: MonoGame Content Pipeline Workflow](./images/content-pipeline-workflow-full.png) |
 | :--------------------------------------------------------------------------------------------: |
 |                       **Figure 5-7: MonoGame Content Pipeline Workflow**                       |
 
