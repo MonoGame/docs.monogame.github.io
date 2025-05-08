@@ -134,9 +134,12 @@ The slime and bat sprites are no longer in the same position, and we have some n
 
 ### Adding Bitmap Fonts
 
-While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to draw text, Gum uses the [AngelCode Bitmap Font (.fnt)](https://www.angelcode.com/products/bmfont/) font file format. This means we will need to supply Gum with the *.fnt* file that defines our font.
+While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to draw text, Gum uses the [AngelCode Bitmap Font (.fnt)](https://www.angelcode.com/products/bmfont/) font file format. This means we will need to supply Gum with the *.fnt* file that defines our font.  
 
-First, download the *.fnt* file by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/fonts* folder:
+> [!NOTE]
+> For this tutorial, a pregenerated *.fnt* file is supplied below.  For more information on creating *.fnt* files for Gum, see the [Create Fonts with BitmapFontGenerator](https://docs.flatredball.com/gum/gum-tool/gum-elements/text/use-custom-font#creating-fonts-with-bitmapfontgenerator) section of the Gum documentation. 
+
+Download the *.fnt* file below by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/fonts* folder:
 
 - [04b_30.fnt](./files/04b_30.fnt){download}
 
