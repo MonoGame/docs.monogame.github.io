@@ -132,6 +132,10 @@ The slime and bat sprites are no longer in the same position, and we have some n
 
 [!code-csharp[](./snippets/atlas-definition.xml?highlight=5-16,29-32)]
 
+The same is now true for the tiles in the texture atlas.  Since they have been repositioned in the new texture atlas, we need to update the `region` attribute for the tilemap XML configuration file.  Open the `tilemap-definition.xml` configuration file and update it to the following:
+
+[!code-csharp[](./snippets/tilemap-definition.xml?highlight=3)]
+
 ### Adding Bitmap Fonts
 
 While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to draw text, Gum uses the [AngelCode Bitmap Font (.fnt)](https://www.angelcode.com/products/bmfont/) font file format. This means we will need to supply Gum with the *.fnt* file that defines our font.  
