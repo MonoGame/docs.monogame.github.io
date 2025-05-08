@@ -3,7 +3,6 @@ using Gum.DataTypes;
 using Gum.DataTypes.Variables;
 using Gum.Graphics.Animation;
 using Gum.Managers;
-using Gum.Wireframe;
 using Microsoft.Xna.Framework.Input;
 using MonoGameGum.Forms.Controls;
 using MonoGameGum.GueDeriving;
@@ -37,7 +36,7 @@ internal class AnimatedButton : Button
         nineSliceInstance.Height = 0f;
         nineSliceInstance.Texture = atlas.Texture;
         nineSliceInstance.TextureAddress = TextureAddress.Custom;
-        nineSliceInstance.Dock(Dock.Fill);
+        nineSliceInstance.Dock(Gum.Wireframe.Dock.Fill);
         topLevelContainer.Children.Add(nineSliceInstance);
 
         // Create the text element that will display the button's label
@@ -51,7 +50,7 @@ internal class AnimatedButton : Button
         textInstance.UseCustomFont = true;
         textInstance.CustomFontFile = "fonts/04b_30.fnt";
         textInstance.FontScale = 0.25f;
-        textInstance.Anchor(Anchor.Center);
+        textInstance.Anchor(Gum.Wireframe.Anchor.Center);
         textInstance.Width = 0;
         textInstance.WidthUnits = DimensionUnitType.RelativeToChildren;
         topLevelContainer.Children.Add(textInstance);
