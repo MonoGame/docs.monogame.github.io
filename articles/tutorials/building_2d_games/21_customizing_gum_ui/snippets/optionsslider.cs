@@ -2,7 +2,6 @@ using System;
 using Gum.DataTypes;
 using Gum.DataTypes.Variables;
 using Gum.Managers;
-using Gum.Wireframe;
 using Microsoft.Xna.Framework;
 using MonoGameGum.Forms.Controls;
 using MonoGameGum.GueDeriving;
@@ -51,7 +50,7 @@ public class OptionsSlider : Slider
         background.TextureLeft = backgroundRegion.SourceRectangle.Left;
         background.TextureTop = backgroundRegion.SourceRectangle.Top;
         background.TextureWidth = backgroundRegion.Width;
-        background.Dock(Dock.Fill);
+        background.Dock(Gum.Wireframe.Dock.Fill);
         topLevelContainer.AddChild(background);
 
         // Create the title text element
@@ -77,7 +76,7 @@ public class OptionsSlider : Slider
 
         // Create the "OFF" side of the slider (left end)
         NineSliceRuntime offBackground = new NineSliceRuntime();
-        offBackground.Dock(Dock.Left);
+        offBackground.Dock(Gum.Wireframe.Dock.Left);
         offBackground.Texture = atlas.Texture;
         offBackground.TextureAddress = TextureAddress.Custom;
         offBackground.TextureHeight = offBackgroundRegion.Height;
@@ -86,14 +85,14 @@ public class OptionsSlider : Slider
         offBackground.TextureWidth = offBackgroundRegion.Width;
         offBackground.Width = 28f;
         offBackground.WidthUnits = DimensionUnitType.Absolute;
-        offBackground.Dock(Dock.Left);
+        offBackground.Dock(Gum.Wireframe.Dock.Left);
         innerContainer.AddChild(offBackground);
 
         TextureRegion middleBackgroundRegion = atlas.GetRegion("slider-middle-background");
 
         // Create the middle track portion of the slider
         NineSliceRuntime middleBackground = new NineSliceRuntime();
-        middleBackground.Dock(Dock.FillVertically);
+        middleBackground.Dock(Gum.Wireframe.Dock.FillVertically);
         middleBackground.Texture = middleBackgroundRegion.Texture;
         middleBackground.TextureAddress = TextureAddress.Custom;
         middleBackground.TextureHeight = middleBackgroundRegion.Height;
@@ -102,7 +101,7 @@ public class OptionsSlider : Slider
         middleBackground.TextureWidth = middleBackgroundRegion.Width;
         middleBackground.Width = 179f;
         middleBackground.WidthUnits = DimensionUnitType.Absolute;
-        middleBackground.Dock(Dock.Left);
+        middleBackground.Dock(Gum.Wireframe.Dock.Left);
         middleBackground.X = 27f;
         innerContainer.AddChild(middleBackground);
 
@@ -118,21 +117,21 @@ public class OptionsSlider : Slider
         maxBackground.TextureWidth = maxBackgroundRegion.Width;
         maxBackground.Width = 36f;
         maxBackground.WidthUnits = DimensionUnitType.Absolute;
-        maxBackground.Dock(Dock.Right);
+        maxBackground.Dock(Gum.Wireframe.Dock.Right);
         innerContainer.AddChild(maxBackground);
 
         // Create the interactive track that responds to clicks
         // The special name "TrackInstance" is required for Slider functionality
         ContainerRuntime trackInstance = new ContainerRuntime();
         trackInstance.Name = "TrackInstance";
-        trackInstance.Dock(Dock.Fill);
+        trackInstance.Dock(Gum.Wireframe.Dock.Fill);
         trackInstance.Height = -2f;
         trackInstance.Width = -2f;
         middleBackground.AddChild(trackInstance);
 
         // Create the fill rectangle that visually displays the current value
         _fillRectangle = new ColoredRectangleRuntime();
-        _fillRectangle.Dock(Dock.Left);
+        _fillRectangle.Dock(Gum.Wireframe.Dock.Left);
         _fillRectangle.Width = 90f; // Default to 90% - will be updated by value changes
         _fillRectangle.WidthUnits = DimensionUnitType.PercentageOfParent;
         trackInstance.AddChild(_fillRectangle);
@@ -146,7 +145,7 @@ public class OptionsSlider : Slider
         offText.FontScale = 0.25f;
         offText.UseCustomFont = true;
         offText.Text = "OFF";
-        offText.Anchor(Anchor.Center);
+        offText.Anchor(Gum.Wireframe.Anchor.Center);
         offBackground.AddChild(offText);
 
         // Add "MAX" text to the right end
@@ -158,7 +157,7 @@ public class OptionsSlider : Slider
         maxText.FontScale = 0.25f;
         maxText.UseCustomFont = true;
         maxText.Text = "MAX";
-        maxText.Anchor(Anchor.Center);
+        maxText.Anchor(Gum.Wireframe.Anchor.Center);
         maxBackground.AddChild(maxText);
 
         // Define colors for focused and unfocused states
