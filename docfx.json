@@ -78,8 +78,8 @@
       "markdigExtensions": [
         "Abbreviations",
         "Figures",
-        "CustomContainers"
-
+        "CustomContainers",
+        "attributes"
       ]
     },
     "postProcessors": [],

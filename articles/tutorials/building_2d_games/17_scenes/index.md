@@ -118,7 +118,7 @@ The key changes here are:
 With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We will create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
 
 1. Right-click the `fonts` folder and choose `Add > New Item...`.
-2. Select `SpriteFont Description (.spritefont)` from the options
+2. Select `SpriteFont Description (.spritefont)` from the options.
 3. Name the file `04B_30_5x` and click `Create`.
 
 | ![Figure 17-1: The *04B_30_5x.spritefont* file created in the MGCB Editor](./images/font_added.png) |
@@ -134,7 +134,7 @@ Next, open the *04B_30_5x.spritefont* file in your code editor and make the foll
 The title scene serves as the game's initial starting point; the first impression the player gets when they launch the game.  For our game, the title scene will display the text for the title of the game and a prompt to inform the player what action to take to start the game.  We will use a simple trick for the title text in order to draw it with a drop shadow to add a bit of visual flair.
 
 > [!NOTE]
-> As the following screens are specific to our game and are not reuable bits, these will be added to your game project.
+> As the following screens are specific to our game and are not reusable bits, these will be added to your game project.
 >
 > Although, if you do end up making screens that are completely reusable, there is nothing wrong with putting them in your Game Library, it is completely up to you.
 
@@ -320,9 +320,11 @@ With our scene system and scene classes in place, we can now simplify our main `
 [!code-csharp[](./snippets/game1.cs)]
 
 > [!NOTE]
-> Feel free to check your homework and compare the original `Game1` class with the updated version, as well as checking the `GameScene` class did not lose any functionality (it has not but you have to be sure!).  Refactoring code to be cleaner and more organised is a careful task.
+> Feel free to check your homework and compare the original `Game1` class with the updated version, as well as checking the `GameScene` class did not lose any functionality (it has not, but you have to be sure!).  Refactoring code to be cleaner and more organised is a careful task.
 
-The `Game1` class is now much simpler as most of the game logic has been moved to the appropriate scene classes. It:
+The `Game1` class is now much simpler as most of the game logic has been moved to the appropriate scene classes. 
+
+The updates include:
 
 1. Sets up the game window with the constructor parameters.
 2. Overrides the `Initialize` method to set the title scene as the starting scene.
