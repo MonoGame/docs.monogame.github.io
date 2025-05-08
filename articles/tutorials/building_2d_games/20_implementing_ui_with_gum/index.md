@@ -319,7 +319,7 @@ To add the Gum NuGet package in Visual Studio Code:
 2. Choose `Add NuGet Package` from the context menu.
 3. Enter `Gum.MonoGame` in the `Add NuGet Package` search prompt and press Enter.
 4. When the search finishes, select the `Gum.MonoGame` package in the results
-5. When prompted for a version, choose the latest version ("2025.4.23.1"  at the time of writing").
+5. When prompted for a version choose version `2025.5.1.1`.
 
 #### [Visual Studio 2022](#tab/vs2022)
 
@@ -330,7 +330,7 @@ To Add the Gum NuGet package in Visual Studio 2022:
 3. In the NuGet Package Manager window, select the `Browse` tab if it is not already selected.
 4. In the search box, enter `Gum.MonoGame`.
 5. Select the "Gum.MonoGame" package from the search results.
-6. Ensure the latest version is selected in the dropdown menu ("2025.4.23.1"  at the time of writing") and click the *Install* button.
+6. On the right, in the version dropdown, select version `2025.5.1.1` and click the "Install" button.
 
 #### [dotnet CLI](#tab/dotnetcli)
 
@@ -340,10 +340,8 @@ To add the Gum NuGet package using the dotnet CLI:
 2. Enter the following command:
 
     ```sh
-    dotnet add DungeonSlime.csproj package Gum.MonoGame
+    dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2025.5.1.1
     ```
-
-This will install the latest version of the package, which is "2025.4.23.1" at the time of writing.
 
 ---
 
@@ -351,8 +349,11 @@ This will install the latest version of the package, which is "2025.4.23.1" at t
 > You can verify the package was successfully added by examining your `DungeonSlime.csproj` file, which should now contain a reference like:
 >
 > ```xml
-> <PackageReference Include="Gum.MonoGame" Version="2025.4.23.1" />
+> <PackageReference Include="Gum.MonoGame" Version="2025.5.5.1" />
 > ```
+
+> [!IMPORTANT]
+> This tutorial uses version `2025.5.5.1` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the Gum documentation before updating in case there are any breaking changes from the code that is presented in this tutorial.
 
 ### Adding UI Sound Effect
 
