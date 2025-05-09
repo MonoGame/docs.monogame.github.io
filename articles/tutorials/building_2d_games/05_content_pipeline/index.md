@@ -33,7 +33,7 @@ For this tutorial series, we are going to focus on using the content pipeline wo
 
 ## The MGCB Editor
 
-As mentioned previously, the content pipeline workflow in Monogame is made up of a set of tools that come with every new MonoGame project.  At the center of this workflow is the MGCB Editor; a graphical tool for managing your game's content.
+As mentioned previously, the content pipeline workflow in MonoGame is made up of a set of tools that come with every new MonoGame project.  At the center of this workflow is the MGCB Editor; a graphical tool for managing your game's content.
 
 Opening the MGCB Editor can be done in different ways depending on which IDE and development environment you have.  Choose the one you are using below to open the MGCB Editor so we can explore its interface:
 
