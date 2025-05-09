@@ -25,8 +25,8 @@ By the end of this chapter, you will have an audio control system that can be ea
 
 To get started, in the *MonoGameLibrary* project:
 
-1. Create a new folder named *Audio*.
-2. Add a new class file named *AudioController.cs* to the *Audio* folder you just created.
+1. Create a new folder named `Audio`.
+2. Add a new class file named `AudioController.cs` to the `Audio` folder you just created.
 3. Add the following code as the initial structure for the class
 
     [!code-csharp[](./snippets/audiocontroller.cs#declaration)]
@@ -36,13 +36,17 @@ To get started, in the *MonoGameLibrary* project:
 
 ### AudioController Properties and Fields
 
-The `AudioController` will need to track sound effect instances created for cleanup and track the state and volume levels of songs and sound effects when toggling between mute states.  Add the following fields and properties:
+The `AudioController` will need to track sound effect instances created for cleanup and track the state and volume levels of songs and sound effects when toggling between mute states.
+
+Add the following fields and properties:
 
 [!code-csharp[](./snippets/audiocontroller.cs#properties)]
 
 ### AudioController Constructor
 
-The constructor just initializes the collection used to track the sound effect instances.  Add the following constructor and finalizer:
+The constructor just initializes the collection used to track the sound effect instances.
+
+Add the following constructor and finalizer:
 
 [!code-csharp[](./snippets/audiocontroller.cs#ctors)]
 
@@ -51,13 +55,15 @@ The constructor just initializes the collection used to track the sound effect i
 
 ### AudioController Methods
 
-The `AudioController` will need methods to:
+The `AudioController` needs methods to:
 
 - Update it to check for resources to clean up.
 - Playing sound effects and songs
 - State management (play/pause, mute/unmute)
 - Volume control
 - Implement the `IDisposable` interface.
+
+So lets add them below.
 
 #### AudioController Update
 
@@ -67,23 +73,27 @@ The `Update` method will check for existing sound effect instances that have exp
 
 #### AudioController Playback
 
-While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way does not work if you need to pause them because the game paused.  Instead, we can add playback methods through the `AudioController` that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.  Add the following methods:
+While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way does not work if you need to pause them because the game paused.  Instead, we can add playback methods through the `AudioController` that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.
+
+Add the following methods:
 
 [!code-csharp[](./snippets/audiocontroller.cs#playback)]
 
 #### AudioController State Control
 
-The `AudioController` provides methods to control the state of audio playback including pausing and resuming audio as well as muting and unmuting.  Add the following methods:
+The `AudioController` provides methods to control the state of audio playback including pausing and resuming audio as well as muting and unmuting.
+
+Add the following methods:
 
 [!code-csharp[](./snippets/audiocontroller.cs#state)]
 
 #### AudioController IDisposable Implementation
 
-Finally, the `AudioController` implements the `IDisposable` interface.  Add the following methods:
+Finally, the `AudioController` is required to implement the `IDisposable` interface, to complete this add the following methods:
 
 [!code-csharp[](./snippets/audiocontroller.cs#idisposable)]
 
-Games often use limited system resources like audio channels. When we are done with these resources, we need to clean them up properly. In .NET, the standard way to handle resource cleanup is through the `IDisposable` interface.
+Games often use limited system resources like audio channels, when we are done with these resources we need to clean them up properly. In .NET, the standard way to handle resource cleanup is through the `IDisposable` interface.
 
 Think of `IDisposable` like a cleanup checklist that runs when you are finished with something:
 
@@ -105,7 +115,7 @@ Now that we have the audio controller class complete, we can update the game to 
 
 ### Updating the Core Class
 
-The `Core` class serves as our the base game class, so we will update it first to add and expose the `AudioController` globally.  Open the *Core.cs* file in the *MonoGameLibrary* project and update it to the following:
+The `Core` class serves as our the base game class, so we will update it first to add and expose the `AudioController` globally.  Open the `Core.cs` file in the *MonoGameLibrary* project and update it to the following:
 
 [!code-csharp[](./snippets/core.cs?highlight=6,50-53,112-113,116-122,129-130)]
 
@@ -119,9 +129,12 @@ The key changes made here are:
 
 ### Updating the Game1 Class
 
-Next, update the `Game1` class to use the audio controller for audio playback.  Open *Game1.cs* and make the following updates:
+Next, update the `Game1` class to use the audio controller for audio playback.  Open `Game1.cs` and make the following updates:
 
 [!code-csharp[](./snippets/game1.cs?highlight=45-46,77-78,104-105,197-198,216-217,270-288)]
+
+> [!NOTE]
+> Note there were a lot of replacements in the `LoadContent` method, switching from loading and initializing the background Song and replacing it with a call to the new `AudioController` to do all the work managing the Song reference.  Much cleaner.
 
 The key changes made here are:
 
@@ -139,6 +152,11 @@ Running the game now will produce the same result as the previous chapter, only 
 | ![Figure 15-1: Gameplay with audio.](./videos/gameplay.webm) |
 |:--------------------------------------------------------------------------------------:|
 |             **Figure 15-1: Gameplay with audio.**              |
+
+> [!NOTE]
+> You may note that while we added keybindings to change the audio settings, we did not add any bindings for the GamePad.  This is simply becuase this is not normally how you would adjust these values on a console, on consoles you would have a settings/options screen to update them.
+>
+> Later in [Chapter 20: Implementing UI with GUM](../20_implementing_ui_with_gum/index.md) we will add an Options screen to adjust all the audio values for the game.
 
 ## Conclusion
 

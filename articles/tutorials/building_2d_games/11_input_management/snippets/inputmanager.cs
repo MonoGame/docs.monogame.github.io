@@ -3,10 +3,8 @@ using Microsoft.Xna.Framework;
 
 namespace MonoGameLibrary.Input;
 
-public class InputManager
-{
+public class InputManager { }
 
-}
 #endregion
 {
     #region properties

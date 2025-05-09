@@ -24,10 +24,10 @@ Every customized UI component in Gum starts with a top-level container that hold
 
 The container hierarchy follows a parent-child relationship:
 
-- The top-level container manages the overall size and positioning of the component
-- Visual elements like backgrounds, text, and icons are added as children
-- Child elements can be positioned relative to their parent container
-- Child elements can also be nested within other children, creating deeper hierarchies
+- The top-level container manages the overall size and positioning of the component.
+- Visual elements like backgrounds, text, and icons are added as children.
+- Child elements can be positioned relative to their parent container.
+- Child elements can also be nested within other children, creating deeper hierarchies.
 
 This hierarchical structure allows you to build complex UI components from simpler parts, with each part playing a specific role in the overall design.
 
@@ -35,12 +35,15 @@ This hierarchical structure allows you to build complex UI components from simpl
 
 One powerful feature of Gum is how it handles size relationships between parent and child elements. By using different `WidthUnits` values, you can create dependencies that flow in different directions:
 
-- **RelativeToChildren**: A parent container can size itself based on its children
-- **PercentageOfParent**: A child element can size itself as a percentage of its parent
-- **Absolute**: An element can have a fixed pixel size
-- **RelativeToParent**: An element can size itself relative to a specific container
+- **RelativeToChildren**: A parent container can size itself based on its children.
+- **PercentageOfParent**: A child element can size itself as a percentage of its parent.
+- **Absolute**: An element can have a fixed pixel size.
+- **RelativeToParent**: An element can size itself relative to a specific container.
 
-For example, a button might use a text element with `WidthUnits` set to `RelativeToChildren`, which means the text will be exactly the size needed to display its content. The button's container might use `RelativeToChildren` with some additional padding, allowing the button to automatically resize based on its text content.
+For example:
+
+- A button might use a text element with `WidthUnits` set to `RelativeToChildren`, which means the text will be exactly the size needed to display its content.
+- The button's container might use `RelativeToChildren` with some additional padding, allowing the button to automatically resize based on its text content.
 
 Although we have not explicitly assigned WidthUnits and HeightUnits in our code, we have indirectly set these values by calling the Visual's `Dock` method. Specifically, by passing `Dock.Fill` as the parameter, `WidthUnits` and `HeightUnits` are both set to `RelativeToParent`.
 
@@ -83,9 +86,9 @@ To convert from pixel coordinates to normalized values, you divide the pixel pos
 
 Rather than directly modifying properties when UI elements change state (like when a button is focused), Gum uses a state-based system. Each control type has a specific category name that identifies its collection of states:
 
-- Buttons use `Button.ButtonCategoryName`
-- Sliders use `Slider.SliderCategoryName`
-- Other control types have their own category names
+- Buttons use `Button.ButtonCategoryName`.
+- Sliders use `Slider.SliderCategoryName`.
+- Other control types have their own category names.
 
 Within each category, you define named states that correspond to the control's possible conditions:
 
@@ -114,7 +117,7 @@ Before we create our custom components, we need to update the game's resources t
 
 ### Update the Texture Atlas
 
-Before we can start, we first need to update the *atlas.png* texture atlas file for the game. This new version of the texture atlas includes:
+First need to update the *atlas.png* texture atlas file for the game. This new version of the texture atlas includes:
 
 - The characters for the font, generated using Bitmap Font Generator (BMFont)
 - The sprites for the UI components we will create
@@ -139,11 +142,11 @@ First, download the *.fnt* file by right-clicking the following link and saving 
 
 Next, add this font file to your content project using the MGCB Editor:
 
-1. Open the *Content.mgcb* content project file in the MGCB Editor.
-2. Right-click the *fonts* folder and choose *Add* > *Existing Item...*.
-3. Navigate to and select the *04b_30.fnt* file you just downloaded.
-4. In the Properties panel, change the *Build Action* to *Copy*. The MonoGame Content Pipeline cannot process *.fnt* files; we just need it to copy it so we can give it to Gum.
-5. Save the changes and close the MGCB Editor.
+1. Open the `Content.mgcb` content project file in the MGCB Editor.
+2. Right-click the `fonts` folder and choose `Add > Existing Item...`.
+3. Navigate to and select the `04b_30.fnt` file you just downloaded.
+4. In the Properties panel, change the `Build Action` to `Copy`. The MonoGame Content Pipeline cannot process *.fnt* files; we just need it to copy it so we can give it to Gum.
+5. **Save the changes and close the MGCB Editor.**
 
 | ![Figure 21-2: The MGCB Editor with the 04b_30.fnt added to the fonts folder and the Build property set to Copy](./images/mgcb-editor.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
@@ -162,7 +165,7 @@ In [Chapter 18](../18_texture_sampling/index.md#texture-coordinates) we discusse
 
 Since [Gum also uses this coordinate system](#animation-chains), we will update the `TextureRegion` class to easily provide these values for any given region.
 
-Open the *TextureRegion.cs* file in the *MonoGameLibrary* project and add the following properties to the `TextureRegion` class:
+Open the `TextureRegion.cs` file in the *MonoGameLibrary* project and add the following properties to the `TextureRegion` class:
 
 [!code-csharp[](./snippets/textureregion/properties.cs)]
 
@@ -174,11 +177,11 @@ Now that we have all our resources prepared, we can create custom versions of th
 
 Our first custom component will be an `AnimatedButton` that inherits from Gum's base `Button` class. This button will use the game's existing texture atlas for its visual appearance and provide animation when focused.
 
-First, in the *DungeonSlime* project (your main game project), create a new folder named *UI* to store our custom UI components.  Next, in that *UI* folder, create a new file called *AnimatedButton.cs* and add the following code to it:
+First, in the *DungeonSlime* project (your main game project), create a new folder named `UI` to store our custom UI components.  Next, in that `UI` folder, create a new file called `AnimatedButton.cs` and add the following code to it:
 
 [!code-csharp[](./snippets/animatedbutton.cs)]
 
-Next, we will examine the key aspects of this implementation:
+Next, we will examine the key aspects of this new `AnimatedButton` implementation:
 
 #### Top-level Container
 
@@ -243,7 +246,7 @@ This creates a more responsive interface by immediately focusing elements that t
 
 Now we will create a custom `OptionsSlider` class to style the volume sliders.  This class inherits from Gum's base `Slider` class and provides a styled appearance consistent with the game's visual theme.
 
-In the *UI* folder fo the *DungeonSlime* project (your main game project), create a new file called *OptionsSlider.cs* and add the following code to it:
+In the `UI` folder of the *DungeonSlime* project (your main game project), create a new file called `OptionsSlider.cs` and add the following code to it:
 
 [!code-csharp[](./snippets/optionsslider.cs)]
 
@@ -251,7 +254,7 @@ The `OptionsSlider` is more complex than then [`AnimatedButton`](#the-animatedbu
 
 #### Slider Components
 
-Our custom slider consists of several components
+Walking through the `OptionsSlider` implementation, it consists of several components
 
 1. A background container with a label for the slider.
 2. An inner container that holds the slider track.
@@ -293,9 +296,9 @@ Now that we have created our custom controls, we need to update our game scenes 
 
 ### Updating the TitleScene
 
-First, open the *TitleScene.cs* file in the game project and add the following using declaration to the top of the `TitleScene` class:
+First, open the `TitleScene.cs` file in the game project and add the following using declaration to the top of the `TitleScene` class:
 
-[!code-csharp[](./snippets/titlescene/usings.cs?highlight=2)]
+[!code-csharp[](./snippets/titlescene/usings.cs?highlight=2,11)]
 
 Next, update both the `_optionsButton` and the `_optionsBackButton` fields to be of our new [`AnimatedButton`](#the-animatedbutton-class) type, and add a new field to store a reference to the texture atlas in.
 
@@ -319,7 +322,7 @@ Finally, update the `CreateOptionsPanel` method so that:
 
 ### Updating the GameScene
 
-Next, open the *GameScene.cs* file in the game project and add the following using declaration to the top of the `GameScene` class:
+Next, open the `GameScene.cs` file in the game project and add the following using declaration to the top of the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene/usings.cs?highlight=2,4)]
 

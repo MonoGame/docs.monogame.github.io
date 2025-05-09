@@ -136,6 +136,9 @@ Sound effects are played using the [**SoundEffect**](xref:Microsoft.Xna.Framewor
 | [**State**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State)       | [**SoundState**](xref:Microsoft.Xna.Framework.Audio.SoundState) | Current playback state (Playing, Paused, or Stopped).                      |
 | [**Volume**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume)     | `float`                                                         | Volume level between 0.0f (silent) and 1.0f (full volume).                 |
 
+> [!NOTE]
+> There is a lot more behind SoundEffectInstances such as the ability to play 3D sounds, as well as the advanced capabilities of the [DynamicSoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance) which can build audio streams.  However, these are beyond the scope of this beginners guide.  If you wish to know more, then check the [MonoGame documentation](/articles/getting_to_know/whatis/audio/)
+
 ## Playing Music
 
 Unlike sound effects, music is played through the [**MediaPlayer**](xref:Microsoft.Xna.Framework.Media.MediaPlayer) class. This static class manages playback of [**Song**](xref:Microsoft.Xna.Framework.Media.Song) instances and provides global control over music playback:
@@ -170,7 +173,7 @@ Add these files to your content project using the MGCB Editor:
    - For `.mp3` files, ensure the *Processor* is set to `Song`.
 6. Save the changes and close the MGCB Editor.
 
-Next, open the *Game1.cs* file and update it to the following:
+Next, open the `Game1.cs` file and update it to the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=3,6,39-43,92-111,203-204,222-223)]
 

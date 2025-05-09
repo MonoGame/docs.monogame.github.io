@@ -6,12 +6,13 @@ protected override void Draw(GameTime gameTime)
     // Begin the sprite batch to prepare for rendering.
     SpriteBatch.Begin();
 
-    // Draw the texture
+    // Draw the logo texture
     SpriteBatch.Draw(
         _logo,          // texture
         new Vector2(    // position
             Window.ClientBounds.Width, 
-            Window.ClientBounds.Height) * 0.5f,
+            Window.ClientBounds.Height)
+            * 0.5f,
         Color.White     // color
     );
 

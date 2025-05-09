@@ -81,30 +81,30 @@ The challenge in a snake-like game is to avoid colliding with either a wall or a
 
 ## Implementing Snake-Like Mechanics In Our Game
 
-Now that we have a foundational set of rules in place for the mechanics of a snake-like game, let's implement them into the current demo we've been building up. Our game will adapt these mechanics to fit them into our existing game structure:
+Now that we have a foundational set of rules in place for the mechanics of a snake-like game, we will implement them into the current demo we have been building up. Our game will adapt these mechanics to fit them into our existing game structure:
 
 - Instead of a snake, we will use the slime and create a chain of slime segments that follow the slime at the front.
 - The player will control the direction of the slime segment
 - The bat will serve as the objective to acquire to grow the slime segment.
 - Collisions with either the walls of the room or a slime segment will result in a game over state.
 
-As we implement these mechanics, we're also going to be creating classes that encapsulate the properties and functions of existing implementations in the game scene, such as the slime and the bat.  For example, currently, the game scene tracks fields for the `AnimatedSprite` and the position of the slime, as well as updating, input handling, and drawing the slime.  These can be moved into their dedicated classes encapsulating the functionality and also cleaning up the code in the game scene that has grown quite large.
+As we implement these mechanics, we are also going to be creating classes that encapsulate the properties and functions of existing implementations in the game scene, such as the slime and the bat.  For example, currently, the game scene tracks fields for the `AnimatedSprite` and the position of the slime, as well as updating, input handling, and drawing the slime.  These can be moved into their dedicated classes encapsulating the functionality and also cleaning up the code in the game scene that has grown quite large.
 
 ### The GameController Class
 
-Currently, we have two methods dedicated to handling input in the game scene, `CheckKeyboardInput` and `CheckGamePadInput`.  Both of these methods essentially perform the same logic across different input devices. This presents an opportunity to improve our code.
+Currently, we have two methods dedicated to handling input in the game scene, `CheckKeyboardInput` and `CheckGamePadInput`, both of these methods essentially perform the same logic across different input devices. This presents an opportunity to improve our code.
 
 To simplify input handling for the game, we can create a dedicated class that consolidates the input methods, providing a unified input profile for the game.  This pattern is widely used in game development to separate the "what" (game actions) from the "how" (specific input devices and buttons).
 
-In the *DungeonSlime* project (your main game project), create a new file named *GameController.cs* in the root directory and add the following code:
+In the *DungeonSlime* project (your main game project), create a new file named `GameController.cs` in the root directory and add the following code:
 
 [!code-csharp[](./snippets/gamecontroller.cs)]
 
-The `GameController` class implements an important design pattern in game development known as the "Input Abstraction" or "Command" pattern.  This pattern separates what happens in the game (the actions) from how players trigger those actions (the inputs).
+The `GameController` class implements an important design pattern in game development known as **"Input Abstraction"** or the **"Command"** pattern.  This pattern separates what happens in the game (the actions) from how players trigger those actions (the inputs).
 
 This separation provides several benefits, including:
 
-1. **Input Device Independence**: The game logic doesn't need to know which input device the player is using. Whether they're playing with a keyboard, gamepad, or touch screen, the game only cares that a "move up" action was triggered, not which specific button or key caused it.
+1. **Input Device Independence**: The game logic does not need to know which input device the player is using. Whether they're playing with a keyboard, gamepad, or touch screen, the game only cares that a "move up" action was triggered, not which specific button or key caused it.
 2. **Simplified Input Handling**: Instead of checking multiple input combinations throughout the codebase, game objects can simply ask "Should I move up?" through a clean API call.
 3. **Easy Rebinding**: If you want to add key rebinding features, you only need to modify the `GameController` class, not every piece of code that uses input.
 4. **Consistent Input Logic**: The rules for determining if an action occurred (like checking if a button was just pressed version being held down) are defined in one place.
@@ -118,7 +118,9 @@ With our input handling system in place, now we can turn our attention to implem
 
 Next, we will need to implement a structure that can represent each segment of the slime.  This structure will store the position and movement data for each segment.
 
-In the DungeonSlime project (your main game project), create a new directory named *GameObjects*. We will be putting all of our code related to the objects within the game here. Next, create a new file named *SlimeSegment.cs* inside the *GameObjects* directory you just created and add the following code:
+- In the *DungeonSlime* project (your main game project), create a new directory named `GameObjects`. We will be putting all of our code related to the objects within the game here.
+
+Next, create a new file named `SlimeSegment.cs` inside the `GameObjects` directory you just created and add the following code:
 
 [!code-csharp[](./snippets/slimesegment.cs)]
 
@@ -139,16 +141,16 @@ By tracking both the current (`At`) and target (`To`) positions, we can implemen
 
 ### The Slime Class
 
-Next, let's implement a class to encapsulate the properties and functionality of our snake-like slime. In the *GameObjects* directory of the DungeonSlime project (your main game project), create a new file named *Slime.cs* and add the following initial code:
+Next, we can implement a class to encapsulate the properties and functionality of our snake-like slime. In the `GameObjects` directory of the DungeonSlime project (your main game project), create a new file named `Slime.cs` and add the following initial code:
 
 [!code-csharp[](./snippets/slime/definition.cs)]
 
-This code sets up the basic structure for our `Slime` class. We've added the necessary using statements to access MonoGame's framework components and placed the class in the `DungeonSlime.GameObjects` namespace to keep our code organized. The empty class will serve as our foundation, and we'll build it up piece by piece in the following sections.
+This code sets up the basic structure for our `Slime` class. We have added the necessary using statements to access MonoGame's framework components and placed the class in the `DungeonSlime.GameObjects` namespace to keep our code organized. The empty class will serve as our foundation, and we will build it up piece by piece in the following sections.
 
-Now, we'll add several components to this class in sequence. Each section below should be added to the `Slime` class in the order presented. As we go through each part, the class will gradually take shape to handle all the snake-like behavior we need.
+Each section below should be added to the `Slime` class in the order presented. As we go through each part, the class will gradually take shape to handle all the snake-like behavior we need.
 
 > [!NOTE]
-> When adding these sections one by one, you may see compiler errors until all sections are in place. This is normal, as some parts of the code will reference fields or methods that haven't been added yet. Once all sections are complete, these errors will resolve.
+> When adding these sections one by one, you may see compiler errors until all sections are in place. This is normal, as some parts of the code will reference fields or methods that have not been added yet. Once all sections are complete, these errors will resolve.
 
 #### Slime Fields
 
@@ -170,7 +172,7 @@ These fields implement core snake-like mechanics - the timed interval movement, 
 
 #### Slime Events
 
-Next, add the following events to the `Slime` class after the fields:
+Next, add the following event to the `Slime` class after the fields:
 
 [!code-csharp[](./snippets/slime/events.cs)]
 
@@ -178,7 +180,7 @@ This event will allow the `Slime` class to notify the game scene when the head o
 
 #### Slime Constructor
 
-After the events, add the following constructor to the `Slime` class:
+After the event, add the following constructor to the `Slime` class:
 
 [!code-csharp[](./snippets/slime/constructor.cs)]
 
@@ -199,11 +201,11 @@ With this method, we can initialize, or reset the state of slime.  It:
 
 #### Slime Input Handling
 
-Next, let's add the `HandleInput` method to process player input. Add the following method after the `Initialize` method:
+Next, add the `HandleInput` method to process player input after the `Initialize` method:
 
 [!code-csharp[](./snippets/slime/handleinput.cs)]
 
-This method will:
+This method implements the following:
 
 1. Determine if the player is attempting to change directions instead of directly moving the slime.  This direction change will be applied later during the movement cycle update.
 2. Uses [**Vector2.Dot**](xref:xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) to prevent the slime from reversing into itself, causing an immediate collision and game over state.
@@ -220,7 +222,9 @@ This method will:
 
 #### Slime Movement Cycle
 
-To handle the snake-like movement cycle of the slime, we will create a method called `Move`.  Add the following method to the `Slime` class after the `HandleInput` method:
+To handle the snake-like movement cycle of the slime, we will create a method called `Move`.
+
+Add the following method to the `Slime` class after the `HandleInput` method:
 
 [!code-csharp[](./snippets/slime/move.cs)]
 
@@ -232,17 +236,19 @@ This method performs the core snake-like movement cycle logic by:
 4. Check if the head is now in the same position as any body segments, which would cause a collision and trigger a game over.
 
 > [!NOTE]
-> By inserting a new head segment at the front of the chain and removing the last segment, this creates the illusion of the entire chain moving forward as one, even though we're only actually moving the head forward and removing the tail.
+> By inserting a new head segment at the front of the chain and removing the last segment, this creates the illusion of the entire chain moving forward as one, even though we are only actually moving the head forward and removing the tail.
 >
 > This follows the common snake movement pattern as discussed in the [Understanding Snake Game Mechanics: Movement Cycle](#movement-cycle) section above.
 
 #### Slime Growth
 
-To handle the snake-like growth of the slime, we'll create a method called `Grow`.  Add the following method to the `Slime` class after the `Move` method:
+To handle the snake-like growth of the slime, we will create a new method called `Grow`.
+
+Add the following method to the `Slime` class after the `Move` method:
 
 [!code-csharp[](./snippets/slime/grow.cs)]
 
-Let's break down how this method works:
+Th `Grow` method works as follows:
 
 1. First it creates a copy of the current tail value.
 2. It then adjusts the values of the copy so that it is now positioned behind the current tail by using the `ReverseDirection` value of the tail.
@@ -257,9 +263,9 @@ With most of the core snake-like mechanics now added to the `Slime` class within
 This update method:
 
 1. Updates the slime's `AnimatedSprite` to ensure the sprite animations occur.
-2. Calls `HandleInput` to check for player input
+2. Calls `HandleInput` to check for player input.
 3. Increments the movement timer by the amount of time that has elapsed between the game's update cycles.
-4. Performs a check to see if the movement timer has accumulated more time than the threshold to perform a movement cycle update.  If it has then
+4. Performs a check to see if the movement timer has accumulated more time than the threshold to perform a movement cycle update.  If it has then:
    1. The movement timer is reduced by the threshold time.
    2. The `Move` method is called to perform a movement cycle update.
 5. Finally, the movement progress amount is calculated by dividing the number of seconds accumulated for the movement timer by the number of seconds for the threshold.  This gives us a normalized value between 0.0 and 1.0 that we can use for visual interpolation for fluid movement.
@@ -285,7 +291,9 @@ This update method:
 
 #### Slime Draw
 
-We also need a method to handle drawing the slime and all of its segments.  Add the following `Draw` method after the `Update` method to the `Slime` class:
+We also need a method to handle drawing the slime and all of its segments.
+
+Add the following `Draw` method after the `Update` method to the `Slime` class:
 
 [!code-csharp[](./snippets/slime/draw.cs)]
 
@@ -302,7 +310,9 @@ This draw method iterates each segment of the slime and calculates the visual po
 
 #### Slime Bounds
 
-For the game scene to detect collisions between the slime and other elements (walls or the bat), we need a method to calculate the current collision bounds. Add the following method to the `Slime` class after the `Draw` method:
+For the game scene to detect collisions between the slime and other elements (walls or the bat), we need a method to calculate the current collision bounds.
+
+Add the following method to the `Slime` class after the `Draw` method:
 
 [!code-csharp[](./snippets/slime/getbounds.cs)]
 
@@ -311,13 +321,22 @@ This method takes the current head segment (the first segment in our collection)
 > [!NOTE]
 > We only need collision bounds for the slime's head for interactions with the bat and walls, as this matches the classic snake game mechanic where only the head's collisions matter for gameplay. For detecting collisions between the head and body segments, we use a simpler position-based check in the `Move` method since those positions are always aligned to the grid.
 
-With all these methods in place, our Slime class now fully implements the snake-like mechanics we need. It handles movement on a grid, prevents invalid direction changes, detects self-collisions, and provides smooth visual movement between grid positions. This encapsulation allows us to manage all slime-related behavior in one place while exposing only the necessary interfaces to the game scene.
+With all these methods in place, our Slime class now fully implements the snake-like mechanics we need.
 
-Now that we have our player-controlled character implemented, let's create the object that the slime will try to collect; the bat.
+It handles:
+
+- Movement on a grid.
+- Prevents invalid direction changes
+- Detects self-collisions
+- Provides smooth visual movement between grid positions.
+
+This encapsulation allows us to manage all slime-related behavior in one place while exposing only the necessary interfaces to the game scene.
+
+Now that we have our player-controlled character implemented, we can create the object that the slime will try to collect; the bat.
 
 ### The Bat Class
 
-In the *GameObjects* directory of the DungeonSlime project (your main game project), create a new file named *Bat.cs* and add the following initial code:
+In the `GameObjects` directory of the DungeonSlime project (your main game project), create a new file named `Bat.cs` and add the following initial code:
 
 [!code-csharp[](./snippets/bat/definition.cs)]
 
@@ -334,7 +353,7 @@ Add the following fields to the `Bat` class:
 
 [!code-csharp[](./snippets/bat/fields.cs)]
 
-Let's break down what each of these fields is responsible for:
+Each of these fields is responsible for:
 
 - `MOVEMENT_SPEED`: This constant represents the factor to multiply the velocity vector by to determine how fast the bat is moving.
 - `_velocity`: A vector that defines the direction and how much in that direction to update the position of the bat each update cycle.
@@ -351,7 +370,7 @@ This property exposes the position of the bat so it can be used for calculations
 
 #### Bat Constructor
 
-After the property, dd the following constructor to the `Bat` class:
+After the property, add the following constructor to the `Bat` class:
 
 [!code-csharp[](./snippets/bat/constructor.cs)]
 
@@ -359,7 +378,9 @@ This is a simple constructor that requires the bat to be given the `AnimatedSpri
 
 #### Bat Randomize Velocity
 
-Currently, we have the `AssignRandomVelocity` method in the `GameScene` that we call to randomize the velocity of the bat after it has been eaten by the slime.  Let's take this method out of the `GameScene` class and put it into the `Bat` class itself.  Add the following method to the `Bat` class after the constructor:
+Currently, we have the `AssignRandomVelocity` method in the `GameScene` that we call to randomize the velocity of the bat after it has been eaten by the slime.  We can take this method out of the `GameScene` class and put it directly into the `Bat` class itself.
+
+Add the following method to the `Bat` class after the constructor:
 
 [!code-csharp[](./snippets/bat/randomizevelocity.cs)]
 
@@ -369,17 +390,21 @@ We are also going to take the logic from the `GameScene` class that bounces the 
 
 [!code-csharp[](./snippets/bat/bounce.cs)]
 
-This method only takes a single parameter, the [normal vector](../12_collision_detection/index.md#bounce-collision-response) of the surface the bat is bouncing against.  Based on the X and Y components of the normal vector, we can determine which wall the bat bounced against and adjust the position of the bat so that it doesn't stick to the wall.
+This method only takes a single parameter, the [normal vector](../12_collision_detection/index.md#bounce-collision-response) of the surface the bat is bouncing against.  Based on the X and Y components of the normal vector, we can determine which wall the bat bounced against and adjust the position of the bat so that it does not stick to the wall.
 
 #### Bat Bounds
 
-Similar to the [`Slime` class](#slime-bounds), for the game scene to detect collision between the bat and other elements, we need a method to calculate the current collision bounds of the bat.  Add the following method to the `Bat` class after the `Bounce` method:
+Similar to the [`Slime` class](#slime-bounds), for the game scene to detect collision between the bat and other elements, we need a method to calculate the current collision bounds of the bat.
+
+Add the following method to the `Bat` class after the `Bounce` method:
 
 [!code-csharp[](./snippets/bat/getbounds.cs)]
 
 #### Bat Update
 
-The `Bat` class will also need to be updated.  Add the following `Update` method to the `Bat` class after the `GetBounds` method:
+The `Bat` class will also need to be updated.
+
+Add the following `Update` method to the `Bat` class after the `GetBounds` method:
 
 [!code-csharp[](./snippets/bat/update.cs)]
 
@@ -390,15 +415,20 @@ This method simply updates the bat's `AnimatedSprite` to ensure animations occur
 
 #### Bat Draw
 
-Finally, we need a method to draw the bat.  Add the following `Draw` method to the `Bat` class after the `Update` method:
+Finally, we need a method to draw the bat.
+
+Add the following `Draw` method to the `Bat` class after the `Update` method:
 
 [!code-csharp[](./snippets/bat/draw.cs)]
 
 This method simply draws the bat's `AnimatedSprite` at the bat's current position.
 
-With the `Bat` class complete, we've now encapsulated all the behavior needed for the collectible element in our game. The bat moves continuously around the screen and can bounce off walls, adding a twist on the classic snake-like mechanic by creating a target for the player to chase.
+With the `Bat` class complete, we have now encapsulated all the behavior needed for the collectible element in our game. The bat moves continuously around the screen and can bounce off walls, adding a twist on the classic snake-like mechanic by creating a target for the player to chase.
 
 ## Conclusion
+
+> [!NOTE]
+> To the observant, you should notice that the main game screen has not been updated and therefore nothing has changed if we run the game at this point.  In the next chapter we will finalize the gameplay.
 
 In this chapter, we have learned about and implemented the core mechanics of a class snake-like game.  We created:
 
@@ -407,7 +437,9 @@ In this chapter, we have learned about and implemented the core mechanics of a c
 - A [`Slime`](#the-slime-class) class that implements grid-based movement, segment management and self-collision detection.
 - A [`Bat`](#the-bat-class) class that serves as the collectible object with continuous movement and wall bouncing.
 
-These implementations encapsulate the core gameplay mechanics into reusable, maintainable objects.  In the next chapter, we will build on these mechanics by updating the `GameScene` to implement game state management and a new UI element for the game over state to create a complete game experience.
+These implementations encapsulate the core gameplay mechanics into reusable, maintainable objects.
+
+In the next chapter, we will build on these mechanics by updating the `GameScene` to implement game state management and a new UI element for the game over state to create a complete game experience.
 
 ## Test Your Knowledge
 

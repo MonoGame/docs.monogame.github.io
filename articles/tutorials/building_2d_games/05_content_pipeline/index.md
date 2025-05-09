@@ -13,7 +13,7 @@ For instance, to load an image file directly at runtime, you would need to:
 
 1. Add the image file to your project.
 2. Configure the project to copy the image file on build to the build output folder.
-3. Load the image file as a texture at runtime using the [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)) method.
+3. Load the image file as a texture at runtime using the [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.html#Microsoft_Xna_Framework_Graphics_Texture2D_FromFile_Microsoft_Xna_Framework_Graphics_GraphicsDevice_System_String_) method.
 
 > [!IMPORTANT]
 > A big disadvantage to loading an image file as a texture directly, is when that when it loads it, it does so in its compressed format such as *.png* or *.jpg*.  These compression formats are not understood by a Graphics Processing Unit (GPU); they will need to be decompressed into raw bytes as a format the GPU does understand before it can store the data.  Doing this can potentially leave a larger memory footprint for your assets.  You will also need to handle how different compression formats work on the platform you are targeting such as desktops, mobile, and consoles.
@@ -64,6 +64,17 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 
 ---
 
+ [!TIP]
+> If for any reason the MGCB editor fails to load or you are hit with MGCB errors when you build your project, it is likely the MGCB references from the `dotnet-tools.json` configuration located in your projects `.config` folder have not been loaded/initialized.
+>
+> To correct this, simply run the following from a terminal/command prompt in your projects directory (there the `.config` folder is located)
+>
+> ```sh
+>   dotnet tool restore
+> ```
+>
+> This should restore the tool with the version that is configured.  If at any time you update your `dotnet-tools.json` configuration, e.g. when upgrading to a newer version of MonoGame, **you will need to run this command again**
+
 | ![Figure 5-2: MonoGame Content Builder Editor (MGCB Editor) Window](./images/mgcb-editor.png) |
 | :-------------------------------------------------------------------------------------------: |
 |             **Figure 5-2: MonoGame Content Builder Editor (MGCB Editor) Window**              |
@@ -71,7 +82,7 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 In Figure 5-2 above, you can see the user interface for the MGCB Editor:
 
 - **Toolbar**: Contains icon buttons for common actions such as creating new items, opening files, saving changes, and building content.
-- **Project Panel**: Located on the left of the MGCB Editor, displays a hierarchial tree view of all content items added to the content project.  The root node *Content* represents the root of the content project.
+- **Project Panel**: Located on the left of the MGCB Editor, displays a hierarchical tree view of all content items added to the content project.  The root node *Content* represents the root of the content project.
 - **Properties Panel**: Located on the bottom left of the MGCB Editor, shows the properties of the currently selected item in the project panel.  The properties available are based on the item type selected.
 - **Build Output Panel**: The large area to the right side outputs build messages, warnings, and errors when content is processed.
 
@@ -87,7 +98,10 @@ Organizing your game assets into folders helps keep your content project managea
 | :-------------------------------------------------------------: |
 |                **Figure 5-3: New folder pop-up**                |
 
-You hae now created a folder that will help organize the game's image assets.  As we continue through this tutorial series, we will be adding additional folders for organization of content such as audio, fonts, and effects.
+You have now created a folder that will help organize the game's image assets.  As we continue through this tutorial series, we will be adding additional folders for organization of content such as audio, fonts, and effects.
+
+> [!NOTE]
+> If you try to add a new folder that already exists in the file system but is not showing in the MGCB editor, you will get an error.  Either remove the folder or use "Add Existing Folder" instead.
 
 ### Adding Your First Asset
 
@@ -161,7 +175,7 @@ They key methods for asset loading are:
 
 When loading content, you need to specify the path to the asset, minus the extension.  This path is relative to the ContentManager's [**RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory) property, which is set to "Content" by default in the `Game1` constructor.
 
-For example, with our newly dded logo in the "images" folder,the path would be "images/logo" (without the file extension).  The reason for this relates to the build process.  When you build your project, the *MonoGame.Content.Builder.Tasks* NuGet reference [compiles your assets and copies them to the game's output folder](#understanding-the-content-pipeline-workflow).
+For example, with our newly added logo in the "images" folder,the path would be "images/logo" (without the file extension).  The reason for this relates to the build process.  When you build your project, the *MonoGame.Content.Builder.Tasks* NuGet reference [compiles your assets and copies them to the game's output folder](#understanding-the-content-pipeline-workflow).
 
 This creates a folder structure in your output directory similar to:
 
@@ -269,7 +283,7 @@ In the next chapter, we will explore working with textures in more detail and le
 
     1. Directly from file using [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)).   This method requires manually setting up file copying, offers no pre-processing benefits, and can have a higher memory footprint.
 
-    2. Using the content pipeline with [**Content.Load<Texture2D>**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)).  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.
+    2. Using the content pipeline with [**Content.Load\<Texture2D>**](xref:Microsoft.Xna.Framework.Content.ContentManager.html#Microsoft_Xna_Framework_Content_ContentManager_Load__1_System_String_).  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.
     :::
 
 2. During the MonoGame content pipeline workflow, assets are compiled and then copied to the project output folder.  What is responsible for performing this task?

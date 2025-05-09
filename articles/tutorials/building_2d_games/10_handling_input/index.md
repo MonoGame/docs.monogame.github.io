@@ -114,6 +114,9 @@ Like with the [mouse input](#mousestate-struct), each of these buttons are repre
 
 [!code-csharp[](./snippets/gamepadstate.cs)]
 
+> [!NOTE]
+> You may notice however, that the GamePadState also requires a controller index, as more than one can be connected at the same time. The latest Xbox console for instance can support up to 8 controllers at a time, for this reason you need to specify which controller you are listening for.  Additionally, if you want ANY controller to start your game, you will need to loop through all possible controllers each frame until the first one "picks up".
+
 #### DPad
 
 The [**DPad**](xref:Microsoft.Xna.Framework.Input.GamePadState.DPad)  property returns a [**GamePadDPad**](xref:Microsoft.Xna.Framework.Input.GamePadDPad) struct that can be used to identify which DPad buttons on the controller are pressed. This struct contains the following properties:
@@ -328,7 +331,7 @@ For our game, we are going to implement keyboard and gamepad controls based on t
 | [Keys.D] and [Keys.Right] | [Thumbstick.Left.X] and [Buttons.DPadRight] | Moves the slime right on the screen. |
 | [Keys.Space]              | [Buttons.A]                                 | Increased the speed of the slime.    |
 
-Open *Game1.cs* and update it with the following:
+Open `Game1.cs` and update it with the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=17-21,60-64,69-157,168)]
 
@@ -352,6 +355,9 @@ Running the game now, you can move the slime around using the keyboard with the 
 | ![Figure 10-1: The slime moving around based on device input](./videos/input-moving-slime.webm) |
 |:-----------------------------------------------------------------------------------------------:|
 |                 **Figure 10-1: The slime moving around based on device input**                  |
+
+> [!NOTE]
+> You may notice that the slime is capable of moving completely off the screen, this is completely normal as we have not yet implemented any logic to prevent it from doing so, it only doing what we currently tell it to do.
 
 ## Conclusion
 

@@ -16,11 +16,11 @@ Imagine scaling this up to dozens of sprites, each with multiple instances on sc
 
 ## The Sprite Class
 
-A sprite in our game represents a visual object created from a texture region along with its rendering properties. While multiple sprites might use the same texture region (like multiple enemies of the same type), each sprite can have unique properties that control how it appears on screen; its position, rotation, scale, and other visual characteristics.
+A sprite in our game represents a visual object created from a texture region, along with its rendering properties. While multiple sprites might use the same texture region (like multiple enemies of the same type), each sprite can have unique properties that control how it appears on screen; its position, rotation, scale, and other visual characteristics.
 
 By creating a `Sprite` class, we can encapsulate both the texture region and its rendering parameters into a single, reusable component. This not only makes our code more organized but also makes it easier to manage multiple instances of the same type of sprite.
 
-In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named *Sprite.cs*.  Add the following code for the foundation of the `Sprite` class to the *Sprite.cs* file:
+In the *Graphics* folder within the *MonoGameLibrary* project, add a new file named `Sprite.cs` and add the following code for the foundation of the `Sprite` class to the file:
 
 [!code-csharp[](./snippets/sprite.cs#declaration)]
 
@@ -37,11 +37,14 @@ The `TextureRegion` property works to provide the texture and source rectangle w
 
 ### Constructors
 
-The `Sprite` class will provide two ways to create a new sprite.  Add the following constructors:
+The `Sprite` class provides two ways to create a new sprite.
+
+Add the following constructors:
 
 [!code-csharp[](./snippets/sprite.cs#ctors)]
 
-The default constructor creates an empty sprite that can be configured later, while the parameterized constructor allows you to specify the source texture region for the sprite.
+* The default constructor creates an empty sprite that can be configured later.
+* The parameterized constructor allows you to specify the source texture region for the sprite.
 
 ### Methods
 
@@ -64,13 +67,13 @@ While the `GetRegion` method of the `TextureAtlas` class we created in [Chapter 
 2. Store it in a variable.
 3. Create a new sprite with that region.
 
-We can simplify this process by adding a sprite creation method to the `TextureAtlas` class. Open *TextureAtlas.cs* and add the following method:
+We can simplify this process by adding a sprite creation method to the `TextureAtlas` class. Open the `TextureAtlas.cs` and add the following method:
 
 [!code-csharp[](./snippets/createsprite.cs)]
 
 ## Using the Sprite Class
 
-Now we can adjust our game now to use the `Sprite` class instead of just the texture regions.  Replace the contents of *Game1.cs* with the following:
+Now we can adjust our game now to use the `Sprite` class instead of just the texture regions.  Update the contents of `Game1.cs` with the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,61-65)]
 

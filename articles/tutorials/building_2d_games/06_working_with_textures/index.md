@@ -28,9 +28,9 @@ Three methods are are used when rendering with the [**SpriteBatch**](xref:Micros
 
 As mentioned in [Chapter 03](../03_the_game1_file/index.md#the-game-loop), all rendering should be done inside the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method. The [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method's responsibility is to render the game state that was calculated in [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)); it should not contain any game logic or complex calculations.
 
-At the end of [Chapter 05](../05_content_pipeline/index.md#loading-assets), you added the following code to [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) in the *Game1.cs* file:
+At the end of [Chapter 05](../05_content_pipeline/index.md#loading-assets), you added the following code to [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) in the `Game1.cs` file:
 
-[!code-csharp[](./snippets/draw.cs)]
+[!code-csharp[](./snippets/draw.cs?highlight=6-7,9-10,12-13)]
 
 These lines initialize the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch), draw the logo at [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero) (0, 0), and complete the batch. When you ran the game and the logo appeared in the window's upper-left corner:
 
@@ -46,7 +46,8 @@ The [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Dra
 | *position* | [**Vector2**](xref:Microsoft.Xna.Framework.Vector2)              | The X and Y coordinates at which the texture will be rendered, with the texture's origin being the upper-left corner of the image.                              |
 | *color*    | [**Color**](xref:Microsoft.Xna.Framework.Color)                  | The color mask (tint) to apply to the image drawn. Specifying [**Color.White**](xref:Microsoft.Xna.Framework.Color.White) will render the texture with no tint. |
 
-Try adjusting the position and color parameters and see how they can affect the image being drawn.
+> [!TIP]
+> Try adjusting the position and color parameters and see how they can affect the image being drawn.
 
 MonoGame uses a coordinate system where (0, 0) is at the screen's upper-left corner. X values increase moving right, and Y values increase moving down. Understanding this, we wil try to center the logo on the game window.
 
@@ -63,7 +64,7 @@ We have now set the position to half the window's dimensions, which should cente
 | :-----------------------------------------------------------------------------------------------------------: |
 |               **Figure 6-2: Attempting to draw the MonoGame logo centered on the game window**                |
 
-The logo is not centered as we expected it to be.  Even though we set the *position* parameter to the center of the game window, the texture starts drawing from its *origin*, which is the upper-left corner in this example.  So when we set the position to the screen's center, we are actually placing the logo's upper-left corner at that point, not its center.
+The logo is not centered as we expected it to be.  Even though we set the *position* parameter to the center of the game window, the texture starts drawing from its *origin*, which is the upper-left corner in this example.  So when we set the position to the screen's center, we are actually placing the logo's upper-left corner at that point, not the center of the texture.
 
 One way to correct this is to subtract half the width and height of the texture from the game window's center position like so:
 
@@ -75,7 +76,9 @@ This offsets the position so that it correctly centers the image to the game win
 | :--------------------------------------------------------------------------------------------: |
 |              **Figure 6-3: The MonoGame logo drawn centered on the game window**               |
 
-While this works, there is a better approach.  There is a different overload of the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method that provides additional parameters for complete control over the draw operation. Update your code to:
+While this works, there is a better approach.  There is a different overload of the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)) method that provides additional parameters for complete control over the draw operation, which we will use in the upcoming sections.
+
+Update your code to:
 
 [!code-csharp[](./snippets/draw_all_params.cs?highlight=10-22)]
 
