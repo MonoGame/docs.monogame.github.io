@@ -183,7 +183,7 @@ DungeonSlime/
 
 Now that we have the MonoGame logo added as an asset in the content project, we can modify the game to display the logo.  In the *DungeonSlime* project open the `Game1.cs` file and perform the following:
 
-1. Add a field tos tore the logo texture by inserting this line after the class declaration:
+1. Add a field to store the logo texture by inserting this line after the class declaration:
 
     ```cs
     // The MonoGame logo texture
