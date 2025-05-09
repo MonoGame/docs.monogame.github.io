@@ -25,7 +25,6 @@ public class Game1 : Core
     protected override void LoadContent()
     {
         _logo = Content.Load<Texture2D>("images/logo");
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

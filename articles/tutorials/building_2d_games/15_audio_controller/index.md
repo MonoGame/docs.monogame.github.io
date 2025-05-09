@@ -131,7 +131,7 @@ The key changes made here are:
 
 Next, update the `Game1` class to use the audio controller for audio playback.  Open `Game1.cs` and make the following updates:
 
-[!code-csharp[](./snippets/game1.cs?highlight=45-46,77-78,104-105,199-200,218-219,272-290)]
+[!code-csharp[](./snippets/game1.cs?highlight=45-46,77-78,104-105,197-198,216-217,270-288)]
 
 > [!NOTE]
 > Note there were a lot of replacements in the `LoadContent` method, switching from loading and initializing the background Song and replacing it with a call to the new `AudioController` to do all the work managing the Song reference.  Much cleaner.

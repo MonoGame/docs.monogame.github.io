@@ -127,8 +127,6 @@ public class Game1 : Core
 
         // Load the font
         _font = Content.Load<SpriteFont>("fonts/04B_30");
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)

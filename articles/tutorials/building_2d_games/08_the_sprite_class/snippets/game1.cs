@@ -38,8 +38,6 @@ public class Game1 : Core
         // Create the bat sprite from the atlas.
         _bat = atlas.CreateSprite("bat");
         _bat.Scale = new Vector2(4.0f, 4.0f);
-
-        base.LoadContent();
     }
 
     protected override void Update(GameTime gameTime)
