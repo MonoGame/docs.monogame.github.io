@@ -96,7 +96,7 @@ Currently, we have two methods dedicated to handling input in the game scene, `C
 
 To simplify input handling for the game, we can create a dedicated class that consolidates the input methods, providing a unified input profile for the game.  This pattern is widely used in game development to separate the "what" (game actions) from the "how" (specific input devices and buttons).
 
-In the *DungeonSlime* project (your main game project), create a new file named `GameController.cs` in the root directory and add the following code:
+Create a new file named `GameController.cs` in the root of the *DungeonSlime* project (your main game project) and add the following code:
 
 [!code-csharp[](./snippets/gamecontroller.cs)]
 
