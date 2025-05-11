@@ -112,7 +112,7 @@ The reason the sprite did not rotate as expected is because of the `origin` para
 
 ### Origin
 
-The `origin` parameter specifies the point of origin in which the sprite is rendered from, rotated from, and scaled from.  By default, if no origin is set, it will be [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero), the upper-left corner of the sprite.  To visualize this, see Figure 6-5 below.  The red square represents where the origin is for the sprite, and we can see how it is rotated around this origin point.
+The `origin` parameter specifies the point of origin in which the sprite is rendered from, rotated from, and scaled from.  By default, if no origin is set, it will be [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero), the upper-left corner of the sprite.  To visualize this, see *Figure 6-5* below.  The red square represents where the origin is for the sprite, and we can see how it is rotated around this origin point.
 
 | ![Figure 6-5: Demonstration of how a sprite is rotated around its origin](./videos/top-left-origin-rotation-example.webm) |
 | :-----------------------------------------------------------------------------------------------------------------------: |
@@ -247,7 +247,7 @@ For instance, take the logo image we have been using.  We can break it down into
 | :-----------------------------------------------------------------------------------------------------------------: |
 |                  **Figure 6-14: The MonoGame logo broken down into the icon and wordmark regions**                  |
 
-We can see from Figure 6-14 above that the actual icon starts at position (0, 0) and is 128px wide and 128px tall. Likewise, the wordmark starts at position (150, 34) and is 458px wide and 58px tall. Knowing the starting position and the width and height of the region gives us a defined rectangle that we can use as the `sourceRectangle`.
+We can see from *Figure 6-14* above that the actual icon starts at position (0, 0) and is 128px wide and 128px tall. Likewise, the wordmark starts at position (150, 34) and is 458px wide and 58px tall. Knowing the starting position and the width and height of the region gives us a defined rectangle that we can use as the `sourceRectangle`.
 
 We can see this in action by drawing the icon and the wordmark separately from the same texture. Update the code to the following:
 
@@ -271,7 +271,7 @@ If you run the game now, you should see the following:
 
 ### Layer Depth
 
-The final parameter to discuss is the `layerDepth` parameter. Notice that in Figure 6-15 above, the word mark is rendered on top of the icon.  This is because of the order the draw calls were made; first the icon was rendered, then the word mark was rendered.
+The final parameter to discuss is the `layerDepth` parameter. Notice that in *Figure 6-15* above, the word mark is rendered on top of the icon.  This is because of the order the draw calls were made; first the icon was rendered, then the word mark was rendered.
 
 The [**SpriteBatch.Begin**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.Begin(Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.BlendState,Microsoft.Xna.Framework.Graphics.SamplerState,Microsoft.Xna.Framework.Graphics.DepthStencilState,Microsoft.Xna.Framework.Graphics.RasterizerState,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})) method contains several optional parameters, one of which is the `sortMode` parameter.  By default, this value is [**SpriteSortMode.Deferred**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.Deferred), which means what is drawn is done so in the order of the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch.DrawString(Microsoft.Xna.Framework.Graphics.SpriteFont,System.Text.StringBuilder,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,System.Single)) calls.  Each subsequent call will be drawn visually on top of the previous call.
 
@@ -294,9 +294,9 @@ Now we can see this in action. We have already set the `layerDepth` parameter of
 
 Now we are telling it to use the [**SpriteSortMode.FrontToBack**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode.FrontToBack) sort mode, which will sort the draw calls so that those with a higher `layerDepth` will be drawn on top of those with a lower one.  Even though we did not change the order of the `_spriteBatch.Draw` calls, if you run the game now, you will see the following:
 
-| ![Figure 5-17: The MonoGame icon drawn on top of the wordmark](./images/icon-on-top-of-wordmark.png) |
+| ![Figure 6-16: The MonoGame icon drawn on top of the wordmark](./images/icon-on-top-of-wordmark.png) |
 | :--------------------------------------------------------------------------------------------------: |
-|                   **Figure 5-17: The MonoGame icon drawn on top of the wordmark**                    |
+|                   **Figure 6-16: The MonoGame icon drawn on top of the wordmark**                    |
 
 There are also two additional [**SpriteSortMode**](xref:Microsoft.Xna.Framework.Graphics.SpriteSortMode) values that can be used.  These, however, are situational and can have draw backs when using them, so understanding what they are for is important.
 

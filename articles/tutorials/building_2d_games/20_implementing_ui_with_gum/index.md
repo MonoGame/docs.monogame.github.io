@@ -371,9 +371,9 @@ Next, add this sound effect to your content project using the MGCB Editor:
 4. In the Properties panel, verify that the `Processor` is set to `Sound Effect`.
 5. Save the changes and close the MGCB Editor.
 
-| ![Figure 20-2: The MGCB Editor with ui.wav added to the audio folder](./images/mgcb-editor.png) |
+| ![Figure 20-1: The MGCB Editor with ui.wav added to the audio folder](./images/mgcb-editor.png) |
 | :---------------------------------------------------------------------------------------------: |
-|             **Figure 20-2: The MGCB Editor with ui.wav added to the audio folder**              |
+|             **Figure 20-1: The MGCB Editor with ui.wav added to the audio folder**              |
 
 We will load and use this sound effect in our UI implementation to provide auditory feedback when players interact with buttons and sliders.
 
@@ -535,9 +535,9 @@ Update the `Draw` method to the following:
 
 With these changes, our UI system is now fully integrated into the scene's game loop.  Gum updates its controls in the `Update` method and draws them in the `Draw` method.  This produces a fully functional title screen with buttons that allows players to start the game or adjust audio settings.  
 
-| ![Figure 20-1: Title screen with default Gum buttons](./images/title-unstyled.png) |
+| ![Figure 20-2: Title screen with default Gum buttons](./images/title-unstyled.png) |
 | :--------------------------------------------------------------------------------: |
-|               **Figure 20-1: Title screen with default Gum buttons**               |
+|               **Figure 20-2: Title screen with default Gum buttons**               |
 
 > [!NOTE]
 > You may notice that the UI elements currently use Gum's default styling, which does not match our game's visual theme.  We will explore customizing these controls to match our game's visual style in the next chapter.
@@ -617,9 +617,9 @@ Finally, add Gum's drawing call to the end fo the `Draw` method:
 
 With these changes, the pause menu is now fully integrated into the game scene's game loop.  Gum updates its controls during the `Update` method and draws them during the `Draw` method.  If the game is paused, as determined by the `IsVisible` property of the pause menu, then updating the actual game logic is skipped.
 
-| ![Figure 20-12: The pause menu during the game scene with default Gum buttons](./images/pause-unstyled.png) |
+| ![Figure 20-3: The pause menu during the game scene with default Gum buttons](./images/pause-unstyled.png) |
 | :---------------------------------------------------------------------------------------------------------: |
-|               **Figure 20-12: The pause menu during the game scene with default Gum buttons**               |
+|               **Figure 20-3: The pause menu during the game scene with default Gum buttons**               |
 
 ## Conclusion
 

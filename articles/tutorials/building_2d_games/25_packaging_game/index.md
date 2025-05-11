@@ -41,7 +41,7 @@ Before packaging your game for distribution, you should take some preparatory st
 
 ## Platform-Specific Packaging
 
-Now that we understand the general packaging concepts, we will explore how to create distributions for WIndows, macOS, and Linux.  Each platform has specific requirements and tooling that we will need to navigate.  Choose the instructions below based on the platform you are using.
+Now that we understand the general packaging concepts, we will explore how to create distributions for Windows, macOS, and Linux.  Each platform has specific requirements and tooling that we will need to navigate.  Choose the instructions below based on the platform you are using.
 
 > [!IMPORTANT]
 > The packaging instructions for each platform are designed to be executed on that same platform.  This is because each operating system provides specific tools needed for proper packaging (like `lipo` on macOS or `permission settings` on Unix-based systems).  When building on Windows for macOS or Linux, the executable permissions cannot be set since Windows lacks these concepts.
@@ -239,7 +239,7 @@ To create this structure, from the same terminal window:
     ```
 
     > [!NOTE]
-    > the `chmod +x` command changes the file permissions to make it executable. WIthout this step, macOS would not be able to run the application.
+    > the `chmod +x` command changes the file permissions to make it executable. Without this step, macOS would not be able to run the application.
 
 #### Distributing for macOS
 
@@ -269,7 +269,7 @@ Linux packaging is relatively straightforward, but requires attention to ensure 
 
 #### Building for Linux
 
-To create a self-contained application for LInux, open a new Terminal window in the same folder as the `DungeonSlime.csproj` file (your main game project folder) and execute the following .NET CLI command:
+To create a self-contained application for Linux, open a new Terminal window in the same folder as the `DungeonSlime.csproj` file (your main game project folder) and execute the following .NET CLI command:
 
 ```sh
 dotnet publish -c Release -r linux-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false --self-contained
@@ -408,7 +408,7 @@ Windows is case-insensitive for filenames, but macOS and Linux are case-sensitiv
 // images/Atlas.xnb
 
 // On Windows, this would work fine since windows is case-insensitive.
-// ON macOS and Linux, this would fail since they are case-sensitive.
+// On macOS and Linux, this would fail since they are case-sensitive.
 Texture2D text = Content.Load<Texture2D>("images/atlas");
 ```
 

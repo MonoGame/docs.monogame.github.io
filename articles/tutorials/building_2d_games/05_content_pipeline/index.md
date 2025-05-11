@@ -79,7 +79,7 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 | :-------------------------------------------------------------------------------------------: |
 |             **Figure 5-2: MonoGame Content Builder Editor (MGCB Editor) Window**              |
 
-In Figure 5-2 above, you can see the user interface for the MGCB Editor:
+In *Figure 5-2* above, you can see the user interface for the MGCB Editor:
 
 - **Toolbar**: Contains icon buttons for common actions such as creating new items, opening files, saving changes, and building content.
 - **Project Panel**: Located on the left of the MGCB Editor, displays a hierarchical tree view of all content items added to the content project.  The root node *Content* represents the root of the content project.

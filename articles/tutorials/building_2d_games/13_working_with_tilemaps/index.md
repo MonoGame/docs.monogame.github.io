@@ -26,7 +26,7 @@ A tileset is a collection of small images (tiles) that can be combined and arran
 - Decorative elements like plants and furniture.
 - Special tiles like doors, ladders, or water.
 
-Each tile in a tileset is assigned an ID number, which the tilemap uses to reference which tile goes where. For example, in Figure 13-1 below, the tileset we will add to our game in a moment is shown on the left and on the right is the same tileset with an overlay showing how each tile is assigned an ID number.
+Each tile in a tileset is assigned an ID number, which the tilemap uses to reference which tile goes where. For example, in *Figure 13-1* below, the tileset we will add to our game in a moment is shown on the left and on the right is the same tileset with an overlay showing how each tile is assigned an ID number.
 
 | ![Figure 13-1: Left: Original dungeon tileset. Right: The same tileset with an overlay showing how each tile is assigned a numeric ID](./images/tileset-grid-comparison.png) |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -46,7 +46,7 @@ For example, a simple tilemap may look like this conceptually:
 12 13 14 13 15
 ```
 
-If we took the above tilemap data and mapped each cell to the tile in the related tileset, it would look something similar to Figure 13-2 below:
+If we took the above tilemap data and mapped each cell to the tile in the related tileset, it would look something similar to *Figure 13-2* below:
 
 | ![Figure 13-2: From tileset to tilemap. Left: Tileset with an overlay showing the tile IDs.  Right: The tilemap created using the tiles arranged with the pattern from the code example above](./images/tileset-to-tilemap-example.png) |
 |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|

@@ -358,9 +358,9 @@ When you run the game now, you will see a dramatic improvement in the visual app
 3. All text uses our custom bitmap font.
 4. Visual feedback clearly indicates which element has focus.
 
-| ![Figure 12-3: The game using Gum now with custom styled UI components](./videos/gameplay.webm) |
+| ![Figure 21-3: The game using Gum now with custom styled UI components](./videos/gameplay.webm) |
 | :---------------------------------------------------------------------------------------------: |
-|            **Figure 12-3: The game using Gum now with custom styled UI components**             |
+|            **Figure 21-3: The game using Gum now with custom styled UI components**             |
 
 The entire UI now has a cohesive style that matches the rest of the game.
 
