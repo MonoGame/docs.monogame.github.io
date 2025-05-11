@@ -27,7 +27,9 @@ Key benefits of itch.io for developers include:
 
 ## Setting Up an itch.io Account
 
-Before you can publish your game, you need to create an itch.io account and set up your developer profile.  To do this
+Before you can publish your game, you need to create an itch.io account and set up your developer profile.
+
+To do this:
 
 1. Navigate to [itch.io](https://itch.io) and click "Register" in the top-right corner.
 2. Fill in the registration form with your desired username, password, and email address.
@@ -125,7 +127,7 @@ Following the basic information about the project, the next section of the form 
 3. **No Payment**: This model provides your game completely free with no payment prompts.  When users click to download, they are taken directly to the download page without any suggestion to donate.
 
 > [!TIP]
-> Consider your goals when selecting a pricing model.  The "$0 or donate" option often provides a good balance for indie developers, removing financial barriers to trying your game while still providing a path for supportive players to contribute.
+> Consider your goals when selecting a pricing model.  The **"$0 or donate"** option often provides a good balance for indie developers, removing financial barriers to trying your game while still providing a path for supportive players to contribute.
 
 | ![Figure 25-4: The pricing options for a new project on itch.io](./images/pricing.png) |
 | :------------------------------------------------------------------------------------: |
@@ -462,6 +464,11 @@ This published version demonstrates the concepts we covered in this chapter, sho
 ## Conclusion
 
 In this chapter, you learned how to publish your MonoGame project on itch.io, one of the most accessible digital distribution platforms for indie game developers.  You have gained a comprehensive understanding of the entire publishing process, from creating an account to making your game available to players worldwide.
+
+> [!NOTE]
+> While you might think "why should I publish my demo or small game", we would recommend you do it anyway.  The experience you gain from completing a project from start to finish and then publish will gain you more and more experience over time, so that when you finally come to roll out your "big game", you will already know everything involved and be ready for it.
+>
+> The old saying that "the last 20% takes 80% of the effort" is VERY true when it comes to game development and it pays to be prepared.
 
 Through this chapter, you have learned how to:
 

@@ -18,13 +18,13 @@ In this chapter, you will:
 
 Currently, the `GameScene` class contains the methods for initializing and creating the pause menu.  However, now that we have a defined condition for game over, we need to create a game-over menu as well.  To do this, we will take the opportunity to refactor the current code and pull the UI-specific code into its own class.
 
-In the *UI* directory of the game project, create a new file named *GameSceneUI* and add the following initial code:
+In the `UI` directory of the *DungeonSlime* project, create a new file named `GameSceneUI.cs` and add the following initial code:
 
 [!code-csharp[](./snippets/gamesceneui/definition.cs)]
 
-This code establishes the foundation for our `GameSceneUI` class, which inherits from Gum's `ContainerRuntime` class. This inheritance means our UI class is itself a UI container that can hold and manage other UI elements. We've included all necessary using statements for MonoGame, Gum UI components, and our library references.
+This code establishes the foundation for our `GameSceneUI` class, which inherits from Gum's `ContainerRuntime` class. This inheritance means our UI class is itself a UI container that can hold and manage other UI elements. We have included all necessary using statements for MonoGame, Gum UI components, and our library references.
 
-Let's build out this class by adding each section in sequence. Follow the order below to create the complete UI management system for our game scene.
+You will build out this class by adding each section in sequence. Follow the order below to create the complete UI management system for our game scene.
 
 > [!NOTE]
 > You may see compiler errors as you add these sections one by one. This is expected because some parts of the code will reference fields, properties, or methods that we haven't added yet. Once all sections are in place, these errors will resolve.
@@ -35,7 +35,7 @@ Add the following fields to the `GameSceneUI` class:
 
 [!code-csharp[](./snippets/gamesceneui/fields.cs)]
 
-Let's break down what each of these fields is responsible for:
+Here is a break down what each of these fields is responsible for:
 
 - `s_scoreFormat`: A string format template used to display the player's score with leading zeros.
 - `_uiSoundEffect`: Stores the sound effect played for UI interactions like button clicks and focus changes.
@@ -76,23 +76,29 @@ To keep the code more organized, we will create separate functions to build the 
 
 #### Creating the Score Text
 
-To display the player's score, we will begin by adding a method to create a `TextRuntime` element.  Add the following method to the `GameSceneUI`  after the constructor:
+To display the player's score, we will begin by adding a method to create a `TextRuntime` element.
+
+Add the following method to the `GameSceneUI`  after the constructor:
 
 [!code-csharp[](./snippets/gamesceneui/createscoretext.cs)]
 
 #### Creating the Pause Panel
 
-Next, we will add a method to create a `Panel` element that is shown when the game is paused, including the "Resume" and "Quit" buttons.  Add the following method to the `GameSceneUI` class after the `CreateScoreText` method:
+Next, we will add a method to create a `Panel` element that is shown when the game is paused, including the "Resume" and "Quit" buttons.
+
+Add the following method to the `GameSceneUI` class after the `CreateScoreText` method:
 
 [!code-csharp[](./snippets/gamesceneui/createpausepanel.cs)]
 
 #### Creating the Game Over Panel
 
-Finally, we will add a method to create a `Panel` element that is shown when a game over occurs, including the "Retry" and "Quit" buttons.  Add the following method to the `GameSceneUI` class after the `CreatePausePanel` method:
+Finally, we will add a method to create a `Panel` element that is shown when a game over occurs, including the "Retry" and "Quit" buttons.
+
+Add the following method to the `GameSceneUI` class after the `CreatePausePanel` method:
 
 [!code-csharp[](./snippets/gamesceneui/creategameoverpanel.cs)]
 
-Both the pause panel and the game over panel use event handlers for their buttons.  Let's add those next.
+Both the pause panel and the game over panel use event handlers for their buttons.  We will add those next.
 
 ### GameSceneUI Event Handlers
 
@@ -108,7 +114,7 @@ Finally, add the following public methods to the `GameSceneUI` class after the `
 
 [!code-csharp[](./snippets/gamesceneui/publicmethods.cs)]
 
-These public methods provide the interface for the `GameScene` to:
+These public methods provide the interface for the `GameScene` to implement:
 
 - Update the score display.
 - Show or hide the pause menu.
@@ -117,13 +123,15 @@ These public methods provide the interface for the `GameScene` to:
 
 With the `GameSceneUI` class complete, we now have a fully encapsulated UI system that can handle displaying game information (score), providing feedback for game states (pause, game over), and processing user interactions (button clicks). This separation of UI logic from game logic will make our codebase much easier to maintain and extend.
 
-Now that we have all our specialized components ready, let's refactor the GameScene class to coordinate between them and manage the overall game flow.
+Now that we have all our specialized components ready, we can refactor the `GameScene` class to coordinate between them and manage the overall game flow.
 
 ## Refactoring The GameScene Class
 
-Now that we have created the encapsulated [`Slime`](../22_snake_game_mechanics/index.md#the-slime-class), [`Bat`](../22_snake_game_mechanics/index.md#the-bat-class), and [`GameSceneUI`](#the-gamesceneui-class) classes, we can refactor the `GameScene` class to leverage these new components.  This will make our code more maintainable and allow us to focus on the game logic within the scene itself.  We will rebuild the `GameScene` class to coordinate the interactions between the components.
+Now that we have created the encapsulated [`Slime`](../22_snake_game_mechanics/index.md#the-slime-class), [`Bat`](../22_snake_game_mechanics/index.md#the-bat-class), and [`GameSceneUI`](#the-gamesceneui-class) classes, we can refactor the `GameScene` class to leverage these new components.  This will make our code more maintainable and allow us to focus on the game logic within the scene itself.  
 
-In the *Scenes* directory of the DungeonSlime project (your main game project), open the *GameScene.cs* file and replace the code with the following initial code:
+We will rebuild/replace the existing `GameScene` class to coordinate the interactions between the components.
+
+In the `Scenes` directory of the *DungeonSlime* project (your main game project), open the `GameScene.cs` file and replace **ALL** of the code with the following replacement code (starting fresh):
 
 [!code-csharp[](./snippets/gamescene/definition.cs)]
 
@@ -141,7 +149,9 @@ The `GameScene` class now contains the following key fields:
 - `_ui`: A reference to the game scene UI component.
 - `_state`: The current state of the game represented by the `GameState` enum.
 
-Now we will add the various methods needed to complete the `GameScene` class. Add each section in the sequence presented below. This will build up the scene's functionality step by step.
+Next we will add the various methods needed to complete the `GameScene` class and finalize the game logic.
+
+Add each section in the sequence presented below. This will build up the scene's functionality step by step.
 
 > [!NOTE]
 > As with previous classes, you might encounter compiler errors until all sections are in place. These errors will be resolved once all components of the class have been added.
@@ -162,7 +172,9 @@ This method sets up the initial state of the game scene:
 
 ### GameScene InitializeUI Method
 
-The `Initialize` method we just added calls a method to initialize the user interface for the scene.  Let's add that method now.  Add the following method after the `Initialize` method in the `GameScene` class:
+The `Initialize` method we just added calls a method to initialize the user interface for the scene, we can add that method now.
+
+Add the following method after the `Initialize` method in the `GameScene` class:
 
 [!code-csharp[](./snippets/gamescene/initializeui.cs)]
 
@@ -170,7 +182,9 @@ This method creates the UI components and subscribes to its events to respond to
 
 ### GameScene UI Event Handlers
 
-In the `InitializeUI` method we just added, we subscribe to the events from the `GameSceneUI` class that are triggered when buttons are clicked.  Now we need to add those methods that would be called when the events are triggered.  Add the following methods to the `GameScene` class after the `InitializeUI` method:
+In the `InitializeUI` method we just added, we subscribe to the events from the `GameSceneUI` class that are triggered when buttons are clicked.  Now we need to add those methods that would be called when the events are triggered.
+
+Add the following methods to the `GameScene` class after the `InitializeUI` method:
 
 [!code-csharp[](./snippets/gamescene/eventhandlers.cs)]
 
@@ -182,7 +196,9 @@ These methods respond to the UI events:
 
 ### GameScene InitializeNewGame Method
 
-In the `Initialize` method we added above, it also makes a call to an `InitializeNewGame` method.  Let's add this now.  Add the following method to the `GameScene` class after the `OnQuitButtonClicked` method:
+In the `Initialize` method we added above, it also makes a call to an `InitializeNewGame` method which we will add next.
+
+Add the following method to the `GameScene` class after the `OnQuitButtonClicked` method:
 
 [!code-csharp[](./snippets/gamescene/initializenewgame.cs)]
 
@@ -196,7 +212,9 @@ This method will:
 
 ### GameScene LoadContent Method
 
-Next, we need to add the method to load game assets for the scene.  Add the following method to the `GameScene` class after the `InitializeNewGame` method:
+Next, we need to add the method to load game assets for the scene.
+
+Add the following method to the `GameScene` class after the `InitializeNewGame` method:
 
 [!code-csharp[](./snippets/gamescene/loadcontent.cs)]
 
@@ -209,7 +227,7 @@ This method loads all necessary assets for the game scene:
 
 ### GameScene Update Method
 
-Next, to update the scene add the following method to the `GameScene` class after the `LoadContent` method:
+Next, to update the scene, add the following method to the `GameScene` class after the `LoadContent` method:
 
 [!code-csharp[](./snippets/gamescene/update.cs)]
 
@@ -224,7 +242,9 @@ This method updates the scene in each frame to:
 
 ### GameScene CollisionChecks Method
 
-In the `Update` method we just added, it makes a call to a `CollisionChecks` method to handle the collision detection and response.  Let's add that method now.  Add the following method to the `GameScene` class after the `Update` method:
+In the `Update` method we just added, it makes a call to a `CollisionChecks` method to handle the collision detection and response so we will add tha now.
+
+Add the following method to the `GameScene` class after the `Update` method:
 
 [!code-csharp[](./snippets/gamescene/collisionchecks.cs)]
 
@@ -236,20 +256,22 @@ This method checks for three types of collisions:
 
 ### GameScene PositionBatAwayFromSlime Method
 
-The `CollisionCheck` method makes a call to `PositionBatAwayFromSlime`.  Previously, when we needed to set the position of the bat when it respawns, we simply chose a random tile within the tilemap to move it to.  By choosing a completely random location, it could be on top fo the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which adds not challenge for the player.
+The `CollisionCheck` method makes a call to `PositionBatAwayFromSlime`, previously, when we needed to set the position of the bat when it re-spawns, we simply chose a random tile within the tilemap to move it to.  However, by choosing a completely random location it could be on top fo the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which is not challenging for the player.  To ensure the bat appears in a random, but strategic location, we can instead set it to position away from the slime on the opposite side of the room.
 
-To ensure the bat appears in a random, but strategic location, we can instead set it to position away from the slime on the opposite side of the room.  Add the following method to the `GameScene` class after the `CollisionCheck` method:
+Add the following method to the `GameScene` class after the `CollisionCheck` method:
 
 [!code-csharp[](./snippets/gamescene/positionbatawayfromslime.cs)]
 
-This method positions the bat after it's been eaten:
+This method positions the bat after it has been eaten:
 
 1. Determines which wall (top, bottom, left, or right) is furthest from the slime.
 2. Places the bat near that wall, making it more challenging for the player to reach.
 
 ### GameScene Event Handler and Game State Methods
 
-Next, we will add some of the missing methods being called from above that handle game events and state changes.  Add the following methods to the `GameScene` class after the `PositionBatAwayFromSlime` method:
+Next, we will add some of the missing methods being called from above that handle game events and state changes.
+
+Add the following methods to the `GameScene` class after the `PositionBatAwayFromSlime` method:
 
 [!code-csharp[](./snippets/gamescene/statechanges.cs)]
 
@@ -261,7 +283,9 @@ These methods handle specific game events:
 
 ### GameScene Draw Method
 
-Finally, we need a method to draw the scene.  Add the following method to the `GameScene `class after the `GameOver` method.
+Finally, we need a method to draw the scene.
+
+Add the following method to the `GameScene` class after the `GameOver` method.
 
 [!code-csharp[](./snippets/gamescene/draw.cs)]
 
@@ -285,23 +309,27 @@ This architecture makes it easier to add new features or fix bugs, as changes to
 
 The game at this point is now playable. If you test it out though, you may notice a small issue with inputs. As we discussed in [Chapter 10](../10_handling_input/index.md#input-buffering), in games where movement updates happen at fixed intervals, inputs can sometimes feel unresponsive, especially when trying to make multiple inputs in succession.
 
-For instance, if a player wants to navigate a tight corner by pressing up and then immediately left, pressing these keys in rapid succession often results in only the second input being registered. When this happens, the slime will only turn left without first moving upward, missing the intended two-part movement completely. This occurs because the second input overwrites the first one before the game has a chance to process it, leading to frustrating gameplay.
+For instance, if a player wants to navigate a tight corner by pressing up and then immediately left, pressing these keys in rapid succession often results in only the second input being registered. When this happens, the slime will only continue left without first moving upward, missing the intended two-part movement completely. This occurs because the second input overwrites the first one before the game has a chance to process it, leading to frustrating gameplay.
 
-Let's implement the input buffering technique we introduced in [Chapter 10](../10_handling_input/index.md#input-buffering) to solve this problem in our `Slime` class.
+Implementing the input buffering technique we introduced in [Chapter 10](../10_handling_input/index.md#input-buffering) aims to solve this problem in our `Slime` class.
 
 ### Implementing Input Buffering in the Slime Class
 
-To add input buffering for the `Slime` class, we will begin by adding the necessary fields to store our input queue. In the *GameObjects* directory of the *DungeonSlime* project (your main game project), open the *Slime.cs* file and add the following fields after the `_sprite` field:
+To add input buffering for the `Slime` class, we will begin by adding the necessary fields to store our input queue.
+
+In the `GameObjects` directory of the *DungeonSlime* project (your main game project), open the `Slime.cs` file and add the following fields after the `_sprite` field:
 
 [!code-csharp[](./snippets/slime/fields.cs)]
 
-The queue will store the directional vectors (up, down, left, right) that we will apply to the slime's movement in the order they were received.
+The queue will store the directional vectors (up, down, left, right) that we will apply to the slime's movement in the order they were received.  Next, we need to initialize the queue.
 
-Next, we need to initialize the queue.  In the `Slime` class, locate the `Initialize` method and and update it to the following:
+In the `Slime` class, locate the `Initialize` method and and update it to the following:
 
 [!code-csharp[](./snippets/slime/initialize.cs?highlight=30-31)]
 
-Next, we need to update the input handling method to store the inputs in the queue instead of immediately overwriting the `_nextDirection` field.  In the `Slime` class, locate the `HandleInput` method and update it to the following
+Next we need to update the input handling method to store the inputs in the queue instead of immediately overwriting the `_nextDirection` field.
+
+In the `Slime` class, locate the `HandleInput` method and update it to the following:
 
 [!code-csharp[](./snippets/slime/handleinput.cs?highlight=3,22-38)]
 
@@ -309,9 +337,11 @@ Next, we need to update the input handling method to store the inputs in the que
 2. A check is made to see if the player has pressed a direction key and if the input buffer is not already at maximum capacity.
 3. If a new direction key is pressed and the buffer has space:
    1. The validation is made using [**Vector2.Dot**](xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) just like before to ensure it is a valid direction
-   2. If it is a valid direciton, then it is added to the queue.
+   2. If it is a valid direction, then it is added to the queue.
 
-Finally, we need to modifiy how we apply the movement direction during the movement update cycle.  In the `Slime` class, locate the `Move` method and update it to the following:
+Finally, we need to modify how we apply the movement direction during the movement update cycle.
+
+In the `Slime` class, locate the `Move` method and update it to the following:
 
 [!code-csharp[](./snippets/slime/move.cs?highlight=3-7)]
 
@@ -331,7 +361,7 @@ The difference might seem subtle, but it significantly reduces frustration durin
 
 With all of these components now in place, our Dungeon Slime game has transformed from a simple demo built on learning MonoGame concepts into a complete snake-like game experience.  The player controls the slime that moves through the dungeon, consuming bats to grow longer.  If the slime collides with the wall or its own body, the game ends.
 
-Let's see how it all looks and plays:
+Now we can see how it all looks and plays:
 
 | ![Figure 23-1: Gameplay demonstration of the completed Dungeon Slime game showing the snake-like slime growing as it eats bats and a game over when colliding with the wall ](./videos/gameplay.webm) |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -341,7 +371,7 @@ Let's see how it all looks and plays:
 2. The player controls the direction of the slime by using the keyboard (arrow keys or WASD) or by using a game pad (DPad or left thumbstick).
 3. The slime moves at regular intervals, creating a grid-based movement pattern.
 4. When the slime eats a bat, it grows longer by adding a new segment to its tail.
-5. The bat respawns at a strategic location after being eaten.
+5. The bat re-spawns at a strategic location after being eaten.
 6. The player's score increases with each bat consumed.
 7. If the slime collides with a wall or its own body, the game over panel appears.
 8. On the game over panel, the player can choose to retry or return to the title scene.
@@ -381,10 +411,10 @@ The refactoring process we undertook demonstrates an important game development 
 
     :::
 
-2. Why is it important to position the bat away from the slime after it's been eaten rather than at a completely random location?
+2. Why is it important to position the bat away from the slime after it has been eaten rather than at a completely random location?
 
     :::question-answer
-    Positioning the bat away from the slime after it's been eaten rather than at a completely random location is important because:
+    Positioning the bat away from the slime after it has been eaten rather than at a completely random location is important because:
 
     - It prevents unfair situations where the bat might spawn right on top of the slime causing an immediate collision
     - It creates a more strategic gameplay experience by forcing the player to navigate toward the bat

@@ -64,7 +64,7 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 
 ---
 
- [!TIP]
+> [!TIP]
 > If for any reason the MGCB editor fails to load or you are hit with MGCB errors when you build your project, it is likely the MGCB references from the `dotnet-tools.json` configuration located in your projects `.config` folder have not been loaded/initialized.
 >
 > To correct this, simply run the following from a terminal/command prompt in your projects directory (there the `.config` folder is located)
@@ -90,9 +90,9 @@ In Figure 5-2 above, you can see the user interface for the MGCB Editor:
 
 Organizing your game assets into folders helps keep your content project manageable as it grows. For now, we will add a new folder that will hold the image assets we will add to the game throughout this tutorial series.  In the MGCB Editor:
 
-1. In the Project Panel, select the root *Content* node.
-2. Right-click it and choose *Add* > *New Folder...* from the context menu.
-3. Type "images" for the folder name and click the "Ok" button.
+1. In the Project Panel, select the root `Content` node.
+2. Right-click it and choose `Add > New Folder...` from the context menu.
+3. Type `images` for the folder name and click the `Ok` button.
 
 | ![Figure 5-3: New folder pop-up](./images/new-folder-popup.png) |
 | :-------------------------------------------------------------: |
@@ -101,7 +101,7 @@ Organizing your game assets into folders helps keep your content project managea
 You have now created a folder that will help organize the game's image assets.  As we continue through this tutorial series, we will be adding additional folders for organization of content such as audio, fonts, and effects.
 
 > [!NOTE]
-> If you try to add a new folder that already exists in the file system but is not showing in the MGCB editor, you will get an error.  Either remove the folder or use "Add Existing Folder" instead.
+> If you try to add a new folder that already exists in the file system but is not showing in the MGCB editor, you will get an error.  Either remove the folder or use `Add Existing Folder` instead.
 
 ### Adding Your First Asset
 
@@ -113,17 +113,17 @@ Now that we have a folder structure, we can add our first image asset to the pro
     | :--------------------------------------------------------: |
     |          **Figure 5-4: MonoGame Horizontal Logo**          |
 
-2. In the MGCB Editor, select the *images* folder you created earlier.
-3. Right-click it and choose *Add* > *Existing Item...* from the context menu.
+2. In the MGCB Editor, select the `images` folder you created earlier.
+3. Right-click it and choose `Add > Existing Item...` from the context menu.
 4. Navigate to the location of the `logo.png` file you just downloaded and select it.
-5. Click the "Open" button
-6. When prompted in the add existing file popup, choose *Copy the file to the directory.*
+5. Click the `Open` button
+6. When prompted in the add existing file popup, choose `Copy the file to the directory.`
 
     | ![Figure 5-5: Add existing file pop-up](./images/add-file-popup.png) |
     | :------------------------------------------------------------------: |
     |               **Figure 5-5: Add existing file pop-up**               |
 
-7. Save the changes to the content project by selecting *File* > *Save* from the top menu or pressing `CTRL+S`.
+7. Save the changes to the content project by selecting `File > Save` from the top menu or pressing `CTRL+S`.
 
 | ![Figure 5-6: The logo image added to the content project in the MGCB Editor](./images/mgcb-logo-added.png) |
 | :---------------------------------------------------------------------------------------------------------: |
@@ -173,7 +173,7 @@ They key methods for asset loading are:
 
 ## Understanding Content Paths
 
-When loading content, you need to specify the path to the asset, minus the extension.  This path is relative to the ContentManager's [**RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory) property, which is set to "Content" by default in the `Game1` constructor.
+When loading content, you need to specify the path to the asset, minus the extension.  This path is relative to the ContentManager's [**RootDirectory**](xref:Microsoft.Xna.Framework.Content.ContentManager.RootDirectory) property, which is set to **"Content"** by default in the `Game1` constructor.
 
 For example, with our newly added logo in the "images" folder,the path would be "images/logo" (without the file extension).  The reason for this relates to the build process.  When you build your project, the *MonoGame.Content.Builder.Tasks* NuGet reference [compiles your assets and copies them to the game's output folder](#understanding-the-content-pipeline-workflow).
 
@@ -240,8 +240,8 @@ Running the game now will show the MonoGame logo displayed in the upper-left cor
 
 The MGCB Editor can also create certain built-in asset types.  In this section we will explore these types and this functionality.  If not already open, [open the MGCB Editor](#opening-the-mgcb-editor) and perform the following:
 
-1. Select the *Content* node.
-2. Right-click it and choose *Add* > *New Item...* from the context menu.
+1. Select the `Content` node.
+2. Right-click it and choose `Add > New Item...` from the context menu.
 3. In the dialog that appears, you will see the available built-in types.
 
     | ![Figure 5-9: New file pop-up](./images/new-file-popup.png) |
@@ -259,7 +259,7 @@ The available built-in types include:
 > [!NOTE]
 > Each built-in asset type comes with a template that includes the minimum required structure and settings.
 
-For now, click the "Cancel" button on the new file dialog.  We will explore these built-in types further in later chapters when we need them.
+For now, click the `Cancel` button on the new file dialog.  We will explore these built-in types further in later chapters when we need them.
 
 ## Conclusion
 
