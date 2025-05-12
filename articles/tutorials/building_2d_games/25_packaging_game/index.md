@@ -180,7 +180,7 @@ To create this structure, from the same terminal window:
     > [!NOTE]
     > This moves the `Content` directory to the expected location for resources in a macOS application bundles.
 
-5. Create a new file called *Info.plist* in the *Contents* directory of the application bundle with the following command:
+5. Create a new file called `Info.plist` in the `Contents` directory of the application bundle with the following command:
 
     ```sh
     touch bin/Release/DungeonSlime.app/Contents/Info.plist
@@ -189,7 +189,7 @@ To create this structure, from the same terminal window:
     > [!NOTE]
     > The `touch` command creates an empty file if it does not exist or updates the modification time if it does exist.  We are using it here to create a blank file that we will populate with content in the next step.
 
-6. Open the *Info.plist* file you just created in a text editor and add the following content to the file and save it.
+6. Open the `Info.plist` file you just created in a text editor and add the following content to the file and save it.
 
     [!code-xml[](./snippets/info.plist?highlight=8,10,12,16,30)]
 
@@ -216,7 +216,7 @@ To create this structure, from the same terminal window:
     > For more information on the `Info.plist` manifest file, refer to the [About Info.plist Keys and Values](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html) Apple Developer documentation.
 
 
-7. Next, create the application bundle *.icns* icon file. To do this, perform the following:
+7. Next, create the application bundle `.icns` icon file. To do this, perform the following:
 
     1. First, you will need a `.png` file that can be used to create the icon set for the final `.icns` output.  If you already have a `.png` icon for your game, ensure it is in the root of the main project directory and is named `Icon.png`.  If you do not have one already prepared, you can use the `Icon.bmp` that was generated in the root of the main project directory when you initially created the project.  However, it will need to be converted to a `.png` first. To do this, execute the following command:
 

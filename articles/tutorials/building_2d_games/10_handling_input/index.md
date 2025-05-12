@@ -146,7 +146,7 @@ The thumbstick values are represented as a [**Vector2**](xref:Microsoft.Xna.Fram
 - X-axis: A value between `-1.0f` (pushed fully to the left) and `1.0f` (pushed fully to the right).
 - Y-axis: A value between `-1.0f` (pushed fully downward) and `1.0f` (pushed fully upward).
 
-For example, if you wanted to move a sprite using the left thumbstick, you could do the following
+For example, if you wanted to move a sprite using the left thumbstick, you could do the following:
 
 [!code-csharp[](./snippets/thumbstick.cs)]
 
@@ -331,7 +331,7 @@ For our game, we are going to implement keyboard and gamepad controls based on t
 | [Keys.D] and [Keys.Right] | [Thumbstick.Left.X] and [Buttons.DPadRight] | Moves the slime right on the screen. |
 | [Keys.Space]              | [Buttons.A]                                 | Increased the speed of the slime.    |
 
-Open `Game1.cs` and update it with the following:
+Open `Game1.cs` the *DungeonSlime* project and update it with the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=17-21,60-64,69-157,168)]
 
@@ -390,7 +390,7 @@ A basic input buffer can be implemented using a queue data structure, which foll
 >
 > This contrasts with a [`Stack<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-9.0>), which follows Last In, First Out (LIFO) behavior, where the most recently added item is the first one retrieved.
 
-The size of an input buffer is an important design decision. If it's too small, players might still feel the game isn't responsive enough. If it's too large, the game might feel like it's playing itself by working through a backlog of commands.
+The size of an input buffer is an important design decision. If it is too small, players might still feel the game is not responsive enough. If it is too large, the game might feel like it is playing itself by working through a backlog of commands.
 
 ### When to Use Input Buffering
 
@@ -401,7 +401,7 @@ Consider implementing input buffering in your game when:
 - Actions require precise timing that is difficult for players to hit consistently.
 - You want to allow players to "queue up" their next few moves.
 
-We'll see a practical implementation of input buffering in [Chapter 23](../23_completing_the_game/index.md) when we finalize our snake-like game mechanics, where timing and direction changes are critical to gameplay.
+We will see a practical implementation of input buffering in [Chapter 23](../23_completing_the_game/index.md) when we finalize our snake-like game mechanics, where timing and direction changes are critical to gameplay.
 
 ## Conclusion
 
