@@ -47,7 +47,7 @@ To get started, in the *MonoGameLibrary* project:
     [!code-csharp[](./snippets/scene.cs#declaration)]
 
     > [!NOTE]
-    > Just like with the `AudioController` in [Chapter 14](../14_audio_controller/index.md#audiocontroller-idisposable-implementation), each `Scene` implements the `IDisposable` interface.  This provides a standardized in method to release the resources held by a scene when it is no longer needed.
+    > Just like with the `AudioController` in [Chapter 15](../15_audio_controller/index.md#audiocontroller-idisposable-implementation), each `Scene` implements the `IDisposable` interface.  This provides a standardized in method to release the resources held by a scene when it is no longer needed.
 
 ### Scene Properties
 

@@ -199,7 +199,7 @@ The key changes to the `Game1` class include:
    1. The tilemap is loaded from the XML configuration file.
    2. The scale of the tilemap is set to a factor of 4.0.
 5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the `screenBounds` variable was removed and the collision logic has been updated to instead use the `_roomBounds` instead.
-6. In [**Draw**](Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) the tilemap is drawn.
+6. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) the tilemap is drawn.
 
 Running the game now with these changes, our game now visually transforms from a simple screen with sprites to a proper game environment with walls and floors. The slime and bat are now confined within the walls of the dungeon defined by our tilemap.
 

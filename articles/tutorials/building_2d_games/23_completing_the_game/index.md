@@ -311,7 +311,7 @@ The game at this point is now playable. If you test it out though, you may notic
 
 For instance, if a player wants to navigate a tight corner by pressing up and then immediately left, pressing these keys in rapid succession often results in only the second input being registered. When this happens, the slime will only continue left without first moving upward, missing the intended two-part movement completely. This occurs because the second input overwrites the first one before the game has a chance to process it, leading to frustrating gameplay.
 
-Implementing the input buffering technique we introduced in [Chapter 10](../10_handling_input/index.md#input-buffering) aims to solve this problem in our `Slime` class.
+Implementing the input buffering technique we introduced in [Chapter 10](../10_handling_input/index.md#implementing-a-simple-input-buffer) aims to solve this problem in our `Slime` class.
 
 ### Implementing Input Buffering in the Slime Class
 

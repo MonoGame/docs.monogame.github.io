@@ -3,7 +3,7 @@ title: "Chapter 22: Snake Game Mechanics"
 description: "Learn how to implement classic snake-like game mechanics and organize game objects into reusable components."
 ---
 
-In the previous chapters, we have built all the fundamental systems needed for our game: [graphics](../07_optimizing_texture_rendering/index.md), [input](../11_input_management/index.md), [collision detection](../12_collision_detection/index.md), [audio](../15_audio_controller/index.md), [scene management](../17_scenes/index.md), and a [user interface](../19_user_interface/index.html).  Now it is time to transform our demo into a complete experience by implementing classic snake-like game mechanics. Before we do that, we first need to define what mechanics make a snake game.
+In the previous chapters, we have built all the fundamental systems needed for our game: [graphics](../07_optimizing_texture_rendering/index.md), [input](../11_input_management/index.md), [collision detection](../12_collision_detection/index.md), [audio](../15_audio_controller/index.md), [scene management](../17_scenes/index.md), and a [user interface](../19_user_interface_fundamentals/index.md).  Now it is time to transform our demo into a complete experience by implementing classic snake-like game mechanics. Before we do that, we first need to define what mechanics make a snake game.
 
 In this chapter, you will:
 
@@ -209,7 +209,7 @@ Next, add the `HandleInput` method to process player input after the `Initialize
 This method implements the following:
 
 1. Determine if the player is attempting to change directions instead of directly moving the slime.  This direction change will be applied later during the movement cycle update.
-2. Uses [**Vector2.Dot**](xref:xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) to prevent the slime from reversing into itself, causing an immediate collision and game over state.
+2. Uses [**Vector2.Dot**](xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) to prevent the slime from reversing into itself, causing an immediate collision and game over state.
 3. Updates the `_nextDirection` value only if the direction input is valid.
 
 > [!NOTE]

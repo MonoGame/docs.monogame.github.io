@@ -135,10 +135,10 @@ Following the basic information about the project, the next section of the form 
 
 ### Uploads
 
-After choosing the pricing options for the project, the next part of the form is for uploading files that users can download for the project.  This is where you will add the platform-specific builds you created using the steps in [Chapter 25](../25_packaging_the_game/index.md).  Itch.io supports multiple file uploads, allowing you to provide the appropriate version for each platform you support.
+After choosing the pricing options for the project, the next part of the form is for uploading files that users can download for the project.  This is where you will add the platform-specific builds you created using the steps in [Chapter 25](../25_packaging_game/index.md).  Itch.io supports multiple file uploads, allowing you to provide the appropriate version for each platform you support.
 
 > [!NOTE]
-> Before uploading, ensure the builds are properly packaged into either ZIP (Windows) or tar.gz (macOS/Linux) archives as discussed in [Chapter 25](../25_packaging_the_game/index.md).
+> Before uploading, ensure the builds are properly packaged into either ZIP (Windows) or tar.gz (macOS/Linux) archives as discussed in [Chapter 25](../25_packaging_game/index.md).
 
 To upload a file for the project:
 
@@ -146,7 +146,7 @@ To upload a file for the project:
 2. In the file select dialog, navigate to and select the file you want to upload.
 
 > [!NOTE]
-> For a MonoGame game project, you would upload the archived builds that you created through the steps in [Chapter 25](../25_packaging_the_game/index.md).
+> For a MonoGame game project, you would upload the archived builds that you created through the steps in [Chapter 25](../25_packaging_game/index.md).
 
 Once the upload has completed, you will be presented with options to set the following:
 

@@ -13,7 +13,7 @@ For instance, to load an image file directly at runtime, you would need to:
 
 1. Add the image file to your project.
 2. Configure the project to copy the image file on build to the build output folder.
-3. Load the image file as a texture at runtime using the [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.html#Microsoft_Xna_Framework_Graphics_Texture2D_FromFile_Microsoft_Xna_Framework_Graphics_GraphicsDevice_System_String_) method.
+3. Load the image file as a texture at runtime using the [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)) method.
 
 > [!IMPORTANT]
 > A big disadvantage to loading an image file as a texture directly, is when that when it loads it, it does so in its compressed format such as *.png* or *.jpg*.  These compression formats are not understood by a Graphics Processing Unit (GPU); they will need to be decompressed into raw bytes as a format the GPU does understand before it can store the data.  Doing this can potentially leave a larger memory footprint for your assets.  You will also need to handle how different compression formats work on the platform you are targeting such as desktops, mobile, and consoles.
@@ -238,7 +238,7 @@ Running the game now will show the MonoGame logo displayed in the upper-left cor
 
 ## Adding Build-In Asset Types
 
-The MGCB Editor can also create certain built-in asset types.  In this section we will explore these types and this functionality.  If not already open, [open the MGCB Editor](#opening-the-mgcb-editor) and perform the following:
+The MGCB Editor can also create certain built-in asset types.  In this section we will explore these types and this functionality.  If not already open, [open the MGCB Editor](#the-mgcb-editor) and perform the following:
 
 1. Select the `Content` node.
 2. Right-click it and choose `Add > New Item...` from the context menu.
@@ -283,7 +283,7 @@ In the next chapter, we will explore working with textures in more detail and le
 
     1. Directly from file using [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)).   This method requires manually setting up file copying, offers no pre-processing benefits, and can have a higher memory footprint.
 
-    2. Using the content pipeline with [**Content.Load\<Texture2D>**](xref:Microsoft.Xna.Framework.Content.ContentManager.html#Microsoft_Xna_Framework_Content_ContentManager_Load__1_System_String_).  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.
+    2. Using the content pipeline with [**Content.Load\<Texture2D>**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String)).  Using the content pipeline optimizes textures into formats for the target platform(s), automatically handles compiling and copying assets during build, and reduces memory footprint, but requires additional setup using the MGCB Editor.
     :::
 
 2. During the MonoGame content pipeline workflow, assets are compiled and then copied to the project output folder.  What is responsible for performing this task?
