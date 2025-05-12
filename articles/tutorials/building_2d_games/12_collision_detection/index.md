@@ -42,7 +42,7 @@ Two find the distance between two circles, imagine drawing a line from the cente
 | :---------------------------------------------------------------------------------------------------------------------------------------: |
 |                       **Figure 12-1: Showing the distance between the center of two circles forms a right triangle**                       |
 
-In the Figure 12-1 above
+In the *Figure 12-1* above
 
 - $a$ is the distance between the center of the two on the x-axis (horizontal).
 - $b$ is the distance between the center of the two circles on the y-axis (vertical).

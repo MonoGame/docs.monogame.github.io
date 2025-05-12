@@ -161,9 +161,9 @@ Next, add this texture to your content project using the MGCB Editor:
 3. Navigate to and select the `background-pattern.png` file.
 4. Save the changes and close the MGCB Editor.
 
-| ![Figure 18-9: The MGCB Editor with the *background-pattern* image added](./images/mgcb-editor.png) |
+| ![Figure 18-10: The MGCB Editor with the *background-pattern* image added](./images/mgcb-editor.png) |
 | :-------------------------------------------------------------------------------------------------: |
-|             **Figure 18-9: The MGCB Editor with the *background-pattern* image added**              |
+|             **Figure 18-10: The MGCB Editor with the *background-pattern* image added**              |
 
 ### Updating the Title Scene
 
@@ -189,9 +189,9 @@ The key changes here are
 
 Running the game now with these changes, the title screen now has a scroll background that adds more visual depth and interest to it than just the plain colored background we had before.
 
-| ![Figure 18-10: The title screen now with the repeating background texture of the slime and bat scrolling diagonally down and to the right](./videos/titlescreen.webm) |
+| ![Figure 18-11: The title screen now with the repeating background texture of the slime and bat scrolling diagonally down and to the right](./videos/titlescreen.webm) |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|              **Figure 18-10: The title screen now with the repeating background texture of the slime and bat scrolling diagonally down and to the right**              |
+|              **Figure 18-11: The title screen now with the repeating background texture of the slime and bat scrolling diagonally down and to the right**              |
 
 ## Conclusion
 

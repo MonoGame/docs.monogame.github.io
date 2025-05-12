@@ -11,7 +11,9 @@ Throughout these chapters you have built a complete 2D game from scratch, learni
 
 ### Fundamentals
 
-Our journey began with essential building blocks of game development with MonoGame.  We explored the framework's architecture and capabilities, comparing it to alternatives to understand its unique position in the game development ecosystem.  These fundamental concepts provided the foundation upon which we built increasingly complex systems throughout the tutorial series.  These concepts included:
+Our journey began with essential building blocks of game development with MonoGame.  We explored the framework's architecture and capabilities, comparing it to alternatives to understand its unique position in the game development ecosystem.  These fundamental concepts provided the foundation upon which we built increasingly complex systems throughout the tutorial series.
+
+These concepts included:
 
 - Understanding what MonoGame is and how it compares to other game development frameworks.
 - Setting up your development environment across different operating systems.
@@ -20,7 +22,9 @@ Our journey began with essential building blocks of game development with MonoGa
 
 ### Graphics and Rendering
 
-With the foundations in place, we ventured into the visual aspects of game development that bring our virtual worlds to life.  We explored MonoGame's asset management through the content pipeline, rendering capabilities, and learning techniques to efficiently display graphics while optimizing performance.  These included:
+With the foundations in place, we ventured into the visual aspects of game development that bring our virtual worlds to life.  We explored MonoGame's asset management through the content pipeline, rendering capabilities, and learning techniques to efficiently display graphics while optimizing performance.
+
+These included:
 
 - Loading and rendering textures with SpriteBatch.
 - Optimizing texture rendering with texture atlases.
@@ -31,7 +35,9 @@ With the foundations in place, we ventured into the visual aspects of game devel
 
 ### Game Systems
 
-Beyond graphics, we delved into the interactive systems that transform static visuals into a dynamic gameplay experience.  These interconnected components form the backbone of our game, enabling player interaction, providing feedback, and creating a coherent experience across different game states.  By implementing these systems, we learned how the various elements of game design work together to create an engaging and responsive player experience.  These systems included:
+Beyond graphics, we delved into the interactive systems that transform static visuals into a dynamic gameplay experience.  These interconnected components form the backbone of our game, enabling player interaction, providing feedback, and creating a coherent experience across different game states.  By implementing these systems, we learned how the various elements of game design work together to create an engaging and responsive player experience.
+
+These systems included:
 
 - Handling input from keyboard, mouse, and gamepad.
 - Creating an input management system for improved responsiveness.
@@ -42,7 +48,9 @@ Beyond graphics, we delved into the interactive systems that transform static vi
 
 ### Production and Distribution
 
-After creating a fully functioning game, we turned our attention to sharing our creation with the world.  The final stages of game development involve preparing your project for players across different platforms and making it available through distribution channels.  These steps take your personal project and puts it into a publicly accessible space where others can download, play, and enjoy.  These stages were:
+After creating a fully functioning game, we turned our attention to sharing our creation with the world.  The final stages of game development involve preparing your project for players across different platforms and making it available through distribution channels.  These steps take your personal project and puts it into a publicly accessible space where others can download, play, and enjoy.
+
+These stages were:
 
 - Packaging your game for different platforms.
 - Publishing your game on distribution platforms like itch.io.
@@ -61,7 +69,10 @@ For structure learning, several community members have created comprehensive edu
 - [GameDevQuickie](https://www.youtube.com/@GameDevQuickie/) offers video tutorials focused on practical game development techniques with MonoGame.
 - [Darkside of MonoGame video series](https://www.youtube.com/@DarksideofMonoGame) provides comprehensive tutorials on getting started with MonoGame across different platforms and scenarios.
 
-The [MonoGame Samples](https://github.com/MonoGame/MonoGame.Samples) repository offers practicle examples of features implemented in working code. Similarly, the archived [XNA Game Studio educational resources](https://github.com/SimonDarksideJ/XNAGameStudio) maintained by Simon Jackson provide a wealth of examples that remain relevant despite XNA's official discontinuation.
+The [MonoGame Samples](https://github.com/MonoGame/MonoGame.Samples) repository offers practical examples of features implemented in working code. Similarly, the archived [XNA Game Studio educational resources](https://github.com/SimonDarksideJ/XNAGameStudio) maintained by Simon Jackson provide a wealth of examples that remain relevant despite XNA's official discontinuation.
+
+> [!TIP]
+> **REMEMBER**, if you see content written for XNA, then it is more than likely it will still work for MonoGame due to MonoGame's commitment for backwards compatibility.  There maybe a few bumps, minor changes (especially with earlier versions of XNA, like XNA 2) or differences with shaders (the biggest pain).  But remember the community is here to help, so just ASK!.
 
 ## Your First Original Project
 
@@ -87,6 +98,8 @@ The MonoGame framework offers a rare combination of freedom and structure; provi
 
 Your journey from here will be uniquely yours, shaped by the games you want to make and the challenges you choose to overcome.  Whatever path you follow, approach it with the same curiosity, persistence, and analytical thinking that brought you through this tutorial series.  The road may not always be easy, but it leads to one of the most rewarding creative disciplines available today - the art and science of making games.
 
-Instead of ending this like all other chapters with a section to "test your knowledge", I'll just leave you with one simple question: What will you create next?
+Instead of ending this like all other chapters with a section to "test your knowledge", I will just leave you with one simple question:
 
-\- Christopher Whitley (Aristurtle)
+### What will you create next?
+
+\- [Christopher Whitley (Aristurtle)](https://github.com/AristurtleDev)

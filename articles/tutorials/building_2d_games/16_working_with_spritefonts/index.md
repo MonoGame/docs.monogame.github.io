@@ -121,7 +121,7 @@ The `<CharacterRegions>` element defines which Unicode character ranges to inclu
 For most games, the default range is sufficient.
 
 > [!NOTE]
-> ALthough for fun, TRY using the Wingdings font :D
+> Although for fun, TRY using the Wingdings font :D
 
 ## Loading a SpriteFont Description
 
