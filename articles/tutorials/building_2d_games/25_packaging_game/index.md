@@ -248,6 +248,9 @@ To create this structure, from the same terminal window:
         > [!NOTE]
         > `iconutil` is a command line tool in macOS used to convert icon sets into a single high-resolution `.icns` file.
 
+        > [!TIP]
+        > After creating the `.icns` file using the above command, if you open the folder in Finder with `DungeonSlime.app` and it shows a blank square as the icon instead of the one you just created, right-click on `DungeonSlime.app` and choose `Get Info` from the context menu.  This will force it to do a refresh and show the icon properly.  After doing this, if the icon still does not show, then you need to double check that the `CFBundleIconFile` value in the `Info.plist` is named **exactly** the same as the `.icns` file that was created (minus the extension).
+
 8. Set executable permissions for the game executable.  To do this, execute the following command:
 
     ```sh
