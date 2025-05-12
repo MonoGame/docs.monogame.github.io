@@ -23,7 +23,7 @@ This class provides the following structure:
 3. **Content Loading**: The [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method manages game asset loading during startup.
 4. **Game Loop**: The *game loop* consists of the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) method for game logic and the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method for rendering, running continuously until the game is told to exit.
 
-Figure 3-1 below shows the lifecycle of a MonoGame game including the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) and [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) methods that make up the *game loop*.
+*Figure 3-1* below shows the lifecycle of a MonoGame game including the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) and [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) methods that make up the *game loop*.
 
 | ![Figure 3-1: Lifecycle of a MonoGame game](./images/monogame-lifecycle.png) |
 | :--------------------------------------------------------------------------: |

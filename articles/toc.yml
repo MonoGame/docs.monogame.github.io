@@ -164,7 +164,7 @@
           href: tutorials/building_2d_games/25_packaging_game/
         - name: "26: Publishing Your Game to itch.io"
           href: tutorials/building_2d_games/26_publish_to_itch/          
-        - name: "Chapter 27: Conclusion and Next Steps"
+        - name: "27: Conclusion and Next Steps"
           href: tutorials/building_2d_games/27_conclusion/
 - name: Console Access
   href: console_access.md
