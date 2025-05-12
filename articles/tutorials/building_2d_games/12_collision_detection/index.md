@@ -337,7 +337,7 @@ Running the game now
 
 | ![Figure 12-5: When the slime collides ("eats") the bat, the bat respawns in a new location on the screen with a random velocity assigned](./videos/gameplay.webm) |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|            **Figure 12-5: When the slime collides ("eats") the bat, the bat re-spawns in a new location on the screen with a random velocity assigned**             |
+|            **Figure 12-5: When the slime collides ("eats") the bat, the bat respawns in a new location on the screen with a random velocity assigned**             |
 
 ## Conclusion
 

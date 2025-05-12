@@ -256,7 +256,7 @@ This method checks for three types of collisions:
 
 ### GameScene PositionBatAwayFromSlime Method
 
-The `CollisionCheck` method makes a call to `PositionBatAwayFromSlime`, previously, when we needed to set the position of the bat when it re-spawns, we simply chose a random tile within the tilemap to move it to.  However, by choosing a completely random location it could be on top fo the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which is not challenging for the player.  To ensure the bat appears in a random, but strategic location, we can instead set it to position away from the slime on the opposite side of the room.
+The `CollisionCheck` method makes a call to `PositionBatAwayFromSlime`, previously, when we needed to set the position of the bat when it respawns, we simply chose a random tile within the tilemap to move it to.  However, by choosing a completely random location it could be on top fo the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which is not challenging for the player.  To ensure the bat appears in a random, but strategic location, we can instead set it to position away from the slime on the opposite side of the room.
 
 Add the following method to the `GameScene` class after the `CollisionCheck` method:
 
@@ -371,7 +371,7 @@ Now we can see how it all looks and plays:
 2. The player controls the direction of the slime by using the keyboard (arrow keys or WASD) or by using a game pad (DPad or left thumbstick).
 3. The slime moves at regular intervals, creating a grid-based movement pattern.
 4. When the slime eats a bat, it grows longer by adding a new segment to its tail.
-5. The bat re-spawns at a strategic location after being eaten.
+5. The bat respawns at a strategic location after being eaten.
 6. The player's score increases with each bat consumed.
 7. If the slime collides with a wall or its own body, the game over panel appears.
 8. On the game over panel, the player can choose to retry or return to the title scene.
