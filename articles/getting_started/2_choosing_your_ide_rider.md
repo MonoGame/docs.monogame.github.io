@@ -58,7 +58,7 @@ Once you have created your project you should run the following terminal/command
 ```
 
 > [!NOTE]
-> If you ever change the version of the tools or want to upgrade them by editing the `dotnet-tools.json` configuration, you MUST run this command again to update te tools.
+> If you ever change the version of the tools or want to upgrade them by editing the `dotnet-tools.json` configuration, you MUST run this command again to update the tools.
 
 ## Next Steps
 
