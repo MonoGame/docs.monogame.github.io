@@ -359,6 +359,50 @@ Running the game now, you can move the slime around using the keyboard with the 
 > [!NOTE]
 > You may notice that the slime is capable of moving completely off the screen, this is completely normal as we have not yet implemented any logic to prevent it from doing so, it only doing what we currently tell it to do.
 
+## Input Buffering
+
+While checking for input every frame works well for continuous actions like movement, many games benefit from more sophisticated input handling techniques. One such technique is **input buffering**, which can significantly improve how responsive controls feel to players.
+
+### Understanding Input Buffering
+
+Input buffering is a technique where the game temporarily stores player inputs that cannot be immediately processed. Instead of discarding these inputs, they are placed in a queue and processed in order when the game is ready to handle them.
+
+Input buffering is particularly valuable in games where:
+
+- Actions occur at fixed intervals rather than continuously (like turn-based games or grid movement).
+- Precise timing is required for complex input sequences (like fighting games).
+- Multiple rapid inputs need to be remembered in order (like quick directional changes).
+
+Without input buffering, players must time their inputs perfectly to align with the game's update cycle. With buffering, the game becomes more forgiving and responsive by:
+
+1. Storing inputs that arrive between action updates.
+2. Preserving the order of inputs for more predictable behavior.
+3. Creating a sense that the game is actually listening to the player.
+
+### Implementing a Simple Input Buffer
+
+A basic input buffer can be implemented using a queue data structure, which follows a First-In-First-Out (FIFO) pattern:
+
+[!code-csharp[](./snippets/inputbuffer.cs)]
+
+> [!NOTE]
+> The [`Queue<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.queue-1?view=net-9.0>) is a First In, First Out (FIFO) collection in C#. When you add items with `Enqueue()`, they join the end of the line, and when you retrieve items with `Dequeue()`, you always get the oldest item (the one at the front of the line). Think of it like people waiting in line - the first person to arrive is the first one served.
+>
+> This contrasts with a [`Stack<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.stack-1?view=net-9.0>), which follows Last In, First Out (LIFO) behavior, where the most recently added item is the first one retrieved.
+
+The size of an input buffer is an important design decision. If it's too small, players might still feel the game isn't responsive enough. If it's too large, the game might feel like it's playing itself by working through a backlog of commands.
+
+### When to Use Input Buffering
+
+Consider implementing input buffering in your game when:
+
+- Players complain about the game feeling "unresponsive".
+- Your game uses fixed-interval updates for certain mechanics.
+- Actions require precise timing that is difficult for players to hit consistently.
+- You want to allow players to "queue up" their next few moves.
+
+We'll see a practical implementation of input buffering in [Chapter 23](../23_completing_the_game/index.md) when we finalize our snake-like game mechanics, where timing and direction changes are critical to gameplay.
+
 ## Conclusion
 
 In this chapter, you accomplished the following:
