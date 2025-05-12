@@ -172,7 +172,7 @@ To create this structure, from the same terminal window:
     > [!NOTE]
     > This moves the `Content` directory to the expected location for resources in a macOS application bundles.
 
-4. Create a new file called *Info.plist* in the *Contents* directory of the application bundle with the following command:
+5. Create a new file called *Info.plist* in the *Contents* directory of the application bundle with the following command:
 
     ```sh
     touch bin/Release/DungeonSlime.app/Contents/Info.plist
@@ -181,7 +181,7 @@ To create this structure, from the same terminal window:
     > [!NOTE]
     > The `touch` command creates an empty file if it does not exist or updates the modification time if it does exist.  We are using it here to create a blank file that we will populate with content in the next step.
 
-5. Open the *Info.plist* file you just created in a text editor and add the following content to the file and save it.
+6. Open the *Info.plist* file you just created in a text editor and add the following content to the file and save it.
 
     [!code-xml[](./snippets/info.plist?highlight=8,10,12,16,30)]
 
@@ -207,7 +207,7 @@ To create this structure, from the same terminal window:
     >
     > For more information on the *Info.plist* manifest file, refer to the [About Info.plist Keys and Values](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html) Apple Developer documentation.
 
-6. Next, create the application bundle *.icns* icon file.  To do this, execute the following commands:
+7. Next, create the application bundle *.icns* icon file. To do this, perform the following:
 
     ```sh
     mkdir -p bin/Release/DungeonSlime.iconset
@@ -230,7 +230,7 @@ To create this structure, from the same terminal window:
     > - Each size is necessary for different display scenarios in macOS (Dock, Finder, etc.).
     > - The `iconutil` command then compiles these images into a single *.icns* file that macOS recognizes as an application icon.
 
-7. Set executable permissions for the game executable.  To do this, execute the following command:
+8. Set executable permissions for the game executable.  To do this, execute the following command:
 
     ```sh
     chmod +x bin/Release/DungeonSlime.app/Contents/MacOS/DungeonSlime
