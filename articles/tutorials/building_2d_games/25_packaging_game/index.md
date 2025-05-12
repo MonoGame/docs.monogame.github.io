@@ -145,7 +145,16 @@ To create this structure, from the same terminal window:
     > [!NOTE]
     > The `mkdir -p` command creates directories including any necessary parent directories.  The `-p` flag ensures all intermediate directories are created without error if they do not exist yet.
 
-2. Combine the Intel (x64) and Apple Silicon (arm64) builds into a *universal binary*.  To do this, execute the following commands:
+2. Copy all files from the Intel (x64) build to the MacOS directory. This ensures all the required dependencies are included. To do this, execute the following command:
+
+    ```sh
+    cp -R bin/Release/net8.0/osx-x64/publish/* bin/Release/DungeonSlime.app/Contents/MacOS/
+    ```
+
+    > [!NOTE]
+    > This copies all files from the publish directory, including the executable, all dependent `.dll` files, and the `Content` directory that contains your game assets.
+
+3. Replace the executable with a universal binary that works on both Intel and Apple Silicon Macs. To do this, execute the following command:
 
     ```sh
     lipo -create bin/Release/net8.0/osx-arm64/publish/DungeonSlime bin/Release/net8.0/osx-x64/publish/DungeonSlime -output bin/Release/DungeonSlime.app/Contents/MacOS/DungeonSlime
@@ -154,14 +163,14 @@ To create this structure, from the same terminal window:
     > [!NOTE]
     > The `lipo` command is a macOS utility that works with multi-architecture binaries.  Here, it combines the Intel (x64) and Apple Silicon (arm64) executables into a single "universal binary" that can run natively on both Apple Silicon and Intel processor based Macs.
 
-3. Next, copy the your content files to the expected location within the application bundle structure.  To do this, execute the following commands:
+4. Move the Content directory from the MacOS directory to the Resources directory, following macOS application bundle conventions. To do this, execute the following command:
 
     ```sh
-    cp -R bin/Release/net8.0/Content bin/Release/DungeonSlime.app/Contents/Resources/Content
+    mv bin/Release/DungeonSlime.app/Contents/MacOS/Content bin/Release/DungeonSlime.app/Contents/Resources/
     ```
 
     > [!NOTE]
-    > The `cp -R` command copies files recursively, meaning it will copy the entire directory structure.  The `-R` flag ensures all subdirectories and their contents are copied.
+    > This moves the `Content` directory to the expected location for resources in a macOS application bundles.
 
 4. Create a new file called *Info.plist* in the *Contents* directory of the application bundle with the following command:
 
