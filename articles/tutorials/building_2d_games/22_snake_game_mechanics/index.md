@@ -3,7 +3,7 @@ title: "Chapter 22: Snake Game Mechanics"
 description: "Learn how to implement classic snake-like game mechanics and organize game objects into reusable components."
 ---
 
-In the previous chapters, we've built all the fundamental systems needed for our game: [graphics](../07_optimizing_texture_rendering/index.md), [input](../11_input_management/index.md), [collision detection](../12_collision_detection/index.md), [audio](../15_audio_controller/index.md), [scene management](../17_scenes/index.md), and a [user interface](../19_user_interface/index.html).  Now it's time to transform our demo into a complete experience by implementing classic snake-like game mechanics. Before we do that, we first need to define what mechanics make a snake game.
+In the previous chapters, we have built all the fundamental systems needed for our game: [graphics](../07_optimizing_texture_rendering/index.md), [input](../11_input_management/index.md), [collision detection](../12_collision_detection/index.md), [audio](../15_audio_controller/index.md), [scene management](../17_scenes/index.md), and a [user interface](../19_user_interface/index.html).  Now it is time to transform our demo into a complete experience by implementing classic snake-like game mechanics. Before we do that, we first need to define what mechanics make a snake game.
 
 In this chapter, you will:
 
@@ -96,7 +96,7 @@ Currently, we have two methods dedicated to handling input in the game scene, `C
 
 To simplify input handling for the game, we can create a dedicated class that consolidates the input methods, providing a unified input profile for the game.  This pattern is widely used in game development to separate the "what" (game actions) from the "how" (specific input devices and buttons).
 
-Create a new file named `GameController.cs` in the root of the *DungeonSlime* project (your main game project) and add the following code:
+Create a new file named `GameController.cs` in the root of the `DungeonSlime` project (your main game project) and add the following code:
 
 [!code-csharp[](./snippets/gamecontroller.cs)]
 
@@ -104,7 +104,7 @@ The `GameController` class implements an important design pattern in game develo
 
 This separation provides several benefits, including:
 
-1. **Input Device Independence**: The game logic does not need to know which input device the player is using. Whether they're playing with a keyboard, gamepad, or touch screen, the game only cares that a "move up" action was triggered, not which specific button or key caused it.
+1. **Input Device Independence**: The game logic does not need to know which input device the player is using. Whether they are playing with a keyboard, gamepad, or touch screen, the game only cares that a "move up" action was triggered, not which specific button or key caused it.
 2. **Simplified Input Handling**: Instead of checking multiple input combinations throughout the codebase, game objects can simply ask "Should I move up?" through a clean API call.
 3. **Easy Rebinding**: If you want to add key rebinding features, you only need to modify the `GameController` class, not every piece of code that uses input.
 4. **Consistent Input Logic**: The rules for determining if an action occurred (like checking if a button was just pressed version being held down) are defined in one place.
@@ -116,11 +116,10 @@ With our input handling system in place, now we can turn our attention to implem
 
 ### The SlimeSegment Struct
 
-Next, we will need to implement a structure that can represent each segment of the slime.  This structure will store the position and movement data for each segment.
+We will need to implement a structure that can represent each segment of the slime, this structure will store the position and movement data for each segment.
 
-- In the *DungeonSlime* project (your main game project), create a new directory named `GameObjects`. We will be putting all of our code related to the objects within the game here.
-
-Next, create a new file named `SlimeSegment.cs` inside the `GameObjects` directory you just created and add the following code:
+In the *DungeonSlime* project (your main game project), create a new directory named `GameObjects`. We will be putting all of our code related to the objects within the game here.
+Then create a new file named `SlimeSegment.cs` inside the `GameObjects` directory you just created and add the following code:
 
 [!code-csharp[](./snippets/slimesegment.cs)]
 
@@ -132,7 +131,7 @@ This structure contains fields to track:
 - `ReverseDirection`: A computed property that returns the opposite of the `Direction` property.
 
 > [!NOTE]
-> We are implementing this as a struct rather than a class because SlimeSegment is a small, simple data container with value semantics. Structs are more efficient for small data structures since they're allocated on the stack rather than the heap, reducing garbage collection overhead. Since our game will potentially create many segments as the snake grows, using a struct can provide better performance, especially when we will be copying segment data during movement operations.
+> We are implementing this as a struct rather than a class because SlimeSegment is a small, simple data container with value semantics. Structs are more efficient for small data structures since they are allocated on the [stack rather than the heap](https://learn.microsoft.com/en-us/dotnet/standard/automatic-memory-management), reducing garbage collection overhead. Since our game will potentially create many segments as the snake grows, using a struct can provide better performance, especially when we will be copying segment data during movement operations.
 
 > [!IMPORTANT]
 > Structs work best with value types (like int, float, [**Vector2**](xref:Microsoft.Xna.Framework.Vector2)); using reference types in structs can cause boxing operations that negate the performance benefits. For more information on structs, refer to the [Structure Types - C# Reference](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct) documentation on Microsoft Learn.
@@ -141,7 +140,9 @@ By tracking both the current (`At`) and target (`To`) positions, we can implemen
 
 ### The Slime Class
 
-Next, we can implement a class to encapsulate the properties and functionality of our snake-like slime. In the `GameObjects` directory of the DungeonSlime project (your main game project), create a new file named `Slime.cs` and add the following initial code:
+Next, we can implement a class to encapsulate the properties and functionality of our snake-like slime.
+
+In the `GameObjects` directory of the *DungeonSlime* project (your main game project), create a new file named `Slime.cs` and add the following initial code:
 
 [!code-csharp[](./snippets/slime/definition.cs)]
 
@@ -158,7 +159,7 @@ Add the following fields to the `Slime` class:
 
 [!code-csharp[](./snippets/slime/fields.cs)]
 
-Let's break down what each of these fields is responsible for:
+Each of these fields is responsible for:
 
 - `s_movementTime`: This constant represents how long the slime waits between movement cycles (300ms). This creates the classic snake game's grid-based movement feel, where the snake moves at regular intervals rather than continuously.
 - `_movementTime`: This field accumulates elapsed time until it reaches the movement threshold. When it does, the slime moves one grid cell and the timer resets.
@@ -256,7 +257,9 @@ Th `Grow` method works as follows:
 
 #### Slime Update
 
-With most of the core snake-like mechanics now added to the `Slime` class within their own methods, let's add the `Update` method.  Add the following method to the `Slime` class after the `Grow` method:
+With most of the core snake-like mechanics now added to the `Slime` class within their own methods we can now work on what happens while the slime is operating.
+
+Add the following `Update` method to the `Slime` class after the `Grow` method:
 
 [!code-csharp[](./snippets/slime/update.cs)]
 
@@ -297,7 +300,7 @@ Add the following `Draw` method after the `Update` method to the `Slime` class:
 
 [!code-csharp[](./snippets/slime/draw.cs)]
 
-This draw method iterates each segment of the slime and calculates the visual position to draw each segment at by performing linear interpolation (lerp) to determine the position of the segment between its current position (`At`) and the position it is moving to (`To`) based on the `_movementProgress` calculation.
+This draw method iterates each segment of the slime and calculates the visual position to draw each segment at by performing [linear interpolation (lerp)](https://www.corykoseck.com/2018/08/29/programming-in-c-lerp/) to determine the position of the segment between its current position (`At`) and the position it is moving to (`To`) based on the `_movementProgress` calculation.
 
 > [!NOTE]
 > [**Vector2.Lerp**](xref:Microsoft.Xna.Framework.Vector2.Lerp(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)) performs a linear interpolation between two vectors, creating a smooth transition from start to end based on an amount parameter.  The formula is:
@@ -336,13 +339,13 @@ Now that we have our player-controlled character implemented, we can create the 
 
 ### The Bat Class
 
-In the `GameObjects` directory of the DungeonSlime project (your main game project), create a new file named `Bat.cs` and add the following initial code:
+In the `GameObjects` directory of the *DungeonSlime* project (your main game project), create a new file named `Bat.cs` and add the following initial code:
 
 [!code-csharp[](./snippets/bat/definition.cs)]
 
 This code establishes the foundation for our `Bat` class. We have included the necessary using statements for MonoGame components, audio functionality, and our library references. The class is placed in the same `DungeonSlime.GameObjects` namespace as our Slime class to maintain a consistent organization.
 
-Now we will build this class step by step, adding all the functionality needed for the bat to serve as the collectible object in our game. Add each of the following sections to the `Bat` class in the order they are presented.
+Now we will build this class step by step, adding all the functionality needed for the bat to serve as the collectible object in our game.  Add each of the following sections to the `Bat` class in the order they are presented.
 
 > [!NOTE]
 > As with the Slime class, you may encounter compiler errors until all sections are in place. These errors will be resolved once all components of the class have been added.
@@ -386,7 +389,9 @@ Add the following method to the `Bat` class after the constructor:
 
 #### Bat Bounce
 
-We are also going to take the logic from the `GameScene` class that bounces the bat off the walls and move it into a dedicated method in the `Bat` class.  Add the following method to the `Bat` class after the `RandomizeVelocity` method:
+We are also going to take the logic from the `GameScene` class that bounces the bat off the walls and move it into a dedicated method in the `Bat` class.
+
+Add the following method to the `Bat` class after the `RandomizeVelocity` method:
 
 [!code-csharp[](./snippets/bat/bounce.cs)]
 
@@ -478,7 +483,7 @@ In the next chapter, we will build on these mechanics by updating the `GameScene
 4. How does the implementation use [**Vector2.Lerp**](xref:Microsoft.Xna.Framework.Vector2.Lerp(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)) to create smooth visual movement, and why is this important?
 
     :::question-answer
-    The implementation uses [**Vector2.Lerp**](xref:Microsoft.Xna.Framework.Vector2.Lerp(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)) to interpolate between a segment's current position (`At`) and its target position (`To`) based on a normalized movement progress value. This creates smooth visual movement by drawing the segments at intermediate positions between grid points rather than abruptly jumping from one grid position to the next. 
+    The implementation uses [**Vector2.Lerp**](xref:Microsoft.Xna.Framework.Vector2.Lerp(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)) to interpolate between a segment's current position (`At`) and its target position (`To`) based on a normalized movement progress value. This creates smooth visual movement by drawing the segments at intermediate positions between grid points rather than abruptly jumping from one grid position to the next.
 
     This is important because it provides more fluid animation while maintaining the logical grid-based movement, enhancing the visual quality of the game without changing the core mechanics.
     :::

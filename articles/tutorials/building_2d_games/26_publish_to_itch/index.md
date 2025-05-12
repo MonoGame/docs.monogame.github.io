@@ -27,7 +27,9 @@ Key benefits of itch.io for developers include:
 
 ## Setting Up an itch.io Account
 
-Before you can publish your game, you need to create an itch.io account and set up your developer profile.  To do this
+Before you can publish your game, you need to create an itch.io account and set up your developer profile.
+
+To do this:
 
 1. Navigate to [itch.io](https://itch.io) and click "Register" in the top-right corner.
 2. Fill in the registration form with your desired username, password, and email address.
@@ -125,11 +127,11 @@ Following the basic information about the project, the next section of the form 
 3. **No Payment**: This model provides your game completely free with no payment prompts.  When users click to download, they are taken directly to the download page without any suggestion to donate.
 
 > [!TIP]
-> Consider your goals when selecting a pricing model.  The "$0 or donate" option often provides a good balance for indie developers, removing financial barriers to trying your game while still providing a path for supportive players to contribute.
+> Consider your goals when selecting a pricing model.  The **"$0 or donate"** option often provides a good balance for indie developers, removing financial barriers to trying your game while still providing a path for supportive players to contribute.
 
-| ![Figure 25-4: The pricing options for a new project on itch.io](./images/pricing.png) |
+| ![Figure 26-4: The pricing options for a new project on itch.io](./images/pricing.png) |
 | :------------------------------------------------------------------------------------: |
-|           **Figure 25-4: The pricing options for a new project on itch.io**            |
+|           **Figure 26-4: The pricing options for a new project on itch.io**            |
 
 ### Uploads
 
@@ -181,7 +183,7 @@ For each file that is uploaded, you are also given the following options:
 >
 > MonoGame community member [Jean-David Moisan (Apos)](https://github.com/Apostolique) also has a guide written on automating releases using butler with GitHub Actions.  For more information, see the [Automate Release](https://learn-monogame.github.io/how-to/automate-release/) document.
 
-| ![FFigure 26-5: Example of uploaded files for Windows, Linux, and macOS platforms](./images/upload.png) |
+| ![Figure 26-5: Example of uploaded files for Windows, Linux, and macOS platforms](./images/upload.png) |
 | :-----------------------------------------------------------------------------------------------------: |
 |           **Figure 26-5: Example of uploaded files for Windows, Linux, and macOS platforms**            |
 
@@ -221,9 +223,9 @@ Developed with MonoGame
 > [!TIP]
 > Consider reviewing descriptions of popular games in your genre for inspiration, but ensure your description authentically represents your game.  False or exaggerated claims will lead to disappointed players and negative reviews.
 
-| ![Figure 25-6: Example of description a game](./images/description.png) |
+| ![Figure 26-6: Example of description a game](./images/description.png) |
 | :---------------------------------------------------------------------: |
-|             **Figure 25-6: Example of description a game**              |
+|             **Figure 26-6: Example of description a game**              |
 
 ### Metadata
 
@@ -259,9 +261,9 @@ Itch.io provides several metadata fields that help categorize your game and make
 
 5. **Custom Noun**: By default, itch.io refers to your project as a "game." If your project fits better with another descriptor (like "tool," "experience," or "interactive story"), you can specify a custom noun here.  This affects how your project is described throughout the itch.io interface.
 
-| ![Figure 26-6: Example of metadata configuration for a game project](./images/metadata.png) |
+| ![Figure 26-7: Example of metadata configuration for a game project](./images/metadata.png) |
 | :-----------------------------------------------------------------------------------------: |
-|            **Figure 26-6: Example of metadata configuration for a game project**            |
+|            **Figure 26-7: Example of metadata configuration for a game project**            |
 
 ### Download and Install Instructions
 
@@ -302,9 +304,9 @@ For macOS:
 > [!TIP]
 > Consider testing your installation instructions on a clean system or with someone who has not seen your game before.  This can help identify any missing steps or assumptions you might have made.
 
-| ![Figure 26-7: Example of download and installation instructions for a MonoGame project](./images/download-install-instructions.png) |
+| ![Figure 26-8: Example of download and installation instructions for a MonoGame project](./images/download-install-instructions.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------: |
-|                      **Figure 26-7: Example of download and installation instructions for a MonoGame project**                       |
+|                      **Figure 26-8: Example of download and installation instructions for a MonoGame project**                       |
 
 ### Community
 
@@ -321,9 +323,9 @@ The platform provides three community feature options:
 > [!TIP]
 > Regardless of which option you choose, regularly engaging with your community demonstrates that you value player feedback and can build a loyal following.  Consider setting aside specific times each week to respond to comments or discussions.
 
-| ![Figure 26-8: Community feature settings available for game projects](./images/community.png) |
+| ![Figure 26-9: Community feature settings available for game projects](./images/community.png) |
 | :--------------------------------------------------------------------------------------------: |
-|            **Figure 26-8: Community feature settings available for game projects**             |
+|            **Figure 26-9: Community feature settings available for game projects**             |
 
 ### Visibility and Access
 
@@ -343,9 +345,9 @@ Itch.io offers three visibility levels:
 > [!TIP]
 > Consider using a phased release approach: start in Draft mode while building your page, switch to Restricted for beta testing with a select audience, then finally move to Public when you are confident in your game's presentation and stability.
 
-| ![Figure 26-9: Visibility and access settings for publishing your game](./images/visibility-access.png) |
+| ![Figure 26-10: Visibility and access settings for publishing your game](./images/visibility-access.png) |
 | :-----------------------------------------------------------------------------------------------------: |
-|                **Figure 26-9: Visibility and access settings for publishing your game**                 |
+|                **Figure 26-10: Visibility and access settings for publishing your game**                 |
 
 ### Adding Visual Assets
 
@@ -380,9 +382,9 @@ To add a cover image to your project:
 2. At the top-right of the "Create a new project" page, click the "Upload Cover Image" button.
 3. Select your cover image file in the file browser dialog.
 
-| ![Figure 26-10: Example of uploading a cover image for a game project](./images/cover-image-uploaded.png) |
+| ![Figure 26-11: Example of uploading a cover image for a game project](./images/cover-image-uploaded.png) |
 | :-------------------------------------------------------------------------------------------------------: |
-|                  **Figure 26-10: Example of uploading a cover image for a game project**                  |
+|                  **Figure 26-11: Example of uploading a cover image for a game project**                  |
 
 To add screenshots to your project:
 
@@ -391,9 +393,9 @@ To add screenshots to your project:
 3. Select your screenshot files in the file browser dialog.
 4. Arrange screenshots in order of importance by hovering over then and using the "Move Up" and "Move Down" actions after uploading.
 
-| ![Figure 26-11: Example of multiple screenshots added to a game project](./images/screenshots-added.png) |
+| ![Figure 26-12: Example of multiple screenshots added to a game project](./images/screenshots-added.png) |
 | :------------------------------------------------------------------------------------------------------: |
-|                **Figure 26-11: Example of multiple screenshots added to a game project**                 |
+|                **Figure 26-12: Example of multiple screenshots added to a game project**                 |
 
 > [!NOTE]
 > While itch.io does not strictly require these visual assets, projects with complete visual presentations receive more attention than those without.
@@ -410,15 +412,15 @@ Once you have completed the project creation form:
 2. This action saves all your current information and generates a preview of your project page.
 3. A popup will appear with important information about your project's status and next steps.
 
-    | ![Figure 26-12: Initial information popup after saving a new project](./images/game-page-popup.png) |
+    | ![Figure 26-13: Initial information popup after saving a new project](./images/game-page-popup.png) |
     | :-------------------------------------------------------------------------------------------------: |
-    |               **Figure 26-12: Initial information popup after saving a new project**                |
+    |               **Figure 26-13: Initial information popup after saving a new project**                |
 
 4. Click the "Got it" button after reading to close the popup and view your project page preview.
 
-| ![Figure 26-13: Example of a project page preview after initial save](./images/project-page.png) |
+| ![Figure 26-14: Example of a project page preview after initial save](./images/project-page.png) |
 | :----------------------------------------------------------------------------------------------: |
-|              **Figure 26-13: Example of a project page preview after initial save**              |
+|              **Figure 26-14: Example of a project page preview after initial save**              |
 
 #### Visual Customization
 
@@ -462,6 +464,11 @@ This published version demonstrates the concepts we covered in this chapter, sho
 ## Conclusion
 
 In this chapter, you learned how to publish your MonoGame project on itch.io, one of the most accessible digital distribution platforms for indie game developers.  You have gained a comprehensive understanding of the entire publishing process, from creating an account to making your game available to players worldwide.
+
+> [!NOTE]
+> While you might think "why should I publish my demo or small game", we would recommend you do it anyway.  The experience you gain from completing a project from start to finish and then publish will gain you more and more experience over time, so that when you finally come to roll out your "big game", you will already know everything involved and be ready for it.
+>
+> The old saying that "the last 20% takes 80% of the effort" is VERY true when it comes to game development and it pays to be prepared.
 
 Through this chapter, you have learned how to:
 
