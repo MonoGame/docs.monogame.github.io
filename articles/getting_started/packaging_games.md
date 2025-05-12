@@ -153,6 +153,10 @@ We recommend using the `.tar.gz` archiving format to preserve the execution perm
 
 ### PublishAot and PublishTrimmed
 
+> [!IMPORTANT]
+> The WindowsDX target is not compatible with ```PublishAot``` or ```PublishTrimmed``` because it uses Windows Forms, which is (as of .NET 9) not compatible with these options. If you need trimming or AOT compilation for desktop platforms, please consider using the DesktopGL target instead of WindowsDX. 
+
+
 The ```PublishAot``` option optimises your game code "Ahead of Time" for performance. It allows you to ship your game without the need to JIT (Just In Time compile), and will basically natively compile your game.
 
 ```PublishAot``` binaries are much faster, which is typically desired for games. It however comes with limitations, like the inability to use runtime reflection and runtime code generation (IL emition).
