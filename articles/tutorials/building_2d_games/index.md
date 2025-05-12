@@ -5,6 +5,22 @@ description: A beginner tutorial for building 2D games with MonoGame.
 
 This tutorial covers game development concepts using the MonoGame framework as our tool. Throughout each chapter, we will explore game development with MonoGame, introducing new concepts to build upon previous ones as we go. We will create a Snake game, which will serve as the vehicle to apply the concepts learned throughout the tutorial. The goal of this tutorial is to give you a solid foundation in 2D game development with MonoGame and provide you with reusable modules that you can leverage to jump start future projects.
 
+## What We Will Build
+
+Throughout this tutorial series, we will build a complete game called **Dungeon Slime**; a snake-like game with a dungeon theme. By the end of this series, you will have created a polished game with:
+
+- Smooth animated sprites
+- Responsive controls across keyboard and gamepad
+- Sound effects and background music
+- UI menus with customized styling
+- A complete game loop with scoring and game over states
+
+You can see the finished game here: [Dungeon Slime on itch.io](https://shyfoxstudio.itch.io/dungeon-slime)
+
+| ![Figure 0-1: The title screen of Dungeon Slime](./images/dungeon-slime-title.png) | ![Figure 0-2: The gameplay screen of Dungeon Slime showing the player controlling a chain of slime segments (in blue) while navigating through the dungeon to collect bats for points.](./images/dungeon-slime-game.png) |
+| :--------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                 **Figure 0-1: The title screen of Dungeon Slime**                 |                      **Figure 0-2: Gameplay of Dungeon Slime showing the player controlling a chain of slime segments (in blue) while navigating through the dungeon to collect bats for points.**                       |
+
 ## Who This Is For
 
 This documentation is meant to be an introduction to game development and MonoGame. Readers should have a foundational understanding of C# and be comfortable with concepts such as classes and objects.
@@ -15,10 +31,6 @@ This documentation is meant to be an introduction to game development and MonoGa
 ## How This Documentation Is Organized
 
 This documentation will introduce game development concepts using the MonoGame framework while walking the reader through the development of a Snake clone. The documentation is organized such that each chapter should be read sequentially, with each introducing new concepts and building off of the previous chapters.
-
-> [!CAUTION]
-> This is currently a work in progress and is not finished.
-
 
 | Chapter                                                                              | Summary                                                                                                                                                                                           | Source Files                                                                                                                       |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
