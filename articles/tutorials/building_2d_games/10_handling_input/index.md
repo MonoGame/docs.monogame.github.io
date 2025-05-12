@@ -331,7 +331,7 @@ For our game, we are going to implement keyboard and gamepad controls based on t
 | [Keys.D] and [Keys.Right] | [Thumbstick.Left.X] and [Buttons.DPadRight] | Moves the slime right on the screen. |
 | [Keys.Space]              | [Buttons.A]                                 | Increased the speed of the slime.    |
 
-Open `Game1.cs` the *DungeonSlime* project and update it with the following:
+Open `Game1.cs` in the *DungeonSlime* project and update it with the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=17-21,60-64,69-157,168)]
 
