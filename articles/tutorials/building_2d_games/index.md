@@ -32,10 +32,6 @@ This documentation is meant to be an introduction to game development and MonoGa
 
 This documentation will introduce game development concepts using the MonoGame framework while walking the reader through the development of a Snake clone. The documentation is organized such that each chapter should be read sequentially, with each introducing new concepts and building off of the previous chapters.
 
-> [!CAUTION]
-> This is currently a work in progress and is not finished.
-
-
 | Chapter                                                                              | Summary                                                                                                                                                                                           | Source Files                                                                                                                       |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | [Chapter 01: What Is MonoGame](01_what_is_monogame/index.md)                         | Learn about the history of MonoGame and explore the features it provides to developers when creating games.                                                                                       | [01-What-Is-MonoGame](https://github.com/shyfox-studio/learn-monogame-2d/tree/main/src/01-What-Is-MonoGame/)                       |
