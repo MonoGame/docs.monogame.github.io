@@ -47,7 +47,7 @@ A texture atlas (also known as a sprite sheet) is a large image file that contai
 > [!NOTE]
 > Using a texture atlas not only eliminates texture swaps but also reduces memory usage and simplifies asset management since you are loading and tracking a single texture instead of many individual ones.
 
-In the Pong example, imagine taking the paddle and ball image and combining them into a single image file like in Figure 7-1 below:
+In the Pong example, imagine taking the paddle and ball image and combining them into a single image file like in *Figure 7-1* below:
 
 | ![Figure 7-1: Pong Texture Atlas Example](./images/pong-atlas.png) |
 |:------------------------------------------------------------------:|
@@ -244,7 +244,7 @@ The key improvements here is in [**LoadContent**](xref:Microsoft.Xna.Framework.G
 
 This configuration based approached is advantageous because we can now add new and modify existing regions within the atlas without having to change code and/or recompile.  This also keeps the sprite definitions separate from the game logic.
 
-Running the game now will show the same results as `Figure 7-4` above, with the slime and bat texture regions rendered in the upper-left corner of the game window.
+Running the game now will show the same results as *Figure 7-4* above, with the slime and bat texture regions rendered in the upper-left corner of the game window.
 
 ## Conclusion
 
