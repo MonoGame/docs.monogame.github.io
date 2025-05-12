@@ -315,7 +315,7 @@ Implementing the input buffering technique we introduced in [Chapter 10](../10_h
 
 ### Implementing Input Buffering in the Slime Class
 
-For the `Slime` class, we will implement input buffering based on the example given using a `Queue<T>` in [Chapter 10](../10_handling_input/index.md#implementing-a-simple-input-buffer).  In the `GameObject` folder of the `DungeonSlime` project (your main game project), open the `Slime.cs` file so we can make the changes.
+For the `Slime` class, we will implement input buffering based on the example given using a `Queue<T>` in [Chapter 10](../10_handling_input/index.md#implementing-a-simple-input-buffer).  In the `GameObject` folder of the *DungeonSlime* project (your main game project), open the `Slime.cs` file so we can make the changes.
 
 First, update the using statements at the top of the `Slime` class to add the `System.Linq` using statement:
 
