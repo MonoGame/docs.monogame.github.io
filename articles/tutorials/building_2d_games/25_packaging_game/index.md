@@ -209,26 +209,44 @@ To create this structure, from the same terminal window:
 
 7. Next, create the application bundle *.icns* icon file. To do this, perform the following:
 
-    ```sh
-    mkdir -p bin/Release/DungeonSlime.iconset
-    sips -z 16 16 Icon.png --out bin/Release/DungeonSlime.iconset/icon_16x16.png
-    sips -z 32 32 Icon.png --out bin/Release/DungeonSlime.iconset/icon_16x16@2x.png
-    sips -z 32 32 Icon.png --out bin/Release/DungeonSlime.iconset/icon_32x32.png
-    sips -z 64 64 Icon.png --out bin/Release/DungeonSlime.iconset/icon_32x32@2x.png
-    sips -z 128 128 Icon.png --out bin/Release/DungeonSlime.iconset/icon_128x128.png
-    sips -z 256 256 Icon.png --out bin/Release/DungeonSlime.iconset/icon_128x128@2x.png
-    sips -z 256 256 Icon.png --out bin/Release/DungeonSlime.iconset/icon_256x256.png
-    sips -z 512 512 Icon.png --out bin/Release/DungeonSlime.iconset/icon_256x256@2x.png
-    sips -z 512 512 Icon.png --out bin/Release/DungeonSlime.iconset/icon_512x512.png
-    sips -z 1024 1024 Icon.png --out bin/Release/DungeonSlime.iconset/icon_512x512@2x.png
-    iconutil -c icns bin/Release/DungeonSlime.iconset --output bin/Release/DungeonSlime.app/Contents/Resources/DungeonSlime.icns
-    ```
+    1. First, you will need a `.png` file that can be used to create the icon set for the final `.icns` output.  If you already have a `.png` icon for your game, ensure it is in the root of the main project directory and is named `Icon.png`.  If you do not have one already prepared, you can use the `Icon.bmp` that was generated in the root of the main project directory when you initially created the project.  However, it will need to be converted to a `.png` first. To do this, execute the following command:
 
-    > [!NOTE]
-    > These commands create a macOS icon file (*.icns*) with multiple resolutions:
-    > - `sips` (Scriptable Image Processing System) resizes the source image to create different icon sizes.
-    > - Each size is necessary for different display scenarios in macOS (Dock, Finder, etc.).
-    > - The `iconutil` command then compiles these images into a single *.icns* file that macOS recognizes as an application icon.
+        ```sh
+        sips -s format png Icon.bmp --out Icon.png        
+        ```
+
+        > [!NOTE]
+        > `sips` (Scriptable Image Processing System) is a command line tool in macOS for image manipulation.  Here we are using it to convert a `.bmp` to a `.png`.  In a moment, we will also use it to resize the `.png` into different icon sizes required for the application bundle.
+
+    2. Next, create a directory that we can output each of the generated `.png` icon files to for the icon set.  Execute the following command:
+
+        ```sh
+        mkdir -p bin/Release/DungeonSlime.iconset
+        ```
+
+    3. Now we use the `sips` command to generate the icon for each size required for a mac app bundle.  Each size generated is neccessary for different display scenarios in macOS (Dock, Finder, etc.).  To do this, execute the following commands:
+
+       ```sh
+        sips -z 16 16 Icon.png --out bin/Release/DungeonSlime.iconset/icon_16x16.png
+        sips -z 32 32 Icon.png --out bin/Release/DungeonSlime.iconset/icon_16x16@2x.png
+        sips -z 32 32 Icon.png --out bin/Release/DungeonSlime.iconset/icon_32x32.png
+        sips -z 64 64 Icon.png --out bin/Release/DungeonSlime.iconset/icon_32x32@2x.png
+        sips -z 128 128 Icon.png --out bin/Release/DungeonSlime.iconset/icon_128x128.png
+        sips -z 256 256 Icon.png --out bin/Release/DungeonSlime.iconset/icon_128x128@2x.png
+        sips -z 256 256 Icon.png --out bin/Release/DungeonSlime.iconset/icon_256x256.png
+        sips -z 512 512 Icon.png --out bin/Release/DungeonSlime.iconset/icon_256x256@2x.png
+        sips -z 512 512 Icon.png --out bin/Release/DungeonSlime.iconset/icon_512x512.png
+        sips -z 1024 1024 Icon.png --out bin/Release/DungeonSlime.iconset/icon_512x512@2x.png
+        ```
+
+    4. Finally, combine all of the generated icons for the icon set into a `.icns` file.  To do this, execute the following:
+
+        ```sh
+        iconutil -c icns bin/Release/DungeonSlime.iconset --output bin/Release/DungeonSlime.app/Contents/Resources/DungeonSlime.icns
+        ```
+
+        > [!NOTE]
+        > `iconutil` is a command line tool in macOS used to convert icon sets into a single high-resolution `.icns` file.
 
 8. Set executable permissions for the game executable.  To do this, execute the following command:
 
