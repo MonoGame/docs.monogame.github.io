@@ -37,7 +37,7 @@ description: MonoGame Documentation Hub
                     <div class="mg-card-body d-flex flex-column h-100">
                         <div class="mg-card-title"><i class="bi bi-filetype-cs"></i> API Reference</div>
                         <p>
-                            View the API reference for each classs and method in the MonoGame framework.
+                            View the API reference for each class and method in the MonoGame framework.
                         </p>
                         <p class="mt-auto">Click to view API Reference</p>
                     </div>
