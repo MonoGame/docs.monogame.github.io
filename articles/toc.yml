@@ -5,65 +5,8 @@ items:
   href: /roadmap/
 - name: What's New
   href: whats_new.md
-- name: Getting Started
-  href: getting_started/index.md
-  items:
-  - name: Introduction
-    href: getting_started/
-  - name: Supported platforms
-    href: getting_started/platforms.md
-  - name: 1. Setting up your OS for development
-    items:
-    - name: Windows
-      href: getting_started/1_setting_up_your_os_for_development_windows.md
-    - name: macOS
-      href: getting_started/1_setting_up_your_os_for_development_macos.md
-    - name: Ubuntu
-      href: getting_started/1_setting_up_your_os_for_development_ubuntu.md
-  - name: 2. Choosing your IDE
-    items:
-    - name: Visual Studio for Windows
-      href: getting_started/2_choosing_your_ide_visual_studio.md
-    - name: Visual Studio Code
-      href: getting_started/2_choosing_your_ide_vscode.md
-    - name: Rider
-      href: getting_started/2_choosing_your_ide_rider.md
-  - name: 3. Understanding the Code
-    href: getting_started/3_understanding_the_code.md
-  - name: 4. Adding Content
-    href: getting_started/4_adding_content.md
-  - name: 5. Adding Basic Code
-    href: getting_started/5_adding_basic_code.md
-  - name: Packaging
-    href: getting_started/packaging_games.md
-  - name: Preparing for consoles
-    href: getting_started/preparing_for_consoles.md
-  - name: Using Development Nuget Packages
-    href: getting_started/using_development_nuget_packages.md
-  - name: Tools
-    items:
-    - name: Introduction
-      href: getting_started/tools/
-    - name: MGCB
-      href: getting_started/tools/mgcb.md
-    - name: MGCB Editor
-      href: getting_started/tools/mgcb_editor.md
-    - name: MGFXC
-      href: getting_started/tools/mgfxc.md
-  - name: Content Pipeline
-    items:
-    - name: Introduction
-      href: getting_started/content_pipeline/index.md
-    - name: Why use the Content Pipeline
-      href: getting_started/content_pipeline/why_content_pipeline.md
-    - name: Using MGCB Editor
-      href: getting_started/content_pipeline/using_mgcb_editor.md
-    - name: Custom Effects
-      href: getting_started/content_pipeline/custom_effects.md
-    - name: TrueType fonts
-      href: getting_started/content_pipeline/adding_ttf_fonts.md
-    - name: Localization
-      href: getting_started/content_pipeline/localization.md
+- name: Getting Started - build your first 2D game
+  href: tutorials/building_2d_games/  
 - name: Getting to know MonoGame
   href: getting_to_know/
   items:
@@ -95,6 +38,39 @@ items:
           href: getting_to_know/howto/graphics/
         - name: Input
           href: getting_to_know/howto/input/
+- name: Advanced Topics
+  href: getting_started/index.md
+  items:
+  - name: Packaging
+    href: getting_started/packaging_games.md
+  - name: Preparing for consoles
+    href: getting_started/preparing_for_consoles.md
+  - name: Using Development Nuget Packages
+    href: getting_started/using_development_nuget_packages.md
+  - name: Tools
+    items:
+    - name: Introduction
+      href: getting_started/tools/
+    - name: MGCB
+      href: getting_started/tools/mgcb.md
+    - name: MGCB Editor
+      href: getting_started/tools/mgcb_editor.md
+    - name: MGFXC
+      href: getting_started/tools/mgfxc.md
+  - name: Content Pipeline
+    items:
+    - name: Introduction
+      href: getting_started/content_pipeline/index.md
+    - name: Why use the Content Pipeline
+      href: getting_started/content_pipeline/why_content_pipeline.md
+    - name: Using MGCB Editor
+      href: getting_started/content_pipeline/using_mgcb_editor.md
+    - name: Custom Effects
+      href: getting_started/content_pipeline/custom_effects.md
+    - name: TrueType fonts
+      href: getting_started/content_pipeline/adding_ttf_fonts.md
+    - name: Localization
+      href: getting_started/content_pipeline/localization.md
 - name: Migration
   items:
     - name: Migrating from XNA

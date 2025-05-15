@@ -3,8 +3,6 @@ title: Localization
 description: Learn how to add localization to your game to support multiple regions.
 ---
 
-# Localization
-
 Localization is an important part of any game. While it can be possible to design a game that is region independent, it is quite hard. At some point you will need to produce localized text and graphics.
 
 MonoGame has a simple localization system built in. If you want to develop your own system you are still able to do so. But the default system should be good enough for
@@ -135,6 +133,6 @@ CultureInfo.CurrentCulture.Name                         // eg. "en-US"
 CultureInfo.CurrentCulture.TwoLetterISOLanguageName     // eg. "en"
 ```
 
-which are part of the **System.Globalization namespace**. 
+which are part of the **System.Globalization namespace**.
 
 > On a side note you can also use the `LoadLocalized` to load language specific SpriteFonts. They just need to be named in the same way as we have described above.

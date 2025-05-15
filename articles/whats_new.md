@@ -1,12 +1,43 @@
 ---
 title: Whats New
-description: What is new with the release of MonoGame 3.8.2
+description: What is new with the release of MonoGame 3.8.*
 ---
 
-## MonoGame 3.8.2 (notes coming soon)
+## MonoGame 3.8.4
 
 > [!NOTE]
 > **Coming soon**
+> Refer to the [CHANGELOG](https://github.com/MonoGame/MonoGame/blob/develop/CHANGELOG.md) for a more complete list of the changes.
+
+Notes for the final 3.8.4 release are still in progress.  Preview builds available.
+
+> [!NOTE]
+> More details to follow
+
+## MonoGame 3.8.3
+
+> [!NOTE]
+> Refer to the [CHANGELOG](https://github.com/MonoGame/MonoGame/blob/develop/CHANGELOG.md) for a more complete list of the changes.
+
+* SDL bumped to 2.32.2
+* VS2022 Extension with new 2D cross-platform project templates
+* Content pipeline working on all supported platforms
+* Content Pipeline updated to use the new FreeType and FreeImage
+* Improved / updated content pipeline dependencies (Textures, Audio, Input)
+* Several SoundEffect fixes, including OpenAL update
+* GamePad button mappings on Android and iOS, Plus Joystick input fixes
+* MonoGame updated to be more AOT/trimming compliant
+* Fix Android MediaPlayer Song
+* Preliminary scaffolding for new Native platform
+* API Documentation updates
+* Vulkan in preview
+
+> [!NOTE]
+> More details to follow
+
+## MonoGame 3.8.2
+
+> [!NOTE]
 > Refer to the [CHANGELOG](https://github.com/MonoGame/MonoGame/blob/develop/CHANGELOG.md) for a more complete list of the changes.
 
 * Update to .NET 8, including the MGCB tool (now a local tool rather than global, allowing different projects to use different versions)
