@@ -3,12 +3,10 @@ title: Migrating from XNA
 description: A guide on migrating an XNA project to the current version of MonoGame.
 ---
 
-# Migrating from XNA
-
 MonoGame is API compatible with [XNA 4.0](https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb200104(v=xnagamestudio.41)) even down to the namespaces.  That means you do not have to change much of your game code to port from XNA to MonoGame. There are however some exceptions and some things to keep in mind.
 
 > If your game targets XNA 3.1, you might want to use this archived migration cheatsheet to upgrade to 4.0:
-> 
+>
 > [http://www.nelxon.com/blog/xna-3-1-to-xna-4-0-cheatsheet/](https://www.nelsonhurst.com/xna-cheatsheet/)
 
 ## Missing/removed API

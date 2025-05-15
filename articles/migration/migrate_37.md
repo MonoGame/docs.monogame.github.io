@@ -3,8 +3,6 @@ title: Migrating from 3.7
 description: A guide on migrating a MonoGame v3.7 project to the current version of MonoGame.
 ---
 
-# Migrating from 3.7
-
 Previously MonoGame installed on your machine through an installer, but from 3.8 onwards everything is installed through NuGet packages and Visual Studio Extensions.
 
 > **Note** MonoGame 3.8 project templates are not compatible with earlier versions of MonoGame.  If you wish to work on or build older MonoGame projects, then you will still need to install [MonoGame 3.7.1](https://www.monogame.net/downloads/) or earlier to open them.

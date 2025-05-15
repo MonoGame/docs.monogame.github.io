@@ -457,7 +457,7 @@ Your game is now publicly accessible to the itch.io community.  It will appear i
 
 ## Dungeon Slime on itch.io
 
-To see a completed version of a project uploaded to itch.io, you can explore the Dungeon Slime example at [https://shyfoxstudio.itch.io/dungeon-slime](https://shyfoxstudio.itch.io/dungeon-slime).
+To see a completed version of a project uploaded to itch.io, you can explore the Dungeon Slime example at [https://monogame.itch.io/dungeon-slime](https://monogame.itch.io/dungeon-slime).
 
 This published version demonstrates the concepts we covered in this chapter, showing how they come together in a finished project.
 

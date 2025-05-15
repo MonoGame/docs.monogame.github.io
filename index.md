@@ -47,7 +47,7 @@ description: MonoGame Documentation Hub
         <div class="col-12 col-lg-4 mb-5">
             <div class="mg-card mg-box-shadow h-100">
                 <a target="_self"
-                    href="/articles/tutorials.html"
+                    href="/articles/tutorials/index.html"
                     class="mg-no-link">
                     <div class="mg-card-body d-flex flex-column h-100">
                         <div class="mg-card-title"><i class="bi bi-lightbulb"></i> Tutorials</div>

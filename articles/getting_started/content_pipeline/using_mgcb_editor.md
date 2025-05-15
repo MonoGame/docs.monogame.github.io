@@ -170,9 +170,9 @@ After you have done these fixes, you should be able to add these new processors 
 
 The MGCB Editor has 3 actions related to building content: Build, Rebuild and Clean:
 
-- **Build** - This will build all content that needs to be built and put it in the output directory (bin by default). Content will be skipped if it has not changed since the last build. The time source content was last edited is saved in the intermediate directory (obj by default) to determine if content changed since the last build.
-- **Rebuild** - Cleans the project first and then Builds it again.
-- **Clean** - Cleaning the project will empty the output and intermediate directories.
+* **Build** - This will build all content that needs to be built and put it in the output directory (bin by default). Content will be skipped if it has not changed since the last build. The time source content was last edited is saved in the intermediate directory (obj by default) to determine if content changed since the last build.
+* **Rebuild** - Cleans the project first and then Builds it again.
+* **Clean** - Cleaning the project will empty the output and intermediate directories.
 
 ## Linking Content To Your Game
 
@@ -200,10 +200,10 @@ If you are using Visual Studio, you can bypass the content pipeline all together
 
 ![Add existing item](images/existing_item.png)
 
-You will now see a file dialog from which you can add your content files. 
+You will now see a file dialog from which you can add your content files.
 
 > Note that if you do not want Visual Studio to make a local copy of the files. Make sure to use “**Add As Link**” when “Linking” files.
-> 
+>
 > ![Add as link](images/add_as_link.png)
 
 Once the files are added you will need to select them all and change their properties in the properties window to:
