@@ -24,14 +24,14 @@ The MGCB Editor is automatically installed (if you are using MonoGame's template
 
 Alternatively, you can open the MGCB Editor from the .NET command line. This will only work if you are using the MonoGame templates and executing the command from the root directory of your project:
 
-```
+```sh
 dotnet mgcb-editor
 ```
 
 > [!NOTE]
 > You will need to buid the project at least once in order for the .NET system to download and register the tool with your project utilizing the `dotnet-tools.json` configuration file located in the `.config` folder, or use the `dotnet tool restore` command shown below.
 >
-> ```
+> ```sh
 > dotnet tool restore
 > ```
 

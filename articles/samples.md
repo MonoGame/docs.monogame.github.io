@@ -3,16 +3,26 @@ title: Samples & Demos
 description: Recommended samples and demos for learning how to use MonoGame.
 ---
 
-# Samples & Demos
-
 The samples and demos below are recommended for learning how to use MonoGame.
+
+## Official MonoGame tutorial source
+
+- [Building 2D Games](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/learn-monogame-2d)
 
 ## Official MonoGame Samples
 
 These are [the official samples](https://github.com/MonoGame/MonoGame.Samples) that contain the following:
 
-- [Platformer 2D](https://github.com/MonoGame/MonoGame.Samples/tree/develop/Platformer2D)
-- [NeonShooter](https://github.com/MonoGame/MonoGame.Samples/tree/develop/NeonShooter)
+### 2D Samples
+
+- [AutoPong](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/AutoPong)
+- [Platformer 2D](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Platformer2D)
+- [NeonShooter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/NeonShooter)
+
+### 3D Samples
+
+- [FuelCell](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/NeonShooter)
+- [ShipGame](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/ShipGame)
 
 ## XNA Game Studio Archive
 

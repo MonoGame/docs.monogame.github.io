@@ -3,8 +3,6 @@ title: MonoGame Content Builder (MGCB)
 description: Learn about the MonoGame Content Builder (MGCB), the command line tool for building XNB content on Windows, Mac, and Linux desktop.
 ---
 
-# MonoGame Content Builder (MGCB)
-
 The MonoGame Content Builder is a command line tool for building XNB content on Windows, Mac, and Linux desktop systems.
 
 Typically, it is executed by the [MGCB Editor](mgcb_editor.md) when editing content or by `MonoGame.Content.Builder.Task` during the build process
@@ -23,7 +21,7 @@ The options are processed “left to right”. When an option is repeated, it is
 
 ### Output Directory
 
-```
+```sh
 /outputDir:<directory_path>
 ```
 
@@ -31,7 +29,7 @@ Specifies the directory where all content is written. Defaults to the current wo
 
 ### Intermediate Directory
 
-```
+```sh
 /intermediateDir:<directory_path>
 ```
 
@@ -39,7 +37,7 @@ Specifies the directory where all intermediate files are written. Defaults to th
 
 ### Rebuild Content
 
-```
+```sh
 /rebuild
 ```
 
@@ -47,7 +45,7 @@ Force a full rebuild of all content.
 
 ### Clean Content
 
-```
+```sh
 /clean
 ```
 
@@ -55,7 +53,7 @@ Delete all previously built content and intermediate files. Only the `/intermedi
 
 ### Incremental Build
 
-```
+```sh
 /incremental
 ```
 
@@ -63,7 +61,7 @@ Only build content that changed since the last build.
 
 ### Assembly Reference
 
-```
+```sh
 /reference:<assembly_path>
 ```
 
@@ -71,7 +69,7 @@ An optional parameter which adds an assembly reference which contains importers,
 
 ### Target Platform
 
-```
+```sh
 /platform:<target_Platform>
 ```
 
@@ -93,7 +91,7 @@ NOTE: PlayStation 4, PlayStation 5, Xbox One, and Switch support is only availab
 
 ### Target Graphics Profile
 
-```
+```sh
 /profile:<graphics_Profile>
 ```
 
@@ -106,7 +104,7 @@ If not set, it will default to HiDef.
 
 ### Target Build Configuration
 
-```
+```sh
 /config:<build_config>
 ```
 
@@ -114,7 +112,7 @@ The optional build configuration name from the build system. This is sometimes u
 
 ### Content Compression
 
-```
+```sh
 /compress
 ```
 
@@ -122,7 +120,7 @@ Uses LZ4 compression to compress the contents of the XNB files. Content build ti
 
 ### Content Importer Name
 
-```
+```sh
 /importer:<class_name>
 ```
 
@@ -130,7 +128,7 @@ An optional parameter which defines the class name of the content importer for r
 
 ### Content Processor Name
 
-```
+```sh
 /processor:<class_name>
 ```
 
@@ -140,7 +138,7 @@ Note that when you change the processor all previously defined `/processorParam`
 
 ### Content Processor Parameter
 
-```
+```sh
 /processorParam:<name>=<value>
 ```
 
@@ -150,7 +148,7 @@ Note all defined processor parameters are cleared when the `/processor` is set.
 
 ### Build Content File
 
-```
+```sh
 /build:<content_filepath>
 /build:<content_filepath>;<destination_filepath>
 ```
@@ -159,7 +157,7 @@ Instructs the content builder to build the specified content file using the prev
 
 ### Launch Debugger
 
-```
+```sh
 /launchdebugger
 ```
 
@@ -167,7 +165,7 @@ Allows a debugger to attach to the MGCB executable before content is built.
 
 ### Response File
 
-```
+```sh
 /@:<response_filepath>
 ```
 
@@ -177,7 +175,7 @@ Each switch is specified on a new line. Comment lines are prefixed with #. These
 
 An example response file could look like this:
 
-```
+```sh
 # Directories
 /outputDir:bin/foo
 /intermediateDir:obj/foo
@@ -197,14 +195,14 @@ An example response file could look like this:
 
 Response files support preprocessor macros to allow conditionals within a response file.
 
-```
+```sh
 $if <name>=<value>
 $endif
 ```
 
 Preprocessor symbols can be defined from the command line with the `define` option or in a response file with the `$set` directive.
 
-```
+```sh
 <example command line>
 MGCB.exe /define:BuildEffects=No /@:example.mgcb
 
@@ -217,7 +215,7 @@ $if BuildEffects=Yes
 $endif
 ```
 
-```
+```sh
 $set BuildEffects=Yes
 
 $if BuildEffects=Yes
@@ -228,7 +226,7 @@ $endif
 
 For booleans you can omit a value to set a symbol and to check if it is set:
 
-```
+```sh
 $set BuildEffects
 
 $if BuildEffects
@@ -243,7 +241,7 @@ When building content from your project with `MonoGame.Content.Builder.Task`, th
 `RunContentBuilder` just before your project builds. If you want to do any processing before or after this process you can use the `BeforeTargets` and `AfterTargets` mechanism provided
 by `msbuild` to run your own targets.
 
-```
+```sh
 <Target Name="MyBeforeTarget" BeforeTargets="RunContentBuilder">
    <Message Text="MyBeforeTarget Ran"/>
 </Target>
@@ -255,6 +253,6 @@ by `msbuild` to run your own targets.
 If you want to customize the arguments sent to the `MGCB.exe` as part of the build process you can use the `<MonoGameMGCBAdditionalArguments>` property to define those.
 For example to pass in the current project configuration you could include the following code in a PropertyGroup in your .csproj file.
 
-```
+```sh
 <MonoGameMGCBAdditionalArguments>-config:$(Configuration)</MonoGameMGCBAdditionalArguments>
 ```

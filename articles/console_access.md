@@ -19,7 +19,7 @@ The process for access to the private console repositories is as follows:
 
 The instructions below will help you gain access to each platform.
 
-## Nintendo Switch
+### Nintendo Switch
 
 ![Nintendo Switch](images/nintendo_switch.png)
 
@@ -29,7 +29,7 @@ Once you are in the program, you can go to the middleware page and fill out the 
 
 We will then contact you with further instructions.
 
-## PlayStation 4, PlayStation 5
+### PlayStation 4, PlayStation 5
 
 ![PlayStation Partners](images/ps_partners.png)
 
@@ -39,7 +39,7 @@ Once you are registered, you can submit a request in the [PlayStation 4 forums](
 
 We will process these requests to give you access and further instructions.
 
-## Xbox One, Xbox Series X
+### Xbox One, Xbox Series X
 
 ![ID@Xbox](images/idatxbox.png)
 
