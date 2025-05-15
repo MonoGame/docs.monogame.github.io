@@ -7,6 +7,11 @@ description: How to use the latest development NuGet packages to use the cutting
 
 When the MonoGame develop branch builds, it publishes development NuGet packages to the MonoGame NuGet Feed on GitHub. If you want to test a new feature or just be on the very latest code you can use this Feed to do that.
 
+> [!TIP]
+> Alternatively, consider using the Preview Packages provided by MonoGame to get access to the latest preview release rather than the raw development code.
+>
+> * [How to install MonoGame Preview packages](../getting_to_know/howto/HowTo_Install_Preview_Release.md)
+
 ## Adding a NuGet Source
 
 1. Create a `NuGet.config` in the root or top level directory of your project.

@@ -3,8 +3,6 @@ title: Custom Effects
 description: Learn how to create and use custom effects for rendering in MonoGame.
 ---
 
-# Custom Effects
-
 A core element of Microsoft XNA is the effect system which is used for all rendering.
 
 For MonoGame we have the burden of supporting stock and custom effects for desktop GLSL, mobile GLSL, DirectX HLSL, and custom formats like that of the PlayStation Mobile.  There currently is no effect system or shader language that supports all the platforms we require, forcing us to build a new custom effect system.
@@ -64,7 +62,6 @@ These are some tips for writing or converting effects for use with MonoGame.
 |  `HLSL` and `SM4` for DirectX   |
 |  `OpenGL` and `GLSL` for OpenGL |
 
-  
 As an example, you can conditionally set shader models depending on the platform with the following code:
 
   ```hlsl

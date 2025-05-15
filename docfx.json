@@ -50,7 +50,9 @@
       {
         "files": [
           "**/images/**",
+          "**/videos/**",
           "**/files/**",
+          "**/snippets/**",
           "CNAME"
         ]
       }
@@ -72,6 +74,14 @@
       "modern",
       "templates/monogame"
     ],
+    "markdownEngineProperties": {
+      "markdigExtensions": [
+        "Abbreviations",
+        "Figures",
+        "CustomContainers",
+        "attributes"
+      ]
+    },
     "postProcessors": [],
     "keepFileLink": false,
     "disableGitFeatures": false

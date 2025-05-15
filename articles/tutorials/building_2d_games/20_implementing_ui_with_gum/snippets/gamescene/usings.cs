@@ -1,0 +1,14 @@
+using System;
+using Gum.DataTypes;
+using Gum.Wireframe;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using MonoGameGum;
+using MonoGameGum.Forms.Controls;
+using MonoGameGum.GueDeriving;
+using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
+using MonoGameLibrary.Input;
+using MonoGameLibrary.Scenes;

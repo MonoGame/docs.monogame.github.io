@@ -1,38 +1,46 @@
+items:
 - name: Introduction
-  href: 
+  href: index.md
 - name: Roadmap
   href: /roadmap/
 - name: What's New
   href: whats_new.md
-- name: Getting Started
+- name: Getting Started - build your first 2D game
+  href: tutorials/building_2d_games/  
+- name: Getting to know MonoGame
+  href: getting_to_know/
+  items:
+    - name: What is
+      href: getting_to_know/whatis/
+      items:
+        - name: Audio
+          href: getting_to_know/whatis/audio/
+        - name: Content Pipeline
+          href: getting_to_know/whatis/content_pipeline/
+        - name: Graphics
+          href: getting_to_know/whatis/graphics/
+        - name: Input
+          href: getting_to_know/whatis/input/
+        - name: The Game Loop
+          href: getting_to_know/whatis/game_loop/
+        - name: Vector / Matrix / Quaternions
+          href: getting_to_know/whatis/vector_matrix_quat/
+        - name: MonoGame Class Library
+          href: getting_to_know/whatis/monogame_class_library/
+    - name: How to
+      href: getting_to_know/howto/
+      items:
+        - name: Audio
+          href: getting_to_know/howto/audio/
+        - name: Content Pipeline
+          href: getting_to_know/howto/content_pipeline/
+        - name: Graphics
+          href: getting_to_know/howto/graphics/
+        - name: Input
+          href: getting_to_know/howto/input/
+- name: Advanced Topics
   href: getting_started/index.md
   items:
-  - name: Introduction
-    href: getting_started/
-  - name: Supported platforms
-    href: getting_started/platforms.md
-  - name: 1. Setting up your OS for development
-    items:
-    - name: Windows
-      href: getting_started/1_setting_up_your_os_for_development_windows.md
-    - name: macOS
-      href: getting_started/1_setting_up_your_os_for_development_macos.md
-    - name: Ubuntu 20.04
-      href: getting_started/1_setting_up_your_os_for_development_ubuntu.md
-  - name: 2. Choosing your IDE
-    items:
-    - name: Visual Studio for Windows
-      href: getting_started/2_choosing_your_ide_visual_studio.md
-    - name: Visual Studio Code
-      href: getting_started/2_choosing_your_ide_vscode.md
-    - name: Rider
-      href: getting_started/2_choosing_your_ide_rider.md
-  - name: 3. Understanding the Code
-    href: getting_started/3_understanding_the_code.md
-  - name: 4. Adding Content
-    href: getting_started/4_adding_content.md
-  - name: 5. Adding Basic Code
-    href: getting_started/5_adding_basic_code.md
   - name: Packaging
     href: getting_started/packaging_games.md
   - name: Preparing for consoles
@@ -63,51 +71,78 @@
       href: getting_started/content_pipeline/adding_ttf_fonts.md
     - name: Localization
       href: getting_started/content_pipeline/localization.md
-- name: Getting to know MonoGame
-  href: getting_to_know/
-  items:
-  - name: What is
-    href: getting_to_know/whatis/
-    items:
-    - name: Audio
-      href: getting_to_know/whatis/audio/
-    - name: Content Pipeline
-      href: getting_to_know/whatis/content_pipeline/
-    - name: Graphics
-      href: getting_to_know/whatis/graphics/
-    - name: Input
-      href: getting_to_know/whatis/input/
-    - name: The Game Loop
-      href: getting_to_know/whatis/game_loop/
-    - name: Vector / Matrix / Quaternions
-      href: getting_to_know/whatis/vector_matrix_quat/
-    - name: MonoGame Class Library
-      href: getting_to_know/whatis/monogame_class_library/
-  - name: How to
-    href: getting_to_know/howto/
-    items:
-    - name: Audio
-      href: getting_to_know/howto/audio/
-    - name: Content Pipeline
-      href: getting_to_know/howto/content_pipeline/
-    - name: Graphics
-      href: getting_to_know/howto/graphics/
-    - name: Input
-      href: getting_to_know/howto/input/
 - name: Migration
   items:
-  - name: Migrating from XNA
-    href: migration/migrate_xna.md
-  - name: Migrating from 3.7
-    href: migration/migrate_37.md
-  - name: Migrating from 3.8.0
-    href: migration/migrate_38.md
-  - name: Updating Versions
-    href: migration/updating_versions.md
+    - name: Migrating from XNA
+      href: migration/migrate_xna.md
+    - name: Migrating from 3.7
+      href: migration/migrate_37.md
+    - name: Migrating from 3.8.0
+      href: migration/migrate_38.md
+    - name: Updating Versions
+      href: migration/updating_versions.md
 - name: Samples and Demos
   href: samples.md
-- name: Community Tutorials
-  href: tutorials.md
+- name: Tutorials
+  href: tutorials/
+  items:
+    - name: Building 2D Games
+      href: tutorials/building_2d_games/
+      items:
+        - name: "01: What Is MonoGame?"
+          href: tutorials/building_2d_games/01_what_is_monogame/
+        - name: "02: Getting Started"
+          href: tutorials/building_2d_games/02_getting_started/
+        - name: "03: The Game1 File"
+          href: tutorials/building_2d_games/03_the_game1_file/
+        - name: "04: Creating a Class Library"
+          href: tutorials/building_2d_games/04_creating_a_class_library/
+        - name: "05: Content Pipeline"
+          href: tutorials/building_2d_games/05_content_pipeline/
+        - name: "06: Working with Textures"
+          href: tutorials/building_2d_games/06_working_with_textures/
+        - name: "07: Optimizing Texture Rendering"
+          href: tutorials/building_2d_games/07_optimizing_texture_rendering/
+        - name: "08: The Sprite Class"
+          href: tutorials/building_2d_games/08_the_sprite_class/
+        - name: "09: The AnimatedSprite Class"
+          href: tutorials/building_2d_games/09_the_animatedsprite_class/
+        - name: "10: Handling Input"
+          href: tutorials/building_2d_games/10_handling_input/
+        - name: "11: Input Management"
+          href: tutorials/building_2d_games/11_input_management/
+        - name: "12: Collision Detection"
+          href: tutorials/building_2d_games/12_collision_detection/
+        - name: "13: Working With Tilemaps"
+          href: tutorials/building_2d_games/13_working_with_tilemaps/
+        - name: "14: Sound Effects and Music"
+          href: tutorials/building_2d_games/14_soundeffects_and_music/
+        - name: "15: Audio Controller"
+          href: tutorials/building_2d_games/15_audio_controller/
+        - name: "16: Working with SpriteFonts"
+          href: tutorials/building_2d_games/16_working_with_spritefonts/
+        - name: "17: Scenes"
+          href: tutorials/building_2d_games/17_scenes/
+        - name: "18: Texture Sampling"
+          href: tutorials/building_2d_games/18_texture_sampling/
+        - name: "19: User Interface Fundamentals"
+          href: tutorials/building_2d_games/19_user_interface_fundamentals/
+        - name: "20: Implementing UI with Gum"
+          href: tutorials/building_2d_games/20_implementing_ui_with_gum/
+        - name: "21: Customizing Gum UI"
+          href: tutorials/building_2d_games/21_customizing_gum_ui/
+        - name: "22: Snake Game Mechanics"
+          href: tutorials/building_2d_games/22_snake_game_mechanics/
+        - name: "23: Completing the Game"
+          href: tutorials/building_2d_games/23_completing_the_game/
+        - name: "24: Shaders"
+          href: tutorials/building_2d_games/24_shaders/
+        - name: "25: Packaging Your Game for Distribution"
+          href: tutorials/building_2d_games/25_packaging_game/
+        - name: "26: Publishing Your Game to itch.io"
+          href: tutorials/building_2d_games/26_publish_to_itch/          
+        - name: "27: Conclusion and Next Steps"
+          href: tutorials/building_2d_games/27_conclusion/
 - name: Console Access
   href: console_access.md
 - name: Help and Support
