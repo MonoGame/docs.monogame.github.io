@@ -223,9 +223,9 @@ Developed with MonoGame
 > [!TIP]
 > Consider reviewing descriptions of popular games in your genre for inspiration, but ensure your description authentically represents your game.  False or exaggerated claims will lead to disappointed players and negative reviews.
 
-| ![Figure 26-6: Example of description a game](./images/description.png) |
+| ![Figure 26-6: Example of a game description outline](./images/description.png) |
 | :---------------------------------------------------------------------: |
-|             **Figure 26-6: Example of description a game**              |
+|             **Figure 26-6: Example of a game description outline**              |
 
 ### Metadata
 

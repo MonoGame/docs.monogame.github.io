@@ -88,7 +88,7 @@ When you inevitably encounter obstacles, approach them with patience and curiosi
 
 Perhaps the most valuable skill you have practiced throughout this tutorial series is the art of finishing.  Game development history is littered with ambitious projects that grew beyond their creators' capacity to complete them.  By following this series to its conclusion, you have demonstrated the discipline and persistence for bringing games to life.
 
-When working on longer projects, break development into milestones with clear, achievable goals.  Celebrate these incremental victories to maintain momentum through the inevitable challenges of extended development.  Remember that a simple, finished game will always provide more value, both to players and to your grown as a developer, than an ambitious project that remains perpetually incomplete.
+When working on longer projects, break development into milestones with clear, achievable goals.  Celebrate these incremental victories to maintain momentum through the inevitable challenges of extended development.  Remember that a simple, finished game will always provide more value, both to players and to your growth as a developer, than an ambitious project that remains perpetually incomplete.
 
 ## Final Note From Author
 
