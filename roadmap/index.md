@@ -130,7 +130,7 @@ This is a list of all known bounties currently [being worked on](https://github.
 
 * **A custom editor sample**
 
-    A starter solution showing how to build an editor for MonoGame showcasing multiple editor windows, multiple viewports (in a single window), custom diaglogs, docking windows?, rebuilding content and a simple undo/redo framework (which we may have one available for use).
+    A starter solution showing how to build an editor for MonoGame showcasing multiple editor windows, multiple viewports (in a single window), custom dialogs, docking windows?, rebuilding content and a simple undo/redo framework (which we may have one available for use).
 
 * **A GUI integration tutorial**
     With so many great GUI systems available for MonoGame, we could do with a tutorial showing how to integrate or build on teh best of them, such as IMGUI, NEX and so on.
