@@ -3,8 +3,6 @@ title: Tools
 description: Distributed tools to help mange and build content for your game.
 ---
 
-# Tools
-
 MonoGame distributes tooling to help manage and build content for your game.
 
 These tools are available as [.NET Tools](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools) and are automatically installed if you are using the MonoGame templates.

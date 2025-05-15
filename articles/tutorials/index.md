@@ -8,14 +8,66 @@ description: Tutorials provided by MonoGame community members.
 >
 > Have a tutorial suggestion, article or series that really helped you? Then please [log an issue](https://github.com/MonoGame/docs.monogame.github.io/issues) to get it included.
 
+<section class="container-xxl mb-5">
+    <div class="row">
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
+                    href="building_2d_games/Index.md"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-files"></i> 2D Getting started tutorial</div>
+                        <p>
+                            The official MonoGame 2D getting started guide for MonoGame, covering everything from getting setup to publishing your first game on Itchio.
+                        </p>
+                        <p class="mt-auto">Click to view 2D tutorial</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
+                    href="index.md"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-filetype-cs"></i> 3D Getting started - coming soon</div>
+                        <p>
+                            The official MonoGame 3D getting started guide is currently in production, check back often or look at the Discord announcements.
+                        </p>
+                        <p class="mt-auto">Coming Soon</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
+                    href="/roadmap/index.html"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-lightbulb"></i> Roadmap</div>
+                        <p>
+                            Check out the MonoGame roadmap for more incoming educational content.
+                        </p>
+                        <p class="mt-auto">See what is coming</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+## Other community recommended tutorials
+
 Check out the awesome work of the larger MonoGame community with their own tutorials, blogs and videos.
 
-## Microsoft
+### Microsoft
 
 - [XNA Game Studio educational resources archive](https://github.com/SimonDarksideJ/XNAGameStudio)
 - [Archived XNA Game Studio documentation](https://docs.microsoft.com/en-us/previous-versions/windows/xna/bb200104(v=xnagamestudio.41))
 
-## RB Whitaker's MonoGame Tutorials
+### RB Whitaker's MonoGame Tutorials
 
 - [1 - C# Crash Course](http://rbwhitaker.wikidot.com/c-sharp-tutorials)
 - [2 - MonoGame Getting started tutorials](http://rbwhitaker.wikidot.com/monogame-getting-started-tutorials)
@@ -23,19 +75,19 @@ Check out the awesome work of the larger MonoGame community with their own tutor
 - [4 - 3D tutorials](http://rbwhitaker.wikidot.com/monogame-3d-tutorials)
 - [Extra - XNA tutorials](http://rbwhitaker.wikidot.com/xna-tutorials)
 
-## Neil Danson's F# series
+### Neil Danson's F# series
 
 - [Part 1 - MacOS](http://neildanson.wordpress.com/2013/07/30/f-and-monogame/)
 - [Part 2 - Android](http://neildanson.wordpress.com/2013/07/31/f-and-monogame-part-2-android/)
 - [Part 3 - iOS](http://neildanson.wordpress.com/2013/07/31/f-and-monogame-part-3-ios/)
 - [Part 4 - Content Pipeline](http://neildanson.wordpress.com/2013/08/13/f-and-monogame-part-4-content-pipeline/)
 
-## Shaders
+### Shaders
 
 - [MonoGame-Pixel-Planets - a port of Pixel Planets made by DeepFold with a lot of GLSL shaders converted to HLSL](https://github.com/EnthusiastGuy/MonoGame-Pixel-Planets)
 - [MonoGame-Shader-Samples](https://github.com/cpt-max/MonoGame-Shader-Samples)
 
-## Darkside of MonoGame video series
+### Darkside of MonoGame video series
 
 - [Getting Started with MonoGame using Visual Studio 2019](https://www.youtube.com/watch?v=BahlvXQcJw4)
 - [Getting Started with MonoGame using Visual Studio for Mac](https://www.youtube.com/watch?v=Hxo9A0-qcVo)
@@ -47,14 +99,14 @@ Check out the awesome work of the larger MonoGame community with their own tutor
 - [MonoGame - Building multi-platform solutions](https://www.youtube.com/watch?v=WonVmlpPBuU&t=735s)
 - [Building apps & games for Xbox One using UWP](https://www.youtube.com/watch?v=AAMToCwPy8s&t=1s)
 
-## Video Tutorials
+### Video Tutorials
 
 - [CodingMadeEasy RPG Tutorial](http://www.youtube.com/watch?feature=player_embedded&v=agt9-J9RPZ0)
 - [Psuedo Games Tutorials](http://www.youtube.com/watch?feature=player_embedded&v=BwtQn02oy6A)
 - [Batholith Entertainment Game dev tutorials](https://www.youtube.com/playlist?list=PLZ6ofHM1rvK8lQSoKX1USZstM-ZXikFHp)
 - [Let's Code: The T-Rex Runner Game with MonoGame](https://www.youtube.com/watch?v=DJCQVJ83J1U)
 
-## Others
+### Others
 
 - [Dark Genesis Blog MonoGame content](https://darkgenesis.zenithmoon.com/tag.html?tag=monogame)
 - [awesome-monogame - A large list of MonoGame libraries and more by aloisdeniel](https://github.com/aloisdeniel/awesome-monogame)
@@ -71,19 +123,19 @@ Check out the awesome work of the larger MonoGame community with their own tutor
 - [Text rendering in MonoGame](https://roy-t.nl/2018/07/04/Text-Rendering.html)
 - [Randomchaos-MonoGame-Samples](https://github.com/NemoKradXNA/Randomchaos-MonoGame-Samples)
 
-## Other Languages
+### Other Languages
 
 A collection of tutorials in other languages:
 
-### Portuguese
+#### Portuguese
 
 - [Desenvolvimento de jogos para Windows 8 com XNA - Alexandre Chohfi (Portuguese)](https://www.youtube.com/watch?v=gM5pRnYV1tA)
 
-### French
+#### French
 
 - [French articles about MonoGame on Linux, Windows and Windows 8](http://www.demonixis.net/blog/category/tutoriels/tuto-xna/)
 
-## We Need Your Help!
+## We Need Your Help
 
 MonoGame is an open-source project maintained by its community. Great open source projects require high-quality documentation. This is a call for volunteers to continue to help us make the MonoGame documentation truly great. If you can create tutorials, feature guides, code snippets, reference docs, video walkthroughs, or make any improvement to the current documentation, we could use your help!
 
