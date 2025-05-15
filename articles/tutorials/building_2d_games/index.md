@@ -119,3 +119,7 @@ To the many developers of games, such as [Celeste](https://store.steampowered.co
 Finally, I would like to thank all the creators and contributors to open-source libraries and tools for MonoGame, including the the creators of [Gum](https://docs.flatredball.com/gum/code/monogame), [Nez](https://github.com/prime31/Nez), and [MonoGame.Extended](https://github.com/craftworkgames/MonoGame.Extended) and the many other libraries that have helped make game development in MonoGame more accessible.
 
 This documentation stands on the shoulders of a vibrant community that continues to share knowledge, and it is my hope that these tutorials will contribute meaningfully to that ongoing exchange.
+
+## Get Started
+
+- [Chapter 1 - What is MonoGame](./01_what_is_monogame/index.md)

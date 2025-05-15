@@ -13,7 +13,7 @@ description: Tutorials provided by MonoGame community members.
         <div class="col-12 col-lg-4 mb-5">
             <div class="mg-card mg-box-shadow h-100">
                 <a target="_self"
-                    href="/tutorials/building_2d_games"
+                    href="/articles/tutorials/building_2d_games/"
                     class="mg-no-link">
                     <div class="mg-card-body d-flex flex-column h-100">
                         <div class="mg-card-title"><i class="bi bi-files"></i> 2D Getting started tutorial</div>
@@ -28,7 +28,7 @@ description: Tutorials provided by MonoGame community members.
         <div class="col-12 col-lg-4 mb-5">
             <div class="mg-card mg-box-shadow h-100">
                 <a target="_self"
-                    href="/tutorials/"
+                    href="/articles/tutorials/"
                     class="mg-no-link">
                     <div class="mg-card-body d-flex flex-column h-100">
                         <div class="mg-card-title"><i class="bi bi-filetype-cs"></i> 3D Getting started - coming soon</div>
