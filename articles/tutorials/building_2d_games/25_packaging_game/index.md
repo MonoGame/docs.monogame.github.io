@@ -369,7 +369,7 @@ For more information on Tiered Compilation, refer to the [Tiered compilation](ht
 
 ### Native AOT (Ahead-of-Time) Compilation
 
-Native AOT compilation (specified with `-p:PublishAot=tru`) compiles your entire application to native code at build time, eliminating the need for JIT compilation during runtime.  This can provide better performance and a smaller distribution size.
+Native AOT compilation (specified with `-p:PublishAot=true`) compiles your entire application to native code at build time, eliminating the need for JIT compilation during runtime.  This can provide better performance and a smaller distribution size.
 
 However, AOT has limitations:
 
