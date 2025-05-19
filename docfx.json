@@ -84,6 +84,11 @@
     },
     "postProcessors": [],
     "keepFileLink": false,
-    "disableGitFeatures": false
+    "disableGitFeatures": false,
+    "sitemap": {
+      "baseUrl": "https://docs.monogame.net/",
+      "priority": 0.1,
+      "changefreq": "monthly"
+    }    
   }
 }
