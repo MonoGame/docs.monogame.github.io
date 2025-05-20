@@ -157,7 +157,7 @@ The Content Pipeline offers significant advantages:
 
 ## The ContentManager Class
 
-To load assets in your game code, MonoGame provides the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) class. The [**Game**](xref:Microsoft.Xna.Framework.Game) already has a [**Content**](xref:Microsoft.Xna.Framework.Game.Content) property which is a ready-to-ue instance of the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager)
+To load assets in your game code, MonoGame provides the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) class. The [**Game**](xref:Microsoft.Xna.Framework.Game) already has a [**Content**](xref:Microsoft.Xna.Framework.Game.Content) property which is a ready-to-use instance of the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager)
 
 ### ContentManager Methods
 
