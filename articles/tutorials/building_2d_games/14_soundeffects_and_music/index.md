@@ -137,7 +137,7 @@ Sound effects are played using the [**SoundEffect**](xref:Microsoft.Xna.Framewor
 | [**Volume**](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume)     | `float`                                                         | Volume level between 0.0f (silent) and 1.0f (full volume).                 |
 
 > [!NOTE]
-> There is a lot more behind SoundEffectInstances such as the ability to play 3D sounds, as well as the advanced capabilities of the [DynamicSoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance) which can build audio streams.  However, these are beyond the scope of this beginners guide.  If you wish to know more, then check the [MonoGame documentation](/articles/getting_to_know/whatis/audio/)
+> There is a lot more behind SoundEffectInstances such as the ability to play 3D sounds, as well as the advanced capabilities of the [DynamicSoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance) which can build audio streams.  However, these are beyond the scope of this beginners guide.  If you wish to know more, then check the [MonoGame documentation](/articles/getting_to_know/whatis/audio/)
 
 ## Playing Music
 
