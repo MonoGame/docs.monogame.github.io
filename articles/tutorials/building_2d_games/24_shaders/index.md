@@ -63,7 +63,7 @@ For our Dungeon Slime game, we will focus primarily on pixel shaders since we wa
 
 ### The Shader Pipeline
 
-To understand how shaders work, it helps to visualize how data flow through the rendering pipeline.
+To understand how shaders work, it helps to visualize how data flows through the rendering pipeline.
 
 | ![Figure 24-1: Basic shader pipeline showing how data flows through the rendering process](./images/shader-pipeline.png) |
 | :----------------------------------------------------------------------------------------------------------------------: |
