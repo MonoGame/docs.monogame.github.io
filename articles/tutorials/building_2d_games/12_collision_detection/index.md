@@ -202,7 +202,7 @@ When checking for collisions between multiple objects, testing every object agai
 1. Broad Phase: A quick, simple check to rule out objects that definitely are not colliding.
 2. Narrow Phase: A more precise check only performed on objects that passed the broad phase.
 
-For our simple game with just two objects, this optimization is not necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.  Later in this tutorial series we will implement an algorithm called spatial hashing to perform broad phase checks.
+For our simple game with just two objects, this optimization is not necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.
 
 > [!NOTE]
 > Time to get back to the code!  The fun starts again here.
