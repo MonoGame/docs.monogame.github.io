@@ -92,7 +92,7 @@ Please note that you cannot use the ```3.8.1.*``` wildcard in the ```dotnet-tool
 You will also need to add this to your ```.csproj```:
 
 ```xml
-  <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
+  <Target Name="RestoreDotnetTools" BeforeTargets="CollectPackageReferences">
     <Message Text="Restoring dotnet tools" Importance="High" />
     <Exec Command="dotnet tool restore" />
   </Target>
