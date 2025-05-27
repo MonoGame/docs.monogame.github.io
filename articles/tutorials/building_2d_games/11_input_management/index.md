@@ -245,7 +245,7 @@ To manage gamepad input effectively, we need to track both current and previous 
 - Check if gamepad buttons are being held down.
 - Start and Stop vibration of a gamepad.
 
-To get started, in the `Input` folder f the *MonoGameLibrary* project, create a new file name `GamePadInfo.cs` with the following initial structure:
+To get started, in the `Input` folder of the *MonoGameLibrary* project, create a new file name `GamePadInfo.cs` with the following initial structure:
 
 [!code-csharp[](./snippets/gamepadinfo.cs#declaration)]
 
