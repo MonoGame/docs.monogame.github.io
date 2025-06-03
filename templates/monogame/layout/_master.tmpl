@@ -2,11 +2,11 @@
 {{!include(/^public/.*/)}}
 <!DOCTYPE html>
 <html {{#_lang}}lang="{{_lang}}"{{/_lang}}>
-{{#redirect_url}}
+{{#redirect}}
   {{>partials/redirect}}
-{{/redirect_url}}
+{{/redirect}}
 
-{{^redirect_url}}
+{{^redirect}}
   <head>
     {{>partials/head}}
   </head>
@@ -81,5 +81,5 @@
       <script type="text/javascript" src="/public/injectDonateButton.js"></script>
       <script type="text/javascript" src="/public/questionAnswer.js"></script>
   </body>
-{{/redirect_url}}
+{{/redirect}}
 </html>
