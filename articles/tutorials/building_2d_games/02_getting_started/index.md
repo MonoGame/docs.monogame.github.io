@@ -156,6 +156,7 @@ Open a new *Terminal* window and execute the following commands:
 ```sh
 brew install p7zip
 brew install --cask wine-stable
+xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
 wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 ```
 
