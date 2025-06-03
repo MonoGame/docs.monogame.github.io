@@ -20,8 +20,8 @@ Today, MonoGame is a mature cross-platform framework, that is built with the spi
 |    ![Figure 1-1: Celeste](./images/celeste.png)     | ![Figure 1-2: Stardew Valley](./images/stardew-valley.png) |
 | :-------------------------------------------------: | :--------------------------------------------------------: |
 |               **Figure 1-1 Celeste.**               |               **Figure 1-2: Stardew Valley**               |
-| ![Figure 1-3: Streets of Rage 4](./images/sor4.jpg) |        [Figure 1-4: Bastion](./images/bastion.jpg)         |
-|          **Figure 1-3: Streets of Rage 4**          |                   **Figure 1-4: Bastion**                    |
+| ![Figure 1-3: Streets of Rage 4](./images/sor4.jpg) |        ![Figure 1-4: Bastion](./images/bastion.jpg)         |
+|          **Figure 1-3: Streets of Rage 4**          |                   **Figure 1-4: Bastion**                  |
 
 > [!NOTE]
 >
