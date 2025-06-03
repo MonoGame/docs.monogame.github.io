@@ -29,7 +29,7 @@ This normalized system means that regardless of whether your texture is 32×32 p
 
 When you use [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) to draw a texture with a source rectangle specified in pixels, MonoGame internally converts those pixel coordinates to normalized texture coordinates before sending them to the GPU. Similarly, when you specify a destination rectangle, MonoGame determines how the normalized texture coordinates should map to screen coordinates.
 
-### What is a SampleState
+### What is a SamplerState
 
 A SamplerState controls how textures are sampled during rendering. It determines several aspects of texture rendering:
 

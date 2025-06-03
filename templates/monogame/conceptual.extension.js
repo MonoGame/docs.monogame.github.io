@@ -3,6 +3,10 @@
  */
 exports.preTransform = function (model) {
 
+       // Handle redirect urls that end with .md
+       if(model.redirect) {
+        model.redirect = model.redirect.replace(/\.md/g, '.html');
+    }
     
     //  For layout pages, ignore injecting title and description as header and
     //  first paragraph

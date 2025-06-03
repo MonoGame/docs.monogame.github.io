@@ -52,7 +52,7 @@ MonoGame provides a setup script that can be executed to setup the Wine environm
 1. Enter the following command:
 
     ```sh
-    brew install wget p7zip curl && brew install --cask wine-stable
+    brew install wget p7zip curl && brew install --cask wine-stable && xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
     ```
 
 1. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net9_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
