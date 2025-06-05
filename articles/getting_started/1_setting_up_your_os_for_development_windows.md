@@ -26,6 +26,9 @@ You can follow the instructions below based on your operating system to install 
 
 If you intend to also work with platforms such as `Android` or `iOS`, you will need to install the additional .NET workload templates for those platforms which include additional features and simulators to support those platforms.  Just run the command-line command for the platforms below you wish to install.
 
+> [!IMPORTANT]
+> For mobile development with iOS and Android, you must also install the MAUI workload even though MonoGame does not use MAUI. The MAUI workload contains the debugging tools required to run and debug mobile .NET applications. Without it, you will not be able to properly debug your MonoGame mobile projects.
+
 ### [Android](#tab/android)
 
 ```cli
@@ -36,6 +39,17 @@ If you intend to also work with platforms such as `Android` or `iOS`, you will n
 
 ```cli
     dotnet workload install ios
+```
+
+### [Maui](#tab/maui)
+```cli
+    dotnet workload install maui
+```
+
+### [Android, iOS, and Maui](#tab/all)
+
+```cli
+    dotnet workload install android ios maui
 ```
 
 ---
