@@ -1,13 +1,13 @@
 ---
 title: "Chapter 05: Content Pipeline"
-description: Learn the advantages of using the Content Pipeline to load assets and go through the processes of loading your first asset
+description: Learn the advantages of using the Content Pipeline to load assets and go through the processes involved in loading your first asset
 ---
 
-Every game has assets; images to represent the visual graphics to players, audio to provide sound effects and background music, fonts to render text with, and much more.  These assets start out as raw files (e.g. *.png* image files or *.mp3* audio files), which you will need to load into the game to use.
+Every game has assets: images to represent the visual graphics to players, audio to provide sound effects and background music, fonts to render text with, and much more.  These assets start out as raw files (e.g. *.png* image files or *.mp3* audio files), which you will need to load into the game to use.
 
 ## Loading Assets
 
-Loading assets can be done during runtime directly from file, or it can be loaded through the **Content Pipeline**  Both of these methods are two sides of the same coin and there are trade offs to each approach.
+Loading assets can be done during runtime directly from file, or it can be loaded through the **Content Pipeline**.  Both of these methods are two sides of the same coin, and there are trade offs to each approach.
 
 For instance, to load an image file directly at runtime, you would need to:
 
@@ -16,12 +16,12 @@ For instance, to load an image file directly at runtime, you would need to:
 3. Load the image file as a texture at runtime using the [**Texture2D.FromFile**](xref:Microsoft.Xna.Framework.Graphics.Texture2D.FromFile(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.String)) method.
 
 > [!IMPORTANT]
-> A big disadvantage to loading an image file as a texture directly, is that when it loads, it does so in its compressed format such as *.png* or *.jpg*.  These compression formats are not understood by a Graphics Processing Unit (GPU); they will need to be decompressed into raw bytes as a format the GPU does understand before it can store the data.  Doing this can potentially leave a larger memory footprint for your assets.  You will also need to handle how different compression formats work on the platform you are targeting such as desktops, mobile, and consoles.
+> One major drawback of loading an image file as a texture directly at runtime is that the data is in a compressed format, such as .png or .jpg. These compression formats are not understood by a Graphics Processing Unit (GPU). In order to be used by your game, this data will need to be decompressed into raw bytes, a format that the GPU understands. This operation can potentially leave a larger memory footprint for your assets. You will also need to handle how different compression formats work on the platform you are targeting, such as desktops, mobile and consoles.
 
-On the other side of this coin, MonoGame offers the **Content Pipeline**; a workflow for managing assets. The workflow is made up of a set of tools and utilities that are automatically added by default when you create a new MonoGame project using the MonoGame project templates.  To use this workflow, you need to:
+On the other side of the coin, MonoGame offers the **Content Pipeline**; a workflow for managing assets. The workflow is made up of a set of tools and utilities that are automatically added by default when you create a new MonoGame project using the MonoGame project templates. To use this workflow, you need to:
 
 1. Add the asset file to your content project (*Content.mgcb* file) using the *MonoGame Content Builder Editor* (MGCB Editor).
-2. Perform a project build. Doing this, the *MonoGame.Content.Builder.Tasks* NuGet reference will compile the assets defined in the content project, optimized for the target platform, and automatically copy them to the game project build folder.
+2. Perform a project build. This will cause the *MonoGame.Content.Builder.Tasks* NuGet reference to compile the assets defined in the content project, optimized for the target platform, and automatically copy them to the game project build folder.
 3. Load the compiled asset at runtime using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
 
 For the same amount of steps, you also get the benefit of the assets being pre-processed and compiled to an optimized format for the target platform.  For instance, image files can be compiled using [DXT compression](https://en.wikipedia.org/wiki/S3\_Texture\_Compression), which is a format that is understood by GPUs without needing to be decompressed first, reducing the memory footprint.
@@ -29,7 +29,7 @@ For the same amount of steps, you also get the benefit of the assets being pre-p
 > [!NOTE]
 > For more information on the benefits of compiling assets and what optimizations it can offer, see the [Content Pipeline](../../../getting_started/content_pipeline/index.md) documentation.
 
-For this tutorial series, we are going to focus on using the content pipeline workflow to load assets.  Doing this will get you as the developer accustomed to using the content pipeline tools and also give the benefits of having assets precompiled to optimized formats.
+For this tutorial series, we are going to focus on using the content pipeline workflow to load assets.  Doing this will allow you, as the developer, to get accustomed to using the content pipeline tools, and also give the benefits of having assets pre-compiled to optimized formats.
 
 ## The MGCB Editor
 
@@ -39,7 +39,7 @@ Opening the MGCB Editor can be done in different ways depending on which IDE and
 
 ### [Visual Studio Code](#tab/vscode)
 
-To open the *Content.mgcb* content project file in the MGCB Editor with Visual Studio Code, you can use the *MonoGame for VSCode* extension.  You should have installed this extension in [Chapter 02](../02_getting_started/index.md#installing-the-monogame-for-vscode-extension).  With this extension install, anytime you have a code file open, you will see the MonoGame logo in the top-right of the code window like below:
+To open the *Content.mgcb* content project file in the MGCB Editor from Visual Studio Code, you can use the *MonoGame for VSCode* extension. You should already have installed this extension in [Chapter 02](../02_getting_started/index.md#installing-the-monogame-for-vscode-extension).  With this extension installed, anytime you have a code file open, you will see the MonoGame logo in the top-right of the code window like below:
 
 | ![Figure 5-1: MonoGame for VSCode extension icon](./images/mgcb-editor-icon.png) |
 | :------------------------------------------------------------------------------: |
@@ -49,7 +49,7 @@ Clicking the MonoGame logo here will open the *Content.mgcb* content project fil
 
 ### [Visual Studio 2022](#tab/vs2022)
 
-To open the *Content.mgcb* content project file in the MGCB Editor with Visual Studio 2022, you can use the *MonoGame Framework C# project templates* extension.  Despite the name, this extension does more than just install the MonoGame project templates.  With this extension installed, simply double-click the *Content.mgcb* content project file in the Solution Explorer panel and it will open it in the MGCB Editor.
+To open the *Content.mgcb* content project file in the MGCB Editor from Visual Studio 2022, you can use the *MonoGame Framework C# project templates* extension. Despite the name, this extension does more than just install the MonoGame project templates. With this extension installed, simply double-click the *Content.mgcb* content project file in the Solution Explorer panel to open it in the MGCB Editor.
 
 ### [dotnet CLI](#tab/dotnetcli)
 
@@ -82,8 +82,8 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 In *Figure 5-2* above, you can see the user interface for the MGCB Editor:
 
 - **Toolbar**: Contains icon buttons for common actions such as creating new items, opening files, saving changes, and building content.
-- **Project Panel**: Located on the left of the MGCB Editor, displays a hierarchical tree view of all content items added to the content project.  The root node *Content* represents the root of the content project.
-- **Properties Panel**: Located on the bottom left of the MGCB Editor, shows the properties of the currently selected item in the project panel.  The properties available are based on the item type selected.
+- **Project Panel**: Located on the left side of the MGCB Editor, it displays a hierarchical tree view of all content items added to the content project.  The root node *Content* represents the root of the content project.
+- **Properties Panel**: Located in the lower left corner of the MGCB Editor, it lists the properties of the currently selected item in the project panel. The available properties are based on the selected element type.
 - **Build Output Panel**: The large area to the right side outputs build messages, warnings, and errors when content is processed.
 
 ### Creating Folders to Organize Content
@@ -105,7 +105,7 @@ You have now created a folder that will help organize the game's image assets.  
 
 ### Adding Your First Asset
 
-Now that we have a folder structure, we can add our first image asset to the project.  For this example, we will use the MonoGame logo.  Perform the following
+Now that we have a folder structure, we can add our first image asset to the project.  For this example, we will use the MonoGame logo.  Perform the following:
 
 1. First, download the MonoGame logo by right-clicking the following image and saving it as `logo.png` somewhere on your computer:
 
@@ -146,7 +146,7 @@ Now that we have added our first asset, we can take a moment to understand what 
 The following diagram demonstrates this workflow:
 
 | ![Figure 5-7: MonoGame Content Pipeline Workflow diagram showing the process flow from source files (Images, Audio, Fonts, Effects, Models) through the MGCB Editor to generate the Content.mgcb file, which is then processed by MonoGame.Content.Builder.Tasks to create compiled .xnb assets (Xnb formats for each type), which are finally loaded by the ContentManager at runtime](./images/content-pipeline-workflow-full.png) |
-| :--------------------------------------------------------------------------------------------: |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                       **Figure 5-7: MonoGame Content Pipeline Workflow diagram showing the process flow from source files (Images, Audio, Fonts, Effects, Models) through the MGCB Editor to generate the Content.mgcb file, which is then processed by MonoGame.Content.Builder.Tasks to create compiled .xnb assets (Xnb formats for each type), which are finally loaded by the ContentManager at runtime**                       |
 
 The Content Pipeline offers significant advantages:
@@ -163,10 +163,10 @@ To load assets in your game code, MonoGame provides the [**ContentManager**](xre
 
 They key methods for asset loading are:
 
-| Method                                                                                                                                                     | Returns | Description                                                                                                                                                                                                                                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [**Load&lt;T&gt;(string)**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String))                                                    | `T`     | Loads the assets of type `T` that has been processed by the content pipeline.                                                                                                                                                                                                                             |
-| [**Unload**](xref:Microsoft.Xna.Framework.Content.ContentManager.Unload)                                                                                   | `void`  | Unloads all assets that have been loaded by that content manager instance.                                                                                                                                                                                                                                |
+| Method                                                                                                    | Returns | Description                                                                  |
+| --------------------------------------------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------------- |
+| [**Load&lt;T&gt;(string)**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load``1(System.String))   | `T`     | Loads the asset of type `T` that has been processed by the content pipeline. |
+| [**Unload**](xref:Microsoft.Xna.Framework.Content.ContentManager.Unload)                                  | `void`  | Unloads all assets that have been loaded by that content manager instance.   |
 
 > [!TIP]
 > When an asset is loaded for the first time, the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager) internally caches it.  Loading the same asset again will return the cached version, avoiding extra disk reads.
@@ -191,11 +191,11 @@ DungeonSlime/
 ```
 
 > [!NOTE]
-> Notice that the compile asset has an .xnb extension, but when loading the asset in code, you refer to it without any extension.
+> Notice that the compiled asset has an .xnb extension, but when loading the asset in code, you refer to it without any extension.
 
 ## Loading and Displaying Your First Asset
 
-Now that we have the MonoGame logo added as an asset in the content project, we can modify the game to display the logo.  In the *DungeonSlime* project open the `Game1.cs` file and perform the following:
+Now that we have the MonoGame logo added as an asset in the content project, we can modify the game to display the logo.  In the *DungeonSlime* project, open the `Game1.cs` file and perform the following:
 
 1. Add a field to store the logo texture by inserting this line after the class declaration:
 
@@ -224,9 +224,9 @@ Now that we have the MonoGame logo added as an asset in the content project, we 
     ```
 
     > [!NOTE]
-    > We will go more into detail about the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) in the next chapter.
+    > We will go into more details about the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) in the next chapter.
 
-The complete updated `Game1.cs` file should now look like this
+The complete updated `Game1.cs` file should now look like this:
 
 [!code-csharp[](./snippets/game1.cs?highlight=10-11,27,44-51)]
 
@@ -272,7 +272,7 @@ In this chapter, you accomplished the following:
 - You understood the Content Pipeline workflow and how MonoGame automates the process.
 - You loaded and displayed your first asset using the [**ContentManager**](xref:Microsoft.Xna.Framework.Content.ContentManager).
 
-In the next chapter, we will explore working with textures in more detail and learning about different rendering options.
+In the next chapter, we will explore working with textures in more detail and learn about different rendering options.
 
 ## Test Your Knowledge
 
