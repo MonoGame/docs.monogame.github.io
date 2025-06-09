@@ -48,7 +48,7 @@ In the *Figure 12-1* above
 - $b$ is the distance between the center of the two circles on the y-axis (vertical).
 - $c$ is the total distance between the center of the two circles.
 
-We can use Pythagorean's Theorem to calculate $c^2$ given $a^2$ and $b^2$:
+Since this forms a right triangle, we can use Pythagorean's Theorem to calculate $c^2$ given $a^2$ and $b^2$:
 
 $$c^2 = a^2 + b^2$$
 
