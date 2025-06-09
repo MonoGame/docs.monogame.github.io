@@ -52,11 +52,11 @@ Since this forms a right triangle, we can use Pythagorean's Theorem to calculate
 
 $$c^2 = a^2 + b^2$$
 
-To check for overlap of two circles, we compare whether the _squared sum of the radii_ of the two circles is greater than the _squared distance_:
+To check for overlap of two circles, we compare whether the *squared sum of the radii* of the two circles is greater than the *squared distance*:
 
 $$(radius_{circle1} + radius_{circle2})^2 > a^2 + b^2$$
 
-It's easy to confuse the direction of the inequality sign. As a quick mental test, think of how the math works when the origin of two circles are at the same position, i.e., when the _squared distance_ is zero.
+It's easy to confuse the direction of the inequality sign. As a quick mental test, think of how the math works when the origin of two circles are at the same position, i.e., when the *squared distance* is zero.
 
 To calculate the squared distance between two points, MonoGame provides the [**Vector2.DistanceSquared**](xref:Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method:
 
