@@ -36,7 +36,7 @@ Shaped based collision detection checks if two shapes overlap.  The most common 
 
 Circle collision detection is computationally a simpler check than that rectangles.  There are also no special considerations if the circles are rotated, which makes them easier to use.  To determine if two circle shapes are overlapping, we only need to check if the square of the sum of the radii between the two circles is less than the squared distance between the two circles with the following formula:
 
-Two find the distance between two circles, imagine drawing a line from the center of one circle to the center of the other.  This length of this line is the distance, but we could also calculate it by first walking up or down and then walking left or right from the center of one circle to another, forming a right triangle.
+To find the distance between two circles, imagine drawing a line from the center of one circle to the center of the other.  This length of this line is the distance, but we could also calculate it by first walking up or down and then walking left or right from the center of one circle to another, forming a right triangle.
 
 | ![Figure 12-1: Showing the distance between the center of two circles forms a right triangle](./images/circle-distance-right-triangle.svg) |
 | :---------------------------------------------------------------------------------------------------------------------------------------: |
@@ -48,22 +48,22 @@ In the *Figure 12-1* above
 - $b$ is the distance between the center of the two circles on the y-axis (vertical).
 - $c$ is the total distance between the center of the two circles.
 
-Since this forms a right triangle, to calculate the squared distance, we can use Pythagorean's Theorem:
+We can use Pythagorean's Theorem to calculate $c^2$ given $a^2$ and $b^2$:
 
 $$c^2 = a^2 + b^2$$
 
-Then we just check if the squared sum of the radii of the two circles is less than the squared distance:
+To check for overlap of two circles, we compare whether the _squared sum of the radii_ of the two circles is greater than the _squared distance_:
 
-$$(radius_{circle1} + radius_{circle2})^2 < c^2$$
+$$(radius_{circle1} + radius_{circle2})^2 > a^2 + b^2$$
 
-If it is less, then the circles are overlapping; otherwise, they are not.
+It's easy to confuse the direction of the inequality sign. As a quick mental test, think of how the math works when the origin of two circles are at the same position, i.e., when the _squared distance_ is zero.
 
-To calculate the squared distance between to points, MonoGame provides the [**Vector2.DistanceSquared**](xref:Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method:
+To calculate the squared distance between two points, MonoGame provides the [**Vector2.DistanceSquared**](xref:Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method:
 
 [!code-csharp[](./snippets/vector2_distance.cs)]
 
 > [!TIP]
-> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared.  So why do not we use this instead?
+> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared.  So why not use this instead?
 >
 > Square root operations are more computationally complex for a CPU.  So instead of getting the normal distance, which would require the square root operation, it is more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.
 
@@ -174,7 +174,7 @@ For example:
 
 #### Bounce Collision Response
 
-For games that need objects to bonce off each other (like a the ball in a Pong game), we need to calculate how their velocity should change after the collision.  MonoGame provides the [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method to handle this calculation for us. The method needs two pieces of information:
+For games that need objects to bounce off each other (like a the ball in a Pong game), we need to calculate how their velocity should change after the collision.  MonoGame provides the [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method to handle this calculation for us. The method needs two pieces of information:
 
 1. The incoming vector (the direction something is moving).
 2. The normal vector (the direction perpendicular to the surface).
