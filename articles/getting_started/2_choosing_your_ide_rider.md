@@ -47,6 +47,10 @@ To get you started with Rider, here are the steps for setting up a new Rider Mon
 4. Press "Create"
 5. You can now press `F5` to compile and debug your game, happy coding  :)
 
+> [!NOTE]
+> If you are experiencing issues with compiling effects under Linux for JetBrains Rider,
+> you might need to add the `MGFXC_WINE_PATH` environment variable to `/etc/environment` for it to be picked up.  See [5777151094034-Rider-cannot-see-all-Environmental-Variables](https://rider-support.jetbrains.com/hc/en-us/community/posts/5777151094034-Rider-cannot-see-all-Environmental-Variables) for details.
+
 ## Update Project Tool references
 
 The MonoGame Content Editor (MGCB) it a tool delivered through NuGet for your project using the tools configuration held in your `dotnet-tools.json` file (located in the `.config` folder of your project).
