@@ -60,9 +60,12 @@ Previously it would only build the last item, but this has been fixed.
 In the Content Editor
 
 1. Add a new folder for your desired Suffix. This is usually in the form of `Textures<suffix>`.
+  ![Add Folder](./images/HowTo_PackageTextures_Android_Add.png)
 2. Right click on the new folder and Add an Existing File.
 3. Select the file you want to use for this Suffix and Add it
+   ![Folder Structure](./images/HowTo_PackageTextures_Android_Folder.png)
 4. In the Properties of the new file change the TextureFormat to be the one which matches the desired Suffix.
+   ![Change Properties](./images/HowTo_PackageTextures_Android_ATSE.png)
 
 In the `.mgcb` file directly you can do the following
 
