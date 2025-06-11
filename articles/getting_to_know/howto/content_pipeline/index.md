@@ -28,4 +28,5 @@ requireMSLicense: true
 
 - [How to Package Textures on Android](aHowTo_PackageTextures_On_Android.md)
 
-      Describes how to support multiple texture compression formats on Android.
+    Describes how to support multiple texture compression formats on Android.
+  
