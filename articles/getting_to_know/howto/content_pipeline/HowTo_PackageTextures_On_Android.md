@@ -127,6 +127,30 @@ As you can see, supporting multiple texture compression formats is now quite eas
 /build:Textures/LogoOnly_64px.png;Textures#tcf_pvrtc/LogoOnly_64px
 ```
 
+## Using Android Asset Packs
+
+The Google Play Store has some fairly strick limited on the package sizes for Android apps. However they do have way to extend thise limits for large games and apps, these are known as `Asset Packs`. Simply put, an `Asset Pack` is a way to organise your game content/assets into seperate pieces which can be downloaded shortly after installation or dynamically at runtime.
+For most games using the `Install Time` packs are the best option. 
+
+Using them in your game can be quite straigh forward. It only requires a little bit of `MSBuild` markup in your Android platform `.csproj`.
+
+```xml
+<Target Name="_MoveContentIntoPacks" AfterTargets="IncludeContent">
+  <ItemGroup>
+    <AndroidAsset Update="Content/Music/**/*.*" AssetPack="MyGameAssets" />
+  </ItemGroup>
+</Target>
+```
+
+This adds an `MSBuild` target to your project which will process all the items in the `Content/Music` folder and subfolders. It will place them in an `Asset Pack` called `MyGameAssets`. You can change the name of this pack as you wish. By default this will be an `InstallTime` pack. So it will be installed at the same time as your game is. There is not need to do anything else, the assets will be placed in the usual location and opened via `Content.Load<T>`.
+
+If use dymanic delivery and install packs at runtime you will need to open the content from a different location. This is out of scope for this document.
+If you want to learn more about how to use these features please check out the following links:
+
+- [Android Asset Packs](https://learn.microsoft.com/en-us/dotnet/maui/android/asset-packs?view=net-maui-9.0)
+- [Android Asset Packs for .NET & .NET MAUI Android Apps](https://devblogs.microsoft.com/dotnet/android-asset-packs-in-dotnet-android/)
+- [Play Asset Delivery](https://developer.android.com/guide/playcore/asset-delivery)
+
 ## Sample `.mgcb` with Multiple Compression Formats
 
 ```bash
