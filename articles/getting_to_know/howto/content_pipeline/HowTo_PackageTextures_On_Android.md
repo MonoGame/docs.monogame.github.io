@@ -101,10 +101,13 @@ To allow your game to work on as many devices as possible we need to support mul
 
 In the Content Editor
 
-1. Add a new folder for your new desired Suffix. This is usually in the form of `Textures<suffix>`.
+1. Add a new folder for your desired Suffix. This is usually in the form of `Textures<suffix>`.
+  ![Add Folder](./images/HowTo_PackageTextures_Android_Add.png)
 2. Right click on the new folder and Add an Existing File.
 3. Select the file you want to use for this Suffix and Add it
+   ![Folder Structure](./images/HowTo_PackageTextures_Android_Folder.png)
 4. In the Properties of the new file change the TextureFormat to be the one which matches the desired Suffix.
+   ![Change Properties](./images/HowTo_PackageTextures_AndroidATSC.png)
 
 As you can see, supporting multiple texture compression formats is now quite easy.
 
