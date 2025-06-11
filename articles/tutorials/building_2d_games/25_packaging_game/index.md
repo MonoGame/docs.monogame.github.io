@@ -36,7 +36,7 @@ Before packaging your game for distribution, you should take some preparatory st
 
 1. **Set Release Configuration**: Ensure your build configuration is set to "Release" rather than "Debug" for better performance and smaller executable size.
 2. **Update Game Information**: Verify your game's title, version, and other information in the project's properties file (`.csproj`).
-3. **Final Testing**: Perform thorough testing in Release mode ot catch any issue that might not appear in Debug mode.
+3. **Final Testing**: Perform thorough testing in Release mode to catch any issue that might not appear in Debug mode.
 4. **Asset Optimization**: Consider optimizing larger content files to reduce the final package size.
 
 ## Platform-Specific Packaging
@@ -369,7 +369,7 @@ For more information on Tiered Compilation, refer to the [Tiered compilation](ht
 
 ### Native AOT (Ahead-of-Time) Compilation
 
-Native AOT compilation (specified with `-p:PublishAot=tru`) compiles your entire application to native code at build time, eliminating the need for JIT compilation during runtime.  This can provide better performance and a smaller distribution size.
+Native AOT compilation (specified with `-p:PublishAot=true`) compiles your entire application to native code at build time, eliminating the need for JIT compilation during runtime.  This can provide better performance and a smaller distribution size.
 
 However, AOT has limitations:
 

@@ -40,6 +40,7 @@
           "foundation/**/*.md",
           "roadmap/**/*.md",
           "roadmap/**/*.yml",
+          "errors/**/*.md",
           "toc.yml",
           "*.md"
         ],
@@ -84,6 +85,11 @@
     },
     "postProcessors": [],
     "keepFileLink": false,
-    "disableGitFeatures": false
+    "disableGitFeatures": false,
+    "sitemap": {
+      "baseUrl": "https://docs.monogame.net/",
+      "priority": 0.1,
+      "changefreq": "monthly"
+    }    
   }
 }

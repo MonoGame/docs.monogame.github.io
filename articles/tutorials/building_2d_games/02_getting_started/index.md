@@ -156,6 +156,7 @@ Open a new *Terminal* window and execute the following commands:
 ```sh
 brew install p7zip
 brew install --cask wine-stable
+xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
 wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 ```
 
@@ -209,7 +210,7 @@ Now that we have the project created, press the `F5` key on your keyboard, or ch
 | :---------------------------------------------------------------------------------------: |
 |             **Figure 2-3: The default MonoGame cornflower blue game window**              |
 
-Be amazed, the default MonoGame Cornflower Blue game window. You have just created your very first MonoGame application. While there is not much happening here visually, there is a log going on behind the scenes that the MonoGame framework is handling for you. When you ran the application, the following occurred:
+Be amazed, the default MonoGame Cornflower Blue game window. You have just created your very first MonoGame application. While there is not much happening here visually, there is a lot going on behind the scenes that the MonoGame framework is handling for you. When you ran the application, the following occurred:
 
 1. The application started
 2. The game window was created and graphics were initialized

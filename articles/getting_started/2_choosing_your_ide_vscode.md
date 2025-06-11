@@ -81,6 +81,20 @@ You can find this extension by following the steps above and searching for "Mono
 > [!NOTE]
 > While not built by the MonoGame team, we regularly use this extension ourselves and fully support it.
 
+## (Optional) Install the ".NET MAUI" extension to help with mobile development
+
+This extension is provided by Microsoft and is built on top of the C# and C# Dev Kit extensions. They will be installed as dependencies if they were not already installed. While primarily designed for MAUI development, it provides essential mobile debugging capabilities that MonoGame mobile projects can utilize.
+
+The .NET MAUI extension adds features for building mobile apps, including:
+
+- F5 debugging support - Debug your MonoGame mobile apps on emulators, simulators, and physical devices
+- Easy target switching - Change debug/deploy targets between different mobile platforms
+- Enhanced C# Dev Kit integration - Leverages Solution Explorer, Test Explorer, and advanced language features
+
+> [!NOTE]
+> This extension is recommended if you wish to do iOS or Android development. It is required for debugging support when working on mobile games. 
+
+
 ## Creating a new MonoGame project
 
 1. Open up an empty folder in Visual Studio Code
