@@ -65,7 +65,7 @@ In the Content Editor
 3. Select the file you want to use for this Suffix and Add it
    ![Folder Structure](./images/HowTo_PackageTextures_Android_Folder.png)
 4. In the Properties of the new file change the TextureFormat to be the one which matches the desired Suffix.
-   ![Change Properties](./images/HowTo_PackageTextures_Android_ATSE.png)
+   ![Change Properties](./images/HowTo_PackageTextures_AndroidATSC.png)
 
 In the `.mgcb` file directly you can do the following
 
