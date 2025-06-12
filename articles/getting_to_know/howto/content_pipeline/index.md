@@ -25,3 +25,8 @@ requireMSLicense: true
 - [How to Extend the Font Description Processor to Support Additional Characters](HowTo_ExtendFontProcessor.md)
 
     Describes the process of developing a custom content processor needed to add additional characters to a [FontDescription](xref:Microsoft.Xna.Framework.Content.Pipeline.Graphics.FontDescription) object based on the text that is required by the game.
+
+- [How to Package Textures on Android](HowTo_PackageTextures_On_Android.md)
+
+    Describes how to support multiple texture compression formats on Android.
+  
