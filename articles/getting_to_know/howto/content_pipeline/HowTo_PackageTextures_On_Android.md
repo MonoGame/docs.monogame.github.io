@@ -4,26 +4,21 @@ description: Describes how to support multiple Texture Compression formats for A
 requireMSLicense: false
 ---
 
-The Android ecosystem is unique in that the hardware it runs on can be from many different manufactures.
-Unlike iOS or PC, you cannot always guarantee what graphics card a user will be using. For this reason,
-Android needs to have some special attention when shipping your game.
+The Android ecosystem is unique in that the hardware it runs on can be from many different manufacturers.
+Unlike iOS or PC, you cannot always guarantee what graphics card a user will be using. For this reason, Android needs to have some special attention when shipping your game.
 
 ## Texture Compression
 
 As stated in "[Why use the Content Pipeline](https://docs.monogame.net/articles/getting_started/content_pipeline/why_content_pipeline.html)", you need to be aware of the performance limitations on mobile devices.
-The graphics cards on mobile phones do not have the same kind of capabilities as those on the PC or Consoles.
-They usually have less memory and less power. So you need to make use of what you have in a more efficient way.
-One of these ways is to use Texture Compression. As stated in "[Why use the Content Pipeline](https://docs.monogame.net/articles/getting_started/content_pipeline/why_content_pipeline.html)", this allows you to fit more
-textures on the graphics card than you could if you just used raw `RGBA` textures.
+The graphics cards on mobile phones do not have the same kind of capabilities as those on the PC or Consoles.  They usually have less memory and less power. So you need to make use of what you have in a more efficient way.
+
+One of these ways is to use Texture Compression. As stated in "[Why use the Content Pipeline](https://docs.monogame.net/articles/getting_started/content_pipeline/why_content_pipeline.html)", this allows you to fit more textures on the graphics card than you could if you just used raw `RGBA` textures.
 
 ## How Android deals with textures
 
-Fortunately the Android engineers recognized that supporting all of these texture compression formats
-was not an easy task. So, with the introduction of the `.aab` file format, they added the ability to
-add multiple texture format files to the package. The way the `.aab` works is that it is not the final
-`.apk`. The final `.apk` will be built from the `.aab` when the game is delivered to the end user device.
-As a result, not all of the files in the `.aab` will make it to the device. It will filter out things like
-`.so` files for other cpu types, and yes, texture formats.
+Fortunately, the Android engineers recognized that supporting all of these texture compression formats was not an easy task. So, with the introduction of the `.aab` file format, they added the ability to add multiple texture format files to the package. The way the `.aab` works is that it is not the final `.apk`. The final `.apk` will be built from the `.aab` when the game is delivered to the en- user device.
+
+As a result, not all of the files in the `.aab` will make it to the device. It will filter out things like `.so` files for other cpu types, and yes, texture formats.
 
 The `.aab` supports the following directory suffixes for texture compression:
 
@@ -37,10 +32,12 @@ The `.aab` supports the following directory suffixes for texture compression:
 | ETC1 | #tcf_etc1 |
 | ETC2 | #tcf_etc2 |
 
-see [https://developer.android.com/guide/playcore/asset-delivery/texture-compression](https://developer.android.com/guide/playcore/asset-delivery/texture-compression)
+> [!NOTE]
+> see [https://developer.android.com/guide/playcore/asset-delivery/texture-compression](https://developer.android.com/guide/playcore/asset-delivery/texture-compression)
 
-MonoGame has its own [TextureProcessorOutputFormat](https://docs.monogame.net/api/Microsoft.Xna.Framework.Content.Pipeline.Processors.TextureProcessorOutputFormat.html) enumeration. It describes the type of Texture Compression
-you use when processing an image. This following table shows you how to map that to the Suffix:
+MonoGame has its own [TextureProcessorOutputFormat](https://docs.monogame.net/api/Microsoft.Xna.Framework.Content.Pipeline.Processors.TextureProcessorOutputFormat.html) enumeration. It describes the type of Texture Compression you use when processing an image.
+
+The following table shows you how to map that to the Suffix:
 
 | TextureProcessorOutputFormat | Suffix |
 | -------------- | ------ |
@@ -54,22 +51,21 @@ you use when processing an image. This following table shows you how to map that
 
 ## Adding Texture Compression Suffixes
 
-With the latest MonoGame we added support for being able to have one texture with multiple outputs.
-Previously it would only build the last item, but this has been fixed.
+With the latest MonoGame we added support for being able to have one texture with multiple outputs.  Previously it would only build the last item, but this has been fixed.
 
-In the Content Editor
+In the Content Editor:
 
 1. Add a new folder for your desired Suffix. This is usually in the form of `Textures<suffix>`.
   ![Add Folder](./images/HowTo_PackageTextures_Android_Add.png)
-2. Right click on the new folder and Add an Existing File.
+2. Right-click on the new folder and Add an Existing File.
 3. Select the file you want to use for this Suffix and Add it
    ![Folder Structure](./images/HowTo_PackageTextures_Android_Folder.png)
-4. In the Properties of the new file change the TextureFormat to be the one which matches the desired Suffix.
+4. In the Properties of the new file change the TextureFormat to the one that matches the desired Suffix.
    ![Change Properties](./images/HowTo_PackageTextures_AndroidATSC.png)
 
 In the `.mgcb` file directly you can do the following
 
-```bash
+```sh
 /processorParam:TextureFormat=PvrCompressed
 /build:Textures/LogoOnly_64px.png;Textures#tcf_pvrtc/LogoOnly_64px
 ```
@@ -77,15 +73,15 @@ In the `.mgcb` file directly you can do the following
 As documented the [/build](https://docs.monogame.net/articles/getting_started/tools/mgcb.html#build-content-file) command takes an optional `<destination_filepath>` after the `<content_filepath>`. We can use this to provide the target folder for our output.
 So in the example above, the `LogoOnly_64px.png` file will be compressed using `PvrCompressed` and then the output will end up in `Textures#tcf_pvrtc`.
 
-> !Important
+> [!Important]
 > Some texture formats have specific size requirements. For example PVRTC Compressed Textures MUST be a Power of 2 and Square (e.g 1024x1024).
 > Many others need to be Power of 2. It is recommended that you make all your textures Power of 2  just to make life easier.
 
 ## Supporting Multiple Texture Compression Types
 
-To allow your game to work on as many devices as possible we need to support multiple compression formats. Now that we know how to specify a specific texture compression format for a texture, how do we go about supporting multiple formats? It is really quite simple. We can duplicate the entry for each texture an specify a different `/processorParam:TextureFormat` and output path. For example the following code is how we would build both `pcrtc` and `dxt` formats.
+To allow your game to work on as many devices as possible we need to support multiple compression formats. Now that we know how to specify a specific texture compression format for a texture, how do we go about supporting multiple formats? It is really quite simple. We can duplicate the entry for each texture and specify a different `/processorParam:TextureFormat` and output path. For example, the following code is how we would build both `pcrtc` and `dxt` formats.
 
-```bash
+```sh
 #begin Textures/LogoOnly_64px.png for PvrCompressed
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -99,21 +95,21 @@ To allow your game to work on as many devices as possible we need to support mul
 /build:Textures/LogoOnly_64px.png;Textures#tcf_s3tc/LogoOnly_64px
 ```
 
-In the Content Editor
+In the Content Editor:
 
 1. Add a new folder for your desired Suffix. This is usually in the form of `Textures<suffix>`.
   ![Add Folder](./images/HowTo_PackageTextures_Android_Add.png)
 2. Right click on the new folder and Add an Existing File.
 3. Select the file you want to use for this Suffix and Add it
    ![Folder Structure](./images/HowTo_PackageTextures_Android_Folder.png)
-4. In the Properties of the new file change the TextureFormat to be the one which matches the desired Suffix.
+4. In the Properties of the new file change the TextureFormat to the one that matches the desired Suffix.
    ![Change Properties](./images/HowTo_PackageTextures_AndroidATSC.png)
 
-As you can see, supporting multiple texture compression formats is now quite easy.
+As you can see, supporting multiple texture compression formats is quite easy.
 
 ## Sample `.mgcb`
 
-```bash
+```sh
 #begin Textures/LogoOnly_64px.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -129,10 +125,9 @@ As you can see, supporting multiple texture compression formats is now quite eas
 
 ## Using Android Asset Packs
 
-The Google Play Store has some fairly strick limited on the package sizes for Android apps. However they do have way to extend thise limits for large games and apps, these are known as `Asset Packs`. Simply put, an `Asset Pack` is a way to organise your game content/assets into seperate pieces which can be downloaded shortly after installation or dynamically at runtime.
-For most games using the `Install Time` packs are the best option. 
+The Google Play Store has some fairly strict limitations on package sizes for Android apps. However there are ways to extend these limits for large games and apps, which are known as `Asset Packs`. Simply put, an `Asset Pack` is a way to organize your game content/assets into separate pieces which can be downloaded shortly after installation or dynamically at runtime.  For most games using the `Install Time` packs are the best option. 
 
-Using them in your game can be quite straigh forward. It only requires a little bit of `MSBuild` markup in your Android platform `.csproj`.
+Using them in your game can be quite straight forward. It only requires a little bit of `MSBuild` markup in your Android platform `.csproj`.
 
 ```xml
 <Target Name="_MoveContentIntoPacks" AfterTargets="IncludeContent">
@@ -142,9 +137,9 @@ Using them in your game can be quite straigh forward. It only requires a little 
 </Target>
 ```
 
-This adds an `MSBuild` target to your project which will process all the items in the `Content/Music` folder and subfolders. It will place them in an `Asset Pack` called `MyGameAssets`. You can change the name of this pack as you wish. By default this will be an `InstallTime` pack. So it will be installed at the same time as your game is. There is not need to do anything else, the assets will be placed in the usual location and opened via `Content.Load<T>`.
+This adds an `MSBuild` target to your project which will process all the items in the `Content/Music` folder and subfolders. It will place them in an `Asset Pack` called `MyGameAssets`. You can change the name of this pack as you wish. By default, this will be an `InstallTime` pack. So it will be installed at the same time as your game is. There is no need to do anything else, the assets will be placed in the usual location and opened via `Content.Load<T>`.
 
-If use dymanic delivery and install packs at runtime you will need to open the content from a different location. This is out of scope for this document.
+If you are using dynamic delivery and install packs at runtime, you will need to open the content from a different location. This is out of scope for this document.
 If you want to learn more about how to use these features please check out the following links:
 
 - [Android Asset Packs](https://learn.microsoft.com/en-us/dotnet/maui/android/asset-packs?view=net-maui-9.0)
@@ -153,7 +148,7 @@ If you want to learn more about how to use these features please check out the f
 
 ## Sample `.mgcb` with Multiple Compression Formats
 
-```bash
+```sh
 #----------------------------- Global Properties ----------------------------#
 
 /outputDir:bin/$(Platform)
