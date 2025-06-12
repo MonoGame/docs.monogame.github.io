@@ -35,7 +35,7 @@ The graphics pipeline in monogame starts with two components: the [**GraphicsDev
 
 [!code-csharp[](./snippets/game1.cs?start=9&end=10)]
 
-The [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) initializes and the connection to the graphics hardware.  It handles tasks such as setting the screen resolution, toggling between fullscreen and windowed mode, and managing the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice), which is the interface between your game and the Graphics Processing Unit (GPU) the game is running on. The [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) optimizes 2D rendering by batching similar draw calls together, improving draw performance when rendering multiple sprites.
+The [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) initializes and manages the connection to the graphics hardware.  It handles tasks such as setting the screen resolution, toggling between fullscreen and windowed mode, and managing the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice), which is the interface between your game and the Graphics Processing Unit (GPU) the game is running on. The [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) optimizes 2D rendering by batching similar draw calls together, improving draw performance when rendering multiple sprites.
 
 ## Initialization
 
@@ -58,7 +58,7 @@ The [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method serv
 
 [!code-csharp[](./snippets/game1.cs?start=24&end=27)]
 
-This method is only call once during the startup of the game, but *when* it is called can be a little confusing at first.  In the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method shown above, when the `base.Initialize` call is executed, the final task it performs is calling the [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method.  This means any initializations you need to perform that have a dependency on assets being loaded should be done *after* the `base.Initialize` call and not *before* it.
+This method is only called once during the startup of the game, but *when* it is called can be a little confusing at first.  In the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method shown above, when the `base.Initialize` call is executed, the final task it performs is calling the [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method.  This means any initializations you need to perform that have a dependency on assets being loaded should be done *after* the `base.Initialize` call and not *before* it.
 
 ## The Game Loop
 
@@ -70,7 +70,7 @@ MonoGame is executing the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(
 
 The [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) method at the moment is not doing much, only checking for input from a controller or keyboard to determine if the game should exit. However, the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method is doing more than what it appears to at first glance.
 
-The first line is executing the [**Clear**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)) method of the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice) property using the color [**CornflowerBlue**](xref:Microsoft.Xna.Framework.Color.CornflowerBlue). Recall that the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice) object is your direct interface between the game and what is rendered to the screen. Every time the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method is called, this line of code of erasing the contents of the game window and refilling it with the color specified. Without clearing the contents of the screen first, every draw call would draw the new frame render over top of the previous render, and you'd end up with something like the old solitaire win screen
+The first line is executing the [**Clear**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color)) method of the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice) property using the color [**CornflowerBlue**](xref:Microsoft.Xna.Framework.Color.CornflowerBlue). Recall that the [**GraphicsDevice**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice) object is your direct interface between the game and what is rendered to the screen. Every time the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) method is called, this line of code is erasing the contents of the game window and refilling it with the color specified. Without clearing the contents of the screen first, every draw call would draw the new frame render on top of the previous render, and you'd end up with something like the old solitaire win screen.
 
 | ![Figure 3-2: Windows XP Solitaire Win Screen](./images/solitaire.webp) |
 | :---------------------------------------------------------------------: |
@@ -86,18 +86,18 @@ While this can make for a neat effect, it is not something you want all the time
 > After making this change and running the game, the screen is cleared to the MonoGame Orange color.
 >
 > | ![Figure 3-3: The game window clearing the screen using the MonoGame Orange color](./images/monogame-orange.png) |
-> | :---: |
-> | **Figure 3-3: The game window clearing the screen using the MonoGame Orange color** |
+> | :--------------------------------------------------------------------------------------------------------------: |
+> |               **Figure 3-3: The game window clearing the screen using the MonoGame Orange color**                |
 
-Each time the game loops completes and the game is drawn to the screen, we call this a *frame*. So if MonoGame is running the game loop at 60 frames per second, that means it is performing and update and a render of each frame every 16ms. Notice that both the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) and the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) methods both receive a parameter of the type [**GameTime**](xref:Microsoft.Xna.Framework.GameTime). The [**GameTime**](xref:Microsoft.Xna.Framework.GameTime) parameter provides a snapshot of the timing values for the game, including the amount of time that it took for the previous frame to execute. This is commonly referred to as the *delta time*.
+Each time the game loop completes and the game is drawn to the screen, we call this a *frame*. So, if MonoGame is running the game loop at 60 frames per second, that means it is performing an update and a render of a frame in 16ms. Notice that both the [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) and the [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) methods both receive a parameter of the type [**GameTime**](xref:Microsoft.Xna.Framework.GameTime). The [**GameTime**](xref:Microsoft.Xna.Framework.GameTime) parameter provides a snapshot of the timing values for the game, including the amount of time that it took for the previous frame to execute. This is commonly referred to as the *delta time*.
 
-*Delta time* allows you to track time accurately for things such as animations and events based on *game time* and not the speed of the processor (CPU) on the machine running the game. While in ideal circumstances, the delta time will always be 16ms, there are any number of things that could cause a temporary slow down or hiccup in a frame, and using the delta time ensures that timing based events are always correct.
+*Delta time* allows you to track time accurately for things such as animations and events based on *game time* and not the speed of the processor (CPU) on the machine running the game. While in ideal circumstances, the delta time will always be 16ms, there are any number of things that could cause a temporary slow down or hiccup in a frame, and using the delta time ensures that time-based events are always correct.
 
 ## Conclusion
 
 In this chapter, you accomplished the following:
 
-- You read through the default code provided in a `Game1.cs` file created by a MonoGame template.
+- You read through the default code provided in the `Game1.cs` file created by a MonoGame template.
 - You learned about the lifecycle of a MonoGame game project.
 - You learned what a game loop is and how it is implemented in MonoGame.
 
@@ -114,7 +114,7 @@ In the next chapter, you will start working with sprites and learn how to load a
 2. What is the [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) used for?
 
     :::question-answer
-    The [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) provides an optimized method of rendering 2D graphics, like sprites, onto the screen
+    The [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) provides an optimized method of rendering 2D graphics, like sprites, onto the screen.
     :::
 
 3. When is the [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent) method executed and why is it important to know this?
