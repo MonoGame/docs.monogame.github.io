@@ -16,7 +16,7 @@ In this chapter you will:
 We will first start by understanding the basics of collision detection and the different approaches that can be used.
 
 > [!NOTE]
-> There is a lot to understand when it comes to collision detection and the many complex ways that two objects can be considered IN collsion or NEAR collision.  It is critical to get an understanding of the basics before jumping into code.  So buckle up, we have a story to tell before you can get back to the keyboard.
+> There is a lot to understand when it comes to collision detection and the many complex ways that two objects can be considered IN collision or NEAR collision.  It is critical to get an understanding of the basics before jumping into code.  So buckle up, we have a story to tell before you can get back to the keyboard.
 >
 > Feel free to keep coming back to this chapter and refer to the content when you need to, with a fresh cup of coffee.
 
@@ -34,36 +34,36 @@ Shaped based collision detection checks if two shapes overlap.  The most common 
 
 #### Circle Collision Detection
 
-Circle collision detection is computationally a simpler check than that rectangles.  There are also no special considerations if the circles are rotated, which makes them easier to use.  To determine if two circle shapes are overlapping, we only need to check if the square of the sum of the radii between the two circles is less than the squared distance between the two circles with the following formula:
+Circle collision detection is computationally a simpler check than rectangles.  There are also no special considerations if the circles are rotated, which makes them easier to use.  To determine if two circle shapes are overlapping, we only need to check if the square of the sum of the radii between the two circles is less than the squared distance between the two circles with the following formula:
 
-Two find the distance between two circles, imagine drawing a line from the center of one circle to the center of the other.  This length of this line is the distance, but we could also calculate it by first walking up or down and then walking left or right from the center of one circle to another, forming a right triangle.
+To find the distance between two circles, imagine drawing a line from the center of one circle to the center of the other.  The length of this line is the distance, but we could also calculate it by first walking up or down and then walking left or right from the center of one circle to another, forming a right triangle.
 
 | ![Figure 12-1: Showing the distance between the center of two circles forms a right triangle](./images/circle-distance-right-triangle.svg) |
 | :---------------------------------------------------------------------------------------------------------------------------------------: |
 |                       **Figure 12-1: Showing the distance between the center of two circles forms a right triangle**                       |
 
-In the *Figure 12-1* above
+In *Figure 12-1* above
 
 - $a$ is the distance between the center of the two on the x-axis (horizontal).
 - $b$ is the distance between the center of the two circles on the y-axis (vertical).
 - $c$ is the total distance between the center of the two circles.
 
-Since this forms a right triangle, to calculate the squared distance, we can use Pythagorean's Theorem:
+Since this forms a right triangle, we can use Pythagorean's Theorem to calculate $c^2$ given $a^2$ and $b^2$:
 
 $$c^2 = a^2 + b^2$$
 
-Then we just check if the squared sum of the radii of the two circles is less than the squared distance:
+To check for overlap of two circles, we compare whether the *squared sum of the radii* of the two circles is greater than the *squared distance*:
 
-$$(radius_{circle1} + radius_{circle2})^2 < c^2$$
+$$(radius_{circle1} + radius_{circle2})^2 > a^2 + b^2$$
 
-If it is less, then the circles are overlapping; otherwise, they are not.
+It is easy to confuse the direction of the inequality sign. As a quick mental test, think of how the math works when the origin of two circles are at the same position, i.e., when the *squared distance* is zero.
 
-To calculate the squared distance between to points, MonoGame provides the [**Vector2.DistanceSquared**](xref:Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method:
+To calculate the squared distance between two points, MonoGame provides the [**Vector2.DistanceSquared**](xref:Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method:
 
 [!code-csharp[](./snippets/vector2_distance.cs)]
 
 > [!TIP]
-> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared.  So why do not we use this instead?
+> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared.  So why not use this instead?
 >
 > Square root operations are more computationally complex for a CPU.  So instead of getting the normal distance, which would require the square root operation, it is more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.
 
@@ -113,14 +113,14 @@ Implementing SAT is out-of-scope for this tutorial. If you are interested in fur
 
 #### Choosing a Collision Detection Method
 
-When determining which collision detection method to use, you should start with the simplest one that meets the needs of your game.  If distance checks work for your game mechanic, there's no need to implement more complex shape based detections.  Similarly, if a circle can represent the bounding area of a game object, start with that before moving onto rectangles.
+When determining which collision detection method to use, you should start with the simplest one that meets the needs of your game.  If distance checks work for your game mechanic, there's no need to implement more complex shape based detections.  Similarly, if a circle can represent the bounding area of a game object, start with that before moving on to rectangles.
 
 Some other points to consider are
 
 - Circles:
   - Better for round objects like balls and coins.
   - More accurate for rotating objects.
-  - Simpler check for overlap than rectangles.
+  - A simpler check for overlap than rectangles.
 - Rectangles:
   - Great for walls, platforms, and most game objects.
   - Easy to visualize and debug.
@@ -137,7 +137,7 @@ A blocking collision response is the most basic response which just prevents the
 1. Store the location of an object calculating the new location to move it to.
 2. Check if it is overlapping an object at the new location:
 
-- If it is overlapping, then set the position to the the position before it was moved.
+- If it is overlapping, then set the position to the position before it was moved.
 - If it is not overlapping, set the position to the new calculated position.
 
 For example:
@@ -174,9 +174,9 @@ For example:
 
 #### Bounce Collision Response
 
-For games that need objects to bonce off each other (like a the ball in a Pong game), we need to calculate how their velocity should change after the collision.  MonoGame provides the [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method to handle this calculation for us. The method needs two pieces of information:
+For games that need objects to bounce off each other (like the ball in a Pong game), we need to calculate how their velocity should change after the collision.  MonoGame provides the [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method to handle this calculation for us. The method needs two pieces of information:
 
-1. The incoming vector (the direction something is moving).
+1. The incoming vector (the direction that something is moving).
 2. The normal vector (the direction perpendicular to the surface).
 
 | ![Figure 12-4: A diagram showing how an incoming vector reflects off of a surface base around the normal vector of the surface](./images/reflection-diagram.svg) |
@@ -193,14 +193,14 @@ For example, if we had a ball moving around the screen and wanted it to bounce o
 [!code-csharp[](./snippets/bounce_example.cs)]
 
 > [!TIP]
-> [**Vector2.UnitX**](xref:Microsoft.Xna.Framework.Vector2.UnitX) is $(1, 0)$ and [**Vector2.UnitY**](xref:Microsoft.Xna.Framework.Vector2.UnitY) is $(0, 1)$.  We use these to get the screen edge normal since the edges of the screen are not at an angle.  For more complex surfaces, you would need to calculate the appropriate normal vector based on the surface angle
+> [**Vector2.UnitX**](xref:Microsoft.Xna.Framework.Vector2.UnitX) is $(1, 0)$ and [**Vector2.UnitY**](xref:Microsoft.Xna.Framework.Vector2.UnitY) is $(0, 1)$.  We use these to get the screen edge normal since the edges of the screen are not at an angle.  For more complex surfaces, you would need to calculate the appropriate normal vector based on the surface angle.
 
 ### Optimizing Collision Performance
 
 When checking for collisions between multiple objects, testing every object against every other object (often called brute force checking) becomes inefficient as your game grows. Brute force checking can be calculated as $(n * (n - 1)) / 2$ where $n$ is the total number of objects.  For example, if you have 100 objects in your game, that's $(100 * 99) / 2 = 4950$ collision checks every frame.  To improve performance, we can use a two-phase approach:
 
 1. Broad Phase: A quick, simple check to rule out objects that definitely are not colliding.
-2. Narrow Phase: A more precise check only performed on objects that passed the broad phase.
+2. Narrow Phase: A more precise check that is only performed on objects that have passed the broad phase.
 
 For our simple game with just two objects, this optimization is not necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.
 
@@ -352,11 +352,11 @@ In this chapter, you accomplished the following:
   - Rectangles for walls and platforms.
 - Explored different types of collision responses:
   - Blocking to prevent objects from overlapping.
-  - Triggering to cause events when objects collide.
+  - Triggering events when objects collide.
   - Bouncing to reflect objects off surfaces.
 - Created reusable components:
   - Implemented a Circle struct for circle-based collision.
-  - Added methods to detect circle intersection.
+  - Added methods to detect circle intersections.
 - Applied collision concepts to our game:
   - Added screen boundary collision for the slime.
   - Implemented bouncing behavior for the bat.
@@ -377,10 +377,10 @@ In the next chapter, we will explore using tilesets and tilemaps to create tile 
     ::: question-answer
     For two rectangles A and B to collide:
 
-    1. A's left edge must be less than B's right edge
-    2. A's right edge must be greater than B's left edge
-    3. A's top edge must be less than B's bottom edge
-    4. A's bottom edge must be greater than B's top edge
+    1. A's left edge must be less than B's right edge.
+    2. A's right edge must be greater than B's left edge.
+    3. A's top edge must be less than B's bottom edge.
+    4. A's bottom edge must be greater than B's top edge.
 
    :::
 
@@ -395,8 +395,8 @@ In the next chapter, we will explore using tilesets and tilemaps to create tile 
     ::: question-answer
     [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) needs:
 
-    1. The incoming vector (direction the object is moving)
-    2. The normal vector (direction perpendicular to the surface being hit)
+    1. The incoming vector (direction the object is moving).
+    2. The normal vector (direction perpendicular to the surface being hit).
 
     :::
 
@@ -405,10 +405,10 @@ In the next chapter, we will explore using tilesets and tilemaps to create tile 
     ::: question-answer
     Circle collision might be chosen because:
 
-    - It is more accurate for round objects
-    - It handles rotating objects better
-    - It is simpler for continuous collision detection
-    - It is natural for radius-based interactions
+    - It is more accurate for round objects.
+    - It handles rotating objects better.
+    - It is simpler for continuous collision detection.
+    - It is natural for radius-based interactions.
 
     :::
 
