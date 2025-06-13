@@ -44,9 +44,9 @@ To find the distance between two circles, imagine drawing a line from the center
 
 In *Figure 12-1* above
 
-- $a$ is the distance between the center of the two on the x-axis (horizontal).
-- $b$ is the distance between the center of the two circles on the y-axis (vertical).
-- $c$ is the total distance between the center of the two circles.
+- $a$ is the horizontal distance between the centers of the two circles (x-axis).
+- $b$ is the vertical distance between the centers of the two circles (y-axis).
+- $c$ is the total distance between the centers of the two circles.
 
 Since this forms a right triangle, we can use Pythagorean's Theorem to calculate $c^2$ given $a^2$ and $b^2$:
 
