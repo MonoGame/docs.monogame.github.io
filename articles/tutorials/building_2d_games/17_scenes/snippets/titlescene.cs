@@ -100,6 +100,7 @@ public class TitleScene : Scene
         // Begin the sprite batch to prepare for rendering.
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
+        // The color to use for the drop shadow text.
         Color dropShadowColor = Color.Black * 0.5f;
 
         // Draw the Dungeon text slightly offset from it is original position and
