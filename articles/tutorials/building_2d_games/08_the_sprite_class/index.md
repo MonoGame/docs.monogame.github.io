@@ -1,6 +1,6 @@
 ---
 title: "Chapter 08: The Sprite Class"
-description: "Explore creating a reusable Sprite class to efficiently sprites and their rendering properties, including position, rotation, scale, and more."
+description: "Explore creating a reusable Sprite class to efficiently manage sprites and their rendering properties, including position, rotation, scale, and more."
 ---
 
 In [Chapter 07](../07_optimizing_texture_rendering/index.md), you learned how to use texture atlases to optimize rendering performance. While this solved the issue of texture swapping, managing individual sprites and their properties becomes increasingly complex as your game grows. Even in our simple example with just a slime and a bat, we would eventually need to track various properties for each sprite:
@@ -73,7 +73,7 @@ We can simplify this process by adding a sprite creation method to the `TextureA
 
 ## Using the Sprite Class
 
-Now we can adjust our game now to use the `Sprite` class instead of just the texture regions.  Update the contents of `Game1.cs` with the following:
+Now we can adjust our game to use the `Sprite` class instead of just the texture regions.  Update the contents of `Game1.cs` with the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,61-65)]
 
@@ -92,7 +92,7 @@ Running the game now will produce the same result as in the previous chapter.
 |                   **Figure 8-1: The slime and bat sprites being rendered in the upper-left corner of the game window**                   |
 
 > [!NOTE]
-> Notice how even though we increased the scale of both sprites, the bat sprite is still only 10px to the right of the bat.  This is because the `Width` property we created for the `Sprite` class takes into account the scale factor of the sprite as well.  
+> Notice how even though we increased the scale of both sprites, the bat sprite is still only 10px to the right of the slime.  This is because the `Width` property we created for the `Sprite` class takes into account the scale factor of the sprite as well.  
 
 Try adjusting the various properties available for the slime and the bat sprites to see how they affect the rendering.
 

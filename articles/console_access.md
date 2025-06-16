@@ -5,7 +5,7 @@ description: How do I get access to console versions of MonoGame?
 
 MonoGame is free to use on all platforms from the [public repository](https://github.dev/MonoGame/monogame), but the code for supporting console platforms is only accessible to authorized console developers.
 
-These platforms are provided as private code repositories that add integrations with the console vendor's APIs and platform specific documentation.
+These platforms are provided as private code repositories that add integrations with the console vendor's APIs and platform-specific documentation.
 
 ## Application process
 
@@ -23,7 +23,7 @@ The instructions below will help you gain access to each platform.
 
 ![Nintendo Switch](images/nintendo_switch.png)
 
-Your first step is to register as [Nintendo Developer](https://developer.nintendo.com/register) for Nintendo Switch.
+Your first step is to register as a [Nintendo Developer](https://developer.nintendo.com/register) for Nintendo Switch.
 
 Once you are in the program, you can go to the middleware page and fill out the [MonoGame - Nintendo Developer Authorization](https://developer.nintendo.com/group/development/getting-started/g1kr9vj6/middleware/monogame) form.
 

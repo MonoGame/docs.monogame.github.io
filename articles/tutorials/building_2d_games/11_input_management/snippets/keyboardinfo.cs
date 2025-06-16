@@ -20,7 +20,7 @@ public class KeyboardInfo { }
 
     #region ctors
     /// <summary>
-    /// Creates a new KeyboardInfo 
+    /// Creates a new KeyboardInfo. 
     /// </summary>
     public KeyboardInfo()
     {

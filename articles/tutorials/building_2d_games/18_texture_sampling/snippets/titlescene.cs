@@ -73,11 +73,11 @@ public class TitleScene : Scene
         _pressEnterPos = new Vector2(640, 620);
         _pressEnterOrigin = size * 0.5f;
 
-        // Initialize the offset of the background pattern at zero
+        // Initialize the offset of the background pattern at zero.
         _backgroundOffset = Vector2.Zero;
 
         // Set the background pattern destination rectangle to fill the entire
-        // screen background
+        // screen background.
         _backgroundDestination = Core.GraphicsDevice.PresentationParameters.Bounds;
     }
 
@@ -86,7 +86,7 @@ public class TitleScene : Scene
         // Load the font for the standard text.
         _font = Core.Content.Load<SpriteFont>("fonts/04B_30");
 
-        // Load the font for the title text
+        // Load the font for the title text.
         _font5x = Content.Load<SpriteFont>("fonts/04B_30_5x");
 
         // Load the background pattern texture.
@@ -108,7 +108,7 @@ public class TitleScene : Scene
         _backgroundOffset.Y -= offset;
 
         // Ensure that the offsets do not go beyond the texture bounds so it is
-        // a seamless wrap
+        // a seamless wrap.
         _backgroundOffset.X %= _backgroundPattern.Width;
         _backgroundOffset.Y %= _backgroundPattern.Height;
     }
@@ -129,20 +129,20 @@ public class TitleScene : Scene
         Color dropShadowColor = Color.Black * 0.5f;
 
         // Draw the Dungeon text slightly offset from it is original position and
-        // with a transparent color to give it a drop shadow
+        // with a transparent color to give it a drop shadow.
         Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-        // Draw the Dungeon text on top of that at its original position
+        // Draw the Dungeon text on top of that at its original position.
         Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
         // Draw the Slime text slightly offset from it is original position and
-        // with a transparent color to give it a drop shadow
+        // with a transparent color to give it a drop shadow.
         Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-        // Draw the Slime text on top of that at its original position
+        // Draw the Slime text on top of that at its original position.
         Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos, Color.White, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-        // Draw the press enter text
+        // Draw the press enter text.
         Core.SpriteBatch.DrawString(_font, PRESS_ENTER_TEXT, _pressEnterPos, Color.White, 0.0f, _pressEnterOrigin, 1.0f, SpriteEffects.None, 0.0f);
 
         // Always end the sprite batch when finished.

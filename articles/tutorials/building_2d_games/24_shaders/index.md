@@ -18,7 +18,7 @@ In this chapter, you will:
 >
 > If you want to learn more about the shader language itself, a good place to start would be the [High-level shader language (HLSL)](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl) documentation on Microsoft Learn.  
 >
-> For inspiration on what can be achieved with shaders, check out [ShaderToy](https://www.shadertoy.com), which showcases real-time shader effects created by others.  Note that ShaderToy uses [OpenGL Shading Language (GLSL)](https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language) which has some syntactic differences from HLSL, but the underlying concepts and mathematics are very similar for inspiration.
+> For inspiration on what can be achieved with shaders, check out [ShaderToy](https://www.shadertoy.com), which showcases real-time shader effects created by others.  Note that ShaderToy uses [OpenGL Shading Language (GLSL)](https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language) which has some syntactic differences from HLSL, but the underlying concepts and mathematics are very similar.
 
 We can begin by understanding what shaders are and how they work in MonoGame.
 
@@ -59,7 +59,7 @@ Pixel shaders are useful in 2D games for creating effects like:
 For our Dungeon Slime game, we will focus primarily on pixel shaders since we want to create a color effect for our game over state.
 
 > [!NOTE]
-> There are other types of shaders beyond vertex and pixel shaders, such as compute shaders, geometry shaders, and hull/domain shaders.  These more advanced shader types enabled powerful features like physics simulations, procedural geometry, and complex post-processing effects.  However, they are not currently supported in the standard MonoGame implementation and are beyond the scope of this beginner tutorial.  As the MonoGame graphics pipeline evolves, support for these advanced shader types may be added in future versions.
+> There are other types of shaders beyond vertex and pixel shaders, such as compute shaders, geometry shaders, and hull/domain shaders.  These more advanced shader types enable powerful features like physics simulations, procedural geometry, and complex post-processing effects.  However, they are not currently supported in the standard MonoGame implementation and are beyond the scope of this beginner tutorial.  As the MonoGame graphics pipeline evolves, support for these advanced shader types may be added in future versions.
 
 ### The Shader Pipeline
 
@@ -257,7 +257,7 @@ First, we need to create a new shader effect file and add it to our content proj
 3. Give the new folder the name `effects` and click the `Ok` button.
 4. Right-click on the new `effects` folder in the MGCB Editor and choose `Add > New Item...`.
 5. Choose `Sprite Effect (.fx)` from the type list and name the file `grayscaleEffect`, then click the `Ok` button.
-6. **Save the changes in the MGCB Editor the close it.**
+6. **Save the changes in the MGCB Editor then close it.**
 
 The steps above will create a new shader effect (*.fx*) file with the default template we discussed earlier.  Now, we need to modify this template to create our grayscale effect.
 
@@ -340,7 +340,7 @@ Now that we have our grayscale shader, we can implement it in our game when the 
     [!code-csharp[](./snippets/gamescene/draw.cs?highlight=6-18)]
 
     > [!NOTE]
-    > Notice how we set the shader parameters with the current saturation value every frame before beginning the sprite batch.  This is because shaders are stateless; they do not remember any values from the previous draw cycle.  Each time the GPU processes a shader, it only works with the parameters provided in that specific frame.  Event if the saturation value has not changed since the last frame, we still need to send it to the shader again to apply it.  This is why we constantly update the shader parameters in the `Draw` method rather than only when the value is changed.
+    > Notice how we set the shader parameters with the current saturation value every frame before beginning the sprite batch.  This is because shaders are stateless; they do not remember any values from the previous draw cycle.  Each time the GPU processes a shader, it only works with the parameters provided in that specific frame.  Even if the saturation value has not changed since the last frame, we still need to send it to the shader again to apply it.  This is why we constantly update the shader parameters in the `Draw` method rather than only when the value is changed.
 
 With these changes, when the game enters a paused or game over state, the screen will gradually fade to gray using the grayscale shader effect.  This provides a clear indication that the game is inactive during these states.  
 
@@ -362,7 +362,7 @@ When working with effects in [**SpriteBatch**](xref:Microsoft.Xna.Framework.Grap
 
     // Begins sprite batch with a different effect.  All draw calls made within this begin/end block will have the specified effect applied.
     spriteBatch.Begin(effect: exampleEffect2)
-    spriteBatch.DrawS(texture, position, color);
+    spriteBatch.Draw(texture, position, color);
     spriteBatch.End();
     ```
 

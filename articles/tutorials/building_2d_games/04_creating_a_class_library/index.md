@@ -52,7 +52,7 @@ To use the template to add the class library, perform the following based on whi
 To add the class library using the MonoGame Game Library project template in Visual Studio Code, perform the following:
 
 1. In the [*Solution Explorer*](../02_getting_started/index.md#install-the-c-dev-kit-extension) panel, right-click the *DungeonSlime* solution.
-2. Chose *New Project* from the context menu.
+2. Choose *New Project* from the context menu.
 3. Enter "MonoGame Game Library" and select it as the template to use.
 4. Name the project "MonoGameLibrary".
 5. When prompted for a location, use the default option, which will put the new project in a folder next to your game project.
@@ -128,7 +128,7 @@ When using the *MonoGame Game Library* project template, the generated project c
 >
 > If you would like more information on this, Simon Jackson has written the article [Going cross-platform with MonoGame](https://darkgenesis.zenithmoon.com/going-cross-platform-with-monogame.html) which covers this in more detail.
 >
-> Also the `2D Start Kit` and `2D Blank Start Kit` templates provide you with a richer startup project targetting all platforms, using a common Class Library to reuse code across them all.  Although we recommend completing this tutorial first before tackling that beast.
+> Also the `2D StartKit` and `2D Blank StartKit` templates provide you with a richer startup project targeting all platforms, using a common Class Library to reuse code across them all.  Although we recommend completing this tutorial first before tackling that beast.
 
 ## Creating Our First Library Module
 
@@ -153,7 +153,7 @@ The `Core` class provides the following features:
 This approach provides a consistent foundation for all our games, handling common setup tasks and providing convenient access to core functionality.
 
 > [!NOTE]
-> As this tutorial progress, we will be coming back to this `Core` class to add more to it.
+> As this tutorial progresses, we will be coming back to this `Core` class to add more to it.
 
 ## Updating Our Game to Use the Core Class
 

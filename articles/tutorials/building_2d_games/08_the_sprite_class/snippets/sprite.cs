@@ -99,7 +99,7 @@ public class Sprite
 
     #region methods
     /// <summary>
-    /// Sets the origin of this sprite to the center
+    /// Sets the origin of this sprite to the center.
     /// </summary>
     public void CenterOrigin()
     {

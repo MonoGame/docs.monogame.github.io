@@ -29,6 +29,6 @@ public override void Draw(GameTime gameTime)
     // Always end the sprite batch when finished.
     Core.SpriteBatch.End();
 
-    // Draw the UI
+    // Draw the UI.
     _ui.Draw();
 }

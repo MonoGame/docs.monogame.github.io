@@ -19,7 +19,7 @@ Thank you for choosing to contribute to the MonoGame project! This page provides
 
 The MonoGame documentation contains two types of documents: articles and API references.
 
-Articles include manuals, guides and tutorials on how to use the MonoGame Framework to create games.
+Articles include manuals, guides, and tutorials on how to use the MonoGame Framework to create games.
 
 API references provide detailed explanation of each class and method found in the MonoGame Framework. The documentation is written in the [C# XML format](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/xmldoc/xml-documentation-comments) and is inline to the MonoGame source code. 
 
@@ -68,7 +68,7 @@ Being inline with the code allows you to easily look for critical information wi
 
 ### Focus on What Adds Value to the Consumer
 
-Limit documentation to public methods and functions unless there is a specific reason to include internal methods, while documenting internals helps with readability of the code, it provides limited use to consumers of the MonoGame Framework.
+Limit documentation to public methods and functions unless there is a specific reason to include internal methods, while documenting internals helps with the readability of the code, it provides limited use to consumers of the MonoGame Framework.
 
 ### Documentation Is Referenced Not Read
 
@@ -94,7 +94,7 @@ With a few points to call out:
 
 #### `<see>` and `<cref/>` should be used whenever an API reference is used in the documentation
 
-To ensure that API documentation is linked to whichever reference is used, `<see>` and `<cref/>` references should be used, this helps users navigate the methods, especially when looking up initializers or use of a property or method.
+To ensure that API documentation is linked to whichever reference is used, `<see>` and `<cref/>` references should be used. This helps users navigate the methods, especially when looking up initializers or use of a property or method.
 
 #### Avoid self referencing `<cref/>` unless it provides value
 
@@ -121,7 +121,7 @@ and the y component uses 6 bits.
 
 > [!NOTE]
 > If the `cref` description would cause the line to exceed the 120 recommendation, this is generally ok, so long as the rendered line does not exceed the limit.
-> THe limit however, is more of a guideline than a hard rule, so common sense should be applied to keep the limit near 120 characters.
+> The limit however, is more of a guideline than a hard rule, so common sense should be applied to keep the limit near 120 characters.
 
 #### Use the packed multi-line style with surrounding tags
 

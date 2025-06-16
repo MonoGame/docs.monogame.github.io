@@ -9,7 +9,7 @@ description: What is new with the release of MonoGame 3.8.*
 > **Coming soon**
 > Refer to the [CHANGELOG](https://github.com/MonoGame/MonoGame/blob/develop/CHANGELOG.md) for a more complete list of the changes.
 
-Notes for the final 3.8.4 release are still in progress.  Preview builds available.
+Notes for the final 3.8.4 release are still in progress.  Preview builds are available.
 
 > [!NOTE]
 > More details to follow
@@ -42,11 +42,11 @@ Notes for the final 3.8.4 release are still in progress.  Preview builds availab
 
 * Update to .NET 8, including the MGCB tool (now a local tool rather than global, allowing different projects to use different versions)
 * Removal of Windows UWP due to Microsoft shutting support for it (you can still use UWP if you remain on 3.8.1)
-* Updated to building dependencies to improve support.
+* Updated build dependencies to improve support.
 * New documentation, including the continuing migration of the older XNA documentation.
 * A MASSIVE clean-up of the MonoGame XML documentation, big shout out to (@AristurtleDev and his team).
 * Build system improvements (mainly a MonoGame building backend thing).
-* Various bugfixes to so many areas of the Framework.
+* Various bug fixes across many areas of the framework.
 
 > [!NOTE]
 > More details to follow
@@ -68,7 +68,7 @@ MonoGame 3.8.1 now comes with an optional Visual Studio extension which will ins
 
 This extension is available for Visual Studio 2022, and Visual Studio 2022 for Mac.
 
-If you are migrating from 3.8.0 it is recommended to uninstall the existing global MGCB .NET tools. It would be a good idea to review the [Migrating from 3.8.0](./migration/migrate_38.md) documentation, as there are changes to how 3.8.1 works with the .NET tools and the new extension.
+If you are migrating from 3.8.0 it is recommended to uninstall the existing global MGCB .NET tools. We recommend reviewing the [Migrating from 3.8.0](./migration/migrate_38.md) documentation, as there are changes to how 3.8.1 works with the .NET tools and the new extension.
 
 ## Visual Studio 2019 and prior are no longer supported
 
@@ -84,7 +84,7 @@ JetBrains Rider and Visual Studio Code can be used regardless of the version of 
 
 MonoGame 3.8.1 will be the last version to support building and running 32bit games on Windows.
 
-This is motivated by the fact that 32bit players are nearly extinct (less than 0.24% of the Steam user base). It will also help developers with less complex distribution and less confusing debug/build experiences.
+This is motivated by the fact that 32-bit players are nearly extinct (less than 0.24% of the Steam user base). It will also help developers with less complex distribution and less confusing debug/build experiences.
 
 ## Apple silicon (M1+) support
 

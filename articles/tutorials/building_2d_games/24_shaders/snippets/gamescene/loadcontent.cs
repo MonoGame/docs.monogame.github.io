@@ -1,6 +1,6 @@
 public override void LoadContent()
 {
-    // Create the texture atlas from the XML configuration file
+    // Create the texture atlas from the XML configuration file.
     TextureAtlas atlas = TextureAtlas.FromFile(Core.Content, "images/atlas-definition.xml");
 
     // Create the tilemap from the XML configuration file.
@@ -11,22 +11,22 @@ public override void LoadContent()
     AnimatedSprite slimeAnimation = atlas.CreateAnimatedSprite("slime-animation");
     slimeAnimation.Scale = new Vector2(4.0f, 4.0f);
 
-    // Create the slime
+    // Create the slime.
     _slime = new Slime(slimeAnimation);
 
     // Create the animated sprite for the bat from the atlas.
     AnimatedSprite batAnimation = atlas.CreateAnimatedSprite("bat-animation");
     batAnimation.Scale = new Vector2(4.0f, 4.0f);
 
-    // Load the bounce sound effect for the bat
+    // Load the bounce sound effect for the bat.
     SoundEffect bounceSoundEffect = Content.Load<SoundEffect>("audio/bounce");
 
-    // Create the bat
+    // Create the bat.
     _bat = new Bat(batAnimation, bounceSoundEffect);
 
-    // Load the collect sound effect
+    // Load the collect sound effect.
     _collectSoundEffect = Content.Load<SoundEffect>("audio/collect");
 
-    // Load the grayscale effect
+    // Load the grayscale effect.
     _grayscaleEffect = Content.Load<Effect>("effects/grayscaleEffect");
 }

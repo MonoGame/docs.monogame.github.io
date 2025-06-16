@@ -53,7 +53,7 @@ Add the following constructors:
 
 ## Creating Animations With The TextureAtlas Class
 
-The `TextureAtlas` class we created in [Chapter 07](../07_optimizing_texture_rendering/index.md#the-textureatlas-class) can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites with.  The `atlas.png` image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. We will first update our `atlas-definition.xml` file to include all regions in the atlas, as well as add new `<Animation>` elements to define the animations.  
+The `TextureAtlas` class we created in [Chapter 07](../07_optimizing_texture_rendering/index.md#the-textureatlas-class) can do more than just manage texture regions and create sprites; it can also store and manage animation data to create animated sprites.  The `atlas.png` image we are currently using contains the frames of animation for both a slime and a bat, as well as sprites for other things. We will first update our `atlas-definition.xml` file to include all regions in the atlas, as well as add new `<Animation>` elements to define the animations.  
 
 Open the `atlas-definition.xml` file in your code editor and replace the contents with the following:
 
@@ -123,7 +123,7 @@ The class uses three private fields to manage its animation state:
 - `_elapsed`: Keeps track of how much time has passed since the last frame change.
 - `_animation`: Stores the current animation being played.
 
-The `Animation` property provides access to the current animation while ensuring the sprite always starts with the first frame when a new animation is set. When you assign a new animation, the property's setter automatically updates the sprite's region to display the first frame of that animation.
+The `Animation` property provides access to the current animation and ensures the sprite always starts with the first frame when a new animation is set. When you assign a new animation, the property's setter automatically updates the sprite's region to display the first frame of that animation.
 
 > [!NOTE]
 > Starting with the first frame when setting a new animation ensures consistent behavior when switching between different animations.
@@ -176,7 +176,7 @@ We can simplify this process by adding an animated sprite creation method to the
 
 ## Using the AnimatedSprite Class
 
-We can now adjust our game now to use the `AnimatedSprite` class to see our sprites come to life. Update the contents of `Game1.cs` with the following:
+We can now adjust our game to use the `AnimatedSprite` class to see our sprites come to life. Update the contents of `Game1.cs` with the following:
 
 [!code-csharp[](./snippets/game1.cs?highlight=11-15,34-40,48-52)]
 

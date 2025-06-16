@@ -21,7 +21,7 @@ These are [the official samples](https://github.com/MonoGame/MonoGame.Samples) t
 
 ### 3D Samples
 
-- [FuelCell](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/NeonShooter)
+- [FuelCell](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/FuelCell)
 - [ShipGame](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/ShipGame)
 
 ## XNA Game Studio Archive

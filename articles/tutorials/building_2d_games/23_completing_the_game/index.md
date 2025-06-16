@@ -18,7 +18,7 @@ In this chapter, you will:
 
 Currently, the `GameScene` class contains the methods for initializing and creating the pause menu.  However, now that we have a defined condition for game over, we need to create a game-over menu as well.  To do this, we will take the opportunity to refactor the current code and pull the UI-specific code into its own class.
 
-In the `UI` directory of the *DungeonSlime* project, create a new file named `GameSceneUI.cs` and add the following initial code:
+In the `UI` folder of the *DungeonSlime* project, create a new file named `GameSceneUI.cs` and add the following initial code:
 
 [!code-csharp[](./snippets/gamesceneui/definition.cs)]
 
@@ -131,7 +131,7 @@ Now that we have created the encapsulated [`Slime`](../22_snake_game_mechanics/i
 
 We will rebuild/replace the existing `GameScene` class to coordinate the interactions between the components.
 
-In the `Scenes` directory of the *DungeonSlime* project (your main game project), open the `GameScene.cs` file and replace **ALL** of the code with the following replacement code (starting fresh):
+In the `Scenes` folder of the *DungeonSlime* project (your main game project), open the `GameScene.cs` file and replace **ALL** of the code with the following replacement code (starting fresh):
 
 [!code-csharp[](./snippets/gamescene/definition.cs)]
 
@@ -220,7 +220,7 @@ Add the following method to the `GameScene` class after the `InitializeNewGame` 
 
 This method loads all necessary assets for the game scene:
 
-1. The texture atlas containing the sprite graphics
+1. The texture atlas containing the sprite graphics.
 2. The tilemap that defines the level layout.
 3. The animated sprites for the slime and bat.
 4. Sound effects for the bat bouncing and collecting.
@@ -242,7 +242,7 @@ This method updates the scene in each frame to:
 
 ### GameScene CollisionChecks Method
 
-In the `Update` method we just added, it makes a call to a `CollisionChecks` method to handle the collision detection and response so we will add tha now.
+In the `Update` method we just added, it makes a call to a `CollisionChecks` method to handle the collision detection and response so we will add that now.
 
 Add the following method to the `GameScene` class after the `Update` method:
 
@@ -390,7 +390,7 @@ In this chapter, we have transformed our technical demo into a complete game by 
 - Implemented pause and game over screens that provide clear feedback to the player.
 - Refactored the `GameScene` class to coordinate all game components.
 - Added game state management to handle different gameplay conditions.
-- Enhanced player control through input buffering for more responsive gameplay
+- Enhanced player control through input buffering for more responsive gameplay.
 - Connected all of the elements to create a complete playable game.
 
 The refactoring process we undertook demonstrates an important game development principle: separating concerns into specialized components makes code more maintainable and easier to extend. The `Slime` class manages snake-like behavior, the `Bat` class handles movement and collision response, and the `GameSceneUI` class encapsulates all UI-related functionality.

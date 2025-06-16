@@ -1,6 +1,6 @@
 private void CollisionChecks()
 {
-    // Capture the current bounds of the slime and bat
+    // Capture the current bounds of the slime and bat.
     Circle slimeBounds = _slime.GetBounds();
     Circle batBounds = _bat.GetBounds();
 
@@ -23,7 +23,7 @@ private void CollisionChecks()
         // Update the score display on the UI.
         _ui.UpdateScoreText(_score);
 
-        // Play the collect sound effect
+        // Play the collect sound effect.
         Core.Audio.PlaySoundEffect(_collectSoundEffect);
     }
 

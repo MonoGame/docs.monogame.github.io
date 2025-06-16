@@ -6,7 +6,7 @@ private void PositionBatAwayFromSlime()
     float roomCenterY = _roomBounds.Y + _roomBounds.Height * 0.5f;
     Vector2 roomCenter = new Vector2(roomCenterX, roomCenterY);
 
-    // Get the bounds of the slime and calculate the center position
+    // Get the bounds of the slime and calculate the center position.
     Circle slimeBounds = _slime.GetBounds();
     Vector2 slimeCenter = new Vector2(slimeBounds.X, slimeBounds.Y);
 
@@ -14,7 +14,7 @@ private void PositionBatAwayFromSlime()
     // center of the slime.
     Vector2 centerToSlime = slimeCenter - roomCenter;
 
-    // Get the bounds of the bat
+    // Get the bounds of the bat.
     Circle batBounds =_bat.GetBounds();
 
     // Calculate the amount of padding we will add to the new position of
@@ -37,7 +37,7 @@ private void PositionBatAwayFromSlime()
         if (centerToSlime.X > 0)
         {
             // The slime is closer to the right side wall, so place the
-            // bat on the left side wall
+            // bat on the left side wall.
             newBatPosition.X = _roomBounds.Left + padding;
         }
         else
@@ -60,7 +60,7 @@ private void PositionBatAwayFromSlime()
         if (centerToSlime.Y > 0)
         {
             // The slime is closer to the top wall, so place the bat on the
-            // bottom wall
+            // bottom wall.
             newBatPosition.Y = _roomBounds.Top + padding;
         }
         else
@@ -71,6 +71,6 @@ private void PositionBatAwayFromSlime()
         }
     }
 
-    // Assign the new bat position
+    // Assign the new bat position.
     _bat.Position = newBatPosition;
 }

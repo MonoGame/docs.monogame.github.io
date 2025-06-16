@@ -76,7 +76,7 @@ public class TitleScene : Scene
         // Load the font for the standard text.
         _font = Core.Content.Load<SpriteFont>("fonts/04B_30");
 
-        // Load the font for the title text
+        // Load the font for the title text.
         _font5x = Content.Load<SpriteFont>("fonts/04B_30_5x");
     }
     #endregion
@@ -100,24 +100,24 @@ public class TitleScene : Scene
         // Begin the sprite batch to prepare for rendering.
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-        Color dropShadowColor = new Color(19, 23, 46, 175);
-        dropShadowColor = Color.Black * 0.5f;
+        // The color to use for the drop shadow text.
+        Color dropShadowColor = Color.Black * 0.5f;
 
         // Draw the Dungeon text slightly offset from it is original position and
-        // with a transparent color to give it a drop shadow
+        // with a transparent color to give it a drop shadow.
         Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-        // Draw the Dungeon text on top of that at its original position
+        // Draw the Dungeon text on top of that at its original position.
         Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
         // Draw the Slime text slightly offset from it is original position and
-        // with a transparent color to give it a drop shadow
+        // with a transparent color to give it a drop shadow.
         Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-        // Draw the Slime text on top of that at its original position
+        // Draw the Slime text on top of that at its original position.
         Core.SpriteBatch.DrawString(_font5x, SLIME_TEXT, _slimeTextPos, Color.White, 0.0f, _slimeTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-        // Draw the press enter text
+        // Draw the press enter text.
         Core.SpriteBatch.DrawString(_font, PRESS_ENTER_TEXT, _pressEnterPos, Color.White, 0.0f, _pressEnterOrigin, 1.0f, SpriteEffects.None, 0.0f);
 
         // Always end the sprite batch when finished.

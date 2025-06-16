@@ -85,7 +85,7 @@ public class GameScene : Scene
         int centerColumn = _tilemap.Columns / 2;
         _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
 
-        // Initial bat position will the in the top left corner of the room
+        // Initial bat position will the in the top left corner of the room.
         _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
 
         // Set the position of the score text to align to the left edge of the
@@ -104,7 +104,7 @@ public class GameScene : Scene
     #region loadcontent
     public override void LoadContent()
     {
-        // Create the texture atlas from the XML configuration file
+        // Create the texture atlas from the XML configuration file.
         TextureAtlas atlas = TextureAtlas.FromFile(Core.Content, "images/atlas-definition.xml");
 
         // Create the slime animated sprite from the atlas.
@@ -119,13 +119,13 @@ public class GameScene : Scene
         _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
         _tilemap.Scale = new Vector2(4.0f, 4.0f);
 
-        // Load the bounce sound effect
+        // Load the bounce sound effect.
         _bounceSoundEffect = Content.Load<SoundEffect>("audio/bounce");
 
-        // Load the collect sound effect
+        // Load the collect sound effect.
         _collectSoundEffect = Content.Load<SoundEffect>("audio/collect");
 
-        // Load the font
+        // Load the font.
         _font = Core.Content.Load<SpriteFont>("fonts/04B_30");
     }
     #endregion
@@ -145,7 +145,7 @@ public class GameScene : Scene
         // Check for gamepad input and handle it.
         CheckGamePadInput();
 
-        // Creating a bounding circle for the slime
+        // Creating a bounding circle for the slime.
         Circle slimeBounds = new Circle(
             (int)(_slimePosition.X + (_slime.Width * 0.5f)),
             (int)(_slimePosition.Y + (_slime.Height * 0.5f)),
@@ -173,10 +173,10 @@ public class GameScene : Scene
             _slimePosition.Y = _roomBounds.Bottom - _slime.Height;
         }
 
-        // Calculate the new position of the bat based on the velocity
+        // Calculate the new position of the bat based on the velocity.
         Vector2 newBatPosition = _batPosition + _batVelocity;
 
-        // Create a bounding circle for the bat
+        // Create a bounding circle for the bat.
         Circle batBounds = new Circle(
             (int)(newBatPosition.X + (_bat.Width * 0.5f)),
             (int)(newBatPosition.Y + (_bat.Height * 0.5f)),
@@ -187,7 +187,7 @@ public class GameScene : Scene
 
         // Use distance based checks to determine if the bat is within the
         // bounds of the game screen, and if it is outside that screen edge,
-        // reflect it about the screen edge normal
+        // reflect it about the screen edge normal.
         if (batBounds.Left < _roomBounds.Left)
         {
             normal.X = Vector2.UnitX.X;
@@ -217,7 +217,7 @@ public class GameScene : Scene
         {
             _batVelocity = Vector2.Reflect(_batVelocity, normal);
 
-            // Play the bounce sound effect
+            // Play the bounce sound effect.
             Core.Audio.PlaySoundEffect(_bounceSoundEffect);
         }
 
@@ -233,10 +233,10 @@ public class GameScene : Scene
             // the column and row multiplied by the width and height.
             _batPosition = new Vector2(column * _bat.Width, row * _bat.Height);
 
-            // Assign a new random velocity to the bat
+            // Assign a new random velocity to the bat.
             AssignRandomBatVelocity();
 
-            // Play the collect sound effect
+            // Play the collect sound effect.
             Core.Audio.PlaySoundEffect(_collectSoundEffect);
 
             // Increase the player's score.
@@ -248,10 +248,10 @@ public class GameScene : Scene
     #region helpers
     private void AssignRandomBatVelocity()
     {
-        // Generate a random angle
+        // Generate a random angle.
         float angle = (float)(Random.Shared.NextDouble() * Math.PI * 2);
 
-        // Convert angle to a direction vector
+        // Convert angle to a direction vector.
         float x = (float)Math.Cos(angle);
         float y = (float)Math.Sin(angle);
         Vector2 direction = new Vector2(x, y);
@@ -265,7 +265,7 @@ public class GameScene : Scene
         // Get a reference to the keyboard inof
         KeyboardInfo keyboard = Core.Input.Keyboard;
 
-        // If the escape key is pressed, return to the title screen
+        // If the escape key is pressed, return to the title screen.
         if (Core.Input.Keyboard.WasKeyJustPressed(Keys.Escape))
         {
             Core.ChangeScene(new TitleScene());
@@ -396,7 +396,7 @@ public class GameScene : Scene
         // Draw the bat sprite.
         _bat.Draw(Core.SpriteBatch, _batPosition);
 
-        // Draw the score
+        // Draw the score.
         Core.SpriteBatch.DrawString(
             _font,              // spriteFont
             $"Score: {_score}", // text

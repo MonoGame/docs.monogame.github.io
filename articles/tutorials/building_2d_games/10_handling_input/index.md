@@ -12,7 +12,7 @@ When you play a game, you need ways to control what is happening; using a keyboa
 
 Each of these input types has a `GetState` method that, when called, checks what is happening with that device at that moment. Think of it like taking a snapshot; when you call `GetState`, MonoGame looks at that exact moment to see which buttons are pressed, where the mouse is, or how the controller is being used.
 
-In this chapter you will, we will learn how to use each of these dedicated input classes to handle player input.
+In this chapter, you will learn how to use each of these dedicated input classes to handle player input.
 
 ## Keyboard Input
 
@@ -45,7 +45,7 @@ The [**MouseState**](xref:Microsoft.Xna.Framework.Input.MouseState) struct conta
 | Property                                                                               | Type                                                              | Description                                                                                                             |
 |----------------------------------------------------------------------------------------|-------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | [**LeftButton**](xref:Microsoft.Xna.Framework.Input.MouseState.LeftButton)             | [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) | Returns the state of the left mouse button.                                                                             |
-| [**MiddleButton**](xref:Microsoft.Xna.Framework.Input.MouseState.MiddleButton)         | [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) | Returns the state of the middle mouse button.  This is often the button when pressing the scroll wheel down as a button |
+| [**MiddleButton**](xref:Microsoft.Xna.Framework.Input.MouseState.MiddleButton)         | [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) | Returns the state of the middle mouse button. This is often the button activated by pressing the scroll wheel down. |
 | [**Position**](xref:Microsoft.Xna.Framework.Input.MouseState.Position)                 | [**Point**](xref:Microsoft.Xna.Framework.Point)                   | Returns the position of the mouse cursor relative to the bounds of the game window.                                     |
 | [**RightButton**](xref:Microsoft.Xna.Framework.Input.MouseState.RightButton)           | [**ButtonState**](xref:Microsoft.Xna.Framework.Input.ButtonState) | Returns the state of the right mouse button.                                                                            |
 | [**ScrollWheelValue**](xref:Microsoft.Xna.Framework.Input.MouseState.ScrollWheelValue) | `int`                                                             | Returns the **cumulative** scroll wheel value since the start of the game                                               |
@@ -164,7 +164,7 @@ The [**Triggers**](xref:Microsoft.Xna.Framework.Input.GamePadState.Triggers) pro
 | [**Left**](xref:Microsoft.Xna.Framework.Input.GamePadTriggers.Left)   | `float` | The value of the left trigger. |
 | [**Right**](xref:Microsoft.Xna.Framework.Input.GamePadTriggers.Right) | `float` | The value of the left trigger. |
 
-The trigger values are represented as a float value between `0.0f` (not pressed) to `1.0f` (fully pressed). The triggers on a gamepad, however, can be either *analog* or *digital* depending the gamepad manufacturer.  For gamepads with *digital* triggers, the value will always be either `0.0f` or `1.0f`, as a digital trigger does not register values in between based on the amount of pressure applied to the trigger.  
+The trigger values are represented as a float value between `0.0f` (not pressed) to `1.0f` (fully pressed). The triggers on a gamepad, however, can be either *analog* or *digital* depending on the gamepad manufacturer.  For gamepads with *digital* triggers, the value will always be either `0.0f` or `1.0f`, as a digital trigger does not register values in between based on the amount of pressure applied to the trigger.  
 
 For example, if we were creating a racing game, the right trigger could be used for acceleration like the following:
 
@@ -211,7 +211,7 @@ You can use the [**IsButtonDown(Buttons)**](xref:Microsoft.Xna.Framework.Input.G
 > [!CAUTION]
 > While you can use these methods to get the state of any of these button inputs, the state will only tell you if it is being pressed or released.  For the actual thumbstick values and trigger values, you would need to use the properties instead.
 
-For example, if we wanted to check if the A button on the the first gamepad is pressed, you could use the following:
+For example, if we wanted to check if the A button on the first gamepad is pressed, you could use the following:
 
 [!code-csharp[](./snippets/isbuttondown.cs)]
 
@@ -272,7 +272,7 @@ The state of a touch location progresses through the states typically in order o
 - [**Pressed**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State): Initial contact with the screen.
 - [**Moved**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State) : Touch point moved while maintaining contact.
 - [**Released**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State): Contact with screen ended.
-- [**Invalid**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State) : Touch data is invalid (using when tracking data is lost).
+- [**Invalid**](xref:Microsoft.Xna.Framework.Input.Touch.TouchLocation.State) : Touch data is invalid (used when tracking data is lost).
 
 ### GestureSample
 
@@ -296,7 +296,7 @@ To determine what type of gesture is performed, we can get that from the [**Gest
 | [**DoubleTap**](xref:Microsoft.Xna.Framework.Input.Touch.GestureType)      | The user double tapped the device twice which is always preceded by a Tap gesture.              |
 | [**DragComplete**](xref:Microsoft.Xna.Framework.Input.Touch.GestureType)   | States completion of a drag gesture (VerticalDrag, HorizontalDrag, or FreeDrag).                |
 | [**Flick**](xref:Microsoft.Xna.Framework.Input.Touch.GestureType)          | States that a touch was combined with  a quick swipe.                                           |
-| [**FreeDrag**](xref:Microsoft.Xna.Framework.Input.Touch.GestureType)       | The user touched a point and the performed a free-form drag.                                    |
+| [**FreeDrag**](xref:Microsoft.Xna.Framework.Input.Touch.GestureType)       | The user touched a point and then performed a free-form drag.                                    |
 | [**Hold**](xref:Microsoft.Xna.Framework.Input.Touch.GestureType)           | The user touched a single point for approximately one second.                                   |
 | [**HorizontalDrag**](xref:Microsoft.Xna.Framework.Input.Touch.GestureType) | The user touched the screen and performed either a left-to-right or right-to-left drag gesture. |
 | [**None**](xref:Microsoft.Xna.Framework.Input.Touch.GestureType)           | No gesture.                                                                                     |
@@ -343,7 +343,7 @@ The key changes made here are:
 4. The `CheckGamePadInput` method was added which checks for input from the gamepad based on the input table above and moves the slime based the gamepad input detected.
 
     > [!NOTE]
-    > The gamepad implementation includes a priority system for directional input.  The code prioritizes the analog thumbstick values over the digital DPad buttons.  This design choice provides players with more nuanced control, as analog inputs allow for a variable movements speed based on how far the thumbstick is pushed, while DPad buttons only provide on/off input states. The code first checks if either thumbstick axis has a non-zero value, and only falls back to DPad input when the thumbstick is centered.
+    > The gamepad implementation includes a priority system for directional input.  The code prioritizes the analog thumbstick values over the digital DPad buttons.  This design choice provides players with more nuanced control, as analog inputs allow for a variable movement speed based on how far the thumbstick is pushed, while DPad buttons only provide on/off input states. The code first checks if either thumbstick axis has a non-zero value, and only falls back to DPad input when the thumbstick is centered.
     >
     > To enhance player experience, the gamepad implementation also includes gamepad vibration when the speed boost is activated.  Haptic feedback like this creates a more immersive experience by engaging additional senses for the player beyond just visual and auditory feedback.
 
@@ -357,7 +357,7 @@ Running the game now, you can move the slime around using the keyboard with the 
 |                 **Figure 10-1: The slime moving around based on device input**                  |
 
 > [!NOTE]
-> You may notice that the slime is capable of moving completely off the screen, this is completely normal as we have not yet implemented any logic to prevent it from doing so, it only doing what we currently tell it to do.
+> You may notice that the slime is capable of moving completely off the screen, this is completely normal as we have not yet implemented any logic to prevent it from doing so, it is only doing what we currently tell it to do.
 
 ## Input Buffering
 
