@@ -6,7 +6,7 @@ protected override void Draw(GameTime gameTime)
     // Begin the sprite batch to prepare for rendering.
     SpriteBatch.Begin();
 
-    // Draw the texture
+    // Draw the texture.
     SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
 
     // Always end the sprite batch when finished.

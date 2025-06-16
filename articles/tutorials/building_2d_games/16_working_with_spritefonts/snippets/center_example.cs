@@ -4,10 +4,10 @@ string message = "Hello, MonoGame!";
 // Measure the size of the message to get the text dimensions.
 Vector2 textSize = font.MeasureString(message);
 
-// Set the origin to the center of the text dimensions
+// Set the origin to the center of the text dimensions.
 Vector2 origin = textSize * 0.5f;
 
-// Position will be the center of the screen
+// Position will be the center of the screen.
 Vector2 position = new Vector2(
     GraphicsDevice.PresentationParameters.BackBufferWidth,
     GraphicsDevice.PresentationParameters.BackBufferHeight

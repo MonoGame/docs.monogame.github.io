@@ -58,7 +58,7 @@ To create a new project, click the arrow beside your username in the top-right c
 | :---------------------------------------------------------------------------------------------------------------------------------------------: |
 |                 **Figure 26-1: Drop-down menu after clicking the arrow beside user name with "Upload new project" highlighted**                 |
 
-This will open the "Create a new project page", which presents you with a form to to enter information abut the game, upload the game files, and add screenshots.
+This will open the "Create a new project page", which presents you with a form to enter information about the game, upload the game files, and add screenshots.
 
 | ![Figure 26-2: The "Create a new project" page on itch.io](./images/create-a-new-project-page.png) |
 | :------------------------------------------------------------------------------------------------: |
@@ -391,7 +391,7 @@ To add screenshots to your project:
 1. Prepare 3-5 screenshots showcasing different aspects of your game.
 2. Click the "Add Screenshots" button located below the cover image section.
 3. Select your screenshot files in the file browser dialog.
-4. Arrange screenshots in order of importance by hovering over then and using the "Move Up" and "Move Down" actions after uploading.
+4. Arrange screenshots in order of importance by hovering over them and using the "Move Up" and "Move Down" actions after uploading.
 
 | ![Figure 26-12: Example of multiple screenshots added to a game project](./images/screenshots-added.png) |
 | :------------------------------------------------------------------------------------------------------: |
@@ -402,7 +402,7 @@ To add screenshots to your project:
 
 ### Saving and Publishing Your Project
 
-After filling out all the necessary form fields, uploading your game files, and adding visual assets, it is time to save your project and prepare it for publishing.  This process involves several steps designed to ensure your project is ready for your intended audience.
+After filling out all the necessary form fields, uploading your game files, and adding visual assets, it is time to save your project and prepare it for publishing.  This process involves several steps designed to ensure your project is ready for your intended audience before publishing.
 
 #### Initial Save and Preview
 

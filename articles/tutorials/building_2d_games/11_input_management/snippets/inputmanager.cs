@@ -28,7 +28,6 @@ public class InputManager { }
     /// <summary>
     /// Creates a new InputManager.
     /// </summary>
-    /// <param name="game">The game this input manager belongs to.</param>
     public InputManager()
     {
         Keyboard = new KeyboardInfo();

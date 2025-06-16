@@ -16,7 +16,7 @@ float distanceSquared = Vector2.DistanceSquared(circle1Position, circle2Position
 // r^2 = 100
 int radiiSquared = (circle1Radius + circle2Radius) * (circle1Radius + circle2Radius);
 
-// The circles overlap because 100 is greater than 25
+// The circles overlap because 100 is greater than 25.
 if(radiiSquared > distanceSquared)
 {
     
