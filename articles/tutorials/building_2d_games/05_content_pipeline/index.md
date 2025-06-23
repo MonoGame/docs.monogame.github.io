@@ -59,7 +59,7 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 2. Enter the following dotnet CLI command
 
     ```sh
-    dotnet mgcb-editor ./Content/Content.mgcb`
+    dotnet mgcb-editor ./Content/Content.mgcb
     ```
 
 ---
