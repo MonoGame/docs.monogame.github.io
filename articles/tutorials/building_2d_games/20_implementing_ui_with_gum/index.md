@@ -451,7 +451,7 @@ Each button registers a `Click` event handler to respond when the players select
 
 [!code-csharp[](./snippets/titlescene/handlestartclicked.cs)]
 
-When the "Start" button is clicked and this method is called, it will play the UI sound effect for auditory feedback then change the scene tot he game scene so the player can start playing the game.
+When the "Start" button is clicked and this method is called, it will play the UI sound effect for auditory feedback then change the scene to the game scene so the player can start playing the game.
 
 Next is the handler for the "Options" button.  Add the following method to the `TitleScene` class after the `HandleStartClicked` method:
 
