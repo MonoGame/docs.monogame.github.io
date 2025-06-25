@@ -78,7 +78,7 @@ public class Core : Game
         // Set the window title
         Window.Title = title;
 
-        // Set the core's content manager to a reference of hte base Game's
+        // Set the core's content manager to a reference of the base Game's
         // content manager.
         Content = base.Content;
 

@@ -210,8 +210,8 @@ Next, open the *04B_30.spritefont* file in your code editor and make the followi
 
 The key changes here are:
 
-1. The `<FontName>` element was updated to `04B_11.ttf`, the exact filename with extension of the TTF font we just downloaded.
-2. The `<Size>` element was updated to be `32`.
+1. The `<FontName>` element was updated to `04B_30.ttf`, the exact filename with extension of the TTF font we just downloaded.
+2. The `<Size>` element was updated to be `17.5`.
 
 ### Updating the Game
 

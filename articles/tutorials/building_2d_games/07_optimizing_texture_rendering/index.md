@@ -162,7 +162,7 @@ These methods serve different purposes in managing the texture atlas:
 
 ## Using the TextureAtlas Class
 
-No we can put our new `TextureAtlas` class to use by exploring two approaches; creating an atlas manually and using XML configuration.  So far, we have been practicing using textures with the MonoGame logo. Now we will use a new texture atlas that contains various sprites we will need for our game.
+Now we can put our new `TextureAtlas` class to use by exploring two approaches; creating an atlas manually and using XML configuration.  So far, we have been practicing using textures with the MonoGame logo. Now we will use a new texture atlas that contains various sprites we will need for our game.
 
 Download the texture atlas by right-clicking the following image and saving it as atlas.png:
 
