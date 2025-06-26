@@ -269,8 +269,8 @@ This update method:
 2. Calls `HandleInput` to check for player input.
 3. Increments the movement timer by the amount of time that has elapsed between the game's update cycles.
 4. Performs a check to see if the movement timer has accumulated more time than the threshold to perform a movement cycle update. If it has then:
-   - The movement timer is reduced by the threshold time.
-   - The `Move` method is called to perform a movement cycle update.
+   1. The movement timer is reduced by the threshold time.
+   2. The `Move` method is called to perform a movement cycle update.
 5. Finally, the movement progress amount is calculated by dividing the number of seconds accumulated for the movement timer by the number of seconds for the threshold.  This gives us a normalized value between 0.0 and 1.0 that we can use for visual interpolation for fluid movement.
 
 > [!TIP]

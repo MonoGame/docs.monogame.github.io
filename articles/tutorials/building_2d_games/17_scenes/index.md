@@ -115,7 +115,7 @@ The key changes here are:
 
 ## Updating the Game
 
-With the scene architecture in place, we’re now ready to update the game by breaking it into separate scenes. We will create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
+With the scene architecture in place, we are now ready to update the game by breaking it into separate scenes. We will create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
 
 1. Right-click the `fonts` folder and choose `Add > New Item...`.
 2. Select `SpriteFont Description (.spritefont)` from the options.

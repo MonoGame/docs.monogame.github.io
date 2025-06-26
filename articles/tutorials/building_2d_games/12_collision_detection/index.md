@@ -58,12 +58,12 @@ $$(radius_{circle1} + radius_{circle2})^2 > a^2 + b^2$$
 
 It is easy to confuse the direction of the inequality sign. As a quick mental test, think of how the math works when the origin of two circles are at the same position, i.e., when the *squared distance* is zero.
 
-To calculate the squared distance between two points, MonoGame provides the [**Vector2.DistanceSquared**](<xref:Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)>) method:
+To calculate the squared distance between two points, MonoGame provides the [**Vector2.DistanceSquared**](xref:Microsoft.Xna.Framework.Vector2.DistanceSquared(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method:
 
 [!code-csharp[](./snippets/vector2_distance.cs)]
 
 > [!TIP]
-> MonoGame also provides a distance calculation method with [**Vector2.Distance**](<xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)>) which returns the distance by providing the square root of the distance squared. So why not use this instead?
+> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared. So why not use this instead?
 >
 > Square root operations are more computationally complex for a CPU. So instead of getting the normal distance, which would require the square root operation, it is more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.
 
@@ -93,7 +93,7 @@ To determine if two rectangles overlap using AABB collision detection, there are
 
 If even a single one of these conditions is false, then the rectangles are not overlapping and thus not colliding.
 
-MonoGame provides the [**Rectangle.Intersects**](<xref:Microsoft.Xna.Framework.Rectangle.Intersects(Microsoft.Xna.Framework.Rectangle)>) method which will perform an AABB collision check for us:
+MonoGame provides the [**Rectangle.Intersects**](xref:Microsoft.Xna.Framework.Rectangle.Intersects(Microsoft.Xna.Framework.Rectangle)) method which will perform an AABB collision check for us:
 
 [!code-csharp[](./snippets/rectangle_intersects.cs)]
 
@@ -144,7 +144,7 @@ For example:
 
 [!code-csharp[](./snippets/blocking_example.cs)]
 
-Sometimes, instead of preventing an object from moving onto another object, we want to ensure an object remains contained within a certain bounding area. MonoGame also provides the [**Rectangle.Contains**](<xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)>) method that we can use to determine this. [**Rectangle.Contains**](<xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)>) can check if any of the following are completely contained within the bounds of the rectangle;
+Sometimes, instead of preventing an object from moving onto another object, we want to ensure an object remains contained within a certain bounding area. MonoGame also provides the [**Rectangle.Contains**](xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)) method that we can use to determine this. [**Rectangle.Contains**](xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)) can check if any of the following are completely contained within the bounds of the rectangle;
 
 - [**Point**](xref:Microsoft.Xna.Framework.Point)
 - [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle)
@@ -174,7 +174,7 @@ For example:
 
 #### Bounce Collision Response
 
-For games that need objects to bounce off each other (like the ball in a Pong game), we need to calculate how their velocity should change after the collision. MonoGame provides the [**Vector2.Reflect**](<xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)>) method to handle this calculation for us. The method needs two pieces of information:
+For games that need objects to bounce off each other (like the ball in a Pong game), we need to calculate how their velocity should change after the collision. MonoGame provides the [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method to handle this calculation for us. The method needs two pieces of information:
 
 1. The incoming vector (the direction the object is moving in before the collision).
 2. The normal vector (the direction perpendicular to the surface).
@@ -318,7 +318,7 @@ The key changes made here are:
 2. The field `_batVelocity` was added to track the velocity of the bat.
 3. The `AssignRandomBatVelocity()` method was added which calculates a random x and y velocity for the bat to move at when called.
 4. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize), the initial position of the bat is set and `AssignRandomVelocity` is called to assign the initial velocity for the bat.
-5. In [**Update**](<xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)>), collision detection and response logic was added to perform the following in order:
+5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), collision detection and response logic was added to perform the following in order:
    1. A [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) bound is created to represent the bounds of the screen.
    2. A `Circle` bound is created to represent the bounds of the slime.
    3. Distance based checks are performed to ensure that the slime cannot move outside of the screen, the resolution of which is to perform a blocking response.
@@ -326,7 +326,7 @@ The key changes made here are:
    5. A `Circle` bound is created to represent the bounds of the bat.
    6. Distance based checks are performed to ensure the bat cannot move outside of the screen, the resolution of which is to perform a bounce response.
    7. A collision check is made to determine if the slime and bat are colliding (bat "eating" the slime). If so, the bat is assigned a new random position within the screen and assigned a new random velocity.
-6. In [**Draw**](<xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)>), the bat is now drawn using the `_batPosition` value.
+6. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), the bat is now drawn using the `_batPosition` value.
 
 Running the game now
 
@@ -389,10 +389,10 @@ In the next chapter, we will explore using tilesets and tilemaps to create tile 
    Two circles are colliding if the distance between their centers is less than the sum of their radii. If the distance is greater, they are separate. If the distance equals the sum of radii, they are just touching at one point.
    :::
 
-4. When implementing bounce collision response, what two pieces of information does [**Vector2.Reflect**](<xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)>) need?
+4. When implementing bounce collision response, what two pieces of information does [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) need?
 
    ::: question-answer
-   [**Vector2.Reflect**](<xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)>) needs:
+   [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) needs:
 
    1. The incoming vector (direction the object is moving).
    2. The normal vector (direction perpendicular to the surface being hit).
