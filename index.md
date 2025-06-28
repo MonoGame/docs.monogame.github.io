@@ -7,11 +7,11 @@ description: MonoGame Documentation Hub
 <section class="container-xxl my-5">
     <h1 id="monogame-documentation" class="fw-bold"><a href="#monogame-documentation">MonoGame Documentation</a></h1>
     <p>
-        Whether you are just starting out with MonoGame or you've been using it for years, you can find all documentation and
+        Whether you are just starting out with MonoGame or you have been using it for years, you can find all documentation and
         tutorials here.
     </p>
 </section>
-<section class="container-xxl mb-5">
+<section class="container-xxl mb-5" >
     <div class="row">
         <div class="col-12 col-lg-4 mb-5">
             <div class="mg-card mg-box-shadow h-100">
@@ -44,6 +44,8 @@ description: MonoGame Documentation Hub
                 </a>
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-12 col-lg-4 mb-5">
             <div class="mg-card mg-box-shadow h-100">
                 <a target="_self"
@@ -56,6 +58,21 @@ description: MonoGame Documentation Hub
                             own tutorials, blogs and videos.
                         </p>
                         <p class="mt-auto">Click to view tutorials</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
+                    href="/articles/samples.html"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-arrow-down-circle"></i> Samples</div>
+                        <p>
+                            Check out the MonoGame samples collection, showcasing some awesome projects made with MonoGame.
+                        </p>
+                        <p class="mt-auto">Click to view samples</p>
                     </div>
                 </a>
             </div>
