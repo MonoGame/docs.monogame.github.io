@@ -245,7 +245,7 @@ In this chapter, you accomplished the following:
 - Learned how to load SpriteFonts through the content pipeline.
 - Learned how to draw text with various parameters to control appearance.
 - Learned how to measure text dimensions.
-- Implementing a score display and boost indicator in our game.
+- Implemented a score display in our game.
 
 In the next chapter we will discuss MonoGame's service container and how we can use it to start breaking our monolithic game file into modules for better maintainability.
 

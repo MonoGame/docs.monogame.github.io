@@ -3,7 +3,7 @@ title: "Chapter 25: Packaging Your Game for Distribution"
 description: "Learn how to package your game for distribution across Windows, macOS, and Linux platforms."
 ---
 
-After all of our work creating Dungeon Slime, we need to prepare the game for distribution to players.  Properly packaging your game ensure it runs correctly on different platforms without requiring players to have development tools installed.
+After all of our work creating Dungeon Slime, we need to prepare the game for distribution to players.  Properly packaging your game ensures it runs correctly on different platforms without requiring players to have development tools installed.
 
 In this chapter you will:
 
@@ -36,7 +36,7 @@ Before packaging your game for distribution, you should take some preparatory st
 
 1. **Set Release Configuration**: Ensure your build configuration is set to "Release" rather than "Debug" for better performance and smaller executable size.
 2. **Update Game Information**: Verify your game's title, version, and other information in the project's properties file (`.csproj`).
-3. **Final Testing**: Perform thorough testing in Release mode to catch any issue that might not appear in Debug mode.
+3. **Final Testing**: Perform thorough testing in Release mode to catch any issues that might not appear in Debug mode.
 4. **Asset Optimization**: Consider optimizing larger content files to reduce the final package size.
 
 ## Platform-Specific Packaging
@@ -54,7 +54,7 @@ Windows is the most straightforward platform to target since MonoGame developmen
 
 #### Building for Windows
 
-To create a self-contained application for Window, open a new command prompt window in the same folder as the as the main game project (in our case the folder with the `DungeonSlime.csproj` file) and execute the following .NET CLI command:
+To create a self-contained application for Windows, open a new command prompt window in the same folder as the main game project (in our case the folder with the `DungeonSlime.csproj` file) and execute the following .NET CLI command:
 
 ```sh
 dotnet publish -c Release -r win-x64 -p:PublishReadyToRun=false -p:TieredCompilation=false --self-contained
@@ -91,7 +91,7 @@ Packaging for macOS requires creating an **Application Bundle** (`.app`), which 
 
 #### Building for macOS
 
-For macOS, you will need to build for both the Intel (x64) and Apple Silicon (arm64) to support all modern mac computers.  Open a new terminal window in the same folder as the `DungeonSlime.csproj` file (the main game project).
+For macOS, you will need to build for both the Intel (x64) and Apple Silicon (arm64) to support all modern Mac computers.  Open a new terminal window in the same folder as the `DungeonSlime.csproj` file (the main game project).
 
 > [!TIP]
 > The following sections will guide you through several terminal commands that build on each other.  It is best to use a single terminal window located in your projects root directory (where the `DungeonSlime.csproj` file is) for all of these steps to ensure paths remain consistent.
@@ -233,7 +233,7 @@ To create this structure, from the same terminal window:
         mkdir -p bin/Release/DungeonSlime.iconset
         ```
 
-    3. Now we use the `sips` command to generate the icon for each size required for a mac app bundle.  Each size generated is neccessary for different display scenarios in macOS (Dock, Finder, etc.).  To do this, execute the following commands:
+    3. Now we use the `sips` command to generate the icon for each size required for a mac app bundle.  Each size generated is necessary for different display scenarios in macOS (Dock, Finder, etc.).  To do this, execute the following commands:
 
        ```sh
         sips -z 16 16 Icon.png --out bin/Release/DungeonSlime.iconset/icon_16x16.png
@@ -319,7 +319,7 @@ The output will be placed in a directory like `bin/Release/net8.0/linux-x64/publ
 
 Once you have created a build for Linux, to create a distributable archive:
 
-1. Ensure the main executable has proper execute permissions by executing the following command in the same terminal window:
+1. Ensure the main executable has proper execution permissions by executing the following command in the same terminal window:
 
     ```sh
     chmod +x bin/Release/net8.0/linux-x64/publish/DungeonSlime
@@ -391,9 +391,9 @@ Trimming (specified with `-p:Trimming:true`) removes unused code from your distr
 While trimming can significantly reduce your game's size, it may remove types that appear unused but are accessed indirectly through reflection or generics causing runtime errors.
 
 > [!IMPORTANT]
-> Trimming can cause issues with content pipeline extensions that are used at runtime.  When the compiler cannot detect that certain types are used (especially with reflection or generic collections), thy might be trimmed away, resulting in "type not found" exceptions when loading content.
+> Trimming can cause issues with content pipeline extensions that are used at runtime.  When the compiler cannot detect that certain types are used (especially with reflection or generic collections), they might be trimmed away, resulting in "type not found" exceptions when loading content.
 >
-> If you encounter runtime exceptions about missing types when loading content with trimming enabled, you can resolve this by ensuring the compiler recognizes the types being uset at runtime by making the following call:
+> If you encounter runtime exceptions about missing types when loading content with trimming enabled, you can resolve this by ensuring the compiler recognizes the types being used at runtime by making the following call:
 >
 > ```cs
 > ContentTypeReaderManager.AddTypeCreator(typeof(ReflectiveReader<ReaderType>).FullName, () => new ReflectiveReader<ReaderType>())
@@ -407,7 +407,7 @@ For more information on Trimming, refer to the [Trim self-contained applications
 
 Single file publishing packages your entire application into a single executable.  While this sounds convenient, it is essentially a self-extracting archive that extracts to a temporary directory at runtime.
 
-This can significantly increase startup time for larger games and may fail on system with restricted permissions of limited storage.  For this reason, it is not recommended to use this option for games.
+This can significantly increase startup time for larger games and may fail on system with restricted permissions or limited storage.  For this reason, it is not recommended to use this option for games.
 
 For more information on Single File Publishing, refer to the [Create a single file for application deployment](https://learn.microsoft.com/en-us/dotnet/core/deploying/single-file/overview?tabs=cli) documentation on Microsoft Learn.
 
@@ -445,7 +445,7 @@ Texture2D text = Content.Load<Texture2D>("images/atlas");
 Try to minimize external dependencies.  If your game requires additional libraries or runtimes, document these requirements clearly for players.
 
 > [!NOTE]
-> When publishing to distribution platforms and app stores (such as Steam, Epic Game Sore, App Store, or Google Play), you are typically required to disclose all external dependencies in your privacy policy or a dedicate dependencies section.  This includes third-party libraries, analytics tools, and any software components that your game depends on.
+> When publishing to distribution platforms and app stores (such as Steam, Epic Game Store, App Store, or Google Play), you are typically required to disclose all external dependencies in your privacy policy or a dedicated dependencies section.  This includes third-party libraries, analytics tools, and any software components that your game depends on.
 >
 > Check specific requirements for each distribution platform you plant to target, as well as requirements by third-party libraries for using them, as disclosure requirements may vary.
 
@@ -476,7 +476,7 @@ If you are interested in extending the Dungeon Slime game, or future games, to m
 
 ## Third-Party Packaging Tools
 
-While the platform-specific packaging steps outlined in this chapter give you complete control over the distribution process, they require multiple commands and potentially access to different operating system.  Fortunately, the MonoGame community has developed several tools that can automate these packaging steps across platforms.
+While the platform-specific packaging steps outlined in this chapter give you complete control over the distribution process, they require multiple commands and potentially access to different operating systems.  Fortunately, the MonoGame community has developed several tools that can automate these packaging steps across platforms.
 
 ### GameBundle
 

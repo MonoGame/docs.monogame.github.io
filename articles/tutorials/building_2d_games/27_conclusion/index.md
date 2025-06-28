@@ -61,7 +61,7 @@ The MonoGame community represents one of the most valuable resources available t
 
 The official [MonoGame Discord server](https://discord.gg/MonoGame) offers a space where developers of all skill levels exchange ideas and troubleshoot challenges together.  Here, a question about optimization techniques might spark a conversation about architecture patterns, leading to insights you might never have discovered on your own.
 
-For structure learning, several community members have created comprehensive educational resources:
+For structured learning, several community members have created comprehensive educational resources:
 
 - [RB Whitaker's](http://rbwhitaker.wikidot.com/MonoGame-getting-started-tutorials) provides in-depth coverage of MonoGame fundamentals and advanced topics.
 - [Learn MonoGame](https://learn-MonoGame.github.io/) by community member [Jean-David Moisan (Apos)](https://github.com/Apostolique) provides a collection of focused tutorials on specific MonoGame topics.
@@ -72,21 +72,21 @@ For structure learning, several community members have created comprehensive edu
 The [MonoGame Samples](https://github.com/MonoGame/MonoGame.Samples) repository offers practical examples of features implemented in working code. Similarly, the archived [XNA Game Studio educational resources](https://github.com/SimonDarksideJ/XNAGameStudio) maintained by Simon Jackson provide a wealth of examples that remain relevant despite XNA's official discontinuation.
 
 > [!TIP]
-> **REMEMBER**, if you see content written for XNA, then it is more than likely it will still work for MonoGame due to MonoGame's commitment for backwards compatibility.  There maybe a few bumps, minor changes (especially with earlier versions of XNA, like XNA 2) or differences with shaders (the biggest pain).  But remember the community is here to help, so just ASK!.
+> **REMEMBER**, if you see content written for XNA, then it is more than likely it will still work for MonoGame due to MonoGame's commitment for backwards compatibility.  There may be a few bumps, minor changes (especially with earlier versions of XNA, like XNA 2) or differences with shaders (the biggest pain).  But remember the community is here to help, so just ASK!.
 
 ## Your First Original Project
 
-As you contemplate your next project, consider staring with a focused concept that builds on what you have learned while introducing one or two new challenges.  This balanced approach allows you to reinforce existing skills while gradually expanding your capabilities.
+As you contemplate your next project, consider starting with a focused concept that builds on what you have learned while introducing one or two new challenges.  This balanced approach allows you to reinforce existing skills while gradually expanding your capabilities.
 
 Perhaps you might create a puzzle game where the core mechanics revolve around tile manipulation, or a side-scrolling adventure that expands on the collision and movement systems you have learned.  Whatever you choose, the process will affirm and deepen your understanding in ways that tutorials alone cannot do.  In other words, get your hands dirty.
 
-Remember that your first project does not need to be a commercially successful or technically groundbreaking.  Its primary value lies in the creative freedom it offers and the practical experience it provides.  Each bug you fix and feature you implement strengthens your developer's intuition; the hard-to-define sense of how games work beneath their surface.
+Remember that your first project does not need to be commercially successful or technically groundbreaking.  Its primary value lies in the creative freedom it offers and the practical experience it provides.  Each bug you fix and feature you implement strengthens your developer intuition; the hard-to-define sense of how games work beneath their surface.
 
 When you inevitably encounter obstacles, approach them with patience and curiosity.  The solutions you discover will not just resolve immediate problems; they will become part of your growing toolkit for future projects. Every challenging moment represents an opportunity to become a more resourceful and knowledgeable developer.
 
 ## The Art of Finishing
 
-Perhaps the most valuable skill you have practiced throughout this tutorial series is the art of finishing.  Game development history is littered with ambitious projects that grew beyond their creators' capacity to complete them.  By following this series to its conclusion, you have demonstrated the discipline and persistence for bringing games to life.
+Perhaps the most valuable skill you have practiced throughout this tutorial series is the art of finishing.  Game development history is littered with ambitious projects that grew beyond their creators' capacity to complete them.  By following this series to its conclusion, you have demonstrated the discipline and persistence in bringing games to life.
 
 When working on longer projects, break development into milestones with clear, achievable goals.  Celebrate these incremental victories to maintain momentum through the inevitable challenges of extended development.  Remember that a simple, finished game will always provide more value, both to players and to your growth as a developer, than an ambitious project that remains perpetually incomplete.
 
@@ -96,7 +96,7 @@ The knowledge you have gained throughout this tutorial series represents not an 
 
 The MonoGame framework offers a rare combination of freedom and structure; providing the essential tools without limiting your creative expression.  As you continue exploring its capabilities, you join a lineage of independent developers who have used these very same tools to create experiences that resonate with players around the world.
 
-Your journey from here will be uniquely yours, shaped by the games you want to make and the challenges you choose to overcome.  Whatever path you follow, approach it with the same curiosity, persistence, and analytical thinking that brought you through this tutorial series.  The road may not always be easy, but it leads to one of the most rewarding creative disciplines available today - the art and science of making games.
+Your journey from here will be uniquely yours, shaped by the games you want to make and by the challenges you choose to overcome.  Whatever path you follow, approach it with the same curiosity, persistence, and analytical thinking that brought you through this tutorial series.  The road may not always be easy, but it leads to one of the most rewarding creative disciplines available today - the art and science of making games.
 
 Instead of ending this like all other chapters with a section to "test your knowledge", I will just leave you with one simple question:
 

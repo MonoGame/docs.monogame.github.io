@@ -34,7 +34,7 @@ These texture swaps, while negligible in this example, can become a performance 
 
 ### Attempting to Optimize Draw Order
 
-One approach to get around this could be to optimize the order of the draw calls to minimize texture swaps  For example, if we reorder the draw calls from the previous example so that both paddles are drawn first and then the ball, the number of texture swaps is reduced from two to one:
+One approach to get around this could be to optimize the order of the draw calls to minimize texture swaps.  For example, if we reorder the draw calls from the previous example so that both paddles are drawn first and then the ball, the number of texture swaps is reduced from two to one:
 
 [!code-csharp[](./snippets/draw_order.cs)]
 
@@ -204,7 +204,7 @@ The key changes in this implementation are:
     - Retrieved the regions using their names.
 4. Updated [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)) to:
    - Draw the slime at a scale factor of 4.
-   - Draw the bat 10 pixels to the right of the bat based on the slime's `Width` property, at a scale of 4
+   - Draw the bat 10 pixels to the right of the slime based on the slime's `Width` property, at a scale of 4.
 
 Running the game now shows both sprites in the upper-left corner:
 

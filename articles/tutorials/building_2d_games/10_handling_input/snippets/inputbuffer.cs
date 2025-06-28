@@ -26,13 +26,13 @@ else if(keyboard.IsKeyDown(Keys.Right))
     newDirection = Vector2.UnitX;
 }
 
-// Only add if a valid direction and does not exceed the buffer size
+// Only add if a valid direction and does not exceed the buffer size.
 if(newDirection != Vector2.Zero && _inputBuffer.Count < MAX_BUFFER_SIZE)
 {
     _inputBuffer.Enqueue(newDirection);
 }
 
-// In movement update code
+// In movement update code.
 if(_inputBuffer.COunt > 0)
 {
     Vector2 nextDirection = _inputBuffer.Dequeue();

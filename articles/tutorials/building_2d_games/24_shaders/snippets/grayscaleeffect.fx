@@ -30,7 +30,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
     // Sample the texture
     float4 color = tex2D(SpriteTextureSampler, input.TextureCoordinates) * input.Color;
 
-    // Calculate the grayscale value based on human perception of colors
+    // Calculate the grayscale value based on human perception of colors.
     float grayscale = dot(color.rgb, float3(0.3, 0.59, 0.11));
 
     // create a grayscale color vector (same value for R, G, and B)
@@ -40,7 +40,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
     // rgb values based on the saturation parameter.
     float3 finalColor = lerp(grayscale, color.rgb, Saturation);
 
-    // Return the final color with the original alpha value
+    // Return the final color with the original alpha value.
     return float4(finalColor, color.a);
 }
 

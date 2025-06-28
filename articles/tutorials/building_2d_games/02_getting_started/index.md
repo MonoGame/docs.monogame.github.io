@@ -27,12 +27,12 @@ The first thing we need to do is install the .NET *Software Development Kit* (SD
     > [!NOTE]
     > The minimum supported version is .NET 8
 
-3. Once the download finishes, run the installer
+3. Once the download finishes, run the installer.
 
 ### [macOS](#tab/macos)
 
 1. Open a web browser and navigate to [https://dotnet.microsoft.com/en-us/download](https://dotnet.microsoft.com/en-us/download).
-2. Choose the version of the .NET SDK to install and click lick the *Download .NET SDK x64 (Intel)* button start the download of the .NET SDK Installer.
+2. Choose the version of the .NET SDK to install and click the *Download .NET SDK x64 (Intel)* button start the download of the .NET SDK Installer.
 
     > [!NOTE]
     > The minimum supported version is .NET 8
@@ -58,7 +58,7 @@ sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
 
 ## Install Additional Workloads (Optional)
 
-After installing the .NET SDK, if you intend to target mobile devices such as Android or iOS, you will also need to install the corresponding mobile workloads. To do this, open a *Command Prompt* or *Terminal* window and enter the following commands
+After installing the .NET SDK, if you intend to target mobile devices such as Android or iOS, you will also need to install the corresponding mobile workloads. To do this, open a *Command Prompt* or *Terminal* window and enter the following commands.
 
 ```sh
 dotnet workload install ios
@@ -75,7 +75,7 @@ dotnet new install MonoGame.Templates.CSharp
 
 ## Installing Visual Studio Code
 
-*Visual Studio Code* (VSCode) is a free, light weight editor. Depending on the programming language you are using, it is just a matter of installing the appropriate extension to support that particular language. VSCode is also cross-platform, meaning you can use it for development on Windows, macOS, and Linux. To ensure that all readers can follow this tutorial regardless of the operating system used, we will be using VSCode as our IDE.
+*Visual Studio Code* (VSCode) is a free, lightweight editor. Depending on the programming language you are using, it is just a matter of installing the appropriate extension to support that particular language. VSCode is also cross-platform, meaning you can use it for development on Windows, macOS, and Linux. To ensure that all readers can follow this tutorial regardless of the operating system used, we will be using VSCode as our IDE.
 
 To install VSCode, follow the instructions for your operating system below:
 
@@ -193,7 +193,7 @@ With your development environment setup, it is time to create your first MonoGam
     >    dotnet new install MonoGame.Templates.CSharp
     > ```
 
-5. After choosing the template, a dialog window will appear asking you to choose a location to save the project, this is a folder where your projects will will be created by default.
+5. After choosing the template, a dialog window will appear asking you to choose a location to save the project, this is a folder where your projects will be created by default.
 6. Next, you will be prompted to enter a name for the project. Enter the name `DungeonSlime`, which will create your project in a new folder with the same name.
 7. If this is your first time creating your project, you will be asked to choose a solution format, simply select the default `.sln` option and click `Next` to continue. (This does not occur with subsequent projects)
 8. Finally, select the *Create Project* prompt.
@@ -255,7 +255,7 @@ Now that your development environment is setup and ready to go, you can dive in 
 2. What is the primary reason that game applications implement a *game loop* structure instead of using an event-based approach like traditional desktop applications?
 
     :::question-answer
-    Game application implement a *game loop* structure because games need to continuously update and render, event when there is no user input.  In games, objects might be moving, animations playing, and physics calculating regardless of user interaction, requiring constant updating and rendering until the game is told to exit.
+    Game applications implement a *game loop* structure because games need to continuously update and render, event when there is no user input.  In games, objects might be moving, animations playing, and physics calculating regardless of user interaction, requiring constant updating and rendering until the game is told to exit.
     :::
 
 3. What is the color of the game window when you run a MonoGame project for the first time?

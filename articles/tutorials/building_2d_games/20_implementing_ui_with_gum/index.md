@@ -294,7 +294,7 @@ startButton.Visual.Width = 100;
 
 Direct property assignment works well for initial setup, such as positioning elements or setting their dimensions when first creating your UI.  However, when you need visual elements to respond to user interactions (like highlighting a button when it is focused), a different approach is required.
 
-For these dynamic changes, Gum uses a system of **states** (implemented as `StateSave` objects), each Forms control maintains a collection of named states that are automatically applied in response to specific user interactions.  When a button becomes focused, for instance, Gum looks for an applies a  state named "Focused" to alter its appearance.
+For these dynamic changes, Gum uses a system of **states** (implemented as `StateSave` objects), each Forms control maintains a collection of named states that are automatically applied in response to specific user interactions.  When a button becomes focused, for instance, Gum looks for and applies a state named "Focused" to alter its appearance.
 
 > [!NOTE]
 > In the next chapter during the customization pass, we will create states to visually indicate when controls are focused, providing clear feedback to the player.
@@ -349,11 +349,11 @@ To add the Gum NuGet package using the dotnet CLI:
 > You can verify the package was successfully added by examining your `DungeonSlime.csproj` file, which should now contain a reference like:
 >
 > ```xml
-> <PackageReference Include="Gum.MonoGame" Version="2025.5.5.1" />
+> <PackageReference Include="Gum.MonoGame" Version="2025.5.1.1" />
 > ```
 
 > [!IMPORTANT]
-> This tutorial uses version `2025.5.5.1` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/breaking-changes) before updating in case there are any breaking changes from the code that is presented in this tutorial.
+> This tutorial uses version `2025.5.1.1` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/breaking-changes) before updating in case there are any breaking changes from the code that is presented in this tutorial.
 
 ### Adding UI Sound Effect
 
@@ -403,7 +403,7 @@ The following is a breakdown of this initialization process:
 2. **Content Loading**: Gum needs to be made aware of which content manager to use to load assets through the content pipeline.  By setting `GumService.Default.ContentLoader.XnaContentManager = Core.Content`, we tell Gum to use our game's content manager when loading assets.  By using the game's existing content manager, Gum also gets the benefit of the caching that the content manager performs when loading assets.
 3. **Input Configuration**:
    * By default, all Forms controls automatically respond to mouse and touch screen input devices.  We need to explicitly register keyboard and gamepad input devices by using th `FrameworkElement.KeyboardsForUiControl` and `Framework.GamePadsForUiControl` properties.
-   * By default, Forms controls will automatically respond to tab and shift-tab for navigation. By using the `FrameworkElement.TabKeyCombos` and `FrameworkElement.TabReverseKeyCombos` properties, we can add additional key combinations for tabbing.  Here map the Up arrow for reverse tabbing and the Down arrow for forward tabbing.  
+   * By default, Forms controls will automatically respond to tab and shift-tab for navigation. By using the `FrameworkElement.TabKeyCombos` and `FrameworkElement.TabReverseKeyCombos` properties, we can add additional key combinations for tabbing.  Here we map the Up arrow for reverse tabbing and the Down arrow for forward tabbing.  
 
    > [!TIP]
    > If you prefer different navigation keys, you can remove the built-in Tab/Shift+Tab navigation.
@@ -481,7 +481,7 @@ Next is the handler when the "Sound Effects Volume" slider has completed a value
 
 When the value of the "Sound Effects Volume" slider has completed a change and this method is called, it plays the UI sound effect to provide auditory feedback so the player can hear the difference in volume.
 
-After this is the handler for when the "Music Volume" slider value changes.  Add the following method to the `TitleScene` class after the `HandleSfxSliderChangeCompleted` method:
+Next, add the handler for changes to the 'Music Volume' slider. Place the following method in the TitleScene class, directly after the HandleSfxSliderChangeCompleted method:
 
 [!code-csharp[](./snippets/titlescene/handlemusicslidervaluechanged.cs)]
 

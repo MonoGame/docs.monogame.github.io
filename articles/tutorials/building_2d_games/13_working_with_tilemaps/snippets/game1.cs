@@ -57,7 +57,7 @@ public class Game1 : Core
         int centerColumn = _tilemap.Columns / 2;
         _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
 
-        // Initial bat position will the in the top left corner of the room
+        // Initial bat position will be in the top left corner of the room
         _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
 
         // Assign the initial random velocity to the bat.

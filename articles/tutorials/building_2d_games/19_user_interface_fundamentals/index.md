@@ -46,7 +46,7 @@ For example, a settings panel might contain multiple buttons, labels, and slider
 
 - **Inheritance of Properties**: Child elements can automatically inherit certain properties from their parents.  For instance, if a parent element is hidden or disabled, all its children can be hidden or disabled as well. This cascading behavior simplifies state management across complex interfaces.
 - **Relative Positioning**: Child elements can be positioned relative to their parents rather than relative to the screen.  This means you can place elements within a container and then move the entire container as a unit without having to update each child's position individually.
-- **Simplified State Management**:  Actions on parent elements can automatically propagate to their children.  For example, disabling a menu panel can automatically disable all buttons within it, preventing interaction with elements that should be active.
+- **Simplified State Management**:  Actions on parent elements can automatically propagate to their children.  For example, disabling a menu panel can automatically disable all buttons within it, preventing interaction with elements that should not be active.
 - **Batch Operations**: Operations like drawing and updating can be performed on a parent element and automatically cascade to all children, reducing the need for repetitive code.
 - **Logical Grouping**: The hierarchy naturally models the conceptual grouping of UI elements, making the code structure more intuitive and easier to maintain.
 
@@ -124,7 +124,7 @@ In the next chapter, we will put these concepts into practice by implementing a 
     - **Non-diegetic UI**: Elements that exist outside the game world, overlaid on top of gameplay (like traditional menus, health bars in screen corners, score displays). While less immersive, they are often clearer and easier to read.
     :::
 
-2. What are the some advantages of using a parent-child relationship in UI systems?
+2. What are some advantages of using a parent-child relationship in UI systems?
 
    :::question-answer
    - **Inheritance of properties**: visual states cascade parent to children.
