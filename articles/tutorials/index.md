@@ -8,6 +8,11 @@ description: Tutorials provided by MonoGame community members.
 >
 > Have a tutorial suggestion, article or series that really helped you? Then please [log an issue](https://github.com/MonoGame/docs.monogame.github.io/issues) to get it included.
 
+<section class="container-xxl my-5">
+    <h1 id="learn-2d" class="fw-bold"><a href="#learn-2d">2D</a></h1>
+    <p>A selection of 2D focused content and tutorials.</p>
+</section>
+
 <section class="container-xxl mb-5">
     <div class="row">
         <div class="col-12 col-lg-4 mb-5">
@@ -28,6 +33,61 @@ description: Tutorials provided by MonoGame community members.
         <div class="col-12 col-lg-4 mb-5">
             <div class="mg-card mg-box-shadow h-100">
                 <a target="_self"
+                    href="/articles/tutorials/index.html"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-filetype-cs"></i> 2D Mobile Deployment - coming soon</div>
+                        <p>
+                            An extension tutorial following on from the Beginner 2D above demonstrating how to take a desktop project to Mobile devices.
+                        </p>
+                        <p class="mt-auto">Coming Soon</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
+                    href="/articles/tutorials/index.html"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-lightbulb"></i> 2D Advanced Shaders - coming soon</div>
+                        <p>
+                            An extension tutorial following on from the Beginner 2D above demonstrating advanced shader techniques for 2D projects.
+                        </p>
+                        <p class="mt-auto">See what is coming</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
+                    href="/articles/tutorials/index.html"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-lightbulb"></i> 2D Networking - coming soon</div>
+                        <p>
+                            An extension tutorial following on from the Beginner 2D above demonstrating connecting multiple clients together and implementing leaderboards.
+                        </p>
+                        <p class="mt-auto">See what is coming</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container-xxl my-5">
+    <h1 id="learn-2d" class="fw-bold"><a href="#learn-2d">3D</a></h1>
+    <p>A selection of 3D focused content and tutorials.</p>
+</section>
+
+<section class="container-xxl mb-5">
+    <div class="row">
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
                     href="/articles/tutorials/"
                     class="mg-no-link">
                     <div class="mg-card-body d-flex flex-column h-100">
@@ -40,6 +100,16 @@ description: Tutorials provided by MonoGame community members.
                 </a>
             </div>
         </div>
+    </div>
+</section>
+
+<section class="container-xxl my-5">
+    <h1 id="learn-2d" class="fw-bold"><a href="#learn-2d">MonoGame Foundation</a></h1>
+    <p>Links to other related resources and information.</p>
+</section>
+
+<section class="container-xxl mb-5">
+    <div class="row">
         <div class="col-12 col-lg-4 mb-5">
             <div class="mg-card mg-box-shadow h-100">
                 <a target="_self"
@@ -55,7 +125,36 @@ description: Tutorials provided by MonoGame community members.
                 </a>
             </div>
         </div>
-    </div>
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
+                    href="https://monogame.net/blog/"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-files"></i> Blog</div>
+                        <p>
+                            The official MonoGame Foundation blog for notes, minutes and announcements.
+                        </p>
+                        <p class="mt-auto">View the MonoGame blog</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
+                    href="https://monogame.net/bounties/"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-filetype-cs"></i> Bounties</div>
+                        <p>
+                            The Foundation has a number of paid contribution efforts for the Framework, ranging from Tutorials, Framework extensions and samples.
+                        </p>
+                        <p class="mt-auto">Check out the bounties</p>
+                    </div>
+                </a>
+            </div>
+        </div>
 </section>
 
 ## Other community recommended tutorials
