@@ -40,8 +40,6 @@
           "foundation/**/*.md",
           "roadmap/**/*.md",
           "roadmap/**/*.yml",
-          "create/**/*.md",
-          "create/**/*.yml",
           "errors/**/*.md",
           "toc.yml",
           "*.md"

@@ -2,12 +2,10 @@ items:
 - name: Learn
   href: /
 - name: Create
-  href: /create
+  href: https://monogame.net/create/
 - name: Community
   href: https://monogame.net/community/
 - name: Showcase
   href: https://monogame.net/showcase/
-- name: Bounties
-  href: https://monogame.net/bounties/
 - name: About
   href: https://monogame.net/about/
