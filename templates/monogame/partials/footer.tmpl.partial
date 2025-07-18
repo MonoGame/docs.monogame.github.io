@@ -88,13 +88,13 @@
                 <a class="mg-social-link hide-external-icon" href="https://www.facebook.com/monogamecommunity" title="Facebook">
                     <i class="bi bi-facebook"></i>
                 </a>
-                <a class="mg-social-link hide-external-icon" href="https://twitter.com/MonoGameTeam" title="Blue Sky">
+                <a class="mg-social-link hide-external-icon" href="https://bsky.app/profile/monogame.net" title="Blue Sky">
                     <i class="bi-moon-stars-fill"></i>
                 </a>
                 <a class="mg-social-link hide-external-icon" href="https://twitter.com/MonoGameTeam" title="Twitter">
                     <i class="bi bi-twitter"></i>
                 </a>
-                <a class="mg-social-link hide-external-icon" href="https://twitter.com/MonoGameTeam" title="Mastodon">
+                <a class="mg-social-link hide-external-icon" href="https://mastodon.cloud/@MonoGame" title="Mastodon">
                     <i class="bi-mastodon"></i>
                 </a>
                 <a class="mg-social-link hide-external-icon" href="https://monogame.net/blog/feed.xml" title="MonoGame Blog">
