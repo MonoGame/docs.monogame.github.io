@@ -140,6 +140,23 @@ To install it, with VSCode open:
 2. Enter `MonoGame for VSCode` in the *Search Box*
 3. Click install on the *MonoGame for VSCode* extension by r88.
 
+## (Optional) Install the ".NET MAUI" extension to help with mobile development
+
+This extension is provided by Microsoft and is built on top of the C# and C# Dev Kit extensions. They will be installed as dependencies if they were not already installed. While primarily designed for MAUI development, it provides essential mobile debugging capabilities that MonoGame mobile projects can utilize.
+
+The .NET MAUI extension adds features for building mobile apps, including:
+
+- F5 debugging support - Debug your MonoGame mobile apps on emulators, simulators, and physical devices
+- Easy target switching - Change debug/deploy targets between different mobile platforms
+- Enhanced C# Dev Kit integration - Leverages Solution Explorer, Test Explorer, and advanced language features
+
+| ![Figure 2-2: The .NET MAUI Extension listed in Visual Studio Code](./images/maui-extension.png) |
+| :-------------------------------------------------------------------------------------------------: |
+|                **Figure 2-2: The .NET MAUI Extension listed in Visual Studio Code**                |
+
+> [!NOTE]
+> This extension is recommended if you wish to do iOS or Android development. It is required for debugging support when working on mobile games. 
+
 ## Setup WINE for Effect Compilation (macOS and Linux Only)
 
 *Effect* (shader) compilation requires access to DirectX. This means it will not work natively on macOS and Linux systems, but it can be used through [WINE](https://www.winehq.org/). MonoGame provides a setup script that can be executed to setup the WINE environment. Below you can find the steps based on your operating system. To do this, follow the instructions for your operating system below:
@@ -200,15 +217,15 @@ With your development environment setup, it is time to create your first MonoGam
 
 After selecting *Create Project*, a new C# project will be generated based on the chosen MonoGame template and opened automatically in VSCode.
 
-| ![Figure 2-2: A new MonoGame project after being created in Visual Studio Code](./images/vscode.png) |
+| ![Figure 2-3: A new MonoGame project after being created in Visual Studio Code](./images/vscode.png) |
 | :--------------------------------------------------------------------------------------------------: |
-|           **Figure 2-2: A new MonoGame project after being created in Visual Studio Code**           |
+|           **Figure 2-3: A new MonoGame project after being created in Visual Studio Code**           |
 
 Now that we have the project created, press the `F5` key on your keyboard, or choose *Run > Start Debugging* from the top menu. If prompted for a configuration, choose *C#*. The project will compile and run, displaying a screen similar to the following:
 
-| ![Figure 2-3: The default MonoGame cornflower blue game window](./images/game-window.png) |
+| ![Figure 2-4: The default MonoGame cornflower blue game window](./images/game-window.png) |
 | :---------------------------------------------------------------------------------------: |
-|             **Figure 2-3: The default MonoGame cornflower blue game window**              |
+|             **Figure 2-4: The default MonoGame cornflower blue game window**              |
 
 Be amazed, the default MonoGame Cornflower Blue game window. You have just created your very first MonoGame application. While there is not much happening here visually, there is a lot going on behind the scenes that the MonoGame framework is handling for you. When you ran the application, the following occurred:
 
