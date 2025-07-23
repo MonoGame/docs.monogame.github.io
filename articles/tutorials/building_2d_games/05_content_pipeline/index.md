@@ -161,7 +161,7 @@ To load assets in your game code, MonoGame provides the [**ContentManager**](xre
 
 ### ContentManager Methods
 
-They key methods for asset loading are:
+The key methods for asset loading are:
 
 | Method                                                                                                    | Returns | Description                                                                  |
 | --------------------------------------------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------------- |
