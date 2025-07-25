@@ -161,11 +161,13 @@ The following docking modes are supported by Gum:
 
 ### Forms and Visuals
 
-Gum provides two types of objects: **Forms** and **Visuals**.
+Two concepts are important when working with Gum: **Forms** and **Visuals**.
 
-* Forms controls are typical interactive UI elements such as buttons, sliders, and text boxes that handle user interaction through mouse, gamepad, and keyboard inputs.  These controls come with built-in functionality; a button responds visually when focused, while a slider changes its value when clicked on its *track*.  By using these standardized components, you can maintain consistency throughout your UI implementation.
+* **Forms** controls are typical interactive UI elements such as buttons, sliders, and text boxes that handle user interaction through mouse, gamepad, and keyboard inputs.  These controls come with built-in functionality; a button responds visually when focused, while a slider changes its value when clicked on its *track*.  By using these standardized components, you can maintain consistency throughout your UI implementation.
 
-* Forms controls provide customization through their `Visual` property, which serves as a gateway to modifying their appearance and layout. With this property, you can move, resize, restyle, and even completely replace visuals through code.  As we will see when building our UI in the next chapter, this separation between functionality and presentation allows us to create consistent behaviors while adapting the visual style to match our game's aesthetic.
+* **Visuals** are the graphical display elements that render the actual appearance of UI components. In Gum, Visual elements have the *Runtime suffix (like TextRuntime, ColoredRectangleRuntime, and NineSliceRuntime) and are used to render graphics. They handle the visual representation but have no built-in interaction behavior on their own.
+
+Forms controls provide customization through their `Visual` property, which serves as a gateway to modifying their appearance and layout. With this property, you can move, resize, restyle, and even completely replace visuals through code.  As we will see when building our UI in the next chapter, this separation between functionality and presentation allows us to create consistent behaviors while adapting the visual style to match our game's aesthetic.
 
 For now, we will examine some of the Forms control types we will use in this chapter.
 
