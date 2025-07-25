@@ -175,7 +175,7 @@ Add these files to your content project using the MGCB Editor:
 
 Next, open the `Game1.cs` file and update it to the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=3,6,39-43,92-111,203-204,222-223)]
+[!code-csharp[](./snippets/game1.cs?highlight=3,6,39-43,92-111,200-201,219-220)]
 
 The key changes here are:
 
