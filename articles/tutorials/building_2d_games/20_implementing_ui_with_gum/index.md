@@ -37,7 +37,7 @@ Gum addresses these challenges with ready-made solutions, allowing us to focus o
 > [!IMPORTANT]
 > This tutorial uses the Gum NuGet package to help with layout and responding to user interactions. This tutorial does not require the use of the Gum editor, we will be doing everything in code.
 >
-> Keep in mind, that while it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial. Instead, we will be taking advantage of the Gum NuGet package.
+> Keep in mind that while it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial. Instead, we will be taking advantage of the Gum NuGet package.
 >
 > Gum is a powerful system enabling the creation of virtually any game UI, and we will be covering some of the basics of its use in this tutorial. The full Gum documentation can be found here: [https://docs.flatredball.com/gum/code/monogame](https://docs.flatredball.com/gum/code/monogame)
 
@@ -321,7 +321,7 @@ To add the Gum NuGet package in Visual Studio Code:
 2. Choose `Add NuGet Package` from the context menu.
 3. Enter `Gum.MonoGame` in the `Add NuGet Package` search prompt and press Enter.
 4. When the search finishes, select the `Gum.MonoGame` package in the results
-5. When prompted for a version choose version `2025.5.1.1`.
+5. When prompted for a version choose version `2025.7.30.1`.
 
 #### [Visual Studio 2022](#tab/vs2022)
 
@@ -332,7 +332,7 @@ To Add the Gum NuGet package in Visual Studio 2022:
 3. In the NuGet Package Manager window, select the `Browse` tab if it is not already selected.
 4. In the search box, enter `Gum.MonoGame`.
 5. Select the "Gum.MonoGame" package from the search results.
-6. On the right, in the version dropdown, select version `2025.5.1.1` and click the "Install" button.
+6. On the right, in the version dropdown, select version `2025.7.30.1` and click the "Install" button.
 
 #### [dotnet CLI](#tab/dotnetcli)
 
@@ -342,7 +342,7 @@ To add the Gum NuGet package using the dotnet CLI:
 2. Enter the following command:
 
     ```sh
-    dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2025.5.1.1
+    dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2025.7.30.1
     ```
 
 ---
@@ -351,11 +351,11 @@ To add the Gum NuGet package using the dotnet CLI:
 > You can verify the package was successfully added by examining your `DungeonSlime.csproj` file, which should now contain a reference like:
 >
 > ```xml
-> <PackageReference Include="Gum.MonoGame" Version="2025.5.1.1" />
+> <PackageReference Include="Gum.MonoGame" Version="2025.7.30.1" />
 > ```
 
 > [!IMPORTANT]
-> This tutorial uses version `2025.5.1.1` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/breaking-changes) before updating in case there are any breaking changes from the code that is presented in this tutorial.
+> This tutorial uses version `2025.7.30.1` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/breaking-changes) before updating in case there are any breaking changes from the code that is presented in this tutorial.
 
 ### Adding UI Sound Effect
 
@@ -385,7 +385,7 @@ With the Gum NuGet package added to our project, we need to initialize Gum in ou
 
 First, open the `Game1.cs` file and add the following new using statements to the top:
 
-[!code-csharp[](./snippets/game1/usings.cs?highlight=4-5)]
+[!code-csharp[](./snippets/game1/usings.cs?highlight=2-5)]
 
 Next, add the following method to the `Game1` class to encapsulate the initializations of the Gum UI service:
 
@@ -397,10 +397,10 @@ Finally, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initializ
 
 The following is a breakdown of this initialization process:
 
-1. **Basic Initialization**: `GumService.Default.Initialize(this)` sets up the Gum system with our game instance.  This is required for any gum project.
+1. **Basic Initialization**: `GumService.Default.Initialize(this, DefaultVisualsVersion.V2)` sets up the Gum system with our game instance.  This is required for any gum project. The second parameter specifies the default visual styling. V2 is the latest version which makes it easy to style the default controls.
 
     > [!NOTE]
-    > We only need to pass our [**Game**](xref:Microsoft.Xna.Framework.Game) instance since we are using Gum as a code-first approach.  Gum also offers a visual editor that creates Gum project files. When using the editor, you will need to also pass the Gum Project file here.
+    > We only need to pass our [**Game**](xref:Microsoft.Xna.Framework.Game) instance and the visuals version since we are using Gum as a code-first approach.  Gum also offers a visual editor that creates Gum project files. When using the editor, you will need to also pass the Gum Project file to `Initialize`.
 
 2. **Content Loading**: Gum needs to be made aware of which content manager to use to load assets through the content pipeline.  By setting `GumService.Default.ContentLoader.XnaContentManager = Core.Content`, we tell Gum to use our game's content manager when loading assets.  By using the game's existing content manager, Gum also gets the benefit of the caching that the content manager performs when loading assets.
 3. **Input Configuration**:
