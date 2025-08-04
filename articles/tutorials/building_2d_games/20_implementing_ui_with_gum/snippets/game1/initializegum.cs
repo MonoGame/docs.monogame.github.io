@@ -1,7 +1,9 @@
 private void InitializeGum()
 {
-    // Initialize the Gum service
-    GumService.Default.Initialize(this);
+    // Initialize the Gum service. The second parameter specifies
+    // the version of the default visuals to use. V2 is the latest
+    // version.
+    GumService.Default.Initialize(this, DefaultVisualsVersion.V2);
 
     // Tell the Gum service which content manager to use.  We will tell it to
     // use the global content manager from our Core.
