@@ -400,7 +400,7 @@ The following is a breakdown of this initialization process:
 1. **Basic Initialization**: `GumService.Default.Initialize(this, DefaultVisualsVersion.V2)` sets up the Gum system with our game instance.  This is required for any gum project. The second parameter specifies the default visual styling. V2 is the latest version which makes it easy to style the default controls.
 
     > [!NOTE]
-    > We only need to pass our [**Game**](xref:Microsoft.Xna.Framework.Game) instance and the visuals version since we are using Gum as a code-first approach.  Gum also offers a visual editor that creates Gum project files. When using the editor, you will need to also pass the Gum Project file to `Initialize`.
+    > We only need to pass our [**Game**](xref:Microsoft.Xna.Framework.Game) instance and the visuals version since we are using Gum as a code-first approach.  Gum also offers a visual editor that creates Gum project files. When using the editor, you will need to also pass the Gum Project file to `Initialize`. For more information on how to use the Gum visual editor, see the [Gum Project Forms Tutorial](https://docs.flatredball.com/gum/code/monogame/tutorials/gum-project-forms-tutorial).
 
 2. **Content Loading**: Gum needs to be made aware of which content manager to use to load assets through the content pipeline.  By setting `GumService.Default.ContentLoader.XnaContentManager = Core.Content`, we tell Gum to use our game's content manager when loading assets.  By using the game's existing content manager, Gum also gets the benefit of the caching that the content manager performs when loading assets.
 3. **Input Configuration**:

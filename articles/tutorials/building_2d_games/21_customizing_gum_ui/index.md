@@ -184,7 +184,7 @@ Now that we have all our resources prepared, we can create custom versions of th
 
 Our first custom component is an `AnimatedButton` that inherits from Gum's base `Button` class. This button uses the game's existing texture atlas for its visual appearance and animates when focused.
 
-By default all Gum components provide a Visual property which can be casted to a type specific to the particular control. By convention the visual type is named the same as the component with the word `Visual` appened. For example, we will be casting the AnimatedButton's Visual property to `ButtonVisual` to access button-specific properties.
+By default all Gum components provide a Visual property which can be cast to a type specific to the particular control. By convention the visual type is named the same as the component with the word `Visual` appened. For example, we will be casting the AnimatedButton's Visual property to `ButtonVisual` to access button-specific properties.
 
 This new `AnimatedButton` class casts the Visual property to `ButtonVisual` and modifies the button-specific properties such as background and text.
 
@@ -196,7 +196,7 @@ Next, we will examine the key aspects of this new `AnimatedButton` implementatio
 
 #### ButtonVisual
 
-As mentioned earlier, we first access the Visual object and cast it to a ButtonVisual. Doing so gives us access to button-specific proerpties including individual elements (such as the text and background visuals) as well as the states that are applied when the button is hovered or pressed.
+As mentioned earlier, we first access the `Visual` object and cast it to a `ButtonVisual`. Doing so gives us access to button-specific properties including individual elements (such as the text and background visuals) as well as the states that are applied when the button is hovered or pressed.
 
 We can modify the Visual to give it the appropriate size.
 
