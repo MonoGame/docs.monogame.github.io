@@ -181,17 +181,21 @@ There are pre-converted samples available on the repository as well.
 
 ## CartBlanche's Samples
 
-This is a [large library of MonoGame samples](https://github.com/CartBlanche/MonoGame-Samples) covering a large range of topics, including:
+This is a large library of [MonoGame Samples](https://github.com/CartBlanche/MonoGame-Samples?tab=readme-ov-file#monogame-samples) covering a wide range of topics, including:
 
-> Will require MonoGame 3.7 or earlier installed to open.
-
-- Physics
-- P2P Networking
-- Textures
-- Shaders
+- 27 [2D samples](https://github.com/CartBlanche/MonoGame-Samples?tab=readme-ov-file#2d-samples)
+- 8 [3D samples](https://github.com/CartBlanche/MonoGame-Samples?tab=readme-ov-file#3d-samples)
+- [Physics](https://github.com/CartBlanche/MonoGame-Samples/tree/main/FarseerPhysics/FarseerSamples)
+- [Networking](https://github.com/CartBlanche/MonoGame-Samples?tab=readme-ov-file#networking-samples) (Not fully functional yet)
+- [Miscellaneous](https://github.com/CartBlanche/MonoGame-Samples?tab=readme-ov-file#miscellaneous-samples)
+- [Shaders](https://github.com/CartBlanche/MonoGame-Samples/blob/main/2DShaderSample/README.md)
 
 It also includes games such as:
 
-- Tetris
-- Pacman
-- Role Playing Game
+- [Card Game Starter Kit](https://github.com/CartBlanche/MonoGame-Samples/tree/main/CardsStarterKit)
+- [Flood Control](https://github.com/CartBlanche/MonoGame-Samples/tree/main/GameDevelopmentbyExample/FloodControl)
+- [Role Playing Game Starter Kit](https://github.com/CartBlanche/MonoGame-Samples/tree/main/RolePlayingGame)
+- [Pacman](https://github.com/CartBlanche/MonoGame-Samples/tree/main/PacMan)
+- [Tetris](https://github.com/CartBlanche/MonoGame-Samples/tree/main/Tetris)
+
+With more on the way.
