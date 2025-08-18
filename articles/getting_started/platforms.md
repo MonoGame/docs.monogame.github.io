@@ -101,7 +101,7 @@ Building for Android also requires the Java 11 JDK (we recommend that you use [t
 
 The iOS platform uses [Xamarin.iOS](https://docs.microsoft.com/en-us/xamarin/ios/). **OpenGL** is used for graphics, and OpenAL for audio.
 
-Building for Android requires the .NET Xamarin component to be installed. You can install it with the Visual Studio installer (if you are using Visual Studio) or with the CLI command `dotnet workload install ios` (if you are working with Rider, VS Code, or the CLI).
+Building for iOS requires the .NET Xamarin component to be installed. You can install it with the Visual Studio installer (if you are using Visual Studio) or with the CLI command `dotnet workload install ios` (if you are working with Rider, VS Code, or the CLI).
 
 The latest version of Xcode will also be required.
 
