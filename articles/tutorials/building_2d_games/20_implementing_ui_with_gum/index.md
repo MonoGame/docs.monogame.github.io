@@ -15,7 +15,7 @@ In this chapter you will:
 * Integrate the UI system with our existing game architecture.
 
 > [!IMPORTANT]
-> While GUM is used in this tutorial it is only one of many UI libraries available to the MonoGame community, some notable others are [EmptyKeys](https://github.com/EmptyKeys/UI_Engines), [GeonBit.UI](https://github.com/RonenNess/GeonBit.UI), as well as entire Game Frameworks/Engines like [Nez}(https://github.com/prime31/Nez) that have their own built in UI systems.
+> While GUM is used in this tutorial it is only one of many UI libraries available to the MonoGame community, some notable others are [EmptyKeys](https://github.com/EmptyKeys/UI_Engines), [GeonBit.UI](https://github.com/RonenNess/GeonBit.UI), as well as entire Game Frameworks/Engines like [Nez](https://github.com/prime31/Nez) that have their own built in UI systems.
 >
 > Check out the [MonoGame Resources](https://monogame.net/resources/) page, as well as [awesome-monogame](https://github.com/aloisdeniel/awesome-monogame) from [Alois Deniel](https://github.com/aloisdeniel) for even more community offerings.
 
