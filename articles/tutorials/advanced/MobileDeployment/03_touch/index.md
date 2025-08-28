@@ -171,4 +171,33 @@ public class TouchGame : Game
 }
 ```
 
+## Dungeon Slime Sample
+
+In the _DungeonSlime_ game, touch input is encapsulated in a new **TouchInfo** class, which internally uses the **TouchPanel** API to detect and process gestures. 
+
+This class abstracts gesture handling and exposes methods like `IsTouchSwipeUp()`, `IsTouchSwipeDown()`, etc., making it easy to check for swipe actions. 
+
+The **TouchInfo** class is then integrated into the **GameController** class, allowing the game logic to respond to touch gestures in a platform-agnostic way. This modular approach keeps input handling clean and maintainable, and ensures that touch support works seamlessly alongside keyboard and gamepad input.
+
+### Extending Move Functions with Touch Gestures
+
+To support touch input alongside keyboard and gamepad, extend your movement functions to include checks for swipe gestures. 
+
+For example:
+
+```csharp
+public static bool MoveUp()
+{
+    return s_keyboard.WasKeyJustPressed(Keys.Up) ||
+           s_keyboard.WasKeyJustPressed(Keys.W) ||
+           s_gamePad.WasButtonJustPressed(Buttons.DPadUp) ||
+           s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickUp) ||
+           IsTouchSwipeUp(); <=== extended to support touch
+}
+```
+
+This approach ensures your game responds to swipe gestures for movement, providing a consistent experience across touch, keyboard, and gamepad input.
+
+## Conclusion
+
 This foundation enables you to respond to touch input across iOS and Android platforms using MonoGame's cross-platform gesture system.
