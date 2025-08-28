@@ -109,7 +109,7 @@ The game name to appear on the device:
 
 Versioning of game:
 
-```
+```xml
 <key>CFBundleVersion</key>
 <string>11</string>
 <key>CFBundleShortVersionString</key>
