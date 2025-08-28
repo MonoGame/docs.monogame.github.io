@@ -31,7 +31,7 @@ By the end of this mobile tutorial series, you'll have:
 
 **Platform Requirement:** iOS development requires a Mac, whether you develop entirely on it or use the **Pair to Mac** option with Windows Visual Studio.
 
-Since **Visual Studio for Mac** has been deprecated, [JetBrains Rider](https://www.jetbrains.com/rider/) is the currently recommended IDE for Mac development. Visual Studio Code is another viable option too.
+Since **Visual Studio for Mac** has been deprecated, [JetBrains Rider](https://www.jetbrains.com/rider/) or [VS Code](https://code.visualstudio.com/) can be used to develop for iOS. There is a non-commercial licence available of Rider.
 
 **Additional Requirements:**
 - **Xcode** - Required for iOS development and deployment
