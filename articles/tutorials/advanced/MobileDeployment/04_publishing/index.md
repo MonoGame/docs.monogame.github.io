@@ -33,6 +33,20 @@ Ensure your iOS project is properly configured for App Store submission:
 <CFBundleIconName>AppIcon</CFBundleIconName>
 ```
 
+### Understanding the Bundle Identifier
+
+The **bundle identifier** is a unique string that identifies your app. It follows a reverse domain name notation, such as `com.companyname.gamename`.
+
+This identifier is used by Apple and Google to distinguish your app from all others on the stores and on devices.
+
+- It **must** be unique across all apps in the store.
+
+- The bundle identifier you set in your project must exactly match the one registered in the stores.
+
+- Changing the bundle identifier after publishing will create a new app entry, not update the existing app.
+
+**Tip:** Choose a bundle identifier that reflects your organization and app name, and keep it consistent across your project files and provisioning profiles.
+
 #### Code Signing for Release
 
 Two entitlements - one for debug and one for publication.
