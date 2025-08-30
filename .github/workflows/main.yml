@@ -27,6 +27,7 @@ jobs:
       - name: Clone Repository
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.ref }}
           submodules: recursive
 
       - name: Setup .NET SDK
@@ -50,4 +51,5 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
+
         uses: actions/deploy-pages@v4
