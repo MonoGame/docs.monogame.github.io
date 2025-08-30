@@ -42,7 +42,7 @@ For example, if the snake is moving to the right, an invalid input would allow a
 
 ### Movement Cycle
 
-Instead of moving every update frame as a directional input is being pressed, the snake instead only moves during regular timed intervals.  A timer is used to determine how much time has passed since the last movement cycle, and when it reaches a set threshold, the next movement cycle occurs.  During this movement cycle, the snake should move forward in the direction that was input by the player between the last and current movement cycles.  This creates the grid-based movement system typically found in snake-like games.
+Instead of moving every update frame while a directional input is being pressed,  the snake moves only at fixed time intervals.  A timer is used to determine how much time has passed since the last movement cycle, and when it reaches a set threshold, the next movement cycle occurs.  During this movement cycle, the snake should move forward in the direction that was input by the player between the last and current movement cycles.  This creates the grid-based movement system typically found in snake-like games.
 
 There are various methods for handling the movement, such as iterating through each segment of the snake and updating the position of that segment to move forward.  Methods such as this though are wasteful, since visually the only parts of the snake that move on the screen are the head and the tail.  
 
@@ -107,7 +107,7 @@ This separation provides several benefits, including:
 1. **Input Device Independence**: The game logic does not need to know which input device the player is using. Whether they are playing with a keyboard, gamepad, or touch screen, the game only cares that a "move up" action was triggered, not which specific button or key caused it.
 2. **Simplified Input Handling**: Instead of checking multiple input combinations throughout the codebase, game objects can simply ask "Should I move up?" through a clean API call.
 3. **Easy Rebinding**: If you want to add key rebinding features, you only need to modify the `GameController` class, not every piece of code that uses input.
-4. **Consistent Input Logic**: The rules for determining if an action occurred (like checking if a button was just pressed version being held down) are defined in one place.
+4. **Consistent Input Logic**: The rules for determining if an action occurred (like checking if a button was just pressed versus being held down) are defined in one place.
 5. **Cross-Platform Compatibility**: When porting to different platforms with different input methods, you only need to update the `GameController` class to map the new input devices to your existing game actions.
 
 By implementing this pattern in our game, we are not only making our current input handling cleaner, but we are also establishing a foundation that would make it easier to add features like input customization or support for new input devices in the future.
@@ -118,8 +118,8 @@ With our input handling system in place, now we can turn our attention to implem
 
 We will need to implement a structure that can represent each segment of the slime, this structure will store the position and movement data for each segment.
 
-In the *DungeonSlime* project (your main game project), create a new directory named `GameObjects`. We will be putting all of our code related to the objects within the game here.
-Then create a new file named `SlimeSegment.cs` inside the `GameObjects` directory you just created and add the following code:
+In the *DungeonSlime* project (your main game project), create a new folder named `GameObjects`. We will be putting all of our code related to the objects within the game here.
+Then create a new file named `SlimeSegment.cs` inside the `GameObjects` folder you just created and add the following code:
 
 [!code-csharp[](./snippets/slimesegment.cs)]
 
@@ -142,7 +142,7 @@ By tracking both the current (`At`) and target (`To`) positions, we can implemen
 
 Next, we can implement a class to encapsulate the properties and functionality of our snake-like slime.
 
-In the `GameObjects` directory of the *DungeonSlime* project (your main game project), create a new file named `Slime.cs` and add the following initial code:
+In the `GameObjects` folder of the *DungeonSlime* project (your main game project), create a new file named `Slime.cs` and add the following initial code:
 
 [!code-csharp[](./snippets/slime/definition.cs)]
 
@@ -249,7 +249,7 @@ Add the following method to the `Slime` class after the `Move` method:
 
 [!code-csharp[](./snippets/slime/grow.cs)]
 
-Th `Grow` method works as follows:
+The `Grow` method works as follows:
 
 1. First it creates a copy of the current tail value.
 2. It then adjusts the values of the copy so that it is now positioned behind the current tail by using the `ReverseDirection` value of the tail.
@@ -268,9 +268,9 @@ This update method:
 1. Updates the slime's `AnimatedSprite` to ensure the sprite animations occur.
 2. Calls `HandleInput` to check for player input.
 3. Increments the movement timer by the amount of time that has elapsed between the game's update cycles.
-4. Performs a check to see if the movement timer has accumulated more time than the threshold to perform a movement cycle update.  If it has then:
-   1. The movement timer is reduced by the threshold time.
-   2. The `Move` method is called to perform a movement cycle update.
+4. Performs a check to see if the movement timer has accumulated more time than the threshold to perform a movement cycle update. If it has then:
+   1. The movement timer is reduced by the threshold time.
+   2. The `Move` method is called to perform a movement cycle update.
 5. Finally, the movement progress amount is calculated by dividing the number of seconds accumulated for the movement timer by the number of seconds for the threshold.  This gives us a normalized value between 0.0 and 1.0 that we can use for visual interpolation for fluid movement.
 
 > [!TIP]
@@ -339,7 +339,7 @@ Now that we have our player-controlled character implemented, we can create the 
 
 ### The Bat Class
 
-In the `GameObjects` directory of the *DungeonSlime* project (your main game project), create a new file named `Bat.cs` and add the following initial code:
+In the `GameObjects` folder of the *DungeonSlime* project (your main game project), create a new file named `Bat.cs` and add the following initial code:
 
 [!code-csharp[](./snippets/bat/definition.cs)]
 

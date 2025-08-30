@@ -15,7 +15,7 @@ In this chapter you will:
 * Integrate the UI system with our existing game architecture.
 
 > [!IMPORTANT]
-> While GUM is used in this tutorial it is only one of many UI libraries available to the MonoGame community, some notable others are [EmptyKeys](https://github.com/EmptyKeys/UI_Engines), [GeonBit.UI](https://github.com/RonenNess/GeonBit.UI), as well as entire Game Frameworks/Engines like [Nez}(https://github.com/prime31/Nez) that have their own built in UI systems.
+> While GUM is used in this tutorial it is only one of many UI libraries available to the MonoGame community, some notable others are [EmptyKeys](https://github.com/EmptyKeys/UI_Engines), [GeonBit.UI](https://github.com/RonenNess/GeonBit.UI), as well as entire Game Frameworks/Engines like [Nez](https://github.com/prime31/Nez) that have their own built in UI systems.
 >
 > Check out the [MonoGame Resources](https://monogame.net/resources/) page, as well as [awesome-monogame](https://github.com/aloisdeniel/awesome-monogame) from [Alois Deniel](https://github.com/aloisdeniel) for even more community offerings.
 
@@ -37,7 +37,7 @@ Gum addresses these challenges with ready-made solutions, allowing us to focus o
 > [!IMPORTANT]
 > This tutorial uses the Gum NuGet package to help with layout and responding to user interactions. This tutorial does not require the use of the Gum editor, we will be doing everything in code.
 >
-> Keep in mind, that while it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial. Instead, we will be taking advantage of the Gum NuGet package.
+> Keep in mind that while it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial. Instead, we will be taking advantage of the Gum NuGet package.
 >
 > Gum is a powerful system enabling the creation of virtually any game UI, and we will be covering some of the basics of its use in this tutorial. The full Gum documentation can be found here: [https://docs.flatredball.com/gum/code/monogame](https://docs.flatredball.com/gum/code/monogame)
 
@@ -161,11 +161,13 @@ The following docking modes are supported by Gum:
 
 ### Forms and Visuals
 
-Gum provides two types of objects: **Forms** and **Visuals**.
+Two concepts are important when working with Gum: **Forms** and **Visuals**.
 
-* Forms controls are typical interactive UI elements such as buttons, sliders, and text boxes that handle user interaction through mouse, gamepad, and keyboard inputs.  These controls come with built-in functionality; a button responds visually when focused, while a slider changes its value when clicked on its *track*.  By using these standardized components, you can maintain consistency throughout your UI implementation.
+* **Forms** controls are typical interactive UI elements such as buttons, sliders, and text boxes that handle user interaction through mouse, gamepad, and keyboard inputs.  These controls come with built-in functionality; a button responds visually when focused, while a slider changes its value when clicked on its *track*.  By using these standardized components, you can maintain consistency throughout your UI implementation.
 
-* Forms controls provide customization through their `Visual` property, which serves as a gateway to modifying their appearance and layout. With this property, you can move, resize, restyle, and even completely replace visuals through code.  As we will see when building our UI in the next chapter, this separation between functionality and presentation allows us to create consistent behaviors while adapting the visual style to match our game's aesthetic.
+* **Visuals** are the graphical display elements that render the actual appearance of UI components. In Gum, Visual elements have the *Runtime suffix (like TextRuntime, ColoredRectangleRuntime, and NineSliceRuntime) and are used to render graphics. They handle the visual representation but have no built-in interaction behavior on their own.
+
+Forms controls provide customization through their `Visual` property, which serves as a gateway to modifying their appearance and layout. With this property, you can move, resize, restyle, and even completely replace visuals through code.  As we will see when building our UI in the next chapter, this separation between functionality and presentation allows us to create consistent behaviors while adapting the visual style to match our game's aesthetic.
 
 For now, we will examine some of the Forms control types we will use in this chapter.
 
@@ -294,7 +296,7 @@ startButton.Visual.Width = 100;
 
 Direct property assignment works well for initial setup, such as positioning elements or setting their dimensions when first creating your UI.  However, when you need visual elements to respond to user interactions (like highlighting a button when it is focused), a different approach is required.
 
-For these dynamic changes, Gum uses a system of **states** (implemented as `StateSave` objects), each Forms control maintains a collection of named states that are automatically applied in response to specific user interactions.  When a button becomes focused, for instance, Gum looks for an applies a  state named "Focused" to alter its appearance.
+For these dynamic changes, Gum uses a system of **states** (implemented as `StateSave` objects), each Forms control maintains a collection of named states that are automatically applied in response to specific user interactions.  When a button becomes focused, for instance, Gum looks for and applies a state named "Focused" to alter its appearance.
 
 > [!NOTE]
 > In the next chapter during the customization pass, we will create states to visually indicate when controls are focused, providing clear feedback to the player.
@@ -319,7 +321,7 @@ To add the Gum NuGet package in Visual Studio Code:
 2. Choose `Add NuGet Package` from the context menu.
 3. Enter `Gum.MonoGame` in the `Add NuGet Package` search prompt and press Enter.
 4. When the search finishes, select the `Gum.MonoGame` package in the results
-5. When prompted for a version choose version `2025.5.1.1`.
+5. When prompted for a version choose version `2025.8.3.3`.
 
 #### [Visual Studio 2022](#tab/vs2022)
 
@@ -330,7 +332,7 @@ To Add the Gum NuGet package in Visual Studio 2022:
 3. In the NuGet Package Manager window, select the `Browse` tab if it is not already selected.
 4. In the search box, enter `Gum.MonoGame`.
 5. Select the "Gum.MonoGame" package from the search results.
-6. On the right, in the version dropdown, select version `2025.5.1.1` and click the "Install" button.
+6. On the right, in the version dropdown, select version `2025.8.3.3` and click the "Install" button.
 
 #### [dotnet CLI](#tab/dotnetcli)
 
@@ -340,7 +342,7 @@ To add the Gum NuGet package using the dotnet CLI:
 2. Enter the following command:
 
     ```sh
-    dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2025.5.1.1
+    dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2025.8.3.3
     ```
 
 ---
@@ -349,11 +351,11 @@ To add the Gum NuGet package using the dotnet CLI:
 > You can verify the package was successfully added by examining your `DungeonSlime.csproj` file, which should now contain a reference like:
 >
 > ```xml
-> <PackageReference Include="Gum.MonoGame" Version="2025.5.5.1" />
+> <PackageReference Include="Gum.MonoGame" Version="2025.8.3.3" />
 > ```
 
 > [!IMPORTANT]
-> This tutorial uses version `2025.5.5.1` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/breaking-changes) before updating in case there are any breaking changes from the code that is presented in this tutorial.
+> This tutorial uses version `2025.8.3.3` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/upgrading) before updating in case there are any breaking changes from the code that is presented in this tutorial.
 
 ### Adding UI Sound Effect
 
@@ -383,7 +385,7 @@ With the Gum NuGet package added to our project, we need to initialize Gum in ou
 
 First, open the `Game1.cs` file and add the following new using statements to the top:
 
-[!code-csharp[](./snippets/game1/usings.cs?highlight=4-5)]
+[!code-csharp[](./snippets/game1/usings.cs?highlight=2-5)]
 
 Next, add the following method to the `Game1` class to encapsulate the initializations of the Gum UI service:
 
@@ -395,15 +397,15 @@ Finally, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initializ
 
 The following is a breakdown of this initialization process:
 
-1. **Basic Initialization**: `GumService.Default.Initialize(this)` sets up the Gum system with our game instance.  This is required for any gum project.
+1. **Basic Initialization**: `GumService.Default.Initialize(this, DefaultVisualsVersion.V2)` sets up the Gum system with our game instance.  This is required for any gum project. The second parameter specifies the default visual styling. V2 is the latest version which makes it easy to style the default controls.
 
     > [!NOTE]
-    > We only need to pass our [**Game**](xref:Microsoft.Xna.Framework.Game) instance since we are using Gum as a code-first approach.  Gum also offers a visual editor that creates Gum project files. When using the editor, you will need to also pass the Gum Project file here.
+    > We only need to pass our [**Game**](xref:Microsoft.Xna.Framework.Game) instance and the visuals version since we are using Gum as a code-first approach.  Gum also offers a visual editor that creates Gum project files. When using the editor, you will need to also pass the Gum Project file to `Initialize`. For more information on how to use the Gum visual editor, see the [Gum Project Forms Tutorial](https://docs.flatredball.com/gum/code/monogame/tutorials/gum-project-forms-tutorial).
 
 2. **Content Loading**: Gum needs to be made aware of which content manager to use to load assets through the content pipeline.  By setting `GumService.Default.ContentLoader.XnaContentManager = Core.Content`, we tell Gum to use our game's content manager when loading assets.  By using the game's existing content manager, Gum also gets the benefit of the caching that the content manager performs when loading assets.
 3. **Input Configuration**:
    * By default, all Forms controls automatically respond to mouse and touch screen input devices.  We need to explicitly register keyboard and gamepad input devices by using th `FrameworkElement.KeyboardsForUiControl` and `Framework.GamePadsForUiControl` properties.
-   * By default, Forms controls will automatically respond to tab and shift-tab for navigation. By using the `FrameworkElement.TabKeyCombos` and `FrameworkElement.TabReverseKeyCombos` properties, we can add additional key combinations for tabbing.  Here map the Up arrow for reverse tabbing and the Down arrow for forward tabbing.  
+   * By default, Forms controls will automatically respond to tab and shift-tab for navigation. By using the `FrameworkElement.TabKeyCombos` and `FrameworkElement.TabReverseKeyCombos` properties, we can add additional key combinations for tabbing.  Here we map the Up arrow for reverse tabbing and the Down arrow for forward tabbing.  
 
    > [!TIP]
    > If you prefer different navigation keys, you can remove the built-in Tab/Shift+Tab navigation.
@@ -451,7 +453,7 @@ Each button registers a `Click` event handler to respond when the players select
 
 [!code-csharp[](./snippets/titlescene/handlestartclicked.cs)]
 
-When the "Start" button is clicked and this method is called, it will play the UI sound effect for auditory feedback then change the scene tot he game scene so the player can start playing the game.
+When the "Start" button is clicked and this method is called, it will play the UI sound effect for auditory feedback then change the scene to the game scene so the player can start playing the game.
 
 Next is the handler for the "Options" button.  Add the following method to the `TitleScene` class after the `HandleStartClicked` method:
 
@@ -481,7 +483,7 @@ Next is the handler when the "Sound Effects Volume" slider has completed a value
 
 When the value of the "Sound Effects Volume" slider has completed a change and this method is called, it plays the UI sound effect to provide auditory feedback so the player can hear the difference in volume.
 
-After this is the handler for when the "Music Volume" slider value changes.  Add the following method to the `TitleScene` class after the `HandleSfxSliderChangeCompleted` method:
+Next, add the handler for changes to the 'Music Volume' slider. Place the following method in the TitleScene class, directly after the HandleSfxSliderChangeCompleted method:
 
 [!code-csharp[](./snippets/titlescene/handlemusicslidervaluechanged.cs)]
 

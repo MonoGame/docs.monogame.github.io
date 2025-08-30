@@ -23,7 +23,7 @@ Rectangle screenBounds = new Rectangle(
 // Detect if the sprite is contained within the bounds of the screen
 if(!screenBounds.Contains(spriteBounds)) 
 {
-    // Respond by not allowing the sprite to move to move outside the screen
+    // Respond by not allowing the sprite to move outside the screen
     // bounds by setting the location back to the previous location.
     newLocation = previousLocation;
 }

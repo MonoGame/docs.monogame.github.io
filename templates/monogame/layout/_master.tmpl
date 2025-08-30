@@ -77,9 +77,27 @@
     <div class="container-xxl search-results" id="search-results"></div>
     {{/_enableSearch}}
 
+
       {{>partials/footer}}
       <script type="text/javascript" src="/public/injectDonateButton.js"></script>
       <script type="text/javascript" src="/public/questionAnswer.js"></script>
+
+      {{! 
+        DocFX 2.75 does not include hlsl, and hides its internal highlight.js version. 
+         This code re-imports highlight.js, (which feels wasteful, but I cannot figure anything else out)
+         and then adds a custom hlsl plugin, and highlights elements that were marked with the `hlsl` lang. 
+      }}
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+      <script type="text/javascript" src="/public/hlsl.min.js"></script>
+      <script type="text/javascript">
+        document.querySelectorAll("pre code.lang-hlsl").forEach(block => {
+          hljs.highlightElement(block);
+          block.classList.remove("lang-hlsl", "language-hlsl");
+          block.classList.add('nohighlight')
+        });
+      </script>
+
+
   </body>
 {{/redirect}}
 </html>

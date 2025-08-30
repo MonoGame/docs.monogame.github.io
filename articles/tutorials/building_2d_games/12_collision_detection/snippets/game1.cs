@@ -47,7 +47,7 @@ public class Game1 : Core
 
     protected override void LoadContent()
     {
-        // Create the texture atlas from the XML configuration file
+        // Create the texture atlas from the XML configuration file.
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
         // Create the slime animated sprite from the atlas.
@@ -61,9 +61,6 @@ public class Game1 : Core
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 
@@ -76,7 +73,7 @@ public class Game1 : Core
         // Check for gamepad input and handle it.
         CheckGamePadInput();
 
-        // Create a bounding rectangle for the screen
+        // Create a bounding rectangle for the screen.
         Rectangle screenBounds = new Rectangle(
             0,
             0,
@@ -112,10 +109,10 @@ public class Game1 : Core
             _slimePosition.Y = screenBounds.Bottom - _slime.Height;
         }
 
-        // Calculate the new position of the bat based on the velocity
+        // Calculate the new position of the bat based on the velocity.
         Vector2 newBatPosition = _batPosition + _batVelocity;
 
-        // Create a bounding circle for the bat
+        // Create a bounding circle for the bat.
         Circle batBounds = new Circle(
             (int)(newBatPosition.X + (_bat.Width * 0.5f)),
             (int)(newBatPosition.Y + (_bat.Height * 0.5f)),
@@ -126,7 +123,7 @@ public class Game1 : Core
 
         // Use distance based checks to determine if the bat is within the
         // bounds of the game screen, and if it is outside that screen edge,
-        // reflect it about the screen edge normal
+        // reflect it about the screen edge normal.
         if (batBounds.Left < screenBounds.Left)
         {
             normal.X = Vector2.UnitX.X;
@@ -183,15 +180,15 @@ public class Game1 : Core
 
     private void AssignRandomBatVelocity()
     {
-        // Generate a random angle
+        // Generate a random angle.
         float angle = (float)(Random.Shared.NextDouble() * Math.PI * 2);
 
-        // Convert angle to a direction vector
+        // Convert angle to a direction vector.
         float x = (float)Math.Cos(angle);
         float y = (float)Math.Sin(angle);
         Vector2 direction = new Vector2(x, y);
 
-        // Multiply the direction vector by the movement speed
+        // Multiply the direction vector by the movement speed.
         _batVelocity = direction * MOVEMENT_SPEED;
     }
 

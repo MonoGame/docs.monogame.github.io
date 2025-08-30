@@ -91,6 +91,8 @@ The .NET MAUI extension adds features for building mobile apps, including:
 - Easy target switching - Change debug/deploy targets between different mobile platforms
 - Enhanced C# Dev Kit integration - Leverages Solution Explorer, Test Explorer, and advanced language features
 
+![Install .NET MAUI DevKit Extension](../tutorials/building_2d_games/02_getting_started/images/maui-extension.png)
+
 > [!NOTE]
 > This extension is recommended if you wish to do iOS or Android development. It is required for debugging support when working on mobile games. 
 

@@ -59,7 +59,7 @@ To open the *Content.mgcb* content project file in the MGCB Editor using the dot
 2. Enter the following dotnet CLI command
 
     ```sh
-    dotnet mgcb-editor ./Content/Content.mgcb`
+    dotnet mgcb-editor ./Content/Content.mgcb
     ```
 
 ---
@@ -161,7 +161,7 @@ To load assets in your game code, MonoGame provides the [**ContentManager**](xre
 
 ### ContentManager Methods
 
-They key methods for asset loading are:
+The key methods for asset loading are:
 
 | Method                                                                                                    | Returns | Description                                                                  |
 | --------------------------------------------------------------------------------------------------------- | ------- | ---------------------------------------------------------------------------- |
@@ -236,7 +236,7 @@ Running the game now will show the MonoGame logo displayed in the upper-left cor
 | :--------------------------------------------------------------------------------: |
 |             **Figure 5-8: The MonoGame logo drawn to the game window**             |
 
-## Adding Build-In Asset Types
+## Adding Built-In Asset Types
 
 The MGCB Editor can also create certain built-in asset types.  In this section we will explore these types and this functionality.  If not already open, [open the MGCB Editor](#the-mgcb-editor) and perform the following:
 

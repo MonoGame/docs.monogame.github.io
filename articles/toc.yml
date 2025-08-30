@@ -6,7 +6,7 @@ items:
   - name: What's New
     href: whats_new.md
   - name: Getting Started - build your first 2D game
-    href: tutorials/building_2d_games/
+    href: tutorials/building_2d_games/index.md
     items:
       - name: Setting up MacOS
         href: /articles/getting_started/1_setting_up_your_os_for_development_macos.html
@@ -21,36 +21,36 @@ items:
       - name: Using Visual Studio Code
         href: /articles/getting_started/2_choosing_your_ide_vscode.html
   - name: Getting to know MonoGame
-    href: getting_to_know/
+    href: getting_to_know/index.md
     items:
       - name: What is
-        href: getting_to_know/whatis/
+        href: getting_to_know/whatis/index.md
         items:
           - name: Audio
-            href: getting_to_know/whatis/audio/
+            href: getting_to_know/whatis/audio/index.md
           - name: Content Pipeline
-            href: getting_to_know/whatis/content_pipeline/
+            href: getting_to_know/whatis/content_pipeline/index.md
           - name: Graphics
-            href: getting_to_know/whatis/graphics/
+            href: getting_to_know/whatis/graphics/index.md
           - name: Input
-            href: getting_to_know/whatis/input/
+            href: getting_to_know/whatis/input/index.md
           - name: The Game Loop
-            href: getting_to_know/whatis/game_loop/
+            href: getting_to_know/whatis/game_loop/index.md
           - name: Vector / Matrix / Quaternions
-            href: getting_to_know/whatis/vector_matrix_quat/
+            href: getting_to_know/whatis/vector_matrix_quat/index.md
           - name: MonoGame Class Library
-            href: getting_to_know/whatis/monogame_class_library/
+            href: getting_to_know/whatis/monogame_class_library/index.md
       - name: How to
-        href: getting_to_know/howto/
+        href: getting_to_know/howto/index.md
         items:
           - name: Audio
-            href: getting_to_know/howto/audio/
+            href: getting_to_know/howto/audio/index.md
           - name: Content Pipeline
-            href: getting_to_know/howto/content_pipeline/
+            href: getting_to_know/howto/content_pipeline/index.md
           - name: Graphics
-            href: getting_to_know/howto/graphics/
+            href: getting_to_know/howto/graphics/index.md
           - name: Input
-            href: getting_to_know/howto/input/
+            href: getting_to_know/howto/input/index.md
   - name: Advanced Topics
     href: getting_started/index.md
     items:
@@ -63,7 +63,7 @@ items:
       - name: Tools
         items:
           - name: Introduction
-            href: getting_started/tools/
+            href: getting_started/tools/index.md
           - name: MGCB
             href: getting_started/tools/mgcb.md
           - name: MGCB Editor
@@ -97,65 +97,88 @@ items:
   - name: Samples and Demos
     href: samples.md
   - name: Tutorials
-    href: tutorials/
+    href: tutorials/index.md
     items:
       - name: Building 2D Games
-        href: tutorials/building_2d_games/
+        href: tutorials/building_2d_games/index.md
         items:
           - name: "01: What Is MonoGame?"
-            href: tutorials/building_2d_games/01_what_is_monogame/
+            href: tutorials/building_2d_games/01_what_is_monogame/index.md
           - name: "02: Getting Started"
-            href: tutorials/building_2d_games/02_getting_started/
+            href: tutorials/building_2d_games/02_getting_started/index.md
           - name: "03: The Game1 File"
-            href: tutorials/building_2d_games/03_the_game1_file/
+            href: tutorials/building_2d_games/03_the_game1_file/index.md
           - name: "04: Creating a Class Library"
-            href: tutorials/building_2d_games/04_creating_a_class_library/
+            href: tutorials/building_2d_games/04_creating_a_class_library/index.md
           - name: "05: Content Pipeline"
-            href: tutorials/building_2d_games/05_content_pipeline/
+            href: tutorials/building_2d_games/05_content_pipeline/index.md
           - name: "06: Working with Textures"
-            href: tutorials/building_2d_games/06_working_with_textures/
+            href: tutorials/building_2d_games/06_working_with_textures/index.md
           - name: "07: Optimizing Texture Rendering"
-            href: tutorials/building_2d_games/07_optimizing_texture_rendering/
+            href: tutorials/building_2d_games/07_optimizing_texture_rendering/index.md
           - name: "08: The Sprite Class"
-            href: tutorials/building_2d_games/08_the_sprite_class/
+            href: tutorials/building_2d_games/08_the_sprite_class/index.md
           - name: "09: The AnimatedSprite Class"
-            href: tutorials/building_2d_games/09_the_animatedsprite_class/
+            href: tutorials/building_2d_games/09_the_animatedsprite_class/index.md
           - name: "10: Handling Input"
-            href: tutorials/building_2d_games/10_handling_input/
+            href: tutorials/building_2d_games/10_handling_input/index.md
           - name: "11: Input Management"
-            href: tutorials/building_2d_games/11_input_management/
+            href: tutorials/building_2d_games/11_input_management/index.md
           - name: "12: Collision Detection"
-            href: tutorials/building_2d_games/12_collision_detection/
+            href: tutorials/building_2d_games/12_collision_detection/index.md
           - name: "13: Working With Tilemaps"
-            href: tutorials/building_2d_games/13_working_with_tilemaps/
+            href: tutorials/building_2d_games/13_working_with_tilemaps/index.md
           - name: "14: Sound Effects and Music"
-            href: tutorials/building_2d_games/14_soundeffects_and_music/
+            href: tutorials/building_2d_games/14_soundeffects_and_music/index.md
           - name: "15: Audio Controller"
-            href: tutorials/building_2d_games/15_audio_controller/
+            href: tutorials/building_2d_games/15_audio_controller/index.md
           - name: "16: Working with SpriteFonts"
-            href: tutorials/building_2d_games/16_working_with_spritefonts/
+            href: tutorials/building_2d_games/16_working_with_spritefonts/index.md
           - name: "17: Scenes"
-            href: tutorials/building_2d_games/17_scenes/
+            href: tutorials/building_2d_games/17_scenes/index.md
           - name: "18: Texture Sampling"
-            href: tutorials/building_2d_games/18_texture_sampling/
+            href: tutorials/building_2d_games/18_texture_sampling/index.md
           - name: "19: User Interface Fundamentals"
-            href: tutorials/building_2d_games/19_user_interface_fundamentals/
+            href: tutorials/building_2d_games/19_user_interface_fundamentals/index.md
           - name: "20: Implementing UI with Gum"
-            href: tutorials/building_2d_games/20_implementing_ui_with_gum/
+            href: tutorials/building_2d_games/20_implementing_ui_with_gum/index.md
           - name: "21: Customizing Gum UI"
-            href: tutorials/building_2d_games/21_customizing_gum_ui/
+            href: tutorials/building_2d_games/21_customizing_gum_ui/index.md
           - name: "22: Snake Game Mechanics"
-            href: tutorials/building_2d_games/22_snake_game_mechanics/
+            href: tutorials/building_2d_games/22_snake_game_mechanics/index.md
           - name: "23: Completing the Game"
-            href: tutorials/building_2d_games/23_completing_the_game/
+            href: tutorials/building_2d_games/23_completing_the_game/index.md
           - name: "24: Shaders"
-            href: tutorials/building_2d_games/24_shaders/
+            href: tutorials/building_2d_games/24_shaders/index.md
           - name: "25: Packaging Your Game for Distribution"
-            href: tutorials/building_2d_games/25_packaging_game/
+            href: tutorials/building_2d_games/25_packaging_game/index.md
           - name: "26: Publishing Your Game to itch.io"
-            href: tutorials/building_2d_games/26_publish_to_itch/
+            href: tutorials/building_2d_games/26_publish_to_itch/index.md
           - name: "27: Conclusion and Next Steps"
-            href: tutorials/building_2d_games/27_conclusion/
+            href: tutorials/building_2d_games/27_conclusion/index.md
+      - name: 2D Shaders
+        href: tutorials/advanced/2d_shaders/
+        items:
+          - name: "01: Introduction"
+            href: tutorials/advanced/2d_shaders/01_introduction/index.md
+          - name: "02: Hot Reload"
+            href: tutorials/advanced/2d_shaders/02_hot_reload/index.md
+          - name: "03: The Material Class"
+            href: tutorials/advanced/2d_shaders/03_the_material_class/index.md
+          - name: "04: Debug UI"
+            href: tutorials/advanced/2d_shaders/04_debug_ui/index.md
+          - name: "05: Transition Effect"
+            href: tutorials/advanced/2d_shaders/05_transition_effect/index.md
+          - name: "06: Color Swap Effect"
+            href: tutorials/advanced/2d_shaders/06_color_swap_effect/index.md
+          - name: "07: Sprite Vertex Effect"
+            href: tutorials/advanced/2d_shaders/07_sprite_vertex_effect/index.md
+          - name: "08: Light Effect"
+            href: tutorials/advanced/2d_shaders/08_light_effect/index.md
+          - name: "09: Shadow Effect"
+            href: tutorials/advanced/2d_shaders/09_shadows_effect/index.md
+          - name: "10: Next Steps"
+            href: tutorials/advanced/2d_shaders/10_next_steps/index.md                               
   - name: Console Access
     href: console_access.md
   - name: Help and Support

@@ -1,10 +1,10 @@
-// Store the current location
+// Store the current location.
 Vector2 previousLocation = _spriteLocation;
 
-// Calculate a new location
+// Calculate a new location.
 Vector2 newLocation = _spriteLocation + new Vector2(10, 0);
 
-// Create a bounding box for the sprite object
+// Create a bounding box for the sprite object.
 Rectangle spriteBounds = new Rectangle(
     (int)newLocation.X,
     (int)newLocation.Y,
@@ -12,7 +12,7 @@ Rectangle spriteBounds = new Rectangle(
     (int)_sprite.Height
 );
 
-// Create a bounding box for the blocking object
+// Create a bounding box for the blocking object.
 Rectangle blockingBounds = new Rectangle(
     (int)_blockingLocation_.X,
     (int)_blockingLocation_.Y,

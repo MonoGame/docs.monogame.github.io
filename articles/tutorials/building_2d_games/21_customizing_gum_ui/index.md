@@ -182,7 +182,11 @@ Now that we have all our resources prepared, we can create custom versions of th
 
 ### The AnimatedButton Class
 
-Our first custom component will be an `AnimatedButton` that inherits from Gum's base `Button` class. This button will use the game's existing texture atlas for its visual appearance and provide animation when focused.
+Our first custom component is an `AnimatedButton` that inherits from Gum's base `Button` class. This button uses the game's existing texture atlas for its visual appearance and animates when focused.
+
+By default all Gum components provide a Visual property which can be cast to a type specific to the particular control. By convention the visual type is named the same as the component with the word `Visual` appened. For example, we will be casting the AnimatedButton's Visual property to `ButtonVisual` to access button-specific properties.
+
+This new `AnimatedButton` class casts the Visual property to `ButtonVisual` and modifies the button-specific properties such as background and text.
 
 First, in the *DungeonSlime* project (your main game project), create a new folder named `UI` to store our custom UI components.  Next, in that `UI` folder, create a new file called `AnimatedButton.cs` and add the following code to it:
 
@@ -190,21 +194,29 @@ First, in the *DungeonSlime* project (your main game project), create a new fold
 
 Next, we will examine the key aspects of this new `AnimatedButton` implementation:
 
-#### Top-level Container
+#### ButtonVisual
 
-Every customized control needs a top-level container to hold all visual elements. For our button, we create a `ContainerRuntime` that manages the button's size and contains all other visual elements:
+As mentioned earlier, we first access the `Visual` object and cast it to a `ButtonVisual`. Doing so gives us access to button-specific properties including individual elements (such as the text and background visuals) as well as the states that are applied when the button is hovered or pressed.
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=26&end=32)]
+We can modify the Visual to give it the appropriate size.
 
-The `WidthUnits` property set to `RelativeToChildren` means the container will automatically size itself based on its child elements, with 21 pixels of additional space.  This allows the button to adapt its size depending on the text content.
+[!code-csharp[](./snippets/animatedbutton.cs?start=30&end=35)]
+
+The `WidthUnits` property set to `RelativeToChildren` means the container  automatically sizes itself based on its child elements, with 21 pixels of additional space.  This allows the button to adapt its size depending on the text content.
 
 #### Nine-slice Background
 
-We use a `NineSliceRuntime` for the button's background.  A nine-slice is a special graphic that can be stretch while preserving its corners and edges:
+`ButtonVisual` provides a `Background` which we can modify. This is of type `NineSliceRuntime` which is a special graphic that can be stretch while preserving its corners and edges:
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=34&end=41)]
+[!code-csharp[](./snippets/animatedbutton.cs?start=39&end=42)]
 
-The `TextureAddress` property is set to `Custom` so we can specify exactly which portion of the atlas texture to use, while `Dock(Dock.Fill)` ensure the background fills the entire button area.
+The `TextureAddress` property is set to `Custom` so we can specify exactly which portion of the atlas texture to use, while `Dock(Dock.Fill)` ensure the background fills the entire button area. The portion of the atlas is assigned using AnimationChains, which are discussed later in this tutorial.
+
+#### Text
+
+`ButtonVisual` also provides a customizable `Text` property. In this case we assign the font, color, and size.
+
+[!code-csharp[](./snippets/animatedbutton.cs?start=45&end=55)]
 
 #### Animated Chains
 
@@ -215,27 +227,25 @@ The most distinctive feature of our animated button is its ability to change app
 
 Each animation frame specifies the coordinates within our texture atlas to display:
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=62&end=102)]
+[!code-csharp[](./snippets/animatedbutton.cs?start=58&end=93)]
 
 #### States and Categories
 
-In Gum, each control type has a specific category name that identifies its state collection. For buttons we use `Button.ButtonCategoryName`:
+In Gum, each control type has a specific category name that identifies its state collection. `ButtonVisual` provides access to ready-made states and catgories which we can modify. Before we speicfy how a state should modify the button's appearance, we clear out all existing functionality so that we can fully control the states:
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=104&end=107)]
+[!code-csharp[](./snippets/animatedbutton.cs?start=104&end=104)]
 
-Within this category, we define how the button appears in different states by creating `StateSave` objects with specific state names:
+Each of the button's states can be accessed through `ButtonVisual`. Since the states were cleared previously, the code assigns only the necessary property assignments in the `Apply` delegate. In our case, we switch between animation chains to create the desired visual effect.
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=109&end=140)]
-
-Each state's `Apply` action defines what visual changes occur when the state becomes active.  In our case, we switch between animation chains to create the desired visual effect.
+[!code-csharp[](./snippets/animatedbutton.cs?start=107&end=130)]
 
 #### Custom Input Handling
 
 We add custom keyboard navigation to our button by handling the `KeyDown` event:
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=142&end=143)]
+[!code-csharp[](./snippets/animatedbutton.cs?start=133&end=133)]
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=152&end=167)]
+[!code-csharp[](./snippets/animatedbutton.cs?start=142&end=154)]
 
 This allows players to navigate between buttons using the left and right arrow keys, providing additional control options beyond the default tab navigation.
 
@@ -243,15 +253,17 @@ This allows players to navigate between buttons using the left and right arrow k
 
 We also add a `RollOn` event handler to ensure the button gets focus when the mouse hovers over it:
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=145&end=146)]
+[!code-csharp[](./snippets/animatedbutton.cs?start=136&end=136)]
 
-[!code-csharp[](./snippets/animatedbutton.cs?start=169&end=175)]
+[!code-csharp[](./snippets/animatedbutton.cs?start=159&end=162)]
 
 This creates a more responsive interface by immediately focusing elements that the player interacts with using the mouse.
 
 ### The OptionsSlider Class
 
 Now we will create a custom `OptionsSlider` class to style the volume sliders.  This class inherits from Gum's base `Slider` class and provides a styled appearance consistent with the game's visual theme.
+
+Unlike `AnimatedButton`, the `OptionsSlider` creates a Visual completely from scratch. This class provides an example for how to completely customize a Forms control by recreating its Visual object entirely. We do this because the desired appearance and behavior of our `OptionsSlider` is differs enough from the existing Slider that it is easier to replace its `Visual` entirely.
 
 In the `UI` folder of the *DungeonSlime* project (your main game project), create a new file called `OptionsSlider.cs` and add the following code to it:
 

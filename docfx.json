@@ -50,6 +50,7 @@
     "resource": [
       {
         "files": [
+          "**/gifs/**",
           "**/images/**",
           "**/videos/**",
           "**/files/**",

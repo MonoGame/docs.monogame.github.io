@@ -36,7 +36,7 @@ public class Game1 : Core
 
     protected override void LoadContent()
     {
-        // Create the texture atlas from the XML configuration file
+        // Create the texture atlas from the XML configuration file.
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
         // Create the slime animated sprite from the atlas.
@@ -50,9 +50,6 @@ public class Game1 : Core
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 

@@ -15,7 +15,7 @@ As XNA became more popular, the need for cross-platform development started to g
 
 The official first release of MonoGame occurred in 2011, as an open-source version of XNA. While it still had the same familiar API as XNA, the cross-platform support was expanded to include Windows, macOS, Linux, iOS, Android, Xbox, and PlayStation. Despite Microsoft discontinuing XNA in 2013, MonoGame continued to grow and develop. Maintenance of the project was given to [Steve Williams](https://github.com/KonajuGames) and [Tom Spilman](https://github.com/tomspilman) in 2014. In order to direct its future development and undertaking, the [MonoGame Foundation](https://monogame.net/about/) was formed on September 29th, 2023.
 
-Today, MonoGame is a mature cross-platform framework, that is built with the spirit of preserving XNA while adopting modern game development practices. Some popular titles created using MonoGame includes [Celeste](https://store.steampowered.com/app/504230/Celeste/), [Stardew Valley](https://store.steampowered.com/app/413150/Stardew\_Valley/), and [Streets of Rage 4](https://store.steampowered.com/app/985890/Streets\_of\_Rage\_4/).
+Today, MonoGame is a mature cross-platform framework, that is built with the spirit of preserving XNA while adopting modern game development practices. Some popular titles created using MonoGame include [Celeste](https://store.steampowered.com/app/504230/Celeste/), [Stardew Valley](https://store.steampowered.com/app/413150/Stardew\_Valley/), and [Streets of Rage 4](https://store.steampowered.com/app/985890/Streets\_of\_Rage\_4/).
 
 |    ![Figure 1-1: Celeste](./images/celeste.png)     | ![Figure 1-2: Stardew Valley](./images/stardew-valley.png) |
 | :-------------------------------------------------: | :--------------------------------------------------------: |
@@ -36,7 +36,7 @@ MonoGame, following in the footsteps of XNA, is a "bring your own tools" framewo
 At its core, MonoGame offers a set of libraries and APIs to handle common game development tasks. These include:
 
 1. **Graphics Rendering**: 2D and 3D rendering are supported through the graphics API offered by MonoGame. This API provides sprite batching for 2D graphics, a flexible 3D pipeline, and shaders for custom visuals and effects.
-2. **Input Handling**: Input from keyboard, mouse, gamepads, and touchscreens are supported, allowing for development of games for any platform and different styles of play.
+2. **Input Handling**: Input from keyboard, mouse, gamepads, and touchscreens is supported, allowing for development of games for any platform and different styles of play.
 3. **Audio**: A comprehensive audio system that can be used to create sound effects as well as play music with included support for many audio formats.
 4. **Content Pipeline**: An out-of-the-box workflow for importing and processing game assets such as textures, models, and audio, and compiling them to a format that is optimal for the game's target platform.
 5. **Math Library**: A math library specifically optimized for game development, providing essential mathematical functions and operations.

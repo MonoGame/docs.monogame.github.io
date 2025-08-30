@@ -20,7 +20,7 @@ In this chapter, you will:
 - Create a title scene and gameplay scene for our game
 - Refactor our existing game to use the scene system
 
-We will being by first defining the lifecycle of a scene that will be followed.
+We will begin by first defining the lifecycle of a scene that will be followed.
 
 ## Scene Lifecycle
 
@@ -87,13 +87,13 @@ Add the following methods to the `Scene` class to complete the implementation of
 
 [!code-csharp[](./snippets/scene.cs#disposable)]
 
-This completes our Base scene implementation that we will use to create actual scenes from in our project, next we need a manager that will organise the screens for use in the game.
+With the Base scene implementation complete, we can now use it to create actual scenes for our project. The next step is to implement a manager that organizes and coordinates these scenes within the game.
 
 ## Scene Management
 
 With the base `Scene` class defined, the `Core` class needs to be updated to handle management of the scenes, including update, drawing, and changing scenes.  Open the `Core.cs` file in the *MonoGameLibrary* project and make the following changes:
 
-[!code-csharp[](./snippets/core.cs?highlight=8,21-25,144-155,160-169,171-179,181-205)]
+[!code-csharp[](./snippets/core.cs?highlight=8,21-25,147–158,163–172,174–182,184–208)]
 
 The key changes here are:
 
@@ -104,18 +104,18 @@ The key changes here are:
    2. A check is made to see if there is an active scene, and if so, updates it.
 4. An override for the `Draw` method was added where a check is made to see if there is an active scene, and if so, draws it.
 5. The `ChangeScene` method was added which can be called when we want to tell the core to change from one scene to another one.
-6. The `TransitionScene` method was add that gracefully transitions from the current scene to the next scene by
-   1. A check is made to see if there is an active scene, and if so, disposes it.
-   2. The garbage collector is told to perform a collection to clear out memory from the disposal of the current scene.
-   3. The next scene is set as the current scene.
-   4. A check is made to see if there is now a current scene, and if so, initializes it.
+6. The `TransitionScene` method was added to gracefully switch from the current scene to the next by:
+   1. Checking if there is an active scene, and disposing it if so.
+   2. Triggering garbage collection to reclaim memory from the disposed scene.
+   3. Assigning the next scene as the current scene.
+   4. Checking if a current scene now exists, and initializing it if so.
 
 > [!TIP]
 > Notice that we use a two-step process for scene transitions with separate `_activeScene` and `_nextScene` fields. This design allows the current scene to complete its update/draw cycle before the transition occurs, preventing potential issues that could arise from changing scenes in the middle of processing. The actual transition happens at a controlled point in the game loop, ensuring clean disposal of the old scene before initializing the new one.
 
 ## Updating the Game
 
-With the scene architecture in place, the game can now be updated so that it is broken down into scenes. We will create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
+With the scene architecture in place, we are now ready to update the game by breaking it into separate scenes. We will create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
 
 1. Right-click the `fonts` folder and choose `Add > New Item...`.
 2. Select `SpriteFont Description (.spritefont)` from the options.
@@ -154,7 +154,7 @@ Add the following fields to the `TitleScene` class:
 
 - Three `const` fields (`DUNGEON_TEXT`, `SLIME_TEXT`, `PRESS_ENTER_TEXT`) are added for the text that will be displayed on the title screen.
 - The `_font` field stores a reference to the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) we will use to draw the press enter prompt with.
-- The `_font3x` field stores a reference to the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) we will use to draw the dungeon and slime text with that will make up the title of the game.
+- The `_font5x` field stores a reference to the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) we will use to draw the dungeon and slime text with that will make up the title of the game.
 - The `_dungeonTextPos` and `_dungeonTextOrigin` fields store the position and origin we will use to draw the "Dungeon" text at.
 - The `_slimeTextPos` and `_slimeTextOrigin` fields store the position and origin we will draw the "Slime" text at.
 - The `_pressEnterPos` and `_pressEnterOrigin` fields store the position and origin we will draw the "Press Enter To Start" text at.

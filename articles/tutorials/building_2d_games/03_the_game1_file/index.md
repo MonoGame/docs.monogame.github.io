@@ -31,7 +31,7 @@ This class provides the following structure:
 
 ## Graphics and Rendering
 
-The graphics pipeline in monogame starts with two components: the [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
+The graphics pipeline in MonoGame starts with two components: the [**GraphicsDeviceManager**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager) and [**SpriteBatch**](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch).
 
 [!code-csharp[](./snippets/game1.cs?start=9&end=10)]
 
@@ -50,7 +50,7 @@ After that, the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) m
 This separation allows you to perform setup tasks in a logical order; core systems in the constructor and game-specific initializations in the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method.  The call to `base.Initialize()` should never be removed, as this is where the graphics device is initialized for the target platform.
 
 > [!TIP]
-> You may be wondering why there is an [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method instead of performing all initializations in the constructor.  The [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method is a `virtual` method that is overridden, and [it is advised to not call overridable methods from within a constructor](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2214), as this can lead to unexpected states in object constructor when called.  Additionally, when the constructor is called, the base constructor will instantiate properties and services based on the target platform that may be needed first before performing initializations for the game itself.
+> You may be wondering why there is an [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method instead of performing all initializations in the constructor.  The [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize) method is a `virtual` method that is overridden, and [it is advised to not call overridable methods from within a constructor](https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2214), as this can lead to unexpected states in the object constructor when called.  Additionally, when the constructor is called, the base constructor will instantiate properties and services based on the target platform that may be needed first before performing initializations for the game itself.
 
 ## Content Loading
 

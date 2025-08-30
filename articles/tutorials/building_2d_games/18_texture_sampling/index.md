@@ -146,7 +146,7 @@ spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
 ## Adding a Scrolling Background to the Title Scene
 
-We will now update title scene of our game by adding a scrolling background pattern using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  By adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.
+We will now update the title scene of our game by adding a scrolling background pattern using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  By adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.
 
 First, download the following image of a repeatable background pattern by right-clicking it and saving it as `background-pattern.png` in the `Content/images` folder of the game project:
 
