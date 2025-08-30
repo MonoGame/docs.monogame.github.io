@@ -160,25 +160,25 @@ items:
         href: tutorials/advanced/2d_shaders/
         items:
           - name: "01: Introduction"
-            href: tutorials/advanced/2d_shaders/01_introduction/index.md
+            href: tutorials/advanced/2d_shaders/01_introduction/
           - name: "02: Hot Reload"
-            href: tutorials/advanced/2d_shaders/02_hot_reload/index.md
+            href: tutorials/advanced/2d_shaders/02_hot_reload/
           - name: "03: The Material Class"
-            href: tutorials/advanced/2d_shaders/03_the_material_class/index.md
+            href: tutorials/advanced/2d_shaders/03_the_material_class/
           - name: "04: Debug UI"
-            href: tutorials/advanced/2d_shaders/04_debug_ui/index.md
+            href: tutorials/advanced/2d_shaders/04_debug_ui/
           - name: "05: Transition Effect"
-            href: tutorials/advanced/2d_shaders/05_transition_effect/index.md
+            href: tutorials/advanced/2d_shaders/05_transition_effect/
           - name: "06: Color Swap Effect"
-            href: tutorials/advanced/2d_shaders/06_color_swap_effect/index.md
+            href: tutorials/advanced/2d_shaders/06_color_swap_effect/
           - name: "07: Sprite Vertex Effect"
-            href: tutorials/advanced/2d_shaders/07_sprite_vertex_effect/index.md
+            href: tutorials/advanced/2d_shaders/07_sprite_vertex_effect/
           - name: "08: Light Effect"
-            href: tutorials/advanced/2d_shaders/08_light_effect/index.md
+            href: tutorials/advanced/2d_shaders/08_light_effect/
           - name: "09: Shadow Effect"
-            href: tutorials/advanced/2d_shaders/09_shadows_effect/index.md
+            href: tutorials/advanced/2d_shaders/09_shadows_effect/
           - name: "10: Next Steps"
-            href: tutorials/advanced/2d_shaders/10_next_steps/index.md                               
+            href: tutorials/advanced/2d_shaders/10_next_steps/                              
   - name: Console Access
     href: console_access.md
   - name: Help and Support
