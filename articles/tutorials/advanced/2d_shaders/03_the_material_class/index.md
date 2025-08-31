@@ -58,6 +58,10 @@ public static Material WatchMaterial(this ContentManager manager, string assetNa
 }
 ```
 
+> [!note]
+> The `Material` has been built to be hot-reloadable. Later in this chapter, we will see how the performance cost for supporting hot-reload is negligible by using the `[Conditional("DEBUG")]` attribute. However, if you do not want the `Material` to be hot-reloadable, then change the `Material`'s `Asset` field to be an `Effect` rather than a `WatchedAsset<Effect>`. There will be some minor differences in the rest of the tutorial series, but the only major difference is that the `Material` will not be hot-reloadable during development.
+
+
 And now, in the `GameScene`, adjust the `_grayscaleEffect` to use the new `Material` class. 
 ```csharp
 // The grayscale shader effect.  
@@ -257,7 +261,7 @@ _grayscaleEffect.Update();
 If you repeat the same test as before, the game will not become grayscale after a new shader is loaded. Once you have validated this, make sure to undo the changes in the `LoadContent()` and `Draw()` method, so that the `_grayscaleEffect` is still setting the `Saturation` value in the `Draw()` method.
 
 
-#### Debug Builds
+### Debug Builds
 
 When the _DungeonSlime_ game is published, it would not make sense to run the new `Material.Update()` method, because no shaders would ever be hot-reloaded in a release build. We can strip the method from the game when it is being built for _Release_. Add the following attribute to the `Material.Update()` method, 
 
@@ -269,8 +273,10 @@ public void Update()
 }
 ```
 
+The built _DungeonSlime_ executable will no longer contain the compiled code for the `Material.Update()` method, or any place in the code that _invoked_ the method. This means that the hot-reload system will never attempt to read the file timestamps of your `.xnb` files. There is still a _tiny_ cost for keeping the extra fields on the `WatchedAsset` type, rather than using the `Effect` directly. However, given the huge wins for your shader development workflow, paying the memory cost for a few mostly unused fields is a worthwhile trade-off. 
+
 > [!Tip]
-> Adding the [`[Conditional]`](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.conditionalattribute?view=net-9.0) attribute is optional. It will not seriously impact your game's performance one way or another.
+> Adding the [`[Conditional]`](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.conditionalattribute?view=net-9.0) attribute is optional. It will slightly increase the performance of your game, and disable `Material` hot-reload for released games.
 
 ### Supporting more Parameter Types
 
