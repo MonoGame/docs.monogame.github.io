@@ -3,6 +3,11 @@ title: "Chapter 03: The Material Class"
 description: "Create a wrapper class to help manage shaders"
 ---
 
+In [Chapter 24](../../../building_2d_games/24_shaders/index.md) of the original [2D Game Series](../../../building_2d_games/index.md), you learned about MonoGame's [`Effect`](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) class. When `.fx` shaders are compiled, the compiled code is loaded into MonoGame as an `Effect` instance. The `Effect` class has a few powerful utilities for setting shader parameters, but otherwise, it is a fairly bare-bones container for the compiled shader code. 
+
+> [!note]
+> MonoGame also ships with standard `Effect` sub-classes that can be useful for bootstrapping a game without needing to write any custom shader code. However, all of these standard `Effect` types are geared towards 3D games, except for _1_, called the [`SpriteEffect`](xref:Microsoft.Xna.Framework.Graphics.SpriteEffect). This will be discussed in [Chapter 7: Sprite Vertex Effect](../07_sprite_vertex_effect/index.md). 
+
 In this chapter, we will create a small wrapper class, called the `Material`, that will handle shader parameters, hot-reload, and serve as a baseline for future additions.
 
 If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/02-Hot-Reload-System/).
