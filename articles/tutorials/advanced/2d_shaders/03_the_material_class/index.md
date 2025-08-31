@@ -1,4 +1,7 @@
-Our hot-reload system is working, which is great! 
+---
+title: "Chapter 03: The Material Class"
+description: "Create a wrapper class to help manage shaders"
+---
 
 In this chapter, we will create a small wrapper class, called the `Material`, that will handle shader parameters, hot-reload, and serve as a baseline for future additions.
 
