@@ -83,7 +83,8 @@ Core.ImGuiRenderer.AfterLayout();
 
 Each instance of `Material` is going to draw a custom debug window. The window will show the latest time the shader was reloaded into the game, which will help demonstrate when a new shader is being used. The window can also show the parameter values for the shader. 
 
-Add the following function to the `Material` class, 
+Add the following function to the `Material` class:
+
 ```csharp
 
 [Conditional("DEBUG")]
@@ -191,7 +192,8 @@ First, add this new boolean to the `Material` class:
 public bool DebugOverride;
 ```
 
-Then, modify all of the `SetParameter()` methods to exit early when the `DebugOverride` variable is set to `true`. 
+Then, modify all of the `SetParameter()` methods to exit early when the `DebugOverride` variable is set to `true`:
+
 ```csharp
 public void SetParameter(string name, float value)
 {
@@ -224,14 +226,15 @@ Now, when you run the game, you can enable the `"Override Values"` checkbox to b
 
 As the number of shaders and `Material` instances grows throughout the rest of the tutorial series, it will become awkward to manage drawing all of the debug UIs manually like the `_grayscaleEffect`'s UI is being drawn. Rather, it would be good to have a single function that would draw all of the debug UIs at once. Naturally, it would not make sense to draw _every_ `Material`'s debug UI, so the `Material` class needs a setting to decide if the debug UI should be drawn or not. 
 
-We will keep track of all the `Material` instances to draw as a `static` variable inside the `Material` class itself. 
+We will keep track of all the `Material` instances to draw as a `static` variable inside the `Material` class itself:
 
 ```csharp
 // materials that will be drawn during the standard debug UI pass.  
 private static HashSet<Material> s_debugMaterials = new HashSet<Material>();
 ```
 
-Now we can add a `boolean` property to the `Material` class that adds or removes the given instance to the `static` set. 
+Now we can add a `boolean` property to the `Material` class that adds or removes the given instance to the `static` set:
+
 ```csharp
 /// <summary>
 /// Enable this variable to visualize the debugUI for the material
@@ -256,7 +259,8 @@ public bool IsDebugVisible
 }
 ```
 
-To finish off the edits to the `Material` class, add a method that actually renders all of the `Material` instances in the `static` set. 
+To finish off the edits to the `Material` class, add a method that actually renders all of the `Material` instances in the `static` set:
+
 ```csharp
 [Conditional("DEBUG")]
 public static void DrawVisibleDebugUi(GameTime gameTime)
@@ -285,7 +289,8 @@ public static void DrawVisibleDebugUi(GameTime gameTime)
 }
 ```
 
-Now in the `Core`'s `Draw` method, we just need to call the new method. We should also delete the old code in the `GameScene` to draw the `_grayscaleEffect`'s debugUI as a one-shot. 
+Now in the `Core`'s `Draw` method, we just need to call the new method. We should also delete the old code in the `GameScene` to draw the `_grayscaleEffect`'s debugUI as a one-shot:
+
 ```csharp
 protected override void Draw(GameTime gameTime)
 {
@@ -301,7 +306,8 @@ protected override void Draw(GameTime gameTime)
 }
 ```
 
-Finally, in order to render the debug UI for the `_grayscaleEffect`, just enable the `IsDebugVisible` property to `true`. 
+Finally, in order to render the debug UI for the `_grayscaleEffect`, just enable the `IsDebugVisible` property to `true`:
+
 ```csharp
 // Load the grayscale effect
 _grayscaleEffect = Content.WatchMaterial("effects/grayscaleEffect");
@@ -325,7 +331,8 @@ First, in the `.csproj` file, remove the reference to MonoGame's openGL backend:
 <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
 ```
 
-And replace it with this line, 
+And replace it with this line:
+
 ```xml
 <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.*" />
 ```
@@ -362,7 +369,8 @@ Make sure you have built _DungeonSlime_. You can build it manually by running th
 dotnet build
 ```
 
-Once you have downloaded [RenderDoc](https://renderdoc.org/), open it. Go to the _Launch Application_ tab, and select your built executable for the _Executable Path_. For example, the path may look similar to the following, 
+Once you have downloaded [RenderDoc](https://renderdoc.org/), open it. Go to the _Launch Application_ tab, and select your built executable for the _Executable Path_. 
+For example, the path may look similar to the following:
 
 ```sh
 C:\proj\MonoGame.Samples\Tutorials\2dShaders\src\04-Debug-UI\DungeonSlime\bin\Debug\net8.0-windows7.0\DungeonSlime.exe

@@ -36,7 +36,7 @@ The second stage references a new term, called the _Normal_ Map. We will come ba
 
 ### Drawing to an off-screen texture
 
-To get started, we need to draw the main game sprites to an off-screen texture instead of directly to the screen. Create a new file in the shared _MonoGameLibrary_ graphics folder called `DeferredRenderer.cs`. 
+To get started, we need to draw the main game sprites to an off-screen texture instead of directly to the screen. Create a new file in the shared _MonoGameLibrary_ graphics folder called `DeferredRenderer.cs`:
 
 ```csharp
 using Microsoft.Xna.Framework;
@@ -67,7 +67,7 @@ public class DeferredRenderer
 }
 ```
 
-The `ColorBuffer` property is a `RenderTarget2D`, which is a special type of `Texture2D` that MonoGame can draw into. In order for MonoGame to draw anything into the `ColorBuffer`, it needs to be bound as the current render target. Add the following function to the `DeferredRenderer` class. The `SetRenderTarget()` function instructs all future MonoGame draw operations to render into the `ColorBuffer`. 
+The `ColorBuffer` property is a `RenderTarget2D`, which is a special type of `Texture2D` that MonoGame can draw into. In order for MonoGame to draw anything into the `ColorBuffer`, it needs to be bound as the current render target. Add the following function to the `DeferredRenderer` class. The `SetRenderTarget()` function instructs all future MonoGame draw operations to render into the `ColorBuffer`:
 
 ```csharp
 public void StartColorPhase()  
@@ -78,7 +78,8 @@ public void StartColorPhase()
 }
 ```
 
-Once all of the rendering is complete, we need to switch the primary render target back to the _screen_ so that we can actually see anything. Add the following method to the `DeferredRenderer` class. Note that `null` is a special value when it comes to `RenderTarget2D`s. `null` translates to "the screen". 
+Once all of the rendering is complete, we need to switch the primary render target back to the _screen_ so that we can actually see anything. Add the following method to the `DeferredRenderer` class. Note that `null` is a special value when it comes to `RenderTarget2D`s. `null` translates to "the screen":
+
 ```csharp
 public void Finish()
 {
@@ -203,7 +204,8 @@ public void StartLightPhase()
 }
 ```
 
-Then, we need to call the new method in the `GameScene`'s `Draw()` method between the current `SpriteBatch.End()` call and the `deferredRenderer.Finish()` call. 
+Then, we need to call the new method in the `GameScene`'s `Draw()` method between the current `SpriteBatch.End()` call and the `deferredRenderer.Finish()` call:
+
 ```csharp
 // Always end the sprite batch when finished.  
 Core.SpriteBatch.End();  
@@ -217,7 +219,8 @@ _deferredRenderer.StartLightPhase();
 _deferredRenderer.Finish();
 ```
 
-To finish off with the `DeferredRenderer` changes for now, add the `LightBuffer` to the `DebugDraw()` view as well, 
+To finish off with the `DeferredRenderer` changes for now, add the `LightBuffer` to the `DebugDraw()` view as well:
+
 ```csharp
 public void DebugDraw()
 {
@@ -270,7 +273,7 @@ Now when you run the game, you'll see a blank texture in the top-right. It is bl
 
 ### Point Light Shader
 
-Each light will be drawn using a shader so that the fall-off and intensity can be adjusted in real time. Use the `mgcb-editor` to create a new Sprite Effect in the _SharedContent_ folder. For now, leave it as the default shader. We need to load it in the `Core` class. First, create a new class member in the `Core` class, 
+Each light will be drawn using a shader so that the fall-off and intensity can be adjusted in real time. Use the `mgcb-editor` to create a new Sprite Effect in the _SharedContent_ folder. For now, leave it as the default shader. We need to load it in the `Core` class. First, create a new class member in the `Core` class:
 
 ```csharp
 /// <summary>  
@@ -293,7 +296,7 @@ PointLightMaterial.Update();
 
 
 
-In order to handle multiple lights, it will be helpful to have a class to represent each light. Create a new file in the _MonoGameLibrary_'s graphics folder called `PointLight.cs`. 
+In order to handle multiple lights, it will be helpful to have a class to represent each light. Create a new file in the _MonoGameLibrary_'s graphics folder called `PointLight.cs`:
 
 ```csharp
 using System.Collections.Generic;
@@ -321,7 +324,8 @@ public class PointLight
 }
 ```
 
-Now, create a `List<PointLight>` as a new class member in the `GameScene`. 
+Now, create a `List<PointLight>` as a new class member in the `GameScene`:
+
 ```csharp
 // A list of point lights to be rendered  
 private List<PointLight> _lights = new List<PointLight>();
@@ -381,7 +385,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 For the sake of clarity, these screenshots show only the `LightBuffer` as full screen. Here, we can see the distance based return value.
 ![Figure 8.4: Showing the distance from the center of the light in the red channel](./images/point-light-dist.png)
 
-That starts to look like a light, but in reverse. Create a new variable, `falloff` which inverts the distance. The `saturate` function is shorthand for clamping the value between `0` and `1`. 
+That starts to look like a light, but in reverse. Create a new variable, `falloff` which inverts the distance. The `saturate` function is shorthand for clamping the value between `0` and `1`:
 
 ```hlsl
 float4 MainPS(VertexShaderOutput input) : COLOR  
@@ -397,7 +401,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 
 ![Figure 8.5: Invert the distance](./images/point-light-falloff-1.png)
 
-That looks more light-like. Now it is time to add some artistic control parameters to the shader. First, it would be good to be able to increase the brightness of the light. Multiplying the `falloff` by some number larger than 1 would increase the brightness, but leave the unlit sections completely unlit. 
+That looks more light-like. Now it is time to add some artistic control parameters to the shader. First, it would be good to be able to increase the brightness of the light. Multiplying the `falloff` by some number larger than 1 would increase the brightness, but leave the unlit sections completely unlit:
 
 ```hlsl
 float LightBrightness;  
@@ -477,7 +481,8 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 }
 ```
 
-Change the light color in C# to `CornflowerBlue`. 
+Change the light color in C# to `CornflowerBlue`:
+
 ```csharp
 _lights.Add(new PointLight  
 {  
@@ -522,7 +527,8 @@ Create a new class member in the `Core` class to hold the material:
 public static Material DeferredCompositeMaterial { get; private set; }
 ```
 
-And load the effect in the `LoadContent()` method of the `Core` class. 
+And load the effect in the `LoadContent()` method of the `Core` class:
+
 ```csharp
 DeferredCompositeMaterial = SharedContent.WatchMaterial("effects/deferredCompositeEffect");  
 DeferredCompositeMaterial.IsDebugVisible = true;
@@ -555,7 +561,7 @@ _deferredRenderer.Finish();
 _deferredRenderer.DrawComposite();
 ```
 
-If you run the game now, it will appear as it did when we started the chapter! Now it is time to factor in the `LightBuffer`. The `deferredCompositeEffect` shader needs to get the `LightBuffer` and multiply it with the `ColorBuffer`. The `ColorBuffer` is being passed in as the main sprite from `SpriteBatch`, so we will need to add a second texture and sampler to the shader to get the `LightBuffer`. 
+If you run the game now, it will appear as it did when we started the chapter! Now it is time to factor in the `LightBuffer`. The `deferredCompositeEffect` shader needs to get the `LightBuffer` and multiply it with the `ColorBuffer`. The `ColorBuffer` is being passed in as the main sprite from `SpriteBatch`, so we will need to add a second texture and sampler to the shader to get the `LightBuffer`:
 
 ```hlsl
 Texture2D LightBuffer;  
@@ -571,7 +577,8 @@ In the `DeferredRenderer` class, in the `DrawComposite` function before the spri
 Core.DeferredCompositeMaterial.SetParameter("LightBuffer", LightBuffer);
 ```
 
-The main pixel function for the shader reads both the color and light values and returns their product. 
+The main pixel function for the shader reads both the color and light values and returns their product:
+
 ```hlsl
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
@@ -584,7 +591,8 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 
 ![Figure 8.10: The light and color composited](./images/composite-1.png)
 
-The light is working! However, the whole scene is too dark to see what is going on or play the game. To solve this, we can add a small amount of ambient light. 
+The light is working! However, the whole scene is too dark to see what is going on or play the game. To solve this, we can add a small amount of ambient light:
+
 ```hlsl
 float AmbientLight;
 
@@ -704,7 +712,8 @@ public void StartColorPhase()
 > The _G0Buffer_
 > The `ColorBuffer` and `NormalBuffer` are grouped together and often called the _Geometry-Buffer_ (G-Buffer). In other deferred renderers, there is even more information stored in the G-Buffer as additional textures, such as depth information, material information, or game specific data. 
 
-To visualize the `NormalBuffer`, we will switch back to the `DebugDraw()` method. The `NormalBuffer` will be rendered in the lower-left corner of the screen. 
+To visualize the `NormalBuffer`, we will switch back to the `DebugDraw()` method. The `NormalBuffer` will be rendered in the lower-left corner of the screen:
+
 ```csharp
 // the debug view for the normal buffer lives in the top-right.  
 var normalBorderRect = new Rectangle(  
@@ -744,7 +753,8 @@ Then load the texture in the `LoadContent()` method:
 _normalAtlas = Content.Load<Texture2D>("images/atlas-normal");
 ```
 
-And finally, pass it to the `_gameEffect` material as a parameter, 
+And finally, pass it to the `_gameEffect` material as a parameter:
+
 ```csharp
 _gameMaterial.SetParameter("NormalMap", _normalAtlas);
 ```
@@ -780,7 +790,8 @@ Now the `NormalBuffer` is being populated with the normal data for each sprite.
 
 ### Combing Normals with Lights
 
-When each individual light is drawn into the `LightBuffer`, it needs to use the `NormalBuffer` information to modify the amount of light being drawn at each pixel. To set up, the `PointLightMaterial` is going to need access to the `NormalBuffer`. Start by modifying the `PointLight.Draw()` function to take in the `NormalMap` as a `Texture2D`, and set it as a parameter on the `PointLightMaterial`. 
+When each individual light is drawn into the `LightBuffer`, it needs to use the `NormalBuffer` information to modify the amount of light being drawn at each pixel. To set up, the `PointLightMaterial` is going to need access to the `NormalBuffer`. Start by modifying the `PointLight.Draw()` function to take in the `NormalMap` as a `Texture2D`, and set it as a parameter on the `PointLightMaterial`:
+
 ```csharp
 public static void Draw(SpriteBatch spriteBatch, List<PointLight> pointLights, Texture2D normalBuffer)  
 {  
@@ -796,7 +807,8 @@ _deferredRenderer.StartLightPhase();
 PointLight.Draw(Core.SpriteBatch, _lights, _deferredRenderer.NormalBuffer);
 ```
 
-The `pointLightEffect.fx` shader needs to accept the `NormalBuffer` as a new `Texture2D` and `Sampler`. 
+The `pointLightEffect.fx` shader needs to accept the `NormalBuffer` as a new `Texture2D` and `Sampler`:
+
 ```hlsl
 Texture2D NormalBuffer;  
 sampler2D NormalBufferSampler = sampler_state  
@@ -828,7 +840,8 @@ struct LightVertexShaderOutput
 };
 ```
 
-Then, create a new vertex function that uses the new `LightVertexShaderOutput`. This function will call to the existing `MainVS` function that does the 3d effect, and add the screen coordinates afterwards. 
+Then, create a new vertex function that uses the new `LightVertexShaderOutput`. This function will call to the existing `MainVS` function that does the 3d effect, and add the screen coordinates afterwards:
+
 ```hlsl
 LightVertexShaderOutput LightVS(VertexShaderInput input)
 {
@@ -1017,7 +1030,8 @@ private void InitializeLights()
 
 Given that the lights have a dynamic nature to them with the normal maps, it would be good to move some of them around. 
 
-Add this function to the `GameScene`, 
+Add this function to the `GameScene`:
+
 ```csharp
 private void MoveLightsAround(GameTime gameTime)
 {

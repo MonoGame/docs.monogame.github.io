@@ -61,7 +61,7 @@ else
 }
 ```
 
-Now when you run the game, it will look the same, but the new shader is being used to draw all the sprites in the `GameScene`. To verify, you can try changing the shader function to force the red channel to be `1`, just to see some visually striking confirmation the new shader is being used. 
+Now when you run the game, it will look the same, but the new shader is being used to draw all the sprites in the `GameScene`. To verify, you can try changing the shader function to force the red channel to be `1`, just to see some visually striking confirmation the new shader is being used:
 
 ```hlsl
 float4 MainPS(VertexShaderOutput input) : COLOR  
@@ -106,7 +106,7 @@ The goal is to be able to change the color of the sprites drawn with the `_color
 
 ![Figure 6.2: The slime uses a dark blue color](./images/slime-blue-color.png)
 
-The shader code _could_ just do an `if` check for this color, and when any of the pixels are that color, return a hot-pink color instead. 
+The shader code _could_ just do an `if` check for this color, and when any of the pixels are that color, return a hot-pink color instead:
 
 ```hlsl
 float4 MainPS(VertexShaderOutput input) : COLOR
@@ -294,7 +294,8 @@ So far, we have created color maps and brought them into the game as content. Ho
 
 To get started, we first need to devise a way to create a custom color map and pass it to the shader. 
 
-Create a new class under the _MonoGameLibrary/Graphics_ folder called `RedColorMap`, 
+Create a new class under the _MonoGameLibrary/Graphics_ folder called `RedColorMap`:
+
 ```csharp
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
@@ -480,7 +481,8 @@ In the `CollisionCheck()` method, add this line after the `Grow()` method is inv
 _lastGrowTime = gameTime.TotalGameTime;
 ```
 
-Now, in the `Draw()` method, modify the _slime_'s draw invocation to use the new `configureSpriteBatch` callback. 
+Now, in the `Draw()` method, modify the _slime_'s draw invocation to use the new `configureSpriteBatch` callback:
+
 ```csharp
 // Draw the slime.
 _slime.Draw(segmentIndex =>
@@ -580,7 +582,7 @@ Now you can control the saturation manually with the debug slider,
 ![Figure 6.18: Combining the color swap and saturation effect](./gifs/color-saturation.gif)
 
 The last thing to do is remove the old `grayscaleEffect` and re-write the game logic to set the `Saturation` parameter on the new effect. 
-In the `Draw()` method, instead of having an `if` case to start the `SpriteBatch` with different settings, it can always be configured to start with the `_colorSwapMaterial`, 
+In the `Draw()` method, instead of having an `if` case to start the `SpriteBatch` with different settings, it can always be configured to start with the `_colorSwapMaterial`:
 
 ```csharp
 _colorSwapMaterial.SetParameter("Saturation", _saturation);

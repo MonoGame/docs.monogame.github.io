@@ -45,7 +45,7 @@ The `SpriteVertexShader` looks different from our pixel shaders in a few importa
 
 ### Input Semantics
 
-The inputs to the vertex shader mirror the information that the `SpriteBatch` class bundles up for each vertex. If you look at the [SpriteBatchItem](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatchItem.cs), you will see that each sprite is made up of 4 `VertexPositionColorTexture` instances. 
+The inputs to the vertex shader mirror the information that the `SpriteBatch` class bundles up for each vertex. If you look at the [SpriteBatchItem](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatchItem.cs), you will see that each sprite is made up of 4 `VertexPositionColorTexture` instances:
 
 ```csharp
 public VertexPositionColorTexture vertexTL;
@@ -54,7 +54,8 @@ public VertexPositionColorTexture vertexBL;
 public VertexPositionColorTexture vertexBR;
 ```
 
-The [`VertexPositionColorTexture`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Vertices/VertexPositionColorTexture.cs) class is a standard MonoGame implementation of the `IVertexType`, and it defines a `Position`, a `Color`, and a `TextureCoordinate` for each vertex. Those should look familiar, because they align with the inputs to the vertex shader function. The alignment is not happenstance, it is enforced by "semantics" that are applied to each field in the vertex. This snippet from the `VertexPositionColorTexture` class defines the semantics for each field in the vertex by specifying the `VertexElementUsage`. 
+The [`VertexPositionColorTexture`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Vertices/VertexPositionColorTexture.cs) class is a standard MonoGame implementation of the `IVertexType`, and it defines a `Position`, a `Color`, and a `TextureCoordinate` for each vertex. Those should look familiar, because they align with the inputs to the vertex shader function. The alignment is not happenstance, it is enforced by "semantics" that are applied to each field in the vertex. This snippet from the `VertexPositionColorTexture` class defines the semantics for each field in the vertex by specifying the `VertexElementUsage`:
+
 ```csharp
 
 static VertexPositionColorTexture()
@@ -69,7 +70,8 @@ static VertexPositionColorTexture()
 }
 ```
 
-The vertex shader declares a semantic for each input using the `:` syntax. 
+The vertex shader declares a semantic for each input using the `:` syntax:
+
 ```hlsl
 // the POSITION0 is the semantic 
 float4 position	: POSITION0,
@@ -82,7 +84,8 @@ float4 position	: POSITION0,
 
 ### Output Semantics
 
-The same concept of semantics applies to the output of the shader. Here is the output type of the vertex shader function. Notice that the fields also have the `:` semantic syntax. These semantics instruct the graphics pipeline how to use the data. 
+The same concept of semantics applies to the output of the shader. Here is the output type of the vertex shader function. Notice that the fields also have the `:` semantic syntax. These semantics instruct the graphics pipeline how to use the data:
+
 ```hlsl
 struct VSOutput
 {
@@ -92,7 +95,7 @@ struct VSOutput
 };
 ```
 
-This is the _input_ struct for the standard pixel shaders from previous chapters. Notice how the fields are named slightly differently, but the _semantics_ are identical. 
+This is the _input_ struct for the standard pixel shaders from previous chapters. Notice how the fields are named slightly differently, but the _semantics_ are identical:
 
 ```hlsl
 struct VertexShaderOutput  
@@ -105,7 +108,8 @@ struct VertexShaderOutput
 
 ### Matrix Transform
 
-The default sprite vertex shader uses this line, 
+The default sprite vertex shader uses this line:
+
 ```hlsl
 output.position = mul(position, MatrixTransform);
 ```
@@ -142,7 +146,7 @@ Now that you understand the default vertex shader being used by `SpriteBatch`, w
 1. convert the vertices from world-space to clip-space
 2. provide the input semantics required for the pixel shader.
 
-To experiment with this, create a new Sprite Effect called `3dEffect` in the _MonoGameLibrary_'s shared content effects folder. We need to add a vertex shader function. To do that, we need a new `struct` that holds all the input semantics passed from `SpriteBatch`. 
+To experiment with this, create a new Sprite Effect called `3dEffect` in the _MonoGameLibrary_'s shared content effects folder. We need to add a vertex shader function. To do that, we need a new `struct` that holds all the input semantics passed from `SpriteBatch`: 
 
 > [!tip] 
 > Use a struct for inputs and outputs.
@@ -169,7 +173,7 @@ VertexShaderOutput MainVS(VertexShaderInput input)
 }
 ```
 
-And finally modify the `technique` to _include_ the vertex shader function. Until now, the `MainVS()` function is just considered as any average function in your shader, and since it wasn't used from the `MainPS` pixel shader, it would be compiled out of the shader. When you specify the `MainVS()` function as the vertex shader function, you are overriding the default `SpriteBatch` vertex shader function. 
+And finally modify the `technique` to _include_ the vertex shader function. Until now, the `MainVS()` function is just considered as any average function in your shader, and since it wasn't used from the `MainPS` pixel shader, it would be compiled out of the shader. When you specify the `MainVS()` function as the vertex shader function, you are overriding the default `SpriteBatch` vertex shader function:
 
 ```hlsl
 technique SpriteDrawing
@@ -203,7 +207,8 @@ VertexShaderOutput MainVS(VertexShaderInput input)
 }
 ```
 
-To validate this is working, we should try to use the new effect. For now, we will experiment in the `TitleScene`. Create a class member for the new `Material`. 
+To validate this is working, we should try to use the new effect. For now, we will experiment in the `TitleScene`. Create a class member for the new `Material`:
+
 ```csharp
 // The 3d material  
 private Material _3dMaterial;
@@ -250,7 +255,8 @@ And now you should see the text normally again.
 
 ### Making it Move
 
-As a quick experiment, we can show that the vertex shader can indeed modify the vertex positions further if we want to. For now, add a temporary shader parameter called `DebugOffset`, 
+As a quick experiment, we can show that the vertex shader can indeed modify the vertex positions further if we want to. For now, add a temporary shader parameter called `DebugOffset`:
+
 ```hlsl
 float2 DebugOffset;
 ```
@@ -281,7 +287,8 @@ Then you will not see much movement at all. This is because the `DebugOffset` va
 
 The world-space vertices can have their `x` and `y` values modified in the vertex shader, but what about the `z` component? The orthographic projection essentially _ignores_ the `z` component of a vertex and treats all vertices as though they are an equal distance away from the camera. If you change the `z` value, you may _expect_ the sprite to appear closer or further away from the camera, but the orthographic projection matrix does not do that. 
 
-To check, try modify the shader code to adjust the `z` value based on one of the debug values. 
+To check, try modify the shader code to adjust the `z` value based on one of the debug values:
+
 ```hlsl
 pos.z -= DebugOffset.x;
 ```
@@ -365,7 +372,7 @@ var camera = new SpriteCamera3d();
 _3dMaterial.SetParameter("MatrixTransform", camera.CalculateMatrixTransform());
 ```
 
-Moving the `z` value uniformly in the shader will not be visually stimulating. A more impressive demonstration of the _perspective_ projection would be to rotate the vertices around the center of the sprite. 
+Moving the `z` value uniformly in the shader will not be visually stimulating. A more impressive demonstration of the _perspective_ projection would be to rotate the vertices around the center of the sprite:
 
 ```hlsl
 
@@ -529,7 +536,8 @@ Then, in the `3dEffect.fx` file, remove the `VertexShaderInput` and `VertexShade
 #include "common.fxh"
 ```
 
-If you run the game, nothing should change, except that the shader code is more modular. To continue, create another file next to `3dEffect.fx` called `3dEffect.fxh`. Paste the contents, 
+If you run the game, nothing should change, except that the shader code is more modular. To continue, create another file next to `3dEffect.fx` called `3dEffect.fxh`. Paste the contents:
+
 ```hlsl
 #ifndef EFFECT_3DEFFECT
 #define EFFECT_3DEFFECT
@@ -726,7 +734,8 @@ Now most of the components we'd like to combine into a single effect have been s
 error PREPROCESS01: File not found: common.fxh in .(MonoGame.Effect.Preprocessor+MGFile)
 ```
 
-This happens because the `gameEffect.fx` file is in a different folder than the `common.fxh` file, and the `"common.fxh"`  is treated as a relative _file path_ lookup. Instead, in the `gameEffect.fx` file, use this line, 
+This happens because the `gameEffect.fx` file is in a different folder than the `common.fxh` file, and the `"common.fxh"`  is treated as a relative _file path_ lookup. Instead, in the `gameEffect.fx` file, use this line:
+
 ```hlsl
 #include "../../../MonoGameLibrary/SharedContent/effects/common.fxh"
 ```
@@ -738,7 +747,8 @@ Then, the `gameEffect.fx` file could also reference the other two `.fxh` files w
 #include "../../../MonoGameLibrary/SharedContent/effects/colors.fxh"
 ```
 
-And the only thing the `gameEffect.fx` file needs to specify is which functions to use for the vertex shader and pixel shader functions. 
+And the only thing the `gameEffect.fx` file needs to specify is which functions to use for the vertex shader and pixel shader functions:
+
 ```hlsl
 technique SpriteDrawing
 {
@@ -823,7 +833,8 @@ _gameMaterial.SetParameter("MatrixTransform", _camera.CalculateMatrixTransform()
 
 ![Figure 7.8: Camera follows the slime](./gifs/cam-follow.gif)
 
-The clear color of the scene can be seen in the corners (the `CornflowerBlue`). Pick whatever clear color you think looks good for the color swapping. 
+The clear color of the scene can be seen in the corners (the `CornflowerBlue`). Pick whatever clear color you think looks good for the color swapping:
+
 ```csharp
 Core.GraphicsDevice.Clear(new Color(32, 16, 20));
 ```

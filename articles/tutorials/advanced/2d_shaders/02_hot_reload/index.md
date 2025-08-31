@@ -48,7 +48,7 @@ This line defines a new MSBuild step, called `IncludeContent`:
 
 You can learn more about what all the attributes do in MSBuild. Of particular note, the `BeforeTargets` attribute causes MSBuild to run the `IncludeContent` target before the `BeforeCompile` target is run, which is a standard target in the dotnet sdk. 
 
-The `IncludeContent` target can run manually by invoking `dotnet build` by hand. In VSCode, open the embedded terminal to the _DungeonSlime_ project folder, and run the following command. 
+The `IncludeContent` target can run manually by invoking `dotnet build` by hand. In VSCode, open the embedded terminal to the _DungeonSlime_ project folder, and run the following command:
 
 ```sh
 dotnet build -t:IncludeContent
@@ -141,7 +141,7 @@ And now when `dotnet watch` is invoked, it needs to specify the new parameter:
 dotnet watch build --property OnlyWatchContentFiles=true -- --target:BuildAndCopyContent
 ```
 
-The command is getting long and hard to type, and if we want to add more configuration, it will likely get even longer. Instead of invoking `dotnet watch` directly, it can be run as a new `<Target>` MSBuild step. Add this to your `DungeonSlime.csproj` file. 
+The command is getting long and hard to type, and if we want to add more configuration, it will likely get even longer. Instead of invoking `dotnet watch` directly, it can be run as a new `<Target>` MSBuild step. Add this to your `DungeonSlime.csproj` file:
 
 ```xml
 <Target Name="WatchContent">  
@@ -149,7 +149,8 @@ The command is getting long and hard to type, and if we want to add more configu
 </Target>
 ```
 
-And now from the terminal, run the following `dotnet build` command. 
+And now from the terminal, run the following `dotnet build` command:
+
 ```sh
 dotnet build -t:WatchContent
 ```
@@ -175,7 +176,7 @@ Next, the `IncludeContent` target is doing a little too much work for our use ca
 </Target>
 ```
 
-To experiment with the system, re-run the following command, 
+To experiment with the system, re-run the following command:
 
 ```sh
 dotnet build -t:WatchContent
@@ -212,7 +213,7 @@ It is important to make a distinction between assets the game _expects_ to be re
 
 ### Extending Content Manager
 
-Currently, the `grayscaleEffect.fx` is being loaded in the `GameScene` 's `LoadContent()` method like this, 
+Currently, the `grayscaleEffect.fx` is being loaded in the `GameScene` 's `LoadContent()` method like this:
 
 ```csharp
 // Load the grayscale effect  
@@ -239,7 +240,7 @@ public static class ContentManagerExtensions
 }
 ```
 
-Now, you can create an [extension method](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) for the existing `MonoGame`'s `ContentManager` class, 
+Now, you can create an [extension method](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods) for the existing `MonoGame`'s `ContentManager` class:
 
 ```csharp
 public static T Watch<T>(this ContentManager manager, string assetName)  
@@ -249,7 +250,7 @@ public static T Watch<T>(this ContentManager manager, string assetName)
 }
 ```
 
-This new `Watch` function is an opportunity to enhance how content is loaded. Use this new function to load the `_greyscaleEffect` effect in the `GameScene`. 
+This new `Watch` function is an opportunity to enhance how content is loaded. Use this new function to load the `_greyscaleEffect` effect in the `GameScene`:
 
 ```csharp
 _grayscaleEffect = Content.Watch<Effect>("effects/grayscaleEffect");
@@ -302,7 +303,8 @@ public static WatchedAsset<T> Watch<T>(this ContentManager manager, string asset
 }
 ```
 
-This will require that the type of `_greyscaleEffect` change to a `WatchedAsset<Effect>` instead of simply an `Effect`. 
+This will require that the type of `_greyscaleEffect` change to a `WatchedAsset<Effect>` instead of simply an `Effect`:
+
 ```csharp
 // The grayscale shader effect.  
 private WatchedAsset<Effect> _grayscaleEffect;
@@ -315,7 +317,7 @@ The compile errors appear because `_greyscaleEffect` used to be an `Effect`, but
 
 It is time to write the extension method that the game code will use to opt into reloading an asset. From the earlier section, anytime a `.fx` file is updated, the compiled `.xnb` file will be copied into the game's runtime folder. The operating system will keep track of the last time the `.xnb` file was written, and we can leverage that information with the `WatchedAsset<T>.UpdatedAt` property to understand if the `.xnb` file is _newer_ than the current loaded `Effect`. 
 
-This method will take a `WatchedAsset<T>` and update the inner `Asset` property _if_ the `.xnb` file is newer. The method returns `true` when the asset is reloaded, which will be useful later. 
+This method will take a `WatchedAsset<T>` and update the inner `Asset` property _if_ the `.xnb` file is newer. The method returns `true` when the asset is reloaded, which will be useful later:
 
 ```csharp
 public static bool TryRefresh<T>(this ContentManager manager, WatchedAsset<T> watchedAsset)
@@ -391,7 +393,8 @@ private static bool IsFileLocked(string path)
 }
 ```
 
-And then modify the `TryRefresh` function by returning early if the file is locked. 
+And then modify the `TryRefresh` function by returning early if the file is locked:
+
 ```csharp
 if (IsFileLocked(path)) return false; // wait for the file to not be locked.
 ```
@@ -416,7 +419,7 @@ Do not forget that the place where the `grayscaleEffect` calls the `TryRefresh()
 Content.TryRefresh(_grayscaleEffect, out _);
 ```
 ### Refresh Convenience Function 
-Finally, we need to address a subtle usability bug in the existing code. The `TryRefresh` function may `Unload` an asset if a new version is loaded. However, it is not obvious that the `ContentManager` instance doing the `Unload` operation is the same `ContentManager` instance that loaded the original asset in the first place. To solve this, add a `ContentManager` property to the `WatchedAsset<T>` class so that the asset itself knows which `ContentManager` is responsible for unloading old versions. 
+Finally, we need to address a subtle usability bug in the existing code. The `TryRefresh` function may `Unload` an asset if a new version is loaded. However, it is not obvious that the `ContentManager` instance doing the `Unload` operation is the same `ContentManager` instance that loaded the original asset in the first place. To solve this, add a `ContentManager` property to the `WatchedAsset<T>` class so that the asset itself knows which `ContentManager` is responsible for unloading old versions:
 
 ```csharp
 /// <summary>  

@@ -18,7 +18,8 @@ At the moment, the scene transitions between the `TitleScene` to the `GameScene`
 
 Start by creating a new `Sprite Effect` from the MonoGame Content Builder Editor, and name it `sceneTransitionEffect.fx`. 
 
-Add the following variable to the `Core` class. 
+Add the following variable to the `Core` class:
+
 ```csharp
 /// <summary>  
 /// The material that is used when changing scenes  
@@ -67,7 +68,8 @@ If you run the game now, you should have a blank debug UI.
 
 ### Rendering the Effect
 
-Currently, the shader is compiling and loading into the game, but it isn't being _used_ yet. The scene transition needs to cover the whole screen, so we need to draw a sprite over the entire screen area with the new effect. To render a sprite over the entire screen area, we need a blank texture to use for the sprite. Add the following property to the `Core` class, 
+Currently, the shader is compiling and loading into the game, but it isn't being _used_ yet. The scene transition needs to cover the whole screen, so we need to draw a sprite over the entire screen area with the new effect. To render a sprite over the entire screen area, we need a blank texture to use for the sprite. Add the following property to the `Core` class:
+
 ```csharp
 /// <summary>  
 /// Gets a runtime generated 1x1 pixel texture.  
@@ -99,12 +101,14 @@ If you run the game now, you will see a white background, because the `Pixel` sp
 
 ### The Input 
 
-We need to be able to control the progress of the screen transition effect. Add the following parameter to the shader, 
+We need to be able to control the progress of the screen transition effect. Add the following parameter to the shader:
+
 ```hlsl
 float Progress;
 ```
 
-And recall that unless the `Progress` parameter is actually _used_ somehow in the calculation of the output of the shader, it will be optimized out of the final compilation. So, for now, lets make the shader return the `Progress` value in the red value of the color. 
+And recall that unless the `Progress` parameter is actually _used_ somehow in the calculation of the output of the shader, it will be optimized out of the final compilation. So, for now, lets make the shader return the `Progress` value in the red value of the color:
+
 ```hlsl
 #if OPENGL  
     #define SV_POSITION POSITION  
@@ -160,7 +164,8 @@ The shader actually provides the x-coordinate of each pixel in the `input.Textur
 > 
 > In this example, the `input.TextureCoordinates` represents pixel coordinates _because_ the sprite is being drawn as a full screen quad. However, if the sprite was not taking up the entire screen, the texture coordinates would behave differently. This topic will be discussed more later on.
 
-The following shader helps visualize the x-coordinate of each pixel. 
+The following shader helps visualize the x-coordinate of each pixel:
+
 ```hlsl
 float2 uv = input.TextureCoordinates;  
 return float4(uv.x, 0, 0, 1);
@@ -209,7 +214,7 @@ return float4(0, 0, transitioned, 1);
 Use the slider to control the `Progress` parameter to see how the image changes. 
 ![Figure 5.7: a simple horizontal screen wipe](./gifs/simple-x.gif)
 
-That looks pretty close to a screen wipe,  already! Instead of using blue and black, the effect should be using black and a transparent color. The following snippet of shader code puts the `transitioned` value in the alpha channel of the final color. When the alpha value is zero, the pixel fragment is drawn as invisible. 
+That looks pretty close to a screen wipe,  already! Instead of using blue and black, the effect should be using black and a transparent color. The following snippet of shader code puts the `transitioned` value in the alpha channel of the final color. When the alpha value is zero, the pixel fragment is drawn as invisible:
 
 ```hlsl
 float2 uv = input.TextureCoordinates;  
@@ -225,19 +230,21 @@ Ideally, it would be nice to set the `transitioned` variable to `0` when the `Pr
 We could write this by hand, but shader languages have a built in function called `smoothstep` which does essentially what we want. The `smoothstep` function takes 3 parameters, a `min`, a `max`, and an input variable often called `x` (or `t` depending on who you ask). 
 The function returns `0` when the given `x` parameter is at or below the `min` value, and `1` when `x` is at or above the `max` value. However, instead of interpolating linearly between `min` and `max`, it uses a smooth function to blend between the two bounds. You can learn more about the `smoothstep` function in [The Book Of Shaders](https://thebookofshaders.com/glossary/?search=smoothstep)
 
-This would be the most basic way to adjust the code to use `smoothstep`, but right away, the `.05` should jump out as alarming. 
+This would be the most basic way to adjust the code to use `smoothstep`, but right away, the `.05` should jump out as alarming:
+
 ```hlsl
 float transitioned = smoothstep(Progress, Progress + .05, uv.x);
 ```
 
-Using "magic numbers" in shader code is a dangerous pattern, because it is unclear if `.05` is there for a mathematical reason, or just an aesthetic choice. At minimum, we should extract the value into a named variable, so that the reader of the code can attribute _some_ sort of meaning to `.05`. 
+Using "magic numbers" in shader code is a dangerous pattern, because it is unclear if `.05` is there for a mathematical reason, or just an aesthetic choice. At minimum, we should extract the value into a named variable, so that the reader of the code can attribute _some_ sort of meaning to `.05`:
 
 ```hlsl
 float EdgeWidth
 float transitioned = smoothstep(Progress, Progress + EdgeWidth, uv.x);
 ```
 
-However, at this point, it would be nice to extract the `edgeWidth` as a second shader parameter next to `Progress`. 
+However, at this point, it would be nice to extract the `edgeWidth` as a second shader parameter next to `Progress`:
+
 ```hlsl
 float Progress;  
 float EdgeWidth;
@@ -259,7 +266,7 @@ SceneTransitionMaterial.SetParameter("EdgeWidth", .05f);
 
 ### More Interesting Wipes
 
-So far the shader has been using `uv.x` to create a horizontal screen wipe. It would be easy to use `uv.y` to create a vertical screen wipe. 
+So far the shader has been using `uv.x` to create a horizontal screen wipe. It would be easy to use `uv.y` to create a vertical screen wipe:
 
 ```hlsl
 float transitioned = smoothstep(Progress, Progress + EdgeWidth, uv.y);
@@ -269,7 +276,8 @@ float transitioned = smoothstep(Progress, Progress + EdgeWidth, uv.y);
 
 But what if we wanted to create more complicated wipes that didn't simply go in one direction? So far, we have passed `uv.x` and `uv.y` along as the argument to compare against the `Progress` shader parameter, but we could use any value we wanted. 
 
-Pull out the expression into a separate variable, `value`, and experiment with some different mathematical functions. For example, here is a wipe that comes in from the left and right towards the center:
+Pull out the expression into a separate variable, `value`, and experiment with some different mathematical functions. 
+For example, here is a wipe that comes in from the left and right towards the center:
 
 ```hlsl
 float value = 1 - abs(.5 - uv.x) * 2;  
@@ -279,7 +287,7 @@ float transitioned = smoothstep(Progress, Progress + EdgeWidth, value);
 
 That is cool, but if we wanted an even more interesting wipe, the math would start to become challenging. In the final effect, it would also be nice to change the _type_ of wipe dynamically from the game, and having to change entire shader functions would be cumbersome. We can build a more generalized approach instead of writing mathematical functions to encode the wipe's progress. 
 
-To build intuition, we can visualize _just_ the `value` that is compared against the `Progress` parameter. 
+To build intuition, we can visualize _just_ the `value` that is compared against the `Progress` parameter:
 
 ```hlsl
 float value = 1 - abs(.5 - uv.x) * 2;  
@@ -323,7 +331,8 @@ SceneTransitionTextures.Add(Content.Load<Texture2D>("images/radial"));
 SceneTransitionTextures.Add(Content.Load<Texture2D>("images/ripple"));
 ```
 
-Instead of using the `Pixel` debug image to draw the `SceneTransitionMaterial`, use one of these new textures, 
+Instead of using the `Pixel` debug image to draw the `SceneTransitionMaterial`, use one of these new textures:
+
 ```csharp
 SpriteBatch.Draw(SceneTransitionTextures[1], GraphicsDevice.Viewport.Bounds, Color.White);
 ```
@@ -339,7 +348,8 @@ return float4(value, value, value, 1);
 Since the code above is referencing the `concave` image, the result looks like this,
 ![Figure 5.17: The concave value for a wipe](./images/concave-wipe-value.png)
 
-And now, modify the shader to use the `Progress` parameter instead of just returning the `value`. 
+And now, modify the shader to use the `Progress` parameter instead of just returning the `value`:
+
 ```hlsl
 float2 uv = input.TextureCoordinates;  
 float value = tex2D(SpriteTextureSampler, uv).r;  
@@ -357,7 +367,8 @@ Now it is as easy as changing the texture being used to draw the scene transitio
 
 So far we have a transition effect that wipes a black-out across the screen, but nothing triggers the effect automatically when the scene actually changes. In this section, we will create some C# code to control the shader parameter programmatically. 
 
-We will create a new class called `SceneTransition` that holds all the data for an active scene transition. Add this class to your `MonoGameLibrary/Scenes` folder. 
+We will create a new class called `SceneTransition` that holds all the data for an active scene transition. Add this class to your `MonoGameLibrary/Scenes` folder:
+
 ```csharp
 using System;
 using Microsoft.Xna.Framework;
@@ -421,7 +432,8 @@ public static SceneTransition Close(int durationMs) => Create(durationMs, false)
 ```
 
 
-Then, add a `static` property to the `Core` class. 
+Then, add a `static` property to the `Core` class:
+
 ```csharp
 /// <summary>  
 /// The current transition between scenes  
@@ -453,7 +465,8 @@ private static void TransitionScene()
     // ...
 ```
 
-Now we need to actually _set_ the `Progress` shader parameter given the current scene transition value. In the `Update()` method, 
+Now we need to actually _set_ the `Progress` shader parameter given the current scene transition value. In the `Update()` method:
+
 ```csharp
 // Check if the scene transition material needs to be reloaded.  
 SceneTransitionMaterial.SetParameter("Progress", SceneTransition.DirectionalRatio);  
@@ -482,7 +495,8 @@ Move the `sceneTransitionEffect.fx` file from the _DungeonSlime/Content/effects_
 
 In order for the _DungeonSlime_ project to load the content, we need to make a few changes. 
 
-In the `DungeonSlime.csproj` file, add the following changes to include files from both projects. 
+In the `DungeonSlime.csproj` file, add the following changes to include files from both projects:
+
 ```xml
 <ItemGroup>  
     <MonoGameContentReference Include="**/*.mgcb;../MonoGameLibrary/**/*.mgcb" />  
@@ -495,7 +509,7 @@ Also, in order for the shader hot-reload to work with the shared content, modify
 <Watch Include="../**/*.fx;"/>
 ```
 
-Next, the existing `ContentManager` instance in the `Core` class will only load content from the _/Content_ folder, which will not include the `sceneTransitionEffect.fx` file, because it is stored in the _/SharedContent_ folder. For this tutorial, we will create a second `ContentManager` in the `Core` class called `SharedContent` which will be configured to only load content from the _/SharedContent_ folder.  Add the following property next to the existing `Content` property in the `Core.cs` file. 
+Next, the existing `ContentManager` instance in the `Core` class will only load content from the _/Content_ folder, which will not include the `sceneTransitionEffect.fx` file, because it is stored in the _/SharedContent_ folder. For this tutorial, we will create a second `ContentManager` in the `Core` class called `SharedContent` which will be configured to only load content from the _/SharedContent_ folder.  Add the following property next to the existing `Content` property in the `Core.cs` file:
 
 ```csharp
 /// <summary>  
