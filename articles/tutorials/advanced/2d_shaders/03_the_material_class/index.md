@@ -64,27 +64,28 @@ And now, in the `GameScene`, adjust the `_grayscaleEffect` to use the new `Mater
 private Material _grayscaleEffect;
 ```
 
-This will cause many compilation errors, because all the places where `_grayScaleEffect` is referenced need to use the new `Material` type.
-When instantiating the `_grayscaleEffect`, use the new method,
-```csharp
-// Load the grayscale effect  
-_grayscaleEffect = Content.WatchMaterial("effects/grayscaleEffect");
-```
+Changing the `_grayscaleEffect` from an `Effect` to `Material` is going to cause a few compilation errors. The fixes are listed below.
 
-When checking if the asset needs to be reloaded for hot-reload, use the `.Asset` sub property,
-```csharp
-// Update the grayscale effect if it was changed  
-_grayscaleEffect.Asset.TryRefresh(out _);
-```
+1. When instantiating the `_grayscaleEffect`, use the new method,
+	```csharp
+	// Load the grayscale effect  
+	_grayscaleEffect = Content.WatchMaterial("effects/grayscaleEffect");
+	```
 
-And in the `Draw()` method, use the `.Effect` shortcut property,
-```csharp
-// We are in a game over state, so apply the saturation parameter.  
-_grayscaleEffect.Effect.Parameters["Saturation"].SetValue(_saturation);  
-  
-// And begin the sprite batch using the grayscale effect.  
-Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _grayscaleEffect.Effect);
-```
+2. When checking if the asset needs to be reloaded for hot-reload, use the `.Asset` sub property,
+	```csharp
+	// Update the grayscale effect if it was changed  
+	_grayscaleEffect.Asset.TryRefresh(out _);
+	```
+
+3. And in the `Draw()` method, use the `.Effect` shortcut property,
+	```csharp
+	// We are in a game over state, so apply the saturation parameter.  
+	_grayscaleEffect.Effect.Parameters["Saturation"].SetValue(_saturation);  
+	  
+	// And begin the sprite batch using the grayscale effect.  
+	Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _grayscaleEffect.Effect);
+	```
 
 ### Setting Shader Parameters
 
