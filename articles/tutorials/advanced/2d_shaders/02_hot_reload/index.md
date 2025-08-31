@@ -34,7 +34,8 @@ The existing automatic shader compilation is happening because the `DungeonSlime
 Nuget packages can add custom build behaviours and the `MonoGame.Content.Builder.Task` package is adding a step to the game's build that runs the MonoGame Content Builder tool. These sorts of build extensions use a conventional `.prop` and `.target` file system. If you are interested, you can learn more about how Nuget packages may extend MSBuild systems on Microsoft's [documentation website](https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild?view=vs-2022). For reference, [this](https://github.com/MonoGame/MonoGame/blob/develop/Tools/MonoGame.Content.Builder.Task/MonoGame.Content.Builder.Task.targets#L172) is the `.targets` file for the `MonoGame.Content.Builder.Task`.
 
 
-This line defines a new MSBuild step, called `IncludeContent`.
+This line defines a new MSBuild step, called `IncludeContent`:
+
 ```xml
   <Target
     Name="IncludeContent"
@@ -57,7 +58,7 @@ You should see log output indicating that the content for the _DungeonSlime_ gam
 
 ### Dotnet Watch
 
-There is a tool called [`dotnet watch`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-watch) that comes with the standard installation of `dotnet`. Normally, `dotnet watch` is used to watch for changes to `.cs` code files, recompile, and reload those changes into a program without restarting the program. You can try out `dotnet watch`'s normal behaviour by opening VSCode's embedded terminal to the _DungeonSlime_ project, and running the following command. The game should start normally.
+There is a tool called [`dotnet watch`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-watch) that comes with the standard installation of `dotnet`. Normally, `dotnet watch` is used to watch for changes to `.cs` code files, recompile, and reload those changes into a program without restarting the program. You can try out `dotnet watch`'s normal behaviour by opening VSCode's embedded terminal to the _DungeonSlime_ project, and running the following command. The game should start normally:
 
 ```sh
 dotnet watch
@@ -66,7 +67,7 @@ dotnet watch
 > [!Tip]
 > Use the `ctrl` + `c` key at the same time to quit the `dotnet watch` terminal process.
 
-Then, comment out the `Clear()` function call in the title screen's `Draw()` method. Save the file, and you should see the title screen immediately stop clearing the background on each frame. If you restore the line and save again, the scene will start clearing the background again.
+Then, comment out the `Clear()` function call in the title screen's `Draw()` method. Save the file, and you should see the title screen immediately stop clearing the background on each frame. If you restore the line and save again, the scene will start clearing the background again:
 
 ```csharp
 public override void Draw(GameTime gameTime)  
@@ -78,7 +79,7 @@ public override void Draw(GameTime gameTime)
 In our case, we do not want to recompile `.cs` files, but rather `.fx` files. First, `dotnet watch` can be configured to execute any MSBuild target rather than a recompile code. The following command uses the existing target provided by the `MonoGame.Content.Builder.Task`.
 
 > [!Tip]
-> All arguments passed after the `--` characters are passed to the `build` command itself, not `dotnet watch`.
+> All arguments passed after the `--` characters are passed to the `build` command itself, not `dotnet watch`:
 
 ```sh
 dotnet watch build -- --target:IncludeContent
@@ -89,7 +90,7 @@ Now, when you change a _`.fx`_ file, all of the content files are rebuilt into `
 However, the `.xnb` files are not being copied from the `Content/bin` folder to _DungeonSlime_'s runtime folder. The `.xnb` files are only copied during the full MSBuild of the game. The `IncludeContent` target on its own does not have all the context it needs to know how to copy the files in the final game project. To solve this, we need to introduce a new `<Target>` that copies the final `.xnb` files into _DungeonSlime_'s runtime folder. 
 
 The existing `MonoGame.Content.Builder.Task` system knows what the files are, so we can re-use properties defined in the MonoGame package.
-Add this to your `.csproj` file.
+Add this to your `.csproj` file:
 
 ```xml
 <Target Name="BuildAndCopyContent" DependsOnTargets="IncludeContent">  
@@ -102,7 +103,7 @@ Add this to your `.csproj` file.
 </Target>
 ```
 
-Now, instead of calling the `IncludeContent` target directly, change your terminal command to invoke the new `BuildAndCopyContent` target.
+Now, instead of calling the `IncludeContent` target directly, change your terminal command to invoke the new `BuildAndCopyContent` target:
 
 ```sh
 dotnet watch build -- --target:BuildAndCopyContent
@@ -110,7 +111,7 @@ dotnet watch build -- --target:BuildAndCopyContent
 
 If you delete the `DungeonSlime/bin/Debug/net8.0/Content` folder, make an edit to a `.cs` file and save, you should see the `DungeonSlime/bin/Debug/net8.0/Content` folder be restored.
 
-The next step is to only invoke the target when `.fx` files are edited instead of `.cs` files. These settings can be configured with custom MSBuild item configurations. Open the `DungeonSlime.csproj` file and add this `<ItemGroup>` to specify configuration settings.
+The next step is to only invoke the target when `.fx` files are edited instead of `.cs` files. These settings can be configured with custom MSBuild item configurations. Open the `DungeonSlime.csproj` file and add this `<ItemGroup>` to specify configuration settings:
 
 ```xml
 <ItemGroup>  
@@ -123,7 +124,7 @@ The next step is to only invoke the target when `.fx` files are edited instead o
 
 Now when you re-run the command from earlier, it will only run the `IncludeContent` target when `.fx` files have been changed. All edits to `.cs` files are ignored. Try adding a blank line to the `grayscaleEffect.fx` file, and notice the `dotnet watch` process re-build the content.
 
-However, if you would like to use `dotnet watch` for anything else in your workflow, then the configuration settings are too aggressive, because they will be applied _all_ invocations of `dotnet watch`. The `ItemGroup` can be optionally included when a certain condition is met. We will introduce a new MSBuild property called `OnlyWatchContentFiles`.
+However, if you would like to use `dotnet watch` for anything else in your workflow, then the configuration settings are too aggressive, because they will be applied _all_ invocations of `dotnet watch`. The `ItemGroup` can be optionally included when a certain condition is met. We will introduce a new MSBuild property called `OnlyWatchContentFiles`:
 
 ```xml
 <ItemGroup Condition="'$(OnlyWatchContentFiles)'=='true'">  
@@ -134,7 +135,7 @@ However, if you would like to use `dotnet watch` for anything else in your workf
 </ItemGroup>
 ```
 
-And now when `dotnet watch` is invoked, it needs to specify the new parameter.
+And now when `dotnet watch` is invoked, it needs to specify the new parameter:
 
 ```sh
 dotnet watch build --property OnlyWatchContentFiles=true -- --target:BuildAndCopyContent
@@ -156,7 +157,7 @@ dotnet build -t:WatchContent
 
 We now have a way to dynamically recompile shaders on file changes and copy the `.xnb` files into the game folder! There are a few final adjustments to make to the configuration. 
 
-First, you may notice some odd characters in the log output after putting the `dotnet watch` inside the `WatchContent` target. This is because there are _emoji_ characters in the standard `dotnet watch` log stream, and some terminals do not understand how to display those, especially when streamed between `dotnet build`. To disable the _emoji_ characters, a `DOTNET_WATCH_SUPPRESS_EMOJIS` environment variable needs to be set.
+First, you may notice some odd characters in the log output after putting the `dotnet watch` inside the `WatchContent` target. This is because there are _emoji_ characters in the standard `dotnet watch` log stream, and some terminals do not understand how to display those, especially when streamed between `dotnet build`. To disable the _emoji_ characters, a `DOTNET_WATCH_SUPPRESS_EMOJIS` environment variable needs to be set:
 
 ```xml
 <Target Name="WatchContent">  
@@ -165,7 +166,7 @@ First, you may notice some odd characters in the log output after putting the `d
 </Target>
 ```
 
-Next, the `IncludeContent` target is doing a little too much work for our use case. It is trying to make sure the MonoGame Content Builder tools are installed. For our use case, we can opt out of that check by disabling the existing `AutoRestoreMGCBTool` MSBuild property. It also makes sense to pass `--restore:false` as well so that Nuget packages are not restored on each content file change.
+Next, the `IncludeContent` target is doing a little too much work for our use case. It is trying to make sure the MonoGame Content Builder tools are installed. For our use case, we can opt out of that check by disabling the existing `AutoRestoreMGCBTool` MSBuild property. It also makes sense to pass `--restore:false` as well so that Nuget packages are not restored on each content file change:
 
 ```xml
 <Target Name="WatchContent">  
@@ -220,7 +221,7 @@ _grayscaleEffect = Content.Load<Effect>("effects/grayscaleEffect");
 
 The `.Load()` function in the existing `ContentManager` is almost sufficient for our needs, but it returns a regular `Effect`, which has no understanding of the dynamic nature of the new content workflow. 
 
-Create a new _Content_ folder within the _MonoGameLibrary_ project, add a new file named `ContentManagerExtensions.cs`, and add the following code for the foundation of the new system.
+Create a new _Content_ folder within the _MonoGameLibrary_ project, add a new file named `ContentManagerExtensions.cs`, and add the following code for the foundation of the new system:
 
 ```csharp
 using System;  
@@ -259,7 +260,7 @@ _grayscaleEffect = Content.Watch<Effect>("effects/grayscaleEffect");
 
 The new system will need to keep track of additional information for each asset that we plan to be _hot-reloadable_. The new data will live in a new class, `WatchedAsset<T>`. 
 
-Add a new file named `WatchedAsset.cs` in the _MonoGameLibrary/Content_ folder.
+Add a new file named `WatchedAsset.cs` in the _MonoGameLibrary/Content_ folder:
 
 ```csharp
 using System;
@@ -286,7 +287,8 @@ public class WatchedAsset<T>
 }
 ```
 
-The new `Watch` method should return a `WatchedAsset<T>` instead of the direct `Effect`.
+The new `Watch` method should return a `WatchedAsset<T>` instead of the direct `Effect`:
+
 ```csharp
 public static WatchedAsset<T> Watch<T>(this ContentManager manager, string assetName)
 {
@@ -345,14 +347,14 @@ public static bool TryRefresh<T>(this ContentManager manager, WatchedAsset<T> wa
 ```
 
 
-At the top of the `GameScene.Update()` method, add the following line to opt into reloading the `_grayscaleEffect` asset.
+At the top of the `GameScene.Update()` method, add the following line to opt into reloading the `_grayscaleEffect` asset:
 
 ```csharp
 // Update the grayscale effect if it was changed  
 Content.TryRefresh(_grayscaleEffect);
 ```
 
-Now, when the `grayscaleEffect.fx` file is modified, the `dotnet watch` system will compile it to an `.xnb` file, copy it to the game's runtime folder, and then in the `Update()` loop, the `TryRefresh()` method will load the new effect and the new shader code will be running live in the game. Try it out by adding this line right before the `return` statement in the `grayscaleEffect.fx` file.
+Now, when the `grayscaleEffect.fx` file is modified, the `dotnet watch` system will compile it to an `.xnb` file, copy it to the game's runtime folder, and then in the `Update()` loop, the `TryRefresh()` method will load the new effect and the new shader code will be running live in the game. Try it out by adding this line right before the `return` statement in the `grayscaleEffect.fx` file:
 
 ```hlsl
 finalColor *= float3(1, 0, 0);
@@ -370,7 +372,8 @@ The _hot reload_ system is almost done. There are a few quality of life features
 ### File Locking
 There is an edge case bug in the `TryRefresh()` function that checks if the `.xnb` file is more recent than the in-memory asset. It is possible that the MonoGame Content Builder may be _actively_ writing the `.xnb` file when the function runs. The game will fail to read the file while it is being written. The solution to this problem is to simply wait and try loading the `.xnb` file the next frame. The trick is that C# does not have a standard way to check if a file is currently locked. The best way to check is to simply try and open the file, and if an `Exception` is thrown, assume the file is not readable. 
 
-Add this function to the `ContentManagerExtensions` class.
+Add this function to the `ContentManagerExtensions` class:
+
 ```csharp
 private static bool IsFileLocked(string path)
 {
@@ -394,19 +397,21 @@ if (IsFileLocked(path)) return false; // wait for the file to not be locked.
 ```
 
 ### Access the old Asset on reload
-Anytime a new asset is loaded, the old asset is unloaded from the `ContentManager`. However, it will be helpful to be able to access in-memory data about the old asset version. For shaders, there is metadata and runtime configuration that should be applied to the new version. This will be more relevant in the next chapter. For now, modify the `TryRefresh` function to contain `out` parameter of the old asset. Change the method signature to the following,
+Anytime a new asset is loaded, the old asset is unloaded from the `ContentManager`. However, it will be helpful to be able to access in-memory data about the old asset version. For shaders, there is metadata and runtime configuration that should be applied to the new version. This will be more relevant in the next chapter. For now, modify the `TryRefresh` function to contain `out` parameter of the old asset. Change the method signature to the following:
 
 ```csharp
 public static bool TryRefresh<T>(this ContentManager manager, WatchedAsset<T> watchedAsset, out T oldAsset)
 ```
 
-And before updating the `watchedAsset.Asset`, set the `oldAsset` as the previous in-memory asset.
+And before updating the `watchedAsset.Asset`, set the `oldAsset` as the previous in-memory asset:
+
 ```csharp
 oldAsset = watchedAsset.Asset;  
 watchedAsset.Asset = manager.Load<T>(watchedAsset.AssetName);
 ```
 
-Do not forget that the place where the `grayscaleEffect` calls the `TryRefresh()` function will need to include a no-op out variable.
+Do not forget that the place where the `grayscaleEffect` calls the `TryRefresh()` function will need to include a no-op out variable:
+
 ```csharp
 Content.TryRefresh(_grayscaleEffect, out _);
 ```
@@ -420,7 +425,8 @@ Finally, we need to address a subtle usability bug in the existing code. The `Tr
 public ContentManager Owner { get; init; }
 ```
 
-Adjust the `WatchAsset` function fill in this new property,
+Adjust the `WatchAsset` function fill in this new property:
+
 ```csharp
 public static WatchedAsset<T> Watch<T>(this ContentManager manager, string assetName)
 {
@@ -435,13 +441,14 @@ public static WatchedAsset<T> Watch<T>(this ContentManager manager, string asset
 }
 ```
 
-Then, in the `TryRefresh` function, a small assertion can be added to validate the `ContentManager` is the same.
+Then, in the `TryRefresh` function, a small assertion can be added to validate the `ContentManager` is the same:
+
 ```csharp
 if (manager != watchedAsset.Owner)  
     throw new ArgumentException($"Used the wrong ContentManager to refresh {watchedAsset.AssetName}");
 ```
 
-It is annoying to need use the `ContentManager` directly to call `TryRefresh` in the game loop. It would be easier to rely on the new `Owner` property, now. Add this method to the `WatchedAsset<T>` class.
+It is annoying to need use the `ContentManager` directly to call `TryRefresh` in the game loop. It would be easier to rely on the new `Owner` property, now. Add this method to the `WatchedAsset<T>` class:
 
 ```csharp
 public bool TryRefresh(out T oldAsset)  
@@ -450,7 +457,8 @@ public bool TryRefresh(out T oldAsset)
 }
 ```
 
-Finally, update the `GameScene` to use the new convenience method to refresh the `_grayscaleEffect` .
+Finally, update the `GameScene` to use the new convenience method to refresh the `_grayscaleEffect`:
+
 ```csharp
 _grayscaleEffect.TryRefresh(out _);
 ```

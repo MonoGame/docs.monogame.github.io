@@ -70,19 +70,22 @@ private Material _grayscaleEffect;
 
 Changing the `_grayscaleEffect` from an `Effect` to `Material` is going to cause a few compilation errors. The fixes are listed below.
 
-1. When instantiating the `_grayscaleEffect`, use the new method,
+1. When instantiating the `_grayscaleEffect`, use the new method:
+
 	```csharp
 	// Load the grayscale effect  
 	_grayscaleEffect = Content.WatchMaterial("effects/grayscaleEffect");
 	```
 
-2. When checking if the asset needs to be reloaded for hot-reload, use the `.Asset` sub property,
+2. When checking if the asset needs to be reloaded for hot-reload, use the `.Asset` sub property:
+
 	```csharp
 	// Update the grayscale effect if it was changed  
 	_grayscaleEffect.Asset.TryRefresh(out _);
 	```
 
-3. And in the `Draw()` method, use the `.Effect` shortcut property,
+3. And in the `Draw()` method, use the `.Effect` shortcut property:
+
 	```csharp
 	// We are in a game over state, so apply the saturation parameter.  
 	_grayscaleEffect.Effect.Parameters["Saturation"].SetValue(_saturation);  
@@ -99,7 +102,8 @@ You already saw how to set a shader property by using the `Saturation` value in 
 _grayscaleEffect.Effect.Parameters["DoesNotExist"].SetValue(0);
 ```
 
-You will see this type of `NullReference` error,
+You will see this type of `NullReference` error:
+
 ```
 System.NullReferenceException: Object reference not set to an instance of an object.
 ```
@@ -107,7 +111,8 @@ System.NullReferenceException: Object reference not set to an instance of an obj
 > [!Caution]
 > do not actually add the `DoesNotExist` sample, because it will break your code.
 
-On its own, this would not be too difficult to accept. However, MonoGame's shader compiler will aggressively remove properties that are not actually being _used_ in your shader code. Even if you wrote a shader that had a `DoesNotExist` property, if it was not being used to compute the return value of the shader, it will be removed. The compiler is good at optimizing away unused variables. For example, in the `grayscaleEffect.fx` file, change the last few lines of the `MainPS` function to the following,
+On its own, this would not be too difficult to accept. However, MonoGame's shader compiler will aggressively remove properties that are not actually being _used_ in your shader code. Even if you wrote a shader that had a `DoesNotExist` property, if it was not being used to compute the return value of the shader, it will be removed. The compiler is good at optimizing away unused variables. For example, in the `grayscaleEffect.fx` file, change the last few lines of the `MainPS` function to the following:
+
 ```hlsl
 // overwrite all existing operations and set the final color to white  
 finalColor.rgb = 1;  
@@ -161,7 +166,8 @@ public Material(WatchedAsset<Effect> asset)
 }
 ```
 
-With the new `ParameterMap` property, create a helper function that checks if a given parameter exists in the shader.
+With the new `ParameterMap` property, create a helper function that checks if a given parameter exists in the shader:
+
 ```csharp
 /// <summary>  
 /// Check if the given parameter name is available in the compiled shader code.  
@@ -177,7 +183,8 @@ public bool TryGetParameter(string name, out EffectParameter parameter)
 }
 ```
 
-Now you can create a helper method that sets a parameter value for the `Material`, but will not crash if the parameter does not actually exist.
+Now you can create a helper method that sets a parameter value for the `Material`, but will not crash if the parameter does not actually exist:
+
 ```csharp
 public void SetParameter(string name, float value)
 {
@@ -192,7 +199,8 @@ public void SetParameter(string name, float value)
 }
 ```
 
-Instead of setting the `Saturation` for the `_grayscaleEffect` manually as before, change the `Draw()` code to use the new method,
+Instead of setting the `Saturation` for the `_grayscaleEffect` manually as before, change the `Draw()` code to use the new method:
+
 ```csharp
 // We are in a game over state, so apply the saturation parameter.  
 _grayscaleEffect.SetParameter("Saturation", _saturation);
@@ -205,13 +213,14 @@ To verify it is working, re-run the game, and instead of seeing a crash, you sho
 
 ### Reloading Properties
 
-When the hot-reload system loads a new compiled shader into the game's memory, the new shader does not have any of the existing shader parameter _values_ that the previous shader instance had. To demonstrate the problem, we will purposefully break the `_grayscaleEffect` a bit. For now, comment out the line the `GameScene`'s `Draw()` method,
+When the hot-reload system loads a new compiled shader into the game's memory, the new shader does not have any of the existing shader parameter _values_ that the previous shader instance had. To demonstrate the problem, we will purposefully break the `_grayscaleEffect` a bit. For now, comment out the line the `GameScene`'s `Draw()` method:
 
 ```csharp
 // _grayscaleEffect.SetParameter("Saturation", _saturation);
 ```
 
-And instead, add the following line to the end of the `LoadContent()` method.
+And instead, add the following line to the end of the `LoadContent()` method:
+
 ```chsharp
 _grayscaleEffect.SetParameter("Saturation", 1);
 ```
@@ -219,7 +228,7 @@ _grayscaleEffect.SetParameter("Saturation", 1);
 The net outcome is that the `_grayscaleEffect` will not actually work for its designed purpose, but it should be always fully saturated with a value of `1`, and _never_ change. Run the game, enter the `GameScene`, and hit the pause button. Now, if you cause _any_ reload of the shader, the background of the `GameScene` will desaturate and turn grayscale. The newly compiled shader instance has no value for the `Saturation` parameter, and since `0` is the default value for numbers, it appears grayscale. 
 
 To solve this problem, the `Material` class can encapsulate the handling of applying new hot-reload updates. Anytime a new shader is available to swap in, the `Material` class needs to handle re-applying the old shader parameters to the new instance. 
-Add the following method to the `Material` class,
+Add the following method to the `Material` class:
 
 ```csharp
 public void Update()
@@ -252,7 +261,8 @@ public void Update()
 }
 ```
 
-And now instead of using the `TryRefresh()` method directly on the `_grayscaleEffect`, use the new method,
+And now instead of using the `TryRefresh()` method directly on the `_grayscaleEffect`, use the new method:
+
 ```csharp
 // Update the grayscale effect if it was changed  
 _grayscaleEffect.Update();
@@ -285,7 +295,8 @@ In the previous sections, we have only dealt with the `grayscaleEffect.fx` shade
 - `Vector2`,
 - `Texture2D` 
 
-Add the following methods to the `Material` class.
+Add the following methods to the `Material` class:
+
 ```csharp
 public void SetParameter(string name, Matrix value)
 {

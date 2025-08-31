@@ -15,7 +15,7 @@ So far in this series, we have only dealt with pixel shaders. To recap, the job 
 
 The default `SpriteBatch` vertex shader takes the vertices that make up the sprites' corners, and applies an _orthographic projection_ to the vertices. The orthographic projection creates a 2d effect where shapes have no perspective, even when they are closer or further away from the origin. 
 
-The vertex shader that is being used can be found [here](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Platform/Graphics/Effect/Resources/SpriteEffect.fx#L29), and is rewritten below,
+The vertex shader that is being used can be found [here](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Platform/Graphics/Effect/Resources/SpriteEffect.fx#L29), and is rewritten below:
 
 ```hlsl
 struct VSOutput
@@ -112,7 +112,8 @@ output.position = mul(position, MatrixTransform);
 
 The reason this line exists is to convert the vertices from world-space to clip-space. A vertex is a 3d coordinate in "world-space". But a monitor is a 2d display. Often, the screen's 2d coordinate system is called "clip-space". The vertex shader is converting the 3d world-space coordinate into a 2d clip-space coordinate. That conversion is a vector and matrix multiplication, using the `MatrixTransform`. 
 
-The `MatrixTransform` is computed by the [`SpriteEffect`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Effect/SpriteEffect.cs#L63) class. The relevant lines are copied below,
+The `MatrixTransform` is computed by the [`SpriteEffect`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Effect/SpriteEffect.cs#L63) class. The relevant lines are copied below:
+
 ```csharp
 // cache the shader parameter for the MatrixTransform
 _matrixParam = Parameters["MatrixTransform"];
@@ -157,7 +158,8 @@ struct VertexShaderInput
 };
 ```
 
-Now add the stub for the vertex shader function,
+Now add the stub for the vertex shader function:
+
 ```hlsl
 VertexShaderOutput MainVS(VertexShaderInput input) 
 {
@@ -182,12 +184,14 @@ technique SpriteDrawing
 
 The shader will not compile yet, because the `VertexShaderOutput` has not been completely initialized. We need to replicate the `MatrixTransform` step to convert the vertices from world-space to clip-space. 
 
-Add the `MatrixTransform` shader parameter.
+Add the `MatrixTransform` shader parameter:
+
 ```hlsl
 float4x4 MatrixTransform;
 ```
 
-And then assign all of the output semantics in the vertex shader.
+And then assign all of the output semantics in the vertex shader:
+
 ```hlsl
 VertexShaderOutput MainVS(VertexShaderInput input) 
 {
@@ -205,13 +209,15 @@ To validate this is working, we should try to use the new effect. For now, we wi
 private Material _3dMaterial;
 ```
 
-Load the shader using the hot reload system,
+Load the shader using the hot reload system:
+
 ```csharp
 // Load the 3d effect 
 _3dMaterial = Core.SharedContent.WatchMaterial("effects/3dEffect");
 ```
 
-And then use the effect when drawing the title text,
+And then use the effect when drawing the title text:
+
 ```csharp
 // Begin the sprite batch to prepare for rendering.  
 Core.SpriteBatch.Begin(  
@@ -219,7 +225,8 @@ Core.SpriteBatch.Begin(
     effect: _3dMaterial.Effect);
 ```
 
-When the game runs, the text will be missing. This is because we never created a projection matrix to assign to the `MatrixTransform` shader parameter. Add this code when loading the material.
+When the game runs, the text will be missing. This is because we never created a projection matrix to assign to the `MatrixTransform` shader parameter. Add this code when loading the material:
+
 ```csharp
 // Load the 3d effect 
 _3dMaterial = Content.WatchMaterial("effects/3dEffect");
@@ -248,7 +255,8 @@ As a quick experiment, we can show that the vertex shader can indeed modify the 
 float2 DebugOffset;
 ```
 
-And change the vertex shader to add the `DebugOffset` to the `output.Position` after the clip-space conversion.
+And change the vertex shader to add the `DebugOffset` to the `output.Position` after the clip-space conversion:
+
 ```hlsl
 output.Position = mul(input.Position, MatrixTransform);  
 output.Position.xy += DebugOffset;
@@ -257,7 +265,8 @@ output.Position.xy += DebugOffset;
 The sprites now move around as we adjust the shader parameter values. 
 ![Figure 7.2: We can control the vertex positions](./gifs/basic.gif)
 
-It is important to build intuition for the different coordinate systems involved. Instead of adding the `DebugOffset` _after_ the clip-space conversion, if you try to add it _before_, like in the code below.
+It is important to build intuition for the different coordinate systems involved. Instead of adding the `DebugOffset` _after_ the clip-space conversion, if you try to add it _before_, like in the code below:
+
 ```hlsl
 float4 pos = input.Position;  
 pos.xy += DebugOffset;  
@@ -289,7 +298,8 @@ Nothing happens!
 
 To fix this, we need to use a _perspective_ projection matrix instead of an orthographic projection matrix. MonoGame has a built in method called `Matrix.CreatePerspectiveFieldOfView()` that will do most of the heavy lifting for us. Once we have a perspective matrix, it would also be helpful to control _where_ the camera is looking. The math is easy, but it would be helpful to put it in a new class. 
 
-Create a new file in the _MonoGameLibrary_'s graphics folder called `SpriteCamera3d`, and paste the following code. We are going to skip over the math internals.
+Create a new file in the _MonoGameLibrary_'s graphics folder called `SpriteCamera3d`, and paste the following code. We are going to skip over the math internals:
+
 ```csharp
 using System;
 using Microsoft.Xna.Framework;
@@ -344,7 +354,8 @@ public class SpriteCamera3d
 }
 ```
 
-And now instead of creating an orthographic matrix in the `TitleScene`, we can use the new class.
+And now instead of creating an orthographic matrix in the `TitleScene`, we can use the new class:
+
 ```csharp
 // Load the 3d effect 
 _3dMaterial = Core.SharedContent.WatchMaterial("effects/3dEffect");
@@ -414,7 +425,7 @@ And now when the debug parameter is adjusted, the text spins in a way that was n
 
 ![Figure 7.4: A spinning text](./gifs/spin-1.gif)
 
-The text disappears for half of the rotation. That happens because as the vertices are rotated, the triangle itself started to point _away_ from the camera. By default, `SpriteBatch` will cull any faces that point away from the camera. Change the `rasterizerState` to `CullNone` when beginning the sprite batch.
+The text disappears for half of the rotation. That happens because as the vertices are rotated, the triangle itself started to point _away_ from the camera. By default, `SpriteBatch` will cull any faces that point away from the camera. Change the `rasterizerState` to `CullNone` when beginning the sprite batch:
 
 ```csharp
 // Begin the sprite batch to prepare for rendering.  
@@ -431,18 +442,20 @@ And voilà, the text no longer disappears on its flip side.
 You may find that the field of view is too high for your taste. Try lowering the field of view to 60, and you'll see something similar to this,
 ![Figure 7.5: A spinning text with reverse sides with smaller fov](./gifs/spin-3.gif)
 
-As a final touch, we should remove the hard-coded `screenSize` variable from the shader, and extract it as a shader parameter. While we are at it, clean up and remove the debug parameters as well.
+As a final touch, we should remove the hard-coded `screenSize` variable from the shader, and extract it as a shader parameter. While we are at it, clean up and remove the debug parameters as well:
+
 ```hlsl
 float2 ScreenSize;
 float SpinAngle;
 ```
 
-Then, make sure to set the ScreenSize parameter correctly from C#,
+Then, make sure to set the ScreenSize parameter correctly from C#:
+
 ```csharp
 _3dMaterial.SetParameter("ScreenSize", new Vector2(Core.GraphicsDevice.Viewport.Width, Core.GraphicsDevice.Viewport.Height));
 ```
 
-And instead of manually controlling the spin angle, we can make the title spin gentle following the mouse position. In the `Update()` function the `TitleScreen`, add the following snippet,
+And instead of manually controlling the spin angle, we can make the title spin gentle following the mouse position. In the `Update()` function the `TitleScreen`, add the following snippet:
 
 ```csharp
 var spinAmount = Core.Input.Mouse.X / (float)Core.GraphicsDevice.Viewport.Width;  
@@ -468,7 +481,8 @@ MonoGame shaders can reference code from multiple files by using the `#include` 
 > 
 > `.fxh` is purely convention. Technically you can use whatever file extension you want, but `.fxh` implies the usage of the file is for shared code, and does not contain a standalone effect itself. The `h` references `header`. 
 
-Before we get started, we are going to be editing `.fxh` files, so it would be nice if the hot-reload system also listened to these `.fxh` file changes. Update the `Watch` configuration in the `DungeonSlime.csproj` file to include the `.fxh` file type.
+Before we get started, we are going to be editing `.fxh` files, so it would be nice if the hot-reload system also listened to these `.fxh` file changes. Update the `Watch` configuration in the `DungeonSlime.csproj` file to include the `.fxh` file type:
+
 ```xml
   <ItemGroup Condition="'$(OnlyWatchContentFiles)'=='true'">
     <!-- Adds .fx files to the `dotnet watch`'s file scope -->
@@ -482,7 +496,7 @@ Before we get started, we are going to be editing `.fxh` files, so it would be n
 
 Let's start by factoring out some shared components a few different `.fxh` files. 
 
-Create a file in the _MonoGameLibrary_'s shared effect content folder called `common.fxh`. This file will contain utilities that can be shared for all effects, such as the `struct` types that define the inputs and outputs of the vertex and pixel shaders.
+Create a file in the _MonoGameLibrary_'s shared effect content folder called `common.fxh`. This file will contain utilities that can be shared for all effects, such as the `struct` types that define the inputs and outputs of the vertex and pixel shaders:
 
 ```hlsl
 #ifndef COMMON
@@ -509,7 +523,8 @@ struct VertexShaderOutput
 > 
 > The `#include` syntax is taking the referenced file and inserting it into the code. If the same file was included twice, then the contents that file would be written out as code _twice_. Defining a `struct` or function this way would cause the compiler to fail, because the `struct` would be declared twice, which is illegal. To work around this, _a_ solution is to use a practice called "include guards", where the file itself defines a symbol (in the case above, the symbol is `COMMON`). The file only compiles to anything if the symbol has not yet been defined. The `#ifndef` stands for "if not yet defined". Once the `COMMON` symbol is defined once, any future inclusions of the file will not match the `#ifndef` clause. 
 
-Then, in the `3dEffect.fx` file, remove the `VertexShaderInput` and `VertexShaderOutput` structs and replace them with this line,
+Then, in the `3dEffect.fx` file, remove the `VertexShaderInput` and `VertexShaderOutput` structs and replace them with this line:
+
 ```hlsl
 #include "common.fxh"
 ```
@@ -564,7 +579,8 @@ VertexShaderOutput MainVS(VertexShaderInput input)
 #endif
 ```
 
-And now in the `3dEffect.fx`, instead of `#include` referencing the `common.fxh`, we can directly reference `3dEffect.fxh`. We should also remove the code that was just pasted into the new common header file. Here is the entire contents of the slimmed down `3dEffect.fx` file,
+And now in the `3dEffect.fx`, instead of `#include` referencing the `common.fxh`, we can directly reference `3dEffect.fxh`. We should also remove the code that was just pasted into the new common header file. Here is the entire contents of the slimmed down `3dEffect.fx` file:
+
 ```hlsl
 #if OPENGL
 	#define SV_POSITION POSITION
@@ -599,7 +615,7 @@ technique SpriteDrawing
 };
 ```
 
-It is time to do the same thing for the `colorSwapEffect.fx` file. The goal is to split the file apart into a header file that defines the components of the effect, and leave the `fx` file itself without much _implementation_. Create a new file called `colors.fxh`, and paste the following.
+It is time to do the same thing for the `colorSwapEffect.fx` file. The goal is to split the file apart into a header file that defines the components of the effect, and leave the `fx` file itself without much _implementation_. Create a new file called `colors.fxh`, and paste the following:
 
 ```hlsl
 #ifndef COLORS
@@ -673,7 +689,8 @@ float4 ColorSwapPS(VertexShaderOutput input) : COLOR
 #endif
 ```
 
-Then, then `colorSwapEffect.fx` file can be re-written as this code,
+Then, then `colorSwapEffect.fx` file can be re-written as this code:
+
 ```hlsl
 #if OPENGL  
    #define SV_POSITION POSITION  
@@ -714,7 +731,8 @@ This happens because the `gameEffect.fx` file is in a different folder than the 
 #include "../../../MonoGameLibrary/SharedContent/effects/common.fxh"
 ```
 
-Then, the `gameEffect.fx` file could also reference the other two `.fxh` files we created,
+Then, the `gameEffect.fx` file could also reference the other two `.fxh` files we created:
+
 ```hlsl
 #include "../../../MonoGameLibrary/SharedContent/effects/3dEffect.fxh"
 #include "../../../MonoGameLibrary/SharedContent/effects/colors.fxh"
@@ -732,7 +750,8 @@ technique SpriteDrawing
 };
 ```
 
-The entire contents of the `gameEffect.fx` are written below.
+The entire contents of the `gameEffect.fx` are written below:
+
 ```hlsl
 #if OPENGL
 	#define SV_POSITION POSITION
@@ -763,13 +782,15 @@ technique SpriteDrawing
 };
 ```
 
-To load it into the `GameScene`, we need to _delete_ the old class member for `_colorSwapMaterial`, and add a new one,
+To load it into the `GameScene`, we need to _delete_ the old class member for `_colorSwapMaterial`, and add a new one:
+
 ```csharp
 // The uber material for the game objects  
 private Material _gameMaterial;
 ```
 
-And then apply all of the parameters to the single material,
+And then apply all of the parameters to the single material:
+
 ```csharp
 // Load the game material
 _gameMaterial = Content.WatchMaterial("effects/gameEffect");
@@ -788,7 +809,7 @@ Any place where the old `_colorSwapMaterial` is being referenced should be chang
 
 Now that the 3d effect can be applied to the game objects, it would be good to make the world tilt slightly towards the player character to give the movement more weight. Instead of spinning the entire map, an easier approach will be to modify the `MatrixTransform` that is being passed to the shader. 
 
-Add this snippet to the top of the `GameScene`'s `Update()` method.
+Add this snippet to the top of the `GameScene`'s `Update()` method:
 
 ```csharp
 // Set the camera view to look at the player slime

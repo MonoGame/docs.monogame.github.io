@@ -88,19 +88,21 @@ public void Finish()
 }
 ```
 
-Now we can use this new off-screen texture in the `GameScene`. Add a new class member in the `GameScene` ,
+Now we can use this new off-screen texture in the `GameScene`. Add a new class member in the `GameScene` :
+
 ```csharp
 // The deferred rendering resources  
 private DeferredRenderer _deferredRenderer;
 ```
 
-And initialize it in the `Initialize()` method,
+And initialize it in the `Initialize()` method:
+
 ```csharp
 // Create the deferred rendering resources  
 _deferredRenderer = new DeferredRenderer();
 ```
 
-Then, to actually _use_ the new off-screen texture, we need to invoke the `StartColorPhase()` and `Finish()` methods in the `Draw()` method of the `GameScene`. Right before the `SpriteBatch.Begin()` class, invoke the `StartColorPhase()` method. Here is the `Draw()` method with most of the code left out, but it demonstrates where the `StartColorPhase()` and `Finish()` methods belong,
+Then, to actually _use_ the new off-screen texture, we need to invoke the `StartColorPhase()` and `Finish()` methods in the `Draw()` method of the `GameScene`. Right before the `SpriteBatch.Begin()` class, invoke the `StartColorPhase()` method. Here is the `Draw()` method with most of the code left out, but it demonstrates where the `StartColorPhase()` and `Finish()` methods belong:
 
 ```csharp
 
@@ -127,7 +129,8 @@ Then, to actually _use_ the new off-screen texture, we need to invoke the `Start
     }
 ```
 
-If you run the game now, the game will appear blank except for the UI. That is because the game is rendering to an off-screen texture, but nothing is rendering the off-screen texture _back_ to the screen. For now, we will add some diagnostic visualization of the off-screen texture. Add the following function to the `DeferredRenderer` class. This function starts a new sprite batch and draws the `ColorBuffer` to the top-left corner of the screen, with an orange border around it to indicate it is a debug visualization.
+If you run the game now, the game will appear blank except for the UI. That is because the game is rendering to an off-screen texture, but nothing is rendering the off-screen texture _back_ to the screen. For now, we will add some diagnostic visualization of the off-screen texture. Add the following function to the `DeferredRenderer` class. This function starts a new sprite batch and draws the `ColorBuffer` to the top-left corner of the screen, with an orange border around it to indicate it is a debug visualization:
+
 ```csharp
 public void DebugDraw()
 {
@@ -156,7 +159,8 @@ public void DebugDraw()
 }
 ```
 
-And call this method from end the `Draw()` method, after the GUM UI draws.
+And call this method from end the `Draw()` method, after the GUM UI draws:
+
 ```csharp
 // Render the debug view for the game  
 _deferredRenderer.DebugDraw();
@@ -167,7 +171,8 @@ Now when you run the game, you should see the game appearing in the upper-left c
 
 ### Setting up the Light Buffer
 
-The next step is to create some lights and render them to a second off-screen texture. To start, add a second `RenderTarget2D` property to the `DeferredRenderer` class.
+The next step is to create some lights and render them to a second off-screen texture. To start, add a second `RenderTarget2D` property to the `DeferredRenderer` class:
+
 ```csharp
 /// <summary>  
 /// A texture that holds the drawn lights  
@@ -175,7 +180,8 @@ The next step is to create some lights and render them to a second off-screen te
 public RenderTarget2D LightBuffer { get; set; }
 ```
 
-And initialize it in the constructor exactly the same as the `ColorBuffer` was initialized,
+And initialize it in the constructor exactly the same as the `ColorBuffer` was initialized:
+
 ```csharp
 LightBuffer = new RenderTarget2D(
 	graphicsDevice: Core.GraphicsDevice, 
@@ -186,7 +192,8 @@ LightBuffer = new RenderTarget2D(
 	preferredDepthFormat: DepthFormat.None);
 ```
 
-We need another method to switch MonoGame into drawing sprites onto the new off-screen texture,
+We need another method to switch MonoGame into drawing sprites onto the new off-screen texture:
+
 ```csharp
 public void StartLightPhase()  
 {  
@@ -272,12 +279,14 @@ Each light will be drawn using a shader so that the fall-off and intensity can b
 public static Material PointLightMaterial { get; private set; }
 ```
 
-And then load the `Material` in the `LoadContent()` method.
+And then load the `Material` in the `LoadContent()` method:
+
 ```csharp
 PointLightMaterial = SharedContent.WatchMaterial("effects/pointLightEffect");
 ```
 
-And do not forget to enable the hot-reload by adding the `Update()` line in the `Update()` method.
+And do not forget to enable the hot-reload by adding the `Update()` line in the `Update()` method:
+
 ```csharp
 PointLightMaterial.Update();
 ```
@@ -318,7 +327,8 @@ Now, create a `List<PointLight>` as a new class member in the `GameScene`.
 private List<PointLight> _lights = new List<PointLight>();
 ```
 
-In order to start building intuition for the point light shader, we need a debug light to experiment with. Add this snippet to the `GameScene`'s `Initialize()` method,
+In order to start building intuition for the point light shader, we need a debug light to experiment with. Add this snippet to the `GameScene`'s `Initialize()` method:
+
 ```csharp
 _lights.Add(new PointLight  
 {  
@@ -326,7 +336,8 @@ _lights.Add(new PointLight
 });
 ```
 
-We need to draw the `PointLight` list using the new `PointLightMaterial`. Add the following function the `PointLight` class.
+We need to draw the `PointLight` list using the new `PointLightMaterial`. Add the following function the `PointLight` class:
+
 ```csharp
 public static void Draw(SpriteBatch spriteBatch, List<PointLight> pointLights)
 {
@@ -345,7 +356,8 @@ public static void Draw(SpriteBatch spriteBatch, List<PointLight> pointLights)
 }
 ```
 
-And call it from the `GameScene`'s `Draw()` method after the `StartLightPhase()` invocation.
+And call it from the `GameScene`'s `Draw()` method after the `StartLightPhase()` invocation:
+
 ```csharp
 PointLight.Draw(Core.SpriteBatch, _lights);
 ```
@@ -356,7 +368,8 @@ Now when you run the game, you will see a blank white square where the point lig
 
 The next task is to write the `pointLightEffect.fx` shader file so that the white square looks more like a point light. There are several ways to create the effect, some more realistic than others. For _DungeonSlime_, a realistic light fall off isn't going to look great, so we will develop something custom. 
 
-To start, calculate the distance from the center of the image, and render the distance as the red-channel.
+To start, calculate the distance from the center of the image, and render the distance as the red-channel:
+
 ```hlsl
 float4 MainPS(VertexShaderOutput input) : COLOR  
 {  
@@ -402,7 +415,8 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 
 ![Figure 8.6: A LightBrightness parameter](./gifs/point-light-brightness.gif)
 
-It would also be good to control the sharpness of the fall off. The `pow()` function raises the `falloff` to some exponent value.
+It would also be good to control the sharpness of the fall off. The `pow()` function raises the `falloff` to some exponent value:
+
 ```hlsl
 float LightBrightness;  
 float LightSharpness;  
@@ -421,7 +435,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 
 ![Figure 8.7: A LightSharpness parameter](./gifs/point-light-sharpness.gif)
 
-Finally, the shader parameters from `0` to `1`, but it would be nice to push the brightness and sharpness beyond `1`. Add a `range` multiplier in the shader code.
+Finally, the shader parameters from `0` to `1`, but it would be nice to push the brightness and sharpness beyond `1`. Add a `range` multiplier in the shader code:
 
 ```hlsl
 float LightBrightness;  
@@ -442,7 +456,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 
 ![Figure 8.8: Increase the range of the artistic parameters](./gifs/point-light-range.gif)
 
-The final touch is to return the `Color` of the light, instead of the red debug value. The `input.Color` carries the `Color` passed through the `SpriteBatch`, so we can use that. Multiply the alpha channel of the color by the `falloff` to _fade_ the light out without changing the light color itself.
+The final touch is to return the `Color` of the light, instead of the red debug value. The `input.Color` carries the `Color` passed through the `SpriteBatch`, so we can use that. Multiply the alpha channel of the color by the `falloff` to _fade_ the light out without changing the light color itself:
 
 ```hlsl
 float LightBrightness;  
@@ -472,7 +486,8 @@ _lights.Add(new PointLight
 });
 ```
 
-And change the `blendState` of the light's `SpriteBatch` draw call to additive,
+And change the `blendState` of the light's `SpriteBatch` draw call to additive:
+
 ```csharp
 spriteBatch.Begin(  
     effect: Core.PointLightMaterial.Effect,  
@@ -480,7 +495,8 @@ spriteBatch.Begin(
     );
 ```
 
-Set the shader parameter values for brightness and sharpness to something you like,
+Set the shader parameter values for brightness and sharpness to something you like:
+
 ```csharp
 PointLightMaterial = SharedContent.WatchMaterial("effects/pointLightEffect");  
 PointLightMaterial.IsDebugVisible = true;  
@@ -497,7 +513,8 @@ The light looks good! When we revert the full-screen `LightBuffer` and render th
 
 Now that the light and color buffers are being drawn to separate off screen textures, we need to _composite_ them to create the final screen render. Create a new Sprite Effect in the shared content folder called `deferredCompositeEffect.fx`. 
 
-Create a new class member in the `Core` class to hold the material,
+Create a new class member in the `Core` class to hold the material:
+
 ```csharp
 /// <summary>  
 /// The material that combines the various off screen textures  
@@ -511,12 +528,14 @@ DeferredCompositeMaterial = SharedContent.WatchMaterial("effects/deferredComposi
 DeferredCompositeMaterial.IsDebugVisible = true;
 ```
 
-To enable hot-reload support, add the `Update()` method,
+To enable hot-reload support, add the `Update()` method:
+
 ```csharp
 DeferredCompositeMaterial.Update();
 ```
 
-Create a new method in the `DeferredRenderer` class that will draw the composited image.
+Create a new method in the `DeferredRenderer` class that will draw the composited image:
+
 ```csharp
 public void DrawComposite()
 {
@@ -529,7 +548,8 @@ public void DrawComposite()
 }
 ```
 
-And instead of calling the `DebugDraw()` from the `GameScene`, call the new method before the GUM UI is drawn.
+And instead of calling the `DebugDraw()` from the `GameScene`, call the new method before the GUM UI is drawn:
+
 ```csharp
 _deferredRenderer.Finish();  
 _deferredRenderer.DrawComposite();
@@ -545,7 +565,8 @@ sampler2D LightBufferSampler = sampler_state
 };
 ```
 
-In the `DeferredRenderer` class, in the `DrawComposite` function before the sprite batch starts, make sure to pass the `LightBuffer` to the material.
+In the `DeferredRenderer` class, in the `DrawComposite` function before the sprite batch starts, make sure to pass the `LightBuffer` to the material:
+
 ```csharp
 Core.DeferredCompositeMaterial.SetParameter("LightBuffer", LightBuffer);
 ```
@@ -579,7 +600,8 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 
 ![Figure 8.11: Adding ambient light](./gifs/composite-ambient.gif)
 
-Find a value of ambient that you like and set the parameter from code.
+Find a value of ambient that you like and set the parameter from code:
+
 ```csharp
 public void DrawComposite(float ambient=.4f)  
 {  
@@ -605,7 +627,8 @@ For reference, here is the existing atlas texture.
 And here is the atlast, but with normal data where the game sprites are instead. Download the [atlas-normal.png](./images/atlas-normal.png) texture and add it to the _DungeonSlime_'s content folder. Include it in the mgcb content file. 
 
 ![Figure 8.15: The normal texture atlas](./images/atlas-normal.png)
-Everytime one of the game sprites is being drawn, we need to draw the corresponding normal texture information to yet another off-screen texture, called the `NormalBuffer`. Start by adding a new `RenderTarget2D` to the `DeferredRenderer` class.
+Everytime one of the game sprites is being drawn, we need to draw the corresponding normal texture information to yet another off-screen texture, called the `NormalBuffer`. Start by adding a new `RenderTarget2D` to the `DeferredRenderer` class:
+
 ```csharp
 /// <summary>  
 /// A texture that holds the normal sprite drawins  
@@ -613,7 +636,8 @@ Everytime one of the game sprites is being drawn, we need to draw the correspond
 public RenderTarget2D NormalBuffer { get; set; }
 ```
 
-And initialize it in the `DeferredRenderer`'s constructor,
+And initialize it in the `DeferredRenderer`'s constructor:
+
 ```csharp
 NormalBuffer = new RenderTarget2D(  
     graphicsDevice: Core.GraphicsDevice,   
@@ -624,7 +648,8 @@ NormalBuffer = new RenderTarget2D(
     preferredDepthFormat: DepthFormat.None);
 ```
 
-So far in the series, all of the pixel shaders have returned a _single_ `float4` with the `COLOR` semantic. MonoGame supports _Multiple Render Targets_ by having a shader return a `struct` with _multiple_ fields each with a unique `COLOR` semantic. Add the following `struct` to the `gameEffect.fx` file,
+So far in the series, all of the pixel shaders have returned a _single_ `float4` with the `COLOR` semantic. MonoGame supports _Multiple Render Targets_ by having a shader return a `struct` with _multiple_ fields each with a unique `COLOR` semantic. Add the following `struct` to the `gameEffect.fx` file:
+
 ```hlsl
 struct PixelShaderOutput {  
     float4 color: COLOR0;  
@@ -632,7 +657,8 @@ struct PixelShaderOutput {
 };
 ```
 
-At the moment, the `gameEffect.fx` is just registering the `ColorSwapPS` function as the pixel function, but we will need to extend the logic to support the normal values. Create a new function in the file that will act as the new pixel shader function.
+At the moment, the `gameEffect.fx` is just registering the `ColorSwapPS` function as the pixel function, but we will need to extend the logic to support the normal values. Create a new function in the file that will act as the new pixel shader function:
+
 ```hlsl
 PixelShaderOutput MainPS(VertexShaderOutput input)  
 {  
@@ -643,7 +669,8 @@ PixelShaderOutput MainPS(VertexShaderOutput input)
 }
 ```
 
-And do not forget to update the `technique` to reference the new `MainPS` function,
+And do not forget to update the `technique` to reference the new `MainPS` function:
+
 ```hlsl
 technique SpriteDrawing  
 {  
@@ -655,7 +682,8 @@ technique SpriteDrawing
 };
 ```
 
-In C#, when the `GraphcisDevice.SetRenderTarget()` function is called, it sets the texture that the `COLOR0` semantic will be sent to. However, there is an overload called `SetRenderTargets()` that accepts _multiple_ `RenderTarget2D`s, and each additional texture will be assigned to the next `COLOR` semantic. Rewrite the `StartColorPhase()` function in the `DeferredRenderer` as follows,
+In C#, when the `GraphcisDevice.SetRenderTarget()` function is called, it sets the texture that the `COLOR0` semantic will be sent to. However, there is an overload called `SetRenderTargets()` that accepts _multiple_ `RenderTarget2D`s, and each additional texture will be assigned to the next `COLOR` semantic. Rewrite the `StartColorPhase()` function in the `DeferredRenderer` as follows:
+
 ```csharp
 public void StartColorPhase()
 {
@@ -702,13 +730,15 @@ Core.SpriteBatch.Draw(NormalBuffer, normalRect, Color.White);
 And do not forget to call the `DebugDraw()` method from the `GameScene`'s `Draw()` method. Then you will see a totally `red` `NormalBuffer`, because the shader is hard coding the value to `float4(1,0,0,1)`. 
 ![Figure 8.16: A blank normal buffer](./images/normal-buffer-red.png)
 
-To start rendering the normal values themselves, we need to load the normal texture into the `GameScene` and pass it along to the `gameEffect.fx` effect. First, create a class member for the new `Texture2D`.
+To start rendering the normal values themselves, we need to load the normal texture into the `GameScene` and pass it along to the `gameEffect.fx` effect. First, create a class member for the new `Texture2D`:
+
 ```csharp
 // The normal texture atlas  
 private Texture2D _normalAtlas;
 ```
 
-Then load the texture in the `LoadContent()` method,
+Then load the texture in the `LoadContent()` method:
+
 ```csharp
 // Load the normal maps  
 _normalAtlas = Content.Load<Texture2D>("images/atlas-normal");
@@ -719,7 +749,8 @@ And finally, pass it to the `_gameEffect` material as a parameter,
 _gameMaterial.SetParameter("NormalMap", _normalAtlas);
 ```
 
-The shader itself needs to expose a `Texture2D` and `Sampler` state for the new normal texture.
+The shader itself needs to expose a `Texture2D` and `Sampler` state for the new normal texture:
+
 ```hlsl
 Texture2D NormalMap;  
 sampler2D NormalMapSampler = sampler_state  
@@ -728,7 +759,8 @@ sampler2D NormalMapSampler = sampler_state
 };
 ```
 
-And then finally the `MainPS` shader function needs to read the `NormalMap` data for the current pixel.
+And then finally the `MainPS` shader function needs to read the `NormalMap` data for the current pixel:
+
 ```hlsl
 PixelShaderOutput MainPS(VertexShaderOutput input)  
 {  
@@ -756,7 +788,8 @@ public static void Draw(SpriteBatch spriteBatch, List<PointLight> pointLights, T
     // ...
 ```
 
-And then to pass the `NormalBuffer`, modify the `GameScene`'s `Draw()` method to pass the buffer.
+And then to pass the `NormalBuffer`, modify the `GameScene`'s `Draw()` method to pass the buffer:
+
 ```csharp
 // start rendering the lights  
 _deferredRenderer.StartLightPhase();  
@@ -776,13 +809,15 @@ The challenge is to find the normal value of the pixel that the light is current
 
 In order to override the vertex shader function, we will need to repeat the `MatrixTransform` work from the previous chapter. However, it would better to _re-use_ the work from the previous chapter so that the lights also tilt and respond to the `MatrixTransform` that the rest of the game world uses. 
 
-Add a reference in the `3dEffect.fxh` file in the `pointLightEffect.fx` shader.
+Add a reference in the `3dEffect.fxh` file in the `pointLightEffect.fx` shader:
+
 ```hlsl
 #include "3dEffect.fxh"
 ```
 
 However, we need to _extend_ the vertex function and add the extra field. 
-Create a new struct in the `pointLightEffect.fx` file,
+Create a new struct in the `pointLightEffect.fx` file:
+
 ```hlsl
 struct LightVertexShaderOutput  
 {  
@@ -816,7 +851,8 @@ LightVertexShaderOutput LightVS(VertexShaderInput input)
 }
 ```
 
-Make sure to update the `technique` to use the new vertex function.
+Make sure to update the `technique` to use the new vertex function:
+
 ```hlsl
 technique SpriteDrawing  
 {  
@@ -828,18 +864,21 @@ technique SpriteDrawing
 };
 ```
 
-In the pixel function, to visualize the screen coordinates, we will short-circuit the existing light code and just render out the screen coordinates. First, modify the input of the pixel function to be the `LightVertexShaderOutput` struct that was returned from the `LightVS` vertex function.
+In the pixel function, to visualize the screen coordinates, we will short-circuit the existing light code and just render out the screen coordinates. First, modify the input of the pixel function to be the `LightVertexShaderOutput` struct that was returned from the `LightVS` vertex function:
+
 ```hlsl
 float4 MainPS(LightVertexShaderOutput input) : COLOR
 ```
 
-And make the function immediately return the screen coordinates in the red and green channel.
+And make the function immediately return the screen coordinates in the red and green channel:
+
 ```hlsl
 return float4(input.ScreenCoordinates.xy, 0, 1);
 ```
 
 Be careful, if you run the game now, it will not look right. We need to make sure to send the `MatrixTransform` parameter from C# as well.
-In the `GameScene`'s `Update()` method, make sure to pass the `MatrixTransform` to _both_ the `_gameMaterial` _and_ the `Core.PointLightMaterial`. The `ScreenSize` parameter also needs to be sent.
+In the `GameScene`'s `Update()` method, make sure to pass the `MatrixTransform` to _both_ the `_gameMaterial` _and_ the `Core.PointLightMaterial`. The `ScreenSize` parameter also needs to be sent:
+
 ```csharp
 var matrixTransform = _camera.CalculateMatrixTransform();  
 _gameMaterial.SetParameter("MatrixTransform", matrixTransform);  
@@ -850,7 +889,8 @@ Core.PointLightMaterial.SetParameter("ScreenSize", new Vector2(Core.GraphicsDevi
 ![8.18: The point light can access screen space](./images/light-screen.png)
 
 Now, the `pointLightEffect` can use the screen space coordinates to sample the `NormalBuffer` values.
-To build intuition, start by just returning the values from the `NormalBuffer`. Start by reading those values, and then return immediately.
+To build intuition, start by just returning the values from the `NormalBuffer`. Start by reading those values, and then return immediately:
+
 ```hlsl
 float4 MainPS(LightVertexShaderOutput input) : COLOR  
 {  
@@ -870,7 +910,8 @@ Despite passing the `NormalBuffer` texture to the named `NormalTexture` `Texture
 
 There are two workarounds. If performance is not _critical_, you could add back in a throw-away read from the main `SpriteTextureSampler` , and use the resulting color _somehow_ in the computation for the final result of the shader. However, this is useless work, and will likely confuse anyone who looks at the shader in the future. The other workaround is to pass the `NormalBuffer` to the `Draw()` function directly, and not bother sending it as a shader parameter at all. 
 
-Change the `PointLight.Draw()` method to pass the `normalBuffer` to the `SpriteBatch.Draw()` method _instead_ of passing it in as a parameter to the `PointLightMaterial`. Here is the new `PointLight.Draw()` method,
+Change the `PointLight.Draw()` method to pass the `normalBuffer` to the `SpriteBatch.Draw()` method _instead_ of passing it in as a parameter to the `PointLightMaterial`. Here is the new `PointLight.Draw()` method:
+
 ```csharp
 public static void Draw(SpriteBatch spriteBatch, List<PointLight> pointLights, Texture2D normalBuffer)
 {
@@ -893,7 +934,8 @@ public static void Draw(SpriteBatch spriteBatch, List<PointLight> pointLights, T
 And now the normal map is being rendered where the light exists.
 ![Figure 8.20: The light shows the normal map entirely](./images/light-normal.png)
 
-Now it is time to _use_ the normal data in conjunction with the light direction to decide how much light each pixel should receive. Add this shader code to the pixel function.
+Now it is time to _use_ the normal data in conjunction with the light direction to decide how much light each pixel should receive. Add this shader code to the pixel function:
+
 ```hlsl
 float4 normal = tex2D(NormalBufferSampler,input.ScreenCoordinates);  
   
@@ -907,7 +949,8 @@ float3 lightDir = float3( normalize(input.TextureCoordinates - .5), 1);
 float lightAmount = saturate(dot(normalDir, lightDir));
 ```
 
-And then make the final color use the `lightAmount`.
+And then make the final color use the `lightAmount`:
+
 ```hlsl
 color.a *= falloff * lightAmount;
 ```
@@ -921,7 +964,8 @@ To drive the effect for a moment, this gif shows the normal effect being blended
 
 Now that we have lights rendering in the game, it is time to hook a few more up in the game. There should be a light positioned next to each torch along the upper wall, and maybe a few lights that wonder around the level. 
 
-Create a function in the `GameScene` that will initialize all of the lights. Feel free to add more.
+Create a function in the `GameScene` that will initialize all of the lights. Feel free to add more:
+
 ```csharp
 private void InitializeLights()
 {
@@ -989,7 +1033,8 @@ private void MoveLightsAround(GameTime gameTime)
 }
 ```
 
-And call it from the `Update()` method,
+And call it from the `Update()` method:
+
 ```csharp
 // Move some lights around for artistic effect  
 MoveLightsAround(gameTime);

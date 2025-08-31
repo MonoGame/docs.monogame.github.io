@@ -27,7 +27,8 @@ public static Material SceneTransitionMaterial { get; private set; }
 ```
 
 
-Add an override for the `LoadContent` method, and load the `sceneTransitionEffect.fx` file into a `Material`. 
+Add an override for the `LoadContent` method, and load the `sceneTransitionEffect.fx` file into a `Material`:
+
 ```csharp
 protected override void LoadContent()  
 {  
@@ -36,7 +37,8 @@ protected override void LoadContent()
 }
 ```
 
-Make sure to call the `Core`'s version of `LoadContent()` from the `Game1` class. In the previous tutorial, the method was left without calling the base method.
+Make sure to call the `Core`'s version of `LoadContent()` from the `Game1` class. In the previous tutorial, the method was left without calling the base method:
+
 ```csharp
 protected override void LoadContent()  
 {  
@@ -47,13 +49,15 @@ protected override void LoadContent()
 }
 ```
 
-To benefit from hot-reload, we need to update the effect in the `Core`'s `Update()` loop.
+To benefit from hot-reload, we need to update the effect in the `Core`'s `Update()` loop:
+
 ```csharp
 // Check if the scene transition material needs to be reloaded.  
 SceneTransitionMaterial.Update();
 ```
 
-And as we develop the effect, enable the debug UI.
+And as we develop the effect, enable the debug UI:
+
 ```csharp
 SceneTransitionMaterial.IsDebugVisible = true;
 ```
@@ -71,7 +75,8 @@ Currently, the shader is compiling and loading into the game, but it isn't being
 public static Texture2D Pixel { get; private set; }
 ```
 
-And initialize it in the `Initialize()` method.
+And initialize it in the `Initialize()` method:
+
 ```csharp
 // Create a 1x1 white pixel texture for drawing quads.  
 Pixel = new Texture2D(GraphicsDevice, 1, 1);  
@@ -80,7 +85,8 @@ Pixel.SetData(new Color[]{ Color.White });
 
 The `Pixel` property is a texture we can re-use for many effects, and it is helpful to have for debugging purposes. 
 
-In the `Core'`s `Draw()` method, use the `SpriteBatch` to draw a full screen sprite using the `Pixel` property. Make sure to put this code after the `s_activeScene` is drawn, because the scene transition effect should _cover_ whatever was rendered from the current scene.
+In the `Core'`s `Draw()` method, use the `SpriteBatch` to draw a full screen sprite using the `Pixel` property. Make sure to put this code after the `s_activeScene` is drawn, because the scene transition effect should _cover_ whatever was rendered from the current scene:
+
 ```csharp
 // Draw the scene transition quad  
 SpriteBatch.Begin(effect: SceneTransitionMaterial.Effect);  
@@ -163,7 +169,7 @@ return float4(uv.x, 0, 0, 1);
 That results in this image, where the left edge has an x-coordinate of `0`, it has no red value, and where the right edge has an x-coordinate of `1`, the image is fully red. In the middle of the image, the red value interpolates between `0` and `1`. 
 ![Figure 5.4: the x coordinate of each pixel represented in the red channel](./images/x-pos.png)
 
-The same pattern holds true for the y-coordinate. Observe the following shader code putting the y-coordinate of each pixel in the green channel.
+The same pattern holds true for the y-coordinate. Observe the following shader code putting the y-coordinate of each pixel in the green channel:
 
 ```hlsl
 float2 uv = input.TextureCoordinates;  
@@ -174,7 +180,7 @@ As you can see, the top of the screen has a `0` value for the y-coordinate, and 
 
 ![Figure 5.5: The y-coordinate of each pixel represented in the green channel](./images/y-pos.png)
 
-When these shaders are combined, the resulting image is the classic UV texture coordinate space.
+When these shaders are combined, the resulting image is the classic UV texture coordinate space:
 
 ```hlsl
 float2 uv = input.TextureCoordinates;  
@@ -192,7 +198,7 @@ return float4(uv.x, uv.y, 0, 1);
 
 Now that you have a visualization of the coordinate space, we can build some intuition for a screen wipe. To start, imagine creating a horizontal screen wipe, where the image turns to black from left to right. Remember that the x-coordinate goes from `0` on the left edge to `1` on the right edge. We can re-introduce the `Progress` parameter and compare the values. If the `Progress` parameter is greater than the x-coordinate, then that part of the image should transition. 
 
-In the following shader code, the blue channel of the final image represents in that coordinate should be in the transitioned state.
+In the following shader code, the blue channel of the final image represents in that coordinate should be in the transitioned state:
 
 ```hlsl
 float2 uv = input.TextureCoordinates;  
@@ -240,7 +246,8 @@ float EdgeWidth;
 Now you can control the edge width slider to see the smooth edge between transitioned and not. 
 ![Figure 5.9: A smooth edge](./gifs/smoothstep.gif)
 
-After we find an `EdgeWidth` value that looks good, we can set it in C# after the `SceneTransitionMaterial` is loaded.
+After we find an `EdgeWidth` value that looks good, we can set it in C# after the `SceneTransitionMaterial` is loaded:
+
 ```csharp
 SceneTransitionMaterial.SetParameter("EdgeWidth", .05f);
 ```
@@ -262,7 +269,8 @@ float transitioned = smoothstep(Progress, Progress + EdgeWidth, uv.y);
 
 But what if we wanted to create more complicated wipes that didn't simply go in one direction? So far, we have passed `uv.x` and `uv.y` along as the argument to compare against the `Progress` shader parameter, but we could use any value we wanted. 
 
-Pull out the expression into a separate variable, `value`, and experiment with some different mathematical functions. For example, here is a wipe that comes in from the left and right towards the center.
+Pull out the expression into a separate variable, `value`, and experiment with some different mathematical functions. For example, here is a wipe that comes in from the left and right towards the center:
+
 ```hlsl
 float value = 1 - abs(.5 - uv.x) * 2;  
 float transitioned = smoothstep(Progress, Progress + EdgeWidth, value);
@@ -296,7 +304,8 @@ Theoretically, it is possible to derive mathematical expressions that would resu
 
 Download those files and add them to your MonoGame content.
 
-We will store these texture references in the `Core` class as a `static` property, similar to how the `SceneTransitionMaterial` is already being kept,
+We will store these texture references in the `Core` class as a `static` property, similar to how the `SceneTransitionMaterial` is already being kept:
+
 ```csharp
 /// <summary>  
 /// A set of grayscale gradient textures to use as transition guides  
@@ -304,7 +313,8 @@ We will store these texture references in the `Core` class as a `static` propert
 public static List<Texture2D> SceneTransitionTextures { get; private set; }
 ```
 
-And in the `Core`'s `LoadContent()` method, load the new images,
+And in the `Core`'s `LoadContent()` method, load the new images:
+
 ```csharp
 SceneTransitionTextures = new List<Texture2D>();  
 SceneTransitionTextures.Add(Content.Load<Texture2D>("images/angled"));  
@@ -318,7 +328,8 @@ Instead of using the `Pixel` debug image to draw the `SceneTransitionMaterial`, 
 SpriteBatch.Draw(SceneTransitionTextures[1], GraphicsDevice.Viewport.Bounds, Color.White);
 ```
 
-In the shader, you can read the texture data at the given `uv` coordinate by using the `tex2D` function. Modify the shader so that the `value` is just the red-channel of the given texture.
+In the shader, you can read the texture data at the given `uv` coordinate by using the `tex2D` function. Modify the shader so that the `value` is just the red-channel of the given texture:
+
 ```hlsl
 float2 uv = input.TextureCoordinates;  
 float value = tex2D(SpriteTextureSampler, uv).r;  
@@ -381,7 +392,8 @@ public class SceneTransition
 }
 ```
 
-Add the following `static` methods to the new `SceneTransition` class,
+Add the following `static` methods to the new `SceneTransition` class:
+
 ```csharp
 /// <summary>  
 /// Create a new transition  
@@ -417,7 +429,8 @@ Then, add a `static` property to the `Core` class.
 public static SceneTransition SceneTransition { get; protected set; } = SceneTransition.Open(1000);
 ```
 
-Anytime the `Core` class changes scene, it should create a new _closing_ transition.
+Anytime the `Core` class changes scene, it should create a new _closing_ transition:
+
 ```csharp
     public static void ChangeScene(Scene next)
     {
@@ -431,7 +444,8 @@ Anytime the `Core` class changes scene, it should create a new _closing_ transit
     }
 ```
 
-At the start of the `TransitionScene()` method, create an _open_ transition.
+At the start of the `TransitionScene()` method, create an _open_ transition:
+
 ```csharp
 private static void TransitionScene()  
 {  
@@ -446,7 +460,8 @@ SceneTransitionMaterial.SetParameter("Progress", SceneTransition.DirectionalRati
 SceneTransitionMaterial.Update();
 ```
 
-And finally, the scene material needs to be drawn with the right texture,
+And finally, the scene material needs to be drawn with the right texture:
+
 ```csharp
 // Draw the scene transition quad  
 SpriteBatch.Begin(effect: SceneTransitionMaterial.Effect);  
@@ -474,7 +489,8 @@ In the `DungeonSlime.csproj` file, add the following changes to include files fr
 </ItemGroup>
 ```
 
-Also, in order for the shader hot-reload to work with the shared content, modify the `Watch` element to look like this,
+Also, in order for the shader hot-reload to work with the shared content, modify the `Watch` element to look like this:
+
 ```xml
 <Watch Include="../**/*.fx;"/>
 ```
@@ -488,13 +504,15 @@ Next, the existing `ContentManager` instance in the `Core` class will only load 
 public static ContentManager SharedContent { get; private set; }
 ```
 
-And then you will need to set the new `SharedContent` in the `Core` constructor, next to where the existing `Content` property is being set.
+And then you will need to set the new `SharedContent` in the `Core` constructor, next to where the existing `Content` property is being set:
+
 ```csharp
 // Set the core's shared content manager, pointing to the SharedContent folder.  
 SharedContent = new ContentManager(Services, "SharedContent");
 ```
 
-Finally, use the `SharedContent` instead of `Content` load load all the content, from the `LoadContent()` method.
+Finally, use the `SharedContent` instead of `Content` load load all the content, from the `LoadContent()` method:
+
 ```csharp
 protected override void LoadContent()
 {

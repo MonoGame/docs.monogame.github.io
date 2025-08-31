@@ -13,7 +13,8 @@ If you are following along with code, here is the code from the end of the [prev
 
 A common approach to building debug UIs in games is to use an _Immediate Mode_ system. An immediate mode UI redraws the entire UI from scratch every frame. Immediate mode UIs make developing developer-facing debug tools easy. A popular library is called `DearImGui`, which has a dotnet C# port called `ImGui.NET`. 
 
-To add `ImGUI.NET`, add the following Nuget package reference to the _MonoGameLibrary_ project,
+To add `ImGUI.NET`, add the following Nuget package reference to the _MonoGameLibrary_ project:
+
 ```xml
 <PackageReference Include="ImGui.NET" Version="1.91.6.1" />
 ```
@@ -24,7 +25,8 @@ Create a new folder in the _MonoGameLibrary_ project called _ImGui_ and copy and
 - The [`ImGuiRenderer.cs`](https://github.com/ImGuiNET/ImGui.NET/blob/v1.91.6.1/src/ImGui.NET.SampleProgram.XNA/ImGuiRenderer.cs)
 - The [`DrawVertDeclaration.cs`](https://github.com/ImGuiNET/ImGui.NET/blob/v1.91.6.1/src/ImGui.NET.SampleProgram.XNA/DrawVertDeclaration.cs)
 
-There is `unsafe` code in the `ImGui` code, like this snippet, so you will need to enable `unsafe` code in the `MonoGameLibrary.csproj` file. Add this property.
+There is `unsafe` code in the `ImGui` code, like this snippet, so you will need to enable `unsafe` code in the `MonoGameLibrary.csproj` file. Add this property:
+
 ```xml
 <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 ```
@@ -35,7 +37,7 @@ There is `unsafe` code in the `ImGui` code, like this snippet, so you will need 
 
 In order to play around with the new UI tool, we will set up a simple _Hello World_ UI in the main `GameScene`. As we experiment with `ImGui`, we will build towards a re-usable debug UI for future shaders. To get started, we need to have an instance of `ImGuiRenderer`. Similar to how there is a single `static SpriteBatch` , we will create a single `static ImGuiRenderer` to be re-used throughout the game. 
 
-In the `Core.cs` file, add the following property to the `Core` class.
+In the `Core.cs` file, add the following property to the `Core` class:
 
 ```csharp
 /// <summary>  
@@ -44,14 +46,16 @@ In the `Core.cs` file, add the following property to the `Core` class.
 public static ImGuiRenderer ImGuiRenderer { get; private set; }
 ```
 
-And then to initialize the instance, in the `Initialize()` method, add the following snippet,
+And then to initialize the instance, in the `Initialize()` method, add the following snippet:
+
 ```csharp
 // Create the ImGui renderer.  
 ImGuiRenderer = new ImGuiRenderer(this);  
 ImGuiRenderer.RebuildFontAtlas();
 ```
 
-Similar to `SpriteBatch`'s `.Begin()` and `.End()` calls, the `ImGuiRenderer` has a start and end function call. In the `GameScene` class, add these lines to end of the `.Draw()` method.
+Similar to `SpriteBatch`'s `.Begin()` and `.End()` calls, the `ImGuiRenderer` has a start and end function call. In the `GameScene` class, add these lines to end of the `.Draw()` method:
+
 ```csharp
 // Draw debug UI
 Core.ImGuiRenderer.BeforeLayout(gameTime);  
@@ -59,7 +63,8 @@ Core.ImGuiRenderer.BeforeLayout(gameTime);
 Core.ImGuiRenderer.AfterLayout();
 ```
 
-`ImGui` draws by adding draggable windows to the screen. To create a simple window that just prints out `"Hello World"`, use the following snippet,
+`ImGui` draws by adding draggable windows to the screen. To create a simple window that just prints out `"Hello World"`, use the following snippet:
+
 ```csharp
 // Draw debug UI  
 Core.ImGuiRenderer.BeforeLayout(gameTime);  
@@ -180,7 +185,7 @@ Now, run the game observe that the `Saturation` parameter can be seen interpolat
 
 However, if you try to interact with the slider to manually set the `Saturation`, your inputs will always be overridden, because the `GameScene` itself keeps setting the value. In order to solve this, we can introduce a custom property in the `Material` class that causes the debug UI to override the various `SetParameter()` methods. 
 
-First, add this new boolean to the `Material` class.
+First, add this new boolean to the `Material` class:
 
 ```csharp
 public bool DebugOverride;
@@ -203,7 +208,7 @@ public void SetParameter(string name, float value)
 }
 ```
 
-Then, in the `DebugDraw()` method, after the `LastUpdated` field gets drawn, add this following,
+Then, in the `DebugDraw()` method, after the `LastUpdated` field gets drawn, add this following:
 
 ```csharp
 ImGui.AlignTextToFramePadding();  
@@ -314,7 +319,8 @@ The debug UI in the game is helpful, but sometimes you may need to take a closer
 ### Switch to WindowsDX
 
 To switch _DungeonSlime_ to target WindowsDX, you need to modify the `.csproj` file, and make some changes to the `.mgcb` content file. 
-First, in the `.csproj` file, remove the reference to MonoGame's openGL backend,
+First, in the `.csproj` file, remove the reference to MonoGame's openGL backend:
+
 ```xml
 <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
 ```
@@ -324,7 +330,8 @@ And replace it with this line,
 <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.*" />
 ```
 
-The [`MonoGame.Framework.WindowsDX`](https://www.nuget.org/packages/MonoGame.Framework.WindowsDX) Nuget package is not available for the `net8.0` framework. Instead, it is only available specifically on the Windows variant, called `net8.0-windows7.0`. Change the `<TargetFramework>` in your `.csproj` to the new framework,
+The [`MonoGame.Framework.WindowsDX`](https://www.nuget.org/packages/MonoGame.Framework.WindowsDX) Nuget package is not available for the `net8.0` framework. Instead, it is only available specifically on the Windows variant, called `net8.0-windows7.0`. Change the `<TargetFramework>` in your `.csproj` to the new framework:
+
 ```xml
 <TargetFramework>net8.0-windows7.0</TargetFramework>
 ```
@@ -339,7 +346,8 @@ And finally, RenderDoc only works when MonoGame is targeting the `HiDef` graphic
 /profile:HiDef
 ```
 
-Then, in the `Core` constructor, set the graphics profile immediately after constructing the `Graphics` instance.
+Then, in the `Core` constructor, set the graphics profile immediately after constructing the `Graphics` instance:
+
 ```csharp
 // Create a new graphics device manager.
 Graphics = new GraphicsDeviceManager(this);
@@ -348,7 +356,8 @@ Graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
 ### Using RenderDoc
 
-Make sure you have built _DungeonSlime_. You can build it manually by running the following command from the _DungeonSlime_ directory,
+Make sure you have built _DungeonSlime_. You can build it manually by running the following command from the _DungeonSlime_ directory:
+
 ```sh
 dotnet build
 ```
