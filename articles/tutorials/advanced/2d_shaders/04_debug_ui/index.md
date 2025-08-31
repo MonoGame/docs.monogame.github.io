@@ -84,12 +84,302 @@ Add the following function to the `Material` class,
 [Conditional("DEBUG")]
 public void DrawDebug()
 {
-    ImGui.Begin(Effect.Name);
-    
-    var currentSize = ImGui.GetWindowSize();
-    ImGui.SetWindowSize(Effect.Name, new System.Numerics.Vector2(MathHelper.Max(100, currentSize.X), MathHelper.Max(100, currentSize.Y)));
-    
-    ImGui.AlignTextToFramePadding();
-    ImGui.Text("Last Updated");
-    ImGui.SameLine();
-    ImGui.LabelText("##last-updated", Asset.UpdatedAt.ToString() + $
+	ImGui.Begin(Effect.Name);
+	
+	var currentSize = ImGui.GetWindowSize();
+	ImGui.SetWindowSize(Effect.Name, new System.Numerics.Vector2(MathHelper.Max(100, currentSize.X), MathHelper.Max(100, currentSize.Y)));
+	
+	ImGui.AlignTextToFramePadding();
+	ImGui.Text("Last Updated");
+	ImGui.SameLine();
+	ImGui.LabelText("##last-updated", Asset.UpdatedAt.ToString() + $" ({(DateTimeOffset.Now - Asset.UpdatedAt).ToString(@"h\:mm\:ss")} ago)");
+
+	ImGui.NewLine();
+
+
+	bool ScalarSlider(string key, ref float value)
+	{
+		float min = 0;
+		float max = 1;
+		
+		return ImGui.SliderFloat($"##_prop{key}", ref value, min, max);
+	}
+	
+	foreach (var prop in ParameterMap)
+	{
+		switch (prop.Value.ParameterType, prop.Value.ParameterClass)
+		{
+			case (EffectParameterType.Single, EffectParameterClass.Scalar):
+				ImGui.AlignTextToFramePadding();
+				ImGui.Text(prop.Key);
+				ImGui.SameLine();
+							
+				var value = prop.Value.GetValueSingle();
+				if (ScalarSlider(prop.Key, ref value))
+				{
+					prop.Value.SetValue(value);
+				}
+				break;
+			
+			case (EffectParameterType.Single, EffectParameterClass.Vector):
+				ImGui.AlignTextToFramePadding();
+				ImGui.Text(prop.Key);
+
+				var vec2Value = prop.Value.GetValueVector2();
+				ImGui.Indent();
+				
+				ImGui.Text("X");
+				ImGui.SameLine();
+				
+				if (ScalarSlider(prop.Key + ".x", ref vec2Value.X))
+				{
+					prop.Value.SetValue(vec2Value);
+				}
+				
+				ImGui.Text("Y");
+				ImGui.SameLine();
+				if (ScalarSlider(prop.Key + ".y", ref vec2Value.Y))
+				{
+					prop.Value.SetValue(vec2Value);
+				}
+				ImGui.Unindent();
+				break;
+			
+			case (EffectParameterType.Texture2D, EffectParameterClass.Object):
+				ImGui.AlignTextToFramePadding();
+				ImGui.Text(prop.Key);
+				ImGui.SameLine();
+
+				var texture = prop.Value.GetValueTexture2D();
+				if (texture != null)
+				{
+					var texturePtr = Core.ImGuiRenderer.BindTexture(texture);
+					ImGui.Image(texturePtr, new System.Numerics.Vector2(texture.Width, texture.Height));
+				}
+				else
+				{
+					ImGui.Text("(null)");
+				}
+				break;
+			
+			default:
+				ImGui.AlignTextToFramePadding();
+				ImGui.Text(prop.Key);
+				ImGui.SameLine();
+				ImGui.Text($"(unsupported {prop.Value.ParameterType}, {prop.Value.ParameterClass})");
+				break;
+		}
+	}
+	ImGui.End();
+}
+```
+
+Now, run the game observe that the `Saturation` parameter can be seen interpolating from `1` to `0` when the game over screen appears.
+
+![Figure 4.2: Shader parameters can be read](./videos/debug-shader-ui.mp4)
+
+However, if you try to interact with the slider to manually set the `Saturation`, your inputs will always be overridden, because the `GameScene` itself keeps setting the value. In order to solve this, we can introduce a custom property in the `Material` class that causes the debug UI to override the various `SetParameter()` methods. 
+
+First, add this new boolean to the `Material` class.
+
+```csharp
+public bool DebugOverride;
+```
+
+Then, modify all of the `SetParameter()` methods to exit early when the `DebugOverride` variable is set to `true`. 
+```csharp
+public void SetParameter(string name, float value)
+{
+	if (DebugOverride) return;
+
+	if (TryGetParameter(name, out var parameter))
+	{
+		parameter.SetValue(value);
+	}
+	else
+	{
+		Console.WriteLine($"Warning: cannot set shader parameter=[{name}] because it does not exist in the compiled shader=[{Asset.AssetName}]");
+	}
+}
+```
+
+Then, in the `DebugDraw()` method, after the `LastUpdated` field gets drawn, add this following,
+
+```csharp
+ImGui.AlignTextToFramePadding();  
+ImGui.Text("Override Values");  
+ImGui.SameLine();  
+ImGui.Checkbox("##override-values", ref DebugOverride);
+```
+
+Now, when you run the game, you can enable the `"Override Values"` checkbox to be able to set the `Saturation` value by hand. 
+![Figure 4.3: Shader parameters can be written](./videos/debug-shader-ui-2.mp4)
+
+### Turning it off
+
+As the number of shaders and `Material` instances grows throughout the rest of the tutorial series, it will become awkward to manage drawing all of the debug UIs manually like the `_grayscaleEffect`'s UI is being drawn. Rather, it would be good to have a single function that would draw all of the debug UIs at once. Naturally, it would not make sense to draw _every_ `Material`'s debug UI, so the `Material` class needs a setting to decide if the debug UI should be drawn or not. 
+
+We will keep track of all the `Material` instances to draw as a `static` variable inside the `Material` class itself. 
+
+```csharp
+// materials that will be drawn during the standard debug UI pass.  
+private static HashSet<Material> s_debugMaterials = new HashSet<Material>();
+```
+
+Now we can add a `boolean` property to the `Material` class that adds or removes the given instance to the `static` set. 
+```csharp
+/// <summary>
+/// Enable this variable to visualize the debugUI for the material
+/// </summary>
+public bool IsDebugVisible
+{
+	get
+	{
+		return s_debugMaterials.Contains(this);
+	}
+	set
+	{
+		if (IsDebugVisible)
+		{
+			s_debugMaterials.Remove(this);
+		}
+		else
+		{
+			s_debugMaterials.Add(this);
+		}
+	}
+}
+```
+
+To finish off the edits to the `Material` class, add a method that actually renders all of the `Material` instances in the `static` set. 
+```csharp
+[Conditional("DEBUG")]
+public static void DrawVisibleDebugUi(GameTime gameTime)
+{
+	// first, cull any materials that are not visible, or disposed. 
+	var toRemove = new List<Material>();
+	foreach (var material in s_debugMaterials)
+	{
+		if (material.Effect.IsDisposed)
+		{
+			toRemove.Add(material);
+		}
+	}
+
+	foreach (var material in toRemove)
+	{
+		s_debugMaterials.Remove(material);
+	}
+	
+	Core.ImGuiRenderer.BeforeLayout(gameTime);
+	foreach (var material in s_debugMaterials)
+	{
+		material.DrawDebug();
+	}
+	Core.ImGuiRenderer.AfterLayout();
+}
+```
+
+Now in the `Core`'s `Draw` method, we just need to call the new method. We should also delete the old code in the `GameScene` to draw the `_grayscaleEffect`'s debugUI as a one-shot. 
+```csharp
+protected override void Draw(GameTime gameTime)
+{
+	// If there is an active scene, draw it.
+	if (s_activeScene != null)
+	{
+		s_activeScene.Draw(gameTime);
+	}
+
+	Material.DrawVisibleDebugUi(gameTime);
+	
+	base.Draw(gameTime);
+}
+```
+
+Finally, in order to render the debug UI for the `_grayscaleEffect`, just enable the `IsDebugVisible` property to `true`. 
+```csharp
+// Load the grayscale effect
+_grayscaleEffect = Content.WatchMaterial("effects/grayscaleEffect");
+_grayscaleEffect.IsDebugVisible = true;
+```
+
+>[!tip]
+>If you don't want to see the debug UI for the `grayscaleEffect` anymore, just delete the line of code that sets `IsDebugVisible` to `true`. 
+
+
+## RenderDoc
+
+The debug UI in the game is helpful, but sometimes you may need to take a closer look at the actual graphics resources _MonoGame_ is managing. There are various tools that intercept the graphics API calls between an application and the graphics software. [_RenderDoc_](https://renderdoc.org/) is a great example of a graphics debugger tool. Unfortunately, it only works with MonoGame when the game is targeting the WindowsDX profile. It may not be possible to switch your game to WindowsDX under all circumstances. At this time, there are very few options for graphic debuggers tools for MonoGame when targeting openGL. 
+
+### Switch to WindowsDX
+
+To switch _DungeonSlime_ to target WindowsDX, you need to modify the `.csproj` file, and make some changes to the `.mgcb` content file. 
+First, in the `.csproj` file, remove the reference to MonoGame's openGL backend,
+```xml
+<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
+```
+
+And replace it with this line, 
+```xml
+<PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.*" />
+```
+
+The [`MonoGame.Framework.WindowsDX`](https://www.nuget.org/packages/MonoGame.Framework.WindowsDX) Nuget package is not available for the `net8.0` framework. Instead, it is only available specifically on the Windows variant, called `net8.0-windows7.0`. Change the `<TargetFramework>` in your `.csproj` to the new framework,
+```xml
+<TargetFramework>net8.0-windows7.0</TargetFramework>
+```
+
+Next, the `Content.mgcb` file, update the target platfrom from `DesktopGL` to `Windows`, 
+```
+/platform:Windows
+```
+
+And finally, RenderDoc only works when MonoGame is targeting the `HiDef` graphics profile. This needs to be changed in two locations. First, in the `.mgcb` file, change the `/profile` from `Reach` to `HiDef`. 
+```
+/profile:HiDef
+```
+
+Then, in the `Core` constructor, set the graphics profile immediately after constructing the `Graphics` instance.
+```csharp
+// Create a new graphics device manager.
+Graphics = new GraphicsDeviceManager(this);
+Graphics.GraphicsProfile = GraphicsProfile.HiDef;
+```
+
+### Using RenderDoc
+
+Make sure you have built _DungeonSlime_. You can build it manually by running the following command from the _DungeonSlime_ directory,
+```sh
+dotnet build
+```
+
+Once you have downloaded [RenderDoc](https://renderdoc.org/), open it. Go to the _Launch Application_ tab, and select your built executable for the _Executable Path_. For example, the path may look similar to the following, 
+
+```sh
+C:\proj\MonoGame.Samples\Tutorials\2dShaders\src\04-Debug-UI\DungeonSlime\bin\Debug\net8.0-windows7.0\DungeonSlime.exe
+```
+
+![Figure 4.4: The setup for RenderDoc](./images/renderdoc_setup.png)
+
+Then, click the _Launch_ button in the lower right. _DungeonSlime_ should launch with a small warning text in the upper left of the game window that states the graphics API is being captured by RenderDoc. 
+
+Press `F12` to capture a frame, and it will appear in RenderDoc. Double click the frame to open the captured frame, and go to the _Texture Viewer_ tab. The draw calls are split out one by one and you can view the intermediate buffers. 
+
+![Figure 4.5: RenderDoc shows the intermediate frame](gifs/renderdoc_tex.gif)
+
+RenderDoc is a powerful tool. To learn more about how to use the tool, please refer to the [RenderDoc Documentation](https://renderdoc.org/docs/index.html).
+
+## Conclusion
+
+What a difference a good tool makes! In this chapter, you accomplished the following:
+
+- Integrated the `ImGui.NET` library into a MonoGame project.
+- Created a reusable `ImGuiRenderer` to draw the UI.
+- Built a dynamic debug window for our `Material` class.
+- Learned how to use a graphics debugger like RenderDoc to inspect the frame.
+
+With our workflow and tooling in place, it's finally time to write some new shaders. Up next, we'll dive into our first major pixel shader effect and build a classic screen wipe transition! 
+
+You can find the complete code sample for this chapter, [here](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/04-Debug-UI). 
+
+Continue to the next chapter, [Chapter 05: Transition Effect](../05_transition_effect/index.md)
