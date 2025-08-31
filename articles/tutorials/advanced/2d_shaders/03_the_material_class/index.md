@@ -130,7 +130,7 @@ If you run the game and enter the `GameScene`, you will see a `NullReferenceExce
 
 The aggressive optimization is good for your game's performance, but when combined with the hot-reload system, it will lead to unexpected bugs. As you iterate on shader code, it is likely that at some point a shader parameter will be optimized out of the compiled shader. The hot-reload system will automatically load the newly compiled shader, and if the C# code attempts to set the previously available parameter, the game may crash.
 
-To solve this problem, the `Material` class can encapsulate setting shader properties and handle the potential error scenario. The `Effect.Parameters` variable is an instance of the  `EffectParameterCollection` class. Here is the class signature and fields:
+To solve this problem, the `Material` class can encapsulate setting shader properties and handle the potential error scenario. The `Effect.Parameters` variable is an instance of the  [`EffectParameterCollection`](xref:Microsoft.Xna.Framework.Graphics.EffectParameterCollection) class. Here is the class signature and fields:
 
 ```csharp
 public class EffectParameterCollection : IEnumerable<EffectParameter>, IEnumerable  

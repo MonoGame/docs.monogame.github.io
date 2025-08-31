@@ -45,7 +45,7 @@ The `SpriteVertexShader` looks different from our pixel shaders in a few importa
 
 ### Input Semantics
 
-The inputs to the vertex shader mirror the information that the `SpriteBatch` class bundles up for each vertex. If you look at the [SpriteBatchItem](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatchItem.cs), you will see that each sprite is made up of 4 `VertexPositionColorTexture` instances:
+The inputs to the vertex shader mirror the information that the `SpriteBatch` class bundles up for each vertex. If you look at the [`SpriteBatchItem`](xref:Microsoft.Xna.Framework.Graphics.SpriteBatchItem), you will see that each sprite is made up of 4 `VertexPositionColorTexture` instances:
 
 ```csharp
 public VertexPositionColorTexture vertexTL;
@@ -54,10 +54,10 @@ public VertexPositionColorTexture vertexBL;
 public VertexPositionColorTexture vertexBR;
 ```
 
-The [`VertexPositionColorTexture`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Vertices/VertexPositionColorTexture.cs) class is a standard MonoGame implementation of the `IVertexType`, and it defines a `Position`, a `Color`, and a `TextureCoordinate` for each vertex. Those should look familiar, because they align with the inputs to the vertex shader function. The alignment is not happenstance, it is enforced by "semantics" that are applied to each field in the vertex. This snippet from the `VertexPositionColorTexture` class defines the semantics for each field in the vertex by specifying the `VertexElementUsage`:
+
+The [`VertexPositionColorTexture`](xref:Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture) class is a standard MonoGame implementation of the `IVertexType`, and it defines a `Position`, a `Color`, and a `TextureCoordinate` for each vertex. Those should look familiar, because they align with the inputs to the vertex shader function. The alignment is not happenstance, it is enforced by "semantics" that are applied to each field in the vertex. This snippet from the `VertexPositionColorTexture` class defines the semantics for each field in the vertex by specifying the `VertexElementUsage`:
 
 ```csharp
-
 static VertexPositionColorTexture()
 {
 	var elements = new VertexElement[] 
@@ -69,6 +69,10 @@ static VertexPositionColorTexture()
 	VertexDeclaration = new VertexDeclaration(elements);
 }
 ```
+
+> [!note]
+> MonoGame is open source, so you can go read the full code for [SpriteBatchItem](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatchItem.cs) and[`VertexPositionColorTexture`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Vertices/VertexPositionColorTexture.cs)
+
 
 The vertex shader declares a semantic for each input using the `:` syntax:
 
@@ -116,7 +120,7 @@ output.position = mul(position, MatrixTransform);
 
 The reason this line exists is to convert the vertices from world-space to clip-space. A vertex is a 3d coordinate in "world-space". But a monitor is a 2d display. Often, the screen's 2d coordinate system is called "clip-space". The vertex shader is converting the 3d world-space coordinate into a 2d clip-space coordinate. That conversion is a vector and matrix multiplication, using the `MatrixTransform`. 
 
-The `MatrixTransform` is computed by the [`SpriteEffect`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Effect/SpriteEffect.cs#L63) class. The relevant lines are copied below:
+The `MatrixTransform` is computed by the [`SpriteEffect`](xref:Microsoft.Xna.Framework.Graphics.SpriteEffect) class. The full source is available, [`here`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Effect/SpriteEffect.cs#L63). The relevant lines are copied below:
 
 ```csharp
 // cache the shader parameter for the MatrixTransform

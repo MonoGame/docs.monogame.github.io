@@ -67,7 +67,7 @@ public class DeferredRenderer
 }
 ```
 
-The `ColorBuffer` property is a `RenderTarget2D`, which is a special type of `Texture2D` that MonoGame can draw into. In order for MonoGame to draw anything into the `ColorBuffer`, it needs to be bound as the current render target. Add the following function to the `DeferredRenderer` class. The `SetRenderTarget()` function instructs all future MonoGame draw operations to render into the `ColorBuffer`:
+The `ColorBuffer` property is a [`RenderTarget2D`](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D), which is a special type of [`Texture2D`](xref:Microsoft.Xna.Framework.Graphics.Texture2D) that MonoGame can draw into. In order for MonoGame to draw anything into the `ColorBuffer`, it needs to be bound as the current render target. Add the following function to the `DeferredRenderer` class. The `SetRenderTarget()` function instructs all future MonoGame draw operations to render into the `ColorBuffer`:
 
 ```csharp
 public void StartColorPhase()  

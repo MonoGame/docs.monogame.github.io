@@ -207,7 +207,7 @@ Remove the `"tunafish"` line and save again, and the watch program should log so
 
 ## Reload shaders in-game
 
-Now anytime the `.fx` files are modified, they will be recompiled and copied into the game's runtime folder. However, the game itself does not know to _reload_ the `Effect` instances. In this section, we will create a utility over the `ContentManager` to respond to these dynamic file updates. 
+Now anytime the `.fx` files are modified, they will be recompiled and copied into the game's runtime folder. However, the game itself does not know to _reload_ the `Effect` instances. In this section, we will create a utility over the [`ContentManager`](xref:Microsoft.Xna.Framework.Content.ContentManager) to respond to these dynamic file updates. 
 
 It is important to make a distinction between assets the game _expects_ to be reloaded and assets that the game does _not_ care about reloading. This tutorial will demonstrate how to create an explicit system where individual assets opt _into_ being _hot reloadable_, rather than creating a system where all assets automatically handle dynamic reloading. 
 
