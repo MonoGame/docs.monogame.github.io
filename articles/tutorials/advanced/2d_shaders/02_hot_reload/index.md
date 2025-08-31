@@ -5,9 +5,22 @@ description: "Setup workflows to reload shaders without restarting the game"
 
 Before we can dive in and start writing shader effects, we should first take a moment to focus on our development environment.
 
-In this chapter, we will build a "hot-reload" system that will automatically detect changes to our shader files, recompile them, and load them into our running game on the fly. This is a huge time-saver that will let us iterate and experiment with our visual effects much more quickly. Let us get started!
+In this chapter, we will build a "hot-reload" system that will automatically detect changes to our shader files, recompile them, and load them into our running game on the fly. Writing shaders is often a highly iterative process, and keeping the cycle time fast is critical to keep development momentum up. By default, MonoGame's shader workflow may feel slow, especially compared to other modern game engines. Imagine you have written 90% of a shader, but to _test_ the shader, you need to 
+1. compile the shader, 
+2. run your game,
+3. navigate to the part of your game that _uses_ the shader, 
+4. and _then_ you need to decide if the shader is working properly. 
+
+When you get all the way to step 4, and realize that you accidentally compiled the shader with the wrong variable value, or forgot to call a function, it will be frustrating and it will slow down your development. Now you will need to repeat all of the steps again, and again, as you develop the shader. Worse of all, it takes the fun out of shader development. 
+
+A hot-reload system allows you to get to step 4, fix whatever bug appeared, and validate the fix without needing to manually compile a shader, re-run the game, or navigate back to the relevant part of the game. This is a huge time-saver that will let us iterate and experiment with our visual effects much more quickly. 
+
+Time to get started!
 
 If you are following along with code, here is the code from the end of the previous tutorial series, [Starting Code](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/learn-monogame-2d/src/24-Shaders/) 
+
+> [!note]
+> This entire chapter is optional. If you just want to skip ahead to shader code, please pick up the code at the start of [Chapter 05: Transition Effect](../05_transition_effect). 
 
 ## Compiling Shaders
 
