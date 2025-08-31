@@ -14,7 +14,9 @@ If you are following along with code, here is the code from the end of the [prev
 
 ## The Material Class
 
-A `Material` represents a compiled `Effect` _and_ the runtime configuration for the `Effect`. For example, the `_grayscaleEffect` shader has a single property called `Saturation`, and the _value_ of that property is essential to the existence of the `_grayscaleEffect`. We will create a class called `Material` that manages all of our shader related metadata. 
+The `_grayscaleEffect` serves a very specific purpose, but imagine instead of just _decreasing_ the saturation, the effect could also _increase_ the saturation. In that hypothetical, then calling it a "grayscale" effect only captures _some_ of the shader's value. Setting the `Saturation` to `0` would configure the shader to be a grayscale effect, but setting the `Saturation` really high would configure the shader to be a super-saturation effect. A single shader can configured to create multiple distinct visuals. Many game engines use the term, _Material_, to recognize each _configuration_ of a shader effect. 
+
+A material represents a compiled `Effect` _and_ the runtime configuration for the `Effect`. For example, the `_grayscaleEffect` shader has a single property called `Saturation`. The _value_ of that property is essential to the existence of the `_grayscaleEffect`. It would be useful to have logic that owns these shader parameter values. We will create a class called `Material` that manages all of our shader related metadata. 
 
 Start by creating a new file in the _MonoGameLibrary/Graphics_ folder called `Material.cs`, 
 ```csharp
