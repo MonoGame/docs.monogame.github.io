@@ -3,15 +3,15 @@ title: "Chapter 09: Shadow Effect"
 description: "Add dynamic shadows to the game"
 ---
 
-Our lighting system is looking great, but the lights don't feel fully grounded in the world. They shine right through the walls, the bat, and even our slime! To truly sell the illusion of light, we need darkness. We need shadows.
+Our lighting system is looking great, but the lights do not feel fully grounded in the world. They shine right through the walls, the bat, and even our slime! To truly sell the illusion of light, we need darkness. We need shadows.
 
 In this, our final effects chapter, we're going to implement a dynamic 2D shadow system. The shadows will be drawn with a new vertex shader, and integrated into the point light shader from the previous chapter. After the effect is working, we will port the effect to use a more efficient approach. 
 
-If you're following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/08-Light-Effect).
+If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/08-Light-Effect).
 
 ## 2D Shadows
 
-Take a look at the current lighting in _Dungeon Slime_. In this screenshot, there is a single light source. The bat and the slime don't cast shadows, and without these shadows, it is hard to visually identify where the light's position is. 
+Take a look at the current lighting in _Dungeon Slime_. In this screenshot, there is a single light source. The bat and the slime do not cast shadows, and without these shadows, it is hard to visually identify where the light's position is. 
 
 ![Figure 9.1: A light with no shadows](./images/starting.png)
 
@@ -44,7 +44,7 @@ To build some intuition, we will start by considering a shadow caster that is a 
 
 ![Figure 9.6: A diagram of a simple light and line segment](./images/light_math.png)
 
-The shape we need to draw is the non-regular quadrilateral defined by `A`, `a`, `b`, and `B`. It is shaded in pink. These points are in world space. Given that we know where the line segment is, we know where `A` and `B` are, but we don't _yet_ know `a` and `b`'s location.
+The shape we need to draw is the non-regular quadrilateral defined by `A`, `a`, `b`, and `B`. It is shaded in pink. These points are in world space. Given that we know where the line segment is, we know where `A` and `B` are, but we do not _yet_ know `a` and `b`'s location.
 
 > [!note] 
 > `A` and `a` naming convention.
@@ -99,7 +99,7 @@ The unique value is important, because it gives the vertex shader the ability to
 
 Additionally, the default `TexCoord` values allow the vertex shader to take any arbitrary position,  (`S`, `D`, `F`, and `G`) , and produce the point `P` where the `SpriteBatch` is drawing the sprite in world space. Recall from the previous chapter that MonoGame uses the screen size as a basis for generating world space positions, and then the default projection matrix transforms those world space positions into clip space. Given a shader parameter, `float2 ScreenSize`,  the vertex shader can convert back from the world-space positions  (`S`, `D`, `F`, and `G`)  to the `P` position by subtracting `.5 * ScreenSize * TexCoord` from the current vertex. 
 
-The `Color` data is used to tint the resulting sprite in the pixel shader, but in our use case for a shadow hull, we don't really need a color whatsoever. Instead, we can use this `float4` field as arbitrary data. The trick is that we will need to pack whatever data we need into a `float4` and pass it via the `Color` type in MonoGame. This color comes from the `Color` value passed to the `SpriteBatch`'s `Draw()` call. 
+The `Color` data is used to tint the resulting sprite in the pixel shader, but in our use case for a shadow hull, we do not really need a color whatsoever. Instead, we can use this `float4` field as arbitrary data. The trick is that we will need to pack whatever data we need into a `float4` and pass it via the `Color` type in MonoGame. This color comes from the `Color` value passed to the `SpriteBatch`'s `Draw()` call. 
 
 The `Position` and `Color` both use `float4` in the standard vertex shader input, and it _may_ appear as though they should have the same amout precision. However they are not passed from MonoGame's `SpriteBatch` as the same type. When `SpriteBatch` goes to draw a sprite, it uses a `Color` for the `Color`, and a `Vector3` for the `Position`. A `Color` has 4 `bytes`, but a `Vector3` has 12 `bytes`. This can be seen in the [`VertexPositionColorTexture`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Vertices/VertexPositionColorTexture.cs#L103) class. The takeaway is that we can only pack a third as much data into the `Color` semantic as the `Position` gets, and that may limit the types of values we want to pack into the `Color` value. 
 
@@ -175,7 +175,7 @@ ShadowHullMaterial = SharedContent.WatchMaterial("effects/shadowHullEffect");
 ShadowHullMaterial.IsDebugVisible = true;
 ```
 
-Make sure to call `Update()` on the `Material` in the `Core`'s `Update()` method. Without this, hot-reload won't work.
+Make sure to call `Update()` on the `Material` in the `Core`'s `Update()` method. Without this, hot-reload will not work.
 ```csharp
 ShadowHullMaterial.Update();
 ```
@@ -357,7 +357,7 @@ VertexShaderOutput ShadowHullVS(VertexShaderInput input)
 }
 ```
 
-And don't forget to set the technique for the vertex shader function,
+And do not forget to set the technique for the vertex shader function,
 ```hlsl
 technique SpriteDrawing  
 {  
@@ -756,7 +756,7 @@ The `LightBuffer` itself has `32` bits per pixel of `Color` data, _and_ an addit
 
 For our use case, we will deal with the stencil buffer in two distinct steps. First, all of the shadow hulls will be drawn into the stencil buffer _instead_ of a unique `ShadowBuffer`. Anywhere a shadow hull is drawn, the stencil buffer will have a value of `1`, and anywhere without a shadow hull will have a value of `0`. Then, in the second step, when the point lights are drawn, the stencil buffer can be used as a mask where pixels are only drawn where the stencil buffer has a value of `0` (which means there was no shadow hull present in the previous step). 
 
-The stencil buffer can be cleared and re-used between each light, so there is no need to have a buffer _per_ light. We will be able to completely remove the `ShadowBuffer` from the `PointLight` class. That also means we won't need to send the `ShadowBuffer` to the point light shader or read from it in shader code any longer. 
+The stencil buffer can be cleared and re-used between each light, so there is no need to have a buffer _per_ light. We will be able to completely remove the `ShadowBuffer` from the `PointLight` class. That also means we will not need to send the `ShadowBuffer` to the point light shader or read from it in shader code any longer. 
 
 To get started, create a new method in the `DeferredRenderer` class called `DrawLights()`. This new method is going to completely replace some of our existing methods, but we will clean the unnecessary ones up when we are done with the new approach. 
 
@@ -782,14 +782,14 @@ _deferredRenderer.DrawLights(_lights, casters);
 _deferredRenderer.Finish();
 ```
 
-Next, in the `pointLightEffect.fx` shader, we won't be using the `ShadowBuffer` anymore, so remove the `Texture2D ShadowBuffer` and `sampler2D ShadowBufferSampler`. Remove the `tex2D` read from the shadow image, and remove the final multiplication of the `shadow`. The end of the `pointLightEffect.fx` shader should read as follows,
+Next, in the `pointLightEffect.fx` shader, we will not be using the `ShadowBuffer` anymore, so remove the `Texture2D ShadowBuffer` and `sampler2D ShadowBufferSampler`. Remove the `tex2D` read from the shadow image, and remove the final multiplication of the `shadow`. The end of the `pointLightEffect.fx` shader should read as follows,
 ```hlsl
 float4 color = input.Color;  
 color.a *= falloff * lightAmount;  
 return color;
 ```
 
-If you run the game now, you won't see any of the lights anymore. 
+If you run the game now, you will not see any of the lights anymore. 
 ![Figure 9.15: Back to square one](./images/stencil_blank.png)
 
 In the new `DrawLights()` method, we need to iterate over all the lights, and draw them. First, we need to set the current render target to the `LightBuffer` so it can be used in the deferred renderer composite stage. 
@@ -891,7 +891,7 @@ Core.SpriteBatch.Begin(
 );
 ```
 
-Unfortunately, there is not a good way to visualize the state of the stencil buffer, so if you run the game, it is hard to tell if the stencil buffer contains any data. Instead, we will try and _use_ the stencil buffer's data when the point lights are drawn. The point lights won't interact with the stencil buffer in the same way the shadow hulls did. To capture the new behavior, create a second `DepthStencilState` class variable.
+Unfortunately, there is not a good way to visualize the state of the stencil buffer, so if you run the game, it is hard to tell if the stencil buffer contains any data. Instead, we will try and _use_ the stencil buffer's data when the point lights are drawn. The point lights will not interact with the stencil buffer in the same way the shadow hulls did. To capture the new behavior, create a second `DepthStencilState` class variable.
 
 ```csharp
 /// <summary>  
@@ -914,7 +914,7 @@ _stencilTest = new DepthStencilState
 	// shadow hulls wrote `1`, so `0` means "not" shadow. 
 	ReferenceStencil = 0,
 	
-	// don't change the value of the stencil buffer. KEEP the current value.
+	// do not change the value of the stencil buffer. KEEP the current value.
 	StencilPass = StencilOperation.Keep,
 	
 	// ignore depth from the stencil buffer write/reads
@@ -1047,7 +1047,7 @@ And with that, our lighting and shadow system is complete! In this chapter, you 
 - Implemented a shadow system using a memory-intensive texture-based approach.
 - Refactored the system to use the Stencil Buffer for masking.
 
-In the final chapter, we'll wrap up the series and discuss some other exciting graphics programming topics you could explore from here.
+In the final chapter, we will wrap up the series and discuss some other exciting graphics programming topics you could explore from here.
 
 You can find the complete code sample for this tutorial series, [here](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/09-Shadows-Effect/). 
 

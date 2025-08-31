@@ -7,7 +7,7 @@ So far, any time we need to adjust a shader's parameter values, we need to edit 
 
 In this chapter, we will add a popular library called ImGui.NET to create a developer-facing debug UI for our materials. Let's get it set up. 
 
-If you're following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/03-The-Material-Class).
+If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/03-The-Material-Class).
 
 ## Adding a Debug UI Library
 
@@ -70,7 +70,7 @@ Core.ImGuiRenderer.AfterLayout();
 ```
 
 >[!tip]
->Don't forget to add a using statement at the top of the file for `using ImGuiNET;` 
+>do not forget to add a using statement at the top of the file for `using ImGuiNET;` 
 
 ![Figure 4.1: a simple ImGui window](./gifs/imgui-hello-world.gif)
 
@@ -304,7 +304,7 @@ _grayscaleEffect.IsDebugVisible = true;
 ```
 
 >[!tip]
->If you don't want to see the debug UI for the `grayscaleEffect` anymore, just delete the line of code that sets `IsDebugVisible` to `true`. 
+>If you do not want to see the debug UI for the `grayscaleEffect` anymore, just delete the line of code that sets `IsDebugVisible` to `true`. 
 
 
 ## RenderDoc
@@ -378,7 +378,7 @@ What a difference a good tool makes! In this chapter, you accomplished the follo
 - Built a dynamic debug window for our `Material` class.
 - Learned how to use a graphics debugger like RenderDoc to inspect the frame.
 
-With our workflow and tooling in place, it's finally time to write some new shaders. Up next, we'll dive into our first major pixel shader effect and build a classic screen wipe transition! 
+With our workflow and tooling in place, it's finally time to write some new shaders. Up next, we will dive into our first major pixel shader effect and build a classic screen wipe transition! 
 
 You can find the complete code sample for this chapter, [here](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/04-Debug-UI). 
 

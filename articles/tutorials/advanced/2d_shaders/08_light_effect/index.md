@@ -5,9 +5,9 @@ description: "Add dynamic 2d lighting to the game"
 
 Our game is looking more dynamic, but the visuals are still a bit flat. Good lighting is one of the best ways to add atmosphere, depth, and drama to a scene. In this chapter, we're going to tackle a very advanced and powerful topic: a 2D dynamic lighting system.
 
-To do this, we'll learn about a rendering technique called *deferred rendering*. This approach will allow us to draw many lights onto the screen in an efficient way. Let's get started!
+To do this, we will learn about a rendering technique called *deferred rendering*. This approach will allow us to draw many lights onto the screen in an efficient way. Let's get started!
 
-If you're following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/07-Sprite-Vertex-Effect).
+If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/07-Sprite-Vertex-Effect).
 
 
 ## Deferred Rendering
@@ -277,7 +277,7 @@ And then load the `Material` in the `LoadContent()` method.
 PointLightMaterial = SharedContent.WatchMaterial("effects/pointLightEffect");
 ```
 
-And don't forget to enable the hot-reload by adding the `Update()` line in the `Update()` method.
+And do not forget to enable the hot-reload by adding the `Update()` line in the `Update()` method.
 ```csharp
 PointLightMaterial.Update();
 ```
@@ -490,7 +490,7 @@ PointLightMaterial.SetParameter("LightSharpness", .1f);
 
 ![Figure 8.9: The point light in the light buffer](./images/point-light-blue.png)
 
-The light looks good! When we revert the full-screen `LightBuffer` and render the `LightBuffer` next to the `ColorBuffer`, a graphical bug will become clear. The world in the `ColorBuffer` is rotating with the vertex shader from the previous chapter, but the `LightBuffer` doesn't have the same effect, so the light appears broken. 
+The light looks good! When we revert the full-screen `LightBuffer` and render the `LightBuffer` next to the `ColorBuffer`, a graphical bug will become clear. The world in the `ColorBuffer` is rotating with the vertex shader from the previous chapter, but the `LightBuffer` does not have the same effect, so the light appears broken. 
 
 
 ### Combining Light and Color 
@@ -591,7 +591,7 @@ public void DrawComposite(float ambient=.4f)
 
 ### Normal Textures
 
-The lighting is working, but it still feels a bit flat. Ultimately, the light is being applied to our flat 2d sprites uniformly, so there the sprites don't feel like they have any depth. Normal mapping is a technique designed to help make flat surfaces appear 3d by changing how much the lighting affects each pixel depending on the "Normal" of the surface at the given pixel. 
+The lighting is working, but it still feels a bit flat. Ultimately, the light is being applied to our flat 2d sprites uniformly, so there the sprites do not feel like they have any depth. Normal mapping is a technique designed to help make flat surfaces appear 3d by changing how much the lighting affects each pixel depending on the "Normal" of the surface at the given pixel. 
 
 Normal textures encode the _direction_ (also called the _normal_) of the surface at each pixel. The direction of the surface is a 3d vector where the `x` component lives in the `red` channel, the `y` component lives in the `green` channel, and the `z` component lives in the `blue` channel. The directions are encoded as colors, so each component can only range from `0` to `1`. The _direction_ vector components need to range from `-1` to `1`, so a color channel value of `.5` results in a `0` value for the direction vector. 
 
@@ -643,7 +643,7 @@ PixelShaderOutput MainPS(VertexShaderOutput input)
 }
 ```
 
-And don't forget to update the `technique` to reference the new `MainPS` function,
+And do not forget to update the `technique` to reference the new `MainPS` function,
 ```hlsl
 technique SpriteDrawing  
 {  
@@ -699,7 +699,7 @@ Core.SpriteBatch.Draw(Core.Pixel, normalBorderRect, Color.MintCream);
 Core.SpriteBatch.Draw(NormalBuffer, normalRect, Color.White);
 ```
 
-And don't forget to call the `DebugDraw()` method from the `GameScene`'s `Draw()` method. Then you will see a totally `red` `NormalBuffer`, because the shader is hard coding the value to `float4(1,0,0,1)`. 
+And do not forget to call the `DebugDraw()` method from the `GameScene`'s `Draw()` method. Then you will see a totally `red` `NormalBuffer`, because the shader is hard coding the value to `float4(1,0,0,1)`. 
 ![Figure 8.16: A blank normal buffer](./images/normal-buffer-red.png)
 
 To start rendering the normal values themselves, we need to load the normal texture into the `GameScene` and pass it along to the `gameEffect.fx` effect. First, create a class member for the new `Texture2D`.
@@ -838,7 +838,7 @@ And make the function immediately return the screen coordinates in the red and g
 return float4(input.ScreenCoordinates.xy, 0, 1);
 ```
 
-Be careful, if you run the game now, it won't look right. We need to make sure to send the `MatrixTransform` parameter from C# as well.
+Be careful, if you run the game now, it will not look right. We need to make sure to send the `MatrixTransform` parameter from C# as well.
 In the `GameScene`'s `Update()` method, make sure to pass the `MatrixTransform` to _both_ the `_gameMaterial` _and_ the `Core.PointLightMaterial`. The `ScreenSize` parameter also needs to be sent.
 ```csharp
 var matrixTransform = _camera.CalculateMatrixTransform();  
@@ -864,7 +864,7 @@ Strangely, this will return a `white` box, instead of the normal data as expecte
 
 This happens because of a misunderstanding between the shader compiler and `SpriteBatch`. _Most_ of the time when `SpriteBatch` is being used, there is a single `Texture` and `Sampler` being used to draw a sprite to the screen. The `SpriteBatch`'s draw function passes the given `Texture2D` to the shader by setting it in the `GraphicsDevice.Textures` array [directly](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatcher.cs#L212). The texture is not being passed _by name_, it is being passed by _index_. In the lighting case, the `SpriteBatch` is being drawn with the `Core.Pixel` texture (a white 1x1 image we generated in the earlier chapters). 
 
-However, the shader compiler will aggressively optimize away data that isn't being used in the shader. The current `pointLightEffect.fx` doesn't _use_ the default texture or sampler that `SpriteBatch` expects by default. The default texture is _removed_ from the shader during compilation, because it isn't used anywhere and has no effect. The only texture that is left is the `NormalBuffer`, which now becomes the first indexable texture. 
+However, the shader compiler will aggressively optimize away data that isn't being used in the shader. The current `pointLightEffect.fx` does not _use_ the default texture or sampler that `SpriteBatch` expects by default. The default texture is _removed_ from the shader during compilation, because it isn't used anywhere and has no effect. The only texture that is left is the `NormalBuffer`, which now becomes the first indexable texture. 
 
 Despite passing the `NormalBuffer` texture to the named `NormalTexture` `Texture2D` parameter in the shader before calling `SpriteBatch.Draw()`, the `SpriteBatch` code itself then overwrites whatever is in texture slot `0` with the texture passed to the `Draw()` call, the white pixel. 
 
@@ -1009,7 +1009,7 @@ In this chapter, you accomplished the following:
 - Used normal maps to allow 2D sprites to react to light as if they had 3D depth.
 - Wrote a final composite shader to combine all the buffers into the final lit scene.
 
-Our world is so much more atmospheric now, but there's one key ingredient missing... shadows! In our next and final effects chapter, we'll bring our lights to life by making them cast dynamic shadows.
+Our world is so much more atmospheric now, but there's one key ingredient missing... shadows! In our next and final effects chapter, we will bring our lights to life by making them cast dynamic shadows.
 
 You can find the complete code sample for this chapter, [here](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/08-Light-Effect). 
 

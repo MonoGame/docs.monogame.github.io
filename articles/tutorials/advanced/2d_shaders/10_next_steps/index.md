@@ -17,7 +17,7 @@ You have the tools to develop shaders in MonoGame, and you have implemented a se
 
 ## Next Steps
 
-The world of graphics programming is vast and there is always more to learn. If you're excited and want to keep going, here are a few topics to explore.
+The world of graphics programming is vast and there is always more to learn. If you are excited and want to keep going, here are a few topics to explore.
 
 #### Signed Distance Fields (SDFs)
 Signed Distance Fields are a powerful technique for rendering resolution-independent shapes, text, and UI elements. Instead of a texture storing color, it stores the distance to the nearest edge of a shape. With some shader code, you can render perfectly crisp shapes at any size. They are fantastic for fonts and for creating procedural effects like outlines, glows, and soft shadows.
@@ -43,7 +43,7 @@ This tutorial series was an exploration of various shader topics, with a focus o
 
 ## A Note From The Author
 Hey friend, 
-If you read through this whole series, then _thank you_ for lending me your time and patience. Hopefully you learned some good information. I remember it took me at least 3 distinct attempts to learn shaders. Once when I was a teenager. Once when I was in college. And then finally again as a eager-eyed young developer in the software world. Each attempt got me further, but it took me _decades_ to understand anything at all. If you find shaders confusing, please don't give up. Keep going. 
+If you read through this whole series, then _thank you_ for lending me your time and patience. Hopefully you learned some good information. I remember it took me at least 3 distinct attempts to learn shaders. Once when I was a teenager. Once when I was in college. And then finally again as a eager-eyed young developer in the software world. Each attempt got me further, but it took me _decades_ to understand anything at all. If you find shaders confusing, please do not give up. Keep going. 
 
 Best,
 -[Chris Hanna](https://github.com/cdhanna)

@@ -5,9 +5,9 @@ description: "Learn about vertex shaders and how to use them on sprites"
 
 Every shader has two main parts: the pixel shader, which we've been using to change the colors of our sprites, and the vertex shader. The vertex shader runs first, and its job is to determine the final shape and position of our geometry. Up until now, we've been using MonoGame's default vertex shader, which just draws our sprites as flat 2D rectangles.
 
-In this chapter, we're going to unlock the power of the vertex shader. We'll write our own custom vertex shader from scratch, which will allow us to break out of the 2D plane. We'll learn how to use a perspective projection to give our flat world a cool, dynamic 3D feel. 
+In this chapter, we're going to unlock the power of the vertex shader. we will write our own custom vertex shader from scratch, which will allow us to break out of the 2D plane. we will learn how to use a perspective projection to give our flat world a cool, dynamic 3D feel. 
 
-If you're following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/06-Color-Swap-Effect).
+If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/06-Color-Swap-Effect).
 
 ## Default Vertex Shader
 
@@ -180,7 +180,7 @@ technique SpriteDrawing
 };
 ```
 
-The shader won't compile yet, because the `VertexShaderOutput` has not been completely initialized. We need to replicate the `MatrixTransform` step to convert the vertices from world-space to clip-space. 
+The shader will not compile yet, because the `VertexShaderOutput` has not been completely initialized. We need to replicate the `MatrixTransform` step to convert the vertices from world-space to clip-space. 
 
 Add the `MatrixTransform` shader parameter.
 ```hlsl
@@ -264,7 +264,7 @@ pos.xy += DebugOffset;
 output.Position = mul(position, MatrixTransform);
 ```
 
-Then you won't see much movement at all. This is because the `DebugOffset` values only go from `0` to `1`, and in world space, this really only amounts to a single pixel. In fact, exactly how much an addition of _`1`_ happens to make is entirely defined _by_ the conversion to clip-space. The `projection` matrix we created treats world space coordinates with an origin around the screen's center, where 1 unit maps to 1 pixel. Sometimes this is exactly what you want, and sometimes it can be confusing. 
+Then you will not see much movement at all. This is because the `DebugOffset` values only go from `0` to `1`, and in world space, this really only amounts to a single pixel. In fact, exactly how much an addition of _`1`_ happens to make is entirely defined _by_ the conversion to clip-space. The `projection` matrix we created treats world space coordinates with an origin around the screen's center, where 1 unit maps to 1 pixel. Sometimes this is exactly what you want, and sometimes it can be confusing. 
 
 ![Figure 7.3: Changing coordinates before clip-space conversion](./gifs/basic-2.gif)
 
@@ -280,7 +280,7 @@ pos.z -= DebugOffset.x;
 > [!tip] 
 > Near and Far plane clipping.
 > 
-> Keep in mind that if you modify the `z` value _too_ much, it will likely step outside of the near and far planes of the orthographic projection matrix. If this happens, the sprite will vanish, because it the projection matrix doesn't handle coordinates outside of the near and far planes. In the example above, they were defined as `0` and `-1`. 
+> Keep in mind that if you modify the `z` value _too_ much, it will likely step outside of the near and far planes of the orthographic projection matrix. If this happens, the sprite will vanish, because it the projection matrix does not handle coordinates outside of the near and far planes. In the example above, they were defined as `0` and `-1`. 
 > ```csharp
 > zNearPlane: 0, zFarPlane: -1,
 > ```
@@ -354,7 +354,7 @@ var camera = new SpriteCamera3d();
 _3dMaterial.SetParameter("MatrixTransform", camera.CalculateMatrixTransform());
 ```
 
-Moving the `z` value uniformly in the shader won't be visually stimulating. A more impressive demonstration of the _perspective_ projection would be to rotate the vertices around the center of the sprite. 
+Moving the `z` value uniformly in the shader will not be visually stimulating. A more impressive demonstration of the _perspective_ projection would be to rotate the vertices around the center of the sprite. 
 
 ```hlsl
 
@@ -507,7 +507,7 @@ struct VertexShaderOutput
 >[!tip] 
 > Include Guards.
 > 
-> The `#include` syntax is taking the referenced file and inserting it into the code. If the same file was included twice, then the contents that file would be written out as code _twice_. Defining a `struct` or function this way would cause the compiler to fail, because the `struct` would be declared twice, which is illegal. To work around this, _a_ solution is to use a practice called "include guards", where the file itself defines a symbol (in the case above, the symbol is `COMMON`). The file only compiles to anything if the symbol has not yet been defined. The `#ifndef` stands for "if not yet defined". Once the `COMMON` symbol is defined once, any future inclusions of the file won't match the `#ifndef` clause. 
+> The `#include` syntax is taking the referenced file and inserting it into the code. If the same file was included twice, then the contents that file would be written out as code _twice_. Defining a `struct` or function this way would cause the compiler to fail, because the `struct` would be declared twice, which is illegal. To work around this, _a_ solution is to use a practice called "include guards", where the file itself defines a symbol (in the case above, the symbol is `COMMON`). The file only compiles to anything if the symbol has not yet been defined. The `#ifndef` stands for "if not yet defined". Once the `COMMON` symbol is defined once, any future inclusions of the file will not match the `#ifndef` clause. 
 
 Then, in the `3dEffect.fx` file, remove the `VertexShaderInput` and `VertexShaderOutput` structs and replace them with this line,
 ```hlsl
@@ -820,7 +820,7 @@ Our game has a whole new dimension! In this chapter, you accomplished the follow
 - Refactored shader logic into modular `.fxh` header files for better organization.
 - Combined vertex and pixel shader effects into a single "uber shader".
 
-The world feels much more alive now that it tilts and moves with the player. In the next chapter, we'll build on this sense of depth by tackling a 2D dynamic lighting system.
+The world feels much more alive now that it tilts and moves with the player. In the next chapter, we will build on this sense of depth by tackling a 2D dynamic lighting system.
 
 You can find the complete code sample for this chapter, [here](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/07-Sprite-Vertex-Effect). 
 

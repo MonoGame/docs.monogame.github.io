@@ -3,7 +3,7 @@ title: "Chapter 01: Getting Started"
 description: "Prepare your project and get ready"
 ---
 
-Welcome to the advanced 2D shaders tutorial! Before we dive into writing complex effects, this first chapter will make sure you're ready to go. We will get the starting project set up and take a quick look at the technical foundation of how shaders work with MonoGame's `SpriteBatch`.
+Welcome to the advanced 2D shaders tutorial! Before we dive into writing complex effects, this first chapter will make sure you are ready to go. We will get the starting project set up and take a quick look at the technical foundation of how shaders work with MonoGame's `SpriteBatch`.
 
 ## The Starting Code
 
@@ -24,10 +24,8 @@ The solution is organized into two main projects:
 
 Most of our shader files (`.fx`) will be created in the `Content/effects` folder within the `DungeonSlime` project to start, and later within the `MonoGameLibrary` for shared effects.
 
-## What's Next
+## What is Next
 
 Now that our project is set up, we can get to work. The focus for the first several chapters will be to create a workflow for developing shaders in MonoGame. Once we have a hot-reload system, a class to manage the effects, and a debug UI ready, we will carry on and build up 5 effects. The effects will range from simple pixel shaders and vertex shaders up to rendering techniques. As we develop these shaders together, we will build an intuition for how to tackle shader development. 
 
 Continue to the next chapter, [Chapter 02: Hot Reload](../02_hot_reload/index.md)
-
-

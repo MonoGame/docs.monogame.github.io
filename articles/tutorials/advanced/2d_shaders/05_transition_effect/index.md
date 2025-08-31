@@ -5,9 +5,9 @@ description: "Create an effect for transitioning between scenes"
 
 Our game is functional, but the jump from the title screen to the game is very sudden. We can make it feel much more polished with a smooth transition instead of an instant cut.
 
-In this chapter, we'll dive into our first major pixel shader effect: a classic screen wipe! We'll learn how to control an effect over the whole screen, how to create soft edges, and how to use textures to drive our shader logic to create all sorts of interesting patterns. 
+In this chapter, we will dive into our first major pixel shader effect: a classic screen wipe! we will learn how to control an effect over the whole screen, how to create soft edges, and how to use textures to drive our shader logic to create all sorts of interesting patterns. 
 
-If you're following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/04-Debug-UI).
+If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/04-Debug-UI).
 
 
 ## The Scene Transition Effect
@@ -479,7 +479,7 @@ Also, in order for the shader hot-reload to work with the shared content, modify
 <Watch Include="../**/*.fx;"/>
 ```
 
-Next, the existing `ContentManager` instance in the `Core` class will only load content from the _/Content_ folder, which won't include the `sceneTransitionEffect.fx` file, because it is stored in the _/SharedContent_ folder. For this tutorial, we will create a second `ContentManager` in the `Core` class called `SharedContent` which will be configured to only load content from the _/SharedContent_ folder.  Add the following property next to the existing `Content` property in the `Core.cs` file. 
+Next, the existing `ContentManager` instance in the `Core` class will only load content from the _/Content_ folder, which will not include the `sceneTransitionEffect.fx` file, because it is stored in the _/SharedContent_ folder. For this tutorial, we will create a second `ContentManager` in the `Core` class called `SharedContent` which will be configured to only load content from the _/SharedContent_ folder.  Add the following property next to the existing `Content` property in the `Core.cs` file. 
 
 ```csharp
 /// <summary>  
@@ -521,7 +521,7 @@ Our game is already starting to feel more polished with this new transition effe
 - Created a `SceneTransition` class to control the effect programmatically.
 - Refactored shared content into its own content project.
 
-This was our first deep dive into pixel shaders, and we've created a very flexible system. In the next chapter, we'll keep the momentum going by tackling another popular and powerful shader: a color-swapping effect.
+This was our first deep dive into pixel shaders, and we've created a very flexible system. In the next chapter, we will keep the momentum going by tackling another popular and powerful shader: a color-swapping effect.
 
 You can find the complete code sample for this chapter, [here](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/05-Transition-Effect). 
 

@@ -5,9 +5,9 @@ description: "Create a shader to change the colors of the game"
 
 The art in our game looks good, but what if we wanted to change the color palette on the fly? Or make the player flash a different color when they pick something up? Re-drawing all the art for every possible color combination would be a lot of work. Thankfully, we can use a shader to do this dynamically!
 
-In this chapter, we'll create a powerful color-swapping effect. We'll learn about a common and flexible technique that uses a texture as a Look-Up Table (LUT) to map original colors to new ones. This will give us precise control over the look and feel of our game's sprites.
+In this chapter, we will create a powerful color-swapping effect. we will learn about a common and flexible technique that uses a texture as a Look-Up Table (LUT) to map original colors to new ones. This will give us precise control over the look and feel of our game's sprites.
 
-If you're following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/05-Transition-Effect).
+If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/05-Transition-Effect).
 
 ## The Basic Color Swap Effect
 
@@ -71,7 +71,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 ![Figure 6.1: Confirm the shader is being used](./images/test.png)
 
 > [!warning] 
-> The menu won't use the color swapper.
+> The menu will not use the color swapper.
 > 
 > The game's menu is being drawn with GUM, and we aren't configuring any shaders on the GUM menu yet. For now, it will continue to draw with its old colors. 
 
@@ -241,7 +241,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 }
 ```
 
-Now in the game, we can visualize the color swap by adjusting the control parameter. Perhaps the colors we picked don't look very nice.
+Now in the game, we can visualize the color swap by adjusting the control parameter. Perhaps the colors we picked do not look very nice.
 ![Figure 6.8: The color swap effect is working!](./gifs/color-swap.gif)
 
 That looks pretty good, but changing between original and swap colors reveals a visual glitch. The color table didn't account for _some_ of the original colors. All of the colors get mapped, and our default color in the map was _white_, so some of the game's art is just turning white. For example, look at the torches on the top-wall. 
@@ -261,7 +261,7 @@ if (!hasSwapColor)
 }
 ```
 
-![Figure 6.10: Colors that are not in the map don't change color](./gifs/color-swap-2.gif)
+![Figure 6.10: Colors that are not in the map do not change color](./gifs/color-swap-2.gif)
 
 One final glitch becomes apparent if you stare at that long enough, which is that the center pixel in the torch is changing color from its original _white_, to our mapped orange color. In a way, that is _by design_, because the white values are being mapped. Fixing this would require a modification to the original assets to change the color the torch center, but that is left as an exercise for the reader. 
 
@@ -508,7 +508,7 @@ float4 Grayscale(float4 color)
 }
 ```
 
-In order for this to work, don't forget to add the `Saturation` shader parameter to the `colorSwapEffect.fx` file.
+In order for this to work, do not forget to add the `Saturation` shader parameter to the `colorSwapEffect.fx` file.
 ```hlsl
 float Saturation;
 ```
@@ -553,7 +553,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 > [!warning] 
 > Function Order Matters!
 > 
-> Make sure that the `Grayscale` and `SwapColors` functions appear _before_ the `MainPS` function in the shader, otherwise the compiler won't be able to resolve the functions.
+> Make sure that the `Grayscale` and `SwapColors` functions appear _before_ the `MainPS` function in the shader, otherwise the compiler will not be able to resolve the functions.
 
 Now you can control the saturation manually with the debug slider,
 ![Figure 6.18: Combining the color swap and saturation effect](./gifs/color-saturation.gif)
@@ -612,7 +612,7 @@ That was a really powerful technique! In this chapter, you accomplished the foll
 - Used `SpriteSortMode.Immediate` to apply different materials to different sprites in the same frame.
 - Combined the color swap and grayscale effects into a single, more versatile shader.
 
-So far, all of our work has been in the pixel shader, which is all about changing the color of pixels. In the next chapter, we'll switch gears and explore the vertex shader to manipulate the geometry of our sprites and add some surprising 3D flair to our 2D game.
+So far, all of our work has been in the pixel shader, which is all about changing the color of pixels. In the next chapter, we will switch gears and explore the vertex shader to manipulate the geometry of our sprites and add some surprising 3D flair to our 2D game.
 
 You can find the complete code sample for this chapter, [here](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/06-Color-Swap-Effect). 
 

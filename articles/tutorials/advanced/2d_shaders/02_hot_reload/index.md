@@ -5,9 +5,9 @@ description: "Setup workflows to reload shaders without restarting the game"
 
 Before we can dive in and start writing shader effects, we should first take a moment to focus on our development environment.
 
-In this chapter, we will build a "hot-reload" system that will automatically detect changes to our shader files, recompile them, and load them into our running game on the fly. This is a huge time-saver that will let us iterate and experiment with our visual effects much more quickly. Let's get started!
+In this chapter, we will build a "hot-reload" system that will automatically detect changes to our shader files, recompile them, and load them into our running game on the fly. This is a huge time-saver that will let us iterate and experiment with our visual effects much more quickly. Let us get started!
 
-If you're following along with code, here is the code from the end of the previous tutorial series, [Starting Code](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/learn-monogame-2d/src/24-Shaders/) 
+If you are following along with code, here is the code from the end of the previous tutorial series, [Starting Code](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/learn-monogame-2d/src/24-Shaders/) 
 
 ## Compiling Shaders
 
@@ -62,7 +62,7 @@ public override void Draw(GameTime gameTime)
 ```
 
 
-In our case, we don't want to recompile `.cs` files, but rather `.fx` files. First, `dotnet watch` can be configured to execute any MSBuild target rather than a recompile code. The following command uses the existing target provided by the `MonoGame.Content.Builder.Task`.
+In our case, we do not want to recompile `.cs` files, but rather `.fx` files. First, `dotnet watch` can be configured to execute any MSBuild target rather than a recompile code. The following command uses the existing target provided by the `MonoGame.Content.Builder.Task`.
 
 > [!Tip]
 > All arguments passed after the `--` characters are passed to the `build` command itself, not `dotnet watch`.
@@ -73,7 +73,7 @@ dotnet watch build -- --target:IncludeContent
 
 Now, when you change a _`.fx`_ file, all of the content files are rebuilt into `.xnb` files.
 
-However, the `.xnb` files are not being copied from the `Content/bin` folder to _DungeonSlime_'s runtime folder. The `.xnb` files are only copied during the full MSBuild of the game. The `IncludeContent` target on its own doesn't have all the context it needs to know how to copy the files in the final game project. To solve this, we need to introduce a new `<Target>` that copies the final `.xnb` files into _DungeonSlime_'s runtime folder. 
+However, the `.xnb` files are not being copied from the `Content/bin` folder to _DungeonSlime_'s runtime folder. The `.xnb` files are only copied during the full MSBuild of the game. The `IncludeContent` target on its own does not have all the context it needs to know how to copy the files in the final game project. To solve this, we need to introduce a new `<Target>` that copies the final `.xnb` files into _DungeonSlime_'s runtime folder. 
 
 The existing `MonoGame.Content.Builder.Task` system knows what the files are, so we can re-use properties defined in the MonoGame package.
 Add this to your `.csproj` file.
@@ -143,7 +143,7 @@ dotnet build -t:WatchContent
 
 We now have a way to dynamically recompile shaders on file changes and copy the `.xnb` files into the game folder! There are a few final adjustments to make to the configuration. 
 
-First, you may notice some odd characters in the log output after putting the `dotnet watch` inside the `WatchContent` target. This is because there are _emoji_ characters in the standard `dotnet watch` log stream, and some terminals don't understand how to display those, especially when streamed between `dotnet build`. To disable the _emoji_ characters, a `DOTNET_WATCH_SUPPRESS_EMOJIS` environment variable needs to be set.
+First, you may notice some odd characters in the log output after putting the `dotnet watch` inside the `WatchContent` target. This is because there are _emoji_ characters in the standard `dotnet watch` log stream, and some terminals do not understand how to display those, especially when streamed between `dotnet build`. To disable the _emoji_ characters, a `DOTNET_WATCH_SUPPRESS_EMOJIS` environment variable needs to be set.
 
 ```xml
 <Target Name="WatchContent">  
@@ -192,7 +192,7 @@ Remove the `"tunafish"` line and save again, and the watch program should log so
 
 ## Reload shaders in-game
 
-Now anytime the `.fx` files are modified, they will be recompiled and copied into the game's runtime folder. However, the game itself doesn't know to _reload_ the `Effect` instances. In this section, we will create a utility over the `ContentManager` to respond to these dynamic file updates. 
+Now anytime the `.fx` files are modified, they will be recompiled and copied into the game's runtime folder. However, the game itself does not know to _reload_ the `Effect` instances. In this section, we will create a utility over the `ContentManager` to respond to these dynamic file updates. 
 
 It is important to make a distinction between assets the game _expects_ to be reloaded and assets that the game does _not_ care about reloading. This tutorial will demonstrate how to create an explicit system where individual assets opt _into_ being _hot reloadable_, rather than creating a system where all assets automatically handle dynamic reloading. 
 
@@ -393,12 +393,12 @@ oldAsset = watchedAsset.Asset;
 watchedAsset.Asset = manager.Load<T>(watchedAsset.AssetName);
 ```
 
-Don't forget that the place where the `grayscaleEffect` calls the `TryRefresh()` function will need to include a no-op out variable.
+Do not forget that the place where the `grayscaleEffect` calls the `TryRefresh()` function will need to include a no-op out variable.
 ```csharp
 Content.TryRefresh(_grayscaleEffect, out _);
 ```
 ### Refresh Convenience Function 
-Finally, we need to address a subtle usability bug in the existing code. The `TryRefresh` function may `Unload` an asset if a new version is loaded. However, it isn't obvious that the `ContentManager` instance doing the `Unload` operation is the same `ContentManager` instance that loaded the original asset in the first place. To solve this, add a `ContentManager` property to the `WatchedAsset<T>` class so that the asset itself knows which `ContentManager` is responsible for unloading old versions. 
+Finally, we need to address a subtle usability bug in the existing code. The `TryRefresh` function may `Unload` an asset if a new version is loaded. However, it is not obvious that the `ContentManager` instance doing the `Unload` operation is the same `ContentManager` instance that loaded the original asset in the first place. To solve this, add a `ContentManager` property to the `WatchedAsset<T>` class so that the asset itself knows which `ContentManager` is responsible for unloading old versions. 
 
 ```csharp
 /// <summary>  
@@ -451,7 +451,7 @@ And with that, we have a powerful hot-reload system in place! In this chapter, y
 - Wrote a C# wrapper class, `WatchedAsset<T>`, to track asset file changes.
 - Extended `ContentManager` with a `TryRefresh` method to load new assets into the running game.
 
-This new workflow is going to make the rest of our journey much more fun and productive. In the next chapter, we'll build on this foundation by creating a `Material` class to help us organize and safely interact with our shaders.
+This new workflow is going to make the rest of our journey much more fun and productive. In the next chapter, we will build on this foundation by creating a `Material` class to help us organize and safely interact with our shaders.
 
 You can find the complete code sample for this chapter, [here](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/02-Hot-Reload-System/). 
 

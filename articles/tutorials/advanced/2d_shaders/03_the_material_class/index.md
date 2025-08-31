@@ -2,7 +2,7 @@ Our hot-reload system is working, which is great!
 
 In this chapter, we will create a small wrapper class, called the `Material`, that will handle shader parameters, hot-reload, and serve as a baseline for future additions.
 
-If you're following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/02-Hot-Reload-System/).
+If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/02-Hot-Reload-System/).
 
 ## The Material Class
 
@@ -78,21 +78,21 @@ Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _grayscale
 
 ### Setting Shader Parameters
 
-You already saw how to set a shader property by using the `Saturation` value in the `_grayscaleEffect` shader. However, as you develop shaders in MonoGame, you will eventually _accidentally_ try to set a shader property that doesn't exist in your shader. When this happens, the code will throw a `NullReferenceException` rather than fail silently. For example, if you tried to add this line of the code to the `Update` loop, 
+You already saw how to set a shader property by using the `Saturation` value in the `_grayscaleEffect` shader. However, as you develop shaders in MonoGame, you will eventually _accidentally_ try to set a shader property that does not exist in your shader. When this happens, the code will throw a `NullReferenceException` rather than fail silently. For example, if you tried to add this line of the code to the `Update` loop, 
 
 ```csharp
 _grayscaleEffect.Effect.Parameters["DoesNotExist"].SetValue(0);
 ```
 
-You'll see this type of `NullReference` error,
+You will see this type of `NullReference` error,
 ```
 System.NullReferenceException: Object reference not set to an instance of an object.
 ```
 
 > [!Caution]
-> Don't actually add the `DoesNotExist` sample, because it will break your code.
+> do not actually add the `DoesNotExist` sample, because it will break your code.
 
-On its own, this wouldn't be too difficult to accept. However, MonoGame's shader compiler will aggressively remove properties that aren't actually being _used_ in your shader code. Even if you wrote a shader that had a `DoesNotExist` property, if it wasn't being used to compute the return value of the shader, it will be removed. The compiler is good at optimizing away unused variables. For example, in the `grayscaleEffect.fx` file, change the last few lines of the `MainPS` function to the following,
+On its own, this would not be too difficult to accept. However, MonoGame's shader compiler will aggressively remove properties that are not actually being _used_ in your shader code. Even if you wrote a shader that had a `DoesNotExist` property, if it was not being used to compute the return value of the shader, it will be removed. The compiler is good at optimizing away unused variables. For example, in the `grayscaleEffect.fx` file, change the last few lines of the `MainPS` function to the following,
 ```hlsl
 // overwrite all existing operations and set the final color to white  
 finalColor.rgb = 1;  
@@ -116,7 +116,7 @@ public class EffectParameterCollection : IEnumerable<EffectParameter>, IEnumerab
   // the rest of the class has been omitted 
 ```
 
-The `_indexLookup` is a `Dictionary<string, int>` containing a mapping of property _name_ to parameter. The `Dictionary` class has methods for checking if a given property name exists, but unfortunately we cannot access it due to the `private` access modifier. Luckily, the entire `EffectParameterCollection` inherits from `IEnumerable`, so we can use the existing dotnet utilities to convert the entire structure into a `Dictionary`. Once we have the parameters in a `Dictionary` structure, we'll be able to check what parameters exist _before_ trying to access them, thus avoiding potential `NullReferenceExceptions`. 
+The `_indexLookup` is a `Dictionary<string, int>` containing a mapping of property _name_ to parameter. The `Dictionary` class has methods for checking if a given property name exists, but unfortunately we cannot access it due to the `private` access modifier. Luckily, the entire `EffectParameterCollection` inherits from `IEnumerable`, so we can use the existing dotnet utilities to convert the entire structure into a `Dictionary`. Once we have the parameters in a `Dictionary` structure, we will be able to check what parameters exist _before_ trying to access them, thus avoiding potential `NullReferenceExceptions`. 
 
 Add this new property to the `Material` class, 
 ```csharp
@@ -137,7 +137,7 @@ public void UpdateParameterCache()
 }
 ```
 
-Don't forget to invoke this method during the constructor of the `Material`, 
+Do not forget to invoke this method during the constructor of the `Material`, 
 ```csharp
 public Material(WatchedAsset<Effect> asset)  
 {  
@@ -162,7 +162,7 @@ public bool TryGetParameter(string name, out EffectParameter parameter)
 }
 ```
 
-Now you can create a helper method that sets a parameter value for the `Material`, but won't crash if the parameter doesn't actually exist.
+Now you can create a helper method that sets a parameter value for the `Material`, but will not crash if the parameter does not actually exist.
 ```csharp
 public void SetParameter(string name, float value)
 {
@@ -190,7 +190,7 @@ To verify it is working, re-run the game, and instead of seeing a crash, you sho
 
 ### Reloading Properties
 
-When the hot-reload system loads a new compiled shader into the game's memory, the new shader doesn't have any of the existing shader parameter _values_ that the previous shader instance had. To demonstrate the problem, we will purposefully break the `_grayscaleEffect` a bit. For now, comment out the line the `GameScene`'s `Draw()` method,
+When the hot-reload system loads a new compiled shader into the game's memory, the new shader does not have any of the existing shader parameter _values_ that the previous shader instance had. To demonstrate the problem, we will purposefully break the `_grayscaleEffect` a bit. For now, comment out the line the `GameScene`'s `Draw()` method,
 
 ```csharp
 // _grayscaleEffect.SetParameter("Saturation", _saturation);
@@ -201,7 +201,7 @@ And instead, add the following line to the end of the `LoadContent()` method.
 _grayscaleEffect.SetParameter("Saturation", 1);
 ```
 
-The net outcome is that the `_grayscaleEffect` won't actually work for its designed purpose, but it should be always fully saturated with a value of `1`, and _never_ change. Run the game, enter the `GameScene`, and hit the pause button. Now, if you cause _any_ reload of the shader, the background of the `GameScene` will desaturate and turn grayscale. The newly compiled shader instance has no value for the `Saturation` parameter, and since `0` is the default value for numbers, it appears grayscale. 
+The net outcome is that the `_grayscaleEffect` will not actually work for its designed purpose, but it should be always fully saturated with a value of `1`, and _never_ change. Run the game, enter the `GameScene`, and hit the pause button. Now, if you cause _any_ reload of the shader, the background of the `GameScene` will desaturate and turn grayscale. The newly compiled shader instance has no value for the `Saturation` parameter, and since `0` is the default value for numbers, it appears grayscale. 
 
 To solve this problem, the `Material` class can encapsulate the handling of applying new hot-reload updates. Anytime a new shader is available to swap in, the `Material` class needs to handle re-applying the old shader parameters to the new instance. 
 Add the following method to the `Material` class,
@@ -243,7 +243,7 @@ And now instead of using the `TryRefresh()` method directly on the `_grayscaleEf
 _grayscaleEffect.Update();
 ```
 
-If you repeat the same test as before, the game won't become grayscale after a new shader is loaded. Once you have validated this, make sure to undo the changes in the `LoadContent()` and `Draw()` method, so that the `_grayscaleEffect` is still setting the `Saturation` value in the `Draw()` method.
+If you repeat the same test as before, the game will not become grayscale after a new shader is loaded. Once you have validated this, make sure to undo the changes in the `LoadContent()` and `Draw()` method, so that the `_grayscaleEffect` is still setting the `Saturation` value in the `Draw()` method.
 
 
 #### Debug Builds
@@ -259,7 +259,7 @@ public void Update()
 ```
 
 > [!Tip]
-> Adding the [`[Conditional]`](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.conditionalattribute?view=net-9.0) attribute is optional. It won't seriously impact your game's performance one way or another.
+> Adding the [`[Conditional]`](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.conditionalattribute?view=net-9.0) attribute is optional. It will not seriously impact your game's performance one way or another.
 
 ### Supporting more Parameter Types
 
@@ -341,7 +341,7 @@ Excellent work! Our new `Material` class makes working with shaders much safer a
 - Handled the state of shader parameters so they are automatically reapplied during a hot-reload.
 - Added support for multiple parameter types like `Matrix`, `Vector2`, and `Texture2D`.
 
-Now that we have a solid and safe foundation for our effects, let's make them easier to tweak. In the next chapter, we'll build a real-time debug UI that will let us change our shader parameters with sliders and buttons right inside the game!
+Now that we have a solid and safe foundation for our effects, we will make them easier to tweak. In the next chapter, we will build a real-time debug UI that will let us change our shader parameters with sliders and buttons right inside the game!
 
 You can find the complete code sample for this chapter, [here](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/03-The-Material-Class). 
 
