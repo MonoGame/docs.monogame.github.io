@@ -20,7 +20,7 @@ Time to get started!
 If you are following along with code, here is the code from the end of the previous tutorial series, [Starting Code](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/learn-monogame-2d/src/24-Shaders/) 
 
 > [!note]
-> This entire chapter is optional. If you just want to skip ahead to shader code, please pick up the code at the start of [Chapter 05: Transition Effect](../05_transition_effect). 
+> This entire chapter is optional. If you just want to skip ahead to shader code, please pick up the code at the start of [Chapter 05: Transition Effect](../05_transition_effect/index.md). 
 
 ## Compiling Shaders
 

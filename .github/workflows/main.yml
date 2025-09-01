@@ -49,7 +49,15 @@ jobs:
         uses: abel0b/setup-premake@v2.4
         with:
           version: "5.0.0-beta2"
-          
+
+      - name: Restore MonoGame dotnet tools
+        working-directory: external/MonoGame
+        run: dotnet tool restore
+
+      - name: Restore MonoGame Content
+        working-directory: external/MonoGame
+        run: dotnet restore MonoGame.Framework.Content.Pipeline/
+
       - name: Restore dotnet tools
         run: dotnet tool restore
 
