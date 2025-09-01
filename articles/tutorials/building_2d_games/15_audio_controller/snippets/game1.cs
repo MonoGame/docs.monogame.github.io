@@ -68,19 +68,19 @@ public class Game1 : Core
         int centerColumn = _tilemap.Columns / 2;
         _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
 
-        // Initial bat position will the in the top left corner of the room
+        // Initial bat position will the in the top left corner of the room.
         _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
 
         // Assign the initial random velocity to the bat.
         AssignRandomBatVelocity();
 
-        // Start playing the background music
+        // Start playing the background music.
         Audio.PlaySong(_themeSong);
     }
 
     protected override void LoadContent()
     {
-        // Create the texture atlas from the XML configuration file
+        // Create the texture atlas from the XML configuration file.
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
         // Create the slime animated sprite from the atlas.
@@ -95,21 +95,18 @@ public class Game1 : Core
         _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
         _tilemap.Scale = new Vector2(4.0f, 4.0f);
 
-        // Load the bounce sound effect
+        // Load the bounce sound effect.
         _bounceSoundEffect = Content.Load<SoundEffect>("audio/bounce");
 
-        // Load the collect sound effect
+        // Load the collect sound effect.
         _collectSoundEffect = Content.Load<SoundEffect>("audio/collect");
 
-        // Load the background theme music
+        // Load the background theme music.
         _themeSong = Content.Load<Song>("audio/theme");
     }
 
     protected override void Update(GameTime gameTime)
     {
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
-
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 
@@ -122,7 +119,7 @@ public class Game1 : Core
         // Check for gamepad input and handle it.
         CheckGamePadInput();
 
-        // Creating a bounding circle for the slime
+        // Creating a bounding circle for the slime.
         Circle slimeBounds = new Circle(
             (int)(_slimePosition.X + (_slime.Width * 0.5f)),
             (int)(_slimePosition.Y + (_slime.Height * 0.5f)),
@@ -150,10 +147,10 @@ public class Game1 : Core
             _slimePosition.Y = _roomBounds.Bottom - _slime.Height;
         }
 
-        // Calculate the new position of the bat based on the velocity
+        // Calculate the new position of the bat based on the velocity.
         Vector2 newBatPosition = _batPosition + _batVelocity;
 
-        // Create a bounding circle for the bat
+        // Create a bounding circle for the bat.
         Circle batBounds = new Circle(
             (int)(newBatPosition.X + (_bat.Width * 0.5f)),
             (int)(newBatPosition.Y + (_bat.Height * 0.5f)),
@@ -194,7 +191,7 @@ public class Game1 : Core
         {
             _batVelocity = Vector2.Reflect(_batVelocity, normal);
 
-            // Play the bounce sound effect
+            // Play the bounce sound effect.
             Audio.PlaySoundEffect(_bounceSoundEffect);
         }
 
@@ -210,10 +207,10 @@ public class Game1 : Core
             // the column and row multiplied by the width and height.
             _batPosition = new Vector2(column * _bat.Width, row * _bat.Height);
 
-            // Assign a new random velocity to the bat
+            // Assign a new random velocity to the bat.
             AssignRandomBatVelocity();
 
-            // Play the collect sound effect
+            // Play the collect sound effect.
             Audio.PlaySoundEffect(_collectSoundEffect);
         }
 
@@ -222,15 +219,15 @@ public class Game1 : Core
 
     private void AssignRandomBatVelocity()
     {
-        // Generate a random angle
+        // Generate a random angle.
         float angle = (float)(Random.Shared.NextDouble() * Math.PI * 2);
 
-        // Convert angle to a direction vector
+        // Convert angle to a direction vector.
         float x = (float)Math.Cos(angle);
         float y = (float)Math.Sin(angle);
         Vector2 direction = new Vector2(x, y);
 
-        // Multiply the direction vector by the movement speed
+        // Multiply the direction vector by the movement speed.
         _batVelocity = direction * MOVEMENT_SPEED;
     }
 

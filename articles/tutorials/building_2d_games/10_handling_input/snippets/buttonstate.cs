@@ -1,4 +1,4 @@
-// Get the current state of player one's gamepad
+// Get the current state of player one's gamepad.
 GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
 // Check if the down on the DPad is pressed.

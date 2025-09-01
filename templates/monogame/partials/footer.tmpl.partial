@@ -36,7 +36,10 @@
                             Issues</a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a href="https://www.patreon.com/MonoGame" class="p-0">Patreon</a>
+                        <a href="https://monogame.net/bounties/" class="p-0">Bounties</a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a href="https://store.monogame.net/" class="p-0">Store</a>
                     </li>
                 </ul>
             </div>
@@ -85,9 +88,15 @@
                 <a class="mg-social-link hide-external-icon" href="https://www.facebook.com/monogamecommunity" title="Facebook">
                     <i class="bi bi-facebook"></i>
                 </a>
+                <a class="mg-social-link hide-external-icon" href="https://bsky.app/profile/monogame.net" title="Blue Sky">
+                    <i class="bi-moon-stars-fill"></i>
+                </a>
                 <a class="mg-social-link hide-external-icon" href="https://twitter.com/MonoGameTeam" title="Twitter">
                     <i class="bi bi-twitter"></i>
-                </a>     
+                </a>
+                <a class="mg-social-link hide-external-icon" href="https://mastodon.cloud/@MonoGame" title="Mastodon">
+                    <i class="bi-mastodon"></i>
+                </a>
                 <a class="mg-social-link hide-external-icon" href="https://monogame.net/blog/feed.xml" title="MonoGame Blog">
                     <i class="bi bi-rss-fill"></i>
                 </a>                                                   

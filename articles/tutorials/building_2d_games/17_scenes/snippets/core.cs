@@ -85,21 +85,24 @@ public class Core : Game
         Graphics.PreferredBackBufferHeight = height;
         Graphics.IsFullScreen = fullScreen;
 
-        // Apply the graphic presentation changes
+        // Apply the graphic presentation changes.
         Graphics.ApplyChanges();
 
         // Set the window title
         Window.Title = title;
 
-        // Set the core's content manager to a reference of hte base Game's
+        // Set the core's content manager to a reference of the base Game's
         // content manager.
         Content = base.Content;
 
-        // Set the root directory for content
+        // Set the root directory for content.
         Content.RootDirectory = "Content";
 
-        // Mouse is visible by default
+        // Mouse is visible by default.
         IsMouseVisible = true;
+
+        // Exit on escape is true by default
+        ExitOnEscape = true;        
     }
 
     protected override void Initialize()
@@ -113,7 +116,7 @@ public class Core : Game
         // Create the sprite batch instance.
         SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // Create a new input manager
+        // Create a new input manager.
         Input = new InputManager();
 
         // Create a new audio controller.
@@ -142,7 +145,7 @@ public class Core : Game
         }
 
         // if there is a next scene waiting to be switch to, then transition
-        // to that scene
+        // to that scene.
         if (s_nextScene != null)
         {
             TransitionScene();
@@ -180,16 +183,16 @@ public class Core : Game
 
     private static void TransitionScene()
     {
-        // If there is an active scene, dispose of it
+        // If there is an active scene, dispose of it.
         if (s_activeScene != null)
         {
             s_activeScene.Dispose();
         }
 
-        // Force the garbage collector to collect to ensure memory is cleared
+        // Force the garbage collector to collect to ensure memory is cleared.
         GC.Collect();
 
-        // Change the currently active scene to the new scene
+        // Change the currently active scene to the new scene.
         s_activeScene = s_nextScene;
 
         // Null out the next scene value so it does not trigger a change over and over.

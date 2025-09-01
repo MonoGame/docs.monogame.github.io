@@ -1,4 +1,4 @@
-// Create a bounding box for the sprite object
+// Create a bounding box for the sprite object.
 Rectangle spriteBounds = new Rectangle(
     (int)_spriteLocation.X,
     (int)_spriteLocation.Y,
@@ -6,9 +6,9 @@ Rectangle spriteBounds = new Rectangle(
     (int)_sprite.Height
 );
 
-// Detect if the sprite object is within the trigger zone
+// Detect if the sprite object is within the trigger zone.
 if(_spriteBounds.Intersects(_triggerBounds))
 {
-    // Perform some event
+    // Perform some event.
     CollectItem();
 }

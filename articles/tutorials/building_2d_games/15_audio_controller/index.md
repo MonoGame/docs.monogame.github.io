@@ -29,10 +29,10 @@ To get started, in the *MonoGameLibrary* project:
 2. Add a new class file named `AudioController.cs` to the `Audio` folder you just created.
 3. Add the following code as the initial structure for the class
 
-    [!code-csharp[](./snippets/audiocontroller.cs#declaration)]
+   [!code-csharp[](./snippets/audiocontroller.cs#declaration)]
 
-    > [!NOTE]
-    > The `AudioController` class will implement the `IDisposable` interface,  This interface is part of .NET and provides a standardized implementation for an object to release resources.  Implementing `IDisposable` allows other code to properly clean up the resources held by our audio controller when it is no longer needed.  For more information on `IDisposable`, you can read the [Implement a Dispose Method](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose) article on Microsoft Learn.
+   > [!NOTE]
+   > The `AudioController` class will implement the `IDisposable` interface, This interface is part of .NET and provides a standardized implementation for an object to release resources. Implementing `IDisposable` allows other code to properly clean up the resources held by our audio controller when it is no longer needed. For more information on `IDisposable`, you can read the [Implement a Dispose Method](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose) article on Microsoft Learn.
 
 ### AudioController Properties and Fields
 
@@ -51,7 +51,7 @@ Add the following constructor and finalizer:
 [!code-csharp[](./snippets/audiocontroller.cs#ctors)]
 
 > [!NOTE]
-> The `AudioController` class implements a [finalizer](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers) method `~AudioManager()`.  This method is called when an instance of the class is collected by the garbage collector and is here as part of the `IDisposable` implementation.
+> The `AudioController` class implements a [finalizer](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers) method `~AudioManager()`. This method is called when an instance of the class is collected by the garbage collector and is here as part of the `IDisposable` implementation.
 
 ### AudioController Methods
 
@@ -67,13 +67,13 @@ So lets add them below.
 
 #### AudioController Update
 
-The `Update` method will check for existing sound effect instances that have expired and properly dispose of them.  Add the following method:
+The `Update` method will check for existing sound effect instances that have expired and properly dispose of them. Add the following method:
 
 [!code-csharp[](./snippets/audiocontroller.cs#update)]
 
 #### AudioController Playback
 
-While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way does not work if you need to pause them because the game paused.  Instead, we can add playback methods through the `AudioController` that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.
+While the MonoGame simplified audio API allows sound effects to be played in a fire and forget manner, doing it this way does not work if you need to pause them because the game paused. Instead, we can add playback methods through the `AudioController` that can track the sound effect instances and pause them if needed, as well as checking the media player state before playing a song.
 
 Add the following methods:
 
@@ -108,16 +108,16 @@ For our `AudioController`, implementing `IDisposable` means we can ensure all so
 
 ## Implementing the AudioController Class
 
-Now that we have the audio controller class complete, we can update the game to use it.  We will do this in two steps:
+Now that we have the audio controller class complete, we can update the game to use it. We will do this in two steps:
 
 1. First, update the `Core` class to add the `AudioController` globally.
 1. Update the `Game1` class to use the global audio controller from `Core`.
 
 ### Updating the Core Class
 
-The `Core` class serves as our the base game class, so we will update it first to add and expose the `AudioController` globally.  Open the `Core.cs` file in the *MonoGameLibrary* project and update it to the following:
+The `Core` class serves as our base game class, so we will update it first to add and expose the `AudioController` globally. Open the `Core.cs` file in the *MonoGameLibrary* project and update it to the following:
 
-[!code-csharp[](./snippets/core.cs?highlight=6,50-53,112-113,116-122,129-130)]
+[!code-csharp[](./snippets/core.cs?highlight=6,50-53,115–116,119–125,132–133)]
 
 The key changes made here are:
 
@@ -129,32 +129,32 @@ The key changes made here are:
 
 ### Updating the Game1 Class
 
-Next, update the `Game1` class to use the audio controller for audio playback.  Open `Game1.cs` and make the following updates:
+Next, update the `Game1` class to use the audio controller for audio playback. Open `Game1.cs` and make the following updates:
 
-[!code-csharp[](./snippets/game1.cs?highlight=45-46,77-78,104-105,197-198,216-217,270-288)]
+[!code-csharp[](./snippets/game1.cs?highlight=45-46,77-78,104-105,194–195,213–214,267–285)]
 
 > [!NOTE]
-> Note there were a lot of replacements in the `LoadContent` method, switching from loading and initializing the background Song and replacing it with a call to the new `AudioController` to do all the work managing the Song reference.  Much cleaner.
+> Note there were a lot of replacements in the `LoadContent` method, switching from loading and initializing the background Song and replacing it with a call to the new `AudioController` to do all the work managing the Song reference. Much cleaner.
 
 The key changes made here are:
 
 1. The `_themeSong` field is added to store a reference to the background song to play.
-2. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the background theme song is loaded using hte content manager.
+2. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the background theme song is loaded using the content manager.
 3. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize), the audio manager is used to play the background theme song.
-4. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)) the audio manager is used to play the bounce and collect sound effects.
+4. In [**Update**](<xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)>) the audio manager is used to play the bounce and collect sound effects.
 5. In `CheckKeyboardInput` the following checks were added
    1. If the M key on the keyboard is pressed, it will toggle mute for all audio.
    2. If the + key is pressed, the song and sound effect volumes are increased by `0.1f`.
    3. If the - key is pressed, the song and sound effect volumes are decreased by `0.1f`.
 
-Running the game now will produce the same result as the previous chapter, only now the lifetime of sound effects and the state management of audio is done through the new audio controller.  You can also mute and unumte the audio with the M key and increase and decrease the volume using the + and - keys.
+Running the game now will produce the same result as the previous chapter, only now the lifetime of sound effects and the state management of audio is done through the new audio controller. You can also mute and unumte the audio with the M key and increase and decrease the volume using the + and - keys.
 
 | ![Figure 15-1: Gameplay with audio.](./videos/gameplay.webm) |
-|:--------------------------------------------------------------------------------------:|
-|             **Figure 15-1: Gameplay with audio.**              |
+| :----------------------------------------------------------: |
+|            **Figure 15-1: Gameplay with audio.**             |
 
 > [!NOTE]
-> You may note that while we added keybindings to change the audio settings, we did not add any bindings for the GamePad.  This is simply becuase this is not normally how you would adjust these values on a console, on consoles you would have a settings/options screen to update them.
+> You may note that while we added keybindings to change the audio settings, we did not add any bindings for the GamePad. This is simply becuase this is not normally how you would adjust these values on a console, on consoles you would have a settings/options screen to update them.
 >
 > Later in [Chapter 20: Implementing UI with GUM](../20_implementing_ui_with_gum/index.md) we will add an Options screen to adjust all the audio values for the game.
 

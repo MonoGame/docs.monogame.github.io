@@ -4,7 +4,7 @@ public override void Initialize()
     base.Initialize();
 
     // During the game scene, we want to disable exit on escape. Instead,
-    // the escape key will be used to return back to the title screen
+    // the escape key will be used to return back to the title screen.
     Core.ExitOnEscape = false;
 
     // Create the room bounds by getting the bounds of the screen then
@@ -19,7 +19,7 @@ public override void Initialize()
     _slime.BodyCollision += OnSlimeBodyCollision;
 
     // Create any UI elements from the root element created in previous
-    // scenes
+    // scenes.
     GumService.Default.Root.Children.Clear();
 
     // Initialize the user interface for the game scene.

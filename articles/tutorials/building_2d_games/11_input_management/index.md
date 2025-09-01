@@ -36,13 +36,13 @@ If both conditions are true, we know the key was just pressed.  If we were to mo
 
 [!code-csharp[](./snippets/compare_previous_state.cs)]
 
-If you need to know the inverse state, when the key was just released, then it is simply a matter of swiching the checking of the states, for example, is the key up this frame and was it down in the previous frame.
+If you need to know the inverse state, when the key was just released, then it is simply a matter of switching the checking of the states, for example, is the key up this frame and was it down in the previous frame.
 
 This same concept applies to mouse buttons and gamepad input as well. Any time you need to detect a "just pressed" or "just released" state, you will need to compare the current input state with the previous frame's state.
 
-So far, we have only been working with our game within the `Game1.cs` file.  This has been fine for the examples given.  Overtime, as the game grows, we are going to have a more complex system setup with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable `InputManager` class to simplify this for us.
+So far, we have only been working with our game within the `Game1.cs` file.  This has been fine for the examples given.  Over time, as the game grows, we are going to have a more complex system set up with different scenes, and each scene will need a way to track the state of input over time.  We could do this by creating a lot of variables in each scene to track this information, or we can use object-oriented design concepts to create a reusable `InputManager` class to simplify this for us.
 
-Before we create the `InputManager` class, we should first create classes for the keyboard, mouse, and gamepad that encapsulates the information about those inputs which will then be exposed through the `InputManager`.  
+Before we create the `InputManager` class, we should first create classes for the keyboard, mouse, and gamepad that encapsulates the information about those inputs, which will then be exposed through the `InputManager`.  
 
 To get started, create a new folder called `Input` in the *MonoGameLibrary* project.  We will put all of our input related classes here.
 
@@ -245,7 +245,7 @@ To manage gamepad input effectively, we need to track both current and previous 
 - Check if gamepad buttons are being held down.
 - Start and Stop vibration of a gamepad.
 
-To get started, in the `Input` folder of the *MonoGameLibrary* project, create a new file name `GamePadInfo.cs` with the following initial structure:
+To get started, in the `Input` folder of the *MonoGameLibrary* project, create a new file named `GamePadInfo.cs` with the following initial structure:
 
 [!code-csharp[](./snippets/gamepadinfo.cs#declaration)]
 
@@ -343,7 +343,7 @@ The `InputManager` class needs properties to access each type of input device. A
 
 ### InputManager Constructor
 
-The constructor for the `InputManager` initializes the keybaord, mouse, and gamepad states.
+The constructor for the `InputManager` initializes the keyboard, mouse, and gamepad states.
 
 Add the following constructor:
 
@@ -351,7 +351,7 @@ Add the following constructor:
 
 ### InputManager Methods
 
-The `Update` method for the `InputManager` calls update for each device so that they can update their internal states.
+The `Update` method for the `InputManager` calls update for each device, so that they can update their internal states.
 
 [!code-csharp[](./snippets/inputmanager.cs#methods)]
 
@@ -366,15 +366,16 @@ Now that we have our input management system complete, we will update our game t
 
 The `Core` class serves as our base game class, so we will update it to add and expose the `InputManager` globally.  Open the *Core.cs* file in the *MonoGameLibrary* project and update it to the following:
 
-[!code-csharp[](./snippets/core.cs?highlight=5-6,39-47,103-104,107-118)]
+[!code-csharp[](./snippets/core.cs?highlight=5-6,39-47,91-92,106–107,110–121)]
 
 The key changes to the `Core` class are:
 
 1. Added the `using MonoGameLibrary.Input;` directive to access the `InputManager` class.
 2. Added a static `Input` property to provide global access to the input manager.
 3. Added a static `ExitOnEscape` property to set whether the game should exit when the Escape key on the keyboard is pressed.
-4. In `Initialize` the input manager is created.
-5. Added an override for the `Update` method where:
+4. In the `Core` constructor, `ExitOnEscape` is set to true by default to mirror how the default MonoGame `Game1` class template has this functionality by default.
+5. In `Initialize` the input manager is created.
+6. Added an override for the `Update` method where:
    1. The input manager is updated
    2. A check is made to see if `ExitOnEscape` is true and if the Escape keyboard key is pressed.
 
@@ -382,7 +383,7 @@ The key changes to the `Core` class are:
 
 Now we can update our `Game1` class to use the new input management system through the `Core` class.  Open `Game1.cs` in the game project and update it to the following:
 
-[!code-csharp[](./snippets/game1.cs?highlight=1,7,75,81,87,93,99,107,112,115,119,125,127-128,133,139,145,151)]
+[!code-csharp[](./snippets/game1.cs?highlight=1,7,73,79,85,91,97,105,110,113,117,123,125-126,131,137,143,149)]
 
 The key changes to the `Game1` class are:
 

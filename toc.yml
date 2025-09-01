@@ -1,16 +1,11 @@
-- name: Documentation
+items:
+- name: Learn
   href: /
-- name: Roadmap
-  href: roadmap/
+- name: Create
+  href: https://monogame.net/create/
 - name: Community
   href: https://monogame.net/community/
 - name: Showcase
   href: https://monogame.net/showcase/
-- name: Blog
-  href: https://monogame.net/blog/
-- name: Bounties
-  href: https://monogame.net/bounties/
-- name: Resources
-  href: https://monogame.net/resources/
 - name: About
   href: https://monogame.net/about/

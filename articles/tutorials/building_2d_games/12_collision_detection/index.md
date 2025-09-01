@@ -16,7 +16,7 @@ In this chapter you will:
 We will first start by understanding the basics of collision detection and the different approaches that can be used.
 
 > [!NOTE]
-> There is a lot to understand when it comes to collision detection and the many complex ways that two objects can be considered IN collision or NEAR collision.  It is critical to get an understanding of the basics before jumping into code.  So buckle up, we have a story to tell before you can get back to the keyboard.
+> There is a lot to understand when it comes to collision detection and the many complex ways that two objects can be considered IN collision or NEAR collision. It is critical to get an understanding of the basics before jumping into code. So buckle up, we have a story to tell before you can get back to the keyboard.
 >
 > Feel free to keep coming back to this chapter and refer to the content when you need to, with a fresh cup of coffee.
 
@@ -26,27 +26,27 @@ Before we start implementing collision detection, we should discuss what collisi
 
 ### Proximity Collision Detection
 
-The simplest form is checking if objects are within a certain range of each other.  This is useful when you only need to know if objects are "near" each other like detecting if an enemy is close enough to chase a player or if two objects are close enough to perform a more complex collision check.
+The simplest form is checking if objects are within a certain range of each other. This is useful when you only need to know if objects are "near" each other like detecting if an enemy is close enough to chase a player or if two objects are close enough to perform a more complex collision check.
 
 ### Simple Shape Based Collision Detection
 
-Shaped based collision detection checks if two shapes overlap.  The most common and simple shapes used are circles and rectangles:
+Shaped based collision detection checks if two shapes overlap. The most common and simple shapes used are circles and rectangles:
 
 #### Circle Collision Detection
 
-Circle collision detection is computationally a simpler check than rectangles.  There are also no special considerations if the circles are rotated, which makes them easier to use.  To determine if two circle shapes are overlapping, we only need to check if the square of the sum of the radii between the two circles is less than the squared distance between the two circles with the following formula:
+Circle collision detection is computationally a simpler check than rectangles. There are also no special considerations if the circles are rotated, which makes them easier to use. To determine if two circle shapes are overlapping, we only need to check if the square of the sum of the radii between the two circles is less than the squared distance between the two circles with the following formula:
 
-To find the distance between two circles, imagine drawing a line from the center of one circle to the center of the other.  The length of this line is the distance, but we could also calculate it by first walking up or down and then walking left or right from the center of one circle to another, forming a right triangle.
+To find the distance between two circles, imagine drawing a line from the center of one circle to the center of the other. The length of this line is the distance, but we could also calculate it by first walking up or down and then walking left or right from the center of one circle to another, forming a right triangle.
 
 | ![Figure 12-1: Showing the distance between the center of two circles forms a right triangle](./images/circle-distance-right-triangle.svg) |
-| :---------------------------------------------------------------------------------------------------------------------------------------: |
+| :----------------------------------------------------------------------------------------------------------------------------------------: |
 |                       **Figure 12-1: Showing the distance between the center of two circles forms a right triangle**                       |
 
 In *Figure 12-1* above
 
-- $a$ is the distance between the center of the two on the x-axis (horizontal).
-- $b$ is the distance between the center of the two circles on the y-axis (vertical).
-- $c$ is the total distance between the center of the two circles.
+- $a$ is the horizontal distance between the centers of the two circles (x-axis).
+- $b$ is the vertical distance between the centers of the two circles (y-axis).
+- $c$ is the total distance between the centers of the two circles.
 
 Since this forms a right triangle, we can use Pythagorean's Theorem to calculate $c^2$ given $a^2$ and $b^2$:
 
@@ -63,28 +63,28 @@ To calculate the squared distance between two points, MonoGame provides the [**V
 [!code-csharp[](./snippets/vector2_distance.cs)]
 
 > [!TIP]
-> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared.  So why not use this instead?
+> MonoGame also provides a distance calculation method with [**Vector2.Distance**](xref:Microsoft.Xna.Framework.Vector2.Distance(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) which returns the distance by providing the square root of the distance squared. So why not use this instead?
 >
-> Square root operations are more computationally complex for a CPU.  So instead of getting the normal distance, which would require the square root operation, it is more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.
+> Square root operations are more computationally complex for a CPU. So instead of getting the normal distance, which would require the square root operation, it is more efficient for the cpu to multiply the sum of the radii by itself to get the squared sum and use that for comparison instead.
 
 #### Rectangle Collision Detection
 
-Rectangles, often called *bounding boxes*, typically uses what is called *Axis-Aligned Bounding Box* (AABB) collision detection to determine if two rectangle shapes overlap.  Unlike circles, to perform AABB collision detection, the x- and y-axes of both rectangles must be aligned with the x- and y-axes of the screen.  This is just another way of saying that the rectangles cannot be rotated.
+Rectangles, often called *bounding boxes*, typically uses what is called *Axis-Aligned Bounding Box* (AABB) collision detection to determine if two rectangle shapes overlap. Unlike circles, to perform AABB collision detection, the x- and y-axes of both rectangles must be aligned with the x- and y-axes of the screen. This is just another way of saying that the rectangles cannot be rotated.
 
 | ![Figure 12-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned since it is rotated and the axes do not align with the screen axe.](./images/aabb-vs-non-aabb.svg) |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                **Figure 12-2: The rectangle on the left is axis-aligned since both the axes are aligned with the screen axes. The rectangle on the right is non axis-aligned since it is rotated and the axes do not align with the screen axes**                |
 
 MonoGame provides the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct which represents a rectangle by its position (X,Y) and size (Width,Height). The following table shows some of the properties of the [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) struct:
 
-| Property                                                    | Type  | Description                                                                                                                                                                            |
-| ----------------------------------------------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [**Bottom**](xref:Microsoft.Xna.Framework.Rectangle.Bottom) | `int` | Returns the y-coordinate location of the bottom edge of the rectangle.  This is equal to [**Rectangle.Y**](xref:Microsoft.Xna.Framework.Rectangle.Y) plus the height of the rectangle. |
-| [**Left**](xref:Microsoft.Xna.Framework.Rectangle.Left)     | `int` | Returns the x-coordinate location of the left edge of the rectangle.  This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X).                                    |
-| [**Right**](xref:Microsoft.Xna.Framework.Rectangle.Right)   | `int` | Returns the x-coordinate location of the right edge of the rectangle.  This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X) plus the width of the rectangle.   |
-| [**Top**](xref:Microsoft.Xna.Framework.Rectangle.Top)       | `int` | Returns the y-coordinate location of the top edge of the rectangle. This is equal to [**Rectangle.Y**](xref:Microsoft.Xna.Framework.Rectangle.Y).                                      |
+| Property                                                    | Type  | Description                                                                                                                                                                           |
+| ----------------------------------------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [**Bottom**](xref:Microsoft.Xna.Framework.Rectangle.Bottom) | `int` | Returns the y-coordinate location of the bottom edge of the rectangle. This is equal to [**Rectangle.Y**](xref:Microsoft.Xna.Framework.Rectangle.Y) plus the height of the rectangle. |
+| [**Left**](xref:Microsoft.Xna.Framework.Rectangle.Left)     | `int` | Returns the x-coordinate location of the left edge of the rectangle. This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X).                                    |
+| [**Right**](xref:Microsoft.Xna.Framework.Rectangle.Right)   | `int` | Returns the x-coordinate location of the right edge of the rectangle. This is equal to [**Rectangle.X**](xref:Microsoft.Xna.Framework.Rectangle.X) plus the width of the rectangle.   |
+| [**Top**](xref:Microsoft.Xna.Framework.Rectangle.Top)       | `int` | Returns the y-coordinate location of the top edge of the rectangle. This is equal to [**Rectangle.Y**](xref:Microsoft.Xna.Framework.Rectangle.Y).                                     |
 
-To determine if two rectangles overlap using AABB collision detection, there are four conditions that need to be checked, and all four conditions must be true.  Given two rectangles $A$ and $B$, these conditions are:
+To determine if two rectangles overlap using AABB collision detection, there are four conditions that need to be checked, and all four conditions must be true. Given two rectangles $A$ and $B$, these conditions are:
 
 1. $A_{Left}$ must be less than $B_{Right}$.
 2. $A_{Right}$ must be greater than $B_{Left}$.
@@ -103,7 +103,7 @@ MonoGame provides the [**Rectangle.Intersects**](xref:Microsoft.Xna.Framework.Re
 
 #### Complex Polygon Collision Detection
 
-Complex polygon collision detection uses a method called *Separating Axis Theorem* (SAT) to determine if two polygon shapes overlap.  SAT uses more complex calculations that can determine if any polygon shape overlaps with another polygon shape, including if they are rotated. There are performance considerations to consider when using SAT.
+Complex polygon collision detection uses a method called *Separating Axis Theorem* (SAT) to determine if two polygon shapes overlap. SAT uses more complex calculations that can determine if any polygon shape overlaps with another polygon shape, including if they are rotated. There are performance considerations to consider when using SAT.
 
 Implementing SAT is out-of-scope for this tutorial. If you are interested in further reading about this, please see the following articles as a good starting point:
 
@@ -113,7 +113,7 @@ Implementing SAT is out-of-scope for this tutorial. If you are interested in fur
 
 #### Choosing a Collision Detection Method
 
-When determining which collision detection method to use, you should start with the simplest one that meets the needs of your game.  If distance checks work for your game mechanic, there's no need to implement more complex shape based detections.  Similarly, if a circle can represent the bounding area of a game object, start with that before moving on to rectangles.
+When determining which collision detection method to use, you should start with the simplest one that meets the needs of your game. If distance checks work for your game mechanic, there's no need to implement more complex shape based detections. Similarly, if a circle can represent the bounding area of a game object, start with that before moving on to rectangles.
 
 Some other points to consider are
 
@@ -128,13 +128,13 @@ Some other points to consider are
 
 ### Collision Detection vs Collision Response
 
-Often times when talking about collision detection, the term is used to mean both the detection of overlapping shapes and what to do once a positive check has occurred.  What you do after a positive collision check has occurred is called the *collision response*.  Some of the common responses are:
+Often times when talking about collision detection, the term is used to mean both the detection of overlapping shapes and what to do once a positive check has occurred. What you do after a positive collision check has occurred is called the *collision response*. Some of the common responses are:
 
 #### Blocking Collision Response
 
-A blocking collision response is the most basic response which just prevents the two objects from overlapping.  This is commonly used for walls, platforms and other solid objects.  To perform a blocking collision response:
+A blocking collision response is the most basic response which just prevents the two objects from overlapping. This is commonly used for walls, platforms and other solid objects. To perform a blocking collision response:
 
-1. Store the location of an object calculating the new location to move it to.
+1. Store the object’s current location and calculate the new position it should move to.
 2. Check if it is overlapping an object at the new location:
 
 - If it is overlapping, then set the position to the position before it was moved.
@@ -144,7 +144,7 @@ For example:
 
 [!code-csharp[](./snippets/blocking_example.cs)]
 
-Sometimes, instead of preventing an object from moving onto another object, we want to ensure an object remains contained within a certain bounding area. MonoGame also provides the [**Rectangle.Contains**](xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)) method that we can use to determine this.  [**Rectangle.Contains**](xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)) can check if any of the following are completely contained within the bounds of the rectangle;
+Sometimes, instead of preventing an object from moving onto another object, we want to ensure an object remains contained within a certain bounding area. MonoGame also provides the [**Rectangle.Contains**](xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)) method that we can use to determine this. [**Rectangle.Contains**](xref:Microsoft.Xna.Framework.Rectangle.Contains(Microsoft.Xna.Framework.Rectangle)) can check if any of the following are completely contained within the bounds of the rectangle;
 
 - [**Point**](xref:Microsoft.Xna.Framework.Point)
 - [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle)
@@ -155,11 +155,11 @@ For example, if we wanted to perform a blocking collision response that ensure a
 [!code-csharp[](./snippets/contains_example.cs)]
 
 > [!TIP]
-> Use [**GraphicsDevice.PresentationParameters**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.PresentationParameters) to get the actual screen dimensions instead of [**GraphicsDeviceManager.PreferredBackBufferWidth**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager.PreferredBackBufferWidth) and [**GraphicsDeviceManager.PreferredBackBufferHeight**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager.PreferredBackBufferHeight).  The preferred values are only hints and may not reflect the actual back buffer size.
+> Use [**GraphicsDevice.PresentationParameters**](xref:Microsoft.Xna.Framework.Graphics.GraphicsDevice.PresentationParameters) to get the actual screen dimensions instead of [**GraphicsDeviceManager.PreferredBackBufferWidth**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager.PreferredBackBufferWidth) and [**GraphicsDeviceManager.PreferredBackBufferHeight**](xref:Microsoft.Xna.Framework.GraphicsDeviceManager.PreferredBackBufferHeight). The preferred values are only hints and may not reflect the actual back buffer size.
 
 #### Trigger Collision Response
 
-Sometimes you want to trigger an event, rather than block movement, when a collision occurs.  Common examples include
+Sometimes you want to trigger an event, rather than block movement, when a collision occurs. Common examples include:
 
 - Collecting items.
 - Activating switches.
@@ -174,9 +174,9 @@ For example:
 
 #### Bounce Collision Response
 
-For games that need objects to bounce off each other (like the ball in a Pong game), we need to calculate how their velocity should change after the collision.  MonoGame provides the [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method to handle this calculation for us. The method needs two pieces of information:
+For games that need objects to bounce off each other (like the ball in a Pong game), we need to calculate how their velocity should change after the collision. MonoGame provides the [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) method to handle this calculation for us. The method needs two pieces of information:
 
-1. The incoming vector (the direction that something is moving).
+1. The incoming vector (the direction the object is moving in before the collision).
 2. The normal vector (the direction perpendicular to the surface).
 
 | ![Figure 12-4: A diagram showing how an incoming vector reflects off of a surface base around the normal vector of the surface](./images/reflection-diagram.svg) |
@@ -193,11 +193,11 @@ For example, if we had a ball moving around the screen and wanted it to bounce o
 [!code-csharp[](./snippets/bounce_example.cs)]
 
 > [!TIP]
-> [**Vector2.UnitX**](xref:Microsoft.Xna.Framework.Vector2.UnitX) is $(1, 0)$ and [**Vector2.UnitY**](xref:Microsoft.Xna.Framework.Vector2.UnitY) is $(0, 1)$.  We use these to get the screen edge normal since the edges of the screen are not at an angle.  For more complex surfaces, you would need to calculate the appropriate normal vector based on the surface angle.
+> [**Vector2.UnitX**](xref:Microsoft.Xna.Framework.Vector2.UnitX) is $(1, 0)$ and [**Vector2.UnitY**](xref:Microsoft.Xna.Framework.Vector2.UnitY) is $(0, 1)$. We use these to get the screen edge normal since the edges of the screen are not at an angle. For more complex surfaces, you would need to calculate the appropriate normal vector based on the surface angle.
 
 ### Optimizing Collision Performance
 
-When checking for collisions between multiple objects, testing every object against every other object (often called brute force checking) becomes inefficient as your game grows. Brute force checking can be calculated as $(n * (n - 1)) / 2$ where $n$ is the total number of objects.  For example, if you have 100 objects in your game, that's $(100 * 99) / 2 = 4950$ collision checks every frame.  To improve performance, we can use a two-phase approach:
+When checking for collisions between multiple objects, testing every object against every other object (often called brute force checking) becomes inefficient as your game grows. Brute force checking can be calculated as $(n * (n - 1)) / 2$ where $n$ is the total number of objects. For example, if you have 100 objects in your game, that's $(100 * 99) / 2 = 4950$ collision checks every frame. To improve performance, we can use a two-phase approach:
 
 1. Broad Phase: A quick, simple check to rule out objects that definitely are not colliding.
 2. Narrow Phase: A more precise check that is only performed on objects that have passed the broad phase.
@@ -205,18 +205,18 @@ When checking for collisions between multiple objects, testing every object agai
 For our simple game with just two objects, this optimization is not necessary. However, as you develop more complex games, implementing a broad-phase check can significantly improve performance.
 
 > [!NOTE]
-> Time to get back to the code!  The fun starts again here.
+> Time to get back to the code! The fun starts again here.
 
 ## The Circle Struct
 
-For our game, we are going to implement circle based collision detection.   MonoGame does not have a `Circle` struct to represent a circle like it does with [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle).  Before we can perform circle collision, we will need to create our own.
+For our game, we are going to implement circle based collision detection. MonoGame does not have a `Circle` struct to represent a circle like it does with [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle). Before we can perform circle collision, we will need to create our own.
 
-In the root of the *MonoGameLibrary* project, add a new file named `Circle.cs`.  Add the following code as the foundation of the `Circle` struct:
+In the root of the *MonoGameLibrary* project, add a new file named `Circle.cs`. Add the following code as the foundation of the `Circle` struct:
 
 [!code-csharp[](./snippets/cirlce.cs#declaration)]
 
 > [!NOTE]
-> Notice that the struct has declared it will implement the [`IEquatable<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.iequatable-1) Interface.  When creating value types like this, it is recommended to implement `IEquatable<T>` because it has better performance for comparing objects and can help avoid boxing.  
+> Notice that the struct has declared it will implement the [`IEquatable<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.iequatable-1) interface. When creating value types like this, it is recommended to implement `IEquatable<T>` because it has better performance for comparing objects and can help avoid boxing.
 >
 > For more information on recommended design guidelines for structs, see [Struct Design - Framework Design Guidelines | Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/struct)
 >
@@ -267,8 +267,8 @@ The `Circle` struct provides two ways to create a new circle:
 
 [!code-csharp[](./snippets/cirlce.cs#ctors)]
 
-* The first constructor accepts individual x and y coordinates for the circle's center.
-* The second accepts a [**Point**](xref:Microsoft.Xna.Framework.Point) struct that combines both coordinates.
+- The first constructor accepts individual x and y coordinates for the circle's center.
+- The second accepts a [**Point**](xref:Microsoft.Xna.Framework.Point) struct that combines both coordinates.
 
 Both constructors require a radius value that defines the circle's size.
 
@@ -288,7 +288,7 @@ Next, add the following override for `GetHashCode` to support using circles in h
 
 [!code-csharp[](./snippets/cirlce.cs#methods_hashcode)]
 
-Finally, add the following  operator overloads to support using == and != with circles:
+Finally, add the following operator overloads to support using == and != with circles:
 
 [!code-csharp[](./snippets/cirlce.cs#methods_operators)]
 
@@ -309,9 +309,9 @@ If you run the game right now and move the slime around, you will notice a few i
 2. Nothing occurs when the slime collides with the bat.
 3. The bat does not move, providing no challenge in the game.
 
-We can now implement these features using collision detection and response in our game.  In the *DungeonSlime* project (your main game project), open the `Game1.cs` file and make the following changes to the `Game1` class:
+We can now implement these features using collision detection and response in our game. In the *DungeonSlime* project (your main game project), open the `Game1.cs` file and make the following changes to the `Game1` class:
 
-[!code-csharp[](./snippets/game1.cs?highlight=1,5,25-29,40-45,79-179,184-196,296-297)]
+[!code-csharp[](./snippets/game1.cs?highlight=1,5,25-29,40-45,76–176,181–193,293–294)]
 
 The key changes made here are:
 
@@ -320,13 +320,13 @@ The key changes made here are:
 3. The `AssignRandomBatVelocity()` method was added which calculates a random x and y velocity for the bat to move at when called.
 4. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize), the initial position of the bat is set and `AssignRandomVelocity` is called to assign the initial velocity for the bat.
 5. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), collision detection and response logic was added to perform the following in order:
-    1. A [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) bound is created to represent the bounds of the screen.
-    2. A `Circle` bound is created to represent the bounds of the slime.
-    3. Distance based checks are performed to ensure that the slime cannot move outside of the screen, the resolution of which is to perform a blocking response.
-    4. A new position for the bat is calculated based on the current velocity of the bat.
-    5. A `Circle` bound is created to represent the bounds of the bat.
-    6. Distance based checks are performed to ensure the bat cannot move outside of the screen, the resolution of which is to perform a bounce response.
-    7. A collision check is made to determine if the slime and bat are colliding (bat "eating" the slime).  If so, the bat is assigned a new random position within the screen and assigned a new random velocity.
+   1. A [**Rectangle**](xref:Microsoft.Xna.Framework.Rectangle) bound is created to represent the bounds of the screen.
+   2. A `Circle` bound is created to represent the bounds of the slime.
+   3. Distance based checks are performed to ensure that the slime cannot move outside of the screen, the resolution of which is to perform a blocking response.
+   4. A new position for the bat is calculated based on the current velocity of the bat.
+   5. A `Circle` bound is created to represent the bounds of the bat.
+   6. Distance based checks are performed to ensure the bat cannot move outside of the screen, the resolution of which is to perform a bounce response.
+   7. A collision check is made to determine if the slime and bat are colliding (bat "eating" the slime). If so, the bat is assigned a new random position within the screen and assigned a new random velocity.
 6. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), the bat is now drawn using the `_batPosition` value.
 
 Running the game now
@@ -368,52 +368,52 @@ In the next chapter, we will explore using tilesets and tilemaps to create tile 
 
 1. What is the difference between collision detection and collision response?
 
-    ::: question-answer
-    Collision detection is determining when two objects overlap or intersect, while collision response is what happens after a collision is detected (like blocking movement, triggering events, or bouncing objects off each other).
-    :::
+   ::: question-answer
+   Collision detection is determining when two objects overlap or intersect, while collision response is what happens after a collision is detected (like blocking movement, triggering events, or bouncing objects off each other).
+   :::
 
 2. When using Rectangle.Intersects for AABB collision, what four conditions must all be true for a collision to occur?
 
-    ::: question-answer
-    For two rectangles A and B to collide:
+   ::: question-answer
+   For two rectangles A and B to collide:
 
-    1. A's left edge must be less than B's right edge.
-    2. A's right edge must be greater than B's left edge.
-    3. A's top edge must be less than B's bottom edge.
-    4. A's bottom edge must be greater than B's top edge.
+   1. A's left edge must be less than B's right edge.
+   2. A's right edge must be greater than B's left edge.
+   3. A's top edge must be less than B's bottom edge.
+   4. A's bottom edge must be greater than B's top edge.
 
    :::
 
 3. When implementing circle collision, why do we compare the distance between centers to the sum of the radii?
 
-    ::: question-answer
-    Two circles are colliding if the distance between their centers is less than the sum of their radii. If the distance is greater, they are separate. If the distance equals the sum of radii, they are just touching at one point.
-    :::
+   ::: question-answer
+   Two circles are colliding if the distance between their centers is less than the sum of their radii. If the distance is greater, they are separate. If the distance equals the sum of radii, they are just touching at one point.
+   :::
 
 4. When implementing bounce collision response, what two pieces of information does [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) need?
 
-    ::: question-answer
-    [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) needs:
+   ::: question-answer
+   [**Vector2.Reflect**](xref:Microsoft.Xna.Framework.Vector2.Reflect(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) needs:
 
-    1. The incoming vector (direction the object is moving).
-    2. The normal vector (direction perpendicular to the surface being hit).
+   1. The incoming vector (direction the object is moving).
+   2. The normal vector (direction perpendicular to the surface being hit).
 
-    :::
+   :::
 
 5. Why might you choose to use circle collision over rectangle collision for certain objects?
 
-    ::: question-answer
-    Circle collision might be chosen because:
+   ::: question-answer
+   Circle collision might be chosen because:
 
-    - It is more accurate for round objects.
-    - It handles rotating objects better.
-    - It is simpler for continuous collision detection.
-    - It is natural for radius-based interactions.
+   - It is more accurate for round objects.
+   - It handles rotating objects better.
+   - It is simpler for continuous collision detection.
+   - It is natural for radius-based interactions.
 
-    :::
+   :::
 
 6. In the blocking collision response example, why do we store the previous position before handling input?
 
-    ::: question-answer
-    We store the previous position so that if a collision occurs after movement, we can reset the object back to its last valid position. This prevents objects from moving through each other by undoing any movement that would cause overlap.
-    :::
+   ::: question-answer
+   We store the previous position so that if a collision occurs after movement, we can reset the object back to its last valid position. This prevents objects from moving through each other by undoing any movement that would cause overlap.
+   :::

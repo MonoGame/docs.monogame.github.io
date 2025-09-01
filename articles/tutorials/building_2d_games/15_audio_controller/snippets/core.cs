@@ -73,26 +73,29 @@ public class Core : Game
         // Create a new graphics device manager.
         Graphics = new GraphicsDeviceManager(this);
 
-        // Set the graphics defaults
+        // Set the graphics defaults.
         Graphics.PreferredBackBufferWidth = width;
         Graphics.PreferredBackBufferHeight = height;
         Graphics.IsFullScreen = fullScreen;
 
-        // Apply the graphic presentation changes
+        // Apply the graphic presentation changes.
         Graphics.ApplyChanges();
 
-        // Set the window title
+        // Set the window title.
         Window.Title = title;
 
-        // Set the core's content manager to a reference of hte base Game's
+        // Set the core's content manager to a reference of the base Game's
         // content manager.
         Content = base.Content;
 
-        // Set the root directory for content
+        // Set the root directory for content.
         Content.RootDirectory = "Content";
 
-        // Mouse is visible by default
+        // Mouse is visible by default.
         IsMouseVisible = true;
+
+        // Exit on escape is true by default
+        ExitOnEscape = true;        
     }
 
     protected override void Initialize()
@@ -106,7 +109,7 @@ public class Core : Game
         // Create the sprite batch instance.
         SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // Create a new input manager
+        // Create a new input manager.
         Input = new InputManager();
 
         // Create a new audio controller.

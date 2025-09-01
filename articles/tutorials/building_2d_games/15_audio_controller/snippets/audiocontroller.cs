@@ -100,28 +100,28 @@ public class AudioController : IDisposable
         _activeSoundEffectInstances = new List<SoundEffectInstance>();
     }
 
-    // Finalizer called when object is collected by the garbage collector
+    // Finalizer called when object is collected by the garbage collector.
     ~AudioController() => Dispose(false);
     #endregion
 
     #region update
     /// <summary>
-    /// Updates this audio controller
+    /// Updates this audio controller.
     /// </summary>
     public void Update()
     {
-        int index = 0;
-
-        while (index < _activeSoundEffectInstances.Count)
+        for (int i = _activeSoundEffectInstances.Count - 1; i >= 0; i--)
         {
-            SoundEffectInstance instance = _activeSoundEffectInstances[index];
+            SoundEffectInstance instance = _activeSoundEffectInstances[i];
 
-            if (instance.State == SoundState.Stopped && !instance.IsDisposed)
+            if (instance.State == SoundState.Stopped)
             {
-                instance.Dispose();
+                if (!instance.IsDisposed)
+                {
+                    instance.Dispose();
+                }
+                _activeSoundEffectInstances.RemoveAt(i);
             }
-
-            _activeSoundEffectInstances.RemoveAt(index);
         }
     }
     #endregion
@@ -226,10 +226,10 @@ public class AudioController : IDisposable
     /// </summary>
     public void PauseAudio()
     {
-        // Pause any active songs playing
+        // Pause any active songs playing.
         MediaPlayer.Pause();
 
-        // Pause any active sound effects
+        // Pause any active sound effects.
         foreach (SoundEffectInstance soundEffectInstance in _activeSoundEffectInstances)
         {
             soundEffectInstance.Pause();
@@ -244,7 +244,7 @@ public class AudioController : IDisposable
         // Resume paused music
         MediaPlayer.Resume();
 
-        // Resume any active sound effects
+        // Resume any active sound effects.
         foreach (SoundEffectInstance soundEffectInstance in _activeSoundEffectInstances)
         {
             soundEffectInstance.Resume();
@@ -272,7 +272,7 @@ public class AudioController : IDisposable
     /// </summary>
     public void UnmuteAudio()
     {
-        // Restore the previous volume values
+        // Restore the previous volume values.
         MediaPlayer.Volume = _previousSongVolume;
         SoundEffect.MasterVolume = _previousSoundEffectVolume;
 
