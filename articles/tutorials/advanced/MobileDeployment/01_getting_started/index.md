@@ -5,11 +5,11 @@ description: "Get started with MonoGame mobile development by setting up your de
 
 # Getting Started and Overview
 
-This tutorial extends the **MonoGame 2D Dungeon Slime tutorial** to mobile platforms. If you haven't completed the desktop tutorial yet, we recommend finishing it first as we'll be building directly on that foundation.
+This tutorial extends the **MonoGame 2D Dungeon Slime tutorial** to mobile platforms. If you have not completed the desktop tutorial yet, we recommend finishing it first as we will be building directly on that foundation.
 
-## What You'll Learn
+## What You Will Learn
 
-By the end of this mobile tutorial series, you'll have:
+By the end of this mobile tutorial series, you will have:
 - Ported the **Dungeon Slime** game to run on Android and iOS
 - Implemented touch controls to replace mouse and keyboard input
 - Set up cross-platform project architecture for code sharing
@@ -43,7 +43,7 @@ This tutorial utilizes modern .NET project management features to streamline cro
 
 ## Central Package Management
 
-We'll be using [Central Package Management](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management) to maintain consistent package versions across all platform projects. This ensures your shared code library and platform-specific projects use identical dependency versions.
+We will be using [Central Package Management](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management) to maintain consistent package versions across all platform projects. This ensures your shared code library and platform-specific projects use identical dependency versions.
 
 ## SLNX Solution Format
 
@@ -51,4 +51,4 @@ The sample projects use the new [SLNX solution format](https://devblogs.microsof
 
 # Next Steps
 
-In the next chapter, we'll convert the existing Windows-only Dungeon Slime project to support multiple platforms and explore the cross-platform project architecture.
+In the next chapter, we will convert the existing Windows-only Dungeon Slime project to support multiple platforms and explore the cross-platform project architecture.
