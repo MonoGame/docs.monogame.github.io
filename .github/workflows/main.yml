@@ -41,6 +41,14 @@ jobs:
           git submodule set-branch --branch develop external/MonoGame
           git submodule update --remote --init --recursive
 
+      - name: Restore MonoGame dotnet tools
+        working-directory: external/MonoGame
+        run: dotnet tool restore
+
+      - name: Restore MonoGame Content
+        working-directory: external/MonoGame
+        run: dotnet restore MonoGame.Framework.Content.Pipeline/
+
       - name: Restore dotnet tools
         run: dotnet tool restore
 
