@@ -3,7 +3,7 @@ title: "03: Touch Gesture Handling"
 description: "Learn the fundamentals of touch gesture recognition in MonoGame - registration, detection, and processing."
 ---
 
-Before proceeding with the cross-platform conversion, let's review how to handle touch input in MonoGame. The concepts discussed here apply to any MonoGame project. For our Dungeon Slime demo, touch input is managed by the Gum library, but understanding the fundamentals is still important.
+Before proceeding with the cross-platform conversion, let us review how to handle touch input in MonoGame. The concepts discussed here apply to any MonoGame project. For our Dungeon Slime demo, touch input is managed by the Gum library, but understanding the fundamentals is still important.
 
 ## Gesture Registration
 
@@ -134,7 +134,7 @@ switch (gesture.GestureType)
 
 ## Complete Example
 
-Here's a minimal working example demonstrating all three concepts:
+Here is a minimal working example demonstrating all three concepts:
 
 ```csharp
 public class TouchGame : Game

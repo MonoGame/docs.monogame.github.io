@@ -3,7 +3,7 @@ title: "02: Setting Up Cross-Platform Projects"
 description: "Learn how to convert a Windows-only MonoGame project to support iOS and Android platforms, creating a unified codebase for multi-platform deployment."
 ---
 
-# What You'll Learn
+# What You Will Learn
 
 In this chapter you will:
 - Convert a Windows-only MonoGame project to support multiple platforms
@@ -27,7 +27,7 @@ Before starting this chapter, ensure you have:
 
 The Dungeon Slime game from the 2D tutorial serves as our practical example for cross-platform conversion. This approach can be applied to any MonoGame project you want to deploy across multiple platforms.
 
-The key principle is **code sharing** of the game logic - we'll extract the game logic into a common library that all platform-specific projects can refer to and use.
+The key principle is **code sharing** of the game logic - we will extract the game logic into a common library that all platform-specific projects can refer to and use.
 
 # Cross-Platform Project Structure
 

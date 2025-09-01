@@ -5,7 +5,7 @@ description: "Learn how to publish your MonoGame mobile application to both the 
 
 # Publishing Overview
 
-This chapter covers the complete publishing process for both major mobile app stores. You'll learn the requirements, workflows, and common pitfalls for getting your MonoGame app successfully published on iOS and Android platforms.
+This chapter covers the complete publishing process for both major mobile app stores. You will learn the requirements, workflows, and common pitfalls for getting your MonoGame app successfully published on iOS and Android platforms.
 
 ## Prerequisites
 
