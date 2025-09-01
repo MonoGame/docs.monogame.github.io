@@ -35,6 +35,9 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Update submodules
+        run: git submodule update  --recursive
+
       - name: Restore dotnet tools
         run: dotnet tool restore
 
