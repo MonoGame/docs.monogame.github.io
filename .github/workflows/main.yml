@@ -41,14 +41,15 @@ jobs:
           git submodule set-branch --branch develop external/MonoGame
           git submodule update --remote --init --recursive
 
-      - name: Restore MonoGame dotnet tools
-        working-directory: external/MonoGame
-        run: dotnet tool restore
+      - name: Add msbuild to PATH
+        if: runner.os == 'Windows'
+        uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Restore MonoGame Content
-        working-directory: external/MonoGame
-        run: dotnet restore MonoGame.Framework.Content.Pipeline/
-
+      - name: Setup Premake5
+        uses: abel0b/setup-premake@v2.4
+        with:
+          version: "5.0.0-beta2"
+          
       - name: Restore dotnet tools
         run: dotnet tool restore
 
