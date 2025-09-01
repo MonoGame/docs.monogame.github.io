@@ -45,7 +45,7 @@ The `SpriteVertexShader` looks different from our pixel shaders in a few importa
 
 ### Input Semantics
 
-The inputs to the vertex shader mirror the information that the `SpriteBatch` class bundles up for each vertex. If you look at the [`SpriteBatchItem`](xref:Microsoft.Xna.Framework.Graphics.SpriteBatchItem), you will see that each sprite is made up of 4 `VertexPositionColorTexture` instances:
+The inputs to the vertex shader mirror the information that the []`SpriteBatch`](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) class bundles up for each vertex. If you look at the `SpriteBatchItem`, you will see that each sprite is made up of 4 `VertexPositionColorTexture` instances:
 
 ```csharp
 public VertexPositionColorTexture vertexTL;
