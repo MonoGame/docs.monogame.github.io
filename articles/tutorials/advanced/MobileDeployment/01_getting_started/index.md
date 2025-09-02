@@ -21,11 +21,17 @@ By the end of this mobile tutorial series, you will have:
 
 ## Android Development
 
-**Platform Support:** Android development can be accomplished on either Windows PC or Mac. However, ARM64 variants of Windows do not run the Android simulator well.
+**Platform Support:** Android development can be accomplished on either Windows PC or Mac.
+
+> [!NOTE]
+> ARM64 variants of Windows do not run the Android simulator very well.
+>
 
 **Required Tools:**
 - **Android Device Manager** - Used to set up simulators (accessible through Visual Studio)
 - **Android SDK Manager** - Used to install the SDK platforms
+
+These tools are available by installing the Android Workload using the [Getting Started Instructions](../../../../getting_started/platforms.md).
 
 ## iOS Development
 
