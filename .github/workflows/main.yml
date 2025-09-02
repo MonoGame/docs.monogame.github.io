@@ -43,7 +43,7 @@ jobs:
         run: dotnet tool restore
 
       - name: Run Build
-        run: dotnet docfx docfx.json
+        run: dotnet docfx ci.docfx.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
