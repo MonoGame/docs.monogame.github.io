@@ -5,7 +5,7 @@ description: "Get started with MonoGame mobile development by setting up your de
 
 # Getting Started and Overview
 
-This tutorial extends the **MonoGame 2D Dungeon Slime tutorial** to mobile platforms. If you have not completed the desktop tutorial yet, we recommend finishing it first as we will be building directly on that foundation.
+This tutorial extends the [Dungeon Slime](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/learn-monogame-2d) tutorial to mobile platforms. If you have not completed the desktop tutorial yet, we recommend finishing it first as we will be building directly on that foundation.
 
 ## What You Will Learn
 
