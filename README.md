@@ -22,15 +22,51 @@ With your environment setup properly, the following explains how to build from s
     dotnet tool restore
     ```
 
-3. Optional Steps
+3. Build and serve the documentation
 
-   If you want to generate the API Reference documentation locally, you will need to ensure that the MonoGame submodule has been initialized by running
+   The easiest way to build and serve the documentation locally is using the provided scripts:
 
-   `git submodule update --init --recursive`
+   **On Windows (PowerShell):**
 
-4. Run a local build and serve it. The site is full DocFX now so a single build command will do:
+   ```powershell
+   .\serve.ps1
+   ```
 
-  `dotnet docfx docfx.json --serve`
+   **On macOS/Linux (Bash):**
+
+   ```bash
+   ./serve.sh
+   ```
+
+   These scripts will automatically:
+   - Initialize MonoGame submodules if needed
+   - Build required assemblies for API documentation
+   - Generate the complete documentation
+   - Start a local web server
+
+4. Alternative: Build-only (without serving)
+
+   If you only want to build the documentation without serving:
+
+   **On Windows (PowerShell):**
+
+   ```powershell
+   .\build.ps1
+   ```
+
+   **On macOS/Linux (Bash):**
+
+   ```bash
+   ./build.sh
+   ```
+
+   **Or manually using DocFX:**
+
+   ```sh
+   dotnet docfx docfx.json
+
+> [!NOTE]
+> The build scripts automatically handle submodule initialization and MonoGame assembly building. They only perform these steps when necessary, making subsequent builds faster.
 
 > [!NOTE]
 > Docfx hosting does not support hot reload, so to refresh the hosted site you will need to run `docfx docfx.json` in a separate terminal or stop and rerun the agent (ctrl-c)
