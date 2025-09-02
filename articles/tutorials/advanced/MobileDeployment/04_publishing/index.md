@@ -216,13 +216,19 @@ dotnet publish -c Release -f net8.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
 
 - Standalone upload tool from Apple
 
-![Transporter](images/ios/transporter.png)
+| ![Figure 4-1: Transporter](images/ios/transporter.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------------: |
+|                       **Figure 4-1: Transporter**                       |
 
 - Useful for automated workflows
 
-![Transporter Upload Step 1](images/ios/transporter-upload1.png)
+| ![Figure 4-2: Transporter Upload Step 1](images/ios/transporter-upload1.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------------: |
+|                       **Figure 4-2: Transporter Upload Step 1**                       |
 
-![Transporter Upload Step 2](images/ios/transporter-upload2.png)
+| ![Figure 4-3: Transporter Upload Step 2](images/ios/transporter-upload1.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------------: |
+|                       **Figure 4-3: Transporter Upload Step 2**                       |
 
 - Requires pre-signed IPA file
 
@@ -235,11 +241,17 @@ After upload:
 3. **Status Check:** Wait for "Ready to Submit" status
 4. **Build Selection:** Choose the build for your app version
 
-![Transporter](images/ios/testflight-build.png)
+| ![Figure 4-4: Transporter](images/ios/testflight-build.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------------: |
+|                       **Figure 4-4: Transporter**                       |
 
-![Transporter](images/ios/testflight-build-encryption.png)
+| ![Figure 4-5: Transporter](images/ios/testflight-build-encryption.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------------: |
+|                       **Figure 4-5 Transporter**    |
 
-![Transporter](images/ios/testflight-build-assign-testers.png)
+| ![Figure 4-6: Transporter](images/ios/testflight-build-assign-testers.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------------: |
+|                       **Figure 4-6: Transporter** |    
 
 ## App Review Submission
 
@@ -411,7 +423,9 @@ msbuild YourApp.Android.csproj /p:Configuration=Release /p:AndroidPackageFormat=
 dotnet publish -f net8.0-android -c Release /p:AndroidPackageFormat=apk
 ```
 
-![Visual Studio Archive](images/android/android_release.png)
+| ![Figure 4-7: Visual Studio Archive](images/android/android_release.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------------: |
+|                       **Figure 4-7: Visual Studio Archive** |  
 
 ### Verification Steps
 

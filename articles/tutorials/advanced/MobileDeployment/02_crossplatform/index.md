@@ -31,9 +31,11 @@ The key principle is **code sharing** of the game logic - we will extract the ga
 
 # Cross-Platform Project Structure
 
-When converted to support multiple platforms, your solution structure will look like this:
+When converted to support multiple platforms, your solution structure will look like this, as shown in the following figure.
 
-![Cross Platform Projects](images/crossplatform_projects.png)
+| ![Figure 2-1: Cross Platform Projects](images/crossplatform_projects.png) |
+| :----------------------------------------------------------------------------------------------------------------------------------------: |
+|                       **Figure 2-1: Cross Platform Projects**                       |
 
 This architecture separates concerns cleanly:
 - **Shared game logic** in a common library
