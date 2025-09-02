@@ -1,0 +1,95 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "external/MonoGame/MonoGame.Framework/MonoGame.Framework.DesktopGL.csproj",
+            "external/MonoGame/MonoGame.Framework.Content.Pipeline/MonoGame.Framework.Content.Pipeline.csproj"
+          ]
+        }
+      ],
+      "dest": "api",
+      "includePrivateMembers": false,
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false,
+      "noRestore": false,
+      "namespaceLayout": "flattened",
+      "memberLayout": "samePage",
+      "EnumSortOrder": "alphabetic"
+    }
+  ],
+  "rules": {
+    "InvalidFileLink": "error",
+    "InvalidBookmark": "error",
+    "UidNotFound": "error",
+    "ReferencedXrefPropertyNotString": "error"
+  },  
+  "build": {
+    "content": [
+      {
+        "files": [
+          "api/**/*.yml",
+          "api/**/*.md"
+        ]
+      },
+      {
+        "files": [
+          "articles/**/*.md",
+          "articles/**/*.yml",
+          "foundation/**/*.md",
+          "roadmap/**/*.md",
+          "roadmap/**/*.yml",
+          "errors/**/*.md",
+          "toc.yml",
+          "*.md"
+        ],
+        "exclude": [ "_site/**", "README.md" ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "**/images/**",
+          "**/videos/**",
+          "**/files/**",
+          "**/snippets/**",
+          "CNAME"
+        ]
+      }
+    ],
+    "output": "_site",
+    "globalMetadata": {
+      "_appLogoUrl": "https://monogame.net",
+      "_appFaviconPath": "/images/favicon.png",
+      "_disableBreadcrumb": "true",
+      "_appFooter": "Copyright © 2009-2025 MonoGame Foundation, Inc.",
+      "_hostname": "monogame.net",
+      "_openGraphImage": "images/social_embed_image.png",
+      "_description": "One framework for creating powerful cross-platform games.",
+      "_appTitle": "MonoGame",
+      "_enableSearch": true
+    },
+    "template": [
+      "default",
+      "modern",
+      "templates/monogame"
+    ],
+    "markdownEngineProperties": {
+      "markdigExtensions": [
+        "Abbreviations",
+        "Figures",
+        "CustomContainers",
+        "attributes"
+      ]
+    },
+    "postProcessors": [],
+    "keepFileLink": false,
+    "disableGitFeatures": false,
+    "sitemap": {
+      "baseUrl": "https://docs.monogame.net/",
+      "priority": 0.1,
+      "changefreq": "monthly"
+    }    
+  }
+}

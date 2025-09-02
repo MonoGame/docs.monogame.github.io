@@ -43,9 +43,7 @@ jobs:
         run: dotnet tool restore
 
       - name: Run Build
-        run: |
-          chmod +x ./build.sh
-          ./build.sh        
+        run: dotnet docfx ci.docfx.json
 
   complete:
     runs-on: ubuntu-latest
