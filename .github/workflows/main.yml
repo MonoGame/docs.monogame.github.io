@@ -43,7 +43,9 @@ jobs:
         run: dotnet tool restore
 
       - name: Run Build
-        run: dotnet docfx docfx.json
+        run: |
+          chmod +x ./build.sh
+          ./build.sh
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
