@@ -14,7 +14,7 @@ In this chapter you will:
 
 Before starting this chapter, ensure you have:
 
-- Read the [Building 2D Games](../building_2d_games) tutorial
+- Read the [Building 2D Games](../../../building_2d_games) tutorial
 
 - **For iOS Development:**
   - An App Store Developer Account
