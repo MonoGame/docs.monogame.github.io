@@ -4,8 +4,8 @@
       "src": [
         {
           "files": [
-            "external/MonoGame/MonoGame.Framework/MonoGame.Framework.DesktopGL.csproj",
-            "external/MonoGame/MonoGame.Framework.Content.Pipeline/MonoGame.Framework.Content.Pipeline.csproj"
+            "external/MonoGame/Artifacts/MonoGame.Framework/DesktopGL/Debug/MonoGame.Framework.dll",
+            "external/MonoGame/Artifacts/MonoGame.Framework.Content.Pipeline/Debug/MonoGame.Framework.Content.Pipeline.dll"
           ]
         }
       ],
@@ -50,6 +50,7 @@
     "resource": [
       {
         "files": [
+          "**/gifs/**",
           "**/images/**",
           "**/videos/**",
           "**/files/**",
