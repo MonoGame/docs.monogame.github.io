@@ -36,6 +36,7 @@ These tools are available by installing the Android Workload using the [MonoGame
 For more information visit about getting started with Android development:
 
 - [Getting Started with Android Development](https://learn.microsoft.com/en-us/dotnet/android/getting-started/installation/)
+- [Getting Started with Maui Development](https://learn.microsoft.com/en-us/dotnet/maui/get-started/installation)
 
 ## iOS Development
 
