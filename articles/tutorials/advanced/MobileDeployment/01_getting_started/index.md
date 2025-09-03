@@ -31,7 +31,11 @@ By the end of this mobile tutorial series, you will have:
 - **Android Device Manager** - Used to set up simulators (accessible through Visual Studio)
 - **Android SDK Manager** - Used to install the SDK platforms
 
-These tools are available by installing the Android Workload using the [Getting Started Instructions](../../../../getting_started/platforms.md).
+These tools are available by installing the Android Workload using the [MonoGame Getting Started Instructions](../../../../getting_started/platforms.md).
+
+For more information visit about getting started with Android development:
+
+- [Getting Started with Android Development](https://learn.microsoft.com/en-us/dotnet/android/getting-started/installation/)
 
 ## iOS Development
 
