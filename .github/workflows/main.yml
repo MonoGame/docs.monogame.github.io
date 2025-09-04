@@ -39,6 +39,19 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Setup Android Dependencies
+        uses: monogame/monogame-actions/install-android-dependencies@v1
+
+      - name: Setup DotNet on linux/Windows
+        if: runner.environment == 'github-hosted' && (runner.os == 'Linux' || runner.os == 'windows')
+        run: |
+          dotnet workload install android
+
+      - name: Setup DotNet on MacOS
+        if: runner.environment == 'github-hosted' && runner.os == 'macos'
+        run: |
+          dotnet workload install android macos ios
+
       - name: Add msbuild to PATH
         if: runner.os == 'Windows'
         uses: microsoft/setup-msbuild@v1.0.2
@@ -48,22 +61,33 @@ jobs:
         with:
           version: "5.0.0-beta2"
 
-      - name: Restore MonoGame dotnet tools
-        working-directory: external/MonoGame
-        run: dotnet tool restore
-
-      - name: Restore MonoGame Content
-        working-directory: external/MonoGame
-        run: dotnet restore MonoGame.Framework.Content.Pipeline/
-
-      - name: Build MonoGame
-        working-directory: external/MonoGame
-        run: ./build.sh
-
-      - name: Setup Premake5
-        uses: abel0b/setup-premake@v2.4
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
-          version: "5.0.0-beta2"          
+          distribution: 'microsoft'
+          java-version: '17'
+
+      - name: Install Vulkan SDK
+        uses: humbletim/setup-vulkan-sdk@523828e49cd4afabce369c39c7ee6543a2b7a735
+        with:
+          vulkan-query-version: 1.3.283.0
+          vulkan-use-cache: true
+
+      - name: Disable Annotations
+        run: echo "::remove-matcher owner=csc::"
+
+      - name: Setup Wine
+        uses: monogame/monogame-actions/install-wine@v1
+
+      - name: Install Fonts
+        uses: monogame/monogame-actions/install-fonts@v1
+
+      - name: Build
+        working-directory: external/MonoGame
+        run: |
+          dotnet run --project build/Build.csproj -- --target=Default
+        env:
+          DOTNET_SYSTEM_NET_SECURITY_NOREVOCATIONCHECKBYDEFAULT: 1 # android compilation is failing randomly due to downloads from microsofts website during it
 
       - name: Restore dotnet tools
         run: dotnet tool restore
