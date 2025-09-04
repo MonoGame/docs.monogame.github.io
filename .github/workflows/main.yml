@@ -31,6 +31,9 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Show submodule status
+        run: git submodule status
+
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
@@ -52,6 +55,10 @@ jobs:
       - name: Restore MonoGame Content
         working-directory: external/MonoGame
         run: dotnet restore MonoGame.Framework.Content.Pipeline/
+
+      - name: Build MonoGame
+        working-directory: external/MonoGame
+        run: ./build.sh
 
       - name: Setup Premake5
         uses: abel0b/setup-premake@v2.4
