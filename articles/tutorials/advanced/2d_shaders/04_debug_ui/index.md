@@ -15,7 +15,7 @@ A common approach to building debug UIs in games is to use an _Immediate Mode_ s
 
 To add `ImGUI.NET`, add the following Nuget package reference to the _MonoGameLibrary_ project:
 
-[!code-xml[](./snippets/snippet-4-01.xml)]
+[!code-xml[](./snippets/snippet-4-01.xml?highlight=5)]
 
 In order to render the `ImGui.NET` UI in MonoGame, we need a few supporting classes that convert the `ImGui.NET` data into MonoGame's graphical representation. There is a [sample project](https://github.com/ImGuiNET/ImGui.NET/tree/master/src/ImGui.NET.SampleProgram.XNA) on `ImGui.NET`'s public repository that we can copy for our use cases. 
 
@@ -25,7 +25,7 @@ Create a new folder in the _MonoGameLibrary_ project called _ImGui_ and copy and
 
 There is `unsafe` code in the `ImGui` code, like this snippet, so you will need to enable `unsafe` code in the `MonoGameLibrary.csproj` file. Add this property:
 
-[!code-xml[](./snippets/snippet-4-02.xml)]
+[!code-xml[](./snippets/snippet-4-02.xml?highlight=4)]
 
 > [!note]
 > Why `unsafe`?
@@ -39,15 +39,15 @@ In the `Core.cs` file, add the following property to the `Core` class:
 
 And then to initialize the instance, in the `Initialize()` method, add the following snippet:
 
-[!code-csharp[](./snippets/snippet-4-04.cs)]
+[!code-csharp[](./snippets/snippet-4-04.cs?highlight=8-9)]
 
 Similar to `SpriteBatch`'s `.Begin()` and `.End()` calls, the `ImGuiRenderer` has a start and end function call. In the `GameScene` class, add these lines to end of the `.Draw()` method:
 
-[!code-csharp[](./snippets/snippet-4-05.cs)]
+[!code-csharp[](./snippets/snippet-4-05.cs?highlight=6,8)]
 
 `ImGui` draws by adding draggable windows to the screen. To create a simple window that just prints out `"Hello World"`, use the following snippet:
 
-[!code-csharp[](./snippets/snippet-4-06.cs)]
+[!code-csharp[](./snippets/snippet-4-06.cs?highlight=8-10)]
 
 >[!tip]
 >do not forget to add a using statement at the top of the file for `using ImGuiNET;` 
@@ -78,11 +78,11 @@ First, add this new boolean to the `Material` class:
 
 Then, modify all of the `SetParameter()` methods to exit early when the `DebugOverride` variable is set to `true`:
 
-[!code-csharp[](./snippets/snippet-4-09.cs)]
+[!code-csharp[](./snippets/snippet-4-09.cs?highlight=3)]
 
 Then, in the `DebugDraw()` method, after the `LastUpdated` field gets drawn, add this following:
 
-[!code-csharp[](./snippets/snippet-4-10.cs)]
+[!code-csharp[](./snippets/snippet-4-10.cs?highlight=14-17)]
 
 Now, when you run the game, you can enable the `"Override Values"` checkbox to be able to set the `Saturation` value by hand. 
 
@@ -108,7 +108,7 @@ To finish off the edits to the `Material` class, add a method that actually rend
 
 Now in the `Core`'s `Draw` method, we just need to call the new method. We should also delete the old code in the `GameScene` to draw the `_grayscaleEffect`'s debugUI as a one-shot:
 
-[!code-csharp[](./snippets/snippet-4-14.cs)]
+[!code-csharp[](./snippets/snippet-4-14.cs?highlight=9)]
 
 Finally, in order to render the debug UI for the `_grayscaleEffect`, just enable the `IsDebugVisible` property to `true`:
 

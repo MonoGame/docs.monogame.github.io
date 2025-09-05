@@ -1,4 +1,4 @@
-<Project>
+<Project Sdk="Microsoft.NET.Sdk">
   <!-- ... -->
 
   <Target Name="BuildAndCopyContent" DependsOnTargets="IncludeContent">  
