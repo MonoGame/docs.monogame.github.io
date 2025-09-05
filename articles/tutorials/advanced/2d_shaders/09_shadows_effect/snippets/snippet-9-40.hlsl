@@ -1,0 +1,1 @@
+clip(input.Color.a);

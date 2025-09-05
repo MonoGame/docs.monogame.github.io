@@ -1,0 +1,2 @@
+float Progress;  
+float EdgeWidth;

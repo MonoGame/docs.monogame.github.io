@@ -24,53 +24,23 @@ Start by creating a new `Sprite Effect` in the _SharedContent_ MonoGame Content 
 In the `GameScene`, we need to do the following steps to start working with the new `colorSwapEffect.fx`, 
 1. Add a class variable for the new `Material` instance:
 
-```csharp
-// The color swap shader material.  
-private Material _colorSwapMaterial;
-```
+[!code-csharp[](./snippets/snippet-6-01.cs)]
 
 2. Load the shader in the `LoadContent()` method:
 
-```csharp
-// Load the colorSwap material  
-_colorSwapMaterial = Core.SharedContent.WatchMaterial("effects/colorSwapEffect");
-_colorSwapMaterial.IsDebugVisible = true;
-```
+[!code-csharp[](./snippets/snippet-6-02.cs)]
 
 3. Update the `Material` in the `Update()` method to enable hot-reload support:
 
-```csharp
-_colorSwapMaterial.Update();
-```
+[!code-csharp[](./snippets/snippet-6-03.cs)]
 
 4. And finally, _use_ the `colorSwapMaterial` when drawing the sprites for the `GameScene`. For now, as we explore the color swapping effect, we are going to disable the `grayscaleEffect` functionality. In the `Draw()` method, start the `SpriteBatch` like this:
 
-```csharp
-if (_state != GameState.Playing)  
-{  
-    // We are in a game over state, so apply the saturation parameter.  
-    _grayscaleEffect.SetParameter("Saturation", _saturation);  
-  
-    // And begin the sprite batch using the grayscale effect.  
-    Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _colorSwapMaterial.Effect);  
-}  
-else  
-{  
-    // Otherwise, just begin the sprite batch as normal.  
-    Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _colorSwapMaterial.Effect);  
-}
-```
+[!code-csharp[](./snippets/snippet-6-04.cs)]
 
 Now when you run the game, it will look the same, but the new shader is being used to draw all the sprites in the `GameScene`. To verify, you can try changing the shader function to force the red channel to be `1`, just to see some visually striking confirmation the new shader is being used:
 
-```hlsl
-float4 MainPS(VertexShaderOutput input) : COLOR  
-{  
-   float4 originalColor = tex2D(SpriteTextureSampler,input.TextureCoordinates) * input.Color;  
-   originalColor.r = 1; // force the red-channel  
-   return originalColor;  
-}
-```
+[!code-hlsl[](./snippets/snippet-6-05.hlsl)]
 
 | ![Figure 6-1: Confirm the shader is being used](./images/test.png) |
 | :----------------------------------------------------------------: |
@@ -85,21 +55,7 @@ For debugging purposes, we will disable the game's update logic so the player an
 
 The easiest way to disable all of the game logic is to `return` early from the `GameScene`'s `Update()` method, thus short circuiting all of the game logic:
 
-```csharp
-public override void Update(GameTime gameTime)  
-{  
-    // Ensure the UI is always updated  
-    _ui.Update(gameTime);  
-  
-    // Update the grayscale effect if it was changed  
-    _grayscaleEffect.Update();  
-    _colorSwapMaterial.Update();  
-
-    // Prevent the game from actually updating. TODO: remove this when we are done playing with shaders!
-    return;
-
-    // ...
-```
+[!code-csharp[](./snippets/snippet-6-06.cs)]
 
 
 ### Hard Coding Color Swaps
@@ -112,27 +68,7 @@ The goal is to be able to change the color of the sprites drawn with the `_color
 
 The shader code _could_ just do an `if` check for this color, and when any of the pixels are that color, return a hot-pink color instead:
 
-```hlsl
-float4 MainPS(VertexShaderOutput input) : COLOR
-{
-    float4 originalColor = tex2D(SpriteTextureSampler,input.TextureCoordinates) * input.Color;
-    
-    // the color values are stored between 0 and 1, 
-    //  this converts the 0 to 1 range to 0 to 255, and casts to an int.
-    int red = originalColor.r * 255;
-    int green = originalColor.g * 255;
-    int blue = originalColor.b * 255;
-
-    // check for the hard-coded blue color
-    if (red == 32 && green == 40 && blue == 78)
-    {
-        float4 hotPink = float4(.9, 0, .7, 1);
-        return hotPink;
-    }
-
-    return originalColor;
-}
-```
+[!code-hlsl[](./snippets/snippet-6-07.hlsl)]
 
 That would produce an image like this,
 
@@ -160,16 +96,7 @@ Our goal is to treat those colors as `keys` into a table that results in a final
 
 As a demonstration, if we were using C# to create a table, it might look like this:
 
-```csharp
-var map = new Dictionary<int, Color>  
-{  
-    // picked some random colors for the values
-    [32] = Color.MonoGameOrange,  
-    [115] = Color.CornflowerBlue,  
-    [255] = Color.Firebrick,  
-    [214] = Color.Salmon  
-};
-```
+[!code-csharp[](./snippets/snippet-6-08.cs)]
 
 Unfortunately, shaders do not support the `Dictionary<>` type, so we need to find another way to represent the table in a shader friendly format. Shaders are good at reading data from textures, so we will encode the table information inside a custom texture. Imagine a custom texture that was 256 pixels wide, but only 1 pixel _tall_. We could treat the `key` values from above (`32`, `115`, `255`, and `214`) as _locations_ along the x-axis of the image, and the color of each pixel as the `value`. 
 
@@ -195,33 +122,11 @@ Here is the actual texture with the swapped colors. Download [this image](./imag
 
 We need to load and pass the the texture to the `colorSwapEffect` shader.
 Add this code after loading the `_colorSwapMaterial` in the `LoadContent()` method
-```csharp
-var colorMap = Content.Load<Texture2D>("images/color-map-1");
-_colorSwapMaterial.SetParameter("ColorMap", colorMap);
-```
+[!code-csharp[](./snippets/snippet-6-09.cs)]
 
 And the `colorSwapEffect.fx` shader needs to be updated to accept the color map:
 
-```hlsl
-// the main Sprite texture passed to SpriteBatch.Draw()
-Texture2D SpriteTexture;
-sampler2D SpriteTextureSampler = sampler_state
-{
-    Texture = <SpriteTexture>;
-};
-
-// the custom color map passed to the Material.SetParameter()
-Texture2D ColorMap;
-sampler2D ColorMapSampler = sampler_state
-{
-    Texture = <ColorMap>;
-    MinFilter = Point;
-    MagFilter = Point;
-    MipFilter = Point;
-    AddressU = Clamp;
-    AddressV = Clamp;
-};
-```
+[!code-hlsl[](./snippets/snippet-6-10.hlsl)]
 
 The `Texture2D` and `sampler2D` declarations are required to read from textures in a MonoGame shader. A `Texture2D` represents the pixel data of the image. A `sampler2D` defines _how_ the shader is allowed to read data from the `Texture2D`. 
 
@@ -242,30 +147,11 @@ The shader function can now do 2 steps to perform the color swap,
 
 To help visualize the effect, it will be helpful to visualize the original color _and_ the swap color. Add a control parameter that can be used to select between the two colors:
 
-```hlsl
-// a control variable to lerp between original color and swapped color  
-float OriginalAmount;
-```
+[!code-hlsl[](./snippets/snippet-6-11.hlsl)]
 
 Change the shader function to the following:
 
-```hlsl
-float4 MainPS(VertexShaderOutput input) : COLOR
-{
-    // read the original color value
-    float4 originalColor = tex2D(SpriteTextureSampler,input.TextureCoordinates);
-    
-    // produce the key location
-    //  note the x-offset by half a texel solves rounding errors.
-    float2 keyUv = float2(originalColor.r;
-    
-    // read the swap color value
-    float4 swappedColor = tex2D(ColorMapSampler, keyUv) * originalColor.a;
-    
-    // return the result color
-    return lerp(swappedColor, originalColor, OriginalAmount);
-}
-```
+[!code-hlsl[](./snippets/snippet-6-12.hlsl)]
 
 Now in the game, we can visualize the color swap by adjusting the control parameter. Perhaps the colors we picked do not look very nice.
 
@@ -285,14 +171,7 @@ Now, anytime the swapped color value has an `alpha` value of zero, the implicati
 
 In the shader, before the final `return` line, add this snippet:
 
-```hlsl
-// ignore the swap if the map does not have a value  
-bool hasSwapColor = swappedColor.a > 0;  
-if (!hasSwapColor)  
-{  
-    return originalColor;  
-}
-```
+[!code-hlsl[](./snippets/snippet-6-13.hlsl)]
 
 | ![Figure 6-10: Colors that are not in the map do not change color](./gifs/color-swap-2.gif) |
 | :-----------------------------------------------------------------------------------------: |
@@ -331,68 +210,10 @@ To get started, we first need to devise a way to create a custom color map and p
 
 Create a new class under the _MonoGameLibrary/Graphics_ folder called `RedColorMap`:
 
-```csharp
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
-namespace MonoGameLibrary.Graphics;
-
-public class RedColorMap
-{
-    public Texture2D ColorMap { get; set; }
-
-    public RedColorMap()
-    {
-        ColorMap = new Texture2D(Core.GraphicsDevice, 256, 1, false, SurfaceFormat.Color);
-    }
-
-    /// <summary>
-    /// Given a dictionary of red-color values (0 to 255) to swapColors,
-    /// Set the values of the <see cref="ColorMap"/> so that it can be used
-    /// As the ColorMap parameter in the colorSwapEffect.
-    /// </summary>
-    public void SetColorsByRedValue(Dictionary<int, Color> map, bool overWrite = true)
-    {
-        var pixelData = new Color[ColorMap.Width];
-        ColorMap.GetData(pixelData);
-
-        for (var i = 0; i < pixelData.Length; i++)
-        {
-            // if the given color dictionary contains a color value for this red index, use it.
-            if (map.TryGetValue(i, out var swapColor))
-            {
-                pixelData[i] = swapColor;
-            }
-            else if (overWrite)
-            {
-                // otherwise, default the pixel to transparent
-                pixelData[i] = Color.Transparent;
-            }
-        }
-        
-        ColorMap.SetData(pixelData);
-    }
-}
-```
+[!code-csharp[](./snippets/snippet-6-14.cs)]
 
 And now to check if its working, create a temporary variable at the end of the `LoadContent()` in the `GameScene`
-```csharp
-_slimeColorMap = new RedColorMap();  
-_slimeColorMap.SetColorsByRedValue(new Dictionary<int, Color>  
-{  
-    // main color  
-    [32] = Color.Khaki,  
-    // wall color  
-    [115] = Color.Coral,  
-    // shadow color  
-    [214] = Color.MonoGameOrange,  
-    // floor  
-    [255] = Color.Tomato  
-});  
-  
-_colorSwapMaterial.SetParameter("ColorMap", temp.ColorMap);
-```
+[!code-csharp[](./snippets/snippet-6-15.cs)]
 
 | ![Figure 6-14: Changing the colors from runtime](./images/example-runtime.png) |
 | :----------------------------------------------------------------------------: |
@@ -404,31 +225,11 @@ The goal is to change the color of the slime independently from the rest of the 
 
 Change the `SpriteBatch.Begin()` call to look like this:
 
-```csharp
-Core.SpriteBatch.Begin(
-    samplerState: SamplerState.PointClamp,
-    sortMode: SpriteSortMode.Immediate,
-    effect: _colorSwapMaterial.Effect);
-```
+[!code-csharp[](./snippets/snippet-6-16.cs)]
 
 And then update the draw code itself to update the shader parameter between drawing the slime and the rest of the game:
 
-```csharp
-// Update the colorMap  
-_colorSwapMaterial.SetParameter("ColorMap", _colorMap);  
-  
-// Draw the tilemap  
-_tilemap.Draw(Core.SpriteBatch);  
-  
-// Draw the bat.  
-_bat.Draw();  
-  
-// Update the colorMap for the slime  
-_colorSwapMaterial.SetParameter("ColorMap", _slimeColorMap.ColorMap);  
-  
-// Draw the slime.  
-_slime.Draw();
-```
+[!code-csharp[](./snippets/snippet-6-17.cs)]
 
 Now the slime appears with one color swap configuration and the rest of the scene uses the color swap configured via the content.
 
@@ -438,47 +239,16 @@ Now the slime appears with one color swap configuration and the rest of the scen
 
 We want to swap the color of the slime between two color maps, so first, we need a way to clone an existing color map into the dynamic color table. Add this method to the `RedColorMap` class:
 
-```csharp
-public void SetColorsByExistingColorMap(Texture2D existingColorMap)
-{
-    var existingPixels = new Color[256];
-    existingColorMap.GetData(existingPixels);
-
-    var map = new Dictionary<int, Color>();
-    for (var i = 0; i < existingPixels.Length; i++)
-    {
-        map[i] = existingPixels[i];
-    }
-    
-    SetColorsByRedValue(map);
-}
-```
+[!code-csharp[](./snippets/snippet-6-18.cs)]
 
 Then modify the instance in the `GameScene` to start the color map based off whatever color map texture was loaded:
 
-```csharp
-_slimeColorMap = new RedColorMap();
-_slimeColorMap.SetColorsByExistingColorMap(_colorMap);
-_slimeColorMap.SetColorsByRedValue(new Dictionary<int, Color>
-{
-    // main color
-    [32] = Color.Yellow,
-}, false);
-```
+[!code-csharp[](./snippets/snippet-6-19.cs)]
 
 
 Now in the `Draw()` method, we can _optionally_ change the color map based on some condition. In this example, the color map only being set on every other second:
 
-```csharp
-// Update the colorMap for the slime
-if ((int)gameTime.TotalGameTime.TotalSeconds % 2 == 0)
-{
-    _colorSwapMaterial.SetParameter("ColorMap", _slimeColorMap.ColorMap);
-}
-
-// Draw the slime.
-_slime.Draw();
-```
+[!code-csharp[](./snippets/snippet-6-20.cs)]
 
 | ![Figure 6-16: The slime's color changes based on time](./gifs/color-swap-even-seconds.gif) |
 | :-----------------------------------------------------------------------------------------: |
@@ -486,64 +256,20 @@ _slime.Draw();
 
 Ultimately, it would be nice to control the color value _per_ slime segment, not the entire slime. When the player eats a bat, the slime segments should change color in an animated way so that it looks like the color is "moving" down the slime segments. To do this, modify the `Slime.Draw()` method to look like this:
 
-```csharp
-/// <summary>
-/// Draws the slime.
-/// </summary>
-public void Draw(Action<int> configureSpriteBatch)
-{
-    // Iterate through each segment and draw it
-    for (var i = 0 ; i < _segments.Count; i ++)
-    {
-        var segment = _segments[i];
-        // Calculate the visual position of the segment at the moment by
-        // lerping between its "at" and "to" position by the movement
-        // offset lerp amount
-        Vector2 pos = Vector2.Lerp(segment.At, segment.To, _movementProgress);
-
-        // Allow the sprite batch to be configured before each call.
-        configureSpriteBatch(i);
-
-        // Draw the slime sprite at the calculated visual position of this
-        // segment
-        _sprite.Draw(Core.SpriteBatch, pos);
-    }
-}
-```
+[!code-csharp[](./snippets/snippet-6-21.cs)]
 
 Then, in the `GameScene`'s logic, we need to add a local field to remember when the last time the slime's `Grow()` method was called. Add a class field:
 
-```csharp
-private TimeSpan _lastGrowTime;
-```
+[!code-csharp[](./snippets/snippet-6-22.cs)]
 
 
 In the `CollisionCheck()` method, add this line after the `Grow()` method is invoked:
 
-```csharp
-// Remember when the last time the slime grew  
-_lastGrowTime = gameTime.TotalGameTime;
-```
+[!code-csharp[](./snippets/snippet-6-23.cs)]
 
 Now, in the `Draw()` method, modify the _slime_'s draw invocation to use the new `configureSpriteBatch` callback:
 
-```csharp
-// Draw the slime.
-_slime.Draw(segmentIndex =>
-{
-    const int flashTimeMs = 125;
-    var map = _colorMap;
-    var elapsedMs = (gameTime.TotalGameTime.TotalMilliseconds - _lastGrowTime.TotalMilliseconds);
-    var intervalsAgo = (int)(elapsedMs / flashTimeMs);
-
-    if (intervalsAgo < _slime.Size && (intervalsAgo - segmentIndex) % _slime.Size == 0)
-    {
-        map = _slimeColorMap.ColorMap;
-    }
-    
-    _colorSwapMaterial.SetParameter("ColorMap", map);
-});
-```
+[!code-csharp[](./snippets/snippet-6-24.cs)]
 
 Play around with the colors until you find something you like.
 
@@ -557,68 +283,19 @@ The color swap shader is working well, but to experiment with it, we had previou
 
 Extract the logic of the grayscale effect into a separate function and copy it into the `colorSwapEffect.fx` file:
 
-```hlsl
-float4 Grayscale(float4 color)
-{
-    // Calculate the grayscale value based on human perception of colors
-    float grayscale = dot(color.rgb, float3(0.3, 0.59, 0.11));
-
-    // create a grayscale color vector (same value for R, G, and B)
-    float3 grayscaleColor = float3(grayscale, grayscale, grayscale);
-
-    // Linear interpolation between he grayscale color and the original color's
-    // rgb values based on the saturation parameter.
-    float3 finalColor = lerp(grayscale, color.rgb, Saturation);
-
-    // Return the final color with the original alpha value
-    return float4(finalColor, color.a);
-}
-```
+[!code-hlsl[](./snippets/snippet-6-25.hlsl)]
 
 In order for this to work, do not forget to add the `Saturation` shader parameter to the `colorSwapEffect.fx` file:
 
-```hlsl
-float Saturation;
-```
+[!code-hlsl[](./snippets/snippet-6-26.hlsl)]
 
 For readability, extract the logic of the color swap effect into a new function as well:
 
-```hlsl
-float4 SwapColors(float4 color)
-{
-    // produce the key location
-    //  note the x-offset by half a texel solves rounding errors.
-    float2 keyUv = float2(color.r , 0);
-    
-    // read the swap color value
-    float4 swappedColor = tex2D(ColorMapSampler, keyUv) * color.a;
-    
-    // ignore the swap if the map does not have a value
-    bool hasSwapColor = swappedColor.a > 0;
-    if (!hasSwapColor)
-    {
-        return color;
-    }
-    
-    // return the result color
-    return lerp(swappedColor, color, OriginalAmount);
-}
-```
+[!code-hlsl[](./snippets/snippet-6-27.hlsl)]
 
 And now the main shader function can chain these methods together:
 
-```hlsl
-float4 MainPS(VertexShaderOutput input) : COLOR
-{
-    // read the original color value
-    float4 originalColor = tex2D(SpriteTextureSampler,input.TextureCoordinates);
-
-    float4 swapped = SwapColors(originalColor);
-    float4 saturated = Grayscale(swapped);
-    
-    return saturated;
-}
-```
+[!code-hlsl[](./snippets/snippet-6-28.hlsl)]
 
 > [!warning] 
 > Function Order Matters!
@@ -634,34 +311,11 @@ Now you can control the saturation manually with the debug slider,
 The last thing to do is remove the old `grayscaleEffect` and re-write the game logic to set the `Saturation` parameter on the new effect. 
 In the `Draw()` method, instead of having an `if` case to start the `SpriteBatch` with different settings, it can always be configured to start with the `_colorSwapMaterial`:
 
-```csharp
-_colorSwapMaterial.SetParameter("Saturation", _saturation);
-Core.SpriteBatch.Begin(
-    samplerState: SamplerState.PointClamp,
-    sortMode: SpriteSortMode.Immediate,
-    effect: _colorSwapMaterial.Effect);
-```
+[!code-csharp[](./snippets/snippet-6-29.cs)]
 
 In the `Update()` method, we just need to set the `_saturation` back to `1` if the game is being played:
 
-```csharp
-if (_state != GameState.Playing)
-{
-    // The game is in either a paused or game over state, so
-    // gradually decrease the saturation to create the fading grayscale.
-    _saturation = Math.Max(0.0f, _saturation - FADE_SPEED);
-
-    // If its just a game over state, return back
-    if (_state == GameState.GameOver)
-    {
-        return;
-    }
-}
-else
-{
-    _saturation = 1;
-}
-```
+[!code-csharp[](./snippets/snippet-6-30.cs)]
 
 | ![Figure 6-19: The grayscale effect has been restored](./gifs/grayscale.gif) |
 | :--------------------------------------------------------------------------: |

@@ -1,0 +1,4 @@
+<Target Name="WatchContent">  
+  <Exec Command="dotnet watch build --property OnlyWatchContentFiles=true -- --target:BuildAndCopyContent"  
+        EnvironmentVariables="DOTNET_WATCH_SUPPRESS_EMOJIS=1"/>  
+</Target>

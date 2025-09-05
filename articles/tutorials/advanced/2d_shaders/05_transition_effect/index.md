@@ -20,48 +20,24 @@ Start by creating a new `Sprite Effect` from the MonoGame Content Builder Editor
 
 Add the following variable to the `Core` class:
 
-```csharp
-/// <summary>  
-/// The material that is used when changing scenes  
-/// </summary>  
-public static Material SceneTransitionMaterial { get; private set; }
-```
+[!code-csharp[](./snippets/snippet-5-01.cs)]
 
 
 Add an override for the `LoadContent` method, and load the `sceneTransitionEffect.fx` file into a `Material`:
 
-```csharp
-protected override void LoadContent()  
-{  
-    base.LoadContent();  
-    SceneTransitionMaterial = Content.WatchMaterial("effects/sceneTransitionEffect.fx");  
-}
-```
+[!code-csharp[](./snippets/snippet-5-02.cs)]
 
 Make sure to call the `Core`'s version of `LoadContent()` from the `Game1` class. In the previous tutorial, the method was left without calling the base method:
 
-```csharp
-protected override void LoadContent()  
-{  
-    // Allow the Core class to load any content.  
-    base.LoadContent();  
-    // Load the background theme music  
-    _themeSong = Content.Load<Song>("audio/theme");  
-}
-```
+[!code-csharp[](./snippets/snippet-5-03.cs)]
 
 To benefit from hot-reload, we need to update the effect in the `Core`'s `Update()` loop:
 
-```csharp
-// Check if the scene transition material needs to be reloaded.  
-SceneTransitionMaterial.Update();
-```
+[!code-csharp[](./snippets/snippet-5-04.cs)]
 
 And as we develop the effect, enable the debug UI:
 
-```csharp
-SceneTransitionMaterial.IsDebugVisible = true;
-```
+[!code-csharp[](./snippets/snippet-5-05.cs)]
 
 If you run the game now, you should have a blank debug UI.
 
@@ -73,31 +49,17 @@ If you run the game now, you should have a blank debug UI.
 
 Currently, the shader is compiling and loading into the game, but it isn't being _used_ yet. The scene transition needs to cover the whole screen, so we need to draw a sprite over the entire screen area with the new effect. To render a sprite over the entire screen area, we need a blank texture to use for the sprite. Add the following property to the `Core` class:
 
-```csharp
-/// <summary>  
-/// Gets a runtime generated 1x1 pixel texture.  
-/// </summary>  
-public static Texture2D Pixel { get; private set; }
-```
+[!code-csharp[](./snippets/snippet-5-06.cs)]
 
 And initialize it in the `Initialize()` method:
 
-```csharp
-// Create a 1x1 white pixel texture for drawing quads.  
-Pixel = new Texture2D(GraphicsDevice, 1, 1);  
-Pixel.SetData(new Color[]{ Color.White });
-```
+[!code-csharp[](./snippets/snippet-5-07.cs)]
 
 The `Pixel` property is a texture we can re-use for many effects, and it is helpful to have for debugging purposes. 
 
 In the `Core'`s `Draw()` method, use the `SpriteBatch` to draw a full screen sprite using the `Pixel` property. Make sure to put this code after the `s_activeScene` is drawn, because the scene transition effect should _cover_ whatever was rendered from the current scene:
 
-```csharp
-// Draw the scene transition quad  
-SpriteBatch.Begin(effect: SceneTransitionMaterial.Effect);  
-SpriteBatch.Draw(Pixel, GraphicsDevice.Viewport.Bounds, Color.White);  
-SpriteBatch.End();
-```
+[!code-csharp[](./snippets/snippet-5-08.cs)]
 
 If you run the game now, you will see a white background, because the `Pixel` sprite is rendering on top of the entire scene.
 
@@ -109,52 +71,11 @@ If you run the game now, you will see a white background, because the `Pixel` sp
 
 We need to be able to control the progress of the screen transition effect. Add the following parameter to the shader:
 
-```hlsl
-float Progress;
-```
+[!code-hlsl[](./snippets/snippet-5-09.hlsl)]
 
 And recall that unless the `Progress` parameter is actually _used_ somehow in the calculation of the output of the shader, it will be optimized out of the final compilation. So, for now, lets make the shader return the `Progress` value in the red value of the color:
 
-```hlsl
-#if OPENGL  
-    #define SV_POSITION POSITION  
-    #define VS_SHADERMODEL vs_3_0  
-    #define PS_SHADERMODEL ps_3_0  
-#else  
-    #define VS_SHADERMODEL vs_4_0_level_9_1  
-    #define PS_SHADERMODEL ps_4_0_level_9_1  
-#endif  
-  
-Texture2D SpriteTexture;  
-  
-float Progress;  
-  
-sampler2D SpriteTextureSampler = sampler_state  
-{  
-    Texture = <SpriteTexture>;  
-};  
-  
-struct VertexShaderOutput  
-{  
-    float4 Position : SV_POSITION;  
-    float4 Color : COLOR0;  
-    float2 TextureCoordinates : TEXCOORD0;  
-};  
-  
-float4 MainPS(VertexShaderOutput input) : COLOR  
-{  
-    return float4(Progress, 0, 0, 1);  
-}  
-  
-  
-technique SpriteDrawing  
-{  
-    pass P0  
-    {  
-        PixelShader = compile PS_SHADERMODEL MainPS();  
-    }  
-};
-```
+[!code-hlsl[](./snippets/snippet-5-10.hlsl)]
 
 Now you can use the slider in the debug UI to visualize the `Progress` parameter as the red channel. 
 
@@ -175,10 +96,7 @@ The shader actually provides the x-coordinate of each pixel in the `input.Textur
 
 The following shader helps visualize the x-coordinate of each pixel:
 
-```hlsl
-float2 uv = input.TextureCoordinates;  
-return float4(uv.x, 0, 0, 1);
-```
+[!code-hlsl[](./snippets/snippet-5-11.hlsl)]
 
 That results in this image, where the left edge has an x-coordinate of `0`, it has no red value, and where the right edge has an x-coordinate of `1`, the image is fully red. In the middle of the image, the red value interpolates between `0` and `1`. 
 
@@ -188,10 +106,7 @@ That results in this image, where the left edge has an x-coordinate of `0`, it h
 
 The same pattern holds true for the y-coordinate. Observe the following shader code putting the y-coordinate of each pixel in the green channel:
 
-```hlsl
-float2 uv = input.TextureCoordinates;  
-return float4(0, uv.y, 0, 1);
-```
+[!code-hlsl[](./snippets/snippet-5-12.hlsl)]
 
 As you can see, the top of the screen has a `0` value for the y-coordinate, and the bottom of the screen has a `1`. 
 
@@ -201,10 +116,7 @@ As you can see, the top of the screen has a `0` value for the y-coordinate, and 
 
 When these shaders are combined, the resulting image is the classic UV texture coordinate space:
 
-```hlsl
-float2 uv = input.TextureCoordinates;  
-return float4(uv.x, uv.y, 0, 1);
-```
+[!code-hlsl[](./snippets/snippet-5-13.hlsl)]
 
 >[!TIP] 
 > Remember that MonoGame uses the top of the image for y=0. 
@@ -221,11 +133,7 @@ Now that you have a visualization of the coordinate space, we can build some int
 
 In the following shader code, the blue channel of the final image represents in that coordinate should be in the transitioned state:
 
-```hlsl
-float2 uv = input.TextureCoordinates;  
-float transitioned = Progress > uv.x;  
-return float4(0, 0, transitioned, 1);
-```
+[!code-hlsl[](./snippets/snippet-5-14.hlsl)]
 
 Use the slider to control the `Progress` parameter to see how the image changes. 
 
@@ -235,11 +143,7 @@ Use the slider to control the `Progress` parameter to see how the image changes.
 
 That looks pretty close to a screen wipe,  already! Instead of using blue and black, the effect should be using black and a transparent color. The following snippet of shader code puts the `transitioned` value in the alpha channel of the final color. When the alpha value is zero, the pixel fragment is drawn as invisible:
 
-```hlsl
-float2 uv = input.TextureCoordinates;  
-float transitioned = Progress > uv.x;  
-return float4(0, 0, 0, transitioned);
-```
+[!code-hlsl[](./snippets/snippet-5-15.hlsl)]
 
 | ![Figure 5-8: A transparent screen wipe](./gifs/transparent-x.gif) |
 | :----------------------------------------------------------------: |
@@ -253,23 +157,15 @@ The function returns `0` when the given `x` parameter is at or below the `min` v
 
 This would be the most basic way to adjust the code to use `smoothstep`, but right away, the `.05` should jump out as alarming:
 
-```hlsl
-float transitioned = smoothstep(Progress, Progress + .05, uv.x);
-```
+[!code-hlsl[](./snippets/snippet-5-16.hlsl)]
 
 Using "magic numbers" in shader code is a dangerous pattern, because it is unclear if `.05` is there for a mathematical reason, or just an aesthetic choice. At minimum, we should extract the value into a named variable, so that the reader of the code can attribute _some_ sort of meaning to `.05`:
 
-```hlsl
-float EdgeWidth
-float transitioned = smoothstep(Progress, Progress + EdgeWidth, uv.x);
-```
+[!code-hlsl[](./snippets/snippet-5-17.hlsl)]
 
 However, at this point, it would be nice to extract the `edgeWidth` as a second shader parameter next to `Progress`:
 
-```hlsl
-float Progress;  
-float EdgeWidth;
-```
+[!code-hlsl[](./snippets/snippet-5-18.hlsl)]
 
 Now you can control the edge width slider to see the smooth edge between transitioned and not. 
 
@@ -279,9 +175,7 @@ Now you can control the edge width slider to see the smooth edge between transit
 
 After we find an `EdgeWidth` value that looks good, we can set it in C# after the `SceneTransitionMaterial` is loaded:
 
-```csharp
-SceneTransitionMaterial.SetParameter("EdgeWidth", .05f);
-```
+[!code-csharp[](./snippets/snippet-5-19.cs)]
 
 >[!warning] 
 > Shader parameters do not use initializer expressions.
@@ -292,9 +186,7 @@ SceneTransitionMaterial.SetParameter("EdgeWidth", .05f);
 
 So far the shader has been using `uv.x` to create a horizontal screen wipe. It would be easy to use `uv.y` to create a vertical screen wipe:
 
-```hlsl
-float transitioned = smoothstep(Progress, Progress + EdgeWidth, uv.y);
-```
+[!code-hlsl[](./snippets/snippet-5-20.hlsl)]
 
 | ![Figure 5-10: A vertical screen wipe](./gifs/vertical.gif) |
 | :---------------------------------------------------------: |
@@ -305,10 +197,7 @@ But what if we wanted to create more complicated wipes that didn't simply go in 
 Pull out the expression into a separate variable, `value`, and experiment with some different mathematical functions. 
 For example, here is a wipe that comes in from the left and right towards the center:
 
-```hlsl
-float value = 1 - abs(.5 - uv.x) * 2;  
-float transitioned = smoothstep(Progress, Progress + EdgeWidth, value);
-```
+[!code-hlsl[](./snippets/snippet-5-21.hlsl)]
 
 | ![Figure 5-11: A more interesting wipe](./gifs/center-wipe.gif) |
 | :-------------------------------------------------------------: |
@@ -318,10 +207,7 @@ That is cool, but if we wanted an even more interesting wipe, the math would sta
 
 To build intuition, we can visualize _just_ the `value` that is compared against the `Progress` parameter:
 
-```hlsl
-float value = 1 - abs(.5 - uv.x) * 2;  
-return float4(value, value, value, 1);
-```
+[!code-hlsl[](./snippets/snippet-5-22.hlsl)]
 
 | ![Figure 5-12: Just the value for the center wipe](./images/center-wipe-value.png) |
 | :--------------------------------------------------------------------------------: |
@@ -353,36 +239,19 @@ Download those files and add them to your MonoGame content.
 
 We will store these texture references in the `Core` class as a `static` property, similar to how the `SceneTransitionMaterial` is already being kept:
 
-```csharp
-/// <summary>  
-/// A set of grayscale gradient textures to use as transition guides  
-/// </summary>  
-public static List<Texture2D> SceneTransitionTextures { get; private set; }
-```
+[!code-csharp[](./snippets/snippet-5-23.cs)]
 
 And in the `Core`'s `LoadContent()` method, load the new images:
 
-```csharp
-SceneTransitionTextures = new List<Texture2D>();  
-SceneTransitionTextures.Add(Content.Load<Texture2D>("images/angled"));  
-SceneTransitionTextures.Add(Content.Load<Texture2D>("images/concave"));  
-SceneTransitionTextures.Add(Content.Load<Texture2D>("images/radial"));  
-SceneTransitionTextures.Add(Content.Load<Texture2D>("images/ripple"));
-```
+[!code-csharp[](./snippets/snippet-5-24.cs)]
 
 Instead of using the `Pixel` debug image to draw the `SceneTransitionMaterial`, use one of these new textures:
 
-```csharp
-SpriteBatch.Draw(SceneTransitionTextures[1], GraphicsDevice.Viewport.Bounds, Color.White);
-```
+[!code-csharp[](./snippets/snippet-5-25.cs)]
 
 In the shader, you can read the texture data at the given `uv` coordinate by using the `tex2D` function. Modify the shader so that the `value` is just the red-channel of the given texture:
 
-```hlsl
-float2 uv = input.TextureCoordinates;  
-float value = tex2D(SpriteTextureSampler, uv).r;  
-return float4(value, value, value, 1);
-```
+[!code-hlsl[](./snippets/snippet-5-26.hlsl)]
 
 Since the code above is referencing the `concave` image, the result looks like this,
 
@@ -392,12 +261,7 @@ Since the code above is referencing the `concave` image, the result looks like t
 
 And now, modify the shader to use the `Progress` parameter instead of just returning the `value`:
 
-```hlsl
-float2 uv = input.TextureCoordinates;  
-float value = tex2D(SpriteTextureSampler, uv).r;  
-float transitioned = smoothstep(Progress, Progress + EdgeWidth, value);  
-return float4(0, 0, 0, transitioned);
-```
+[!code-hlsl[](./snippets/snippet-5-27.hlsl)]
 
 As you play with the `Progress` parameter slide, you can see the more interesting wipe pattern. 
 
@@ -414,118 +278,32 @@ So far we have a transition effect that wipes a black-out across the screen, but
 
 We will create a new class called `SceneTransition` that holds all the data for an active scene transition. Add this class to your `MonoGameLibrary/Scenes` folder:
 
-```csharp
-using System;
-using Microsoft.Xna.Framework;
-
-namespace MonoGameLibrary.Scenes;
-
-public class SceneTransition
-{
-    public DateTimeOffset StartTime;
-    public TimeSpan Duration;
-    
-    /// <summary>
-    /// true when the transition is progressing from 0 to 1.
-    /// false when the transition is progressing from 1 to 0.
-    /// </summary>
-    public bool IsForwards;
-    
-    /// <summary>
-    /// The index into the <see cref="Core.SceneTransitionTextures"/>
-    /// </summary>
-    public int TextureIndex;
-    
-    /// <summary>
-    /// The 0 to 1 value representing the progress of the transition. 
-    /// </summary>
-    public float ProgressRatio => MathHelper.Clamp((float)(EndTime - DateTimeOffset.Now).TotalMilliseconds / (float)Duration.TotalMilliseconds, 0, 1);
-    
-    public float DirectionalRatio => IsForwards ? 1 - ProgressRatio : ProgressRatio;
-    
-    public DateTimeOffset EndTime => StartTime + Duration;
-    public bool IsComplete => DateTimeOffset.Now >= EndTime;
-}
-```
+[!code-csharp[](./snippets/snippet-5-28.cs)]
 
 Add the following `static` methods to the new `SceneTransition` class:
 
-```csharp
-/// <summary>  
-/// Create a new transition  
-/// </summary>  
-/// <param name="durationMs">  
-///     how long will the transition last in milliseconds?  
-/// </param>  
-/// <param name="isForwards">  
-///     should the transition be animating the Progress parameter from 0 to 1, or 1 to 0?  
-/// </param>  
-/// <returns></returns>  
-public static SceneTransition Create(int durationMs, bool isForwards)  
-{  
-    return new SceneTransition  
-    {  
-        Duration = TimeSpan.FromMilliseconds(durationMs),  
-        StartTime = DateTimeOffset.Now,  
-        TextureIndex = Random.Shared.Next(),  
-        IsForwards = isForwards  
-    };
-}  
-  
-public static SceneTransition Open(int durationMs) => Create(durationMs, true);  
-public static SceneTransition Close(int durationMs) => Create(durationMs, false);
-```
+[!code-csharp[](./snippets/snippet-5-29.cs)]
 
 
 Then, add a `static` property to the `Core` class:
 
-```csharp
-/// <summary>  
-/// The current transition between scenes  
-/// </summary>  
-public static SceneTransition SceneTransition { get; protected set; } = SceneTransition.Open(1000);
-```
+[!code-csharp[](./snippets/snippet-5-30.cs)]
 
 Anytime the `Core` class changes scene, it should create a new _closing_ transition:
 
-```csharp
-    public static void ChangeScene(Scene next)
-    {
-        // Only set the next scene value if it is not the same
-        // instance as the currently active scene.
-        if (s_activeScene != next)
-        {
-            s_nextScene = next;
-            SceneTransition = SceneTransition.Close(250);
-        }
-    }
-```
+[!code-csharp[](./snippets/snippet-5-31.cs)]
 
 At the start of the `TransitionScene()` method, create an _open_ transition:
 
-```csharp
-private static void TransitionScene()  
-{  
-    SceneTransition = SceneTransition.Open(500);
-    // ...
-```
+[!code-csharp[](./snippets/snippet-5-32.cs)]
 
 Now we need to actually _set_ the `Progress` shader parameter given the current scene transition value. In the `Update()` method:
 
-```csharp
-// Check if the scene transition material needs to be reloaded.  
-SceneTransitionMaterial.SetParameter("Progress", SceneTransition.DirectionalRatio);  
-SceneTransitionMaterial.Update();
-```
+[!code-csharp[](./snippets/snippet-5-33.cs)]
 
 And finally, the scene material needs to be drawn with the right texture:
 
-```csharp
-// Draw the scene transition quad  
-SpriteBatch.Begin(effect: SceneTransitionMaterial.Effect);  
-SpriteBatch.Draw(SceneTransitionTextures[SceneTransition.TextureIndex % SceneTransitionTextures.Count], GraphicsDevice.Viewport.Bounds, Color.White);  
-SpriteBatch.End();
-```
+[!code-csharp[](./snippets/snippet-5-34.cs)]
 
 When you run the game and change between scenes, you'll see a random arrangement of screen wipes!
 
@@ -545,50 +323,23 @@ In order for the _DungeonSlime_ project to load the content, we need to make a f
 
 In the `DungeonSlime.csproj` file, add the following changes to include files from both projects:
 
-```xml
-<ItemGroup>  
-    <MonoGameContentReference Include="**/*.mgcb;../MonoGameLibrary/**/*.mgcb" />  
-</ItemGroup>
-```
+[!code-xml[](./snippets/snippet-5-35.xml)]
 
 Also, in order for the shader hot-reload to work with the shared content, modify the `Watch` element to look like this:
 
-```xml
-<Watch Include="../**/*.fx;"/>
-```
+[!code-xml[](./snippets/snippet-5-36.xml)]
 
 Next, the existing `ContentManager` instance in the `Core` class will only load content from the _/Content_ folder, which will not include the `sceneTransitionEffect.fx` file, because it is stored in the _/SharedContent_ folder. For this tutorial, we will create a second `ContentManager` in the `Core` class called `SharedContent` which will be configured to only load content from the _/SharedContent_ folder.  Add the following property next to the existing `Content` property in the `Core.cs` file:
 
-```csharp
-/// <summary>  
-/// Gets the content manager that can load global assets from the SharedContent folder.  
-/// </summary>  
-public static ContentManager SharedContent { get; private set; }
-```
+[!code-csharp[](./snippets/snippet-5-37.cs)]
 
 And then you will need to set the new `SharedContent` in the `Core` constructor, next to where the existing `Content` property is being set:
 
-```csharp
-// Set the core's shared content manager, pointing to the SharedContent folder.  
-SharedContent = new ContentManager(Services, "SharedContent");
-```
+[!code-csharp[](./snippets/snippet-5-38.cs)]
 
 Finally, use the `SharedContent` instead of `Content` load load all the content, from the `LoadContent()` method:
 
-```csharp
-protected override void LoadContent()
-{
-    base.LoadContent();
-    SceneTransitionMaterial = SharedContent.WatchMaterial("effects/sceneTransitionEffect");
-    SceneTransitionMaterial.SetParameter("EdgeWidth", .05f);
-
-    SceneTransitionTextures = new List<Texture2D>();
-    SceneTransitionTextures.Add(SharedContent.Load<Texture2D>("images/angled"));
-    SceneTransitionTextures.Add(SharedContent.Load<Texture2D>("images/concave"));
-    SceneTransitionTextures.Add(SharedContent.Load<Texture2D>("images/radial"));
-    SceneTransitionTextures.Add(SharedContent.Load<Texture2D>("images/ripple"));
-}
-```
+[!code-csharp[](./snippets/snippet-5-39.cs)]
 
 
 ## Conclusion

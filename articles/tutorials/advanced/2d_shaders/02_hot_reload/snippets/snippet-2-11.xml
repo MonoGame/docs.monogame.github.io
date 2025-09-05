@@ -1,0 +1,9 @@
+<Project>
+  <!-- ... -->
+
+  <Target Name="WatchContent">  
+    <Exec Command="dotnet watch build --property OnlyWatchContentFiles=true -- --target:BuildAndCopyContent"/>  
+  </Target>
+
+  <!-- ... -->
+</Project>

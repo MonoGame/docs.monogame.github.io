@@ -20,45 +20,11 @@ A material represents a compiled `Effect` _and_ the runtime configuration for th
 
 Start by creating a new file in the _MonoGameLibrary/Graphics_ folder called `Material.cs`:
 
-```csharp
-using Microsoft.Xna.Framework.Graphics;
-using MonoGameLibrary.Content;
-
-namespace MonoGameLibrary.Graphics;
-
-public class Material
-{
-    /// <summary>
-    /// The hot-reloadable asset that this material is using
-    /// </summary>
-    public WatchedAsset<Effect> Asset;
-    
-    /// <summary>
-    /// The currently loaded Effect that this material is using
-    /// </summary>
-    public Effect Effect => Asset.Asset;
-
-    public Material(WatchedAsset<Effect> asset)
-    {
-        Asset = asset;
-    }
-}
-```
+[!code-csharp[](./snippets/snippet-3-01.cs)]
 
 In order to create instances of the `Material`, go ahead and create an additional method in the `ContentManagerExtensions` file:
 
-```csharp
-/// <summary>  
-/// Load an Effect into the <see cref="Material"/> wrapper class  
-/// </summary>  
-/// <param name="manager"></param>  
-/// <param name="assetName"></param>  
-/// <returns></returns>  
-public static Material WatchMaterial(this ContentManager manager, string assetName)  
-{  
-    return new Material(manager.Watch<Effect>(assetName));  
-}
-```
+[!code-csharp[](./snippets/snippet-3-02.cs)]
 
 > [!note]
 > The `Material` has been built to be hot-reloadable. Later in this chapter, we will see how the performance cost for supporting hot-reload is negligible by using the `[Conditional("DEBUG")]` attribute. However, if you do not want the `Material` to be hot-reloadable, then change the `Material`'s `Asset` field to be an `Effect` rather than a `WatchedAsset<Effect>`. There will be some minor differences in the rest of the tutorial series, but the only major difference is that the `Material` will not be hot-reloadable during development.
@@ -66,45 +32,28 @@ public static Material WatchMaterial(this ContentManager manager, string assetNa
 
 And now, in the `GameScene`, adjust the `_grayscaleEffect` to use the new `Material` class:
 
-```csharp
-// The grayscale shader effect.  
-private Material _grayscaleEffect;
-```
+[!code-csharp[](./snippets/snippet-3-03.cs)]
 
 Changing the `_grayscaleEffect` from an `Effect` to `Material` is going to cause a few compilation errors. The fixes are listed below.
 
 1. When instantiating the `_grayscaleEffect`, use the new method:
 
-	```csharp
-	// Load the grayscale effect  
-	_grayscaleEffect = Content.WatchMaterial("effects/grayscaleEffect");
-	```
+	[!code-csharp[](./snippets/snippet-3-04.cs)]
 
 2. When checking if the asset needs to be reloaded for hot-reload, use the `.Asset` sub property:
 
-	```csharp
-	// Update the grayscale effect if it was changed  
-	_grayscaleEffect.Asset.TryRefresh(out _);
-	```
+	[!code-csharp[](./snippets/snippet-3-05.cs)]
 
 3. And in the `Draw()` method, use the `.Effect` shortcut property:
 
-	```csharp
-	// We are in a game over state, so apply the saturation parameter.  
-	_grayscaleEffect.Effect.Parameters["Saturation"].SetValue(_saturation);  
-	  
-	// And begin the sprite batch using the grayscale effect.  
-	Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _grayscaleEffect.Effect);
-	```
+	[!code-csharp[](./snippets/snippet-3-06.cs)]
 
 ### Setting Shader Parameters
 
 You already saw how to set a shader property by using the `Saturation` value in the `_grayscaleEffect` shader. However, as you develop shaders in MonoGame, you will eventually _accidentally_ try to set a shader property that does not exist in your shader. When this happens, the code will throw a `NullReferenceException` rather than fail silently. 
 For example, if you tried to add this line of the code to the `Update` loop:
 
-```csharp
-_grayscaleEffect.Effect.Parameters["DoesNotExist"].SetValue(0);
-```
+[!code-csharp[](./snippets/snippet-3-07.cs)]
 
 You will see this type of `NullReference` error:
 
@@ -118,13 +67,7 @@ System.NullReferenceException: Object reference not set to an instance of an obj
 On its own, this would not be too difficult to accept. However, MonoGame's shader compiler will aggressively remove properties that are not actually being _used_ in your shader code. Even if you wrote a shader that had a `DoesNotExist` property, if it was not being used to compute the return value of the shader, it will be removed. The compiler is good at optimizing away unused variables. 
 For example, in the `grayscaleEffect.fx` file, change the last few lines of the `MainPS` function to the following:
 
-```hlsl
-// overwrite all existing operations and set the final color to white  
-finalColor.rgb = 1;  
-  
-// Return the final color with the original alpha value  
-return float4(finalColor, color.a);
-```
+[!code-hlsl[](./snippets/snippet-3-08.hlsl)]
 
 If you run the game and enter the `GameScene`, you will see a `NullReferenceException` (and the game will hard-crash). The `Saturation` shader parameter no longer exists in the shader, so when the `Draw()` method tries to _set_ it, the game crashes. 
 
@@ -132,87 +75,33 @@ The aggressive optimization is good for your game's performance, but when combin
 
 To solve this problem, the `Material` class can encapsulate setting shader properties and handle the potential error scenario. The `Effect.Parameters` variable is an instance of the  [`EffectParameterCollection`](xref:Microsoft.Xna.Framework.Graphics.EffectParameterCollection) class. Here is the class signature and fields:
 
-```csharp
-public class EffectParameterCollection : IEnumerable<EffectParameter>, IEnumerable  
-{  
-  internal static readonly EffectParameterCollection Empty = new EffectParameterCollection(new EffectParameter[0]);  
-  private readonly EffectParameter[] _parameters;  
-  private readonly Dictionary<string, int> _indexLookup;
-  // the rest of the class has been omitted 
-```
+[!code-csharp[](./snippets/snippet-3-09.cs)]
 
 The `_indexLookup` is a `Dictionary<string, int>` containing a mapping of property _name_ to parameter. The `Dictionary` class has methods for checking if a given property name exists, but unfortunately we cannot access it due to the `private` access modifier. Luckily, the entire `EffectParameterCollection` inherits from `IEnumerable`, so we can use the existing dotnet utilities to convert the entire structure into a `Dictionary`. Once we have the parameters in a `Dictionary` structure, we will be able to check what parameters exist _before_ trying to access them, thus avoiding potential `NullReferenceExceptions`. 
 
 Add this new property to the `Material` class:
 
-```csharp
-/// <summary>  
-/// A cached version of the parameters available in the shader  
-/// </summary>  
-public Dictionary<string, EffectParameter> ParameterMap;
-```
+[!code-csharp[](./snippets/snippet-3-10.cs)]
 
 And now you can add the following method that will convert the `EffectParameterCollection` into the new `Dictionary` property:
 
-```csharp
-/// <summary>  
-/// Rebuild the <see cref="ParameterMap"/> based on the current parameters available in the effect instance  
-/// </summary>  
-public void UpdateParameterCache()  
-{  
-    ParameterMap = Effect.Parameters.ToDictionary(p => p.Name);  
-}
-```
+[!code-csharp[](./snippets/snippet-3-11.cs)]
 
 Do not forget to invoke this method during the constructor of the `Material`:
 
-```csharp
-public Material(WatchedAsset<Effect> asset)  
-{  
-    Asset = asset;  
-    UpdateParameterCache();  
-}
-```
+[!code-csharp[](./snippets/snippet-3-12.cs)]
 
 With the new `ParameterMap` property, create a helper function that checks if a given parameter exists in the shader:
 
-```csharp
-/// <summary>  
-/// Check if the given parameter name is available in the compiled shader code.  
-/// Remember that a parameter will be optimized out of a shader if it is not being used  
-/// in the shader's return value.  
-/// </summary>  
-/// <param name="name"></param>  
-/// <param name="parameter"></param>  
-/// <returns></returns>  
-public bool TryGetParameter(string name, out EffectParameter parameter)  
-{  
-    return ParameterMap.TryGetValue(name, out parameter);  
-}
-```
+[!code-csharp[](./snippets/snippet-3-13.cs)]
 
 Now you can create a helper method that sets a parameter value for the `Material`, but will not crash if the parameter does not actually exist:
 
-```csharp
-public void SetParameter(string name, float value)
-{
-    if (TryGetParameter(name, out var parameter))
-    {
-        parameter.SetValue(value);
-    }
-    else
-    {
-        Console.WriteLine($"Warning: cannot set parameter=[{name}] as it does not exist in the shader=[{Asset.AssetName}]");
-    }
-}
-```
+[!code-csharp[](./snippets/snippet-3-14.cs)]
 
 Instead of setting the `Saturation` for the `_grayscaleEffect` manually as before, change the `Draw()` code to use the new method:
 
-```csharp
-// We are in a game over state, so apply the saturation parameter.  
-_grayscaleEffect.SetParameter("Saturation", _saturation);
-```
+[!code-csharp[](./snippets/snippet-3-15.cs)]
 
 To verify it is working, re-run the game, and instead of seeing a crash, you should see the `GameScene`'s gameover menu show a completely _white_ background. This is because the shader is setting the `finalColor` to `1`. Delete the following line from the shader, wait for the hot-reload system to kick in, and the game should return to normal.
 
@@ -225,9 +114,7 @@ To verify it is working, re-run the game, and instead of seeing a crash, you sho
 
 When the hot-reload system loads a new compiled shader into the game's memory, the new shader does not have any of the existing shader parameter _values_ that the previous shader instance had. To demonstrate the problem, we will purposefully break the `_grayscaleEffect` a bit. For now, comment out the line the `GameScene`'s `Draw()` method:
 
-```csharp
-// _grayscaleEffect.SetParameter("Saturation", _saturation);
-```
+[!code-csharp[](./snippets/snippet-3-16.cs)]
 
 And instead, add the following line to the end of the `LoadContent()` method:
 
@@ -240,43 +127,11 @@ The net outcome is that the `_grayscaleEffect` will not actually work for its de
 To solve this problem, the `Material` class can encapsulate the handling of applying new hot-reload updates. Anytime a new shader is available to swap in, the `Material` class needs to handle re-applying the old shader parameters to the new instance. 
 Add the following method to the `Material` class:
 
-```csharp
-public void Update()
-{
-    if (Asset.TryRefresh(out var oldAsset))
-    {
-        UpdateParameterCache();
-        
-        foreach (var oldParam in oldAsset.Parameters)
-        {
-            if (!TryGetParameter(oldParam.Name, out var newParam))
-            {
-                continue;
-            }
-            
-            switch (oldParam.ParameterClass)
-            {
-                case EffectParameterClass.Scalar:
-                    newParam.SetValue(oldParam.GetValueSingle());
-                    break;
-                default:
-                    Console.WriteLine("Warning: shader reload system was not able to re-apply property. " +
-                                      $"shader=[{Effect.Name}] " +
-                                      $"property=[{oldParam.Name}] " +
-                                      $"class=[{oldParam.ParameterClass}]");
-                    break;
-            }
-        }
-    }
-}
-```
+[!code-csharp[](./snippets/snippet-3-17.cs)]
 
 And now instead of using the `TryRefresh()` method directly on the `_grayscaleEffect`, use the new method:
 
-```csharp
-// Update the grayscale effect if it was changed  
-_grayscaleEffect.Update();
-```
+[!code-csharp[](./snippets/snippet-3-18.cs)]
 
 If you repeat the same test as before, the game will not become grayscale after a new shader is loaded. Once you have validated this, make sure to undo the changes in the `LoadContent()` and `Draw()` method, so that the `_grayscaleEffect` is still setting the `Saturation` value in the `Draw()` method.
 
@@ -285,13 +140,7 @@ If you repeat the same test as before, the game will not become grayscale after 
 
 When the _DungeonSlime_ game is published, it would not make sense to run the new `Material.Update()` method, because no shaders would ever be hot-reloaded in a release build. We can strip the method from the game when it is being built for _Release_. Add the following attribute to the `Material.Update()` method:
 
-```csharp
-[Conditional("DEBUG")]  
-public void Update()
-{
- // implementation left out for brevity
-}
-```
+[!code-csharp[](./snippets/snippet-3-19.cs)]
 
 The built _DungeonSlime_ executable will no longer contain the compiled code for the `Material.Update()` method, or any place in the code that _invoked_ the method. This means that the hot-reload system will never attempt to read the file timestamps of your `.xnb` files. There is still a _tiny_ cost for keeping the extra fields on the `WatchedAsset` type, rather than using the `Effect` directly. However, given the huge wins for your shader development workflow, paying the memory cost for a few mostly unused fields is a worthwhile trade-off. 
 
@@ -307,69 +156,11 @@ In the previous sections, we have only dealt with the `grayscaleEffect.fx` shade
 
 Add the following methods to the `Material` class:
 
-```csharp
-public void SetParameter(string name, Matrix value)
-{
-    if (TryGetParameter(name, out var parameter))
-    {
-        parameter.SetValue(value);
-    }
-    else
-    {
-        Console.WriteLine($"Warning: cannot set shader parameter=[{name}] because it does not exist in the compiled shader=[{Asset.AssetName}]");
-    }
-}
-
-public void SetParameter(string name, Vector2 value)
-{
-    if (TryGetParameter(name, out var parameter))
-    {
-        parameter.SetValue(value);
-    }
-    else
-    {
-        Console.WriteLine($"Warning: cannot set shader parameter=[{name}] because it does not exist in the compiled shader=[{Asset.AssetName}]");
-    }
-}
-
-public void SetParameter(string name, Texture2D value)
-{
-    if (TryGetParameter(name, out var parameter))
-    {
-        parameter.SetValue(value);
-    }
-    else
-    {
-        Console.WriteLine($"Warning: cannot set shader parameter=[{name}] because it does not exist in the compiled shader=[{Asset.AssetName}]");
-    }
-}
-```
+[!code-csharp[](./snippets/snippet-3-20.cs)]
 
 And then in the `Material.Update()` method, change the `switch` statement to handle the following cases:
 
-```csharp
-switch (oldParam.ParameterClass)  
-{  
-    case EffectParameterClass.Scalar:  
-        newParam.SetValue(oldParam.GetValueSingle());  
-        break;  
-    case EffectParameterClass.Matrix:  
-        newParam.SetValue(oldParam.GetValueMatrix());  
-        break;  
-    case EffectParameterClass.Vector when oldParam.ColumnCount == 2: // float2  
-        newParam.SetValue(oldParam.GetValueVector2());  
-        break;  
-    case EffectParameterClass.Object:  
-        newParam.SetValue(oldParam.GetValueTexture2D());  
-        break;  
-    default:  
-        Console.WriteLine("Warning: shader reload system was not able to re-apply property. " +  
-                          $"shader=[{Effect.Name}] " +  
-                          $"property=[{oldParam.Name}] " +  
-                          $"class=[{oldParam.ParameterClass}]");  
-        break;  
-}
-```
+[!code-csharp[](./snippets/snippet-3-21.cs)]
 
 ## Conclusion
 

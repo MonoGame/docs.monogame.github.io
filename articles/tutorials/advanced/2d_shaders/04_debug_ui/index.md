@@ -15,9 +15,7 @@ A common approach to building debug UIs in games is to use an _Immediate Mode_ s
 
 To add `ImGUI.NET`, add the following Nuget package reference to the _MonoGameLibrary_ project:
 
-```xml
-<PackageReference Include="ImGui.NET" Version="1.91.6.1" />
-```
+[!code-xml[](./snippets/snippet-4-01.xml)]
 
 In order to render the `ImGui.NET` UI in MonoGame, we need a few supporting classes that convert the `ImGui.NET` data into MonoGame's graphical representation. There is a [sample project](https://github.com/ImGuiNET/ImGui.NET/tree/master/src/ImGui.NET.SampleProgram.XNA) on `ImGui.NET`'s public repository that we can copy for our use cases. 
 
@@ -27,9 +25,7 @@ Create a new folder in the _MonoGameLibrary_ project called _ImGui_ and copy and
 
 There is `unsafe` code in the `ImGui` code, like this snippet, so you will need to enable `unsafe` code in the `MonoGameLibrary.csproj` file. Add this property:
 
-```xml
-<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-```
+[!code-xml[](./snippets/snippet-4-02.xml)]
 
 > [!note]
 > Why `unsafe`?
@@ -39,40 +35,19 @@ In order to play around with the new UI tool, we will set up a simple _Hello Wor
 
 In the `Core.cs` file, add the following property to the `Core` class:
 
-```csharp
-/// <summary>  
-/// Gets the ImGui renderer used for debug UIs.  
-/// </summary>  
-public static ImGuiRenderer ImGuiRenderer { get; private set; }
-```
+[!code-csharp[](./snippets/snippet-4-03.cs)]
 
 And then to initialize the instance, in the `Initialize()` method, add the following snippet:
 
-```csharp
-// Create the ImGui renderer.  
-ImGuiRenderer = new ImGuiRenderer(this);  
-ImGuiRenderer.RebuildFontAtlas();
-```
+[!code-csharp[](./snippets/snippet-4-04.cs)]
 
 Similar to `SpriteBatch`'s `.Begin()` and `.End()` calls, the `ImGuiRenderer` has a start and end function call. In the `GameScene` class, add these lines to end of the `.Draw()` method:
 
-```csharp
-// Draw debug UI
-Core.ImGuiRenderer.BeforeLayout(gameTime);  
-// draw the debug UI here  
-Core.ImGuiRenderer.AfterLayout();
-```
+[!code-csharp[](./snippets/snippet-4-05.cs)]
 
 `ImGui` draws by adding draggable windows to the screen. To create a simple window that just prints out `"Hello World"`, use the following snippet:
 
-```csharp
-// Draw debug UI  
-Core.ImGuiRenderer.BeforeLayout(gameTime);  
-ImGui.Begin("Demo Window");  
-ImGui.Text("Hello world!");  
-ImGui.End();  
-Core.ImGuiRenderer.AfterLayout();
-```
+[!code-csharp[](./snippets/snippet-4-06.cs)]
 
 >[!tip]
 >do not forget to add a using statement at the top of the file for `using ImGuiNET;` 
@@ -87,100 +62,7 @@ Each instance of `Material` is going to draw a custom debug window. The window w
 
 Add the following function to the `Material` class:
 
-```csharp
-
-[Conditional("DEBUG")]
-public void DrawDebug()
-{
-	ImGui.Begin(Effect.Name);
-	
-	var currentSize = ImGui.GetWindowSize();
-	ImGui.SetWindowSize(Effect.Name, new System.Numerics.Vector2(MathHelper.Max(100, currentSize.X), MathHelper.Max(100, currentSize.Y)));
-	
-	ImGui.AlignTextToFramePadding();
-	ImGui.Text("Last Updated");
-	ImGui.SameLine();
-	ImGui.LabelText("##last-updated", Asset.UpdatedAt.ToString() + $" ({(DateTimeOffset.Now - Asset.UpdatedAt).ToString(@"h\:mm\:ss")} ago)");
-
-	ImGui.NewLine();
-
-
-	bool ScalarSlider(string key, ref float value)
-	{
-		float min = 0;
-		float max = 1;
-		
-		return ImGui.SliderFloat($"##_prop{key}", ref value, min, max);
-	}
-	
-	foreach (var prop in ParameterMap)
-	{
-		switch (prop.Value.ParameterType, prop.Value.ParameterClass)
-		{
-			case (EffectParameterType.Single, EffectParameterClass.Scalar):
-				ImGui.AlignTextToFramePadding();
-				ImGui.Text(prop.Key);
-				ImGui.SameLine();
-							
-				var value = prop.Value.GetValueSingle();
-				if (ScalarSlider(prop.Key, ref value))
-				{
-					prop.Value.SetValue(value);
-				}
-				break;
-			
-			case (EffectParameterType.Single, EffectParameterClass.Vector):
-				ImGui.AlignTextToFramePadding();
-				ImGui.Text(prop.Key);
-
-				var vec2Value = prop.Value.GetValueVector2();
-				ImGui.Indent();
-				
-				ImGui.Text("X");
-				ImGui.SameLine();
-				
-				if (ScalarSlider(prop.Key + ".x", ref vec2Value.X))
-				{
-					prop.Value.SetValue(vec2Value);
-				}
-				
-				ImGui.Text("Y");
-				ImGui.SameLine();
-				if (ScalarSlider(prop.Key + ".y", ref vec2Value.Y))
-				{
-					prop.Value.SetValue(vec2Value);
-				}
-				ImGui.Unindent();
-				break;
-			
-			case (EffectParameterType.Texture2D, EffectParameterClass.Object):
-				ImGui.AlignTextToFramePadding();
-				ImGui.Text(prop.Key);
-				ImGui.SameLine();
-
-				var texture = prop.Value.GetValueTexture2D();
-				if (texture != null)
-				{
-					var texturePtr = Core.ImGuiRenderer.BindTexture(texture);
-					ImGui.Image(texturePtr, new System.Numerics.Vector2(texture.Width, texture.Height));
-				}
-				else
-				{
-					ImGui.Text("(null)");
-				}
-				break;
-			
-			default:
-				ImGui.AlignTextToFramePadding();
-				ImGui.Text(prop.Key);
-				ImGui.SameLine();
-				ImGui.Text($"(unsupported {prop.Value.ParameterType}, {prop.Value.ParameterClass})");
-				break;
-		}
-	}
-	ImGui.End();
-}
-```
+[!code-csharp[](./snippets/snippet-4-07.cs)]
 
 Now, run the game observe that the `Saturation` parameter can be seen interpolating from `1` to `0` when the game over screen appears.
 
@@ -192,36 +74,15 @@ However, if you try to interact with the slider to manually set the `Saturation`
 
 First, add this new boolean to the `Material` class:
 
-```csharp
-public bool DebugOverride;
-```
+[!code-csharp[](./snippets/snippet-4-08.cs)]
 
 Then, modify all of the `SetParameter()` methods to exit early when the `DebugOverride` variable is set to `true`:
 
-```csharp
-public void SetParameter(string name, float value)
-{
-	if (DebugOverride) return;
-
-	if (TryGetParameter(name, out var parameter))
-	{
-		parameter.SetValue(value);
-	}
-	else
-	{
-		Console.WriteLine($"Warning: cannot set shader parameter=[{name}] because it does not exist in the compiled shader=[{Asset.AssetName}]");
-	}
-}
-```
+[!code-csharp[](./snippets/snippet-4-09.cs)]
 
 Then, in the `DebugDraw()` method, after the `LastUpdated` field gets drawn, add this following:
 
-```csharp
-ImGui.AlignTextToFramePadding();  
-ImGui.Text("Override Values");  
-ImGui.SameLine();  
-ImGui.Checkbox("##override-values", ref DebugOverride);
-```
+[!code-csharp[](./snippets/snippet-4-10.cs)]
 
 Now, when you run the game, you can enable the `"Override Values"` checkbox to be able to set the `Saturation` value by hand. 
 
@@ -235,91 +96,23 @@ As the number of shaders and `Material` instances grows throughout the rest of t
 
 We will keep track of all the `Material` instances to draw as a `static` variable inside the `Material` class itself:
 
-```csharp
-// materials that will be drawn during the standard debug UI pass.  
-private static HashSet<Material> s_debugMaterials = new HashSet<Material>();
-```
+[!code-csharp[](./snippets/snippet-4-11.cs)]
 
 Now we can add a `boolean` property to the `Material` class that adds or removes the given instance to the `static` set:
 
-```csharp
-/// <summary>
-/// Enable this variable to visualize the debugUI for the material
-/// </summary>
-public bool IsDebugVisible
-{
-	get
-	{
-		return s_debugMaterials.Contains(this);
-	}
-	set
-	{
-		if (IsDebugVisible)
-		{
-			s_debugMaterials.Remove(this);
-		}
-		else
-		{
-			s_debugMaterials.Add(this);
-		}
-	}
-}
-```
+[!code-csharp[](./snippets/snippet-4-12.cs)]
 
 To finish off the edits to the `Material` class, add a method that actually renders all of the `Material` instances in the `static` set:
 
-```csharp
-[Conditional("DEBUG")]
-public static void DrawVisibleDebugUi(GameTime gameTime)
-{
-	// first, cull any materials that are not visible, or disposed. 
-	var toRemove = new List<Material>();
-	foreach (var material in s_debugMaterials)
-	{
-		if (material.Effect.IsDisposed)
-		{
-			toRemove.Add(material);
-		}
-	}
-
-	foreach (var material in toRemove)
-	{
-		s_debugMaterials.Remove(material);
-	}
-	
-	Core.ImGuiRenderer.BeforeLayout(gameTime);
-	foreach (var material in s_debugMaterials)
-	{
-		material.DrawDebug();
-	}
-	Core.ImGuiRenderer.AfterLayout();
-}
-```
+[!code-csharp[](./snippets/snippet-4-13.cs)]
 
 Now in the `Core`'s `Draw` method, we just need to call the new method. We should also delete the old code in the `GameScene` to draw the `_grayscaleEffect`'s debugUI as a one-shot:
 
-```csharp
-protected override void Draw(GameTime gameTime)
-{
-	// If there is an active scene, draw it.
-	if (s_activeScene != null)
-	{
-		s_activeScene.Draw(gameTime);
-	}
-
-	Material.DrawVisibleDebugUi(gameTime);
-	
-	base.Draw(gameTime);
-}
-```
+[!code-csharp[](./snippets/snippet-4-14.cs)]
 
 Finally, in order to render the debug UI for the `_grayscaleEffect`, just enable the `IsDebugVisible` property to `true`:
 
-```csharp
-// Load the grayscale effect
-_grayscaleEffect = Content.WatchMaterial("effects/grayscaleEffect");
-_grayscaleEffect.IsDebugVisible = true;
-```
+[!code-csharp[](./snippets/snippet-4-15.cs)]
 
 >[!tip]
 >If you do not want to see the debug UI for the `grayscaleEffect` anymore, just delete the line of code that sets `IsDebugVisible` to `true`. 
@@ -334,21 +127,15 @@ The debug UI in the game is helpful, but sometimes you may need to take a closer
 To switch _DungeonSlime_ to target WindowsDX, you need to modify the `.csproj` file, and make some changes to the `.mgcb` content file. 
 First, in the `.csproj` file, remove the reference to MonoGame's openGL backend:
 
-```xml
-<PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.*" />
-```
+[!code-xml[](./snippets/snippet-4-16.xml)]
 
 And replace it with this line:
 
-```xml
-<PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.*" />
-```
+[!code-xml[](./snippets/snippet-4-17.xml)]
 
 The [`MonoGame.Framework.WindowsDX`](https://www.nuget.org/packages/MonoGame.Framework.WindowsDX) Nuget package is not available for the `net8.0` framework. Instead, it is only available specifically on the Windows variant, called `net8.0-windows7.0`. Change the `<TargetFramework>` in your `.csproj` to the new framework:
 
-```xml
-<TargetFramework>net8.0-windows7.0</TargetFramework>
-```
+[!code-xml[](./snippets/snippet-4-18.xml)]
 
 Next, the `Content.mgcb` file, update the target platfrom from `DesktopGL` to `Windows`, 
 ```
@@ -362,26 +149,18 @@ And finally, RenderDoc only works when MonoGame is targeting the `HiDef` graphic
 
 Then, in the `Core` constructor, set the graphics profile immediately after constructing the `Graphics` instance:
 
-```csharp
-// Create a new graphics device manager.
-Graphics = new GraphicsDeviceManager(this);
-Graphics.GraphicsProfile = GraphicsProfile.HiDef;
-```
+[!code-csharp[](./snippets/snippet-4-19.cs)]
 
 ### Using RenderDoc
 
 Make sure you have built _DungeonSlime_. You can build it manually by running the following command from the _DungeonSlime_ directory:
 
-```sh
-dotnet build
-```
+[!code-sh[](./snippets/snippet-4-20.sh)]
 
 Once you have downloaded [RenderDoc](https://renderdoc.org/), open it. Go to the _Launch Application_ tab, and select your built executable for the _Executable Path_. 
 For example, the path may look similar to the following:
 
-```sh
-C:\proj\MonoGame.Samples\Tutorials\2dShaders\src\04-Debug-UI\DungeonSlime\bin\Debug\net8.0-windows7.0\DungeonSlime.exe
-```
+[!code-sh[](./snippets/snippet-4-21.sh)]
 
 | ![Figure 4-4: The setup for RenderDoc](./images/renderdoc_setup.png) |
 | :------------------------------------------------------------------: |

@@ -1,0 +1,14 @@
+<Project>
+  <!-- ... -->
+
+  <Target Name="BuildAndCopyContent" DependsOnTargets="IncludeContent">  
+    <Message Text="Rebuilding Content..." Importance="High"/>  
+    <Copy
+        SourceFiles="%(ExtraContent.Identity)"  
+        DestinationFiles="$(OutDir)%(ExtraContent.ContentDir)%(ExtraContent.RecursiveDir)%(ExtraContent.Filename)%(ExtraContent.Extension)"
+        SkipUnchangedFiles="true"  
+    />  
+  </Target>
+
+  <!-- ... -->
+</Project>

@@ -1,0 +1,1 @@
+DeferredCompositeMaterial.Update();
