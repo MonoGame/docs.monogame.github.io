@@ -15,6 +15,9 @@ When you get all the way to step 4, and realize that you accidentally compiled t
 
 A hot-reload system allows you to get to step 4, fix whatever bug appeared, and validate the fix without needing to manually compile a shader, re-run the game, or navigate back to the relevant part of the game. This is a huge time-saver that will let us iterate and experiment with our visual effects much more quickly. 
 
+> [!note]
+> The hot-reload feature will be enabled during the _development_ of your game, but this system will not allow shaders to be dynamically reloaded in the final built game.
+
 Time to get started!
 
 If you are following along with code, here is the code from the end of the previous tutorial series, [Starting Code](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/learn-monogame-2d/src/24-Shaders/) 

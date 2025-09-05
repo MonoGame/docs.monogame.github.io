@@ -157,28 +157,28 @@ items:
           - name: "27: Conclusion and Next Steps"
             href: tutorials/building_2d_games/27_conclusion/index.md
       - name: 2D Shaders
-        href: tutorials/advanced/2d_shaders/
+        href: tutorials/advanced/2d_shaders/index.md
         items:
           - name: "01: Introduction"
-            href: tutorials/advanced/2d_shaders/01_introduction/
+            href: tutorials/advanced/2d_shaders/01_introduction/index.md
           - name: "02: Hot Reload"
-            href: tutorials/advanced/2d_shaders/02_hot_reload/
+            href: tutorials/advanced/2d_shaders/02_hot_reload/index.md
           - name: "03: The Material Class"
-            href: tutorials/advanced/2d_shaders/03_the_material_class/
+            href: tutorials/advanced/2d_shaders/03_the_material_class/index.md
           - name: "04: Debug UI"
-            href: tutorials/advanced/2d_shaders/04_debug_ui/
+            href: tutorials/advanced/2d_shaders/04_debug_ui/index.md
           - name: "05: Transition Effect"
-            href: tutorials/advanced/2d_shaders/05_transition_effect/
+            href: tutorials/advanced/2d_shaders/05_transition_effect/index.md
           - name: "06: Color Swap Effect"
-            href: tutorials/advanced/2d_shaders/06_color_swap_effect/
+            href: tutorials/advanced/2d_shaders/06_color_swap_effect/index.md
           - name: "07: Sprite Vertex Effect"
-            href: tutorials/advanced/2d_shaders/07_sprite_vertex_effect/
+            href: tutorials/advanced/2d_shaders/07_sprite_vertex_effect/index.md
           - name: "08: Light Effect"
-            href: tutorials/advanced/2d_shaders/08_light_effect/
+            href: tutorials/advanced/2d_shaders/08_light_effect/index.md
           - name: "09: Shadow Effect"
-            href: tutorials/advanced/2d_shaders/09_shadows_effect/
+            href: tutorials/advanced/2d_shaders/09_shadows_effect/index.md
           - name: "10: Next Steps"
-            href: tutorials/advanced/2d_shaders/10_next_steps/                              
+            href: tutorials/advanced/2d_shaders/10_next_steps/index.md                       
   - name: Console Access
     href: console_access.md
   - name: Help and Support
