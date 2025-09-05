@@ -77,7 +77,9 @@ Core.ImGuiRenderer.AfterLayout();
 >[!tip]
 >do not forget to add a using statement at the top of the file for `using ImGuiNET;` 
 
-![Figure 4.1: a simple ImGui window](./gifs/imgui-hello-world.gif)
+| ![Figure 4-1: a simple ImGui window](./gifs/imgui-hello-world.gif) |
+| :----------------------------------------------------------------: |
+|               **Figure 4-1: a simple ImGui window**                |
 
 ## Building a Material Debug UI
 
@@ -182,7 +184,9 @@ public void DrawDebug()
 
 Now, run the game observe that the `Saturation` parameter can be seen interpolating from `1` to `0` when the game over screen appears.
 
-![Figure 4.2: Shader parameters can be read](./videos/debug-shader-ui.mp4)
+| ![Figure 4-2: Shader parameters can be read](./videos/debug-shader-ui.mp4) |
+| :------------------------------------------------------------------------: |
+|               **Figure 4-2: Shader parameters can be read**                |
 
 However, if you try to interact with the slider to manually set the `Saturation`, your inputs will always be overridden, because the `GameScene` itself keeps setting the value. In order to solve this, we can introduce a custom property in the `Material` class that causes the debug UI to override the various `SetParameter()` methods. 
 
@@ -220,7 +224,10 @@ ImGui.Checkbox("##override-values", ref DebugOverride);
 ```
 
 Now, when you run the game, you can enable the `"Override Values"` checkbox to be able to set the `Saturation` value by hand. 
-![Figure 4.3: Shader parameters can be written](./videos/debug-shader-ui-2.mp4)
+
+| ![Figure 4-3: Shader parameters can be written](./videos/debug-shader-ui-2.mp4) |
+| :-----------------------------------------------------------------------------: |
+|                **Figure 4-3: Shader parameters can be written**                 |
 
 ### Turning it off
 
@@ -376,13 +383,17 @@ For example, the path may look similar to the following:
 C:\proj\MonoGame.Samples\Tutorials\2dShaders\src\04-Debug-UI\DungeonSlime\bin\Debug\net8.0-windows7.0\DungeonSlime.exe
 ```
 
-![Figure 4.4: The setup for RenderDoc](./images/renderdoc_setup.png)
+| ![Figure 4-4: The setup for RenderDoc](./images/renderdoc_setup.png) |
+| :------------------------------------------------------------------: |
+|               **Figure 4-4: The setup for RenderDoc**                |
 
 Then, click the _Launch_ button in the lower right. _DungeonSlime_ should launch with a small warning text in the upper left of the game window that states the graphics API is being captured by RenderDoc. 
 
 Press `F12` to capture a frame, and it will appear in RenderDoc. Double click the frame to open the captured frame, and go to the _Texture Viewer_ tab. The draw calls are split out one by one and you can view the intermediate buffers. 
 
-![Figure 4.5: RenderDoc shows the intermediate frame](gifs/renderdoc_tex.gif)
+| ![Figure 4-5: RenderDoc shows the intermediate frame](gifs/renderdoc_tex.gif) |
+| :---------------------------------------------------------------------------: |
+|            **Figure 4-5: RenderDoc shows the intermediate frame**             |
 
 RenderDoc is a powerful tool. To learn more about how to use the tool, please refer to the [RenderDoc Documentation](https://renderdoc.org/docs/index.html).
 

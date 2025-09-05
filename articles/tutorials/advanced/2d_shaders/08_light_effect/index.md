@@ -168,7 +168,10 @@ _deferredRenderer.DebugDraw();
 ```
 
 Now when you run the game, you should see the game appearing in the upper-left corner of the screen.
-![Figure 8.1: The color buffer debug view](./images/color-buffer.png)
+
+| ![Figure 8-1: The color buffer debug view](./images/color-buffer.png) |
+| :-------------------------------------------------------------------: |
+|              **Figure 8-1: The color buffer debug view**              |
 
 ### Setting up the Light Buffer
 
@@ -269,7 +272,10 @@ public void DebugDraw()
 ```
 
 Now when you run the game, you'll see a blank texture in the top-right. It is blank because there are no lights yet.
-![Figure 8.2: A blank light buffer](./images/light-buffer-1.png)
+
+| ![Figure 8-2: A blank light buffer](./images/light-buffer-1.png) |
+| :--------------------------------------------------------------: |
+|               **Figure 8-2: A blank light buffer**               |
 
 ### Point Light Shader
 
@@ -368,7 +374,9 @@ PointLight.Draw(Core.SpriteBatch, _lights);
 
 Now when you run the game, you will see a blank white square where the point light is located (at 300,300). 
 
-![Figure 8.3: The light buffer with a square](./images/light-buffer-2.png)
+| ![Figure 8-3: The light buffer with a square](./images/light-buffer-2.png) |
+| :------------------------------------------------------------------------: |
+|               **Figure 8-3: The light buffer with a square**               |
 
 The next task is to write the `pointLightEffect.fx` shader file so that the white square looks more like a point light. There are several ways to create the effect, some more realistic than others. For _DungeonSlime_, a realistic light fall off isn't going to look great, so we will develop something custom. 
 
@@ -383,7 +391,10 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 ```
 
 For the sake of clarity, these screenshots show only the `LightBuffer` as full screen. Here, we can see the distance based return value.
-![Figure 8.4: Showing the distance from the center of the light in the red channel](./images/point-light-dist.png)
+
+| ![Figure 8-4: Showing the distance from the center of the light in the red channel](./images/point-light-dist.png) |
+| :----------------------------------------------------------------------------------------------------------------: |
+|                **Figure 8-4: Showing the distance from the center of the light in the red channel**                |
 
 That starts to look like a light, but in reverse. Create a new variable, `falloff` which inverts the distance. The `saturate` function is shorthand for clamping the value between `0` and `1`:
 
@@ -399,7 +410,9 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 }
 ```
 
-![Figure 8.5: Invert the distance](./images/point-light-falloff-1.png)
+| ![Figure 8-5: Invert the distance](./images/point-light-falloff-1.png) |
+| :--------------------------------------------------------------------: |
+|                  **Figure 8-5: Invert the distance**                   |
 
 That looks more light-like. Now it is time to add some artistic control parameters to the shader. First, it would be good to be able to increase the brightness of the light. Multiplying the `falloff` by some number larger than 1 would increase the brightness, but leave the unlit sections completely unlit:
 
@@ -417,7 +430,9 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 }
 ```
 
-![Figure 8.6: A LightBrightness parameter](./gifs/point-light-brightness.gif)
+| ![Figure 8-6: A LightBrightness parameter](./gifs/point-light-brightness.gif) |
+| :---------------------------------------------------------------------------: |
+|                  **Figure 8-6: A LightBrightness parameter**                  |
 
 It would also be good to control the sharpness of the fall off. The `pow()` function raises the `falloff` to some exponent value:
 
@@ -437,7 +452,9 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 }
 ```
 
-![Figure 8.7: A LightSharpness parameter](./gifs/point-light-sharpness.gif)
+| ![Figure 8-7: A LightSharpness parameter](./gifs/point-light-sharpness.gif) |
+| :-------------------------------------------------------------------------: |
+|                 **Figure 8-7: A LightSharpness parameter**                  |
 
 Finally, the shader parameters from `0` to `1`, but it would be nice to push the brightness and sharpness beyond `1`. Add a `range` multiplier in the shader code:
 
@@ -458,7 +475,9 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 }
 ```
 
-![Figure 8.8: Increase the range of the artistic parameters](./gifs/point-light-range.gif)
+| ![Figure 8-8: Increase the range of the artistic parameters](./gifs/point-light-range.gif) |
+| :----------------------------------------------------------------------------------------: |
+|               **Figure 8-8: Increase the range of the artistic parameters**                |
 
 The final touch is to return the `Color` of the light, instead of the red debug value. The `input.Color` carries the `Color` passed through the `SpriteBatch`, so we can use that. Multiply the alpha channel of the color by the `falloff` to _fade_ the light out without changing the light color itself:
 
@@ -509,7 +528,9 @@ PointLightMaterial.SetParameter("LightBrightness", .25f);
 PointLightMaterial.SetParameter("LightSharpness", .1f);
 ```
 
-![Figure 8.9: The point light in the light buffer](./images/point-light-blue.png)
+| ![Figure 8-9: The point light in the light buffer](./images/point-light-blue.png) |
+| :-------------------------------------------------------------------------------: |
+|                **Figure 8-9: The point light in the light buffer**                |
 
 The light looks good! When we revert the full-screen `LightBuffer` and render the `LightBuffer` next to the `ColorBuffer`, a graphical bug will become clear. The world in the `ColorBuffer` is rotating with the vertex shader from the previous chapter, but the `LightBuffer` does not have the same effect, so the light appears broken. 
 
@@ -589,7 +610,9 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 }
 ```
 
-![Figure 8.10: The light and color composited](./images/composite-1.png)
+| ![Figure 8-10: The light and color composited](./images/composite-1.png) |
+| :----------------------------------------------------------------------: |
+|             **Figure 8-10: The light and color composited**              |
 
 The light is working! However, the whole scene is too dark to see what is going on or play the game. To solve this, we can add a small amount of ambient light:
 
@@ -606,7 +629,9 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 }
 ```
 
-![Figure 8.11: Adding ambient light](./gifs/composite-ambient.gif)
+| ![Figure 8-11: Adding ambient light](./gifs/composite-ambient.gif) |
+| :----------------------------------------------------------------: |
+|               **Figure 8-11: Adding ambient light**                |
 
 Find a value of ambient that you like and set the parameter from code:
 
@@ -617,7 +642,9 @@ public void DrawComposite(float ambient=.4f)
     // ... 
 ```
 
-![Figure 8.12: A constant ambient value](./gifs/composite-light-no-vert.gif)
+| ![Figure 8-12: A constant ambient value](./gifs/composite-light-no-vert.gif) |
+| :--------------------------------------------------------------------------: |
+|                  **Figure 8-12: A constant ambient value**                   |
 
 ### Normal Textures
 
@@ -626,15 +653,25 @@ The lighting is working, but it still feels a bit flat. Ultimately, the light is
 Normal textures encode the _direction_ (also called the _normal_) of the surface at each pixel. The direction of the surface is a 3d vector where the `x` component lives in the `red` channel, the `y` component lives in the `green` channel, and the `z` component lives in the `blue` channel. The directions are encoded as colors, so each component can only range from `0` to `1`. The _direction_ vector components need to range from `-1` to `1`, so a color channel value of `.5` results in a `0` value for the direction vector. 
 
 Generating normal maps is an artform. Generally, you find a _normal map picker_, similar to a color wheel, and paint the directions on-top of your existing artwork. This page on [open game art](https://opengameart.org/content/pixelart-normal-map-handpainting-helper) has a free normal map wheel that shows the colors for various directions along a low-resolution sphere. 
-![Figure 8.13: A normal picker wheel](https://opengameart.org/sites/default/files/styles/medium/public/normalmaphelper.png)
+
+| ![Figure 8-13: A normal picker wheel](https://opengameart.org/sites/default/files/styles/medium/public/normalmaphelper.png) |
+| :-------------------------------------------------------------------------------------------------------------------------: |
+|                                           **Figure 8-13: A normal picker wheel**                                            |
 
 For this effect to work, we need an extra texture for every frame of every sprite we are drawing in the game. Given that the textures are currently coming from an atlas, the easiest thing to do will be to create a _second_ texture that shares the same layout as the first, but uses normal data instead. 
 
 For reference, here is the existing atlas texture.
-![Figure 8.14: The existing texture atlas](./images/atlas.png)
+
+| ![Figure 8-14: The existing texture atlas](./images/atlas.png) |
+| :------------------------------------------------------------: |
+|          **Figure 8-14: The existing texture atlas**           |
+
 And here is the atlast, but with normal data where the game sprites are instead. Download the [atlas-normal.png](./images/atlas-normal.png) texture and add it to the _DungeonSlime_'s content folder. Include it in the mgcb content file. 
 
-![Figure 8.15: The normal texture atlas](./images/atlas-normal.png)
+| ![Figure 8-15: The normal texture atlas](./images/atlas-normal.png) |
+| :-----------------------------------------------------------------: |
+|              **Figure 8-15: The normal texture atlas**              |
+
 Everytime one of the game sprites is being drawn, we need to draw the corresponding normal texture information to yet another off-screen texture, called the `NormalBuffer`. Start by adding a new `RenderTarget2D` to the `DeferredRenderer` class:
 
 ```csharp
@@ -737,7 +774,10 @@ Core.SpriteBatch.Draw(NormalBuffer, normalRect, Color.White);
 ```
 
 And do not forget to call the `DebugDraw()` method from the `GameScene`'s `Draw()` method. Then you will see a totally `red` `NormalBuffer`, because the shader is hard coding the value to `float4(1,0,0,1)`. 
-![Figure 8.16: A blank normal buffer](./images/normal-buffer-red.png)
+
+| ![Figure 8-16: A blank normal buffer](./images/normal-buffer-red.png) |
+| :-------------------------------------------------------------------: |
+|                **Figure 8-16: A blank normal buffer**                 |
 
 To start rendering the normal values themselves, we need to load the normal texture into the `GameScene` and pass it along to the `gameEffect.fx` effect. First, create a class member for the new `Texture2D`:
 
@@ -786,7 +826,10 @@ PixelShaderOutput MainPS(VertexShaderOutput input)
 ```
 
 Now the `NormalBuffer` is being populated with the normal data for each sprite.
-![Figure 8.17: The normal map](./images/normal-buffer.png)
+
+| ![Figure 8-17: The normal map](./images/normal-buffer.png) |
+| :--------------------------------------------------------: |
+|              **Figure 8-17: The normal map**               |
 
 ### Combing Normals with Lights
 
@@ -913,7 +956,10 @@ float4 MainPS(LightVertexShaderOutput input) : COLOR
 ```
 
 Strangely, this will return a `white` box, instead of the normal data as expected.
-![Figure 8.19: A white box instead of the normal data?](./images/light-broken.png)
+
+| ![Figure 8-19: A white box instead of the normal data?](./images/light-broken.png) |
+| :--------------------------------------------------------------------------------: |
+|              **Figure 8-19: A white box instead of the normal data?**              |
 
 This happens because of a misunderstanding between the shader compiler and `SpriteBatch`. _Most_ of the time when `SpriteBatch` is being used, there is a single `Texture` and `Sampler` being used to draw a sprite to the screen. The `SpriteBatch`'s draw function passes the given `Texture2D` to the shader by setting it in the `GraphicsDevice.Textures` array [directly](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatcher.cs#L212). The texture is not being passed _by name_, it is being passed by _index_. In the lighting case, the `SpriteBatch` is being drawn with the `Core.Pixel` texture (a white 1x1 image we generated in the earlier chapters). 
 
@@ -945,7 +991,10 @@ public static void Draw(SpriteBatch spriteBatch, List<PointLight> pointLights, T
 ```
 
 And now the normal map is being rendered where the light exists.
-![Figure 8.20: The light shows the normal map entirely](./images/light-normal.png)
+
+| ![Figure 8-20: The light shows the normal map entirely](./images/light-normal.png) |
+| :--------------------------------------------------------------------------------: |
+|              **Figure 8-20: The light shows the normal map entirely**              |
 
 Now it is time to _use_ the normal data in conjunction with the light direction to decide how much light each pixel should receive. Add this shader code to the pixel function:
 
@@ -968,10 +1017,15 @@ And then make the final color use the `lightAmount`:
 color.a *= falloff * lightAmount;
 ```
 
-![Figure 8.21: The light with the normal](./images/light-with-normal.png)
+| ![Figure 8-21: The light with the normal](./images/light-with-normal.png) |
+| :-----------------------------------------------------------------------: |
+|                **Figure 8-21: The light with the normal**                 |
 
 To drive the effect for a moment, this gif shows the normal effect being blended in. Notice how the wings on the bat shade differently based on their position towards the light as the normal effect is brought in. 
-![Figure 8.22: The lighting on the bat with normals](./gifs/normals.gif)
+
+| ![Figure 8-22: The lighting on the bat with normals](./gifs/normals.gif) |
+| :----------------------------------------------------------------------: |
+|          **Figure 8-22: The lighting on the bat with normals**           |
 
 ### Gameplay
 
@@ -1056,7 +1110,9 @@ MoveLightsAround(gameTime);
 
 And now when the game runs, it looks like this.
 
-![Figure 8.23: The final results](./gifs/final.gif)
+| ![Figure 8-23: The final results](./gifs/final.gif) |
+| :-------------------------------------------------: |
+|         **Figure 8-23: The final results**          |
 
 ## Conclusion
 

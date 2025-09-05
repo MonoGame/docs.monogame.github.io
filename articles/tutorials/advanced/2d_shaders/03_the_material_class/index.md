@@ -216,7 +216,9 @@ _grayscaleEffect.SetParameter("Saturation", _saturation);
 
 To verify it is working, re-run the game, and instead of seeing a crash, you should see the `GameScene`'s gameover menu show a completely _white_ background. This is because the shader is setting the `finalColor` to `1`. Delete the following line from the shader, wait for the hot-reload system to kick in, and the game should return to normal.
 
-![Figure 3-1: The game does not crash](./videos/shader-properties.mp4)
+| ![Figure 3-1: The game does not crash](./videos/shader-properties.mp4) |
+| :--------------------------------------------------------------------: |
+|                **Figure 3-1: The game does not crash**                 |
 
 
 ### Reloading Properties

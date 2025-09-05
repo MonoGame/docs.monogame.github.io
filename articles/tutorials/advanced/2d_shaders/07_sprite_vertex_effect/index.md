@@ -255,7 +255,9 @@ _3dMaterial.SetParameter("MatrixTransform", projection);
 
 And now you should see the text normally again.
 
-![Figure 7.1: The main menu, but rendered with a custom vertex shader](./images/basic.png)
+| ![Figure 7-1: The main menu, but rendered with a custom vertex shader](./images/basic.png) |
+| :----------------------------------------------------------------------------------------: |
+|          **Figure 7-1: The main menu, but rendered with a custom vertex shader**           |
 
 ### Making it Move
 
@@ -273,7 +275,10 @@ output.Position.xy += DebugOffset;
 ```
 
 The sprites now move around as we adjust the shader parameter values. 
-![Figure 7.2: We can control the vertex positions](./gifs/basic.gif)
+
+| ![Figure 7-2: We can control the vertex positions](./gifs/basic.gif) |
+| :------------------------------------------------------------------: |
+|         **Figure 7-2: We can control the vertex positions**          |
 
 It is important to build intuition for the different coordinate systems involved. Instead of adding the `DebugOffset` _after_ the clip-space conversion, if you try to add it _before_, like in the code below:
 
@@ -285,7 +290,9 @@ output.Position = mul(position, MatrixTransform);
 
 Then you will not see much movement at all. This is because the `DebugOffset` values only go from `0` to `1`, and in world space, this really only amounts to a single pixel. In fact, exactly how much an addition of _`1`_ happens to make is entirely defined _by_ the conversion to clip-space. The `projection` matrix we created treats world space coordinates with an origin around the screen's center, where 1 unit maps to 1 pixel. Sometimes this is exactly what you want, and sometimes it can be confusing. 
 
-![Figure 7.3: Changing coordinates before clip-space conversion](./gifs/basic-2.gif)
+| ![Figure 7-3: Changing coordinates before clip-space conversion](./gifs/basic-2.gif) |
+| :----------------------------------------------------------------------------------: |
+|          **Figure 7-3: Changing coordinates before clip-space conversion**           |
 
 ### Perspective Projection
 
@@ -434,7 +441,9 @@ VertexShaderOutput MainVS(VertexShaderInput input)
 
 And now when the debug parameter is adjusted, the text spins in a way that was never possible with the default `SpriteBatch` vertex shader.
 
-![Figure 7.4: A spinning text](./gifs/spin-1.gif)
+| ![Figure 7-4: A spinning text](./gifs/spin-1.gif) |
+| :-----------------------------------------------: |
+|          **Figure 7-4: A spinning text**          |
 
 The text disappears for half of the rotation. That happens because as the vertices are rotated, the triangle itself started to point _away_ from the camera. By default, `SpriteBatch` will cull any faces that point away from the camera. Change the `rasterizerState` to `CullNone` when beginning the sprite batch:
 
@@ -448,10 +457,15 @@ Core.SpriteBatch.Begin(
 
 And voilà, the text no longer disappears on its flip side. 
 
-![Figure 7.4: A spinning text with reverse sides](./gifs/spin-2.gif)
+| ![Figure 7-4: A spinning text with reverse sides](./gifs/spin-2.gif) |
+| :------------------------------------------------------------------: |
+|          **Figure 7-4: A spinning text with reverse sides**          |
 
 You may find that the field of view is too high for your taste. Try lowering the field of view to 60, and you'll see something similar to this,
-![Figure 7.5: A spinning text with reverse sides with smaller fov](./gifs/spin-3.gif)
+
+| ![Figure 7-5: A spinning text with reverse sides with smaller fov](./gifs/spin-3.gif) |
+| :-----------------------------------------------------------------------------------: |
+|          **Figure 7-5: A spinning text with reverse sides with smaller fov**          |
 
 As a final touch, we should remove the hard-coded `screenSize` variable from the shader, and extract it as a shader parameter. While we are at it, clean up and remove the debug parameters as well:
 
@@ -474,7 +488,9 @@ spinAmount = MathHelper.SmoothStep(-.1f, .1f, spinAmount);
 _3dMaterial.SetParameter("SpinAmount", spinAmount);
 ```
 
-![Figure 7.6: Spin controlled by the mouse](./gifs/spin-4.gif)
+| ![Figure 7-6: Spin controlled by the mouse](./gifs/spin-4.gif) |
+| :------------------------------------------------------------: |
+|          **Figure 7-6: Spin controlled by the mouse**          |
 
 ## Applying it to the Game
 
@@ -817,7 +833,9 @@ _gameMaterial.SetParameter("ScreenSize", new Vector2(Core.GraphicsDevice.Viewpor
 
 Any place where the old `_colorSwapMaterial` is being referenced should be changed to use the `_gameMaterial` instead. Now, if you run the game, the color swap controls are still visible, but we can also manually control the tilt of the map.
 
-![Figure 7.7: All of the effects in one](./gifs/uber.gif)
+| ![Figure 7-7: All of the effects in one](./gifs/uber.gif) |
+| :-------------------------------------------------------: |
+|         **Figure 7-7: All of the effects in one**         |
 
 ### Adjusting the Game
 
@@ -835,7 +853,9 @@ _camera.LookOffset = offset;
 _gameMaterial.SetParameter("MatrixTransform", _camera.CalculateMatrixTransform());
 ```
 
-![Figure 7.8: Camera follows the slime](./gifs/cam-follow.gif)
+| ![Figure 7-8: Camera follows the slime](./gifs/cam-follow.gif) |
+| :------------------------------------------------------------: |
+|            **Figure 7-8: Camera follows the slime**            |
 
 The clear color of the scene can be seen in the corners (the `CornflowerBlue`). Pick whatever clear color you think looks good for the color swapping:
 
@@ -844,7 +864,10 @@ Core.GraphicsDevice.Clear(new Color(32, 16, 20));
 ```
 
 And to finish this chapter, the game looks like this,
-![Figure 7.9: vertex shaders make it pop](./gifs/final.gif)
+
+| ![Figure 7-9: vertex shaders make it pop](./gifs/final.gif) |
+| :---------------------------------------------------------: |
+|         **Figure 7-9: vertex shaders make it pop**          |
 
 ## Conclusion
 

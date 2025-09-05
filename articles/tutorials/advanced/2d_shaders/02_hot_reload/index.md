@@ -367,7 +367,9 @@ finalColor *= float3(1, 0, 0);
 
 This video shows the effect changing.
 
-![Figure 2-1: The reload system is working ](./videos/shader-reload.mp4)
+| ![Figure 2-1: The reload system is working](./videos/shader-reload.mp4) |
+| :---------------------------------------------------------------------: |
+|              **Figure 2-1: The reload system is working**               |
 
 
 ## Final Touches

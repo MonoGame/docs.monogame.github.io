@@ -64,7 +64,10 @@ SceneTransitionMaterial.IsDebugVisible = true;
 ```
 
 If you run the game now, you should have a blank debug UI.
-![Figure 5.1: A blank slate](./images/blank.png)
+
+| ![Figure 5-1: A blank slate](./images/blank.png) |
+| :----------------------------------------------: |
+|          **Figure 5-1: A blank slate**           |
 
 ### Rendering the Effect
 
@@ -97,7 +100,10 @@ SpriteBatch.End();
 ```
 
 If you run the game now, you will see a white background, because the `Pixel` sprite is rendering on top of the entire scene.
-![Figure 5.2: The shader is being used to render a white full screen quad](./images/white.png)
+
+| ![Figure 5-2: The shader is being used to render a white full screen quad](./images/white.png) |
+| :--------------------------------------------------------------------------------------------: |
+|          **Figure 5-2: The shader is being used to render a white full screen quad**           |
 
 ### The Input 
 
@@ -151,7 +157,10 @@ technique SpriteDrawing
 ```
 
 Now you can use the slider in the debug UI to visualize the `Progress` parameter as the red channel. 
-![Figure 5.3: See the Progress parameter in the red value](./gifs/progress-parameter.gif)
+
+| ![Figure 5-3: See the Progress parameter in the red value](./gifs/progress-parameter.gif) |
+| :---------------------------------------------------------------------------------------: |
+|                **Figure 5-3: See the Progress parameter in the red value**                |
 
 ### Coordinate Space
 
@@ -172,7 +181,10 @@ return float4(uv.x, 0, 0, 1);
 ```
 
 That results in this image, where the left edge has an x-coordinate of `0`, it has no red value, and where the right edge has an x-coordinate of `1`, the image is fully red. In the middle of the image, the red value interpolates between `0` and `1`. 
-![Figure 5.4: the x coordinate of each pixel represented in the red channel](./images/x-pos.png)
+
+| ![Figure 5-4: the x coordinate of each pixel represented in the red channel](./images/x-pos.png) |
+| :----------------------------------------------------------------------------------------------: |
+|          **Figure 5-4: the x coordinate of each pixel represented in the red channel**           |
 
 The same pattern holds true for the y-coordinate. Observe the following shader code putting the y-coordinate of each pixel in the green channel:
 
@@ -183,7 +195,9 @@ return float4(0, uv.y, 0, 1);
 
 As you can see, the top of the screen has a `0` value for the y-coordinate, and the bottom of the screen has a `1`. 
 
-![Figure 5.5: The y-coordinate of each pixel represented in the green channel](./images/y-pos.png)
+| ![Figure 5-5: The y-coordinate of each pixel represented in the green channel](./images/y-pos.png) |
+| :------------------------------------------------------------------------------------------------: |
+|          **Figure 5-5: The y-coordinate of each pixel represented in the green channel**           |
 
 When these shaders are combined, the resulting image is the classic UV texture coordinate space:
 
@@ -197,7 +211,9 @@ return float4(uv.x, uv.y, 0, 1);
 > 
 > Other game engines treat the _bottom_ of the image as y=0, but MonoGame uses the top of the image for where y is 0. 
 
-![Figure 5.6: x and y coordinates in the red and green channels](./images/xy-pos.png)
+| ![Figure 5-6: x and y coordinates in the red and green channels](./images/xy-pos.png) |
+| :-----------------------------------------------------------------------------------: |
+|           **Figure 5-6: x and y coordinates in the red and green channels**           |
 
 ### Simple Horizontal Screen Wipe
 
@@ -212,7 +228,10 @@ return float4(0, 0, transitioned, 1);
 ```
 
 Use the slider to control the `Progress` parameter to see how the image changes. 
-![Figure 5.7: a simple horizontal screen wipe](./gifs/simple-x.gif)
+
+| ![Figure 5-7: a simple horizontal screen wipe](./gifs/simple-x.gif) |
+| :-----------------------------------------------------------------: |
+|           **Figure 5-7: a simple horizontal screen wipe**           |
 
 That looks pretty close to a screen wipe,  already! Instead of using blue and black, the effect should be using black and a transparent color. The following snippet of shader code puts the `transitioned` value in the alpha channel of the final color. When the alpha value is zero, the pixel fragment is drawn as invisible:
 
@@ -222,7 +241,9 @@ float transitioned = Progress > uv.x;
 return float4(0, 0, 0, transitioned);
 ```
 
-![Figure 5.8: A transparent screen wipe](./gifs/transparent-x.gif)
+| ![Figure 5-8: A transparent screen wipe](./gifs/transparent-x.gif) |
+| :----------------------------------------------------------------: |
+|             **Figure 5-8: A transparent screen wipe**              |
 
 The transition works, but the edge between black and transparent is hard. Often in screen wipes, the transition has a smooth edge. The reason the current shader has a hard edge is because the `transitioned` variable is either `0` or `1` depending on the outcome of the `Progress > uv.x;` expression. 
 Ideally, it would be nice to set the `transitioned` variable to `0` when the `Progress` is some small number like `.05`, to `1` when the `Progress` is `.1`, and smoothly interpolate from `0` to `1` between the range. That way, the hard cut-off would replaced by a smoother edge. 
@@ -251,7 +272,10 @@ float EdgeWidth;
 ```
 
 Now you can control the edge width slider to see the smooth edge between transitioned and not. 
-![Figure 5.9: A smooth edge](./gifs/smoothstep.gif)
+
+| ![Figure 5-9: A smooth edge](./gifs/smoothstep.gif) |
+| :-------------------------------------------------: |
+|            **Figure 5-9: A smooth edge**            |
 
 After we find an `EdgeWidth` value that looks good, we can set it in C# after the `SceneTransitionMaterial` is loaded:
 
@@ -272,7 +296,9 @@ So far the shader has been using `uv.x` to create a horizontal screen wipe. It w
 float transitioned = smoothstep(Progress, Progress + EdgeWidth, uv.y);
 ```
 
-![Figure 5.10: A vertical screen wipe](./gifs/vertical.gif)
+| ![Figure 5-10: A vertical screen wipe](./gifs/vertical.gif) |
+| :---------------------------------------------------------: |
+|           **Figure 5-10: A vertical screen wipe**           |
 
 But what if we wanted to create more complicated wipes that didn't simply go in one direction? So far, we have passed `uv.x` and `uv.y` along as the argument to compare against the `Progress` shader parameter, but we could use any value we wanted. 
 
@@ -283,7 +309,10 @@ For example, here is a wipe that comes in from the left and right towards the ce
 float value = 1 - abs(.5 - uv.x) * 2;  
 float transitioned = smoothstep(Progress, Progress + EdgeWidth, value);
 ```
-![Figure 5.11: A more interesting wipe](./gifs/center-wipe.gif)
+
+| ![Figure 5-11: A more interesting wipe](./gifs/center-wipe.gif) |
+| :-------------------------------------------------------------: |
+|            **Figure 5-11: A more interesting wipe**             |
 
 That is cool, but if we wanted an even more interesting wipe, the math would start to become challenging. In the final effect, it would also be nice to change the _type_ of wipe dynamically from the game, and having to change entire shader functions would be cumbersome. We can build a more generalized approach instead of writing mathematical functions to encode the wipe's progress. 
 
@@ -294,19 +323,29 @@ float value = 1 - abs(.5 - uv.x) * 2;
 return float4(value, value, value, 1);
 ```
 
-![Figure 5.12: Just the value for the center wipe](./images/center-wipe-value.png)
+| ![Figure 5-12: Just the value for the center wipe](./images/center-wipe-value.png) |
+| :--------------------------------------------------------------------------------: |
+|                **Figure 5-12: Just the value for the center wipe**                 |
 
 That image is not very interesting in of itself, but it does convey meaning about the transition effect _will_ render later. The darker areas of the image are going to transition sooner than the brighter areas, and the brightest areas will be the _last_ areas to transition when the `Progress` parameter is set all the way to `1`. At the end of the day, the image is just a grayscale gradient.
 
 You could imagine _other_ grayscale gradient images. In fact, there is a fantastic pack of _free_ gradient images made by _Screaming Brain Studios_ on [opengameart.org](https://opengameart.org/content/300-gradient-textures). Here are few samples, 
 
-![Figure 5.13: A sample gradient texture](./images/assets/ripple.png)
+| ![Figure 5-13: A sample gradient texture](./images/assets/ripple.png) |
+| :-------------------------------------------------------------------: |
+|              **Figure 5-13: A sample gradient texture**               |
 
-![Figure 5.14: A sample gradient texture](./images/assets/angled.png)
+| ![Figure 5-14: A sample gradient texture](./images/assets/angled.png) |
+| :-------------------------------------------------------------------: |
+|              **Figure 5-14: A sample gradient texture**               |
 
-![Figure 5.15: A sample gradient texture](./images/assets/concave.png)
+| ![Figure 5-15: A sample gradient texture](./images/assets/concave.png) |
+| :--------------------------------------------------------------------: |
+|               **Figure 5-15: A sample gradient texture**               |
 
-![Figure 5.16: A sample gradient texture](./images/assets/radial.png)
+| ![Figure 5-16: A sample gradient texture](./images/assets/radial.png) |
+| :-------------------------------------------------------------------: |
+|              **Figure 5-16: A sample gradient texture**               |
 
 Theoretically, it is possible to derive mathematical expressions that would result in those exact grayscale gradient images, but given that we have the images already, we could just change the transition shader to _read_ from the texture given the pixel's coordinate. 
 
@@ -346,7 +385,10 @@ return float4(value, value, value, 1);
 ```
 
 Since the code above is referencing the `concave` image, the result looks like this,
-![Figure 5.17: The concave value for a wipe](./images/concave-wipe-value.png)
+
+| ![Figure 5-17: The concave value for a wipe](./images/concave-wipe-value.png) |
+| :---------------------------------------------------------------------------: |
+|                 **Figure 5-17: The concave value for a wipe**                 |
 
 And now, modify the shader to use the `Progress` parameter instead of just returning the `value`:
 
@@ -358,7 +400,10 @@ return float4(0, 0, 0, transitioned);
 ```
 
 As you play with the `Progress` parameter slide, you can see the more interesting wipe pattern. 
-![Figure 5.19: The concave wipe in action](./gifs/concave-wipe.gif)
+
+| ![Figure 5-19: The concave wipe in action](./gifs/concave-wipe.gif) |
+| :-----------------------------------------------------------------: |
+|             **Figure 5-19: The concave wipe in action**             |
 
 Now it is as easy as changing the texture being used to draw the scene transition to completely change the wipe pattern. Try playing around with the other textures, or make one of your own. 
 
@@ -483,7 +528,10 @@ SpriteBatch.End();
 ```
 
 When you run the game and change between scenes, you'll see a random arrangement of screen wipes!
-![Figure 5.20: the shader is done!](./gifs/wipes.gif)
+
+| ![Figure 5-20: the shader is done!](./gifs/wipes.gif) |
+| :---------------------------------------------------: |
+|         **Figure 5-20: the shader is done!**          |
 
 ## Shared Content
 
