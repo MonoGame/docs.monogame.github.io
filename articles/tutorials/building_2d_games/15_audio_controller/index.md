@@ -154,7 +154,7 @@ Running the game now will produce the same result as the previous chapter, only 
 |            **Figure 15-1: Gameplay with audio.**             |
 
 > [!NOTE]
-> You may note that while we added keybindings to change the audio settings, we did not add any bindings for the GamePad. This is simply becuase this is not normally how you would adjust these values on a console, on consoles you would have a settings/options screen to update them.
+> You may note that while we added keybindings to change the audio settings, we did not add any bindings for the GamePad. This is simply because this is not normally how you would adjust these values on a console, on consoles you would have a settings/options screen to update them.
 >
 > Later in [Chapter 20: Implementing UI with GUM](../20_implementing_ui_with_gum/index.md) we will add an Options screen to adjust all the audio values for the game.
 
