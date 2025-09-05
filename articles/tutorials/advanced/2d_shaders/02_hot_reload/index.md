@@ -77,7 +77,7 @@ However, the `.xnb` files are not being copied from the `Content/bin` folder to 
 The existing `MonoGame.Content.Builder.Task` system knows what the files are, so we can re-use properties defined in the MonoGame package.
 Add this `<Target>` block to your `.csproj` file:
 
-[!code-xml[](./snippets/snippet-2-06.xml?highlight=4-11)]
+[!code-xml[](./snippets/snippet-2-06.xml)]
 
 Now, instead of calling the `IncludeContent` target directly, change your terminal command to invoke the new `BuildAndCopyContent` target:
 
@@ -87,7 +87,7 @@ If you delete the `DungeonSlime/bin/Debug/net8.0/Content` folder, make an edit t
 
 The next step is to only invoke the target when `.fx` files are edited instead of `.cs` files. These settings can be configured with custom MSBuild item configurations. Open the `DungeonSlime.csproj` file and add this `<ItemGroup>` to specify configuration settings:
 
-[!code-xml[](./snippets/snippet-2-08.xml?highlight=4-9)]
+[!code-xml[](./snippets/snippet-2-08.xml)]
 
 Now when you re-run the command from earlier, it will only run the `IncludeContent` target when `.fx` files have been changed. All edits to `.cs` files are ignored. Try adding a blank line to the `grayscaleEffect.fx` file, and notice the `dotnet watch` process re-build the content.
 
@@ -101,7 +101,7 @@ And now when `dotnet watch` is invoked, it needs to specify the new parameter:
 
 The command is getting long and hard to type, and if we want to add more configuration, it will likely get even longer. Instead of invoking `dotnet watch` directly, it can be run as a new `<Target>` MSBuild step. Add this `<Target>` to your `DungeonSlime.csproj` file:
 
-[!code-xml[](./snippets/snippet-2-11.xml?highlight=4-6)]
+[!code-xml[](./snippets/snippet-2-11.xml)]
 
 And now from the terminal, run the following `dotnet build` command:
 

@@ -67,7 +67,7 @@ System.NullReferenceException: Object reference not set to an instance of an obj
 On its own, this would not be too difficult to accept. However, MonoGame's shader compiler will aggressively remove properties that are not actually being _used_ in your shader code. Even if you wrote a shader that had a `DoesNotExist` property, if it was not being used to compute the return value of the shader, it will be removed. The compiler is good at optimizing away unused variables. 
 For example, in the `grayscaleEffect.fx` file, change the last few lines of the `MainPS` function to the following:
 
-[!code-hlsl[](./snippets/snippet-3-08.hlsl)]
+[!code-hlsl[](./snippets/snippet-3-08.hlsl?highlight=17-18)]
 
 If you run the game and enter the `GameScene`, you will see a `NullReferenceException` (and the game will hard-crash). The `Saturation` shader parameter no longer exists in the shader, so when the `Draw()` method tries to _set_ it, the game crashes. 
 
@@ -76,6 +76,10 @@ The aggressive optimization is good for your game's performance, but when combin
 To solve this problem, the `Material` class can encapsulate setting shader properties and handle the potential error scenario. The `Effect.Parameters` variable is an instance of the  [`EffectParameterCollection`](xref:Microsoft.Xna.Framework.Graphics.EffectParameterCollection) class. Here is the class signature and fields:
 
 [!code-csharp[](./snippets/snippet-3-09.cs)]
+
+> [!tip]
+> MonoGame is free and open source, so the entire source code is available online, [`EffectParameterCollection`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Effect/EffectParameterCollection.cs).
+
 
 The `_indexLookup` is a `Dictionary<string, int>` containing a mapping of property _name_ to parameter. The `Dictionary` class has methods for checking if a given property name exists, but unfortunately we cannot access it due to the `private` access modifier. Luckily, the entire `EffectParameterCollection` inherits from `IEnumerable`, so we can use the existing dotnet utilities to convert the entire structure into a `Dictionary`. Once we have the parameters in a `Dictionary` structure, we will be able to check what parameters exist _before_ trying to access them, thus avoiding potential `NullReferenceExceptions`. 
 
@@ -89,7 +93,7 @@ And now you can add the following method that will convert the `EffectParameterC
 
 Do not forget to invoke this method during the constructor of the `Material`:
 
-[!code-csharp[](./snippets/snippet-3-12.cs)]
+[!code-csharp[](./snippets/snippet-3-12.cs?highlight=4)]
 
 With the new `ParameterMap` property, create a helper function that checks if a given parameter exists in the shader:
 
@@ -118,9 +122,7 @@ When the hot-reload system loads a new compiled shader into the game's memory, t
 
 And instead, add the following line to the end of the `LoadContent()` method:
 
-```chsharp
-_grayscaleEffect.SetParameter("Saturation", 1);
-```
+[!code-csharp[](./snippets/snippet-3-16-2.cs)]
 
 The net outcome is that the `_grayscaleEffect` will not actually work for its designed purpose, but it should be always fully saturated with a value of `1`, and _never_ change. Run the game, enter the `GameScene`, and hit the pause button. Now, if you cause _any_ reload of the shader, the background of the `GameScene` will desaturate and turn grayscale. The newly compiled shader instance has no value for the `Saturation` parameter, and since `0` is the default value for numbers, it appears grayscale. 
 
@@ -131,7 +133,7 @@ Add the following method to the `Material` class:
 
 And now instead of using the `TryRefresh()` method directly on the `_grayscaleEffect`, use the new method:
 
-[!code-csharp[](./snippets/snippet-3-18.cs)]
+[!code-csharp[](./snippets/snippet-3-18.cs?highlight=7)]
 
 If you repeat the same test as before, the game will not become grayscale after a new shader is loaded. Once you have validated this, make sure to undo the changes in the `LoadContent()` and `Draw()` method, so that the `_grayscaleEffect` is still setting the `Saturation` value in the `Draw()` method.
 
@@ -140,7 +142,7 @@ If you repeat the same test as before, the game will not become grayscale after 
 
 When the _DungeonSlime_ game is published, it would not make sense to run the new `Material.Update()` method, because no shaders would ever be hot-reloaded in a release build. We can strip the method from the game when it is being built for _Release_. Add the following attribute to the `Material.Update()` method:
 
-[!code-csharp[](./snippets/snippet-3-19.cs)]
+[!code-csharp[](./snippets/snippet-3-19.cs?highlight=1)]
 
 The built _DungeonSlime_ executable will no longer contain the compiled code for the `Material.Update()` method, or any place in the code that _invoked_ the method. This means that the hot-reload system will never attempt to read the file timestamps of your `.xnb` files. There is still a _tiny_ cost for keeping the extra fields on the `WatchedAsset` type, rather than using the `Effect` directly. However, given the huge wins for your shader development workflow, paying the memory cost for a few mostly unused fields is a worthwhile trade-off. 
 

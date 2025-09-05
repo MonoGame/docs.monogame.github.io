@@ -1,0 +1,1 @@
+_grayscaleEffect.SetParameter("Saturation", 1);
