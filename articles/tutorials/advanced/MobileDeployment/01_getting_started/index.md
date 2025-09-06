@@ -38,6 +38,10 @@ For more information visit about getting started with Android development:
 - [Getting Started with Android Development](https://learn.microsoft.com/en-us/dotnet/android/getting-started/installation/)
 - [Getting Started with Maui Development](https://learn.microsoft.com/en-us/dotnet/maui/get-started/installation)
 
+To release your game to the Google App Store, you will need to sign up for a developer account at [Google Play Signup](https://play.google.com/console/signup). You will need to accept the Developer Distribution Agreement and pay a registration fee.
+
+More information about the registration process can be found here [Registration process](https://support.google.com/googleplay/android-developer/answer/6112435).
+
 ## iOS Development
 
 **Platform Requirement:** iOS development requires a Mac, whether you develop entirely on it or use the **Pair to Mac** option with Windows Visual Studio.
