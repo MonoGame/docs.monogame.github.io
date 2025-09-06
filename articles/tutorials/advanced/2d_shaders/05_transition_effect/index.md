@@ -146,7 +146,7 @@ When these shaders are combined, the resulting image is the classic UV texture c
 [!code-hlsl[](./snippets/snippet-5-13.hlsl)]
 
 >[!TIP] 
-> Remember that MonoGame uses the top of the image for y=0. 
+> Remember that MonoGame uses the **top** of the image for y=0. 
 > 
 > Other game engines treat the _bottom_ of the image as y=0, but MonoGame uses the top of the image for where y is 0. 
 
@@ -180,7 +180,10 @@ The transition works, but the edge between black and transparent is hard. Often 
 Ideally, it would be nice to set the `transitioned` variable to `0` when the `Progress` is some small number like `.05`, to `1` when the `Progress` is `.1`, and smoothly interpolate from `0` to `1` between the range. That way, the hard cut-off would replaced by a smoother edge. 
 
 We could write this by hand, but shader languages have a built in function called `smoothstep` which does essentially what we want. The `smoothstep` function takes 3 parameters, a `min`, a `max`, and an input variable often called `x` (or `t` depending on who you ask). 
-The function returns `0` when the given `x` parameter is at or below the `min` value, and `1` when `x` is at or above the `max` value. However, instead of interpolating linearly between `min` and `max`, it uses a smooth function to blend between the two bounds. You can learn more about the `smoothstep` function in [The Book Of Shaders](https://thebookofshaders.com/glossary/?search=smoothstep)
+The function returns `0` when the given `x` parameter is at or below the `min` value, and `1` when `x` is at or above the `max` value. However, instead of interpolating linearly between `min` and `max`, it uses a smooth function to blend between the two bounds. 
+
+> [!tip]
+> You can learn more about the `smoothstep` function in [The Book Of Shaders](https://thebookofshaders.com/glossary/?search=smoothstep)
 
 This would be the most basic way to adjust the code to use `smoothstep`, but right away, the `.05` should jump out as alarming:
 
