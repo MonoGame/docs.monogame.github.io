@@ -247,21 +247,10 @@ That image is not very interesting in of itself, but it does convey meaning abou
 
 You could imagine _other_ grayscale gradient images. In fact, there is a fantastic pack of _free_ gradient images made by _Screaming Brain Studios_ on [opengameart.org](https://opengameart.org/content/300-gradient-textures). Here are few samples, 
 
-| ![Figure 5-15: A sample gradient texture](./images/assets/ripple.png) |
-| :-------------------------------------------------------------------: |
-|              **Figure 5-15: A sample gradient texture**               |
+| ![Figure 5-15: A sample gradient texture](./images/assets/ripple.png) | ![Figure 5-16: A sample gradient texture](./images/assets/angled.png) | ![Figure 5-17: A sample gradient texture](./images/assets/concave.png) | ![Figure 5-18: A sample gradient texture](./images/assets/radial.png) | 
+| :-------------------------------------------------------------------: | :-------------------------------------------------------------------: |  :-------------------------------------------------------------------: | :-------------------------------------------------------------------: |
+|              **Figure 5-15: A ripple gradient**               |             **Figure 5-16: An angled gradient**                |              **Figure 5-17: A concave gradient**                |             **Figure 5-18: A radial gradient**                |
 
-| ![Figure 5-16: A sample gradient texture](./images/assets/angled.png) |
-| :-------------------------------------------------------------------: |
-|              **Figure 5-16: A sample gradient texture**               |
-
-| ![Figure 5-17: A sample gradient texture](./images/assets/concave.png) |
-| :--------------------------------------------------------------------: |
-|               **Figure 5-17: A sample gradient texture**               |
-
-| ![Figure 5-18: A sample gradient texture](./images/assets/radial.png) |
-| :-------------------------------------------------------------------: |
-|              **Figure 5-18: A sample gradient texture**               |
 
 Theoretically, it is possible to derive mathematical expressions that would result in those exact grayscale gradient images, but given that we have the images already, we could just change the transition shader to _read_ from the texture given the pixel's coordinate. 
 
