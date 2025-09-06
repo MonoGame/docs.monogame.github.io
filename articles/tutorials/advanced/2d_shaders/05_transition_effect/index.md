@@ -39,15 +39,15 @@ Add an override to the `LoadContent` method, and load the `sceneTransitionEffect
 
 Make sure to call the `Core`'s version of `LoadContent()` from the `Game1` class. In the previous tutorial, the method was left without calling the base method:
 
-[!code-csharp[](./snippets/snippet-5-03.cs)]
-
-To benefit from hot-reload, we need to update the effect in the `Core`'s `Update()` loop:
-
-[!code-csharp[](./snippets/snippet-5-04.cs)]
+[!code-csharp[](./snippets/snippet-5-03.cs?highlight=4)]
 
 And as we develop the effect, enable the debug UI:
 
-[!code-csharp[](./snippets/snippet-5-05.cs)]
+[!code-csharp[](./snippets/snippet-5-05.cs?highlight=5)]
+
+To benefit from hot-reload, we need to update the effect in the `Core`'s `Update()` loop:
+
+[!code-csharp[](./snippets/snippet-5-04.cs?highlight=6)]
 
 If you run the game now, you should have a blank debug UI.
 
@@ -63,19 +63,19 @@ Currently, the shader is compiling and loading into the game, but it isn't being
 
 And initialize it in the `Initialize()` method:
 
-[!code-csharp[](./snippets/snippet-5-07.cs)]
+[!code-csharp[](./snippets/snippet-5-07.cs?highlight=7-8)]
 
 > [!tip] 
 > The `Pixel` property is a texture we can re-use for many effects, and it is helpful to have for debugging purposes. 
 
 In the `Core'`s `Draw()` method, use the `SpriteBatch` to draw a full screen sprite using the `Pixel` property. Make sure to put this code after the `s_activeScene` is drawn, because the scene transition effect should _cover_ whatever was rendered from the current scene:
 
-[!code-csharp[](./snippets/snippet-5-08.cs)]
+[!code-csharp[](./snippets/snippet-5-08.cs?highlight=10-12)]
 
 If you run the game now, you will see a white background, because the `Pixel` sprite is rendering on top of the entire game scene and GUM UI.
 
 > [!note]
-> We can still see the `ImGui.NET` debug UI because the debug UI is rendered in the `Core` class _after_ the current `Scene`'s `.Draw()` method finishes. 
+> We can still see the `ImGui.NET` debug UI because the debug UI is rendered _after_ the current drawing the `Pixel`.
 
 | ![Figure 5-4: The shader is being used to render a white full screen quad](./images/white.png) |
 | :--------------------------------------------------------------------------------------------: |
@@ -85,11 +85,11 @@ If you run the game now, you will see a white background, because the `Pixel` sp
 
 We need to be able to control the progress of the screen transition effect. Add the following parameter to the shader:
 
-[!code-hlsl[](./snippets/snippet-5-09.hlsl)]
+[!code-hlsl[](./snippets/snippet-5-09.hlsl?highlight=12)]
 
-And recall that unless the `Progress` parameter is actually _used_ somehow in the calculation of the output of the shader, it will be optimized out of the final compilation. So, for now, lets make the shader return the `Progress` value in the red value of the color:
+And recall that unless the `Progress` parameter is actually _used_ somehow in the calculation of the output of the shader, it will be optimized out of the final compilation. So, for now, we will make the shader return the `Progress` value in the red value of the color:
 
-[!code-hlsl[](./snippets/snippet-5-10.hlsl)]
+[!code-hlsl[](./snippets/snippet-5-10.hlsl?highlight=9)]
 
 Now you can use the slider in the debug UI to visualize the `Progress` parameter as the red channel. 
 
