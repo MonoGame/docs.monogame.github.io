@@ -121,6 +121,12 @@ The following shader helps visualize the x-coordinate of each pixel:
 
 That results in this image, where the left edge has an x-coordinate of `0`, it has no red value, and where the right edge has an x-coordinate of `1`, the image is fully red. In the middle of the image, the red value interpolates between `0` and `1`. 
 
+> [!caution]
+> Where did the `Progress` slider go?
+>
+> When the shader is compiled, the `Progress` parameter is being optimized out of the final compiled code, because it was not being used in the final output of the shader in any way. The MonoGame shader compiler is good at optimizing away unused parameters, which is good because it helps the performance of your game. However, it can be confusing, because the `Progress` parameter appears to _vanish_ from the shader. Indeed, it no longer appears in the `EffectParameterCollection`, so the debug UI has no way of knowing it exists to render it. 
+
+
 | ![Figure 5-6: the x coordinate of each pixel represented in the red channel](./images/x-pos.png) |
 | :----------------------------------------------------------------------------------------------: |
 |          **Figure 5-6: the x coordinate of each pixel represented in the red channel**           |
