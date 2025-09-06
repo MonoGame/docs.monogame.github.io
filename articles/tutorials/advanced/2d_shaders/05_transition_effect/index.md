@@ -191,11 +191,11 @@ This would be the most basic way to adjust the code to use `smoothstep`, but rig
 
 Using "magic numbers" in shader code is a dangerous pattern, because it is unclear if `.05` is there for a mathematical reason, or just an aesthetic choice. At minimum, we should extract the value into a named variable, so that the reader of the code can attribute _some_ sort of meaning to `.05`:
 
-[!code-hlsl[](./snippets/snippet-5-17.hlsl)]
+[!code-hlsl[](./snippets/snippet-5-17.hlsl?highlight=6)]
 
 However, at this point, it would be nice to extract the `edgeWidth` as a second shader parameter next to `Progress`:
 
-[!code-hlsl[](./snippets/snippet-5-18.hlsl)]
+[!code-hlsl[](./snippets/snippet-5-18.hlsl?highlight=4)]
 
 Now you can control the edge width slider to see the smooth edge between transitioned and not. 
 
@@ -205,7 +205,7 @@ Now you can control the edge width slider to see the smooth edge between transit
 
 After we find an `EdgeWidth` value that looks good, we can set it in C# after the `SceneTransitionMaterial` is loaded:
 
-[!code-csharp[](./snippets/snippet-5-19.cs)]
+[!code-csharp[](./snippets/snippet-5-19.cs?highlight=5)]
 
 >[!warning] 
 > Shader parameters do not use initializer expressions.
