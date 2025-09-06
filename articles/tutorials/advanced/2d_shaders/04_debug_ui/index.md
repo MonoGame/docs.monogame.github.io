@@ -3,21 +3,24 @@ title: "Chapter 04: Debug UI"
 description: "Add ImGui.NET to the project for debug visualization"
 ---
 
-So far, any time we need to adjust a shader's parameter values, we need to edit C# code and recompile. It would be much faster to have a debug UI in the game itself that expose all of the shader parameters as editable text fields and slider widgets. We can also use the sliders to change a shader's input parameter, and visualize the difference in realtime, which is a fantastic way to build intuition about our shader code. 
+So far, any time we need to adjust a shader's parameter values, we need to edit C# code and recompile. It would be much faster to have a debug user interface (UI) in the game itself that exposes all of the shader parameters as editable text fields and slider widgets. We can also use the sliders to change a shader's input parameter and visualize the difference in realtime, which is a fantastic way to build intuition about our shader code. 
 
-In this chapter, we will add a popular library called ImGui.NET to create a developer-facing debug UI for our materials. Let's get it set up. 
+In the previous tutorial series, you set up a UI using the GUM framework. GUM is a powerful tool that works wonderfully for player facing UI. However, for the debug UI we will develop in this chapter, we will bring in a second UI library called `ImGui.NET`. The two libraries will not interfere with one another, and each one works well for different use cases. `ImGui.NET` is great for rapid iteration speed and building _developer_ facing UI. The existing GUM based UI has buttons and sliders that look and feel like they belong in the _Dungeon Slime_ world. The `ImGui.NET` UI will look more like an admin console in your game. Despite the lack of visual customization, `ImGui.NET` is easy and _quick_ to write, which makes it perfect for our developer facing debug UI. 
 
 If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/03-The-Material-Class).
 
 ## Adding a Debug UI Library
 
-A common approach to building debug UIs in games is to use an _Immediate Mode_ system. An immediate mode UI redraws the entire UI from scratch every frame. Immediate mode UIs make developing developer-facing debug tools easy. A popular library is called `DearImGui`, which has a dotnet C# port called `ImGui.NET`. 
+A common approach to building debug UIs in games is to use an _Immediate Mode_ system. An immediate mode UI redraws the entire UI from scratch every frame. `ImGui.NET` is a popular choice for MonoGame. It is a port of a C++ library called called `DearImGui`.
 
-To add `ImGUI.NET`, add the following Nuget package reference to the _MonoGameLibrary_ project:
+To add `ImGui.NET`, add the following Nuget package reference to the _MonoGameLibrary_ project:
 
 [!code-xml[](./snippets/snippet-4-01.xml?highlight=5)]
 
-In order to render the `ImGui.NET` UI in MonoGame, we need a few supporting classes that convert the `ImGui.NET` data into MonoGame's graphical representation. There is a [sample project](https://github.com/ImGuiNET/ImGui.NET/tree/master/src/ImGui.NET.SampleProgram.XNA) on `ImGui.NET`'s public repository that we can copy for our use cases. 
+In order to render the `ImGui.NET` UI in MonoGame, we need a few supporting classes that convert the `ImGui.NET` data into MonoGame's graphical representation. 
+
+> [!note]
+> There is a [sample project](https://github.com/ImGuiNET/ImGui.NET/tree/master/src/ImGui.NET.SampleProgram.XNA) on `ImGui.NET`'s public repository that we can copy for our use cases. 
 
 Create a new folder in the _MonoGameLibrary_ project called _ImGui_ and copy and paste the following files into the folder, 
 - The [`ImGuiRenderer.cs`](https://github.com/ImGuiNET/ImGui.NET/blob/v1.91.6.1/src/ImGui.NET.SampleProgram.XNA/ImGuiRenderer.cs)
