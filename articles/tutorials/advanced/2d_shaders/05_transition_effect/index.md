@@ -262,11 +262,11 @@ We will store these texture references in the `Core` class as a `static` propert
 
 And in the `Core`'s `LoadContent()` method, load the new images:
 
-[!code-csharp[](./snippets/snippet-5-24.cs)]
+[!code-csharp[](./snippets/snippet-5-24.cs?highlight=8-11)]
 
 Instead of using the `Pixel` debug image to draw the `SceneTransitionMaterial`, use one of these new textures:
 
-[!code-csharp[](./snippets/snippet-5-25.cs)]
+[!code-csharp[](./snippets/snippet-5-25.cs?highlight=11)]
 
 In the shader, you can read the texture data at the given `uv` coordinate by using the `tex2D` function. Modify the shader so that the `value` is just the red-channel of the given texture:
 
@@ -310,19 +310,19 @@ Then, add a `static` property to the `Core` class:
 
 Anytime the `Core` class changes scene, it should create a new _closing_ transition:
 
-[!code-csharp[](./snippets/snippet-5-31.cs)]
+[!code-csharp[](./snippets/snippet-5-31.cs?highlight=8)]
 
 At the start of the `TransitionScene()` method, create an _open_ transition:
 
-[!code-csharp[](./snippets/snippet-5-32.cs)]
+[!code-csharp[](./snippets/snippet-5-32.cs?highlight=3)]
 
 Now we need to actually _set_ the `Progress` shader parameter given the current scene transition value. In the `Update()` method:
 
-[!code-csharp[](./snippets/snippet-5-33.cs)]
+[!code-csharp[](./snippets/snippet-5-33.cs?highlight=6)]
 
 And finally, the scene material needs to be drawn with the right texture:
 
-[!code-csharp[](./snippets/snippet-5-34.cs)]
+[!code-csharp[](./snippets/snippet-5-34.cs?highlight=11)]
 
 When you run the game and change between scenes, you'll see a random arrangement of screen wipes!
 

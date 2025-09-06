@@ -1,4 +1,5 @@
-private static void TransitionScene()  
-{  
+private static void TransitionScene()
+{
     SceneTransition = SceneTransition.Open(500);
     // ...
+}
