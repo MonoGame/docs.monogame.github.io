@@ -5,7 +5,7 @@ description: "Create an effect for transitioning between scenes"
 
 Our game is functional, but the jump from the title screen to the game is very sudden. We can make it feel much more polished with a smooth transition instead of an instant cut.
 
-In this chapter, we will dive into our first major pixel shader effect: a classic screen wipe! we will learn how to control an effect over the whole screen, how to create soft edges, and how to use textures to drive our shader logic to create all sorts of interesting patterns. 
+In this chapter, we will dive into our first major pixel shader effect: a classic [Screen Wipe](https://www.youtube.com/watch?v=8NAhAEQUk8M) we will learn how to control an effect over the whole screen, how to create soft edges, and how to use textures to drive our shader logic to create all sorts of interesting patterns. 
 
 At the end of the chapter, you will have a screen transition effect like the one below.
 
@@ -18,8 +18,6 @@ If you are following along with code, here is the code from the end of the [prev
 
 
 ## The Scene Transition Effect
-
-At the moment, the scene transitions between the `TitleScene` to the `GameScene` are non-existent. The game immediately jumps from rendering one scene to rendering the other scene. Instant loading is great, but it can be jarring for the player. A common approach to blending between scenes is to use a [Screen Wipe](https://www.youtube.com/watch?v=8NAhAEQUk8M), where a pattern fades across the screen as the new scene is revealed. We will create a screen wipe effect by writing a custom shader.
 
 ### Getting Started
 
