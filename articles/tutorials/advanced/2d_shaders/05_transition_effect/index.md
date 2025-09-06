@@ -93,6 +93,13 @@ And recall that unless the `Progress` parameter is actually _used_ somehow in th
 
 Now you can use the slider in the debug UI to visualize the `Progress` parameter as the red channel. 
 
+> [!caution]
+> But wait, how does the game know to render a `Progress` slider? 
+> 
+> Recall from [Chapter 03: The Material Class](./../03_the_material_class/index.md#setting-shader-parameters)'s _Setting Shader Parameters_ section that MonoGame's `EffectParameterCollection` knows about all of the compiled shader parameters The Debug UI we created in [Chapter 04: Debug UI](./../04_debug_ui/index.md#building-a-material-debug-ui) draws a slider for each parameter in the `EffectParameterCollection`. This means that as soon as a shader parameter is included in the compiled shader code, it will appear in the Debug UI without us needing to manually add or remove it. 
+>
+> As we add or remove shader parameters in the shader code, the hot reload system will compile the shader and reload it into the game, and the Debug UI will draw everything in the `EffectParameterCollection`.
+
 | ![Figure 5-5: See the Progress parameter in the red value](./gifs/progress-parameter.gif) |
 | :---------------------------------------------------------------------------------------: |
 |                **Figure 5-5: See the Progress parameter in the red value**                |
