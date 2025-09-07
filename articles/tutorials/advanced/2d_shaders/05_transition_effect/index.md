@@ -347,7 +347,7 @@ In the `DungeonSlime.csproj` file, add the following changes to include files fr
 
 Also, in order for the shader hot-reload to work with the shared content, modify the `Watch` element to look like this:
 
-[!code-xml[](./snippets/snippet-5-36.xml)]
+[!code-xml[](./snippets/snippet-5-36.xml?highlight=3)]
 
 Next, the existing `ContentManager` instance in the `Core` class will only load content from the _/Content_ folder, which will not include the `sceneTransitionEffect.fx` file, because it is stored in the _/SharedContent_ folder. For this tutorial, we will create a second `ContentManager` in the `Core` class called `SharedContent` which will be configured to only load content from the _/SharedContent_ folder.  Add the following property next to the existing `Content` property in the `Core.cs` file:
 
@@ -355,9 +355,9 @@ Next, the existing `ContentManager` instance in the `Core` class will only load 
 
 And then you will need to set the new `SharedContent` in the `Core` constructor, next to where the existing `Content` property is being set:
 
-[!code-csharp[](./snippets/snippet-5-38.cs)]
+[!code-csharp[](./snippets/snippet-5-38.cs?highlight=13)]
 
-Finally, use the `SharedContent` instead of `Content` load load all the content, from the `LoadContent()` method:
+Finally, use the `SharedContent` instead of `Content` to load all the content, from the `LoadContent()` method:
 
 [!code-csharp[](./snippets/snippet-5-39.cs)]
 

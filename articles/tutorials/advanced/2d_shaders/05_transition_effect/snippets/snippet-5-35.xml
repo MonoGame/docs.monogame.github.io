@@ -1,3 +1,9 @@
-<ItemGroup>  
-    <MonoGameContentReference Include="**/*.mgcb;../MonoGameLibrary/**/*.mgcb" />  
-</ItemGroup>
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- ... -->
+
+    <ItemGroup>  
+        <MonoGameContentReference Include="**/*.mgcb;../MonoGameLibrary/**/*.mgcb" />  
+    </ItemGroup>
+
+  <!-- ... -->
+</Project>

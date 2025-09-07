@@ -1,1 +1,7 @@
-<Watch Include="../**/*.fx;"/>
+<ItemGroup Condition="'$(OnlyWatchContentFiles)'=='true'">
+    <!-- Adds .fx files to the `dotnet watch`'s file scope -->
+    <Watch Include="../**/*.fx;" />
+
+    <!-- Removes the .cs files from `dotnet watch`'s compile scope -->
+    <Compile Update="**/*.cs" Watch="false" />
+</ItemGroup>
