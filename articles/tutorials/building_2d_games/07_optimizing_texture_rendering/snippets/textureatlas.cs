@@ -88,7 +88,7 @@ public class TextureAtlas
     }
 
     /// <summary>
-    /// Creates a new texture atlas based a texture atlas xml configuration file.
+    /// Creates a new texture atlas based on a texture atlas xml configuration file.
     /// </summary>
     /// <param name="content">The content manager used to load the texture for the atlas.</param>
     /// <param name="fileName">The path to the xml file, relative to the content root directory.</param>
