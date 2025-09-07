@@ -5,6 +5,15 @@ description: "Create an effect for transitioning between scenes"
 
 Our game is functional, but the jump from the title screen to the game is very sudden. We can make it feel much more polished with a smooth transition instead of an instant cut.
 
+> [!note]
+>
+> In the previous chapters, we focused on the shader development workflow.
+>  1. We set up a hot-reload system in [Chapter 02](./../02_hot_reload/index.md),
+>  2. We set up a `Material` class in [Chapter 03](./../03_the_material_class/index.md),
+>  3. We set up a debug UI using `ImGui.NET` in [Chapter 04](./../04_debug_ui/index.md).
+
+> All of this prior work is going to finally going to pay off! In this chapter, you will be able to leverage the hot-reload and debug UI to experiment with shader code in realtime without ever needing to restart your game. You can start the game, make changes to the shader, tweak shader parameters, all without needing to recompile your project. 
+
 In this chapter, we will dive into our first major pixel shader effect: a classic [Screen Wipe](https://www.youtube.com/watch?v=8NAhAEQUk8M) we will learn how to control an effect over the whole screen, how to create soft edges, and how to use textures to drive our shader logic to create all sorts of interesting patterns. 
 
 At the end of the chapter, you will have a screen transition effect like the one below.
@@ -93,7 +102,7 @@ And recall that unless the `Progress` parameter is actually _used_ somehow in th
 
 Now you can use the slider in the debug UI to visualize the `Progress` parameter as the red channel. 
 
-> [!caution]
+> [!warning]
 > But wait, how does the game know to render a `Progress` slider? 
 > 
 > Recall from [Chapter 03: The Material Class](./../03_the_material_class/index.md#setting-shader-parameters)'s _Setting Shader Parameters_ section that MonoGame's `EffectParameterCollection` knows about all of the compiled shader parameters The Debug UI we created in [Chapter 04: Debug UI](./../04_debug_ui/index.md#building-a-material-debug-ui) draws a slider for each parameter in the `EffectParameterCollection`. This means that as soon as a shader parameter is included in the compiled shader code, it will appear in the Debug UI without us needing to manually add or remove it. 
@@ -121,7 +130,7 @@ The following shader helps visualize the x-coordinate of each pixel:
 
 That results in this image, where the left edge has an x-coordinate of `0`, it has no red value, and where the right edge has an x-coordinate of `1`, the image is fully red. In the middle of the image, the red value interpolates between `0` and `1`. 
 
-> [!caution]
+> [!warning]
 > Where did the `Progress` slider go?
 >
 > When the shader is compiled, the `Progress` parameter is being optimized out of the final compiled code, because it was not being used in the final output of the shader in any way. The MonoGame shader compiler is good at optimizing away unused parameters, which is good because it helps the performance of your game. However, it can be confusing, because the `Progress` parameter appears to _vanish_ from the shader. Indeed, it no longer appears in the `EffectParameterCollection`, so the debug UI has no way of knowing it exists to render it. 
