@@ -88,7 +88,7 @@ public class AudioController : IDisposable
     /// <summary>
     /// Gets a value that indicates if this audio controller has been disposed.
     /// </summary>
-    public bool IsDisposed {get; private set; }
+    public bool IsDisposed { get; private set; }
     #endregion
 
     #region ctors
