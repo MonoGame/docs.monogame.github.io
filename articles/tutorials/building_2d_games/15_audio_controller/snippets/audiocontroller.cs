@@ -168,7 +168,7 @@ public class AudioController : IDisposable
     /// <returns>The sound effect instance created by this method.</returns>
     public SoundEffectInstance PlaySoundEffect(SoundEffect soundEffect)
     {
-        return PlaySoundEffect(soundEffect, 1.0f, 1.0f, 0.0f, false);
+        return PlaySoundEffect(soundEffect, 1.0f, 0.0f, 0.0f, false);
     }
 
     /// <summary>
