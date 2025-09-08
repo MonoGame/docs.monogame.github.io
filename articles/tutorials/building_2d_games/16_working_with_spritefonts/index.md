@@ -198,7 +198,7 @@ First, we will need to create a SpriteFont Definition.  Open the *Content.mgcb* 
 
 ### Download the Font File
 
-Next, right-click the following TTF font and choose "Save Link as..." and save it in the same folder as the *04B_30.spriteFont* file we just created.
+Next, right-click the following TTF font and choose "Save Link as..." and save it in the same folder using the MGCB Editor as the *04B_30.spriteFont* file we just created.
 
 - [04B_30.ttf](./files/04B_30.ttf){download}
 
