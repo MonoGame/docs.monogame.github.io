@@ -33,7 +33,7 @@ if(newDirection != Vector2.Zero && _inputBuffer.Count < MAX_BUFFER_SIZE)
 }
 
 // In movement update code.
-if(_inputBuffer.COunt > 0)
+if(_inputBuffer.Count > 0)
 {
     Vector2 nextDirection = _inputBuffer.Dequeue();
     _position += nextDirection * _speed;
