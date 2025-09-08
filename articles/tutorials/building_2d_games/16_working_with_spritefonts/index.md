@@ -125,7 +125,7 @@ For most games, the default range is sufficient.
 
 ## Loading a SpriteFont Description
 
-To load a SpritFont Description, we use the [**ContentManager.Load**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)) method with the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) type:
+To load a SpriteFont Description, we use the [**ContentManager.Load**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)) method with the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) type:
 
 ```cs
 // Loading a SpriteFont Description using the content pipeline
