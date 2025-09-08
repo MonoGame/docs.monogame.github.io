@@ -21,6 +21,9 @@ The example assumes the texture you are loading contains multiple images, one fo
 
 Save the textures to your content project and name it "**AnimatedCharacter**" (this name will used to reference it in the project).
 
+> [!NOTE]
+> The tutorial assumes you have already viewed the [How to draw a Sprite](https://docs.monogame.net/articles/getting_to_know/howto/graphics/HowTo_Draw_A_Sprite.html) topic.
+
 > [!IMPORTANT]
 > The foreground sprite in this example must include masking information, e.g. a PNG or DDS file that supports transparency / an alpha channel.
 
@@ -117,4 +120,5 @@ Try using this technique on top of the [How To Make A Scrolling Background](HowT
 - [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
 - [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
 - [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
+
 
