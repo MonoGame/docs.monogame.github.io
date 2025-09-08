@@ -54,7 +54,7 @@ Save it to your content project and name it "**Character**" (this name will used
 5. Call [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_) on your [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) object, passing the texture to draw, the screen position, and the color to apply.
 
     > [!TIP]
-    > [Color.White](xref:Microsoft.Xna.Framework.Color) is used to draw the texture without any color effects.
+    > [Color.White](xref:Microsoft.Xna.Framework.Color) is used to draw the texture without any color effects. For a deeper explanation of how sprite tinting works, check out the [How to Tint a Sprite](https://docs.monogame.net/articles/getting_to_know/howto/graphics/HowTo_Tint_Sprite.html) guide.
 
 6. When all the sprites have been drawn, call [SpriteBatch.End](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_End) on your [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) object.
 
@@ -130,3 +130,4 @@ See [How to detect input](../input/index.md) for more information on working wit
 - [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
 
 (Character by `upklyak` from [FreePik](https://www.freepik.com/free-vector/cartoon-alien-character-animation-sprite-sheet_33397951.htm))
+
