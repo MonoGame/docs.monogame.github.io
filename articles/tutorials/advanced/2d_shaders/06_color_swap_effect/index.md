@@ -87,7 +87,7 @@ That would produce an image like this,
 
 ### Using a Color Map
 
-The problem with this approach is that we would need to have an `if` check for _each_ color that should be swapped. Depending on your work ethic, there are already too many colors in the _Dungeon Slime_ assets to hardcode them all in a shader. Instead of hard coding the color swaps as `if` statements, we can create a _table_ of colors that maps asset color to final color. 
+The problem with the hard-coded approach is that we would need to have an `if` check for _each_ color that should be swapped. Depending on your work ethic, there are already too many colors in the _Dungeon Slime_ assets to hardcode them all in a shader. Instead of hard coding the color swaps as `if` statements, we can create a _table_ of colors that maps asset color to final color. 
 
 Conceptually, a _table_ structure is a series of `key` -> `value` pairs. We could represent each asset color as a `key`, and store the swap color as a `value`. To build up a good example, let's find a few more colors from the _Dungeon Slime_ assets. 
 
@@ -130,7 +130,8 @@ Here is the actual texture with the swapped colors. Download [this image](./imag
 |             **Figure 6-12: The color table texture**              |
 
 We need to load and pass the the texture to the `colorSwapEffect` shader.
-Add this code after loading the `_colorSwapMaterial` in the `LoadContent()` method
+Add this code after loading the `_colorSwapMaterial` in the `LoadContent()` method:
+
 [!code-csharp[](./snippets/snippet-6-09.cs)]
 
 And the `colorSwapEffect.fx` shader needs to be updated to accept the color map:
