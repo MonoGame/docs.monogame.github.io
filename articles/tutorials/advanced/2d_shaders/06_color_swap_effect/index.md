@@ -30,7 +30,7 @@ Start by creating a new `Sprite Effect` in the _SharedContent_ MonoGame Content 
 | :---------------------------------------------------------------------------: |
 |          **Figure 6-5: Add the `colorSwapEffect.fx` to MGCB Editor**          |
 
-In the `GameScene`, we need to do the following steps to start working with the new `colorSwapEffect.fx`, 
+Switch back to your code editor, and in the `GameScene`, we need to do the following steps to start working with the new `colorSwapEffect.fx`, 
 1. Add a class variable for the new `Material` instance:
 
 [!code-csharp[](./snippets/snippet-6-01.cs)]

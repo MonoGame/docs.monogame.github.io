@@ -37,24 +37,25 @@ Start by creating a new `Sprite Effect` from the MonoGame Content Builder Editor
 |          **Figure 5-2: Create a new `Sprite Effect**           |
 
 
-Now, switch back to your code editor, and add the following variable to the `Core` class:
+Now, switch back to your code editor, and perfor the following steps,
+
+1. Add the following variable to the `Core` class:
 
 [!code-csharp[](./snippets/snippet-5-01.cs)]
 
-
-Add an override to the `LoadContent` method, and load the `sceneTransitionEffect.fx` file into a `Material`:
+2. Add an override to the `LoadContent` method, and load the `sceneTransitionEffect.fx` file into a `Material`:
 
 [!code-csharp[](./snippets/snippet-5-02.cs)]
 
-Make sure to call the `Core`'s version of `LoadContent()` from the `Game1` class. In the previous tutorial, the method was left without calling the base method:
+3. Make sure to call the `Core`'s version of `LoadContent()` from the `Game1` class. In the previous tutorial, the method was left without calling the base method:
 
 [!code-csharp[](./snippets/snippet-5-03.cs?highlight=4)]
 
-And as we develop the effect, enable the debug UI:
+4. And as we develop the effect, enable the debug UI:
 
 [!code-csharp[](./snippets/snippet-5-05.cs?highlight=5)]
 
-To benefit from hot-reload, we need to update the effect in the `Core`'s `Update()` loop:
+5. To benefit from hot-reload, we need to update the effect in the `Core`'s `Update()` loop:
 
 [!code-csharp[](./snippets/snippet-5-04.cs?highlight=6)]
 
