@@ -125,7 +125,10 @@ We could produce a second texture that puts different color values in the same k
 
 Here is the actual texture with the swapped colors. Download [this image](./images/color-map-1.png) and add it to your MonoGame Content file.
 
-| ![Figure 6-12: The color table texture](./images/color-map-1.png) |
+> [!note]
+> This image is not to scale. Remember, it is a 256x1 pixel image. This preview is being scaled up to a height of 32 pixels just for visualization.
+
+| <img src="./images/color-map-1.png" alt="Figure 6-12: The color table texture" style=" height: 32px; image-rendering: pixelated;"/> |
 | :--------------------------------------------------------------: |
 |             **Figure 6-12: The color table texture**              |
 
@@ -173,7 +176,7 @@ That looks pretty good, but changing between original and swap colors reveals a 
 
 To fix this, we can adjust the color lookup map to use transparent values by default. Use [this texture](./images/color-map-2.png) instead.
 
-| ![Figure 6-14: The color map with a transparent default color](./images/color-map-2.png) |
+| <img src="./images/color-map-2.png" alt="Figure 6-14: The color map with a transparent default color" style=" height: 32px; image-rendering: pixelated;"/> |
 | :-------------------------------------------------------------------------------------: |
 |             **Figure 6-14: The color map with a transparent default color**              |
 
