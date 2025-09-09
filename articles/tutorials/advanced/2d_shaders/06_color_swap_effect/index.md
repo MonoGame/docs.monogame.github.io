@@ -3,8 +3,6 @@ title: "Chapter 06: Color Swap Effect"
 description: "Create a shader to change the colors of the game"
 ---
 
-The art in our game looks good, but what if we wanted to change the color palette on the fly? Or make the player flash a different color when they pick something up? Re-drawing all the art for every possible color combination would be a lot of work. Thankfully, we can use a shader to do this dynamically!
-
 In this chapter, we will create a powerful color-swapping effect. we will learn about a common and flexible technique that uses a texture as a Look-Up Table (LUT) to map original colors to new ones. This will give us precise control over the look and feel of our game's sprites.
 
 At the end of this chapter, we will be able to fine-tune the colors of the game. Here are a few examples: 
@@ -18,7 +16,7 @@ If you are following along with code, here is the code from the end of the [prev
 
 ## The Basic Color Swap Effect
 
-At the moment, the game uses a lot of blue and gray textures. A common feature in retro-style games is to be able to change the color palette of the game. Another common feature of a game is to change the character's color during certain in-game events. For example, maybe the character flashes red or white when taking damage, or sparkles a gold color when picking up a combo. There are 2 broad categories for implementing these styles of features, 
+At the moment, the game uses a lot of blue and gray textures. A common feature in retro-style games is to be able to change the color palette of the game. Another common feature of a game is to change the character's color during certain in-game events. For example, maybe the character flashes white when taking damage, or sparkles a gold color when picking up a combo. There are 2 broad categories for implementing these styles of features, 
 1. re-draw all of the game assets using each color palette,
 2. use some sort of _color swap_ shader effect to dynamically control the colors of sprites at runtime. 
 
@@ -27,6 +25,10 @@ For some simple use cases, sometimes it makes sense to simply re-draw the assets
 ### Getting Started
 
 Start by creating a new `Sprite Effect` in the _SharedContent_ MonoGame Content Builder file, and name it `colorSwapEffect.fx`. 
+
+| ![Figure 6-5: Add the `colorSwapEffect.fx` to MGCB Editor](./images/mgcb.png) |
+| :---------------------------------------------------------------------------: |
+|          **Figure 6-5: Add the `colorSwapEffect.fx` to MGCB Editor**          |
 
 In the `GameScene`, we need to do the following steps to start working with the new `colorSwapEffect.fx`, 
 1. Add a class variable for the new `Material` instance:
@@ -49,9 +51,9 @@ Now when you run the game, it will look the same, but the new shader is being us
 
 [!code-hlsl[](./snippets/snippet-6-05.hlsl)]
 
-| ![Figure 6-5: Confirm the shader is being used](./images/test.png) |
+| ![Figure 6-6: Confirm the shader is being used](./images/test.png) |
 | :----------------------------------------------------------------: |
-|          **Figure 6-5: Confirm the shader is being used**          |
+|          **Figure 6-6: Confirm the shader is being used**          |
 
 > [!warning] 
 > The menu will not use the color swapper.
@@ -69,9 +71,9 @@ The easiest way to disable all of the game logic is to `return` early from the `
 
 The goal is to be able to change the color of the sprites drawn with the `_colorSwapMaterial`. To build some intuition, one of the most straightforward ways to change the color is to hard-code a table of colors in the `colorSwapEffect.fx` file. The texture atlas used to draw the slime character uses a color value of `rgb(32, 40, 78)` for the body of the slime. 
 
-| ![Figure 6-6: The slime uses a dark blue color](./images/slime-blue-color.png) |
+| ![Figure 6-7: The slime uses a dark blue color](./images/slime-blue-color.png) |
 | :----------------------------------------------------------------------------: |
-|                **Figure 6-6: The slime uses a dark blue color**                |
+|                **Figure 6-7: The slime uses a dark blue color**                |
 
 The shader code _could_ just do an `if` check for this color, and when any of the pixels are that color, return a hot-pink color instead:
 
@@ -79,9 +81,9 @@ The shader code _could_ just do an `if` check for this color, and when any of th
 
 That would produce an image like this,
 
-| ![Figure 6-7: The blue color is hardcoded to pink](./images/pink.png) |
+| ![Figure 6-8: The blue color is hardcoded to pink](./images/pink.png) |
 | :-------------------------------------------------------------------: |
-|          **Figure 6-7: The blue color is hardcoded to pink**          |
+|          **Figure 6-8: The blue color is hardcoded to pink**          |
 
 ### Using a Color Map
 
@@ -89,9 +91,9 @@ The problem with this approach is that we would need to have an `if` check for _
 
 Conceptually, a _table_ structure is a series of `key` -> `value` pairs. We could represent each asset color as a `key`, and store the swap color as a `value`. To build up a good example, let's find a few more colors from the _Dungeon Slime_ assets. 
 
-| ![Figure 6-8: The colors from the assets](./images/color-map.png) |
+| ![Figure 6-9: The colors from the assets](./images/color-map.png) |
 | :---------------------------------------------------------------: |
-|            **Figure 6-8: The colors from the assets**             |
+|            **Figure 6-9: The colors from the assets**             |
 
 And here they are written out,
 1. dark-blue - `rgb(32, 40, 78)`
@@ -109,23 +111,23 @@ Unfortunately, shaders do not support the `Dictionary<>` type, so we need to fin
 
 These images are not to scale, because a 256x1 pixel image would not show well on a web browser. Here are the original colors laid out in a 256x1 pixel image, with the color's red channel value written below the pixel.
 
-| ![Figure 6-9: The original colors](./images/texture-map-original.png) |
+| ![Figure 6-10: The original colors](./images/texture-map-original.png) |
 | :-------------------------------------------------------------------: |
-|                  **Figure 6-9: The original colors**                  |
+|                  **Figure 6-10: The original colors**                  |
 
 We could produce a second texture that puts different color values in the same key positions.
 
-| ![Figure 6-10: An abstract view of a 255 x 1 texture](./images/texture-map.png) |
+| ![Figure 6-11: An abstract view of a 255 x 1 texture](./images/texture-map.png) |
 | :----------------------------------------------------------------------------: |
-|             **Figure 6-10: An abstract view of a 255 x 1 texture**              |
+|             **Figure 6-11: An abstract view of a 255 x 1 texture**              |
 
 
 
 Here is the actual texture with the swapped colors. Download [this image](./images/color-map-1.png) and add it to your MonoGame Content file.
 
-| ![Figure 6-11: The color table texture](./images/color-map-1.png) |
+| ![Figure 6-12: The color table texture](./images/color-map-1.png) |
 | :--------------------------------------------------------------: |
-|             **Figure 6-11: The color table texture**              |
+|             **Figure 6-12: The color table texture**              |
 
 We need to load and pass the the texture to the `colorSwapEffect` shader.
 Add this code after loading the `_colorSwapMaterial` in the `LoadContent()` method
@@ -162,17 +164,17 @@ Change the shader function to the following:
 
 Now in the game, we can visualize the color swap by adjusting the control parameter. Perhaps the colors we picked do not look very nice.
 
-| ![Figure 6-12: The color swap effect is working!](./gifs/color-swap.gif) |
+| ![Figure 6-13: The color swap effect is working!](./gifs/color-swap.gif) |
 | :---------------------------------------------------------------------: |
-|            **Figure 6-12: The color swap effect is working!**            |
+|            **Figure 6-13: The color swap effect is working!**            |
 
 That looks pretty good, but changing between original and swap colors reveals a visual glitch. The color table didn't account for _some_ of the original colors. All of the colors get mapped, and our default color in the map was _white_, so some of the game's art is just turning white. For example, look at the torches on the top-wall. 
 
 To fix this, we can adjust the color lookup map to use transparent values by default. Use [this texture](./images/color-map-2.png) instead.
 
-| ![Figure 6-13: The color map with a transparent default color](./images/color-map-2.png) |
+| ![Figure 6-14: The color map with a transparent default color](./images/color-map-2.png) |
 | :-------------------------------------------------------------------------------------: |
-|             **Figure 6-13: The color map with a transparent default color**              |
+|             **Figure 6-14: The color map with a transparent default color**              |
 
 Now, anytime the swapped color value has an `alpha` value of zero, the implication is that the color was not part of the table. In that case, the shader should default to the original color instead of the non-existent mapped value.
 
@@ -180,9 +182,9 @@ In the shader, before the final `return` line, add this snippet:
 
 [!code-hlsl[](./snippets/snippet-6-13.hlsl)]
 
-| ![Figure 6-14: Colors that are not in the map do not change color](./gifs/color-swap-2.gif) |
+| ![Figure 6-15: Colors that are not in the map do not change color](./gifs/color-swap-2.gif) |
 | :-----------------------------------------------------------------------------------------: |
-|             **Figure 6-14: Colors that are not in the map do not change color**             |
+|             **Figure 6-15: Colors that are not in the map do not change color**             |
 
 One final glitch becomes apparent if you stare at that long enough, which is that the center pixel in the torch is changing color from its original _white_, to our mapped orange color. In a way, that is _by design_, because the white values are being mapped. Fixing this would require a modification to the original assets to change the color the torch center, but that is left as an exercise for the reader. 
 
@@ -192,21 +194,21 @@ The colors used above aren't the nicest. They were used for demonstration purpos
 
 Dark Purple - Here is the color map for a [dark-purple](./images/color-map-dark-purple.png) color scheme.
 
-| ![Figure 6-15: A dark purple look](./images/example-dark-purple.png) |
+| ![Figure 6-16: A dark purple look](./images/example-dark-purple.png) |
 | :------------------------------------------------------------------: |
-|                 **Figure 6-15: A dark purple look**                  |
+|                 **Figure 6-16: A dark purple look**                  |
 
 Green - Here is the color map for a [green](./images/color-map-green.png) color scheme.
 
-| ![Figure 6-16: A green look](./images/example-green.png) |
+| ![Figure 6-17: A green look](./images/example-green.png) |
 | :------------------------------------------------------: |
-|              **Figure 6-16: A green look**               |
+|              **Figure 6-17: A green look**               |
 
 Pink - Here is the color map for a [pink](./images/color-map-pink.png) color scheme.
 
-| ![Figure 6-17: A pink look](./images/example-pink.png) |
+| ![Figure 6-18: A pink look](./images/example-pink.png) |
 | :----------------------------------------------------: |
-|              **Figure 6-17: A pink look**              |
+|              **Figure 6-18: A pink look**              |
 
 
 ## Creating Dynamic Color Maps
@@ -222,9 +224,9 @@ Create a new class under the _MonoGameLibrary/Graphics_ folder called `RedColorM
 And now to check if its working, create a temporary variable at the end of the `LoadContent()` in the `GameScene`
 [!code-csharp[](./snippets/snippet-6-15.cs)]
 
-| ![Figure 6-18: Changing the colors from runtime](./images/example-runtime.png) |
+| ![Figure 6-19: Changing the colors from runtime](./images/example-runtime.png) |
 | :----------------------------------------------------------------------------: |
-|               **Figure 6-18: Changing the colors from runtime**                |
+|               **Figure 6-19: Changing the colors from runtime**                |
 
 ### Changing Slime Color
 
@@ -240,9 +242,9 @@ And then update the draw code itself to update the shader parameter between draw
 
 Now the slime appears with one color swap configuration and the rest of the scene uses the color swap configured via the content.
 
-| ![Figure 6-19: The slime is a different color configuration than the game](./images/example-multi.png) |
+| ![Figure 6-20: The slime is a different color configuration than the game](./images/example-multi.png) |
 | :----------------------------------------------------------------------------------------------------: |
-|              **Figure 6-19: The slime is a different color configuration than the game**               |
+|              **Figure 6-20: The slime is a different color configuration than the game**               |
 
 We want to swap the color of the slime between two color maps, so first, we need a way to clone an existing color map into the dynamic color table. Add this method to the `RedColorMap` class:
 
@@ -257,9 +259,9 @@ Now in the `Draw()` method, we can _optionally_ change the color map based on so
 
 [!code-csharp[](./snippets/snippet-6-20.cs)]
 
-| ![Figure 6-20: The slime's color changes based on time](./gifs/color-swap-even-seconds.gif) |
+| ![Figure 6-21: The slime's color changes based on time](./gifs/color-swap-even-seconds.gif) |
 | :-----------------------------------------------------------------------------------------: |
-|                  **Figure 6-20: The slime's color changes based on time**                   |
+|                  **Figure 6-21: The slime's color changes based on time**                   |
 
 Ultimately, it would be nice to control the color value _per_ slime segment, not the entire slime. When the player eats a bat, the slime segments should change color in an animated way so that it looks like the color is "moving" down the slime segments. To do this, modify the `Slime.Draw()` method to look like this:
 
@@ -280,9 +282,9 @@ Now, in the `Draw()` method, modify the _slime_'s draw invocation to use the new
 
 Play around with the colors until you find something you like.
 
-| ![Figure 6-21: The slime's color changes when it eats](./gifs/color-swap-slime.gif) |
+| ![Figure 6-22: The slime's color changes when it eats](./gifs/color-swap-slime.gif) |
 | :---------------------------------------------------------------------------------: |
-|               **Figure 6-21: The slime's color changes when it eats**               |
+|               **Figure 6-22: The slime's color changes when it eats**               |
 
 ## Fixing the Gray Scale
 
@@ -311,9 +313,9 @@ And now the main shader function can chain these methods together:
 
 Now you can control the saturation manually with the debug slider,
 
-| ![Figure 6-22: Combining the color swap and saturation effect](./gifs/color-saturation.gif) |
+| ![Figure 6-23: Combining the color swap and saturation effect](./gifs/color-saturation.gif) |
 | :-----------------------------------------------------------------------------------------: |
-|               **Figure 6-22: Combining the color swap and saturation effect**               |
+|               **Figure 6-23: Combining the color swap and saturation effect**               |
 
 The last thing to do is remove the old `grayscaleEffect` and re-write the game logic to set the `Saturation` parameter on the new effect. 
 In the `Draw()` method, instead of having an `if` case to start the `SpriteBatch` with different settings, it can always be configured to start with the `_colorSwapMaterial`:
@@ -324,9 +326,9 @@ In the `Update()` method, we just need to set the `_saturation` back to `1` if t
 
 [!code-csharp[](./snippets/snippet-6-30.cs)]
 
-| ![Figure 6-23: The grayscale effect has been restored](./gifs/grayscale.gif) |
+| ![Figure 6-24: The grayscale effect has been restored](./gifs/grayscale.gif) |
 | :--------------------------------------------------------------------------: |
-|           **Figure 6-23: The grayscale effect has been restored**            |
+|           **Figure 6-24: The grayscale effect has been restored**            |
 
 
 ## Color Look Up Textures (LUTs)
