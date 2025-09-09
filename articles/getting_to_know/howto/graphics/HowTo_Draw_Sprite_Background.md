@@ -22,7 +22,7 @@ The example assumes the texture you are loading contains multiple images, one fo
 Save the textures to your content project and name it "**AnimatedCharacter**" (this name will used to reference it in the project).
 
 > [!NOTE]
-> The tutorial assumes you have already viewed the [How to draw a Sprite](https://docs.monogame.net/articles/getting_to_know/howto/graphics/HowTo_Draw_A_Sprite.html) topic.
+> The tutorial assumes you have already viewed the [How to draw a Sprite](HowTo_Draw_A_Sprite.md) topic.
 
 > [!IMPORTANT]
 > The foreground sprite in this example must include masking information, e.g. a PNG or DDS file that supports transparency / an alpha channel.
