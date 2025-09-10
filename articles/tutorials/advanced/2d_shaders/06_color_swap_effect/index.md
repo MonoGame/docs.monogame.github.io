@@ -211,11 +211,11 @@ So far, we have created color maps and brought them into the game as content. Ho
 
 To get started, we first need to devise a way to create a custom color map and pass it to the shader. 
 
-Create a new class under the _MonoGameLibrary/Graphics_ folder called `RedColorMap`:
+1. Create a new class under the _MonoGameLibrary/Graphics_ folder called `RedColorMap`:
 
 [!code-csharp[](./snippets/snippet-6-14.cs)]
 
-And now to check if its working, create a temporary variable at the end of the `LoadContent()` in the `GameScene`
+2. And now to check if its working, create a temporary variable at the end of the `LoadContent()` in the `GameScene`
 [!code-csharp[](./snippets/snippet-6-15.cs)]
 
 | ![Figure 6-19: Changing the colors from runtime](./images/example-runtime.png) |
@@ -225,6 +225,15 @@ And now to check if its working, create a temporary variable at the end of the `
 ### Changing Slime Color
 
 The goal is to change the color of the slime independently from the rest of the game. The `SpriteBatch` will try to make as few draw calls as possible and because all of the game assets are in a sprite-atlas, any shader parameters will be applied for _all_ sprites. However, you can change the `sortMode` to `Immediate` to change the `SpriteBatch`'s optimization to make it draw sprites immediately with whatever _current_ shader parameters exist. 
+
+> [!warning]
+> The `Immediate` sort mode stops the `SpriteBatch` from _batching_ your sprites into a single draw call, and instead, makes a draw call _per_ sprite. More draw calls means more work between the CPU and GPU, and that means slower performance compared to fewer draw calls. However, game programming is about identifying acceptable trade offs between performance and gameplay value. 
+> 
+> _Dungeon Slime_ is a simple game, and it isn't worth it to try and optimize this part of the game, _at this point_. 
+> 
+> As an exercise for the reader, try to think of a way to re-write this section with two draw calls instead of one per sprite. 
+> _hint: there are only 2 color maps that are ever on screen at any given moment._ 
+
 
 Change the `SpriteBatch.Begin()` call to look like this:
 
