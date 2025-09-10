@@ -1,3 +1,5 @@
+// ...
+
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
     float4 originalColor = tex2D(SpriteTextureSampler,input.TextureCoordinates) * input.Color;
@@ -17,3 +19,5 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 
     return originalColor;
 }
+
+// ...

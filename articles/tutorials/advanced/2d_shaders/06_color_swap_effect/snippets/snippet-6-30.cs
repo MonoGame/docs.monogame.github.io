@@ -1,16 +1,27 @@
-if (_state != GameState.Playing)
+public override void Update(GameTime gameTime)
 {
-    // The game is in either a paused or game over state, so
-    // gradually decrease the saturation to create the fading grayscale.
-    _saturation = Math.Max(0.0f, _saturation - FADE_SPEED);
+    // Ensure the UI is always updated
+    _ui.Update(gameTime);
 
-    // If its just a game over state, return back
-    if (_state == GameState.GameOver)
+    // Update the colorSwap material if it was changed
+    _colorSwapMaterial.Update();
+
+    if (_state != GameState.Playing)
     {
-        return;
+        // The game is in either a paused or game over state, so
+        // gradually decrease the saturation to create the fading grayscale.
+        _saturation = Math.Max(0.0f, _saturation - FADE_SPEED);
+
+        // If its just a game over state, return back
+        if (_state == GameState.GameOver)
+        {
+            return;
+        }
     }
-}
-else
-{
-    _saturation = 1;
+    else
+    {
+        _saturation = 1;
+    }
+
+    // ...
 }

@@ -45,11 +45,11 @@ Switch back to your code editor, and in the `GameScene`, we need to do the follo
 
 4. And finally, _use_ the `colorSwapMaterial` when drawing the sprites for the `GameScene`. For now, as we explore the color swapping effect, we are going to disable the `grayscaleEffect` functionality. In the `Draw()` method, start the `SpriteBatch` like this:
 
-[!code-csharp[](./snippets/snippet-6-04.cs)]
+[!code-csharp[](./snippets/snippet-6-04.cs?highlight=12,17)]
 
 Now when you run the game, it will look the same, but the new shader is being used to draw all the sprites in the `GameScene`. To verify, you can try changing the shader function to force the red channel to be `1`, just to see some visually striking confirmation the new shader is being used:
 
-[!code-hlsl[](./snippets/snippet-6-05.hlsl)]
+[!code-hlsl[](./snippets/snippet-6-05.hlsl?highlight=6)]
 
 | ![Figure 6-6: Confirm the shader is being used](./images/test.png) |
 | :----------------------------------------------------------------: |
@@ -64,7 +64,7 @@ For debugging purposes, we will disable the game's update logic so the player an
 
 The easiest way to disable all of the game logic is to `return` early from the `GameScene`'s `Update()` method, thus short circuiting all of the game logic:
 
-[!code-csharp[](./snippets/snippet-6-06.cs)]
+[!code-csharp[](./snippets/snippet-6-06.cs?highlight=11)]
 
 
 ### Hard Coding Color Swaps
@@ -77,7 +77,7 @@ The goal is to be able to change the color of the sprites drawn with the `_color
 
 The shader code _could_ just do an `if` check for this color, and when any of the pixels are that color, return a hot-pink color instead:
 
-[!code-hlsl[](./snippets/snippet-6-07.hlsl)]
+[!code-hlsl[](./snippets/snippet-6-07.hlsl?highlight=14)]
 
 That would produce an image like this,
 
@@ -135,7 +135,7 @@ Here is the actual texture with the swapped colors. Download [this image](./imag
 We need to load and pass the the texture to the `colorSwapEffect` shader.
 Add this code after loading the `_colorSwapMaterial` in the `LoadContent()` method:
 
-[!code-csharp[](./snippets/snippet-6-09.cs)]
+[!code-csharp[](./snippets/snippet-6-09.cs?highlight=9-10)]
 
 And the `colorSwapEffect.fx` shader needs to be updated to accept the color map:
 
@@ -160,11 +160,11 @@ The shader function can now do 2 steps to perform the color swap,
 
 To help visualize the effect, it will be helpful to visualize the original color _and_ the swap color. Add a control parameter that can be used to select between the two colors:
 
-[!code-hlsl[](./snippets/snippet-6-11.hlsl)]
+[!code-hlsl[](./snippets/snippet-6-11.hlsl?highlight=4)]
 
 Change the shader function to the following:
 
-[!code-hlsl[](./snippets/snippet-6-12.hlsl)]
+[!code-hlsl[](./snippets/snippet-6-12.hlsl?highlight=15)]
 
 Now in the game, we can visualize the color swap by adjusting the control parameter. Perhaps the colors we picked do not look very nice.
 
@@ -184,7 +184,7 @@ Now, anytime the swapped color value has an `alpha` value of zero, the implicati
 
 In the shader, before the final `return` line, add this snippet:
 
-[!code-hlsl[](./snippets/snippet-6-13.hlsl)]
+[!code-hlsl[](./snippets/snippet-6-13.hlsl?highlight=15-19)]
 
 | ![Figure 6-15: Colors that are not in the map do not change color](./gifs/color-swap-2.gif) |
 | :-----------------------------------------------------------------------------------------: |
@@ -195,8 +195,6 @@ One final glitch becomes apparent if you stare at that long enough, which is tha
 ### Nicer Colors
 
 The colors used above aren't the nicest. They were used for demonstration purposes. Here are some nicer textures to use that produce better results. 
-
-Dark Purple - Here is the color map for a  color scheme.
 
 | ![Figure 6-16: A dark purple look](./images/example-dark-purple.png) | ![Figure 6-17: A green look](./images/example-green.png) | ![Figure 6-18: A pink look](./images/example-pink.png) |
 | :------------------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------: |
@@ -237,11 +235,11 @@ The goal is to change the color of the slime independently from the rest of the 
 
 Change the `SpriteBatch.Begin()` call to look like this:
 
-[!code-csharp[](./snippets/snippet-6-16.cs)]
+[!code-csharp[](./snippets/snippet-6-16.cs?highlight=7)]
 
 And then update the draw code itself to update the shader parameter between drawing the slime and the rest of the game:
 
-[!code-csharp[](./snippets/snippet-6-17.cs)]
+[!code-csharp[](./snippets/snippet-6-17.cs?highlight=12,21)]
 
 Now the slime appears with one color swap configuration and the rest of the scene uses the color swap configured via the content.
 
@@ -255,7 +253,7 @@ We want to swap the color of the slime between two color maps, so first, we need
 
 Then modify the instance in the `GameScene` to start the color map based off whatever color map texture was loaded:
 
-[!code-csharp[](./snippets/snippet-6-19.cs)]
+[!code-csharp[](./snippets/snippet-6-19.cs?highlight=7)]
 
 
 Now in the `Draw()` method, we can _optionally_ change the color map based on some condition. In this example, the color map only being set on every other second:
@@ -275,9 +273,9 @@ Then, in the `GameScene`'s logic, we need to add a local field to remember when 
 [!code-csharp[](./snippets/snippet-6-22.cs)]
 
 
-In the `CollisionCheck()` method, add this line after the `Grow()` method is invoked:
+In the `CollisionChecks()` method, add this line after the `Grow()` method is invoked:
 
-[!code-csharp[](./snippets/snippet-6-23.cs)]
+[!code-csharp[](./snippets/snippet-6-23.cs?highlight=12)]
 
 Now, in the `Draw()` method, modify the _slime_'s draw invocation to use the new `configureSpriteBatch` callback:
 
@@ -323,11 +321,11 @@ Now you can control the saturation manually with the debug slider,
 The last thing to do is remove the old `grayscaleEffect` and re-write the game logic to set the `Saturation` parameter on the new effect. 
 In the `Draw()` method, instead of having an `if` case to start the `SpriteBatch` with different settings, it can always be configured to start with the `_colorSwapMaterial`:
 
-[!code-csharp[](./snippets/snippet-6-29.cs)]
+[!code-csharp[](./snippets/snippet-6-29.cs?highlight=3)]
 
 In the `Update()` method, we just need to set the `_saturation` back to `1` if the game is being played:
 
-[!code-csharp[](./snippets/snippet-6-30.cs)]
+[!code-csharp[](./snippets/snippet-6-30.cs?highlight=23)]
 
 | ![Figure 6-24: The grayscale effect has been restored](./gifs/grayscale.gif) |
 | :--------------------------------------------------------------------------: |

@@ -16,3 +16,5 @@ sampler2D ColorMapSampler = sampler_state
     AddressU = Clamp;
     AddressV = Clamp;
 };
+
+// ...
