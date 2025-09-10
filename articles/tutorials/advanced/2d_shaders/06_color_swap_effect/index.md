@@ -346,6 +346,10 @@ Finally, if you need _more_ colors, the final color channel can be included in t
 
 Color LUTs are used in post-processing to adjust the final look and feel of games across the industry. The technique is called _Tone-Mapping_. 
 
+If you are interested in Color LUTs, check out the following articles, 
+1. [GPU Gems 2: Chapter 24](https://developer.nvidia.com/gpugems/gpugems2/part-iii-high-quality-rendering/chapter-24-using-lookup-tables-accelerate-color) offers a sweeping overview of 3D Color LUTs.
+2. [Frost Kiwi's Color LUT Article](https://blog.frost.kiwi/WebGL-LUTS-made-simple/) is a fantastic exploration of the topic with lots of additional sources to explore. 
+
 ## Conclusion
 
 That was a really powerful technique! In this chapter, you accomplished the following:
