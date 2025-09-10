@@ -196,23 +196,13 @@ One final glitch becomes apparent if you stare at that long enough, which is tha
 
 The colors used above aren't the nicest. They were used for demonstration purposes. Here are some nicer textures to use that produce better results. 
 
-Dark Purple - Here is the color map for a [dark-purple](./images/color-map-dark-purple.png) color scheme.
+Dark Purple - Here is the color map for a  color scheme.
 
-| ![Figure 6-16: A dark purple look](./images/example-dark-purple.png) |
-| :------------------------------------------------------------------: |
-|                 **Figure 6-16: A dark purple look**                  |
-
-Green - Here is the color map for a [green](./images/color-map-green.png) color scheme.
-
-| ![Figure 6-17: A green look](./images/example-green.png) |
-| :------------------------------------------------------: |
-|              **Figure 6-17: A green look**               |
-
-Pink - Here is the color map for a [pink](./images/color-map-pink.png) color scheme.
-
-| ![Figure 6-18: A pink look](./images/example-pink.png) |
-| :----------------------------------------------------: |
-|              **Figure 6-18: A pink look**              |
+| ![Figure 6-16: A dark purple look](./images/example-dark-purple.png) | ![Figure 6-17: A green look](./images/example-green.png) | ![Figure 6-18: A pink look](./images/example-pink.png) |
+| :------------------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------: |
+|                 **Figure 6-16: A dark purple look**                  |             **Figure 6-17: A green look**                |              **Figure 6-18: A pink look**              |
+| <img src="./images/color-map-dark-purple.png" alt="Figure 6-12: The color table texture" style=" height: 32px; image-rendering: pixelated; background-color: rgba(0,0,0,.2)"/> | <img src="./images/color-map-green.png" alt="Figure 6-12: The color table texture" style="height: 32px; image-rendering: pixelated; background-color: rgba(0,0,0,.2)"/> | <img src="./images/color-map-pink.png" alt="Figure 6-12: The color table texture" style="height: 32px; image-rendering: pixelated; background-color: rgba(0,0,0,.2)"/> |
+| **Download the [dark-purple](./images/color-map-dark-purple.png) color map** | **Download the [green](./images/color-map-green.png) color map** | **Download the [pink](./images/color-map-pink.png) color map** |
 
 
 ## Creating Dynamic Color Maps
