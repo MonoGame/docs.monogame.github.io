@@ -7,10 +7,11 @@ In this chapter, we will create a powerful color-swapping effect. we will learn 
 
 At the end of this chapter, we will be able to fine-tune the colors of the game. Here are a few examples: 
 
-| ![Figure 6-1: The default colors](./images/overview-1.png) | ![Figure 6-2: A green variant of the game](./images/overview-2.png) | ![Figure 6-3: A pink variant of the game](./images/overview-3.png) | ![Figure 6-4: A purple variant of the game](./images/overview-4.png) |
-| :--------------------------------------------------------: | :-----------------------------------------------------------------: | :----------------------------------------------------------------: | :------------------------------------------------------------------: |
-|             **Figure 6-1: The default colors**             |             **Figure 6-2: A green variant of the game**             |             **Figure 6-3: A pink variant of the game**             |             **Figure 6-4: A purple variant of the game**             |
-
+|     ![Figure 6-1: The default colors](./images/overview-1.png)     |  ![Figure 6-2: A green variant of the game](./images/overview-2.png) |  
+| :----------------------------------------------------------------: | :------------------------------------------------------------------: | 
+|                 **Figure 6-1: The default colors**                 |             **Figure 6-2: A green variant of the game**              | 
+| ![Figure 6-3: A pink variant of the game](./images/overview-3.png) | ![Figure 6-4: A purple variant of the game](./images/overview-4.png) |
+|             **Figure 6-3: A pink variant of the game**             |             **Figure 6-4: A purple variant of the game**             |
 
 If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/05-Transition-Effect).
 
@@ -195,6 +196,8 @@ One final glitch becomes apparent if you stare at that long enough, which is tha
 ### Nicer Colors
 
 The colors used above aren't the nicest. They were used for demonstration purposes. Here are some nicer textures to use that produce better results. 
+
+<div class="fixed-table"></div>
 
 | ![Figure 6-16: A dark purple look](./images/example-dark-purple.png) | ![Figure 6-17: A green look](./images/example-green.png) | ![Figure 6-18: A pink look](./images/example-pink.png) |
 | :------------------------------------------------------------------: | :------------------------------------------------------: | :----------------------------------------------------: |
