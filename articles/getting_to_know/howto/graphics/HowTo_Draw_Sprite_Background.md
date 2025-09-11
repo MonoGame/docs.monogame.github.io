@@ -21,6 +21,9 @@ The example assumes the texture you are loading contains multiple images, one fo
 
 Save the textures to your content project and name it "**AnimatedCharacter**" (this name will used to reference it in the project).
 
+> [!NOTE]
+> The tutorial assumes you have already viewed the [How to draw a Sprite](HowTo_Draw_A_Sprite.md) topic.
+
 > [!IMPORTANT]
 > The foreground sprite in this example must include masking information, e.g. a PNG or DDS file that supports transparency / an alpha channel.
 
@@ -70,7 +73,7 @@ Save the textures to your content project and name it "**AnimatedCharacter**" (t
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         _spriteBatch.Begin(blendState: BlendState.Opaque);
-        _spriteBatch.Draw (starTexture);
+        _spriteBatch.Draw(starTexture, Vector2.Zero, Color.White);
         _spriteBatch.End();
     }
     ```
@@ -88,7 +91,7 @@ Save the textures to your content project and name it "**AnimatedCharacter**" (t
     public override void Draw (GameTime game)
     {
         _spriteBatch.Begin(blendState: BlendState.Opaque);
-        _spriteBatch.Draw (starTexture);
+        _spriteBatch.Draw(starTexture, Vector2.Zero, Color.White);
         _spriteBatch.End();
         
         _spriteBatch.Begin(blendState: BlendState.AlphaBlend);
@@ -117,3 +120,5 @@ Try using this technique on top of the [How To Make A Scrolling Background](HowT
 - [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch)
 - [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_)
 - [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
+
+

@@ -21,7 +21,7 @@ The following texture will be used to render to the screen.
 Save it to your content project and name it "**Character**" (this name will used to reference it in the project).
 
 > [!NOTE]
-> The tutorial assumes you have already [created a new MonoGame project](https://docs.monogame.net/articles/getting_started/index.html#2-creating-a-new-project) using one of the standard templates.
+> The tutorial assumes you have already [created a new MonoGame project](../../../getting_started/index.md#setting-up-and-creating-your-first-monogame-project) using one of the standard templates.
 
 ## To draw a sprite on screen
 
@@ -54,7 +54,7 @@ Save it to your content project and name it "**Character**" (this name will used
 5. Call [SpriteBatch.Draw](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_Draw_Microsoft_Xna_Framework_Graphics_Texture2D_Microsoft_Xna_Framework_Vector2_Microsoft_Xna_Framework_Color_) on your [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) object, passing the texture to draw, the screen position, and the color to apply.
 
     > [!TIP]
-    > [Color.White](xref:Microsoft.Xna.Framework.Color) is used to draw the texture without any color effects.
+    > [Color.White](xref:Microsoft.Xna.Framework.Color) is used to draw the texture without any color effects. For a deeper explanation of how sprite tinting works, check out the [How to Tint a Sprite](HowTo_Tint_Sprite.md) guide.
 
 6. When all the sprites have been drawn, call [SpriteBatch.End](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch#Microsoft_Xna_Framework_Graphics_SpriteBatch_End) on your [SpriteBatch](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) object.
 
@@ -130,3 +130,4 @@ See [How to detect input](../input/index.md) for more information on working wit
 - [Texture2D](xref:Microsoft.Xna.Framework.Graphics.Texture2D)
 
 (Character by `upklyak` from [FreePik](https://www.freepik.com/free-vector/cartoon-alien-character-animation-sprite-sheet_33397951.htm))
+
