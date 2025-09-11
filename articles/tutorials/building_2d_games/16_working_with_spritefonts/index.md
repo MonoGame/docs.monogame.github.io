@@ -125,7 +125,7 @@ For most games, the default range is sufficient.
 
 ## Loading a SpriteFont Description
 
-To load a SpritFont Description, we use the [**ContentManager.Load**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)) method with the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) type:
+To load a SpriteFont Description, we use the [**ContentManager.Load**](xref:Microsoft.Xna.Framework.Content.ContentManager.Load%60%601(System.String)) method with the [**SpriteFont**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) type:
 
 ```cs
 // Loading a SpriteFont Description using the content pipeline
@@ -198,7 +198,7 @@ First, we will need to create a SpriteFont Definition.  Open the *Content.mgcb* 
 
 ### Download the Font File
 
-Next, right-click the following TTF font and choose "Save Link as..." and save it in the same folder as the *04B_30.spriteFont* file we just created.
+Next, right-click the following TTF font and choose "Save Link as...". Save the file in the same folder where you created the *04B_30.spriteFont* file using the MGCB Editor. This ensures the font is correctly linked and available for your SpriteFont configuration.
 
 - [04B_30.ttf](./files/04B_30.ttf){download}
 
