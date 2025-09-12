@@ -96,18 +96,26 @@ The default sprite vertex shader uses this line:
 
 [!code-hlsl[](./snippets/snippet-7-07.hlsl)]
 
-The reason this line exists is to convert the vertices from world-space to clip-space. A vertex is a 3d coordinate in "world-space". But a monitor is a 2d display. Often, the screen's 2d coordinate system is called "clip-space". The vertex shader is converting the 3d world-space coordinate into a 2d clip-space coordinate. That conversion is a vector and matrix multiplication, using the `MatrixTransform`. 
+The reason this line exists is to convert the vertices from world-space to clip-space. 
+
+> [!tip]
+> A vertex is a 3d coordinate in "world-space". But a monitor is a 2d display. Often, the screen's 2d coordinate system is called "clip-space". The vertex shader is converting the 3d world-space coordinate into a 2d clip-space coordinate. That conversion is a vector and matrix multiplication, using the `MatrixTransform`. 
+>
+> Read more about clip space on [wikipedia](https://en.wikipedia.org/wiki/Clip_coordinates).
+> We will cover more about _how_ the conversion happens later in this chapter, in the perspective projection section.
 
 The `MatrixTransform` is computed by the [`SpriteEffect`](xref:Microsoft.Xna.Framework.Graphics.SpriteEffect) class. The full source is available, [`here`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Effect/SpriteEffect.cs#L63). The relevant lines are copied below:
 
 [!code-csharp[](./snippets/snippet-7-08.cs)]
 
 There are two common types of project matrices, 
-1. Orthographic,
+1. Orthographic (The default used by `SpriteBatch`), 
 2. Perspective
 
 The orthographic projection matrix produces the classic 2d sprite effect, where sprites have no perspective when they are on the sides of the screen. 
 
+> [!tip]
+> Read more about these projection matrixes on [MonoGame's Camera Article](https://docs.monogame.net/articles/getting_to_know/whatis/graphics/WhatIs_Camera.html).
 
 ## Custom Vertex Shader
 
