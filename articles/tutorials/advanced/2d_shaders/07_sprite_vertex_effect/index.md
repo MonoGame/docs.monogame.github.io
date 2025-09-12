@@ -46,7 +46,7 @@ This snippet from the `VertexPositionColorTexture` class defines the semantics f
 
 [!code-csharp[](./snippets/snippet-7-03.cs)]
 
-> ![tip]
+> [!tip]
 > MonoGame is free and open source, so you can always go read the full source-code for the [`VertexPositionColorTexture`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Vertices/VertexPositionColorTexture.cs))
 
 The vertex shader declares a semantic for each input using the `:` syntax:
