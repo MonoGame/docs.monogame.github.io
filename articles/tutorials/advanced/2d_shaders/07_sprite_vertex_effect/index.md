@@ -33,18 +33,21 @@ The `SpriteVertexShader` looks different from our pixel shaders in a few importa
 
 ### Input Semantics
 
-The inputs to the vertex shader mirror the information that the []`SpriteBatch`](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) class bundles up for each vertex. If you look at the `SpriteBatchItem`, you will see that each sprite is made up of 4 `VertexPositionColorTexture` instances:
+The inputs to the vertex shader mirror the information that the [`SpriteBatchItem`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatchItem.cs) class bundles up for each vertex. If you look at the `SpriteBatchItem`, you will see that each sprite is made up of 4 `VertexPositionColorTexture` instances:
 
 [!code-csharp[](./snippets/snippet-7-02.cs)]
 
+> [!note]
+> The `SpriteBatchItem` is part of the implementation of `SpriteBatch`, but `SpriteBatchItem` is not part of the public MonoGame API. 
 
-The [`VertexPositionColorTexture`](xref:Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture) class is a standard MonoGame implementation of the `IVertexType`, and it defines a `Position`, a `Color`, and a `TextureCoordinate` for each vertex. Those should look familiar, because they align with the inputs to the vertex shader function. The alignment is not happenstance, it is enforced by "semantics" that are applied to each field in the vertex. This snippet from the `VertexPositionColorTexture` class defines the semantics for each field in the vertex by specifying the `VertexElementUsage`:
+The [`VertexPositionColorTexture`](xhref:Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture) class is a standard MonoGame implementation of the `IVertexType`, and it defines a `Position`, a `Color`, and a `TextureCoordinate` for each vertex. Those should look familiar, because they align with the inputs to the vertex shader function. The alignment is not happenstance, it is enforced by "semantics" that are applied to each field in the vertex. 
+
+This snippet from the `VertexPositionColorTexture` class defines the semantics for each field in the vertex by specifying the `VertexElementUsage`:
 
 [!code-csharp[](./snippets/snippet-7-03.cs)]
 
-> [!note]
-> MonoGame is open source, so you can go read the full code for [SpriteBatchItem](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatchItem.cs) and[`VertexPositionColorTexture`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Vertices/VertexPositionColorTexture.cs)
-
+> ![tip]
+> MonoGame is free and open source, so you can always go read the full source-code for the [`VertexPositionColorTexture`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Vertices/VertexPositionColorTexture.cs))
 
 The vertex shader declares a semantic for each input using the `:` syntax:
 
@@ -64,6 +67,18 @@ The same concept of semantics applies to the output of the shader. Here is the o
 This is the _input_ struct for the standard pixel shaders from previous chapters. Notice how the fields are named slightly differently, but the _semantics_ are identical:
 
 [!code-hlsl[](./snippets/snippet-7-06.hlsl)]
+
+> [!tip]
+> What is the difference between `SV_Position` and `POSITION0` ? 
+> 
+> In various places in the shader code, you may notice semantics using `SV_Position` and `POSITION` interchangeably. The `SV_Position` semantic is actually specific to [Direct3D 10's System-Value Semantics](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics?redirectedfrom=MSDN#system-value-semantics). In fact, `SV_Position` is _not_ a valid semantic in DesktopGL targets, so _how_ can it be used interchangeably with `POSITION`? 
+>
+> MonoGame's default shader has a trick to re-map `SV_Position` to `POSITION` only when the target is `OPENGL`:
+> [!code-hlsl[](./snippets/snippet-7-sv.hlsl?highlight=2)]
+>
+> The `#define` line tells the shader parser to replace any instance of `SV_POSITION` with `POSITION`. 
+> This implies that `SV_POSITION` is converted to `POSITION` when you are targetting `OPENGL` platforms, and left "as is" when targeting DirectX.
+
 
 ### Matrix Transform
 
