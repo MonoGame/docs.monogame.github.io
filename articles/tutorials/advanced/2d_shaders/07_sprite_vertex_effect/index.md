@@ -123,7 +123,15 @@ Now that you understand the default vertex shader being used by `SpriteBatch`, w
 1. convert the vertices from world-space to clip-space
 2. provide the input semantics required for the pixel shader.
 
-To experiment with this, create a new Sprite Effect called `3dEffect` in the _MonoGameLibrary_'s shared content effects folder. We need to add a vertex shader function. To do that, we need a new `struct` that holds all the input semantics passed from `SpriteBatch`: 
+To experiment with this, create a new Sprite Effect called `3dEffect` in the _MonoGameLibrary_'s shared content effects folder. 
+
+| ![Figure 7-3: Adding the `3dEffect` to MGCB](./images/mgcb.png) |
+| :----------------------------------------------------------------------------------------: |
+|          **Figure 7-3: Adding the `3dEffect` to MGCB**           |
+
+Follow along with the steps to set up the effect.
+
+1. We need to add a vertex shader function. To do that, we need a new `struct` that holds all the input semantics passed from `SpriteBatch`: 
 
 > [!tip] 
 > Use a struct for inputs and outputs.
@@ -132,45 +140,44 @@ To experiment with this, create a new Sprite Effect called `3dEffect` in the _Mo
 
 [!code-hlsl[](./snippets/snippet-7-09.hlsl)]
 
-Now add the stub for the vertex shader function:
+2. Now add the stub for the vertex shader function:
 
 [!code-hlsl[](./snippets/snippet-7-10.hlsl)]
 
-And finally modify the `technique` to _include_ the vertex shader function. Until now, the `MainVS()` function is just considered as any average function in your shader, and since it wasn't used from the `MainPS` pixel shader, it would be compiled out of the shader. When you specify the `MainVS()` function as the vertex shader function, you are overriding the default `SpriteBatch` vertex shader function:
+3. And finally modify the `technique` to _include_ the vertex shader function. Until now, the `MainVS()` function is just considered as any average function in your shader, and since it wasn't used from the `MainPS` pixel shader, it would be compiled out of the shader. When you specify the `MainVS()` function as the vertex shader function, you are overriding the default `SpriteBatch` vertex shader function:
 
 [!code-hlsl[](./snippets/snippet-7-11.hlsl)]
 
-The shader will not compile yet, because the `VertexShaderOutput` has not been completely initialized. We need to replicate the `MatrixTransform` step to convert the vertices from world-space to clip-space. 
-
-Add the `MatrixTransform` shader parameter:
+4. The shader will not compile yet, because the `VertexShaderOutput` has not been completely initialized. We need to replicate the `MatrixTransform` step to convert the vertices from world-space to clip-space. 
+	Add the `MatrixTransform` shader parameter:
 
 [!code-hlsl[](./snippets/snippet-7-12.hlsl)]
 
-And then assign all of the output semantics in the vertex shader:
+5. And then assign all of the output semantics in the vertex shader:
 
 [!code-hlsl[](./snippets/snippet-7-13.hlsl)]
 
-To validate this is working, we should try to use the new effect. For now, we will experiment in the `TitleScene`. Create a class member for the new `Material`:
+6. To validate this is working, we should try to use the new effect. For now, we will experiment in the `TitleScene`. Create a class member for the new `Material`:
 
 [!code-csharp[](./snippets/snippet-7-14.cs)]
 
-Load the shader using the hot reload system:
+7. Load the shader using the hot reload system:
 
 [!code-csharp[](./snippets/snippet-7-15.cs)]
 
-And then use the effect when drawing the title text:
+8. And then use the effect when drawing the title text:
 
 [!code-csharp[](./snippets/snippet-7-16.cs)]
 
-When the game runs, the text will be missing. This is because we never created a projection matrix to assign to the `MatrixTransform` shader parameter. Add this code when loading the material:
+9. When the game runs, the text will be missing. This is because we never created a projection matrix to assign to the `MatrixTransform` shader parameter. Add this code when loading the material:
 
 [!code-csharp[](./snippets/snippet-7-17.cs)]
 
-And now you should see the text normally again.
+10. And now you should see the text normally again.
 
-| ![Figure 7-3: The main menu, but rendered with a custom vertex shader](./images/basic.png) |
+| ![Figure 7-4: The main menu, but rendered with a custom vertex shader](./images/basic.png) |
 | :----------------------------------------------------------------------------------------: |
-|          **Figure 7-3: The main menu, but rendered with a custom vertex shader**           |
+|          **Figure 7-4: The main menu, but rendered with a custom vertex shader**           |
 
 ### Making it Move
 
@@ -184,9 +191,9 @@ And change the vertex shader to add the `DebugOffset` to the `output.Position` a
 
 The sprites now move around as we adjust the shader parameter values. 
 
-| ![Figure 7-4: We can control the vertex positions](./gifs/basic.gif) |
+| ![Figure 7-5: We can control the vertex positions](./gifs/basic.gif) |
 | :------------------------------------------------------------------: |
-|         **Figure 7-4: We can control the vertex positions**          |
+|         **Figure 7-5: We can control the vertex positions**          |
 
 It is important to build intuition for the different coordinate systems involved. Instead of adding the `DebugOffset` _after_ the clip-space conversion, if you try to add it _before_, like in the code below:
 
@@ -194,9 +201,9 @@ It is important to build intuition for the different coordinate systems involved
 
 Then you will not see much movement at all. This is because the `DebugOffset` values only go from `0` to `1`, and in world space, this really only amounts to a single pixel. In fact, exactly how much an addition of _`1`_ happens to make is entirely defined _by_ the conversion to clip-space. The `projection` matrix we created treats world space coordinates with an origin around the screen's center, where 1 unit maps to 1 pixel. Sometimes this is exactly what you want, and sometimes it can be confusing. 
 
-| ![Figure 7-5: Changing coordinates before clip-space conversion](./gifs/basic-2.gif) |
+| ![Figure 7-6: Changing coordinates before clip-space conversion](./gifs/basic-2.gif) |
 | :----------------------------------------------------------------------------------: |
-|          **Figure 7-5: Changing coordinates before clip-space conversion**           |
+|          **Figure 7-6: Changing coordinates before clip-space conversion**           |
 
 ### Perspective Projection
 
@@ -239,9 +246,9 @@ Moving the `z` value uniformly in the shader will not be visually stimulating. A
 
 And now when the debug parameter is adjusted, the text spins in a way that was never possible with the default `SpriteBatch` vertex shader.
 
-| ![Figure 7-6: A spinning text](./gifs/spin-1.gif) |
+| ![Figure 7-7: A spinning text](./gifs/spin-1.gif) |
 | :-----------------------------------------------: |
-|          **Figure 7-6: A spinning text**          |
+|          **Figure 7-7: A spinning text**          |
 
 The text disappears for half of the rotation. That happens because as the vertices are rotated, the triangle itself started to point _away_ from the camera. By default, `SpriteBatch` will cull any faces that point away from the camera. Change the `rasterizerState` to `CullNone` when beginning the sprite batch:
 
@@ -249,15 +256,15 @@ The text disappears for half of the rotation. That happens because as the vertic
 
 And voilà, the text no longer disappears on its flip side. 
 
-| ![Figure 7-7: A spinning text with reverse sides](./gifs/spin-2.gif) |
+| ![Figure 7-8: A spinning text with reverse sides](./gifs/spin-2.gif) |
 | :------------------------------------------------------------------: |
-|          **Figure 7-7: A spinning text with reverse sides**          |
+|          **Figure 7-8: A spinning text with reverse sides**          |
 
 You may find that the field of view is too high for your taste. Try lowering the field of view to 60, and you'll see something similar to this,
 
-| ![Figure 7-8: A spinning text with reverse sides with smaller fov](./gifs/spin-3.gif) |
+| ![Figure 7-9: A spinning text with reverse sides with smaller fov](./gifs/spin-3.gif) |
 | :-----------------------------------------------------------------------------------: |
-|          **Figure 7-8: A spinning text with reverse sides with smaller fov**          |
+|          **Figure 7-9: A spinning text with reverse sides with smaller fov**          |
 
 As a final touch, we should remove the hard-coded `screenSize` variable from the shader, and extract it as a shader parameter. While we are at it, clean up and remove the debug parameters as well:
 
@@ -271,9 +278,9 @@ And instead of manually controlling the spin angle, we can make the title spin g
 
 [!code-csharp[](./snippets/snippet-7-29.cs)]
 
-| ![Figure 7-9: Spin controlled by the mouse](./gifs/spin-4.gif) |
+| ![Figure 7-10: Spin controlled by the mouse](./gifs/spin-4.gif) |
 | :------------------------------------------------------------: |
-|          **Figure 7-9: Spin controlled by the mouse**          |
+|          **Figure 7-10: Spin controlled by the mouse**          |
 
 ## Applying it to the Game
 
@@ -359,9 +366,9 @@ And then apply all of the parameters to the single material:
 
 Any place where the old `_colorSwapMaterial` is being referenced should be changed to use the `_gameMaterial` instead. Now, if you run the game, the color swap controls are still visible, but we can also manually control the tilt of the map.
 
-| ![Figure 7-10: All of the effects in one](./gifs/uber.gif) |
+| ![Figure 7-11: All of the effects in one](./gifs/uber.gif) |
 | :-------------------------------------------------------: |
-|         **Figure 7-10: All of the effects in one**         |
+|         **Figure 7-11: All of the effects in one**         |
 
 ### Adjusting the Game
 
@@ -371,9 +378,9 @@ Add this snippet to the top of the `GameScene`'s `Update()` method:
 
 [!code-csharp[](./snippets/snippet-7-43.cs)]
 
-| ![Figure 7-11: Camera follows the slime](./gifs/cam-follow.gif) |
+| ![Figure 7-12: Camera follows the slime](./gifs/cam-follow.gif) |
 | :------------------------------------------------------------: |
-|            **Figure 7-11: Camera follows the slime**            |
+|            **Figure 7-12: Camera follows the slime**            |
 
 The clear color of the scene can be seen in the corners (the `CornflowerBlue`). Pick whatever clear color you think looks good for the color swapping:
 
@@ -381,9 +388,9 @@ The clear color of the scene can be seen in the corners (the `CornflowerBlue`). 
 
 And to finish this chapter, the game looks like this,
 
-| ![Figure 7-12: vertex shaders make it pop](./gifs/final.gif) |
+| ![Figure 7-13: vertex shaders make it pop](./gifs/final.gif) |
 | :---------------------------------------------------------: |
-|         **Figure 7-12: vertex shaders make it pop**          |
+|         **Figure 7-13: vertex shaders make it pop**          |
 
 ## Conclusion
 
