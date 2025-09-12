@@ -1,2 +1,10 @@
-// the POSITION0 is the semantic 
-float4 position	: POSITION0,
+// ...
+
+VSOutput SpriteVertexShader(float4 position	: POSITION0,
+							float4 color	: COLOR0,
+							float2 texCoord	: TEXCOORD0)
+{
+    // ...
+}
+
+// ...

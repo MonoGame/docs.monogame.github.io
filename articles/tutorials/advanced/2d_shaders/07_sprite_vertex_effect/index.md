@@ -53,6 +53,16 @@ The vertex shader declares a semantic for each input using the `:` syntax:
 
 [!code-hlsl[](./snippets/snippet-7-04.hlsl)]
 
+The semantics align with the values from the `VertexElementUsage` values. The table shows the correlation of the common semantics. 
+
+| Shader Semantic | `VertexElementUsage` Value             |
+| :-------------- | :------------------------------------- |
+| `POSITION`      | `VertexElementUsage.Position`          |
+| `COLOR`         | `VertexElementUsage.Color`             |
+| `TEXCOORD`      | `VertexElementUsage.TextureCoordinate` |
+
+These semantics are responsible for mapping the values written into the `VertexPositionColorTexture` to the corresponding inputs in the shader file. 
+
 >[!warning] 
 > You cannot change the `SpriteBatch` vertex shader. 
 > 
