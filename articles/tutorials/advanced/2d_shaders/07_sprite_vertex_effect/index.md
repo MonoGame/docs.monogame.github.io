@@ -92,9 +92,9 @@ This is the _input_ struct for the standard pixel shaders from previous chapters
 
 ### Matrix Transform
 
-The default sprite vertex shader uses this line:
+The default sprite vertex shader uses a [`mul()`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-mul) expression:
 
-[!code-hlsl[](./snippets/snippet-7-07.hlsl)]
+[!code-hlsl[](./snippets/snippet-7-07.hlsl?highlight=8)]
 
 The reason this line exists is to convert the vertices from world-space to clip-space. 
 
@@ -133,12 +133,12 @@ Follow along with the steps to set up the effect.
 
 1. We need to add a vertex shader function. To do that, we need a new `struct` that holds all the input semantics passed from `SpriteBatch`: 
 
+[!code-hlsl[](./snippets/snippet-7-09.hlsl)]
+
 > [!tip] 
 > Use a struct for inputs and outputs.
 > 
 > The default vertex shader accepts all 3 inputs (`position`, `color`, and `texCoord`) as direct parameters. However, when you have more than 1 semantic, it is helpful to organize all of the inputs in a `struct`. 
-
-[!code-hlsl[](./snippets/snippet-7-09.hlsl)]
 
 2. Now add the stub for the vertex shader function:
 
@@ -146,7 +146,7 @@ Follow along with the steps to set up the effect.
 
 3. And finally modify the `technique` to _include_ the vertex shader function. Until now, the `MainVS()` function is just considered as any average function in your shader, and since it wasn't used from the `MainPS` pixel shader, it would be compiled out of the shader. When you specify the `MainVS()` function as the vertex shader function, you are overriding the default `SpriteBatch` vertex shader function:
 
-[!code-hlsl[](./snippets/snippet-7-11.hlsl)]
+[!code-hlsl[](./snippets/snippet-7-11.hlsl?highlight=6)]
 
 4. The shader will not compile yet, because the `VertexShaderOutput` has not been completely initialized. We need to replicate the `MatrixTransform` step to convert the vertices from world-space to clip-space. 
 	Add the `MatrixTransform` shader parameter:
@@ -187,7 +187,7 @@ As a quick experiment, we can show that the vertex shader can indeed modify the 
 
 And change the vertex shader to add the `DebugOffset` to the `output.Position` after the clip-space conversion:
 
-[!code-hlsl[](./snippets/snippet-7-19.hlsl)]
+[!code-hlsl[](./snippets/snippet-7-19.hlsl?highlight=7)]
 
 The sprites now move around as we adjust the shader parameter values. 
 
@@ -197,7 +197,7 @@ The sprites now move around as we adjust the shader parameter values.
 
 It is important to build intuition for the different coordinate systems involved. Instead of adding the `DebugOffset` _after_ the clip-space conversion, if you try to add it _before_, like in the code below:
 
-[!code-hlsl[](./snippets/snippet-7-20.hlsl)]
+[!code-hlsl[](./snippets/snippet-7-20.hlsl?highlight=7)]
 
 Then you will not see much movement at all. This is because the `DebugOffset` values only go from `0` to `1`, and in world space, this really only amounts to a single pixel. In fact, exactly how much an addition of _`1`_ happens to make is entirely defined _by_ the conversion to clip-space. The `projection` matrix we created treats world space coordinates with an origin around the screen's center, where 1 unit maps to 1 pixel. Sometimes this is exactly what you want, and sometimes it can be confusing. 
 
@@ -211,13 +211,15 @@ The world-space vertices can have their `x` and `y` values modified in the verte
 
 To check, try modify the shader code to adjust the `z` value based on one of the debug values:
 
-[!code-hlsl[](./snippets/snippet-7-21.hlsl)]
+[!code-hlsl[](./snippets/snippet-7-21.hlsl?highlight=7)]
 
 > [!tip] 
 > Near and Far plane clipping.
 > 
 > Keep in mind that if you modify the `z` value _too_ much, it will likely step outside of the near and far planes of the orthographic projection matrix. If this happens, the sprite will vanish, because it the projection matrix does not handle coordinates outside of the near and far planes. In the example above, they were defined as `0` and `-1`. 
+> 
 > [!code-csharp[](./snippets/snippet-7-22.cs)]
+> 
 
 Nothing happens! 
 

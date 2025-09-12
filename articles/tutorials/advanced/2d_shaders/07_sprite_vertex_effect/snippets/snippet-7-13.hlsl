@@ -1,3 +1,5 @@
+// ...
+
 VertexShaderOutput MainVS(VertexShaderInput input) 
 {
     VertexShaderOutput output;
@@ -6,3 +8,5 @@ VertexShaderOutput MainVS(VertexShaderInput input)
     output.TextureCoordinates = input.TexCoord;
     return output;
 }
+
+// ...
