@@ -231,11 +231,11 @@ Create a new file in the _MonoGameLibrary_'s graphics folder called `SpriteCamer
 
 And now instead of creating an orthographic matrix in the `TitleScene`, we can use the new class:
 
-[!code-csharp[](./snippets/snippet-7-24.cs)]
+[!code-csharp[](./snippets/snippet-7-24.cs?highlight=9)]
 
 Moving the `z` value uniformly in the shader will not be visually stimulating. A more impressive demonstration of the _perspective_ projection would be to rotate the vertices around the center of the sprite:
 
-[!code-hlsl[](./snippets/snippet-7-25.hlsl)]
+[!code-hlsl[](./snippets/snippet-7-25.hlsl?highlight=7-22)]
 
 > [!note]
 > What does this do, `output.Position /= output.Position.w` ? 
@@ -254,7 +254,7 @@ And now when the debug parameter is adjusted, the text spins in a way that was n
 
 The text disappears for half of the rotation. That happens because as the vertices are rotated, the triangle itself started to point _away_ from the camera. By default, `SpriteBatch` will cull any faces that point away from the camera. Change the `rasterizerState` to `CullNone` when beginning the sprite batch:
 
-[!code-csharp[](./snippets/snippet-7-26.cs)]
+[!code-csharp[](./snippets/snippet-7-26.cs?highlight=4)]
 
 And voilà, the text no longer disappears on its flip side. 
 
@@ -278,7 +278,7 @@ Then, make sure to set the ScreenSize parameter correctly from C#:
 
 And instead of manually controlling the spin angle, we can make the title spin gentle following the mouse position. In the `Update()` function the `TitleScreen`, add the following snippet:
 
-[!code-csharp[](./snippets/snippet-7-29.cs)]
+[!code-csharp[](./snippets/snippet-7-29.cs?highlight=5-7)]
 
 | ![Figure 7-10: Spin controlled by the mouse](./gifs/spin-4.gif) |
 | :------------------------------------------------------------: |
