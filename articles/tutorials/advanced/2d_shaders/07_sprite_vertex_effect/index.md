@@ -300,11 +300,19 @@ And instead of manually controlling the spin angle, we can make the title spin g
 
 It was helpful to use the `TitleScene` to build intuition for the vertex shader, but now it is time to apply the perspective vertex shader to the game itself to add immersion and a sense of depth to the gameplay. The goal is to use the same effect in the `GameScene`. 
 
-### The Uber Shader
+### Making One Big Shader
 
 A problem emerges right away. The `GameScene` is already using the color swapping effect to draw the sprites, and `SpriteBatch` can only use a single per batch. 
 
-To solve this problem, we will collapse our shaders into a single shader that does all _both_ the color swapping _and_ the vertex manipulation. Writing code to be re-usable is a challenge for all programming languages, and shader language is no different. Sometimes when a game has lots of different effects collapsed into a single shader, the shader is called the _Uber Shader_. For _Dungeon Slime_, that term is premature, but the spirit is the same. 
+To solve this problem, we will collapse our shaders into a single shader that does all _both_ the color swapping _and_ the vertex manipulation. Writing code to be re-usable is a challenge for all programming languages, and shader languages are no different. 
+
+> [!note]
+> The _Uber_ Shader
+> 
+> Sometimes when people collapse lots of shaders into a single shader, it is called an _"Uber"_ shader. For _Dungeon Slime_, that term is premature, but the spirit is the same. 
+> Finding ways to collapse code into simpler code pathways is helpful for keeping your code easy to understand, but it can also keep your shader's compilation times faster, and runtime performance higher. 
+> 
+> For an insightful read, check out this article on [shader permutations](https://therealmjp.github.io/posts/shader-permutations-part1/). 
 
 MonoGame shaders can reference code from multiple files by using the `#include` syntax. MonoGame itself [uses](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Platform/Graphics/Effect/Resources/SpriteEffect.fx#L8) this technique itself in the default vertex shader for `SpriteBatch`. We can move some of the code from our existing `.fx` files into a _new_ `.fxh` file, re-write the existing shaders to `#include` the new `.fxh` file, and then be able to write additional `.fx` files that `#include` multiple of our files and compose the functions into a single effect. 
 
