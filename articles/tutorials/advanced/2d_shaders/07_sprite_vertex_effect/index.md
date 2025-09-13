@@ -321,13 +321,15 @@ MonoGame shaders can reference code from multiple files by using the `#include` 
 > 
 > `.fxh` is purely convention. Technically you can use whatever file extension you want, but `.fxh` implies the usage of the file is for shared code, and does not contain a standalone effect itself. The `h` references `header`. 
 
-Before we get started, we are going to be editing `.fxh` files, so it would be nice if the hot-reload system also listened to these `.fxh` file changes. Update the `Watch` configuration in the `DungeonSlime.csproj` file to include the `.fxh` file type:
+Follow the steps below to refactor the shader code to use the `#include` syntax. 
+
+1. Before we get started, we are going to be editing `.fxh` files, so it would be nice if the hot-reload system also listened to these `.fxh` file changes. Update the `Watch` configuration in the `DungeonSlime.csproj` file to include the `.fxh` file type:
 
 [!code-xml[](./snippets/snippet-7-30.xml)]
 
-Let's start by factoring out some shared components a few different `.fxh` files. 
-
-Create a file in the _MonoGameLibrary_'s shared effect content folder called `common.fxh`. This file will contain utilities that can be shared for all effects, such as the `struct` types that define the inputs and outputs of the vertex and pixel shaders:
+2. Let's start by factoring out some shared components a few different `.fxh` files. 
+   
+   Create a file in the _MonoGameLibrary_'s shared effect content folder called `common.fxh`. This file will contain utilities that can be shared for all effects, such as the `struct` types that define the inputs and outputs of the vertex and pixel shaders:
 
 [!code-hlsl[](./snippets/snippet-7-31.hlsl)]
 
@@ -336,23 +338,24 @@ Create a file in the _MonoGameLibrary_'s shared effect content folder called `co
 > 
 > The `#include` syntax is taking the referenced file and inserting it into the code. If the same file was included twice, then the contents that file would be written out as code _twice_. Defining a `struct` or function this way would cause the compiler to fail, because the `struct` would be declared twice, which is illegal. To work around this, _a_ solution is to use a practice called "include guards", where the file itself defines a symbol (in the case above, the symbol is `COMMON`). The file only compiles to anything if the symbol has not yet been defined. The `#ifndef` stands for "if not yet defined". Once the `COMMON` symbol is defined once, any future inclusions of the file will not match the `#ifndef` clause. 
 
-Then, in the `3dEffect.fx` file, remove the `VertexShaderInput` and `VertexShaderOutput` structs and replace them with this line:
+3. Then, in the `3dEffect.fx` file, remove the `VertexShaderInput` and `VertexShaderOutput` structs and replace them with this line:
 
 [!code-hlsl[](./snippets/snippet-7-32.hlsl)]
 
-If you run the game, nothing should change, except that the shader code is more modular. To continue, create another file next to `3dEffect.fx` called `3dEffect.fxh`. Paste the contents:
+4. If you run the game, nothing should change, except that the shader code is more modular. To continue, create another file next to `3dEffect.fx` called `3dEffect.fxh`. 
+   Paste the contents:
 
 [!code-hlsl[](./snippets/snippet-7-33.hlsl)]
 
-And now in the `3dEffect.fx`, instead of `#include` referencing the `common.fxh`, we can directly reference `3dEffect.fxh`. We should also remove the code that was just pasted into the new common header file. Here is the entire contents of the slimmed down `3dEffect.fx` file:
+5. And now in the `3dEffect.fx`, instead of `#include` referencing the `common.fxh`, we can directly reference `3dEffect.fxh`. We should also remove the code that was just pasted into the new common header file. Here is the entire contents of the slimmed down `3dEffect.fx` file:
 
 [!code-hlsl[](./snippets/snippet-7-34.hlsl)]
 
-It is time to do the same thing for the `colorSwapEffect.fx` file. The goal is to split the file apart into a header file that defines the components of the effect, and leave the `fx` file itself without much _implementation_. Create a new file called `colors.fxh`, and paste the following:
+6. It is time to do the same thing for the `colorSwapEffect.fx` file. The goal is to split the file apart into a header file that defines the components of the effect, and leave the `fx` file itself without much _implementation_. Create a new file called `colors.fxh`, and paste the following:
 
 [!code-hlsl[](./snippets/snippet-7-35.hlsl)]
 
-Then, then `colorSwapEffect.fx` file can be re-written as this code:
+7. Then, then `colorSwapEffect.fx` file can be re-written as this code:
 
 [!code-hlsl[](./snippets/snippet-7-36.hlsl)]
 
@@ -363,27 +366,27 @@ Now most of the components we'd like to combine into a single effect have been s
 error PREPROCESS01: File not found: common.fxh in .(MonoGame.Effect.Preprocessor+MGFile)
 ```
 
-This happens because the `gameEffect.fx` file is in a different folder than the `common.fxh` file, and the `"common.fxh"`  is treated as a relative _file path_ lookup. Instead, in the `gameEffect.fx` file, use this line:
+8. This happens because the `gameEffect.fx` file is in a different folder than the `common.fxh` file, and the `"common.fxh"`  is treated as a relative _file path_ lookup. Instead, in the `gameEffect.fx` file, use this line:
 
 [!code-hlsl[](./snippets/snippet-7-37.hlsl)]
 
-Then, the `gameEffect.fx` file could also reference the other two `.fxh` files we created:
+9. Then, the `gameEffect.fx` file could also reference the other two `.fxh` files we created:
 
 [!code-hlsl[](./snippets/snippet-7-38.hlsl)]
 
-And the only thing the `gameEffect.fx` file needs to specify is which functions to use for the vertex shader and pixel shader functions:
+10. And the only thing the `gameEffect.fx` file needs to specify is which functions to use for the vertex shader and pixel shader functions:
 
-[!code-hlsl[](./snippets/snippet-7-39.hlsl)]
+	[!code-hlsl[](./snippets/snippet-7-39.hlsl)]
+	
+	The entire contents of the `gameEffect.fx` are written below:
 
-The entire contents of the `gameEffect.fx` are written below:
+	[!code-hlsl[](./snippets/snippet-7-40.hlsl)]
 
-[!code-hlsl[](./snippets/snippet-7-40.hlsl)]
-
-To load it into the `GameScene`, we need to _delete_ the old class member for `_colorSwapMaterial`, and add a new one:
+11. To load it into the `GameScene`, we need to _delete_ the old class member for `_colorSwapMaterial`, and add a new one:
 
 [!code-csharp[](./snippets/snippet-7-41.cs)]
 
-And then apply all of the parameters to the single material:
+12. And then apply all of the parameters to the single material:
 
 [!code-csharp[](./snippets/snippet-7-42.cs)]
 
