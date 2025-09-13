@@ -215,7 +215,7 @@ Then you will not see much movement at all. This is because the `DebugOffset` va
 
 The world-space vertices can have their `x` and `y` values modified in the vertex shader, but what about the `z` component? The orthographic projection essentially _ignores_ the `z` component of a vertex and treats all vertices as though they are an equal distance away from the camera. If you change the `z` value, you may _expect_ the sprite to appear closer or further away from the camera, but the orthographic projection matrix does not do that. 
 
-To check, try modify the shader code to adjust the `z` value based on one of the debug values:
+To check, try to modify the shader code to adjust the `z` value based on one of the debug values:
 
 [!code-hlsl[](./snippets/snippet-7-21.hlsl?highlight=7)]
 
@@ -268,6 +268,12 @@ And voilà, the text no longer disappears on its flip side.
 | :------------------------------------------------------------------: |
 |          **Figure 7-9: A spinning text with reverse sides**          |
 
+> [!note]
+> What is _Culling_? 
+> 
+> The term, "Culling", is used to describe a scenario when some triangles are not drawn due to some sort of optimization. There are many _types_ of culling, but in this case, we are discussing a specific type of optimization called "Back-face Culling". Learn more about it on [wikipedia](https://en.wikipedia.org/wiki/Back-face_culling). 
+
+
 You may find that the field of view is too high for your taste. Try lowering the field of view to 60, and you'll see something similar to this,
 
 | ![Figure 7-10: A spinning text with reverse sides with smaller fov](./gifs/spin-3.gif) |
@@ -293,6 +299,7 @@ And instead of manually controlling the spin angle, we can make the title spin g
 ## Applying it to the Game
 
 It was helpful to use the `TitleScene` to build intuition for the vertex shader, but now it is time to apply the perspective vertex shader to the game itself to add immersion and a sense of depth to the gameplay. The goal is to use the same effect in the `GameScene`. 
+
 ### The Uber Shader
 
 A problem emerges right away. The `GameScene` is already using the color swapping effect to draw the sprites, and `SpriteBatch` can only use a single per batch. 
