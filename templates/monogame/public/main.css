@@ -248,6 +248,14 @@ td > .xref {
   word-break: normal;
 }
 
+/* 
+  Sometimes the default table styling will leave later columns in a table squished.
+  Put a <div class="fixed-table"> tag rigt before a table to force constant width.
+*/ 
+.fixed-table + .table-responsive table {
+  table-layout: fixed !important;
+}
+
 /*******************************************************************************
 *** Section: Question and Answer Sections
 *** Styling for the questions and answers sections in tutorials
