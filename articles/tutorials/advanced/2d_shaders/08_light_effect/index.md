@@ -458,6 +458,10 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
 | :--------------------------------------------------------------------------------: |
 |              **Figure 8-19: The point light can access screen space**              |
 
+> [!note]
+> The `LightBuffer` is showing that red/greenish color gradient because we forces the shader to return the `input.ScreenCoordinates.xy`. This is only to verify that the `ScreenCoordinates` are working as expected.
+
+
 11. Now, the `pointLightEffect` can use the screen space coordinates to sample the `NormalBuffer` values. To build intuition, start by just returning the values from the `NormalBuffer`. 
     
     Start by reading those values, and then return immediately:
