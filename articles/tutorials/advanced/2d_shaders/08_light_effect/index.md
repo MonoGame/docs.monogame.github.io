@@ -3,14 +3,11 @@ title: "Chapter 08: Light Effect"
 description: "Add dynamic 2d lighting to the game"
 ---
 
-Our game is looking more dynamic, but the visuals are still a bit flat. Good lighting is one of the best ways to add atmosphere, depth, and drama to a scene. In this chapter, we're going to tackle a very advanced and powerful topic: a 2D dynamic lighting system.
+In this chapter, we are going to add a dynamic 2d lighting system to _Dungeon Slime_. At the end of this chapter, the game will look something like this: 
 
-To do this, we will learn about a rendering technique called *deferred rendering*. This approach will allow us to draw many lights onto the screen in an efficient way. Let's get started!
-
-If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/07-Sprite-Vertex-Effect).
-
-
-## Deferred Rendering
+| ![Figure 8-1: The game will have lighting](./gifs/final.gif) |
+| :-------------------------------------------------: |
+|         **Figure 8-1: The game will have lighting**          |
 
 So far, the game's rendering has been fairly straightforward. The game consists of a bunch of sprites, and all those sprites are drawn straight to the screen using a custom shader effect. Adding lights is going to complicate the rendering, because now each sprite must consider _N_ number of lights before being drawn to the screen. 
 
@@ -24,7 +21,10 @@ In the 2000's, the deferred rendering strategy was [introduced](https://sites.go
 
 Deferred rendering was popular for several years. MonoGame is an adaptation of XNA, which came out in the era of deferred rendering. However, deferred renderers are not a silver bullet for performance and graphics programming. The crux of a deferred renderer is to bake data into off-screen textures, and as monitor resolutions have gotten larger and larger, the 4k resolutions are starting to add too much overhead. Also, deferred renderers cannot handle transparent materials. Many big game projects use deferred rendering for _most_ of the scene, and a forward renderer for the final transparent components of the scene. As with all things, which type of rendering to use is a nuanced decision. There are new types of forward rendering strategies (see, [clustered rendering](https://github.com/DaveH355/clustered-shading)) that can out perform deferred renderers. However, for our use cases, the deferred rendering technique is sufficient. 
 
-## Modifying the Game
+
+If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/07-Sprite-Vertex-Effect).
+
+## Adding Deferred Rendering
 
 Writing a simple deferred renderer can be worked out in a few steps, 
 1. take the scene as we are drawing it currently, and store it in an off-screen texture. This texture is often called the diffuse texture, or color texture.
@@ -70,9 +70,9 @@ And call this method from end the `Draw()` method, after the GUM UI draws:
 
 Now when you run the game, you should see the game appearing in the upper-left corner of the screen.
 
-| ![Figure 8-1: The color buffer debug view](./images/color-buffer.png) |
+| ![Figure 8-2: The color buffer debug view](./images/color-buffer.png) |
 | :-------------------------------------------------------------------: |
-|              **Figure 8-1: The color buffer debug view**              |
+|              **Figure 8-2: The color buffer debug view**              |
 
 ### Setting up the Light Buffer
 
@@ -98,9 +98,9 @@ To finish off with the `DeferredRenderer` changes for now, add the `LightBuffer`
 
 Now when you run the game, you'll see a blank texture in the top-right. It is blank because there are no lights yet.
 
-| ![Figure 8-2: A blank light buffer](./images/light-buffer-1.png) |
+| ![Figure 8-3: A blank light buffer](./images/light-buffer-1.png) |
 | :--------------------------------------------------------------: |
-|               **Figure 8-2: A blank light buffer**               |
+|               **Figure 8-3: A blank light buffer**               |
 
 ### Point Light Shader
 
@@ -140,9 +140,9 @@ And call it from the `GameScene`'s `Draw()` method after the `StartLightPhase()`
 
 Now when you run the game, you will see a blank white square where the point light is located (at 300,300). 
 
-| ![Figure 8-3: The light buffer with a square](./images/light-buffer-2.png) |
+| ![Figure 8-4: The light buffer with a square](./images/light-buffer-2.png) |
 | :------------------------------------------------------------------------: |
-|               **Figure 8-3: The light buffer with a square**               |
+|               **Figure 8-4: The light buffer with a square**               |
 
 The next task is to write the `pointLightEffect.fx` shader file so that the white square looks more like a point light. There are several ways to create the effect, some more realistic than others. For _DungeonSlime_, a realistic light fall off isn't going to look great, so we will develop something custom. 
 
@@ -152,41 +152,41 @@ To start, calculate the distance from the center of the image, and render the di
 
 For the sake of clarity, these screenshots show only the `LightBuffer` as full screen. Here, we can see the distance based return value.
 
-| ![Figure 8-4: Showing the distance from the center of the light in the red channel](./images/point-light-dist.png) |
+| ![Figure 8-5: Showing the distance from the center of the light in the red channel](./images/point-light-dist.png) |
 | :----------------------------------------------------------------------------------------------------------------: |
-|                **Figure 8-4: Showing the distance from the center of the light in the red channel**                |
+|                **Figure 8-5: Showing the distance from the center of the light in the red channel**                |
 
 That starts to look like a light, but in reverse. Create a new variable, `falloff` which inverts the distance. The `saturate` function is shorthand for clamping the value between `0` and `1`:
 
 [!code-hlsl[](./snippets/snippet-8-23.hlsl)]
 
-| ![Figure 8-5: Invert the distance](./images/point-light-falloff-1.png) |
+| ![Figure 8-6: Invert the distance](./images/point-light-falloff-1.png) |
 | :--------------------------------------------------------------------: |
-|                  **Figure 8-5: Invert the distance**                   |
+|                  **Figure 8-6: Invert the distance**                   |
 
 That looks more light-like. Now it is time to add some artistic control parameters to the shader. First, it would be good to be able to increase the brightness of the light. Multiplying the `falloff` by some number larger than 1 would increase the brightness, but leave the unlit sections completely unlit:
 
 [!code-hlsl[](./snippets/snippet-8-24.hlsl)]
 
-| ![Figure 8-6: A LightBrightness parameter](./gifs/point-light-brightness.gif) |
+| ![Figure 8-7: A LightBrightness parameter](./gifs/point-light-brightness.gif) |
 | :---------------------------------------------------------------------------: |
-|                  **Figure 8-6: A LightBrightness parameter**                  |
+|                  **Figure 8-7: A LightBrightness parameter**                  |
 
 It would also be good to control the sharpness of the fall off. The `pow()` function raises the `falloff` to some exponent value:
 
 [!code-hlsl[](./snippets/snippet-8-25.hlsl)]
 
-| ![Figure 8-7: A LightSharpness parameter](./gifs/point-light-sharpness.gif) |
+| ![Figure 8-8: A LightSharpness parameter](./gifs/point-light-sharpness.gif) |
 | :-------------------------------------------------------------------------: |
-|                 **Figure 8-7: A LightSharpness parameter**                  |
+|                 **Figure 8-8: A LightSharpness parameter**                  |
 
 Finally, the shader parameters from `0` to `1`, but it would be nice to push the brightness and sharpness beyond `1`. Add a `range` multiplier in the shader code:
 
 [!code-hlsl[](./snippets/snippet-8-26.hlsl)]
 
-| ![Figure 8-8: Increase the range of the artistic parameters](./gifs/point-light-range.gif) |
+| ![Figure 8-9: Increase the range of the artistic parameters](./gifs/point-light-range.gif) |
 | :----------------------------------------------------------------------------------------: |
-|               **Figure 8-8: Increase the range of the artistic parameters**                |
+|               **Figure 8-9: Increase the range of the artistic parameters**                |
 
 The final touch is to return the `Color` of the light, instead of the red debug value. The `input.Color` carries the `Color` passed through the `SpriteBatch`, so we can use that. Multiply the alpha channel of the color by the `falloff` to _fade_ the light out without changing the light color itself:
 
@@ -204,9 +204,9 @@ Set the shader parameter values for brightness and sharpness to something you li
 
 [!code-csharp[](./snippets/snippet-8-30.cs)]
 
-| ![Figure 8-9: The point light in the light buffer](./images/point-light-blue.png) |
+| ![Figure 8-10: The point light in the light buffer](./images/point-light-blue.png) |
 | :-------------------------------------------------------------------------------: |
-|                **Figure 8-9: The point light in the light buffer**                |
+|                **Figure 8-10: The point light in the light buffer**                |
 
 The light looks good! When we revert the full-screen `LightBuffer` and render the `LightBuffer` next to the `ColorBuffer`, a graphical bug will become clear. The world in the `ColorBuffer` is rotating with the vertex shader from the previous chapter, but the `LightBuffer` does not have the same effect, so the light appears broken. 
 
@@ -247,25 +247,25 @@ The main pixel function for the shader reads both the color and light values and
 
 [!code-hlsl[](./snippets/snippet-8-38.hlsl)]
 
-| ![Figure 8-10: The light and color composited](./images/composite-1.png) |
+| ![Figure 8-11: The light and color composited](./images/composite-1.png) |
 | :----------------------------------------------------------------------: |
-|             **Figure 8-10: The light and color composited**              |
+|             **Figure 8-11: The light and color composited**              |
 
 The light is working! However, the whole scene is too dark to see what is going on or play the game. To solve this, we can add a small amount of ambient light:
 
 [!code-hlsl[](./snippets/snippet-8-39.hlsl)]
 
-| ![Figure 8-11: Adding ambient light](./gifs/composite-ambient.gif) |
+| ![Figure 8-12: Adding ambient light](./gifs/composite-ambient.gif) |
 | :----------------------------------------------------------------: |
-|               **Figure 8-11: Adding ambient light**                |
+|               **Figure 8-12: Adding ambient light**                |
 
 Find a value of ambient that you like and set the parameter from code:
 
 [!code-csharp[](./snippets/snippet-8-40.cs)]
 
-| ![Figure 8-12: A constant ambient value](./gifs/composite-light-no-vert.gif) |
+| ![Figure 8-13: A constant ambient value](./gifs/composite-light-no-vert.gif) |
 | :--------------------------------------------------------------------------: |
-|                  **Figure 8-12: A constant ambient value**                   |
+|                  **Figure 8-13: A constant ambient value**                   |
 
 ### Normal Textures
 
@@ -275,23 +275,23 @@ Normal textures encode the _direction_ (also called the _normal_) of the surface
 
 Generating normal maps is an artform. Generally, you find a _normal map picker_, similar to a color wheel, and paint the directions on-top of your existing artwork. This page on [open game art](https://opengameart.org/content/pixelart-normal-map-handpainting-helper) has a free normal map wheel that shows the colors for various directions along a low-resolution sphere. 
 
-| ![Figure 8-13: A normal picker wheel](https://opengameart.org/sites/default/files/styles/medium/public/normalmaphelper.png) |
+| ![Figure 8-14: A normal picker wheel](https://opengameart.org/sites/default/files/styles/medium/public/normalmaphelper.png) |
 | :-------------------------------------------------------------------------------------------------------------------------: |
-|                                           **Figure 8-13: A normal picker wheel**                                            |
+|                                           **Figure 8-14: A normal picker wheel**                                            |
 
 For this effect to work, we need an extra texture for every frame of every sprite we are drawing in the game. Given that the textures are currently coming from an atlas, the easiest thing to do will be to create a _second_ texture that shares the same layout as the first, but uses normal data instead. 
 
 For reference, here is the existing atlas texture.
 
-| ![Figure 8-14: The existing texture atlas](./images/atlas.png) |
+| ![Figure 8-15: The existing texture atlas](./images/atlas.png) |
 | :------------------------------------------------------------: |
-|          **Figure 8-14: The existing texture atlas**           |
+|          **Figure 8-15: The existing texture atlas**           |
 
 And here is the atlast, but with normal data where the game sprites are instead. Download the [atlas-normal.png](./images/atlas-normal.png) texture and add it to the _DungeonSlime_'s content folder. Include it in the mgcb content file. 
 
-| ![Figure 8-15: The normal texture atlas](./images/atlas-normal.png) |
+| ![Figure 8-16: The normal texture atlas](./images/atlas-normal.png) |
 | :-----------------------------------------------------------------: |
-|              **Figure 8-15: The normal texture atlas**              |
+|              **Figure 8-16: The normal texture atlas**              |
 
 Everytime one of the game sprites is being drawn, we need to draw the corresponding normal texture information to yet another off-screen texture, called the `NormalBuffer`. Start by adding a new `RenderTarget2D` to the `DeferredRenderer` class:
 
@@ -327,9 +327,9 @@ To visualize the `NormalBuffer`, we will switch back to the `DebugDraw()` method
 
 And do not forget to call the `DebugDraw()` method from the `GameScene`'s `Draw()` method. Then you will see a totally `red` `NormalBuffer`, because the shader is hard coding the value to `float4(1,0,0,1)`. 
 
-| ![Figure 8-16: A blank normal buffer](./images/normal-buffer-red.png) |
+| ![Figure 8-17: A blank normal buffer](./images/normal-buffer-red.png) |
 | :-------------------------------------------------------------------: |
-|                **Figure 8-16: A blank normal buffer**                 |
+|                **Figure 8-17: A blank normal buffer**                 |
 
 To start rendering the normal values themselves, we need to load the normal texture into the `GameScene` and pass it along to the `gameEffect.fx` effect. First, create a class member for the new `Texture2D`:
 
@@ -353,9 +353,9 @@ And then finally the `MainPS` shader function needs to read the `NormalMap` data
 
 Now the `NormalBuffer` is being populated with the normal data for each sprite.
 
-| ![Figure 8-17: The normal map](./images/normal-buffer.png) |
+| ![Figure 8-18: The normal map](./images/normal-buffer.png) |
 | :--------------------------------------------------------: |
-|              **Figure 8-17: The normal map**               |
+|              **Figure 8-18: The normal map**               |
 
 ### Combing Normals with Lights
 
