@@ -240,17 +240,24 @@ After upload:
 3. **Status Check:** Wait for "Ready to Submit" status
 4. **Build Selection:** Choose the build for your app version
 
-| ![Figure 4-4: Transporter](images/ios/testflight-build.png) |
+| ![Figure 4-4: iOS Builds](images/ios/testflight-build.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
-|                       **Figure 4-4: Transporter**                       |
+|                       **Figure 4-4: iOS Builds**                       |
 
-| ![Figure 4-5: Transporter](images/ios/testflight-build-encryption.png) |
+| ![Figure 4-5: Encryption Dialog](images/ios/testflight-build-encryption.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
-|                       **Figure 4-5 Transporter**    |
+|                       **Figure 4-5 Encryption Dialog**    |
 
-| ![Figure 4-6: Transporter](images/ios/testflight-build-assign-testers.png) |
+**Tip:** If you want to skip this dialog box altogether because you do not use encryption in your game, simply add this to the info.plist.
+
+```xml
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+```
+
+| ![Figure 4-6: Assign Testers](images/ios/testflight-build-assign-testers.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
-|                       **Figure 4-6: Transporter** |    
+|                       **Figure 4-6: Assign Testers** |    
 
 ## App Review Submission
 
