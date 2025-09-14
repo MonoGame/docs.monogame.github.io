@@ -510,6 +510,13 @@ To drive the effect for a moment, this gif shows the normal effect being blended
 | :----------------------------------------------------------------------: |
 |          **Figure 8-23: The lighting on the bat with normals**           |
 
+The effect can be very subtle. To help illustrate it, here is a side by side comparison of the bat with the light moving around it in a circle. The ambient background light has been completely disabled. On the left, there is no normal mapping so the bat feels "flat". On the right, normal mapping is enabled, and the bat feels "lit" by the light.
+
+| ![Figure 8-24: No normals enabled](./gifs/normals_demo_none.gif) | ![Figure 8-25: Normals _enabled_](./gifs/normals_demo_some.gif) |
+| :--------------------------------------------------------------: | :-----------------------------------------------------------------: |
+|                **Figure 8-24: No normals enabled**               |                 **Figure 8-25:  Normals _enabled_**                 |
+
+
 ### Gameplay
 
 Now that we have lights rendering in the game, it is time to hook a few more up in the game. There should be a light positioned next to each torch along the upper wall, and maybe a few lights that wonder around the level. 
@@ -530,9 +537,9 @@ Now that we have lights rendering in the game, it is time to hook a few more up 
 
 And now when the game runs, it looks like this.
 
-| ![Figure 8-24: The final results](./gifs/final.gif) |
+| ![Figure 8-26: The final results](./gifs/final.gif) |
 | :-------------------------------------------------: |
-|         **Figure 8-24: The final results**          |
+|         **Figure 8-26: The final results**          |
 
 ## Conclusion
 
