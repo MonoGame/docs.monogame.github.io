@@ -30,6 +30,7 @@ In this tutorial, we worked within the confines of the default `SpriteBatch` ver
 
 This tutorial series was an exploration of various shader topics, with a focus on MonoGame's tooling. As you continue to develop new effects and shaders for your games, you will undoubtedly need to research far and wide on the internet for help. Graphics code can be notoriously hard. Here are a few resources that may help you. 
 
+- [GDC Vault](https://gdcvault.com/browse?keyword=graphics) has lots of free videos where game developers showcase their groundbreaking graphics advancements in video games. 
 - [HLSL Intrinsic](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-intrinsic-functions) lists out the functions you can use in HLSL.
 - [The Book Of Shaders](https://thebookofshaders.com/) goes from shader fundamentals to building complicated effects. It has live code editors in the browser so you can tweak the shader and see the result right away!
 - [Shadertoy](https://www.shadertoy.com/) is an online shader editor with a live preview in the browser. It also functions as a vibrant library of cool effects and techniques you can learn from. Often, if there is a technique you want to learn, some wizard has implemented it on Shadertoy.
