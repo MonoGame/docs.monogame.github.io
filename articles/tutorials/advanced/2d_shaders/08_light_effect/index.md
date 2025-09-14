@@ -43,7 +43,12 @@ The `ColorBuffer` property is a [`RenderTarget2D`](xref:Microsoft.Xna.Framework.
 
 [!code-csharp[](./snippets/snippet-8-02.cs)]
 
-Once all of the rendering is complete, we need to switch the primary render target back to the _screen_ so that we can actually see anything. Add the following method to the `DeferredRenderer` class. Note that `null` is a special value when it comes to `RenderTarget2D`s. `null` translates to "the screen":
+Once all of the rendering is complete, we need to switch the primary render target back to the _screen_ so that we can actually see anything. Add the following method to the `DeferredRenderer` class. 
+
+> [!note]
+> Set the render target to `null` to draw to the screen.
+> 
+> `RenderTarget`s are off-screen buffers that MonoGame can draw graphics into. If the render target is `null`, then there is no off-screen buffer to use, and as such, the only place to render the graphics are directly to the screen.
 
 [!code-csharp[](./snippets/snippet-8-03.cs)]
 
