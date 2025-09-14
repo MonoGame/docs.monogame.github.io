@@ -303,6 +303,10 @@ The lighting is working, but it still feels a bit flat. Ultimately, the light is
 
 Normal textures encode the _direction_ (also called the _normal_) of the surface at each pixel. The direction of the surface is a 3d vector where the `x` component lives in the `red` channel, the `y` component lives in the `green` channel, and the `z` component lives in the `blue` channel. The directions are encoded as colors, so each component can only range from `0` to `1`. The _direction_ vector components need to range from `-1` to `1`, so a color channel value of `.5` results in a `0` value for the direction vector. 
 
+> [!note]
+>
+> If you want to learn more about the foundations of normal mapping, check out this article on [Normal Mapping](https://learnopengl.com/Advanced-Lighting/Normal-Mapping) from [LearnOpenGL.com](https://learnopengl.com/)
+
 Generating normal maps is an artform. Generally, you find a _normal map picker_, similar to a color wheel, and paint the directions on-top of your existing artwork. This page on [open game art](https://opengameart.org/content/pixelart-normal-map-handpainting-helper) has a free normal map wheel that shows the colors for various directions along a low-resolution sphere. 
 
 | ![Figure 8-16: A normal picker wheel](https://opengameart.org/sites/default/files/styles/medium/public/normalmaphelper.png) |
