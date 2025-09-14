@@ -315,17 +315,13 @@ Generating normal maps is an artform. Generally, you find a _normal map picker_,
 
 For this effect to work, we need an extra texture for every frame of every sprite we are drawing in the game. Given that the textures are currently coming from an atlas, the easiest thing to do will be to create a _second_ texture that shares the same layout as the first, but uses normal data instead. 
 
-For reference, here is the existing atlas texture.
+For reference, the existing texture atlas is on the left, and a version of the atlas with normal maps is on the right.
 
-| ![Figure 8-17: The existing texture atlas](./images/atlas.png) |
-| :------------------------------------------------------------: |
-|          **Figure 8-17: The existing texture atlas**           |
+| ![Figure 8-17: The existing texture atlas](./images/atlas.png) | ![Figure 8-18: The normal texture atlas](./images/atlas-normal.png) |
+| :------------------------------------------------------------: | :-----------------------------------------------------------------: |
+|          **Figure 8-17: The existing texture atlas**           |                **Figure 8-18: The normal texture atlas**            |
 
-And here is the atlast, but with normal data where the game sprites are instead. Download the [atlas-normal.png](./images/atlas-normal.png) texture and add it to the _DungeonSlime_'s content folder. Include it in the mgcb content file. 
-
-| ![Figure 8-18: The normal texture atlas](./images/atlas-normal.png) |
-| :-----------------------------------------------------------------: |
-|              **Figure 8-18: The normal texture atlas**              |
+Download the [atlas-normal.png](./images/atlas-normal.png) texture and add it to the _DungeonSlime_'s content folder. Include it in the mgcb content file. 
 
 Now that we have the art assets, it is time to work the normal maps into the code.
 
@@ -374,9 +370,9 @@ Now that we have the art assets, it is time to work the normal maps into the cod
 
 8. And do not forget to call the `DebugDraw()` method from the `GameScene`'s `Draw()` method. Then you will see a totally `red` `NormalBuffer`, because the shader is hard coding the value to `float4(1,0,0,1)`. 
 
-| ![Figure 8-19: A blank normal buffer](./images/normal-buffer-red.png) |
+| ![Figure 8-17: A blank normal buffer](./images/normal-buffer-red.png) |
 | :-------------------------------------------------------------------: |
-|                **Figure 8-19: A blank normal buffer**                 |
+|                **Figure 8-17: A blank normal buffer**                 |
 
 To start rendering the normal values themselves, we need to load the normal texture into the `GameScene` and pass it along to the `gameEffect.fx` effect. 
 
@@ -402,9 +398,9 @@ To start rendering the normal values themselves, we need to load the normal text
 
 6. Now the `NormalBuffer` is being populated with the normal data for each sprite.
 
-| ![Figure 8-20: The normal map](./images/normal-buffer.png) |
+| ![Figure 8-18: The normal map](./images/normal-buffer.png) |
 | :--------------------------------------------------------: |
-|              **Figure 8-20: The normal map**               |
+|              **Figure 8-18: The normal map**               |
 
 ### Combing Normals with Lights
 
@@ -426,7 +422,7 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
    
    In order to override the vertex shader function, we will need to repeat the `MatrixTransform` work from the previous chapter. However, it would better to _re-use_ the work from the previous chapter so that the lights also tilt and respond to the `MatrixTransform` that the rest of the game world uses. 
    
-   Add a reference in the `3dEffect.fxh` file in the `pointLightEffect.fx` shader:
+   Add a reference to the `3dEffect.fxh` file in the `pointLightEffect.fx` shader:
 
 [!code-hlsl[](./snippets/snippet-8-56.hlsl)]
 
@@ -458,7 +454,9 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
 
 [!code-csharp[](./snippets/snippet-8-62.cs)]
 
-![8.18: The point light can access screen space](./images/light-screen.png)
+| ![Figure 8-19: ](./images/light-screen.png) |
+| :--------------------------------------------------------------------------------: |
+|              **Figure 8-19: The point light can access screen space**              |
 
 11. Now, the `pointLightEffect` can use the screen space coordinates to sample the `NormalBuffer` values. To build intuition, start by just returning the values from the `NormalBuffer`. 
     
@@ -468,9 +466,9 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
 
 12. Strangely, this will return a `white` box, instead of the normal data as expected.
 
-| ![Figure 8-21: A white box instead of the normal data?](./images/light-broken.png) |
+| ![Figure 8-20: A white box instead of the normal data?](./images/light-broken.png) |
 | :--------------------------------------------------------------------------------: |
-|              **Figure 8-21: A white box instead of the normal data?**              |
+|              **Figure 8-20: A white box instead of the normal data?**              |
 
 This happens because of a misunderstanding between the shader compiler and `SpriteBatch`. _Most_ of the time when `SpriteBatch` is being used, there is a single `Texture` and `Sampler` being used to draw a sprite to the screen. The `SpriteBatch`'s draw function passes the given `Texture2D` to the shader by setting it in the `GraphicsDevice.Textures` array [directly](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatcher.cs#L212). The texture is not being passed _by name_, it is being passed by _index_. In the lighting case, the `SpriteBatch` is being drawn with the `Core.Pixel` texture (a white 1x1 image we generated in the earlier chapters). 
 
@@ -478,7 +476,9 @@ However, the shader compiler will aggressively optimize away data that isn't bei
 
 Despite passing the `NormalBuffer` texture to the named `NormalTexture` `Texture2D` parameter in the shader before calling `SpriteBatch.Draw()`, the `SpriteBatch` code itself then overwrites whatever is in texture slot `0` with the texture passed to the `Draw()` call, the white pixel. 
 
-There are two workarounds. If performance is not _critical_, you could add back in a throw-away read from the main `SpriteTextureSampler` , and use the resulting color _somehow_ in the computation for the final result of the shader. However, this is useless work, and will likely confuse anyone who looks at the shader in the future. The other workaround is to pass the `NormalBuffer` to the `Draw()` function directly, and not bother sending it as a shader parameter at all. 
+There are two workarounds. 
+1. Modify the shader code to read data from the main `SpriteTextureSampler` and use the resulting color _somehow_ in the computation fro the final result of the shader. For example, You could multiple the color by a very small constant, like `.00001`, and then add the product to the final color. It would have no perceivable effect, but the shader compiler wouldn't be optimize the sampler away. Hoewver, this is useless and silly work. Worse, it will likely confuse anyone who looks at the shader in the future. 
+2. The better approach is to pass the `NormalBuffer` to the `Draw()` function directly, and not bother sending it as a shader parameter at all. 
 
 Change the `PointLight.Draw()` method to pass the `normalBuffer` to the `SpriteBatch.Draw()` method _instead_ of passing it in as a parameter to the `PointLightMaterial`. Here is the new `PointLight.Draw()` method:
 
@@ -486,9 +486,9 @@ Change the `PointLight.Draw()` method to pass the `normalBuffer` to the `SpriteB
 
 And now the normal map is being rendered where the light exists.
 
-| ![Figure 8-22: The light shows the normal map entirely](./images/light-normal.png) |
+| ![Figure 8-21: The light shows the normal map entirely](./images/light-normal.png) |
 | :--------------------------------------------------------------------------------: |
-|              **Figure 8-22: The light shows the normal map entirely**              |
+|              **Figure 8-21: The light shows the normal map entirely**              |
 
 Now it is time to _use_ the normal data in conjunction with the light direction to decide how much light each pixel should receive. 
 
@@ -500,15 +500,15 @@ Now it is time to _use_ the normal data in conjunction with the light direction 
 
 [!code-hlsl[](./snippets/snippet-8-66.hlsl)]
 
-| ![Figure 8-23: The light with the normal](./images/light-with-normal.png) |
+| ![Figure 8-22: The light with the normal](./images/light-with-normal.png) |
 | :-----------------------------------------------------------------------: |
-|                **Figure 8-23: The light with the normal**                 |
+|                **Figure 8-22: The light with the normal**                 |
 
 To drive the effect for a moment, this gif shows the normal effect being blended in. Notice how the wings on the bat shade differently based on their position towards the light as the normal effect is brought in. 
 
-| ![Figure 8-24: The lighting on the bat with normals](./gifs/normals.gif) |
+| ![Figure 8-23: The lighting on the bat with normals](./gifs/normals.gif) |
 | :----------------------------------------------------------------------: |
-|          **Figure 8-24: The lighting on the bat with normals**           |
+|          **Figure 8-23: The lighting on the bat with normals**           |
 
 ### Gameplay
 
@@ -530,9 +530,9 @@ Now that we have lights rendering in the game, it is time to hook a few more up 
 
 And now when the game runs, it looks like this.
 
-| ![Figure 8-25: The final results](./gifs/final.gif) |
+| ![Figure 8-24: The final results](./gifs/final.gif) |
 | :-------------------------------------------------: |
-|         **Figure 8-25: The final results**          |
+|         **Figure 8-24: The final results**          |
 
 ## Conclusion
 
