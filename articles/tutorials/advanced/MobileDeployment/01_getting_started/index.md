@@ -44,9 +44,11 @@ More information about the registration process can be found here [Registration 
 
 ## iOS Development
 
-**Platform Requirement:** iOS development requires a Mac, whether you develop entirely on it or use the **Pair to Mac** option with Windows Visual Studio.
+**Platform Requirement:** For iOS development you will <ins>require</ins> a Mac, whether you develop entirely on one or use the **Pair to Mac** option with Windows Visual Studio.
 
 Since **Visual Studio for Mac** has been deprecated, [JetBrains Rider](https://www.jetbrains.com/rider/) or [VS Code](https://code.visualstudio.com/) can be used to develop for iOS. There is a non-commercial licence available of Rider.
+
+For information about Pairing between Visual Studio and Mac, learn more [here](https://learn.microsoft.com/en-us/dotnet/maui/ios/pair-to-mac).
 
 **Additional Requirements:**
 - **Xcode** - Required for iOS development and deployment
