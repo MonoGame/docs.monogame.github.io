@@ -9,5 +9,4 @@ float4 MainPS(VertexShaderOutput input) : COLOR
     falloff = pow(falloff, LightSharpness + 1);  
      
     return float4(falloff, 0, 0, 1);  
-    
 }

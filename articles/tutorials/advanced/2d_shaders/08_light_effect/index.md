@@ -70,7 +70,7 @@ The second stage references a new term, called the _Normal_ Map. We will come ba
    
    Right before the `SpriteBatch.Begin()` class, invoke the `StartColorPhase()` method. Here is the `Draw()` method with most of the code left out, but it demonstrates where the `StartColorPhase()` and `Finish()` methods belong:
 
-[!code-csharp[](./snippets/snippet-8-06.cs)]
+[!code-csharp[](./snippets/snippet-8-06.cs?highlight=6,17)]
 
 7. If you run the game now, the game will appear blank except for the UI. That is because the game is rendering to an off-screen texture, but nothing is rendering the off-screen texture _back_ to the screen. For now, we will add some diagnostic visualization of the off-screen texture. Add the following function to the `DeferredRenderer` class. 
    
@@ -106,11 +106,11 @@ The next step is to create some lights and render them to a second off-screen te
 
 4. Then, we need to call the new method in the `GameScene`'s `Draw()` method between the current `SpriteBatch.End()` call and the `deferredRenderer.Finish()` call:
 
-[!code-csharp[](./snippets/snippet-8-12.cs)]
+[!code-csharp[](./snippets/snippet-8-12.cs?highlight=9)]
 
 5. To finish off with the `DeferredRenderer` changes for now, add the `LightBuffer` to the `DebugDraw()` view as well:
 
-[!code-csharp[](./snippets/snippet-8-13.cs)]
+[!code-csharp[](./snippets/snippet-8-13.cs?highlight=41)]
 
 Now when you run the game, you'll see a blank texture in the top-right. It is blank because there are no lights yet.
 
@@ -134,11 +134,11 @@ Each light will be drawn using a shader so that the fall-off and intensity can b
 
 3. And then load the `Material` in the `LoadContent()` method:
 
-[!code-csharp[](./snippets/snippet-8-15.cs)]
+[!code-csharp[](./snippets/snippet-8-15.cs?highlight=7)]
 
 4. And do not forget to enable the hot-reload by adding the `Update()` line in the `Update()` method:
 
-[!code-csharp[](./snippets/snippet-8-16.cs)]
+[!code-csharp[](./snippets/snippet-8-16.cs?highlight=5)]
 
 5. In order to handle multiple lights, it will be helpful to have a class to represent each light. Create a new file in the _MonoGameLibrary_'s graphics folder called `PointLight.cs`:
 
@@ -158,7 +158,7 @@ Each light will be drawn using a shader so that the fall-off and intensity can b
 
 9. And call it from the `GameScene`'s `Draw()` method after the `StartLightPhase()` invocation:
 
-[!code-csharp[](./snippets/snippet-8-21.cs)]
+[!code-csharp[](./snippets/snippet-8-21.cs?highlight=7)]
 
 Now when you run the game, you will see a blank white square where the point light is located (at 300,300). 
 
@@ -180,9 +180,9 @@ The next task is to write the `pointLightEffect.fx` shader file so that the whit
 | :----------------------------------------------------------------------------------------------------------------: |
 |                **Figure 8-6: Showing the distance from the center of the light in the red channel**                |
 
-2. That starts to look like a light, but in reverse. Create a new variable, `falloff` which inverts the distance. The `saturate` function is shorthand for clamping the value between `0` and `1`:
+2. That starts to look like a light, but in reverse. Create a new variable, `falloff` which inverts the distance. The [`saturate`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-saturate) function is shorthand for clamping the value between `0` and `1`:
 
-[!code-hlsl[](./snippets/snippet-8-23.hlsl)]
+[!code-hlsl[](./snippets/snippet-8-23.hlsl?highlight=5)]
 
 | ![Figure 8-7: Invert the distance](./images/point-light-falloff-1.png) |
 | :--------------------------------------------------------------------: |
@@ -190,7 +190,7 @@ The next task is to write the `pointLightEffect.fx` shader file so that the whit
 
 3. That looks more light-like. Now it is time to add some artistic control parameters to the shader. First, it would be good to be able to increase the brightness of the light. Multiplying the `falloff` by some number larger than 1 would increase the brightness, but leave the unlit sections completely unlit:
 
-[!code-hlsl[](./snippets/snippet-8-24.hlsl)]
+[!code-hlsl[](./snippets/snippet-8-24.hlsl?highlight=1,7)]
 
 | ![Figure 8-8: A LightBrightness parameter](./gifs/point-light-brightness.gif) |
 | :---------------------------------------------------------------------------: |
@@ -198,7 +198,7 @@ The next task is to write the `pointLightEffect.fx` shader file so that the whit
 
 4. It would also be good to control the sharpness of the fall off. The `pow()` function raises the `falloff` to some exponent value:
 
-[!code-hlsl[](./snippets/snippet-8-25.hlsl)]
+[!code-hlsl[](./snippets/snippet-8-25.hlsl?highlight=2,9)]
 
 | ![Figure 8-9: A LightSharpness parameter](./gifs/point-light-sharpness.gif) |
 | :-------------------------------------------------------------------------: |
@@ -206,7 +206,7 @@ The next task is to write the `pointLightEffect.fx` shader file so that the whit
 
 5. Finally, the shader parameters from `0` to `1`, but it would be nice to push the brightness and sharpness beyond `1`. Add a `range` multiplier in the shader code:
 
-[!code-hlsl[](./snippets/snippet-8-26.hlsl)]
+[!code-hlsl[](./snippets/snippet-8-26.hlsl?highlight=8)]
 
 | ![Figure 8-10: Increase the range of the artistic parameters](./gifs/point-light-range.gif) |
 | :----------------------------------------------------------------------------------------: |
@@ -214,7 +214,7 @@ The next task is to write the `pointLightEffect.fx` shader file so that the whit
 
 6. The final touch is to return the `Color` of the light, instead of the red debug value. The `input.Color` carries the `Color` passed through the `SpriteBatch`, so we can use that. Multiply the alpha channel of the color by the `falloff` to _fade_ the light out without changing the light color itself:
 
-[!code-hlsl[](./snippets/snippet-8-27.hlsl)]
+[!code-hlsl[](./snippets/snippet-8-27.hlsl?highlight=14)]
 
 7. Change the light color in C# to `CornflowerBlue`:
 
@@ -349,7 +349,7 @@ Now that we have the art assets, it is time to work the normal maps into the cod
 
 5. And do not forget to update the `technique` to reference the new `MainPS` function:
 
-[!code-hlsl[](./snippets/snippet-8-45.hlsl)]
+[!code-hlsl[](./snippets/snippet-8-45.hlsl?highlight=6)]
 
 6. In C#, when the `GraphcisDevice.SetRenderTarget()` function is called, it sets the texture that the `COLOR0` semantic will be sent to. However, there is an overload called `SetRenderTargets()` that accepts _multiple_ `RenderTarget2D`s, and each additional texture will be assigned to the next `COLOR` semantic. 
    
@@ -386,7 +386,7 @@ To start rendering the normal values themselves, we need to load the normal text
 
 3. And finally, pass it to the `_gameEffect` material as a parameter:
 
-[!code-csharp[](./snippets/snippet-8-50.cs)]
+[!code-csharp[](./snippets/snippet-8-50.cs?highlight=10)]
 
 4. The shader itself needs to expose a `Texture2D` and `Sampler` state for the new normal texture:
 

@@ -1,1 +1,6 @@
-Core.DeferredCompositeMaterial.SetParameter("LightBuffer", LightBuffer);
+public void DrawComposite()
+{
+    Core.DeferredCompositeMaterial.SetParameter("LightBuffer", LightBuffer);
+
+    // ...
+}

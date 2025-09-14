@@ -7,5 +7,4 @@ float4 MainPS(VertexShaderOutput input) : COLOR
     float falloff = saturate(.5 - dist) * (LightBrightness + 1);  
      
     return float4(falloff, 0, 0, 1);  
-      
 }
