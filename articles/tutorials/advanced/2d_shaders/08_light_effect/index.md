@@ -430,7 +430,7 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
    
    Create a new struct in the `pointLightEffect.fx` file:
 
-[!code-hlsl[](./snippets/snippet-8-57.hlsl)]
+[!code-hlsl[](./snippets/snippet-8-57.hlsl?highlight=6)]
 
 6. Then, create a new vertex function that uses the new `LightVertexShaderOutput`. This function will call to the existing `MainVS` function that does the 3d effect, and add the screen coordinates afterwards:
 
@@ -438,7 +438,7 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
 
 7. Make sure to update the `technique` to use the new vertex function:
 
-[!code-hlsl[](./snippets/snippet-8-59.hlsl)]
+[!code-hlsl[](./snippets/snippet-8-59.hlsl?highlight=5)]
 
 8. In the pixel function, to visualize the screen coordinates, we will short-circuit the existing light code and just render out the screen coordinates. First, modify the input of the pixel function to be the `LightVertexShaderOutput` struct that was returned from the `LightVS` vertex function:
 
@@ -446,7 +446,7 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
 
 9. And make the function immediately return the screen coordinates in the red and green channel:
 
-[!code-hlsl[](./snippets/snippet-8-61.hlsl)]
+[!code-hlsl[](./snippets/snippet-8-61.hlsl?highlight=3)]
 
 10. Be careful, if you run the game now, it will not look right. We need to make sure to send the `MatrixTransform` parameter from C# as well. In the `GameScene`'s `Update()` method, make sure to pass the `MatrixTransform` to _both_ the `_gameMaterial` _and_ the `Core.PointLightMaterial`. 
     
@@ -500,9 +500,12 @@ Now it is time to _use_ the normal data in conjunction with the light direction 
 
 [!code-hlsl[](./snippets/snippet-8-65.hlsl)]
 
+> [!note]
+> The `normalDir`, `lightDir`, and [`dot`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-dot) product are a simplified version of the [Blinn-Phong shading model](https://en.wikipedia.org/wiki/Blinn%E2%80%93Phong_reflection_model). 
+
 2. And then make the final color use the `lightAmount`:
 
-[!code-hlsl[](./snippets/snippet-8-66.hlsl)]
+[!code-hlsl[](./snippets/snippet-8-66.hlsl?highlight=7)]
 
 | ![Figure 8-22: The light with the normal](./images/light-with-normal.png) |
 | :-----------------------------------------------------------------------: |
