@@ -20,7 +20,7 @@ Every time the [**SpriteBatch.Draw**](xref:Microsoft.Xna.Framework.Graphics.Spri
 > [!NOTE]
 > A texture swap occurs when the GPU needs to switch between different textures during rendering. While each individual swap may seem trivial, the cumulative effect in a complex game can significantly impact performance.
 
-For example, here is are the simplified draw call for an example Pong game:
+For example, here are the simplified draw calls for an example Pong game:
 
 [!code-csharp[](./snippets/pong_example.cs)]
 
