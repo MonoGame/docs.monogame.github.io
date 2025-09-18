@@ -45,7 +45,7 @@ In the sequence below, the left image is the just the `LightBuffer`. The middle 
 
 | The `LightBuffer`                                         | The `ShadowBuffer`                                       | The multiplication of the two images                                     |
 | --------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------ |
-| ![Figure 9-4: a light buffer](./images/dbg_light_map.png) | ![Figure 9-3: A shadow map](./images/dbg_shadow_map.png) | ![Figure 9-5: The multiplication](./images/dbg_light_map_multiplied.png) |
+| ![Figure 9-4: a light buffer](./images/dbg_light_map.png) | ![Figure 9-3: A shadow map](./images/dbg_shadow_map.png) | ![Figure 9-4: The multiplication](./images/dbg_light_map_multiplied.png) |
 
 The mystery to unpack is step 1, how to render the `ShadowBuffer` in the first place. 
 
@@ -68,9 +68,9 @@ However, the `SpriteBatch` usually only renders rectangular shapes. Naively, it 
 
 This diagram shows an abstract pixel being drawn at some position `P`. The corners of the pixel may be defined as `G`, `S`, `D`, and `F`. 
 
-| ![Figure 9-5: A diagram showing a pixel](./images/pixel_math.png) |
+| ![Figure 9-4: A diagram showing a pixel](./images/pixel_math.png) |
 | :---------------------------------------------------------------: |
-|             **Figure 9-5: A diagram showing a pixel**             |
+|             **Figure 9-4: A diagram showing a pixel**             |
 
 Our goal is define a function that transforms the positions `S`, `D`, `F`, and `G` _into_ the positions, `A`, `a`, `b`, and `B`. The table below shows the desired mapping.
 
@@ -148,6 +148,10 @@ Once all of the positions are mapped, our goal is complete! We have a vertex fun
 ### Implementation
 
 To start implementing the effect, create a new Sprite Effect in the `MonoGameLibrary`'s common content effect folder called `shadowHullEffect.fx`. Load it into the `Core` class as before in the previous chapters. 
+
+| ![Figure 9-5: Create the `shadowHullEffect` in MGCB](./images/mgcb.png) |
+| :---------------------------------------------------------------------: |
+|          **Figure 9-5: Create the `shadowHullEffect` in MGCB**          |
 
 Add it as a class member:
 
@@ -332,7 +336,7 @@ And then in the pixel shader function, add this line to the top. The [`clip`](ht
 
 [!code-hlsl[](./snippets/snippet-9-40.hlsl)]
 
-Now the slime looks well lit and shadowed! Feel free to play with the size of the shadow caster as well as the exact points themselves. 
+Now the slime looks well lit and shadowed! In the next section, we will line up the lights and shadows with the rest of the level. 
 
 | ![Figure 9-12: The slime is well lit](./images/shadow_map_hex_3.png) |
 | :------------------------------------------------------------------: |
