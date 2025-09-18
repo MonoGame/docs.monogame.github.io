@@ -153,88 +153,100 @@ To start implementing the effect, create a new Sprite Effect in the `MonoGameLib
 | :---------------------------------------------------------------------: |
 |          **Figure 9-5: Create the `shadowHullEffect` in MGCB**          |
 
-Add it as a class member:
+1. Add it as a class member:
 
 [!code-csharp[](./snippets/snippet-9-08.cs)]
 
-Load it as watched content in the `LoadContent()` method:
+2. Load it as watched content in the `LoadContent()` method:
 
 [!code-csharp[](./snippets/snippet-9-09.cs)]
 
-Make sure to call `Update()` on the `Material` in the `Core`'s `Update()` method. Without this, hot-reload will not work:
+3. Make sure to call `Update()` on the `Material` in the `Core`'s `Update()` method. Without this, hot-reload will not work:
 
 [!code-csharp[](./snippets/snippet-9-10.cs)]
 
-To represent the shadow casting objects in the game, we will create a new class called `ShadowCaster` in the _MonoGameLibrary_'s graphics folder. For now, keep the `ShadowCaster` class as simple as possible while we build the basics. It will just hold the positions of the line segment from the theory section, `A`, and `B`:
+To represent the shadow casting objects in the game, we will create a new class called `ShadowCaster` in the _MonoGameLibrary_'s graphics folder. For now, keep the `ShadowCaster` class as simple as possible while we build the basics. It will just hold the positions of the line segment from the theory section, `A`, and `B`. Create the class and follow the steps to integrate it with the rest of the project.
+
+1. Create the class:
 
 [!code-csharp[](./snippets/snippet-9-11.cs)]
 
-In the `GameScene`, add a class member to hold all the various `ShadowCasters` that will exist in the game:
+2. In the `GameScene`, add a class member to hold all the various `ShadowCasters` that will exist in the game:
 
 [!code-csharp[](./snippets/snippet-9-12.cs)]
 
-For now, for simplicity, re-configure the `InitializeLights()` function in the `GameScene` to have a single `PointLight` and a single `ShadowCaster`:
+3. For now, for simplicity, re-configure the `InitializeLights()` function in the `GameScene` to have a single `PointLight` and a single `ShadowCaster`:
 
 [!code-csharp[](./snippets/snippet-9-13.cs)]
 
 
-Every `PointLight` needs its own `ShadowBuffer`. Add a new `RenderTarget2D` field to the `PointLight` class:
+Every `PointLight` needs its own `ShadowBuffer`. Recall that the `ShadowBuffer` is the off-screen texture that will have _white_ pixels where the light is visible, and _black_ pixels where the light is not visible due to shadow. 
+
+1. Add a new `RenderTarget2D` field to the `PointLight` class:
 
 [!code-csharp[](./snippets/snippet-9-14.cs)]
 
-And instantiate the `ShaderBuffer` in the `PointLight`'s constructor:
+2. And instantiate the `ShaderBuffer` in the `PointLight`'s constructor:
 
 [!code-csharp[](./snippets/snippet-9-15.cs)]
 
 
-Now, we need to find a place to render the `ShadowBuffer` _per_ `PointLight` before the deferred renderer draws the light itself. Copy this function into the `PointLight` class:
+Now, we need to find a place to render the `ShadowBuffer` _per_ `PointLight` before the deferred renderer draws the light itself. 
+
+1. Copy this function into the `PointLight` class:
 
 [!code-csharp[](./snippets/snippet-9-16.cs)]
 
 > [!warning] 
 > 
-> The `(B-A)` vector isn't being packed yet into the color channel.
+> The `(B-A)` vector isn't being packed into the color channel, _yet_.
 > We will come back to that soon!
 
-Next, create a second method that will call the `DrawShadowBuffer` function for a list of lights and shadow casters:
+2. Next, create a second method that will call the `DrawShadowBuffer` function for a list of lights and shadow casters:
 
 [!code-csharp[](./snippets/snippet-9-17.cs)]
 
-And finally, call the `DrawShadows()` method right before the `GameScene` calls the `DeferredRenderer`'s `StartLightPass()` method:
+3. And finally, call the `DrawShadows()` method right before the `GameScene` calls the `DeferredRenderer`'s `StartLightPass()` method:
 
 [!code-csharp[](./snippets/snippet-9-18.cs)]
 
-For debug visualization purposes, add this snippet at the end of the `GameScene`'s `Draw()` just so you can see the `ShaderBuffer` as we debug it:
+4. For debug visualization purposes, add this snippet at the end of the `GameScene`'s `Draw()` just so you can see the `ShaderBuffer` as we debug it:
 
 [!code-csharp[](./snippets/snippet-9-19.cs)]
 
-When you run the game, you will see a totally blank white screen. This is because the shadow map is currently being cleared to `black` to start, and the debug view renders that on top of everything else.
+When you run the game, you will see a totally blank game (other than the GUI). This is because the shadow map is currently being cleared to `black` to start, and the debug view renders that on top of everything else.
 
 | ![Figure 9-6: A blank shadow buffer](./images/shadow_map_blank.png) |
 | :-----------------------------------------------------------------: |
 |                **Figure 9-6: A blank shadow buffer**                |
 
-We cannot implement the vertex shader theory until we can pack the `(B-A)` vector into the `Color` argument for the `SpriteBatch`. For the sake of brevity, we will skip over the derivation of these functions. If you would like to know more, research bit-packing. Add this function to your `PointLight` class:
+We cannot implement the vertex shader theory until we can pack the `(B-A)` vector into the `Color` argument for the `SpriteBatch`. For the sake of brevity, we will skip over the derivation of these functions. If you would like to know more, research bit-packing. 
+
+1. Add this function to your `PointLight` class:
 
 [!code-csharp[](./snippets/snippet-9-20.cs)]
 
-And then to use the packing function, in the `DrawShadowBuffer` function, instead of passing `Color.White` like before, we need to create the `bToA` vector, pack it a `Color`, and then pass it to the `SpriteBatch`:
+2. And then to use the packing function, in the `DrawShadowBuffer` function, instead of passing `Color.White` like before, we need to create the `bToA` vector, pack it a `Color`, and then pass it to the `SpriteBatch`:
 
 [!code-csharp[](./snippets/snippet-9-21.cs)]
 
-On the shader side, add this function to your `shadowHullEffect.fx` file:
+3. On the shader side, add this function to your `shadowHullEffect.fx` file:
 
 [!code-hlsl[](./snippets/snippet-9-22.hlsl)]
 
-Now we have the tools to start implementing the vertex shader! Of course, anytime you want to override the default `SpriteBatch` vertex shader, the shader needs to fulfill the world-space to clip-space transformation. We can re-use the work done in previous chapters. Replace the `VertexShaderOutput` struct with the `#include "3dEffect.fxh"` line. Create a basic template for the vertex shader function:
+Now we have the tools to start implementing the vertex shader! Of course, anytime you want to override the default `SpriteBatch` vertex shader, the shader needs to fulfill the world-space to clip-space transformation. We can re-use the work done in the [previous chapter](./../08_light_effect/index.md). 
+
+1. Replace the `VertexShaderOutput` struct with the `#include "3dEffect.fxh"` line. 
+
+2. Create a basic template for the vertex shader function:
 
 [!code-hlsl[](./snippets/snippet-9-23.hlsl)]
 
-And do not forget to set the technique for the vertex shader function:
+3. And do not forget to set the technique for the vertex shader function:
 
 [!code-hlsl[](./snippets/snippet-9-24.hlsl)]
 
-The last step to make sure the default vertex shader works is to pass the `MatrixTransform` and `ScreenSize` shader parameters in the `GameScene`'s `Update()` loop, next to where they're being configured for the existing `PointLightMaterial`:
+4. The last step to make sure the default vertex shader works is to pass the `MatrixTransform` and `ScreenSize` shader parameters in the `GameScene`'s `Update()` loop, next to where they are being configured for the existing `PointLightMaterial`:
 
 [!code-csharp[](./snippets/snippet-9-25.cs)]
 
@@ -252,19 +264,23 @@ Now if you run the game, you will see the white shadow hull.
 | :---------------------------------------------------: |
 |             **Figure 9-7: A shadow hull**             |
 
-To get the basic shadow effect working with the rest of the renderer, we need to do the multiplication step between the `ShadowBuffer` and the `LightBuffer` in the `pointLightEffect.fx` shader. Add a second texture and sampler for the `pointLightEffect.fx` file:
+To get the basic shadow effect working with the rest of the renderer, we need to do the multiplication step between the `ShadowBuffer` and the `LightBuffer` in the `pointLightEffect.fx` shader. 
+
+1. Add a second texture and sampler for the `pointLightEffect.fx` file:
 
 [!code-hlsl[](./snippets/snippet-9-28.hlsl)]
 
-Then, in the `MainPS` of the light effect, read the current value from the shadow buffer:
+2. Then, in the `MainPS` of the light effect, read the current value from the shadow buffer:
 
 [!code-hlsl[](./snippets/snippet-9-29.hlsl)]
 
-And use it as a multiplier at the end when calculating the final light color:
+3. And use it as a multiplier at the end when calculating the final light color:
 
 [!code-hlsl[](./snippets/snippet-9-30.hlsl)]
 
-Before running the game, make sure to pass the `ShadowBuffer` to the point light's draw invocation. In the `Draw()` method in the `PointLight` class, change the `SpriteBatch` to use `Immediate` sorting, and forward the `ShadowBuffer` to the shader parameter for each light:
+4. Before running the game, make sure to pass the `ShadowBuffer` to the point light's draw invocation. 
+   
+   In the `Draw()` method in the `PointLight` class, change the `SpriteBatch` to use `Immediate` sorting, and forward the `ShadowBuffer` to the shader parameter for each light:
 
 [!code-csharp[](./snippets/snippet-9-31.cs)]
 
@@ -274,11 +290,13 @@ Disable the debug visualization to render the `ShadowMap` on top of everything e
 | :--------------------------------------------------------------------------------: |
 |                  **Figure 9-8: The light is appearing inverted**                  |
 
-Oops, the shadows and lights are appearing opposite of where they should! That is because the `ShadowBuffer` is inverted. Change the clear color for the `ShadowBuffer` to _white_:
+Oops, the shadows and lights are appearing opposite of where they should! That is because the `ShadowBuffer` is inverted. 
+
+1. Change the clear color for the `ShadowBuffer` to _white_:
 
 [!code-csharp[](./snippets/snippet-9-32.cs)]
 
-And change the pixel shader to return a solid black rather than white:
+2. And change the pixel shader to return a solid black rather than white:
 
 [!code-hlsl[](./snippets/snippet-9-33.hlsl)]
 
@@ -292,19 +310,21 @@ And now the shadow appears correctly for our simple single line segment!
 
 So far, we have built up an intuition for the shadow caster system using a single line segment. Now, we will combine many line segments to create primitive shapes. We will approximate the slime character as a hexagon. 
 
-Instead of only having `A` and `B` in the `ShadowCaster` class, change the class body to have a `Position` and a list of points:
+1. Instead of only having `A` and `B` in the `ShadowCaster` class, change the class body to have a `Position` and a list of points:
 
 [!code-csharp[](./snippets/snippet-9-34.cs)]
 
-To create simple polygons, add this method to the `ShadowCaster` class:
+2. To create simple polygons, add this method to the `ShadowCaster` class:
 
 [!code-csharp[](./snippets/snippet-9-35.cs)]
 
-Then, in the `InitializeLights()` function in the `GameScene`, instead of constructing a `ShadowCaster` with the `A` and `B` properties, we can use the new `SimplePolygon` method:
+3. Then, in the `InitializeLights()` function in the `GameScene`, instead of constructing a `ShadowCaster` with the `A` and `B` properties, we can use the new `SimplePolygon` method:
 
 [!code-csharp[](./snippets/snippet-9-36.cs)]
 
-Finally, the last place we need to change is the `DrawShadowBuffer()` method. Currently it is just drawing a single pixel with the `ShadowHullMaterial`, but now we need to draw a pixel _per_ line segment. Update the `foreach` block to loop over all the points in the `ShadowCaster`, and connect the points as line segments:
+Finally, the last place we need to change is the `DrawShadowBuffer()` method. Currently it is just drawing a single pixel with the `ShadowHullMaterial`, but now we need to draw a pixel _per_ line segment. 
+
+Update the `foreach` block to loop over all the points in the `ShadowCaster`, and connect the points as line segments:
 
 [!code-csharp[](./snippets/snippet-9-37.cs)]
 
@@ -344,19 +364,21 @@ Now the slime looks well lit and shadowed! In the next section, we will line up 
 
 ## Gameplay
 
-Now that we can draw shadows in the lighting system, we should rig up shadows to the slime, the bat, and the walls of the dungeon. First, start by adding back the `InitializeLights()` method as it existed at the start of the chapter. Feel free to add or remove lights as you see fit. Here is a version of the function:
+Now that we can draw shadows in the lighting system, we should rig up shadows to the slime, the bat, and the walls of the dungeon. 
+
+1. First, start by adding back the `InitializeLights()` method as it existed at the start of the chapter. Feel free to add or remove lights as you see fit. Here is a version of the function:
 
 [!code-csharp[](./snippets/snippet-9-41.cs)]
 
-Now, we will focus on the slime shadows. Add a new `List<ShadowCaster>` property to the `Slime` class:
+2. Now, we will focus on the slime shadows. Add a new `List<ShadowCaster>` property to the `Slime` class:
 
 [!code-csharp[](./snippets/snippet-9-42.cs)]
 
-And in the `Slime`'s `Update()` method, add this snippet:
+3. And in the `Slime`'s `Update()` method, add this snippet:
 
 [!code-csharp[](./snippets/snippet-9-43.cs)]
 
-Now, modify the `GameScene`'s `Draw()` method to create a master list of all the `ShadowCasters` and pass that into the `DrawShadows()` function:
+4. Now, modify the `GameScene`'s `Draw()` method to create a master list of all the `ShadowCasters` and pass that into the `DrawShadows()` function:
 
 [!code-csharp[](./snippets/snippet-9-44.cs)]
 
@@ -366,19 +388,21 @@ And now the slime has shadows around the segments!
 | :------------------------------------------------------------: |
 |             **Figure 9-13: The slime has shadows**             |
 
-Next up, the bat needs some shadows! Add a `ShadowCaster` property to the `Bat` class:
+Next up, the bat needs some shadows! 
+
+1. Add a `ShadowCaster` property to the `Bat` class:
 
 [!code-csharp[](./snippets/snippet-9-45.cs)]
 
-And instantiate it in the constructor:
+2. And instantiate it in the constructor:
 
 [!code-csharp[](./snippets/snippet-9-46.cs)]
 
-In the `Bat`'s `Update()` method, update the position of the `ShadowCaster`:
+3. In the `Bat`'s `Update()` method, update the position of the `ShadowCaster`:
 
 [!code-csharp[](./snippets/snippet-9-47.cs)]
 
-And finally add the `ShadowCaster` to the master list of shadow casters during the `GameScene`'s `Draw()` method:
+4. And finally add the `ShadowCaster` to the master list of shadow casters during the `GameScene`'s `Draw()` method:
 
 [!code-csharp[](./snippets/snippet-9-48.cs)]
 
@@ -397,7 +421,6 @@ Add a shadow caster in the `InitializeLights()` function to represent the edge o
 | :------------------------------------------------------------: |
 |            **Figure 9-15: The walls have shadows**             |
 
-
 ## The Stencil Buffer
 
 The light and shadow system is working! However, there is a non-trivial amount of memory overhead for the effect. Every light has a full screen sized `ShadowBuffer`. At the moment, each `ShadowBuffer` is a `RenderTarget2D` with `32` bits of data per pixel. At our screen resolution of `1280` x `720`, that means every light adds roughly (`1280 * 720 * 32bits`) 3.6 _MB_ of overhead to the game! Our system is not taking full advantage of those 32 bits per pixel. Instead, all we really need is a _single_ bit, for "in shadow" or "not in shadow". In fact, all the `ShadowBuffer` is doing is operating as a _mask_ for the point light. 
@@ -414,15 +437,15 @@ For our use case, we will deal with the stencil buffer in two distinct steps. Fi
 
 The stencil buffer can be cleared and re-used between each light, so there is no need to have a buffer _per_ light. We will be able to completely remove the `ShadowBuffer` from the `PointLight` class. That also means we will not need to send the `ShadowBuffer` to the point light shader or read from it in shader code any longer. 
 
-To get started, create a new method in the `DeferredRenderer` class called `DrawLights()`. This new method is going to completely replace some of our existing methods, but we will clean the unnecessary ones up when we are done with the new approach:
+1. To get started, create a new method in the `DeferredRenderer` class called `DrawLights()`. This new method is going to completely replace some of our existing methods, but we will clean the unnecessary ones up when we are done with the new approach:
 
 [!code-csharp[](./snippets/snippet-9-51.cs)]
 
-In the `GameScene`'s `Draw()` method, call the new `DrawLights()` method instead of the `DrawShadows()`, `StartLightPhase()` _and_ `PointLight.Draw()` methods. Here is a snippet of the `Draw()` method:
+2. In the `GameScene`'s `Draw()` method, call the new `DrawLights()` method instead of the `DrawShadows()`, `StartLightPhase()` _and_ `PointLight.Draw()` methods. Here is a snippet of the `Draw()` method:
 
 [!code-csharp[](./snippets/snippet-9-52.cs)]
 
-Next, in the `pointLightEffect.fx` shader, we will not be using the `ShadowBuffer` anymore, so remove the `Texture2D ShadowBuffer` and `sampler2D ShadowBufferSampler`. Remove the `tex2D` read from the shadow image, and remove the final multiplication of the `shadow`. The end of the `pointLightEffect.fx` shader should read as follows:
+3. Next, in the `pointLightEffect.fx` shader, we will not be using the `ShadowBuffer` anymore, so remove the `Texture2D ShadowBuffer` and `sampler2D ShadowBufferSampler`. Remove the `tex2D` read from the shadow image, and remove the final multiplication of the `shadow`. The end of the `pointLightEffect.fx` shader should read as follows:
 
 [!code-hlsl[](./snippets/snippet-9-53.hlsl)]
 
@@ -452,26 +475,31 @@ This produces strange results. So far, the stencil buffer isn't being used yet, 
 | :-----------------------------------------------------: |
 |             **Figure 9-18: Worse shadows**              |
 
-Instead of writing the shadow hulls as _color_ into the color portion of the `LightBuffer`, we only need to render the `1` or `0` to the stencil buffer portion of the `LightBuffer`. To do this, we need to create a new `DepthStencilState` variable. The `DepthStencilState` is a MonoGame primitive that describes how draw call operations should interact with the stencil buffer. Create a new class variable in the `DeferredRenderer` class
+Instead of writing the shadow hulls as _color_ into the color portion of the `LightBuffer`, we only need to render the `1` or `0` to the stencil buffer portion of the `LightBuffer`. To do this, we need to create a new `DepthStencilState` variable. The `DepthStencilState` is a MonoGame primitive that describes how draw call operations should interact with the stencil buffer. 
+
+1. Create a new class variable in the `DeferredRenderer` class: 
+
 [!code-csharp[](./snippets/snippet-9-56.cs)]
 
-And initialize it in the constructor:
+2. And initialize it in the constructor:
 
 [!code-csharp[](./snippets/snippet-9-57.cs)]
 
-The `_stencilWrite` variable is a declarative structure that tells MonoGame how the stencil buffer should be used during a `SpriteBatch` draw call. The next step is to actually pass the `_stencilWrite` declaration into the `SpriteBatch`'s `Draw()` call when the shadow hulls are being rendered:
+3. The `_stencilWrite` variable is a declarative structure that tells MonoGame how the stencil buffer should be used during a `SpriteBatch` draw call. The next step is to actually pass the `_stencilWrite` declaration into the `SpriteBatch`'s `Draw()` call when the shadow hulls are being rendered:
 
 [!code-csharp[](./snippets/snippet-9-58.cs)]
 
-Unfortunately, there is not a good way to visualize the state of the stencil buffer, so if you run the game, it is hard to tell if the stencil buffer contains any data. Instead, we will try and _use_ the stencil buffer's data when the point lights are drawn. The point lights will not interact with the stencil buffer in the same way the shadow hulls did. To capture the new behavior, create a second `DepthStencilState` class variable:
+Unfortunately, there is not a good way to visualize the state of the stencil buffer, so if you run the game, it is hard to tell if the stencil buffer contains any data. Instead, we will try and _use_ the stencil buffer's data when the point lights are drawn. The point lights will not interact with the stencil buffer in the same way the shadow hulls did. 
+
+1. To capture the new behavior, create a second `DepthStencilState` class variable:
 
 [!code-csharp[](./snippets/snippet-9-59.cs)]
 
-And initialize it in the constructor:
+2. And initialize it in the constructor:
 
 [!code-csharp[](./snippets/snippet-9-60.cs)]
 
-And now pass the new `_stencilTest` state to the `SpriteBatch` `Draw()` call that draws the point lights:
+3. And now pass the new `_stencilTest` state to the `SpriteBatch` `Draw()` call that draws the point lights:
 
 [!code-csharp[](./snippets/snippet-9-61.cs)]
 
@@ -480,11 +508,13 @@ The shadows look _better_, but something is still broken. It looks eerily simila
 | ![Figure 9-19: The shadows still look funky](./images/stencil_blend.png) |
 | :----------------------------------------------------------------------: |
 |              **Figure 9-19: The shadows still look funky**               |
-This happens because the shadow hulls are _still_ being drawn as colors into the `LightBuffer`. The shadow hull shader is rendering a black pixel, so those black pixels are drawing on top of the `LightBuffer` 's previous point lights. To solve this, we need to create a custom `BlendState` that ignores all color channel writes. Create a new class variable in the `DeferredRenderer`:
+This happens because the shadow hulls are _still_ being drawn as colors into the `LightBuffer`. The shadow hull shader is rendering a black pixel, so those black pixels are drawing on top of the `LightBuffer` 's previous point lights. To solve this, we need to create a custom `BlendState` that ignores all color channel writes. 
+
+1. Create a new class variable in the `DeferredRenderer`:
 
 [!code-csharp[](./snippets/snippet-9-62.cs)]
 
-And initialize it in the constructor:
+2. And initialize it in the constructor:
 
 [!code-csharp[](./snippets/snippet-9-63.cs)]
 
@@ -493,7 +523,7 @@ And initialize it in the constructor:
 > Setting the `ColorWriteChannels` to `.None` means that the GPU still rasterizes the geometry, but no color will be written to the `LightBuffer`.
 
 
-Finally, pas it to the shadow hull `SpriteBatch` call:
+3. Finally, pas it to the shadow hull `SpriteBatch` call:
 
 [!code-csharp[](./snippets/snippet-9-64.cs)]
 
@@ -506,6 +536,7 @@ Now the shadows look closer, but there is one final issue.
 The `LightBuffer` is only being cleared at the start of the entire `DrawLights()` method. This means the `8` bits for the stencil data aren't being cleared between lights, so shadows from one light are overwriting into all subsequent lights. To fix this, we just need to clear the stencil buffer data before rendering the shadow hulls:
 
 [!code-csharp[](./snippets/snippet-9-65.cs)]
+
 And now the lights are working again! The final `DrawLights()` method is written below:
 
 [!code-csharp[](./snippets/snippet-9-66.cs)]
@@ -520,6 +551,14 @@ We can remove a lot of unnecessary code.
 3. The `PointLight.Draw()` function is no longer called. Remove it.
 4. The `PointLight.DrawShadowBuffer()` function is no longer called. Remove it.
 5. The `PointLight.ShadowBuffer` `RenderTarget` is no longer used. Remove it. Anywhere that referenced the `ShadowBuffer` can also be removed. 
+
+## Improving The Look and Feel
+TODO
+
+- dither fall off
+- box-blur
+- stencil mask
+- scissor test
 
 ## Conclusion
 
