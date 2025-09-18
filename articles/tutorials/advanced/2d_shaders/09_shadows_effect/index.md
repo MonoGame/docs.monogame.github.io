@@ -220,7 +220,14 @@ When you run the game, you will see a totally blank game (other than the GUI). T
 | :-----------------------------------------------------------------: |
 |                **Figure 9-6: A blank shadow buffer**                |
 
-We cannot implement the vertex shader theory until we can pack the `(B-A)` vector into the `Color` argument for the `SpriteBatch`. For the sake of brevity, we will skip over the derivation of these functions. If you would like to know more, research bit-packing. 
+We cannot implement the vertex shader theory until we can pack the `(B-A)` vector into the `Color` argument for the `SpriteBatch`. We will use a technique called _bit-packing_. For the sake of brevity, we will skip over the derivation of these functions.
+
+> [!tip]
+> _Bit-packing_ is a broad category of algorithms that change the underlaying bit representation of some variable. The most basic idea is that all of your variables are just _bits_, and its up to you how you want to arrange them. To learn more, check out the following articles, 
+> 
+> 1. [Wikipedia article on Bit Operations](https://en.wikipedia.org/wiki/Bitwise_operation)
+> 2. [A quick overview from Cornell](https://www.cs.cornell.edu/courses/cs3410/2024fa/notes/bitpack.html)
+> 3. [The Art of Packing Data](https://www.elopezr.com/the-art-of-packing-data/) 
 
 1. Add this function to your `PointLight` class:
 
