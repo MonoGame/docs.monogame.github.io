@@ -5,7 +5,14 @@ description: "Add dynamic shadows to the game"
 
 Our lighting system is looking great, but the lights do not feel fully grounded in the world. They shine right through the walls, the bat, and even our slime! To truly sell the illusion of light, we need darkness. We need shadows.
 
-In this, our final effects chapter, we're going to implement a dynamic 2D shadow system. The shadows will be drawn with a new vertex shader, and integrated into the point light shader from the previous chapter. After the effect is working, we will port the effect to use a more efficient approach. 
+In this, our final effects chapter, we're going to implement a dynamic 2D shadow system. The shadows will be drawn with a new vertex shader, and integrated into the point light shader from the previous chapter. After the effect is working, we will port the effect to use a more efficient approach using a tool called the _Stencil Buffer_. Lastly, we will explore some visual tricks to improve the look and feel of the shadows. 
+
+At the end of this chapter, your game will look something like this:
+
+| ![Figure 9-1: The final shadow effect](./gifs/overview.gif) |
+| :---------------------------------------------------------: |
+|         **Figure 9-1: The final shadow effect**             |
+
 
 If you're following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/08-Light-Effect).
 
@@ -13,9 +20,9 @@ If you're following along with code, here is the code from the end of the [previ
 
 Take a look at the current lighting in _Dungeon Slime_. In this screenshot, there is a single light source. The bat and the slime do not cast shadows, and without these shadows, it is hard to visually identify where the light's position is. 
 
-| ![Figure 9-1: A light with no shadows](./images/starting.png) |
+| ![Figure 9-2: A light with no shadows](./images/starting.png) |
 | :-----------------------------------------------------------: |
-|            **Figure 9-1: A light with no shadows**            |
+|            **Figure 9-2: A light with no shadows**            |
 
 If the slime was casting a shadow, then the position of the light would be a lot easier to decipher just from looking at the image. Shadows help ground the objects in the scene. Just to visualize it, this image is a duplicate of the above, but with a pink debug shadow drawn on top to illustrate the desired effect. 
 
@@ -46,9 +53,9 @@ The mystery to unpack is step 1, how to render the `ShadowBuffer` in the first p
 
 To build some intuition, we will start by considering a shadow caster that is a single line segment. If we can generate a shadow for a single line segment, then we could compose multiple line segments to replicate the shape of the slime sprite. In the image blow, there is a single light source at position `L`, and a line segment between points `A`, and `B`. 
 
-| ![Figure 9-6: A diagram of a simple light and line segment](./images/light_math.png) |
+| ![Figure 9-4: A diagram of a simple light and line segment](./images/light_math.png) |
 | :----------------------------------------------------------------------------------: |
-|             **Figure 9-6: A diagram of a simple light and line segment**             |
+|             **Figure 9-4: A diagram of a simple light and line segment**             |
 
 The shape we need to draw is the non-regular quadrilateral defined by `A`, `a`, `b`, and `B`. It is shaded in pink. These points are in world space. Given that we know where the line segment is, we know where `A` and `B` are, but we do not _yet_ know `a` and `b`'s location.
 
@@ -61,9 +68,9 @@ However, the `SpriteBatch` usually only renders rectangular shapes. Naively, it 
 
 This diagram shows an abstract pixel being drawn at some position `P`. The corners of the pixel may be defined as `G`, `S`, `D`, and `F`. 
 
-| ![Figure 9-7: A diagram showing a pixel](./images/pixel_math.png) |
+| ![Figure 9-5: A diagram showing a pixel](./images/pixel_math.png) |
 | :---------------------------------------------------------------: |
-|             **Figure 9-7: A diagram showing a pixel**             |
+|             **Figure 9-5: A diagram showing a pixel**             |
 
 Our goal is define a function that transforms the positions `S`, `D`, `F`, and `G` _into_ the positions, `A`, `a`, `b`, and `B`. The table below shows the desired mapping.
 
@@ -199,9 +206,9 @@ For debug visualization purposes, add this snippet at the end of the `GameScene`
 
 When you run the game, you will see a totally blank white screen. This is because the shadow map is currently being cleared to `black` to start, and the debug view renders that on top of everything else.
 
-| ![Figure 9-8: A blank shadow buffer](./images/shadow_map_blank.png) |
+| ![Figure 9-6: A blank shadow buffer](./images/shadow_map_blank.png) |
 | :-----------------------------------------------------------------: |
-|                **Figure 9-8: A blank shadow buffer**                |
+|                **Figure 9-6: A blank shadow buffer**                |
 
 We cannot implement the vertex shader theory until we can pack the `(B-A)` vector into the `Color` argument for the `SpriteBatch`. For the sake of brevity, we will skip over the derivation of these functions. If you would like to know more, research bit-packing. Add this function to your `PointLight` class:
 
@@ -237,9 +244,9 @@ The vertex shader function is derived from the theory section above, but is writ
 
 Now if you run the game, you will see the white shadow hull. 
 
-| ![Figure 9-9: A shadow hull](./images/shadow_map.png) |
+| ![Figure 9-7: A shadow hull](./images/shadow_map.png) |
 | :---------------------------------------------------: |
-|             **Figure 9-9: A shadow hull**             |
+|             **Figure 9-7: A shadow hull**             |
 
 To get the basic shadow effect working with the rest of the renderer, we need to do the multiplication step between the `ShadowBuffer` and the `LightBuffer` in the `pointLightEffect.fx` shader. Add a second texture and sampler for the `pointLightEffect.fx` file:
 
@@ -259,9 +266,9 @@ Before running the game, make sure to pass the `ShadowBuffer` to the point light
 
 Disable the debug visualization to render the `ShadowMap` on top of everything else, and run the game. 
 
-| ![Figure 9-10: The light is appearing inverted](./images/shadow_map_backwards.png) |
+| ![Figure 9-8: The light is appearing inverted](./images/shadow_map_backwards.png) |
 | :--------------------------------------------------------------------------------: |
-|                  **Figure 9-10: The light is appearing inverted**                  |
+|                  **Figure 9-8: The light is appearing inverted**                  |
 
 Oops, the shadows and lights are appearing opposite of where they should! That is because the `ShadowBuffer` is inverted. Change the clear color for the `ShadowBuffer` to _white_:
 
@@ -273,9 +280,9 @@ And change the pixel shader to return a solid black rather than white:
 
 And now the shadow appears correctly for our simple single line segment!
 
-| ![Figure 9-11: A working shadow!](./images/shadow_map_working.png) |
+| ![Figure 9-9: A working shadow!](./images/shadow_map_working.png) |
 | :----------------------------------------------------------------: |
-|                 **Figure 9-11: A working shadow!**                 |
+|                 **Figure 9-9: A working shadow!**                 |
 
 ## More Segments
 
@@ -299,9 +306,9 @@ Finally, the last place we need to change is the `DrawShadowBuffer()` method. Cu
 
 When you run the game, you will see a larger shadow shape.
 
-| ![Figure 9-12: A shadow hull from a hexagon](./images/shadow_map_hex.png) |
+| ![Figure 9-10: A shadow hull from a hexagon](./images/shadow_map_hex.png) |
 | :-----------------------------------------------------------------------: |
-|               **Figure 9-12: A shadow hull from a hexagon**               |
+|               **Figure 9-10: A shadow hull from a hexagon**               |
 
 There are a few problems with the current effect. First off, there is a visual artifact going horizontally through the center of the shadow caster where it appears light is "leaking" in. This is likely due to numerical accuracy issues in the shader. A simple solution is to slightly extend the line segment in the vertex shader. After both `A` and `B` are calculated, but before `a` and `b`, add this to the shader:
 
@@ -309,9 +316,9 @@ There are a few problems with the current effect. First off, there is a visual a
 
 And now the visual artifact has gone away.
 
-| ![Figure 9-13: The visual artifact has been fixed](./images/shadow_map_hex_2.png) |
+| ![Figure 9-11: The visual artifact has been fixed](./images/shadow_map_hex_2.png) |
 | :-------------------------------------------------------------------------------: |
-|                **Figure 9-13: The visual artifact has been fixed**                |
+|                **Figure 9-11: The visual artifact has been fixed**                |
 
 The next item to consider is that the the "inside" of the slime isn't being lit. All of the segments are casting shadows, but it would be nice if only the segments on the far side of the slime cast shadows. We can take advantage of the fact that all of the line segments making up the shadow caster are _wound_ in the same direction:
 
@@ -327,9 +334,9 @@ And then in the pixel shader function, add this line to the top. The [`clip`](ht
 
 Now the slime looks well lit and shadowed! Feel free to play with the size of the shadow caster as well as the exact points themselves. 
 
-| ![Figure 9-14: The slime is well lit](./images/shadow_map_hex_3.png) |
+| ![Figure 9-12: The slime is well lit](./images/shadow_map_hex_3.png) |
 | :------------------------------------------------------------------: |
-|                **Figure 9-14: The slime is well lit**                |
+|                **Figure 9-12: The slime is well lit**                |
 
 ## Gameplay
 
@@ -351,9 +358,9 @@ Now, modify the `GameScene`'s `Draw()` method to create a master list of all the
 
 And now the slime has shadows around the segments!
 
-| ![Figure 9-15: The slime has shadows](./gifs/snake_shadow.gif) |
+| ![Figure 9-13: The slime has shadows](./gifs/snake_shadow.gif) |
 | :------------------------------------------------------------: |
-|             **Figure 9-15: The slime has shadows**             |
+|             **Figure 9-13: The slime has shadows**             |
 
 Next up, the bat needs some shadows! Add a `ShadowCaster` property to the `Bat` class:
 
@@ -373,18 +380,18 @@ And finally add the `ShadowCaster` to the master list of shadow casters during t
 
 And now the bat is casting a shadow as well!
 
-| ![Figure 9-16: The bat casts a shadow](./gifs/bat_shadow.gif) |
+| ![Figure 9-14: The bat casts a shadow](./gifs/bat_shadow.gif) |
 | :-----------------------------------------------------------: |
-|            **Figure 9-16: The bat casts a shadow**            |
+|            **Figure 9-14: The bat casts a shadow**            |
 
 Lastly, the walls should cast shadows to help ground the lighting in the world. 
 Add a shadow caster in the `InitializeLights()` function to represent the edge of the playable tiles:
 
 [!code-csharp[](./snippets/snippet-9-49.cs)]
 
-| ![Figure 9-17: The walls have shadows](./gifs/wall_shadow.gif) |
+| ![Figure 9-15: The walls have shadows](./gifs/wall_shadow.gif) |
 | :------------------------------------------------------------: |
-|            **Figure 9-17: The walls have shadows**             |
+|            **Figure 9-15: The walls have shadows**             |
 
 
 ## The Stencil Buffer
@@ -417,9 +424,9 @@ Next, in the `pointLightEffect.fx` shader, we will not be using the `ShadowBuffe
 
 If you run the game now, you will not see any of the lights anymore. 
 
-| ![Figure 9-15: Back to square one](./images/stencil_blank.png) |
+| ![Figure 9-16: Back to square one](./images/stencil_blank.png) |
 | :------------------------------------------------------------: |
-|              **Figure 9-15: Back to square one**               |
+|              **Figure 9-16: Back to square one**               |
 
 In the new `DrawLights()` method, we need to iterate over all the lights, and draw them. First, we need to set the current render target to the `LightBuffer` so it can be used in the deferred renderer composite stage:
 
@@ -427,9 +434,9 @@ In the new `DrawLights()` method, we need to iterate over all the lights, and dr
 
 Now the lights are back, but of course no shadows yet. 
 
-| ![Figure 9-16: Welcome back, lights](./images/stencil_lights.png) |
+| ![Figure 9-17: Welcome back, lights](./images/stencil_lights.png) |
 | :---------------------------------------------------------------: |
-|               **Figure 9-16: Welcome back, lights**               |
+|               **Figure 9-17: Welcome back, lights**               |
 
 As each light is about to draw, we need to draw the shadow hulls. Add this snippet to the top of the `foreach` loop. This code is mainly copied from our previous approach:
 
@@ -437,9 +444,9 @@ As each light is about to draw, we need to draw the shadow hulls. Add this snipp
 
 This produces strange results. So far, the stencil buffer isn't being used yet, so all we are doing is rendering the shadow hulls onto the same image as the light data itself. Worse, the alternating order from rendering shadows to lights, back to shadows, and so on produces very visually decoherent results.
 
-| ![Figure 9-17: Worse shadows](./images/stencil_pre.png) |
+| ![Figure 9-18: Worse shadows](./images/stencil_pre.png) |
 | :-----------------------------------------------------: |
-|             **Figure 9-17: Worse shadows**              |
+|             **Figure 9-18: Worse shadows**              |
 
 Instead of writing the shadow hulls as _color_ into the color portion of the `LightBuffer`, we only need to render the `1` or `0` to the stencil buffer portion of the `LightBuffer`. To do this, we need to create a new `DepthStencilState` variable. The `DepthStencilState` is a MonoGame primitive that describes how draw call operations should interact with the stencil buffer. Create a new class variable in the `DeferredRenderer` class
 [!code-csharp[](./snippets/snippet-9-56.cs)]
@@ -466,9 +473,9 @@ And now pass the new `_stencilTest` state to the `SpriteBatch` `Draw()` call tha
 
 The shadows look _better_, but something is still broken. It looks eerily similar to the previous iteration before passing the `_stencilTest` and `_stencilWrite` declarations to `SpriteBatch`...
 
-| ![Figure 9-18: The shadows still look funky](./images/stencil_blend.png) |
+| ![Figure 9-19: The shadows still look funky](./images/stencil_blend.png) |
 | :----------------------------------------------------------------------: |
-|              **Figure 9-18: The shadows still look funky**               |
+|              **Figure 9-19: The shadows still look funky**               |
 This happens because the shadow hulls are _still_ being drawn as colors into the `LightBuffer`. The shadow hull shader is rendering a black pixel, so those black pixels are drawing on top of the `LightBuffer` 's previous point lights. To solve this, we need to create a custom `BlendState` that ignores all color channel writes. Create a new class variable in the `DeferredRenderer`:
 
 [!code-csharp[](./snippets/snippet-9-62.cs)]
@@ -488,9 +495,9 @@ Finally, pas it to the shadow hull `SpriteBatch` call:
 
 Now the shadows look closer, but there is one final issue. 
 
-| ![Figure 9-18: The shadows are back](./images/stencil_noclear.png) |
+| ![Figure 9-20: The shadows are back](./images/stencil_noclear.png) |
 | :----------------------------------------------------------------: |
-|               **Figure 9-18: The shadows are back**                |
+|               **Figure 9-20: The shadows are back**                |
 
 The `LightBuffer` is only being cleared at the start of the entire `DrawLights()` method. This means the `8` bits for the stencil data aren't being cleared between lights, so shadows from one light are overwriting into all subsequent lights. To fix this, we just need to clear the stencil buffer data before rendering the shadow hulls:
 
@@ -499,9 +506,9 @@ And now the lights are working again! The final `DrawLights()` method is written
 
 [!code-csharp[](./snippets/snippet-9-66.cs)]
 
-| ![Figure 9-19: Lights using the stencil buffer](./gifs/stencil_working.gif) |
+| ![Figure 9-21: Lights using the stencil buffer](./gifs/stencil_working.gif) |
 | :-------------------------------------------------------------------------: |
-|              **Figure 9-19: Lights using the stencil buffer**               |
+|              **Figure 9-21: Lights using the stencil buffer**               |
 
 We can remove a lot of unnecessary code.
 1. The `DeferredRenderer.StartLightPhase()` function is no longer called. Remove it.
