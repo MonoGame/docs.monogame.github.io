@@ -759,7 +759,7 @@ private DepthStencilState _stencilShadowExclude;
 
 3. We need to initialize the `_stencilShadowExclude` state in the constructor:
 
-[!code-csharp[](./snippets/snippet-9-74.cs?highlight=14)]
+[!code-csharp[](./snippets/snippet-9-74.cs)]
 
 4. We also need to update the existing states to take the new value into account:
 
@@ -788,7 +788,7 @@ _deferredRenderer.DrawLights(_lights, casters, (blend, stencil) =>
 
 Now even when the snake character is heading directly into a light, the segments in the back do not receive any shadows. 
 
-| ![Figure 9-27: No self shadows](./gifs/shadow-no-self.gif) |
+| ![Figure 9-27: No self shadows](./gifs/overview.gif) |
 | :--------------------------------------------------------: |
 |             **Figure 9-26: No self shadows**               |
 
