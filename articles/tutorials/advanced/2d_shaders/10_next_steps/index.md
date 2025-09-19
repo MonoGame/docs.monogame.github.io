@@ -49,4 +49,5 @@ Hey friend,
 If you read through this whole series, then _thank you_ for lending me your time and patience. Hopefully you learned some good information, or at least enjoyed the ride. I love shader programming, but it took me a _long_ time to build up any intuition around computer graphics. I hope that you find the spark in graphics programming that leads you to build beautiful things. 
 
 Best,
+
 -[Chris Hanna](https://github.com/cdhanna)
