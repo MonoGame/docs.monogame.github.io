@@ -121,6 +121,9 @@ Now that we have a good understanding of the available inputs, and the goal of t
 
 Every point (`S`, `D`, `F`, and `G`) needs to find `P`. To do that, the `TexCoord` can be treated as a direction from `P` to the current point, and the `ScreenSize` shader parameter can be used to find the right amount of distance to travel along that direction:
 
+> [!note]
+> The next few snippets of shader code are psuedo code. Just follow along with the text and the full shader will be available later in the next section.
+
 [!code-hlsl[](./snippets/snippet-9-02.hlsl)]
 
 Next, we pack the `Color` value as the vector `(B - A)`. The `x` component of the vector can live in the `red` and `green` channels of the `Color`, and the `y` component will live in the `blue` and `alpha` channels. In the vertex shader, `B` can be derived by unpacking the `(B - A)` vector from the `COLOR` semantic and _adding_ it to the `A`. The reason we pack the _difference_ between `B` and `A` into the `Color`, and not `B` itself is due the lack of precision in the `Color` type. There are only 4 `bytes` to pack all the information, which means 2 `bytes` per `x` and `y`. Likely, the line segment will be small, so the values of `(B - A)` will fit easier into a 2 `byte` channel:
@@ -208,7 +211,7 @@ Now, we need to find a place to render the `ShadowBuffer` _per_ `PointLight` bef
 
 3. And finally, call the `DrawShadows()` method right before the `GameScene` calls the `DeferredRenderer`'s `StartLightPass()` method:
 
-[!code-csharp[](./snippets/snippet-9-18.cs)]
+[!code-csharp[](./snippets/snippet-9-18.cs?highlight=7)]
 
 4. For debug visualization purposes, add this snippet at the end of the `GameScene`'s `Draw()` just so you can see the `ShaderBuffer` as we debug it:
 
@@ -251,11 +254,11 @@ Now we have the tools to start implementing the vertex shader! Of course, anytim
 
 3. And do not forget to set the technique for the vertex shader function:
 
-[!code-hlsl[](./snippets/snippet-9-24.hlsl)]
+[!code-hlsl[](./snippets/snippet-9-24.hlsl?highlight=6)]
 
 4. The last step to make sure the default vertex shader works is to pass the `MatrixTransform` and `ScreenSize` shader parameters in the `GameScene`'s `Update()` loop, next to where they are being configured for the existing `PointLightMaterial`:
 
-[!code-csharp[](./snippets/snippet-9-25.cs)]
+[!code-csharp[](./snippets/snippet-9-25.cs?highlight=7,8)]
 
 The pixel shader function for the `shadowHullEffect` needs to ignore the `input.Color` and just return a solid color:
 
@@ -436,7 +439,7 @@ Image masking is a common task in computer graphics. There is a built-in feature
 
 The stencil buffer is a part of an existing `RenderTarget`, but we need to opt into using it. In the `DeferredRenderer` class, where the `LightBuffer` is being instantiated, change the `preferredDepthFormat` to `DepthFormat.Depth24Stencil8`:
 
-[!code-csharp[](./snippets/snippet-9-50.cs)]
+[!code-csharp[](./snippets/snippet-9-50.cs?highlight=7)]
 
 The `LightBuffer` itself has `32` bits per pixel of `Color` data, _and_ an additional `32` bits of data split between the depth and stencil buffers. As the name suggests, the `Depth24Stencil8` format grants the depth buffer `24` bits of data, and the stencil buffer `8` bits of data. `8` bits are enough for a single `byte`, which means it can represent integers from `0` to `255`. 
 
@@ -494,7 +497,7 @@ Instead of writing the shadow hulls as _color_ into the color portion of the `Li
 
 3. The `_stencilWrite` variable is a declarative structure that tells MonoGame how the stencil buffer should be used during a `SpriteBatch` draw call. The next step is to actually pass the `_stencilWrite` declaration into the `SpriteBatch`'s `Draw()` call when the shadow hulls are being rendered:
 
-[!code-csharp[](./snippets/snippet-9-58.cs)]
+[!code-csharp[](./snippets/snippet-9-58.cs?highlight=2)]
 
 Unfortunately, there is not a good way to visualize the state of the stencil buffer, so if you run the game, it is hard to tell if the stencil buffer contains any data. Instead, we will try and _use_ the stencil buffer's data when the point lights are drawn. The point lights will not interact with the stencil buffer in the same way the shadow hulls did. 
 
@@ -508,13 +511,14 @@ Unfortunately, there is not a good way to visualize the state of the stencil buf
 
 3. And now pass the new `_stencilTest` state to the `SpriteBatch` `Draw()` call that draws the point lights:
 
-[!code-csharp[](./snippets/snippet-9-61.cs)]
+[!code-csharp[](./snippets/snippet-9-61.cs?highlight=2)]
 
 The shadows look _better_, but something is still broken. It looks eerily similar to the previous iteration before passing the `_stencilTest` and `_stencilWrite` declarations to `SpriteBatch`...
 
 | ![Figure 9-19: The shadows still look funky](./images/stencil_blend.png) |
 | :----------------------------------------------------------------------: |
 |              **Figure 9-19: The shadows still look funky**               |
+
 This happens because the shadow hulls are _still_ being drawn as colors into the `LightBuffer`. The shadow hull shader is rendering a black pixel, so those black pixels are drawing on top of the `LightBuffer` 's previous point lights. To solve this, we need to create a custom `BlendState` that ignores all color channel writes. 
 
 1. Create a new class variable in the `DeferredRenderer`:
@@ -532,7 +536,7 @@ This happens because the shadow hulls are _still_ being drawn as colors into the
 
 3. Finally, pas it to the shadow hull `SpriteBatch` call:
 
-[!code-csharp[](./snippets/snippet-9-64.cs)]
+[!code-csharp[](./snippets/snippet-9-64.cs?highlight=4)]
 
 Now the shadows look closer, but there is one final issue. 
 
