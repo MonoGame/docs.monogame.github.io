@@ -19,11 +19,12 @@ You have the tools to develop shaders in MonoGame, and you have implemented a se
 
 The world of graphics programming is vast and there is always more to learn. If you are excited and want to keep going, here are a few topics to explore.
 
-#### Signed Distance Fields (SDFs)
-Signed Distance Fields are a powerful technique for rendering resolution-independent shapes, text, and UI elements. Instead of a texture storing color, it stores the distance to the nearest edge of a shape. With some shader code, you can render perfectly crisp shapes at any size. They are fantastic for fonts and for creating procedural effects like outlines, glows, and soft shadows.
 #### Advanced Post-Processing
+
 We touched on post-processing with our scene transition, but there's a whole world of effects you can apply to the final rendered image. Effects like bloom, depth of field, chromatic aberration, and film grain can all be implemented as shaders that process the entire screen to give your game a unique stylistic look. Check out the bloom effect in the [NeonShooter](https://github.com/MonoGame/MonoGame.Samples/blob/3.8.4/NeonShooter/NeonShooter.Core/Content/Shaders/BloomCombine.fx) sample.
+
 #### Beyond SpriteBatch
+
 In this tutorial, we worked within the confines of the default `SpriteBatch` vertex format (`VertexPositionColorTexture`). MonoGame can draw arbitrary vertex buffer data with the `GraphicsDevice.DrawPrimitives()` functions. You can draw shapes with more than 4 corners. You can pass extra data _per_ vertex, like a unique id, custom data, or whatever you need for your effects. If you want to get into 3d game development, then you'll need to expand beyond `SpriteBatch`. 
 
 ## Continued Reading
@@ -43,8 +44,9 @@ This tutorial series was an exploration of various shader topics, with a focus o
 
 
 ## A Note From The Author
+
 Hey friend, 
-If you read through this whole series, then _thank you_ for lending me your time and patience. Hopefully you learned some good information. I remember it took me at least 3 distinct attempts to learn shaders. Once when I was a teenager. Once when I was in college. And then finally again as a eager-eyed young developer in the software world. Each attempt got me further, but it took me _decades_ to understand anything at all. If you find shaders confusing, please do not give up. Keep going. 
+If you read through this whole series, then _thank you_ for lending me your time and patience. Hopefully you learned some good information, or at least enjoyed the ride. I love shader programming, but it took me a _long_ time to build up any intuition around computer graphics. I hope that you find the spark in graphics programming that leads you to build beautiful things. 
 
 Best,
 -[Chris Hanna](https://github.com/cdhanna)

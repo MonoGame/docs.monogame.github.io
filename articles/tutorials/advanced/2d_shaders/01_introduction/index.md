@@ -3,11 +3,11 @@ title: "Chapter 01: Getting Started"
 description: "Prepare your project and get ready"
 ---
 
-Welcome to the advanced 2D shaders tutorial! Before we dive into writing complex effects, this first chapter will make sure you are ready to go. We will get the starting project set up and take a quick look at the technical foundation of how shaders work with MonoGame's `SpriteBatch`.
+Welcome to the advanced 2D shaders tutorial! The goal of this series is to explore several concepts in MonoGame's 2D graphics capabilities, specifically with respect to shaders.
 
 ## The Starting Code
 
-This tutorial series builds directly on top of the final code from the "Building 2D Games" tutorial. It is essential that you start with this project.
+This tutorial series builds directly on top of the final code from the [Building 2D Games](./../../../building_2d_games/index.md) tutorial. It is essential that you start with this project.
 
 > [!note]
 > You can get the complete starting source code for this tutorial here: 
