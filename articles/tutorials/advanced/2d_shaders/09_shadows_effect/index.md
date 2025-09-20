@@ -565,7 +565,10 @@ We can remove a lot of unnecessary code.
 
 ## Improving The Look and Feel
 
-The shadow technique we have developed so _cool_, but the visual effect leaves a lot to be desired. The shadows sort of look like dark polygons being drawn on top of the scene, rather than what they actually are, which is the absence of light in certain areas. Part of the problem is that the shadows have hard edges, and in real life, shadows fade smoothly across the boundary between light and darkness. Unfortunately for us, creating physically accurate shadows with soft edges is _hard_. There are lots of techniques you could try, like this technique for [rendering penumbra geometry](https://www.gamedev.net/tutorials/programming/graphics/dynamic-2d-soft-shadows-r3065/), or [use 1d shadow maps](https://github.com/mattdesl/lwjgl-basics/wiki/2D-Pixel-Perfect-Shadows). _(That 1d shadow map article references a classic article in 2d shadow mapping that seems to have fallen off the internet. Luckily the Internet Archive has it available, [here](https://web.archive.org/web/20160226133242/http://www.catalinzima.com/2010/07/my-technique-for-the-shader-based-dynamic-2d-shadows/))_
+The shadow technique we have developed so _cool_, but the visual effect leaves a lot to be desired. The shadows sort of look like dark polygons being drawn on top of the scene, rather than what they actually are, which is the absence of light in certain areas. Part of the problem is that the shadows have hard edges, and in real life, shadows fade smoothly across the boundary between light and darkness. Unfortunately for us, creating physically accurate shadows with soft edges is _hard_. There are lots of techniques you could try, like this technique for [rendering penumbra geometry](https://www.gamedev.net/tutorials/programming/graphics/dynamic-2d-soft-shadows-r3065/), or [using 1d shadow maps](https://github.com/mattdesl/lwjgl-basics/wiki/2D-Pixel-Perfect-Shadows). 
+
+> ![note] 
+> The 1d shadow mapping article references a classic article by Catalin Zima that seems to have fallen off the internet. Luckily the Internet Archive has it available, [here](https://web.archive.org/web/20160226133242/http://www.catalinzima.com/2010/07/my-technique-for-the-shader-based-dynamic-2d-shadows/)
 
 Soft shadow techniques are out of the scope of this tutorial, so we will need to find other ways to improve the look and feel of our hard-edged shadows. The first thing to do is let go of the need for "physically accurate" shadows. Our 2d _Dungeon Slime_ game is not physically accurate anyway, so the shadows do not need to be either. 
 
@@ -679,7 +682,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 > [!note]
 > Why use `input.TextureCoordinates.x` ? 
 >
-> The shader produces a `fade` value by interpolating the `input.TextureCoordinates.x` between a `startDistance` and `endDistance`. Recall from the [theory section](#rendering-the-shadow-buffer) that the texture coordinates are used to decide vertex is which. The `.x` value of the texture coordinates is `1` when the vertex is the `D` or `F` vertex, and `0` otherwise. The `D` and `F` vertices are the ones that get projected far into the distance. Thus, the `.x` value is a good approximation of the "distance" of any given fragment.
+> The shader produces a `fade` value by interpolating the `input.TextureCoordinates.x` between a `startDistance` and `endDistance`. Recall from the [theory section](#rendering-the-shadow-buffer) that the texture coordinates are used to decide which vertex is which. The `.x` value of the texture coordinates is `1` when the vertex is the `D` or `F` vertex, and `0` otherwise. The `D` and `F` vertices are the ones that get projected far into the distance. Thus, the `.x` value is a good approximation of the "distance" of any given fragment.
 
 Now when you run the game, you can play around with the shader parameters to create a fall off gradient for the shadow. 
 
@@ -769,7 +772,7 @@ private DepthStencilState _stencilShadowExclude;
    
    Modify the `DrawLights()` function like so:
 
-[!code-csharp[](./snippets/snippet-9-76.cs?highlight=1,14)]
+[!code-csharp[](./snippets/snippet-9-76.cs?highlight=1,17)]
 
 6. And finally, the `GameScene`'s `Draw()` method should re-draw the snake segments in this callback:
 
