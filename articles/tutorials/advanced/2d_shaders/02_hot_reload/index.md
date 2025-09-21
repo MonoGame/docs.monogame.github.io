@@ -46,6 +46,9 @@ You can learn more about what all the attributes do in MSBuild. Of particular no
 
 The `IncludeContent` target can run manually by invoking `dotnet build` by hand. In VSCode, open the embedded terminal to the _DungeonSlime_ project folder, and run the following command:
 
+> [!warning]
+> The `dotnet` commands need to be run from the `DungeonSlime` folder, otherwise `dotnet` will not know _which_ project to use.
+
 [!code-sh[](./snippets/snippet-2-02.sh)]
 
 You should see log output indicating that the content for the _DungeonSlime_ game was built.
@@ -72,6 +75,9 @@ In our case, we do not want to recompile `.cs` files, but rather `.fx` files. Fi
 
 Now, when you change a _`.fx`_ file, all of the content files are rebuilt into `.xnb` files.
 
+> [!note]
+> When you run `dotnet watch`, that is actually short hand for `dotnet watch run`. The `run` command _runs_ your game, but the `build` only _builds_ your program. Going forward, the `dotnet watch build` commands will not start your game, just build the content. To learn more, read the official documentation for [`dotnet watch`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-watch)
+
 However, the `.xnb` files are not being copied from the `Content/bin` folder to _DungeonSlime_'s runtime folder. The `.xnb` files are only copied during the full MSBuild of the game. The `IncludeContent` target on its own does not have all the context it needs to know how to copy the files in the final game project. To solve this, we need to introduce a new `<Target>` that copies the final `.xnb` files into _DungeonSlime_'s runtime folder.
 
 The existing `MonoGame.Content.Builder.Task` system knows what the files are, so we can re-use properties defined in the MonoGame package.
@@ -84,6 +90,9 @@ Now, instead of calling the `IncludeContent` target directly, change your termin
 [!code-sh[](./snippets/snippet-2-07.sh)]
 
 If you delete the `DungeonSlime/bin/Debug/net8.0/Content` folder, make an edit to a `.cs` file and save, you should see the `DungeonSlime/bin/Debug/net8.0/Content` folder be restored.
+
+> [!note]
+> The `DungeonSlime/bin/Debug/net8.0/Content` folder may not appear _immediately_ in your IDE's file view. Sometimes the IDE caches the file system and doesn't notice the file change right away. Try opening the folder in your operating system's file explorer instead. 
 
 The next step is to only invoke the target when `.fx` files are edited instead of `.cs` files. These settings can be configured with custom MSBuild item configurations. Open the `DungeonSlime.csproj` file and add this `<ItemGroup>` to specify configuration settings:
 
