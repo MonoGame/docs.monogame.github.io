@@ -1,7 +1,5 @@
 public static bool TryRefresh<T>(this ContentManager manager, WatchedAsset<T> watchedAsset)
 {
-    oldAsset = default;
-
     // get the same path that the ContentManager would use to load the asset
     var path = Path.Combine(manager.RootDirectory, watchedAsset.AssetName) + ".xnb";
 

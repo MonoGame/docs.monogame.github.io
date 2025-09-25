@@ -62,25 +62,28 @@ There is a tool called [`dotnet watch`](https://learn.microsoft.com/en-us/dotnet
 > [!Tip]
 > Use the `ctrl` + `c` key at the same time to quit the `dotnet watch` terminal process.
 
-Then, comment out the `Clear()` function call in the title screen's `Draw()` method. Save the file, and you should see the title screen immediately stop clearing the background on each frame. If you restore the line and save again, the scene will start clearing the background again:
+Once the game has started, open the `TitleScene.cs` file in the _DungeonSlime_'s "Scenes" folder and comment out the `Clear()` function call in the title screen's `Draw()` method. Save the file, and you should see the title screen immediately stop clearing the background on each frame. If you restore the line and save again, the scene will start clearing the background again:
 
 [!code-csharp[](./snippets/snippet-2-04.cs?highlight=3)]
 
-In our case, we do not want to recompile `.cs` files, but rather `.fx` files. First, `dotnet watch` can be configured to execute any MSBuild target rather than a recompile code. The following command uses the existing target provided by the `MonoGame.Content.Builder.Task`.
+As we are focusing on only intending to Hot Reload shaders in this tutorial, we do not want to recompile `.cs` files, but rather just the `.fx` files. `dotnet watch` can be configured to execute any MSBuild target rather than just recompile code.  If you want to experiment with also hot-reloading `.cs` files you can, but it is not the focus of this tutorial.
+
+The following command uses the existing target provided by the `MonoGame.Content.Builder.Task`.
+
+[!code-sh[](./snippets/snippet-2-05.sh)]
 
 > [!Tip]
 > All arguments passed after the `--` characters are passed to the `build` command itself, not `dotnet watch`:
-
-[!code-sh[](./snippets/snippet-2-05.sh)]
 
 Now, when you change a _`.fx`_ file, all of the content files are rebuilt into `.xnb` files.
 
 > [!note]
 > When you run `dotnet watch`, that is actually short hand for `dotnet watch run`. The `run` command _runs_ your game, but the `build` only _builds_ your program. Going forward, the `dotnet watch build` commands will not start your game, just build the content. To learn more, read the official documentation for [`dotnet watch`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-watch)
 
-However, the `.xnb` files are not being copied from the `Content/bin` folder to _DungeonSlime_'s runtime folder. The `.xnb` files are only copied during the full MSBuild of the game. The `IncludeContent` target on its own does not have all the context it needs to know how to copy the files in the final game project. To solve this, we need to introduce a new `<Target>` that copies the final `.xnb` files into _DungeonSlime_'s runtime folder.
+However, the `.xnb` files are still not being copied from the `Content/bin` folder to _DungeonSlime_'s runtime folder, the `.xnb` files are only copied during the full MSBuild of the game. The `IncludeContent` target on its own does not have all the context it needs to know how to copy the files in the final game project. To solve this, we need to introduce a new `<Target>` that copies the final `.xnb` files into _DungeonSlime_'s runtime folder.
 
 The existing `MonoGame.Content.Builder.Task` system knows what the files are, so we can re-use properties defined in the MonoGame package.
+
 Add this `<Target>` block to your `.csproj` file:
 
 [!code-xml[](./snippets/snippet-2-06.xml)]
@@ -157,7 +160,7 @@ Remove the `"tunafish"` line and save again, and the watch program should log so
 
 ## Reload shaders in-game
 
-Now anytime the `.fx` files are modified, they will be recompiled and copied into the game's runtime folder. However, the game itself does not know to _reload_ the `Effect` instances. In this section, we will create a utility over the [`ContentManager`](xref:Microsoft.Xna.Framework.Content.ContentManager) to respond to these dynamic file updates.
+Now anytime the `.fx` files are modified, they will be recompiled and copied into the game's runtime folder. However, the game itself does not know to _reload_ the `Effect` instances. In this section, we will create a utility to extend the capabilities of the [`ContentManager`](xref:Microsoft.Xna.Framework.Content.ContentManager) to enable it to respond to these dynamic file updates.
 
 It is important to make a distinction between assets the game _expects_ to be reloaded and assets that the game does _not_ care about reloading. This tutorial will demonstrate how to create an explicit system where individual assets opt _into_ being _hot reloadable_, rather than creating a system where all assets automatically handle dynamic reloading.
 
@@ -169,7 +172,7 @@ Currently, the `grayscaleEffect.fx` is being loaded in the `GameScene` 's `LoadC
 
 The `.Load()` function in the existing `ContentManager` is almost sufficient for our needs, but it returns a regular `Effect`, which has no understanding of the dynamic nature of the new content workflow.
 
-1. Create a new _Content_ folder within the _MonoGameLibrary_ project, add a new file named `ContentManagerExtensions.cs`, and add the following code for the foundation of the new system:
+1. Create a new `Content` folder within the _MonoGameLibrary_ project, add a new file named `ContentManagerExtensions.cs`, and add the following code for the foundation of the new system:
 
     [!code-csharp[](./snippets/snippet-2-17.cs)]
 
@@ -177,43 +180,52 @@ The `.Load()` function in the existing `ContentManager` is almost sufficient for
 
     [!code-csharp[](./snippets/snippet-2-18.cs)]
 
-3. This new `Watch` function is an opportunity to enhance how content is loaded. Use this new function to load the `_greyscaleEffect` effect in the `GameScene`:
+3. This new `Watch` function is an opportunity to enhance how content is loaded. Use this new function to load the `_greyscaleEffect` effect in the `GameScene.cs` class `LoadContent()` method:
 
     [!code-csharp[](./snippets/snippet-2-19.cs)]
 
+4. And finally, adding the `using` statement at the top of the `GameScene` class to let it know where the new extension method we created is located:
+
+    [!code-csharp[](./snippets/snippet-2-19-usings.cs?highlight=9)]
+
 ### The `WatchedAsset` class
 
-The new system will need to keep track of additional information for each asset that we plan to be _hot-reloadable_. The data will live in a new class, `WatchedAsset<T>`.
+The new system will need to keep track of additional information for each asset that we plan to be _hot-reloadable_, the data will live in a new class, `WatchedAsset<T>`.
 
-1. Add a new file named `WatchedAsset.cs` in the _MonoGameLibrary/Content_ folder:
+1. Add a new file named `WatchedAsset.cs` in the _MonoGameLibrary/Content_ folder and paste the following into the new class:
 
     [!code-csharp[](./snippets/snippet-2-20.cs)]
 
-2. The new `Watch` method should return a `WatchedAsset<T>` instead of the direct `Effect`:
+2. Next, we need to update the `Watch` method in the ContentManagerExtensions to return a `WatchedAsset<T>` instead of the direct `Effect` it used originally:
 
     [!code-csharp[](./snippets/snippet-2-21.cs)]
 
-3. This will require that the type of `_greyscaleEffect` change to a `WatchedAsset<Effect>` instead of simply an `Effect`:
+3. Now, any asset that requires hot-reloading, such as the `_greyscaleEffect` in the `GameScene`, needs to change to a `WatchedAsset<Effect>` instead of simply an `Effect`:
 
     [!code-csharp[](./snippets/snippet-2-22.cs)]
 
-> [!IMPORTANT]
-> This will cause a few compilation errors where the `_greyscaleEffect` is used throughout the rest of the `GameScene`.
-> The compile errors appear because `_greyscaleEffect` used to be an `Effect`, but now the `Effect` is actually available as `_grayscaleEffect.Asset`.
+    > [!IMPORTANT]
+    > This will cause a few compilation errors where the `_greyscaleEffect` is used throughout the rest of the `GameScene`.
+    > The compile errors appear because `_greyscaleEffect` used to be an `Effect`, but now the `Effect` is actually available as `_grayscaleEffect.Asset`.
+
+4. To correct the errors found, simply update the `Draw` method of the `GameScene` with the following using the guidance above:
+
+    [!code-csharp[](./snippets/snippet-2-22-draw.cs?highlight=9,12)]
 
 ### Reload Extension
 
-It is time to extend the `ContentManagerExtensions` extension method that the game code will use to opt into reloading an asset. From the earlier section, anytime a `.fx` file is updated, the compiled `.xnb` file will be copied into the game's runtime folder. The operating system will keep track of the last time the `.xnb` file was written, and we can leverage that information with the `WatchedAsset<T>.UpdatedAt` property to understand if the `.xnb` file is _newer_ than the current loaded `Effect`.
+It is time to extend the `ContentManagerExtensions` extension method that the game code will use to "opt in" to reloading an asset. From the earlier section, anytime a `.fx` file is updated, the compiled `.xnb` file will be copied into the game's runtime folder, the operating system will keep track of the last time the `.xnb` file was written, and we can leverage that information with the `WatchedAsset<T>.UpdatedAt` property to understand if the `.xnb` file is _newer_ than the current loaded `Effect`.
 
-1. The new `TryRefresh` method will take a `WatchedAsset<T>` and update the inner `Asset` property _if_ the `.xnb` file is newer. The method returns `true` when the asset is reloaded, which will be useful later:
+1. The following `TryRefresh` method will take a `WatchedAsset<T>` and update the inner `Asset` property _if_ the `.xnb` file is newer. The method returns `true` when the asset is reloaded, which will be useful later.  Add the following method to the `ContentManagerExtensions` class:
 
     [!code-csharp[](./snippets/snippet-2-23.cs)]
 
-2. At the top of the `GameScene.Update()` method, add the following line to opt into reloading the `_grayscaleEffect` asset:
+2. At the top of the `Update()` method in the `GameScene` class, add the following line to opt into reloading the `_grayscaleEffect` asset:
 
     [!code-csharp[](./snippets/snippet-2-24.cs?highlight=3-4)]
 
-3. Now, when the `grayscaleEffect.fx` file is modified, the `dotnet watch` system will compile it to an `.xnb` file, copy it to the game's runtime folder, and then in the `Update()` loop, the `TryRefresh()` method will load the new effect and the new shader code will be running live in the game. Try it out by adding this temporary line right before the `return` statement in the `grayscaleEffect.fx` file:
+3. Now, when the `grayscaleEffect.fx` file is modified, the `dotnet watch` system will compile it to an `.xnb` file, copy it to the game's runtime folder, and then in the `Update()` loop, the `TryRefresh()` method will load the new effect and the new shader code will be running live in the game.
+    Try it out by adding this temporary line right before the `return` statement in the `grayscaleEffect.fx` file, make sure the `dotnet build -t:WatchContent` is running in the terminal and [start the game in debug](/articles/tutorials/building_2d_games/02_getting_started/index.html?tabs=windows#creating-your-first-monogame-application) as normal:
 
     [!code-hlsl[](./snippets/snippet-2-25.hlsl?highlight=18-19)]
 
@@ -225,35 +237,37 @@ This video shows the effect changing.
 
 ## Final Touches
 
-The _hot reload_ system is almost done. There are a few quality of life features to finish up.
+The _hot reload_ system is almost done, however, there are a few quality of life features to finish up.
 
 ### File Locking
 
-There is an edge case bug in the `TryRefresh()` function that checks if the `.xnb` file is more recent than the in-memory asset. It is possible that the MonoGame Content Builder may be _actively_ writing the `.xnb` file when the function runs. The game will fail to read the file while it is being written. The solution to this problem is to simply wait and try loading the `.xnb` file the next frame. The trick is that C# does not have a standard way to check if a file is currently locked. The best way to check is to simply try and open the file, and if an `Exception` is thrown, assume the file is not readable.
+There is an edge case in the `TryRefresh()` function that when the `.xnb` file is checked to see if it is more recent than the in-memory asset that it might still be in use (locked) by the MonoGame Content Builder, it may still be _actively_ writing the `.xnb` file when the function runs. The game will fail to read the file while it is being written. The solution to this problem is to simply wait and try loading the `.xnb` file in the next frame. The trick however, is that C# does not have a standard way to check if a file is currently locked.
 
-1. To start, Add the following function to the `ContentManagerExtensions` class:
+The best way to check is to simply try and open the file, and if an `Exception` is thrown, assume the file is not readable.
+
+1. To start, add the following function to the `ContentManagerExtensions` class:
 
     [!code-csharp[](./snippets/snippet-2-26.cs)]
 
 2. Then modify the `TryRefresh` function by returning early if the file is locked:
 
-    [!code-csharp[](./snippets/snippet-2-27.cs?highlight=13)]
+    [!code-csharp[](./snippets/snippet-2-27.cs?highlight=16-17)]
 
 ### Access the old Asset on reload
 
 Anytime a new asset is loaded, the old asset is unloaded from the `ContentManager`. However, it will be helpful to be able to access in-memory data about the old asset version. For shaders, there is metadata and runtime configuration that should be applied to the new version.
 
-This will be more relevant in the next chapter. To handle this for now:
+This will be more relevant in the next chapter, but let us handle this now:
 
-1. Modify the `TryRefresh` function to contain `out` parameter of the old asset. Change the method signature to the following:
+1. Modify the `TryRefresh` function to contain `out` parameter of the old asset, updating the method signature to the following:
 
     [!code-csharp[](./snippets/snippet-2-28.cs)]
 
 2. Before updating the `watchedAsset.Asset`, set the `oldAsset` as the previous in-memory asset:
 
-    [!code-csharp[](./snippets/snippet-2-29.cs?highlight=16)]
+    [!code-csharp[](./snippets/snippet-2-29.cs?highlight=3,24-25)]
 
-3. **Do not** forget that the place where the `grayscaleEffect` calls the `TryRefresh()` function will also need to include a no-op out variable:
+3. **Do not** forget that the place where the `grayscaleEffect` calls the `TryRefresh()` function in the `GameScene` class will also need to include a no-op out variable (essentially passing a reference, but we [discard the result](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/functional/discards)):
 
     [!code-csharp[](./snippets/snippet-2-30.cs?highlight=4)]
 
@@ -271,15 +285,15 @@ Finally, we need to address a subtle usability bug in the existing code. The `Tr
 
 3. Then, in the `TryRefresh` function, a small assertion can be added to validate the `ContentManager` is the same:
 
-    [!code-csharp[](./snippets/snippet-2-33.cs?highlight=6-7)]
+    [!code-csharp[](./snippets/snippet-2-33.cs?highlight=5-9)]
 
-It is annoying to need use the `ContentManager` directly to call `TryRefresh` in the game loop. It would be easier to rely on the new `Owner` property:
+It is annoying to have use the `ContentManager` directly to call `TryRefresh` in the game loop. It would be easier to rely on the new `Owner` property, so let us fix that by adding another Refresh overload to the `WatchedAsset<T>` to just use the manager it is already referencing:
 
 4. Add the following method to the `WatchedAsset<T>` class:
 
     [!code-csharp[](./snippets/snippet-2-34.cs)]
 
-5. Finally, update the `GameScene` to use the new convenience method to refresh the `_grayscaleEffect`:
+5. Finally, update the `GameScene` to use the new convenience method to refresh the `_grayscaleEffect` instead:
 
     [!code-csharp[](./snippets/snippet-2-35.cs?highlight=4)]
 

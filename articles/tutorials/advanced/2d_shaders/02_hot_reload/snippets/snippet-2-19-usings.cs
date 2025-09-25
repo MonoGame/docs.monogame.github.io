@@ -1,0 +1,11 @@
+using System;
+using DungeonSlime.GameObjects;
+using DungeonSlime.UI;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using MonoGameGum;
+using MonoGameLibrary;
+using MonoGameLibrary.Content;
+using MonoGameLibrary.Graphics;
+using MonoGameLibrary.Scenes;
