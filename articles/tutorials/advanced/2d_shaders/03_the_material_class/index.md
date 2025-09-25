@@ -13,9 +13,9 @@ In this chapter, we will create a small wrapper class, called the `Material`, th
 If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/02-Hot-Reload-System/).
 
 > [!NOTE]
-> The tutorial assumes you have the `watch` process running in the terminal in VSCode, if it is not, start the process using:
+> The tutorial assumes you have the `watch` process running automatically as you start the _DungeonSlime_ game. Otherwise, make sure to start it manually in the terminal in VSCode:
 >
-> ```dotnet build -t:WatchContent```
+> ```dotnet build -t:WatchContent --tl:off```
 
 ## The Material Class
 
@@ -107,7 +107,7 @@ The `_indexLookup` is a `Dictionary<string, int>` containing a mapping of proper
 
     [!code-csharp[](./snippets/snippet-3-11.cs)]
 
-4. ANd we MUST not forget to invoke this method during the constructor of the `Material`:
+4. And we must not forget to invoke this method during the constructor of the `Material`:
 
     [!code-csharp[](./snippets/snippet-3-12.cs?highlight=4)]
 

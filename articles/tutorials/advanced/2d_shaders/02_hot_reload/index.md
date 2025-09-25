@@ -78,7 +78,7 @@ The following command uses the existing target provided by the `MonoGame.Content
 Now, when you change a _`.fx`_ file, all of the content files are rebuilt into `.xnb` files.
 
 > [!note]
-> When you run `dotnet watch`, that is actually short hand for `dotnet watch run`. The `run` command _runs_ your game, but the `build` only _builds_ your program. Going forward, the `dotnet watch build` commands will not start your game, just build the content. To learn more, read the official documentation for [`dotnet watch`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-watch)
+> When you run `dotnet watch`, that is actually short hand for `dotnet watch run`. The `run` command _runs_ your game, but the `build` only _builds_ your program. Going forward, the `dotnet watch build` commands will not start your game, they will just build the content. To learn more, read the official documentation for [`dotnet watch`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-watch). 
 
 However, the `.xnb` files are still not being copied from the `Content/bin` folder to _DungeonSlime_'s runtime folder, the `.xnb` files are only copied during the full MSBuild of the game. The `IncludeContent` target on its own does not have all the context it needs to know how to copy the files in the final game project. To solve this, we need to introduce a new `<Target>` that copies the final `.xnb` files into _DungeonSlime_'s runtime folder.
 
@@ -118,6 +118,15 @@ The command is getting long and hard to type, and if we want to add more configu
 And now from the terminal, run the following `dotnet build` command:
 
 [!code-sh[](./snippets/snippet-2-12.sh)]
+
+> [!CAUTION]
+> What does `--tl:off` do?
+> 
+> This tutorial series assumes you are using `net8.0`, but theoretically there is nothing stopping you from using later version of `dotnet`. However, in `net9.0`, a [breaking change](https://learn.microsoft.com/en-us/dotnet/core/compatibility/sdk/9.0/terminal-logger) was made to the `dotnet build`'s log output. There is special code that tries to optimize the log output from `dotnet build` so it does not feel overwhelming to look at. This system is called the _terminal logger_, and sadly it hides the underlying log output from `dotnet watch`. It was _opt-in_ for `net8.0`, but in `net9.0`, it is is _enabled_ by default. 
+>
+> **If you are using `net9.0` or above, you _must_ include this option.**
+> 
+> `--tl:off` disables the terminal logger so that the `dotnet watch` log output does not get intercepted by the terminal logger. 
 
 We now have a way to dynamically recompile shaders on file changes and copy the `.xnb` files into the game folder! There are a few final adjustments to make to the configuration.
 
@@ -220,12 +229,25 @@ It is time to extend the `ContentManagerExtensions` extension method that the ga
 
     [!code-csharp[](./snippets/snippet-2-23.cs)]
 
-2. At the top of the `Update()` method in the `GameScene` class, add the following line to opt into reloading the `_grayscaleEffect` asset:
+2. There are two common ways to run your game as you develop, 
+   - running the game from a terminal by typing `dotnet run`, 
+   - running the game from an IDE.
+     
+   When you use `dotnet run`, dotnet itself set the [_working directory_](https://learn.microsoft.com/en-us/dotnet/api/system.io.directory.getcurrentdirectory?view=net-9.0) of the program to the folder that contains your `DungeonSlime.csproj` file. However, many IDEs will set the working directory to be within the `/bin` folder of your project, next to the built `DungeonSlime.dll` file. 
+   
+   The working directory is important, because the `ContentManagerExtensions.cs` class we wrote uses the `manager.RootDirectory` to reassemble content `.xnb` file paths. The `manager.RootDirectory` is derived from the working directory, so if the working directory changes based on how we start the game, our `ContentManagerExtensions.cs` code will produce different `.xnb` paths. 
+
+   The actual `.xnb` files are in the `/bin` subfolder, so at the moment, running the game from the terminal will not work unless you _manually_ specify the working directory. To solve, this we can force the working directory by adding the [`<RunWorkingDirectory>`](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#runworkingdirectory) property to the `DungeonSlime.csproj` file:
+
+   [!code-xml[](./snippets/snippet-2-36.xml?highlight=5)]
+
+3. At the top of the `Update()` method in the `GameScene` class, add the following line to opt into reloading the `_grayscaleEffect` asset:
 
     [!code-csharp[](./snippets/snippet-2-24.cs?highlight=3-4)]
 
-3. Now, when the `grayscaleEffect.fx` file is modified, the `dotnet watch` system will compile it to an `.xnb` file, copy it to the game's runtime folder, and then in the `Update()` loop, the `TryRefresh()` method will load the new effect and the new shader code will be running live in the game.
-    Try it out by adding this temporary line right before the `return` statement in the `grayscaleEffect.fx` file, make sure the `dotnet build -t:WatchContent` is running in the terminal and [start the game in debug](/articles/tutorials/building_2d_games/02_getting_started/index.html?tabs=windows#creating-your-first-monogame-application) as normal:
+4. Now, when the `grayscaleEffect.fx` file is modified, the `dotnet watch` system will compile it to an `.xnb` file, copy it to the game's runtime folder, and then in the `Update()` loop, the `TryRefresh()` method will load the new effect and the new shader code will be running live in the game.
+   
+   Try it out by adding this temporary line right before the `return` statement in the `grayscaleEffect.fx` file, make sure the `dotnet build -t:WatchContent` is running in the terminal and [start the game in debug](/articles/tutorials/building_2d_games/02_getting_started/index.html?tabs=windows#creating-your-first-monogame-application) as normal:
 
     [!code-hlsl[](./snippets/snippet-2-25.hlsl?highlight=18-19)]
 
@@ -296,6 +318,37 @@ It is annoying to have use the `ContentManager` directly to call `TryRefresh` in
 5. Finally, update the `GameScene` to use the new convenience method to refresh the `_grayscaleEffect` instead:
 
     [!code-csharp[](./snippets/snippet-2-35.cs?highlight=4)]
+
+### Auto start the watcher
+
+The hot reload system is working, but it has a serious weakness. You need to _remember_ to run the following command before starting your game:
+
+[!code-sh[](./snippets/snippet-2-12.sh)]
+
+After you run that command in a terminal, you need to start your game normally. If you _only_ started the game, but never started the watcher, then your shaders would never be hot reloadable. This kind of error is dangerous because it can undermine trust in the hot reload system itself. It would be better if the watcher was started automatically when the game is run, so that you only need to do one thing, _run the game_. 
+
+In the `ContentManagerExtensions.cs` file, add this function to the class:
+
+[!code-cs[](./snippets/snippet-2-37.cs)]
+
+You will need to add the following `using` statement to the top of the file:
+
+```csharp
+using System.Reflection;
+```
+
+Then, call the new function from the DungeonSlime's `Program.cs` file before starting the game:
+
+[!code-cs[](./snippets/snippet-2-37.cs?highlight=1)]
+
+Now, you do not need to start the watcher manually. Instead, you can simply the start the game normally, and the watcher process should appear in the background. 
+
+> [!tip]
+> If you are running the game via the terminal, and you do _not_ want to start the background content watcher, add the `--no-reload` command line option.
+
+| ![Figure 2-2: The content watcher will appear as a separate window](./images/background-watcher.png) | ![Figure 2-3: The _DungeonSlime_ game appears as normal](./images/game.png) |
+| :--------------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------: |
+|                 **Figure 2-2: The content watcher will appear as a separate window**                 |       **Figure 2-3:  The _DungeonSlime_ game appears as normal**            |
 
 ## Conclusion
 
