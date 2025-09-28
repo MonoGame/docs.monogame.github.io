@@ -9,7 +9,6 @@ This completes the comprehensive guide to publishing your MonoGame application o
 
 ## Here's a Recap
 
-
 ### 
 
 ### Tools

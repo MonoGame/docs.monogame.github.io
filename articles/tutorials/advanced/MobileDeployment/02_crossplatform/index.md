@@ -15,7 +15,7 @@ In this chapter you will:
 - **For iOS Development:**
   - An App Store Developer Account
   - **Certificates** and **Provisioning Profiles** configured and installed.
-  - **Mac with Xcode 16 installed** - installed through the App Store.
+  - **Mac 15.x (Sequoia) with Xcode 16 installed** - installed through the App Store.
 - **For Android Development:**
   - Android SDK and tools installed - through the Visual Studio Installer or through Jetbrains Rider.
 

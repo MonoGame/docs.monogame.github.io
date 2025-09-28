@@ -14,6 +14,10 @@ This is done during initialization:
 ```csharp
 protected override void Initialize()
 {
+    TouchPanel.DisplayWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
+    
+    TouchPanel.DisplayHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
+
     TouchPanel.EnabledGestures = GestureType.Tap |
                                  GestureType.DoubleTap |
                                  GestureType.Hold |

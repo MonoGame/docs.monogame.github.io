@@ -7,25 +7,17 @@ description: "Learn how to publish your MonoGame mobile application to the Googl
 
 This chapter covers the complete publishing process for both major mobile app stores. You will learn the requirements and workflows for getting your MonoGame app successfully published on Android platforms.
 
-## Prerequisites
-
-Before publishing, ensure you have:
-- Completed development and testing of your cross-platform MonoGame app
-- Google Play Developer account (a one-time fee)
-- App icons, screenshots, and store assets prepared
-- Final build configurations tested on physical devices
-
----
-
 # Google Play Store Publishing
+
+## Creating Your Developer Account
+
+**Register at** [play.google.com/console](https://play.google.com/console)
 
 ## Pre-Publishing Preparation
 
-### Final Android Build Configuration
+Ensure your Android project is properly configured for Google Play submission.
 
-Ensure your Android project is properly configured for Google Play submission:
-
-#### Project Properties
+## Project Properties
 
 ```xml
 <SupportedOSPlatformVersion>23</SupportedOSPlatformVersion>
@@ -34,9 +26,9 @@ Ensure your Android project is properly configured for Google Play submission:
 <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 ```
 
-#### Activity Configuration
+## Activity Configuration
 
-Verify your main activity is properly configured:
+Verify your main activity is properly configured. Ensuring the orientation of your game - portrait or landscape.
 
 ```csharp
 [Activity(
@@ -51,11 +43,11 @@ Verify your main activity is properly configured:
 )]
 ```
 
-### Required Assets
+## Required Assets
 
-#### App Icons
+### App Icons
 
-Ensure you have app icons for all density buckets:
+You will need to create and ensure you have app icons for all density buckets. There are a few online offerings where you can create a single image and it produce the icons. For example, [App Icon Generator](https://www.applicon.com).
 
 - **mdpi:** 48x48 px
 - **hdpi:** 72x72 px  
@@ -63,15 +55,15 @@ Ensure you have app icons for all density buckets:
 - **xxhdpi:** 144x144 px
 - **xxxhdpi:** 192x192 px
 
-#### Feature Graphic
+### Feature Graphic
 
 - **Size:** 1024 x 500 px
 - **Format:** PNG or JPEG
 - **Purpose:** Featured in Google Play Store
 
-#### Screenshots
+### Screenshots
 
-Required for each supported device type:
+Required for each supported device type to promote your game and its features.
 
 - **Phone:** Minimum 320px, maximum 3840px
 - **7-inch Tablet:** Same requirements
@@ -79,11 +71,10 @@ Required for each supported device type:
 - **Android TV:** 1920 x 1080 px
 - **Wear OS:** 384 x 384 px
 
-### Release Build Configuration
+## Signing Configuration
 
-#### Signing Configuration
+### Creating a Keystore
 
-#### Creating a Keystore
 ```bash
 # Generate new keystore (first time only)
 keytool -genkey -v -keystore your-app.keystore -alias your-key-alias -keyalg RSA -keysize 2048 -validity 10000
@@ -94,13 +85,7 @@ keytool -list -v -keystore your-app.keystore
 
 **Important:** Keep your keystore file secure and backed up. Lost keystores cannot be recovered and prevent app updates.
 
-## Google Play Console Setup
-
-### Creating Your Developer Account
-
-**Register at** [play.google.com/console](https://play.google.com/console)
-
-### Creating Your App
+## Creating Your Game at Google Play
 
 1. **Create App** in Google Play Console
    

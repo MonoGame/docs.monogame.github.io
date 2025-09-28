@@ -3,9 +3,9 @@ title: "07: Checklist for publishing to iOS App Store and Google Play Store"
 description: "Learn how to publish your MonoGame mobile application to both the iOS App Store and Google Play Store with step-by-step guidance."
 ---
 
-## App Review Submission
+# App Review Submission
 
-### Pre-Submission Checklist
+## Pre-Submission Checklist
 
 - [ ] All required screenshots uploaded
 - [ ] App description and metadata complete
@@ -15,29 +15,29 @@ description: "Learn how to publish your MonoGame mobile application to both the 
 - [ ] Build selected and tested
 - [ ] Export compliance information provided
 
-### Review Information
+## Review Information
 
-#### App Review Contact Information
+## App Review Contact Information
 
 - First Name, Last Name
 - Phone Number
 - Email Address
 
-#### Demo Account (If Required)
+## Demo Account (If Required)
 
 If your app requires login:
 - Demo Username
 - Demo Password
 - Additional instructions for reviewers
 
-#### Notes for Review
+## Notes for Review
 
 Additional information to help reviewers:
 - Special instructions
 - Feature explanations
 - Known limitations
 
-### Submission Process
+## Submission Process
 
 1. **Select Build:** Choose your uploaded build
 2. **Review Summary:** Check all information is correct
@@ -46,7 +46,7 @@ Additional information to help reviewers:
 
 ## Review Timeline and Common Issues
 
-### Typical Timeline
+## Typical Timeline
 
 - **Review Time:** 24-48 hours
 - **Processing:** Additional time for first-time developers

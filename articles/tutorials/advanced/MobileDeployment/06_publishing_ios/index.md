@@ -7,20 +7,13 @@ description: "Learn how to publish your MonoGame mobile application to both the 
 
 This chapter covers the complete publishing process for both major mobile app stores. You will learn the requirements, workflow for getting your MonoGame app successfully published on iOS platforms.
 
-## Prerequisites
+# Apple Develoer Program
 
-Before publishing, ensure you have:
-
-- Completed development and testing of your cross-platform MonoGame app
-- Active Apple Developer Program membership (an annual fee)
-- App icons, screenshots, and store assets prepared
-- Final build configurations tested on physical devices
-
-## Final iOS Build Configuration
+## Pre-Publishing Preparation
 
 Ensure your iOS project is properly configured for App Store submission:
 
-### Project Properties
+## Project Properties
 
 ```xml
 <SupportedOSPlatformVersion>12.2</SupportedOSPlatformVersion>
@@ -28,7 +21,7 @@ Ensure your iOS project is properly configured for App Store submission:
 <CFBundleIconName>AppIcon</CFBundleIconName>
 ```
 
-### Code Signing for Release
+## Code Signing for Release
 
 Two entitlements - one for debug and one for publication.
 
@@ -39,7 +32,7 @@ Two entitlements - one for debug and one for publication.
 </PropertyGroup>
 ```
 
-#### Production Entitlements
+## Production Entitlements
 
 Verify your `EntitlementsProduction.plist` has debugging disabled:
 
@@ -52,13 +45,13 @@ Verify your `EntitlementsProduction.plist` has debugging disabled:
 
 ### App Icons
 
-Ensure your `Assets.xcassets/AppIcon.appiconset` contains all required sizes:
+You will need to create and ensure you have app icons for all density buckets. There are a few online offerings where you can create a single image and it produce the icons. For example, [App Icon Generator](https://www.applicon.com).
+
+You can place all of your icons in the location `Assets.xcassets/AppIcon.appiconset`.
 
 - **iPhone**: 40x40, 60x60, 87x87, 120x120, 180x180
 - **iPad**: 40x40, 58x58, 80x80, 152x152, 167x167  
 - **App Store**: 1024x1024
-
-These icons can be generated using a tool such as [AppIcon](https://www.applicon.com).
 
 |Asset|Image|
 |-|-|
@@ -74,7 +67,7 @@ These icons can be generated using a tool such as [AppIcon](https://www.applicon
 |180x180|![180x180](images/icons/appicon60x60@3x.png)|
 |Artwork 1024x1024|![1024x1024](images/icons/appiconItunesArtwork.png)|
 
-#### Info.plist Configuration
+### Info.plist Configuration
 
 Verify essential properties are set:
 
@@ -134,9 +127,7 @@ Ensure your iOS project includes the asset compilation target:
 </Target>
 ```
 
-## App Store Connect Setup
-
-### Creating Your App
+## Creating Game at App Store Connect
 
 1. **Log into App Store Connect** at [appstoreconnect.apple.com](https://appstoreconnect.apple.com)
 2. **Create New App:**
@@ -146,25 +137,25 @@ Ensure your iOS project includes the asset compilation target:
    - Bundle ID: Must match your project's `BundleIdentifier`
    - SKU: Unique identifier for your records
 
-### App Information
+## App Information
 
-#### Required Information
+### Required Information
 
 - **App Name:** Display name in the App Store
 - **Subtitle:** Brief description
 - **Category:** Primary and secondary categories
 - **Content Rights:** Whether you own or have licensed all content
 
-#### App Store Listing
+### App Store Listing
 
 - **Description:** Detailed app description
 - **Keywords:** Search terms (comma-separated)
 - **Marketing URL:** Your app's website
 - **Privacy Policy URL:** Required for most apps
 
-### Screenshots and Media
+## Screenshots and Media
 
-#### Required Screenshots
+### Required Screenshots
 
 You need screenshots for each device type you support:
 
@@ -174,19 +165,15 @@ You need screenshots for each device type you support:
 - **iPad Pro (6th gen)**: 2048 x 2732 pixels
 - **iPad Pro (2nd gen)**: 2048 x 2732 pixels
 
-#### App Preview Videos (Optional)
+### App Preview Videos (Optional)
 
 - 30 seconds maximum
 - Same dimensions as screenshots
 - Shows actual app gameplay
 
-## Building and Uploading
+## Building and Uploading using Terminal
 
-### Archive Build Process
-
-#### Using Command Line
-
-The creation of an IPA file can be achieved on the terminal. Currently, Rider does **not** support this process.
+The creation of an IPA file can be achieved on the terminal. Currently, Rider does **not** support this part of the process.
 
 ```sh
 dotnet clean
@@ -194,9 +181,9 @@ rm -rf bin/ obj/
 dotnet publish -c Release -f net8.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
 ```
 
-### Upload Method
+## Upload Method
 
-#### Transporter
+### Transporter
 
 - Standalone upload tool from Apple
 
@@ -216,7 +203,7 @@ dotnet publish -c Release -f net8.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
 
 - Requires pre-signed IPA file
 
-### Build Processing
+## Build Processing
 
 After upload:
 
@@ -243,52 +230,3 @@ After upload:
 | ![Figure 4-6: Assign Testers](images/ios/testflight-build-assign-testers.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
 |                       **Figure 4-6: Assign Testers** |    
-
-## App Review Submission
-
-### Pre-Submission Checklist
-
-- [ ] All required screenshots uploaded
-- [ ] App description and metadata complete
-- [ ] Privacy policy URL provided (if required)
-- [ ] Content rating completed
-- [ ] Pricing and availability set
-- [ ] Build selected and tested
-- [ ] Export compliance information provided
-
-### Review Information
-
-#### App Review Contact Information
-
-- First Name, Last Name
-- Phone Number
-- Email Address
-
-#### Demo Account (If Required)
-
-If your app requires login:
-- Demo Username
-- Demo Password
-- Additional instructions for reviewers
-
-#### Notes for Review
-
-Additional information to help reviewers:
-- Special instructions
-- Feature explanations
-- Known limitations
-
-### Submission Process
-
-1. **Select Build:** Choose your uploaded build
-2. **Review Summary:** Check all information is correct
-3. **Submit for Review:** Click "Submit for Review"
-4. **Status Tracking:** Monitor in App Store Connect
-
-## Review Timeline and Common Issues
-
-### Typical Timeline
-
-- **Review Time:** 24-48 hours
-- **Processing:** Additional time for first-time developers
-- **Holiday Delays:** Longer during Apple holidays, so plan accordingly.
