@@ -33,12 +33,14 @@ By the end of this mobile tutorial series, you will have:
 
 These tools are available by installing the Android Workload using the [MonoGame Getting Started Instructions](../../../../getting_started/platforms.md).
 
+**Additional Notes:** For Windows users, ensure **Hyper-V** is enabled for better emulator performance. On Mac, Android Studio can be used alongside Rider for advanced emulator configurations.
+
 For more information visit about getting started with Android development:
 
 - [Getting Started with Android Development](https://learn.microsoft.com/en-us/dotnet/android/getting-started/installation/)
 - [Getting Started with Maui Development](https://learn.microsoft.com/en-us/dotnet/maui/get-started/installation)
 
-To release your game to the Google App Store, you will need to sign up for a developer account at [Google Play Signup](https://play.google.com/console/signup). You will need to accept the Developer Distribution Agreement and pay a registration fee.
+To release your game to the **Google Play Store**, you will need to sign up for a developer account at [Google Play Signup](https://play.google.com/console/signup). You will need to accept the Developer Distribution Agreement and pay a registration fee.
 
 More information about the registration process can be found here [Registration process](https://support.google.com/googleplay/android-developer/answer/6112435).
 

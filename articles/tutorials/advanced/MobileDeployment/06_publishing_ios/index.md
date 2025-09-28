@@ -5,48 +5,30 @@ description: "Learn how to publish your MonoGame mobile application to both the 
 
 # Publishing Overview
 
-This chapter covers the complete publishing process for both major mobile app stores. You will learn the requirements, workflows, and common pitfalls for getting your MonoGame app successfully published on iOS platforms.
+This chapter covers the complete publishing process for both major mobile app stores. You will learn the requirements, workflow for getting your MonoGame app successfully published on iOS platforms.
 
 ## Prerequisites
 
 Before publishing, ensure you have:
+
 - Completed development and testing of your cross-platform MonoGame app
-- **For iOS:** Active Apple Developer Program membership (an annual fee)
+- Active Apple Developer Program membership (an annual fee)
 - App icons, screenshots, and store assets prepared
 - Final build configurations tested on physical devices
 
----
-
-# iOS App Store Publishing
-
-## Pre-Publishing Preparation
-
-### Final iOS Build Configuration
+## Final iOS Build Configuration
 
 Ensure your iOS project is properly configured for App Store submission:
 
-#### Project Properties
+### Project Properties
+
 ```xml
 <SupportedOSPlatformVersion>12.2</SupportedOSPlatformVersion>
 <BundleIdentifier>com.companyname.gamename</BundleIdentifier>
 <CFBundleIconName>AppIcon</CFBundleIconName>
 ```
 
-### Understanding the Bundle Identifier
-
-The **bundle identifier** is a unique string that identifies your app. It follows a reverse domain name notation, such as `com.companyname.gamename`.
-
-This identifier is used by Apple and Google to distinguish your app from all others on the stores and on devices.
-
-- It **must** be unique across all apps in the store.
-
-- The bundle identifier you set in your project must exactly match the one registered in the stores.
-
-- Changing the bundle identifier after publishing will create a new app entry, not update the existing app.
-
-**Tip:** Choose a bundle identifier that reflects your organization and app name, and keep it consistent across your project files and provisioning profiles.
-
-#### Code Signing for Release
+### Code Signing for Release
 
 Two entitlements - one for debug and one for publication.
 
@@ -60,20 +42,23 @@ Two entitlements - one for debug and one for publication.
 #### Production Entitlements
 
 Verify your `EntitlementsProduction.plist` has debugging disabled:
+
 ```xml
 <key>get-task-allow</key>
 <false/>
 ```
 
-### Required Assets
+## Required Assets
 
-#### App Icons
+### App Icons
 
 Ensure your `Assets.xcassets/AppIcon.appiconset` contains all required sizes:
 
 - **iPhone**: 40x40, 60x60, 87x87, 120x120, 180x180
 - **iPad**: 40x40, 58x58, 80x80, 152x152, 167x167  
 - **App Store**: 1024x1024
+
+These icons can be generated using a tool such as [AppIcon](https://www.applicon.com).
 
 |Asset|Image|
 |-|-|
@@ -138,7 +123,7 @@ Typical settings for a game:
 <true/>
 ```
 
-### Asset Compilation Target
+## Asset Compilation Target
 
 Ensure your iOS project includes the asset compilation target:
 
@@ -151,7 +136,7 @@ Ensure your iOS project includes the asset compilation target:
 
 ## App Store Connect Setup
 
-### Creating Your App Record
+### Creating Your App
 
 1. **Log into App Store Connect** at [appstoreconnect.apple.com](https://appstoreconnect.apple.com)
 2. **Create New App:**

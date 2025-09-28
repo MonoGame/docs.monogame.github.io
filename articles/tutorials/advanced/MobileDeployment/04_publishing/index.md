@@ -3,9 +3,9 @@ title: "04: Publishing to iOS App Store and Google Play Store"
 description: "Learn how to publish your MonoGame mobile application to both the iOS App Store and Google Play Store with step-by-step guidance and real-world insights."
 ---
 
-# Publishing Overview
+# Starting Publishing 
 
-This chapter covers the complete publishing process for both major mobile app stores. You will learn the requirements, workflows, and common pitfalls for getting your MonoGame app successfully published on iOS and Android platforms.
+>>> TODO <<<<
 
 ## Prerequisites
 
