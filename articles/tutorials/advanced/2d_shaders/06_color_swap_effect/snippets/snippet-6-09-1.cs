@@ -1,0 +1,1 @@
+private Texture2D _colorMap;
