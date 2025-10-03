@@ -137,27 +137,11 @@ Ensure your iOS project includes the asset compilation target:
    - Bundle ID: Must match your project's `BundleIdentifier`
    - SKU: Unique identifier for your records
 
-## App Information
-
-### Required Information
-
-- **App Name:** Display name in the App Store
-- **Subtitle:** Brief description
-- **Category:** Primary and secondary categories
-- **Content Rights:** Whether you own or have licensed all content
-
-### App Store Listing
-
-- **Description:** Detailed app description
-- **Keywords:** Search terms (comma-separated)
-- **Marketing URL:** Your app's website
-- **Privacy Policy URL:** Required for most apps
-
 ## Screenshots and Media
 
 ### Required Screenshots
 
-You need screenshots for each device type you support:
+You need screenshots for each of the following devices:
 
 - **iPhone 6.7"** (iPhone 14 Pro Max): 1290 x 2796 pixels
 - **iPhone 6.5"** (iPhone 11 Pro Max): 1242 x 2688 pixels  
@@ -166,6 +150,8 @@ You need screenshots for each device type you support:
 - **iPad Pro (2nd gen)**: 2048 x 2732 pixels
 
 ### App Preview Videos (Optional)
+
+Although optional a video to demo your game will certainly appeal to the audience.
 
 - 30 seconds maximum
 - Same dimensions as screenshots
@@ -181,17 +167,15 @@ rm -rf bin/ obj/
 dotnet publish -c Release -f net8.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
 ```
 
-## Upload Method
+## Upload Method using Transporter
 
-### Transporter
-
-- Standalone upload tool from Apple
+- Standalone upload tool from Apple can be found in the **Applications** folder.
 
 | ![Figure 4-1: Transporter](images/ios/transporter.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
 |                       **Figure 4-1: Transporter**                       |
 
-- Useful for automated workflows
+Step through the upload process for your IPA file.
 
 | ![Figure 4-2: Transporter Upload Step 1](images/ios/transporter-upload1.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
@@ -201,16 +185,9 @@ dotnet publish -c Release -f net8.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
 |                       **Figure 4-3: Transporter Upload Step 2**                       |
 
-- Requires pre-signed IPA file
+## After uploading
 
-## Build Processing
-
-After upload:
-
-1. **Processing Time:** 10-60 minutes typically
-2. **Build Appears:** In App Store Connect under "Activity"
-3. **Status Check:** Wait for "Ready to Submit" status
-4. **Build Selection:** Choose the build for your app version
+The process can take a few moments to happen, but switching to the AppStore to watch the progress and complete the publication of your app.
 
 | ![Figure 4-4: iOS Builds](images/ios/testflight-build.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
@@ -220,7 +197,7 @@ After upload:
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
 |                       **Figure 4-5 Encryption Dialog**    |
 
-**Tip:** If you want to skip this dialog box altogether because you do not use encryption in your game, simply add this to the info.plist.
+**Tip:** If you want to skip the Encryption dialog box altogether because you do not use encryption in your game, simply add this to the **info.plist** file.
 
 ```xml
 	<key>ITSAppUsesNonExemptEncryption</key>
