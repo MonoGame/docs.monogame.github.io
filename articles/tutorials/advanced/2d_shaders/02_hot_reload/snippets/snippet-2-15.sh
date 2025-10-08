@@ -1,1 +1,1 @@
-dotnet build -t:WatchContent
+dotnet build -t:WatchContent --tl:off

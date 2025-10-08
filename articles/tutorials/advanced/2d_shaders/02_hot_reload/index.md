@@ -78,7 +78,7 @@ The following command uses the existing target provided by the `MonoGame.Content
 Now, when you change a _`.fx`_ file, all of the content files are rebuilt into `.xnb` files.
 
 > [!note]
-> When you run `dotnet watch`, that is actually short hand for `dotnet watch run`. The `run` command _runs_ your game, but the `build` only _builds_ your program. Going forward, the `dotnet watch build` commands will not start your game, they will just build the content. To learn more, read the official documentation for [`dotnet watch`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-watch). 
+> When you run `dotnet watch`, that is actually short hand for `dotnet watch run`. The `run` command _runs_ your game, but the `build` only _builds_ your program. Going forward, the `dotnet watch build` commands will not start your game, they will just build the content. To learn more, read the official documentation for [`dotnet watch`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-watch).
 
 However, the `.xnb` files are still not being copied from the `Content/bin` folder to _DungeonSlime_'s runtime folder, the `.xnb` files are only copied during the full MSBuild of the game. The `IncludeContent` target on its own does not have all the context it needs to know how to copy the files in the final game project. To solve this, we need to introduce a new `<Target>` that copies the final `.xnb` files into _DungeonSlime_'s runtime folder.
 
@@ -95,7 +95,7 @@ Now, instead of calling the `IncludeContent` target directly, change your termin
 If you delete the `DungeonSlime/bin/Debug/net8.0/Content` folder, make an edit to a `.cs` file and save, you should see the `DungeonSlime/bin/Debug/net8.0/Content` folder be restored.
 
 > [!note]
-> The `DungeonSlime/bin/Debug/net8.0/Content` folder may not appear _immediately_ in your IDE's file view. Sometimes the IDE caches the file system and doesn't notice the file change right away. Try opening the folder in your operating system's file explorer instead. 
+> The `DungeonSlime/bin/Debug/net8.0/Content` folder may not appear _immediately_ in your IDE's file view. Sometimes the IDE caches the file system and doesn't notice the file change right away. Try opening the folder in your operating system's file explorer instead.
 
 The next step is to only invoke the target when `.fx` files are edited instead of `.cs` files. These settings can be configured with custom MSBuild item configurations. Open the `DungeonSlime.csproj` file and add this `<ItemGroup>` to specify configuration settings:
 
@@ -121,12 +121,12 @@ And now from the terminal, run the following `dotnet build` command:
 
 > [!CAUTION]
 > What does `--tl:off` do?
-> 
-> This tutorial series assumes you are using `net8.0`, but theoretically there is nothing stopping you from using later version of `dotnet`. However, in `net9.0`, a [breaking change](https://learn.microsoft.com/en-us/dotnet/core/compatibility/sdk/9.0/terminal-logger) was made to the `dotnet build`'s log output. There is special code that tries to optimize the log output from `dotnet build` so it does not feel overwhelming to look at. This system is called the _terminal logger_, and sadly it hides the underlying log output from `dotnet watch`. It was _opt-in_ for `net8.0`, but in `net9.0`, it is is _enabled_ by default. 
+>
+> This tutorial series assumes you are using `net8.0`, but theoretically there is nothing stopping you from using later version of `dotnet`. However, in `net9.0`, a [breaking change](https://learn.microsoft.com/en-us/dotnet/core/compatibility/sdk/9.0/terminal-logger) was made to the `dotnet build`'s log output. There is special code that tries to optimize the log output from `dotnet build` so that it does not feel overwhelming to look at. This system is called the _terminal logger_, and sadly it hides the underlying log output from `dotnet watch`. It was _opt-in_ for `net8.0`, but in `net9.0`, it is _enabled_ by default.
 >
 > **If you are using `net9.0` or above, you _must_ include this option.**
-> 
-> `--tl:off` disables the terminal logger so that the `dotnet watch` log output does not get intercepted by the terminal logger. 
+>
+> `--tl:off` disables the terminal logger so that the `dotnet watch` log output does not get intercepted by the terminal logger.
 
 We now have a way to dynamically recompile shaders on file changes and copy the `.xnb` files into the game folder! There are a few final adjustments to make to the configuration.
 
@@ -197,6 +197,21 @@ The `.Load()` function in the existing `ContentManager` is almost sufficient for
 
     [!code-csharp[](./snippets/snippet-2-19-usings.cs?highlight=9)]
 
+### Setting the correct working path
+
+There are two common ways to run your game as you develop:
+
+- running the game from a terminal by typing `dotnet run`,
+- running the game from an IDE.&nbsp;
+
+When you use `dotnet run`, dotnet itself sets the [_working directory_](https://learn.microsoft.com/en-us/dotnet/api/system.io.directory.getcurrentdirectory?view=net-9.0) of the program to the folder that contains your `DungeonSlime.csproj` file. However, many IDEs will set the working directory to be within the `/bin` (output) folder of your project, next to the built `DungeonSlime.dll/exe` file.
+
+The working directory is important, because the `ContentManagerExtensions.cs` class we wrote uses the `manager.RootDirectory` to reassemble content `.xnb` file paths. The `manager.RootDirectory` is derived from the working directory, so if the working directory changes based on how we start the game, our `ContentManagerExtensions.cs` code will produce different `.xnb` paths.
+
+The actual `.xnb` files are copied to the `/bin` subfolder, so at the moment, running the game from the terminal will not work unless you _manually_ specify the working directory. To solve, this we can force the working directory by adding the [`<RunWorkingDirectory>`](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#runworkingdirectory) property to the `DungeonSlime.csproj` file:
+
+[!code-xml[](./snippets/snippet-2-36.xml?highlight=5)]
+
 ### The `WatchedAsset` class
 
 The new system will need to keep track of additional information for each asset that we plan to be _hot-reloadable_, the data will live in a new class, `WatchedAsset<T>`.
@@ -205,11 +220,11 @@ The new system will need to keep track of additional information for each asset 
 
     [!code-csharp[](./snippets/snippet-2-20.cs)]
 
-2. Next, we need to update the `Watch` method in the ContentManagerExtensions to return a `WatchedAsset<T>` instead of the direct `Effect` it used originally:
+2. Next, we need to update the `Watch` method in the _ContentManagerExtensions_ to return a `WatchedAsset<T>` instead of the direct `Effect` it used originally:
 
     [!code-csharp[](./snippets/snippet-2-21.cs)]
 
-3. Now, any asset that requires hot-reloading, such as the `_greyscaleEffect` in the `GameScene`, needs to change to a `WatchedAsset<Effect>` instead of simply an `Effect`:
+3. Now, any asset that requires hot-reloading, such as the `_greyscaleEffect` in the `GameScene`, also needs to change to use a `WatchedAsset<Effect>` instead of simply an `Effect`:
 
     [!code-csharp[](./snippets/snippet-2-22.cs)]
 
@@ -225,29 +240,18 @@ The new system will need to keep track of additional information for each asset 
 
 It is time to extend the `ContentManagerExtensions` extension method that the game code will use to "opt in" to reloading an asset. From the earlier section, anytime a `.fx` file is updated, the compiled `.xnb` file will be copied into the game's runtime folder, the operating system will keep track of the last time the `.xnb` file was written, and we can leverage that information with the `WatchedAsset<T>.UpdatedAt` property to understand if the `.xnb` file is _newer_ than the current loaded `Effect`.
 
-1. The following `TryRefresh` method will take a `WatchedAsset<T>` and update the inner `Asset` property _if_ the `.xnb` file is newer. The method returns `true` when the asset is reloaded, which will be useful later.  Add the following method to the `ContentManagerExtensions` class:
+1. The following `TryRefresh` method will take a `WatchedAsset<T>` and update the inner `Asset` property _if_ the `.xnb` file is newer. The method returns `true` when the asset is reloaded, which will be useful later.
+    Add the following method to the `ContentManagerExtensions` class:
 
     [!code-csharp[](./snippets/snippet-2-23.cs)]
 
-2. There are two common ways to run your game as you develop, 
-   - running the game from a terminal by typing `dotnet run`, 
-   - running the game from an IDE.
-     
-   When you use `dotnet run`, dotnet itself set the [_working directory_](https://learn.microsoft.com/en-us/dotnet/api/system.io.directory.getcurrentdirectory?view=net-9.0) of the program to the folder that contains your `DungeonSlime.csproj` file. However, many IDEs will set the working directory to be within the `/bin` folder of your project, next to the built `DungeonSlime.dll` file. 
-   
-   The working directory is important, because the `ContentManagerExtensions.cs` class we wrote uses the `manager.RootDirectory` to reassemble content `.xnb` file paths. The `manager.RootDirectory` is derived from the working directory, so if the working directory changes based on how we start the game, our `ContentManagerExtensions.cs` code will produce different `.xnb` paths. 
-
-   The actual `.xnb` files are in the `/bin` subfolder, so at the moment, running the game from the terminal will not work unless you _manually_ specify the working directory. To solve, this we can force the working directory by adding the [`<RunWorkingDirectory>`](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#runworkingdirectory) property to the `DungeonSlime.csproj` file:
-
-   [!code-xml[](./snippets/snippet-2-36.xml?highlight=5)]
-
-3. At the top of the `Update()` method in the `GameScene` class, add the following line to opt into reloading the `_grayscaleEffect` asset:
+2. Next, at the top of the `Update()` method in the `GameScene` class, add the following line to opt into reloading the `_grayscaleEffect` asset:
 
     [!code-csharp[](./snippets/snippet-2-24.cs?highlight=3-4)]
 
-4. Now, when the `grayscaleEffect.fx` file is modified, the `dotnet watch` system will compile it to an `.xnb` file, copy it to the game's runtime folder, and then in the `Update()` loop, the `TryRefresh()` method will load the new effect and the new shader code will be running live in the game.
-   
-   Try it out by adding this temporary line right before the `return` statement in the `grayscaleEffect.fx` file, make sure the `dotnet build -t:WatchContent` is running in the terminal and [start the game in debug](/articles/tutorials/building_2d_games/02_getting_started/index.html?tabs=windows#creating-your-first-monogame-application) as normal:
+3. Now, when the `grayscaleEffect.fx` file is modified, the `dotnet watch` system will compile it to an `.xnb` file, copy it to the game's runtime folder, and then in the `Update()` loop, the `TryRefresh()` method will load the new effect and the new shader code will be running live in the game.
+
+   Try it out by adding this temporary line right before the `return` statement in the `grayscaleEffect.fx` file, make sure the `dotnet build -t:WatchContent --tl:off` is running in the terminal and [start the game in debug](/articles/tutorials/building_2d_games/02_getting_started/index.html?tabs=windows#creating-your-first-monogame-application) as normal:
 
     [!code-hlsl[](./snippets/snippet-2-25.hlsl?highlight=18-19)]
 
@@ -256,6 +260,9 @@ This video shows the effect changing.
 | ![Figure 2-1: The reload system is working](./videos/shader-reload.mp4) |
 | :---------------------------------------------------------------------: |
 |              **Figure 2-1: The reload system is working**               |
+
+> [!NOTE]
+> Make sure to remove the change to the shader, unless you prefer the greyscale background red.
 
 ## Final Touches
 
@@ -295,7 +302,9 @@ This will be more relevant in the next chapter, but let us handle this now:
 
 ### Refresh Convenience Function
 
-Finally, we need to address a subtle usability bug in the existing code. The `TryRefresh` function may `Unload` an asset if a new version is loaded. However, it is not obvious that the `ContentManager` instance doing the `Unload` operation is the same `ContentManager` instance that loaded the original asset in the first place. To solve this:
+Finally, we need to address a subtle usability bug in the existing code. The `TryRefresh` function may `Unload` an asset if a new version is loaded. However, it is not obvious that the `ContentManager` instance doing the `Unload` operation is the same `ContentManager` instance that loaded the original asset in the first place.
+
+To solve the possible collision between ContentManager instances, we need to update the following:
 
 1. Add a `ContentManager` property to the `WatchedAsset<T>` class so that the asset itself knows which `ContentManager` is responsible for unloading old versions:
 
@@ -309,7 +318,7 @@ Finally, we need to address a subtle usability bug in the existing code. The `Tr
 
     [!code-csharp[](./snippets/snippet-2-33.cs?highlight=5-9)]
 
-It is annoying to have use the `ContentManager` directly to call `TryRefresh` in the game loop. It would be easier to rely on the new `Owner` property, so let us fix that by adding another Refresh overload to the `WatchedAsset<T>` to just use the manager it is already referencing:
+    It is annoying to have use the `ContentManager` directly to call `TryRefresh` in the game loop. It would be easier to rely on the new `Owner` property, so let us fix that by adding another Refresh overload to the `WatchedAsset<T>` to just use the manager it is already referencing:
 
 4. Add the following method to the `WatchedAsset<T>` class:
 
@@ -321,30 +330,35 @@ It is annoying to have use the `ContentManager` directly to call `TryRefresh` in
 
 ### Auto start the watcher
 
-The hot reload system is working, but it has a serious weakness. You need to _remember_ to run the following command before starting your game:
+The hot reload system is working, but it has a serious weakness. You have to _remember_ to run the following command before starting development your game if you want the Hot Reload system to function:
 
 [!code-sh[](./snippets/snippet-2-12.sh)]
 
-After you run that command in a terminal, you need to start your game normally. If you _only_ started the game, but never started the watcher, then your shaders would never be hot reloadable. This kind of error is dangerous because it can undermine trust in the hot reload system itself. It would be better if the watcher was started automatically when the game is run, so that you only need to do one thing, _run the game_. 
+After you run that command in a terminal, you still need to start your game normally. If you _only_ started the game, but never started the watcher, then your shaders would never be hot reloadable. This kind of error is dangerous because it can undermine trust in the hot reload system itself.
 
-In the `ContentManagerExtensions.cs` file, add this function to the class:
+It would be better if the watcher was started automatically when the game is run, so that you only need to do one thing, _run the game_.
 
-[!code-cs[](./snippets/snippet-2-37.cs)]
+1. In the `ContentManagerExtensions.cs` file, add this function to the class:
 
-You will need to add the following `using` statement to the top of the file:
+    [!code-cs[](./snippets/snippet-2-37.cs)]
 
-```csharp
-using System.Reflection;
-```
+2. Next add the following `using` statements to the top of the file:
 
-Then, call the new function from the DungeonSlime's `Program.cs` file before starting the game:
+    ```csharp
+    using System.Reflection;
+    using System.Diagnostics;
+    ```
 
-[!code-cs[](./snippets/snippet-2-37.cs?highlight=1)]
+3. Finally, call the new function from the DungeonSlime's `Program.cs` file before starting the game:
 
-Now, you do not need to start the watcher manually. Instead, you can simply the start the game normally, and the watcher process should appear in the background. 
+    [!code-cs[](./snippets/snippet-2-38.cs?highlight=1)]
+
+Now you do not need to start the watcher manually, instead, you can simply **start the game normally** (either "debug -> Start new instance, or simply `dotnet run`) and the watcher process should appear in the background/another window.
 
 > [!tip]
 > If you are running the game via the terminal, and you do _not_ want to start the background content watcher, add the `--no-reload` command line option.
+>
+> `dotnet run --no-reload`
 
 | ![Figure 2-2: The content watcher will appear as a separate window](./images/background-watcher.png) | ![Figure 2-3: The _DungeonSlime_ game appears as normal](./images/game.png) |
 | :--------------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------: |
@@ -363,4 +377,4 @@ This new workflow is going to make the rest of our journey much more fun and pro
 
 You can find the complete code sample for this chapter, [here](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/02-Hot-Reload-System/).
 
-Continue to the next chapter, [Chapter 03: The Material Class](../03_the_material_class/index.md)
+Continue to the next chapter, [Chapter 03: The Material Class](../03_the_material_class/index.md).

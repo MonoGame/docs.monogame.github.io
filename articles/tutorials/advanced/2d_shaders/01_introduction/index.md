@@ -28,4 +28,4 @@ Most of our shader files (`.fx`) will be created in the `Content/effects` folder
 
 Now that our project is set up, we can get to work. The focus for the first several chapters will be to create a workflow for developing shaders in MonoGame. Once we have a hot-reload system, a class to manage the effects, and a debug UI ready, we will carry on and build up 5 effects. The effects will range from simple pixel shaders and vertex shaders up to rendering techniques. As we develop these shaders together, we will build an intuition for how to tackle shader development. 
 
-Continue to the next chapter, [Chapter 02: Hot Reload](../02_hot_reload/index.md)
+Continue to the next chapter, [Chapter 02: Hot Reload](../02_hot_reload/index.md).

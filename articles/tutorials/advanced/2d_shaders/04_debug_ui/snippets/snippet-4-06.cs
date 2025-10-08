@@ -7,8 +7,9 @@ protected override void Draw(GameTime gameTime)
     
     ImGui.Begin("Demo Window");  
     ImGui.Text("Hello world!");  
-    ImGui.End();  
+    ImGui.End();
 
+    // Finish drawing the debug UI here
     Core.ImGuiRenderer.AfterLayout();
 
     base.Draw(gameTime);
