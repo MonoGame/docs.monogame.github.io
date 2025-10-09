@@ -37,6 +37,43 @@ By the end, you will be fully equipped to start creating games with MonoGame usi
 2. Click the Download `.deb` button.
 3. Double click the `.deb` file and press the `Install` button.
 
+### [Arch Linux](#tab/arch)
+
+On Arch Linux, you have two options for installing Visual Studio Code:
+
+#### Option 1: Code OSS (Open Source Version)
+
+Code OSS is the fully open-source version available under the MIT License. It's available in the official Arch repositories and can be installed with a single command:
+
+```sh
+sudo pacman -S code
+```
+
+> [!IMPORTANT]
+> Code OSS **cannot** use the proprietary Microsoft **C# Dev Kit** extension. However, it can use the base **C#** extension (formerly OmniSharp, now LSP-based), which provides IntelliSense, syntax highlighting, debugging, and code navigation, sufficient for MonoGame development.
+
+#### Option 2: Visual Studio Code (Official Microsoft Version) - Recommended
+
+The official Microsoft version includes proprietary features like settings sync, Microsoft account integration, and **support for the C# Dev Kit extension**. It's available through the AUR (Arch User Repository).
+
+1. First, ensure you have an AUR helper installed. If you don't have one, install `yay`:
+
+    ```sh
+    sudo pacman -S git base-devel
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    ```
+
+2. Install Visual Studio Code using yay:
+
+    ```sh
+    yay -S visual-studio-code-bin
+    ```
+
+> [!TIP]
+> For the best MonoGame development experience with full C# Dev Kit support (enhanced project management, integrated testing, better solution support), install the official Visual Studio Code. Code OSS works but has limitations with Microsoft extensions.
+
 ---
 
 ## Setting up VS Code for development with MonoGame
@@ -68,6 +105,9 @@ To transform Visual Studio Code from a simple text editor into a powerful develo
 
 ![Install C# DevKit Extension](./images/1_setting_up_your_development_environment/vscode/install-devkit.png)
 
+> [!NOTE]
+> **For Arch Linux Code OSS users:** The C# Dev Kit extension is not compatible with Code OSS. Instead, install only the base **C#** extension (by Microsoft), which provides all the core functionality needed for MonoGame development including IntelliSense, debugging, and code navigation.
+
 ## (Optional) Install the "MonoGame for VSCode" extension
 
 A community member has built a VSCode extension for VS code to enable:
@@ -94,8 +134,10 @@ The .NET MAUI extension adds features for building mobile apps, including:
 ![Install .NET MAUI DevKit Extension](../tutorials/building_2d_games/02_getting_started/images/maui-extension.png)
 
 > [!NOTE]
-> This extension is recommended if you wish to do iOS or Android development. It is required for debugging support when working on mobile games. 
+> This extension is recommended if you wish to do iOS or Android development. It is required for debugging support when working on mobile games.
 
+> [!WARNING]
+> **For Arch Linux Code OSS users:** The .NET MAUI extension requires C# Dev Kit and therefore is not compatible with Code OSS. You will need to use the official Visual Studio Code for mobile development support.
 
 ## Creating a new MonoGame project
 
