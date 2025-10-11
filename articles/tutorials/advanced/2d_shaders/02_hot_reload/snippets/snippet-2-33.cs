@@ -9,7 +9,7 @@ public static bool TryRefresh<T>(this ContentManager manager, WatchedAsset<T> wa
     }
 
     // get the same path that the ContentManager would use to load the asset
-        var path = Path.Combine(manager.RootDirectory, watchedAsset.AssetName) + ".xnb";
+    var path = Path.Combine(manager.RootDirectory, watchedAsset.AssetName) + ".xnb";
 
     // ask the operating system when the file was last written.
     var lastWriteTime = File.GetLastWriteTime(path);

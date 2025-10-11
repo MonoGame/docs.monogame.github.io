@@ -75,7 +75,7 @@ The following command uses the existing target provided by the `MonoGame.Content
 > [!Tip]
 > All arguments passed after the `--` characters are passed to the `build` command itself, not `dotnet watch`:
 
-Now, when you change a _`.fx`_ file, all of the content files are rebuilt into `.xnb` files.
+Now, when you change a _`.cs`_ file, all of the content files are rebuilt into `.xnb` files.
 
 > [!note]
 > When you run `dotnet watch`, that is actually short hand for `dotnet watch run`. The `run` command _runs_ your game, but the `build` only _builds_ your program. Going forward, the `dotnet watch build` commands will not start your game, they will just build the content. To learn more, read the official documentation for [`dotnet watch`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-watch).
@@ -111,6 +111,9 @@ And now when `dotnet watch` is invoked, it needs to specify the new parameter:
 
 [!code-sh[](./snippets/snippet-2-10.sh)]
 
+> [!NOTE]
+> The `watch` command will still listen for `.cs` file edits in the _MonoGameLibrary_ project, because those `.cs` files are grouped as a different compile unit. This is not a huge problem, but if you want to keep your content reloads to a strict minimum, then you need to add the same `<Compile Update="**/*.cs" Watch="false" />` snippet to the `MonoGameLibrary.csproj` file. In this series, we will just accept that there are some extraneous content operations. 
+
 The command is getting long and hard to type, and if we want to add more configuration, it will likely get even longer. Instead of invoking `dotnet watch` directly, it can be run as a new `<Target>` MSBuild step. Add this `<Target>` to your `DungeonSlime.csproj` file:
 
 [!code-xml[](./snippets/snippet-2-11.xml)]
@@ -130,7 +133,7 @@ And now from the terminal, run the following `dotnet build` command:
 
 We now have a way to dynamically recompile shaders on file changes and copy the `.xnb` files into the game folder! There are a few final adjustments to make to the configuration.
 
-### DotNet Watch, but smarter
+### Dotnet Watch, but smarter
 
 First, you may notice some odd characters in the log output after putting the `dotnet watch` inside the `WatchContent` target. This is because there are _emoji_ characters in the standard `dotnet watch` log stream, and some terminals do not understand how to display those, especially when streamed between `dotnet build`. To disable the _emoji_ characters, a `DOTNET_WATCH_SUPPRESS_EMOJIS` environment variable needs to be set:
 
@@ -206,7 +209,7 @@ There are two common ways to run your game as you develop:
 
 When you use `dotnet run`, dotnet itself sets the [_working directory_](https://learn.microsoft.com/en-us/dotnet/api/system.io.directory.getcurrentdirectory?view=net-9.0) of the program to the folder that contains your `DungeonSlime.csproj` file. However, many IDEs will set the working directory to be within the `/bin` (output) folder of your project, next to the built `DungeonSlime.dll/exe` file.
 
-The working directory is important, because the `ContentManagerExtensions.cs` class we wrote uses the `manager.RootDirectory` to reassemble content `.xnb` file paths. The `manager.RootDirectory` is derived from the working directory, so if the working directory changes based on how we start the game, our `ContentManagerExtensions.cs` code will produce different `.xnb` paths.
+The working directory is important, because the `ContentManagerExtensions.cs` class we are writing will use the `manager.RootDirectory` to reassemble content `.xnb` file paths. The `manager.RootDirectory` is derived from the working directory, so if the working directory changes based on how we start the game, our `ContentManagerExtensions.cs` code will produce different `.xnb` paths.
 
 The actual `.xnb` files are copied to the `/bin` subfolder, so at the moment, running the game from the terminal will not work unless you _manually_ specify the working directory. To solve, this we can force the working directory by adding the [`<RunWorkingDirectory>`](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#runworkingdirectory) property to the `DungeonSlime.csproj` file:
 
@@ -363,6 +366,9 @@ Now you do not need to start the watcher manually, instead, you can simply **sta
 | ![Figure 2-2: The content watcher will appear as a separate window](./images/background-watcher.png) | ![Figure 2-3: The _DungeonSlime_ game appears as normal](./images/game.png) |
 | :--------------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------: |
 |                 **Figure 2-2: The content watcher will appear as a separate window**                 |       **Figure 2-3:  The _DungeonSlime_ game appears as normal**            |
+
+> [!TIP]
+> The `DungeonSlime.csproj` file declares the project's `OutputType` as `WinExe`. This means that the standard output of the game do not appear in your console by default. It is also the reason the watcher application appears in a separate window. If you ever need to see your game's console output, switch the `OutputType` to `Exe`. When you do this, the watcher will not appear in a separate window.
 
 ## Conclusion
 
