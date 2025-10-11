@@ -6,6 +6,4 @@ protected override void LoadContent()
     PointLightMaterial.IsDebugVisible = true;
     PointLightMaterial.SetParameter("LightBrightness", .25f);
     PointLightMaterial.SetParameter("LightSharpness", .1f);
-
-    // ...
 }

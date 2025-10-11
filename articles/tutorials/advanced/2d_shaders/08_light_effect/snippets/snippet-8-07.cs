@@ -15,7 +15,7 @@ public void DebugDraw()
 	
 	Core.SpriteBatch.Begin();
 	
-	// draw a debug border
+	// draw a debug border for the color buffer
 	Core.SpriteBatch.Draw(Core.Pixel, colorBorderRect, Color.MonoGameOrange);
 	
 	// draw the color buffer

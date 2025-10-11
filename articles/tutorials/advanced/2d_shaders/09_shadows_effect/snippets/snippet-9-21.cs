@@ -10,5 +10,5 @@ public void DrawShadowBuffer(List<ShadowCaster> shadowCasters)
         Core.SpriteBatch.Draw(Core.Pixel, posA, packed);
     }
     
-	// ...
+    Core.SpriteBatch.End();
 }

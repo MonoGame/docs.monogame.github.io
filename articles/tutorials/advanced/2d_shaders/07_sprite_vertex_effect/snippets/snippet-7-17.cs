@@ -1,5 +1,5 @@
 // Load the 3d effect 
-_3dMaterial = Content.WatchMaterial("effects/3dEffect");
+_3dMaterial = Core.SharedContent.WatchMaterial("effects/3dEffect");
 _3dMaterial.IsDebugVisible = true;
 
 // this matrix code is taken from the default vertex shader code.

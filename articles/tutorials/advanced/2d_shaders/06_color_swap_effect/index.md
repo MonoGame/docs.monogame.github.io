@@ -3,7 +3,7 @@ title: "Chapter 06: Color Swap Effect"
 description: "Create a shader to change the colors of the game"
 ---
 
-In this chapter we will create a powerful color-swapping effect, we will learn about a common and flexible technique that uses textures as a Look-Up Table (LUT) to map original colors to new ones. This will give us precise control over the look and feel of our game's sprites.
+In this chapter we will create a powerful color‑swapping effect. We will learn a common and flexible technique that uses textures as look‑up tables (LUTs) to map original colors to new ones. This will give us precise control over the look and feel of our game's sprites.
 
 At the end of this chapter, we will be able to fine-tune the colors of the game. Here are a few examples:
 
@@ -81,7 +81,7 @@ The goal is to be able to change the color of the sprites drawn with the `_color
 | :----------------------------------------------------------------------------: |
 |                **Figure 6-7: The slime uses a dark blue color**                |
 
-The shader code _could_ just do an `if` check for this color, and when any of the pixels are that color, return a hot-pink color instead. Try swapping out the "MainPS" shader function in the `colorSwapEffect.fx` file to the following, the highlighted section shows where the hard coded colour swap is happening:
+The shader code _could_ just do an `if` check for this color, and when any of the pixels are that color, return a hot-pink color instead. Try swapping out the "MainPS" shader function in the `colorSwapEffect.fx` file to the following, the highlighted section shows where the hard coded color swap is happening:
 
 [!code-hlsl[](./snippets/snippet-6-07.hlsl?highlight=14)]
 
@@ -137,7 +137,7 @@ Here is the actual texture with the swapped colors. Download [this image](./imag
 | :--------------------------------------------------------------: |
 |             **Figure 6-12: The color table texture**              |
 
-We need to load and pass the the texture to the `colorSwapEffect` shader.
+We need to load and pass the texture to the `colorSwapEffect` shader.
 
 1. Add a `_colorMap` property to the `GameScene` class to hold a reference for the Color map texture:
 
@@ -155,7 +155,7 @@ The `Texture2D` and `sampler2D` declarations are required to read from textures 
 
 The `ColorMapSampler` has a lot of extra properties (`MinFilter`, `MagFilter`, `MipFilter`, `AddressU`, and `AddressV`) that control exactly how the texture data is read from the `ColorMap`.
 
-By default, when a sampler reads data from a texture in a shader, it will subtly blend nearby pixel values to increase the visual quality. However, when a texture is being used as a lookup table, this blending is problematic because it will distort the data stored in the texture.  The `Point` value given to the `Filter` properties tells the sampler to only read _one_ pixel value.
+By default, when a sampler reads data from a texture in a shader, it will subtly blend nearby pixel values to increase the visual quality. However, when a texture is being used as a look-up table, this blending is problematic because it will distort the data stored in the texture.  The `Point` value given to the `Filter` properties tells the sampler to only read _one_ pixel value.
 
 When a sampler is reading a texture, there is always some _location_ being used to read pixel data from. The texture coordinate space is from 0 to 1, in both the `u` and `v` axes.
 
@@ -167,10 +167,10 @@ When a sampler is reading a texture, there is always some _location_ being used 
 >
 > The [MonoGame Docs](https://docs.monogame.net/articles/getting_to_know/whatis/graphics/WhatIs_Sampler.html) have more details on samplers.
 
-The shader function can now do 2 steps to perform the color swap,
+The shader function can now do two steps to perform the color swap,
 
 1. Read the original color value of the pixel,
-2. Use the original color's red value as the `key` in the lookup texture to extract the swap color `value`.
+2. Use the original color's red value as the `key` in the look-up texture to extract the swap color `value`.
 
 To help visualize the effect, it will be helpful to visualize the original color _and_ the swap color.
 
@@ -190,7 +190,7 @@ To help visualize the effect, it will be helpful to visualize the original color
 
     That looks pretty good, but changing between original and swap colors reveals a visual glitch. The color table did not account for _some_ of the original colors. All of the colors get mapped, and our default color in the map was _white_, so some of the game's art is just turning white. For example, look at the torches on the top-wall.
 
-3. To fix this, we can adjust the color lookup map to use transparent values by default. Use [this texture](./images/color-map-2.png) instead, saving over the original `color-map-1.png` in the SharedContent to avoid having to change anything else.
+3. To fix this, we can adjust the color look-up map to use transparent values by default. Use [this texture](./images/color-map-2.png) instead, saving over the original `color-map-1.png` in the SharedContent to avoid having to change anything else.
 
     | <img src="./images/color-map-2.png" alt="Figure 6-14: The color map with a transparent default color" style=" height: 32px; image-rendering: pixelated;"/> |
     | :-------------------------------------------------------------------------------------: |
@@ -206,7 +206,7 @@ To help visualize the effect, it will be helpful to visualize the original color
 | :-----------------------------------------------------------------------------------------: |
 |             **Figure 6-15: Colors that are not in the map do not change color**             |
 
-One final glitch becomes apparent if you stare at that long enough, which is that the center pixel in the torch is changing color from its original _white_, to our mapped orange color. In a way, that is _by design_, because the white values are being mapped. Fixing this would require a modification to the original assets to change the color the torch center, but that is left as an exercise for the reader.
+One final glitch becomes apparent if you stare at that long enough, which is that the center pixel in the torch is changing color from its original _white_, to our mapped orange color. In a way, that is _by design_, because the white values are being mapped. Fixing this would require modifying the original assets to change the color of the torch center; that is left as an exercise for the reader.
 
 ### Nicer Colors
 
@@ -240,7 +240,7 @@ To get started, we first need to devise a way to create a custom color map and p
     using System.Collections.Generic; 
     ```
 
-4. And now to check if its working, create the data to store in the new `_slimeColorMap` variable at the end of the `LoadContent()` in the `GameScene`:
+4. Now, to check if it's working, create the data to store in the new `_slimeColorMap` variable at the end of the `LoadContent()` in the `GameScene`:
 
     [!code-csharp[](./snippets/snippet-6-15.cs)]
 
@@ -284,7 +284,7 @@ If we want to swap the color of the slime between two color maps, we need a way 
 
     [!code-csharp[](./snippets/snippet-6-18.cs)]
 
-2. Then modify the instance in the `GameScene` to start the color map based off whatever color map texture was loaded:
+2. Then modify the instance in the `GameScene` to start the color map based on whatever color map texture was loaded:
 
     [!code-csharp[](./snippets/snippet-6-19.cs?highlight=7-12)]
 
@@ -309,7 +309,7 @@ Ultimately, it would be nice to control the color value _per_ slime segment, not
     public int Size => _segments.Count;
     ```
 
-3. Then, in the `GameScene`'s logic, we need to add a local field to remember when the last time the slime's `Grow()` method was called:
+3. Then, in the `GameScene`'s logic, we need to add a local field to remember the last time the slime's `Grow()` method was called:
 
     [!code-csharp[](./snippets/snippet-6-22.cs)]
 
@@ -325,7 +325,17 @@ Ultimately, it would be nice to control the color value _per_ slime segment, not
 
     [!code-csharp[](./snippets/snippet-6-24.cs)]
 
-7. Finally, play around with the colors until you find something you like.
+7. A bit of cleanup, if you left in the old time highlight code, make sure to **REMOVE** it from the `Draw` method too (because the updated `slime.Draw` now handles this).
+
+    ```csharp
+    // REMOVE ME
+    // if ((int)gameTime.TotalGameTime.TotalSeconds % 2 == 0)
+    // {
+    //     _colorSwapMaterial.SetParameter("ColorMap", _slimeColorMap.ColorMap);
+    // }
+    ```
+
+8. Finally, play around with the colors until you find something you like.
 
 > [!NOTE]
 > If nothing is playing, [remember](#getting-started) we disabled the gameplay earlier in this chapter for testing, so remove the extra `return;` statement in the `Update` method of the `GameScene` class to get it running again.
@@ -334,7 +344,7 @@ Ultimately, it would be nice to control the color value _per_ slime segment, not
 | :---------------------------------------------------------------------------------: |
 |               **Figure 6-22: The slime's color changes when it eats**               |
 
-## Fixing the Gray Scale
+## Fixing the GrayScale
 
 The color swap shader is working well, but to experiment with it, we had previously _removed_ the pause screen's grayscale effect. Both effects are trying to modify the color of the game, so they naturally conflict with each other. To solve the problem, the shaders can be merged together into a single effect.
 
@@ -379,21 +389,21 @@ The last thing to do is remove the old `grayscaleEffect` and re-write the game l
 | :--------------------------------------------------------------------------: |
 |           **Figure 6-24: The grayscale effect has been restored**            |
 
-## Color Look Up Textures (LUTs)
+## Color Look-Up Textures (LUTs)
 
-The approach we used above is a simplified version of a broader technique called _Color Look Up Tables_, or Color LUTs. In the version we wrote above, there is a large limitation about which colors can be used in the table. The `key` in the color table was the `red` channel value of the input colors. If you had two different input colors that shared the same `red` channel value, the technique would not work.
+The approach we used above is a simplified version of a broader technique called _Color Look-Up Tables_, or Color LUTs. In the version we wrote above, there is a large limitation about which colors can be used in the table. The `key` in the color table was the `red` channel value of the input colors. If you had two different input colors that shared the same `red` channel value, the technique would not work.
 
 The limitation is _often_ acceptable in game assets because you own the assets themselves and can author the textures to avoid the case where colors overlap on key values. However, when it is unavoidable, the `key` must be more complex than only the `red` value. For example, it could be unavoidable if your game needed more than 256 _unique_ colors.
 
 The next logical step is to make the `key` _2_ color channels like `red` _and_ `green`. In that case, the color texture would not be a 256x1 texture, it would be a 256x256 texture. The `x` axis would still represent the `red` channel, and now the `y` axis would represent the `green` channel. Now the game could have `256 * 256` unique colors, or `65,536`.
 
-Finally, if you need _more_ colors, the final color channel can be included in the `key`, making the `key` be the combination of `red`, `green`, and `blue` channels. In the first case, the look up texture was 256x1 pixels. In the second case, it was 256x256 pixels. The final case is a texture of size 2048x2048 pixels. Imagine a texture made up of smaller 256x256 textures, stored in an 8x8 grid.
+Finally, if you need _more_ colors, the final color channel can be included in the `key`, making the `key` be the combination of `red`, `green`, and `blue` channels. In the first case, the look-up texture was 256x1 pixels. In the second case, it was 256x256 pixels. The final case is a texture of size 2048x2048 pixels. Imagine a texture made up of smaller 256x256 textures, stored in an 8x8 grid.
 
 Color LUTs are used in post-processing to adjust the final look and feel of games across the industry. The technique is called _Tone-Mapping_.
 
 If you are interested in Color LUTs, check out the following articles,
 
-1. [GPU Gems 2: Chapter 24](https://developer.nvidia.com/gpugems/gpugems2/part-iii-high-quality-rendering/chapter-24-using-lookup-tables-accelerate-color) offers a sweeping overview of 3D Color LUTs.
+1. [GPU Gems 2: Chapter 24](https://developer.nvidia.com/gpugems/gpugems2/part-iii-high-quality-rendering/chapter-24-using-look-up-tables-accelerate-color) offers a sweeping overview of 3D Color LUTs.
 2. [Frost Kiwi's Color LUT Article](https://blog.frost.kiwi/WebGL-LUTS-made-simple/) is a fantastic exploration of the topic with lots of additional sources to explore.
 
 ## Conclusion

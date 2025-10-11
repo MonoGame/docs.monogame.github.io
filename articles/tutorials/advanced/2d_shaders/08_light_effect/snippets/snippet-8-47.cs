@@ -2,7 +2,7 @@ public void DebugDraw()
 {
     // ...
 
-    // the debug view for the normal buffer lives in the top-right.  
+    // the debug view for the normal buffer lives in the bottom-left.
     var normalBorderRect = new Rectangle(
     x: viewportBounds.X,
     y: viewportBounds.Height / 2,
@@ -15,9 +15,11 @@ public void DebugDraw()
 
     // ...
 
-    // draw a debug border  
+	// draw a debug border for the normal buffer
     Core.SpriteBatch.Draw(Core.Pixel, normalBorderRect, Color.MintCream);
 
-    // draw the light buffer  
+    // draw the normal buffer
     Core.SpriteBatch.Draw(NormalBuffer, normalRect, Color.White);
+
+    Core.SpriteBatch.End();
 }

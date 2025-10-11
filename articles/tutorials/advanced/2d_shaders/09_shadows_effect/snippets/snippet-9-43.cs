@@ -20,5 +20,4 @@ public void Update(GameTime gameTime)
 		var size = new Vector2(_sprite.Width, _sprite.Height);
 		ShadowCasters[i].Position = pos + size * .5f;
 	}
-
 }

@@ -1,6 +1,7 @@
 public override void Update(GameTime gameTime)
 {
-    // ...
+    // Ensure the UI is always updated
+    _ui.Update(gameTime);
 
     // Set the camera view to look at the player slime
     var viewport = Core.GraphicsDevice.Viewport;

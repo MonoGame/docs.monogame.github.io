@@ -9,6 +9,4 @@ public DeferredRenderer()
         mipMap: false,
         preferredFormat: SurfaceFormat.Color,
         preferredDepthFormat: DepthFormat.None);
-
-    // ...
 }

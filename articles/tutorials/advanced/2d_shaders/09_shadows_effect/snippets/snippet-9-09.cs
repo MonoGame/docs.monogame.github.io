@@ -6,6 +6,4 @@ protected override void LoadContent()
 
     ShadowHullMaterial = SharedContent.WatchMaterial("effects/shadowHullEffect");
     ShadowHullMaterial.IsDebugVisible = true;
-
-    // ...
 }
