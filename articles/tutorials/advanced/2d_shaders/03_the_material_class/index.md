@@ -3,7 +3,7 @@ title: "Chapter 03: The Material Class"
 description: "Create a wrapper class to help manage shaders"
 ---
 
-In [Chapter 24](../../../building_2d_games/24_shaders/index.md) of the original [2D Game Series](../../../building_2d_games/index.md), you learned about MonoGame's [`Effect`](xref:Microsoft.Xna.Framework.Graphics.SpriteBatch) class. When `.fx` shaders are compiled, the compiled code is then loaded into MonoGame as an `Effect` instance. The `Effect` class provides a few powerful utilities for setting shader parameters, but otherwise, it is a fairly bare-bones container for the compiled shader code.
+In [Chapter 24](../../../building_2d_games/24_shaders/index.md) of the original [2D Game Series](../../../building_2d_games/index.md), you learned about MonoGame's [`Effect`](xref:Microsoft.Xna.Framework.Graphics.Effect) class. When `.fx` shaders are compiled, the compiled code is then loaded into MonoGame as an `Effect` instance. The `Effect` class provides a few powerful utilities for setting shader parameters, but otherwise, it is a fairly bare-bones container for the compiled shader code.
 
 > [!NOTE]
 > MonoGame also ships with standard `Effect` sub-classes that can be useful for bootstrapping a game without needing to write any custom shader code. However, all of these standard `Effect` types are geared towards 3D games, except for _1_, called the [`SpriteEffect`](xref:Microsoft.Xna.Framework.Graphics.SpriteEffect). This will be discussed in [Chapter 7: Sprite Vertex Effect](../07_sprite_vertex_effect/index.md).
@@ -19,7 +19,7 @@ If you are following along with code, here is the code from the end of the [prev
 
 ## The Material Class
 
-The `_grayscaleEffect` serves a very specific purpose, but imagine instead of just _decreasing_ the saturation, the effect could also _increase_ the saturation. In that hypothetical, then calling it a "grayscale" effect only captures _some_ of the shader's value. Setting the `Saturation` to `0` would configure the shader to be a grayscale effect, but setting the `Saturation` really high would configure the shader to be a super-saturation effect. A single shader can configured to create multiple distinct visuals. Many game engines use the term, _Material_, to recognize each _configuration_ of a shader effect.
+The `_grayscaleEffect` serves a very specific purpose, but imagine instead of just _decreasing_ the saturation, the effect could also _increase_ the saturation. In that hypothetical, then calling it a "grayscale" effect only captures _some_ of the shader's value. Setting the `Saturation` to `0` would configure the shader to be a grayscale effect, but setting the `Saturation` really high would configure the shader to be a super-saturation effect. A single shader can be configured to create multiple distinct visuals. Many game engines use the term, _Material_, to recognize each _configuration_ of a shader effect.
 
 A material definition represents a compiled `Effect` **and** the runtime configuration for the `Effect`. For example, the `_grayscaleEffect` shader has a single property called `Saturation`. The _**value**_ of the property is essential to the existence of the `_grayscaleEffect`. It would also be useful to have logic that _owns_ these shader parameter values.
 
@@ -80,10 +80,13 @@ For example, in the `grayscaleEffect.fx` file, change the last few lines of the 
 
 [!code-hlsl[](./snippets/snippet-3-08.hlsl?highlight=17-18)]
 
-If you run the game and enter the `GameScene`, you will see a `NullReferenceException` (and the game will hard-crash) when the greyscale effect is used, e.g. Game Over. The `Saturation` shader parameter no longer exists in the shader because it was stripped out, so when the `Draw()` method tries to _set_ it, the game crashes.
+If you run the game, enter the `GameScene`, and wait for the game over screen to appear, you will see a `NullReferenceException` (and the game will hard-crash) when the greyscale effect is used, e.g. Game Over. The `Saturation` shader parameter no longer exists in the shader because it was stripped out, so when the `Draw()` method tries to _set_ it, the game crashes.
 
 > [!NOTE]
 > Leave this change in for now, to demonstrate the way to handle this error through extensions in the `Material` class.
+
+> [!NOTE]
+> You may not _actually_ see the `NullReferenceException`, because the `DungeonSlime.csproj` is configured to be a `WinExe`, which means the standard error and output of the application are hidden. The game may appear to _just_ crash with no warning. You can change the `OutputType` to `Exe`, which means you will see the standard error directed to the terminal. 
 
 The aggressive optimization is good for your game's performance, but when combined with the hot-reload system, it will lead to unexpected bugs. As you iterate on shader code, it is likely that at some point a shader parameter will be optimized out of the compiled shader. The hot-reload system will automatically load the newly compiled shader, and if the C# code attempts to set the previously available parameter, the game may crash.
 

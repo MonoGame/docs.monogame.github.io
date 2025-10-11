@@ -30,7 +30,7 @@ public static void StartContentWatcherTask()
 
     // if no valid project was identified, then it is impossible to start the watcher
     if (string.IsNullOrEmpty(projectDirectory)) return;
-    
+
     // start the watcher process
     var process = Process.Start(new ProcessStartInfo
     {
@@ -41,9 +41,23 @@ public static void StartContentWatcherTask()
         UseShellExecute = false,
         CreateNoWindow = false
     });
-    
+
     // when this program exits, make sure to emit a kill signal to the watcher process
     AppDomain.CurrentDomain.ProcessExit += (_, __) =>
+    {
+        try
+        {
+            if (!process.HasExited)
+            {
+                process.Kill(entireProcessTree: true);
+            }
+        }
+        catch
+        {
+            /* ignore */
+        }
+    };
+    AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
     {
         try
         {
