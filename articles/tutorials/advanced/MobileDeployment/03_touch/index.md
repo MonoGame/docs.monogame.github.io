@@ -1,5 +1,5 @@
 ---
-title: "03: Touch Gesture Handling"
+title: "Chapter 03: Touch Gesture Handling"
 description: "Learn the fundamentals of touch gesture recognition in MonoGame - registration, detection, and processing."
 ---
 

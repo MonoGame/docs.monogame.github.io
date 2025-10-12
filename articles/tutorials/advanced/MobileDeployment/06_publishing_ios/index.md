@@ -1,5 +1,5 @@
 ---
-title: "06: Publishing to iOS App Store"
+title: "Chapter 06: Publishing to iOS App Store"
 description: "Learn how to publish your MonoGame mobile application to both the iOS App Store with step-by-step guidance."
 ---
 

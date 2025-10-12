@@ -1,5 +1,5 @@
 ---
-title: "01: Setting Up MonoGame for Android and iOS Development"
+title: "Chapter 01: Setting Up MonoGame for Android and iOS Development"
 description: "Get started with MonoGame mobile development by setting up your development environment, tools, and SDKs for Android and iOS platforms."
 ---
 

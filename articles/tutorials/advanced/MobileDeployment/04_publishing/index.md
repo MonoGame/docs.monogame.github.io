@@ -1,5 +1,5 @@
 ---
-title: "04: Publishing to iOS App Store and Google Play Store"
+title: "Chapter 04: Publishing to iOS App Store and Google Play Store"
 description: "Learn how to publish your MonoGame mobile application to both the iOS App Store and Google Play Store with step-by-step guidance and real-world insights."
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "05: Publishing to Google Play Store"
+title: "Chapter 05: Publishing to Google Play Store"
 description: "Learn how to publish your MonoGame mobile application to the Google Play Store with step-by-step guidance."
 ---
 

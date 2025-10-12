@@ -1,5 +1,5 @@
 ---
-title: "02: Setting Up Cross-Platform Projects"
+title: "Chapter 02: Setting Up Cross-Platform Projects"
 description: "Learn how to convert a Windows-only MonoGame project to support iOS and Android platforms, creating a unified codebase for multi-platform deployment."
 ---
 
