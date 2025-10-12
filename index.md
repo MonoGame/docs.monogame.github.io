@@ -98,6 +98,21 @@ description: MonoGame Documentation Hub
         <div class="col-12 col-lg-4 mb-5">
             <div class="mg-card mg-box-shadow h-100">
                 <a target="_self"
+                    href="/articles/books.html"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-book-fill"></i></i> Books</div>
+                        <p>
+                            Check out published titles featuring MonoGame/XNA.
+                        </p>
+                        <p class="mt-auto">Click to view books</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
                     href="/roadmap/index.html"
                     class="mg-no-link">
                     <div class="mg-card-body d-flex flex-column h-100">
@@ -109,7 +124,7 @@ description: MonoGame Documentation Hub
                     </div>
                 </a>
             </div>
-        </div>
+        </div>        
     </div>
 </section>
 <section class="container-xxl mb-5">
