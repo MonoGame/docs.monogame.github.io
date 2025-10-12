@@ -10,8 +10,12 @@ items:
     items:
       - name: Setting up MacOS
         href: /articles/getting_started/1_setting_up_your_os_for_development_macos.html
-      - name: Setting up Ubuntu
-        href: /articles/getting_started/1_setting_up_your_os_for_development_ubuntu.html
+      - name: Setting up Linux
+        items:
+          - name: Setting up Arch Linux
+            href: /articles/getting_started/1_setting_up_your_os_for_development_arch.html
+          - name: Setting up Ubuntu
+            href: /articles/getting_started/1_setting_up_your_os_for_development_ubuntu.html
       - name: Setting up Windows
         href: /articles/getting_started/1_setting_up_your_os_for_development_windows.html
       - name: Using Visual Studio
