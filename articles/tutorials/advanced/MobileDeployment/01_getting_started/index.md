@@ -70,4 +70,4 @@ The sample projects use the new [SLNX solution format](https://devblogs.microsof
 
 # Next Steps
 
-In the next chapter, we will convert the existing Windows-only Dungeon Slime project to support multiple platforms and explore the cross-platform project architecture.
+In the next chapter, we will convert the existing Windows-only Dungeon Slime game project to support iOS and Android platforms.
