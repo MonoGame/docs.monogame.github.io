@@ -33,14 +33,14 @@ description: Tutorials provided by MonoGame community members.
         <div class="col-12 col-lg-4 mb-5">
             <div class="mg-card mg-box-shadow h-100">
                 <a target="_self"
-                    href="/articles/tutorials/index.html"
+                    href="/articles/tutorials/advanced/MobileDeployment\index.html"
                     class="mg-no-link">
                     <div class="mg-card-body d-flex flex-column h-100">
-                        <div class="mg-card-title"><i class="bi bi-filetype-cs"></i> 2D Mobile Deployment - coming soon</div>
+                        <div class="mg-card-title"><i class="bi bi-filetype-cs"></i> 2D Mobile Deployment</div>
                         <p>
                             An extension tutorial following on from the Beginner 2D above demonstrating how to take a desktop project to Mobile devices.
                         </p>
-                        <p class="mt-auto">Coming Soon</p>
+                        <p class="mt-auto">Click to view deploment tutorial</p>
                     </div>
                 </a>
             </div>
