@@ -87,8 +87,8 @@ IOS CSProj:
 Info.Plist setting:
 
 ```xml
-	<key>CFBundleIdentifier</key>
-	<string>com.monogame.dungeonslime</string>
+<key>CFBundleIdentifier</key>
+<string>com.monogame.dungeonslime</string>
 ```
 
 The game name to appear on the device:
