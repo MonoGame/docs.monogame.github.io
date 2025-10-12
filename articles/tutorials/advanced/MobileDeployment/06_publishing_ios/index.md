@@ -109,7 +109,7 @@ Versioning of game:
 
 Typical settings for a game:
 
-```
+```xml
 <key>UIRequiresFullScreen</key>
 <true/>
 <key>UIStatusBarHidden</key>
@@ -118,36 +118,37 @@ Typical settings for a game:
 
 API descriptions:
 
+If your game uses any additional API's or API's are pulled in from libraries, then the following descriptions need to be added to define your usage. If you're not using them, then you need to identify the library being added and determine if you need this.
+
+```xml
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>This game uses bluetooth because...</string>
+
+<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>This game is location information because...</string>
+
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>This game is location information because...</string>
+
+<key>NSCalendarsUsageDescription</key>
+<string>This game uses calendar information because...</string>
+
+<key>NSSiriUsageDescription</key>
+<string>This game uses Siri because...</string>
+
+<key>NSMicrophoneUsageDescription</key>
+<string>This game uses the microphone because.</string>
+
+<key>NSContactsUsageDescription</key>
+<string>This game uses contacts because...</string>
+
+<key>NSAppleMusicUsageDescription</key>
+<string>This game uses Apple Music because...</string></dict>
 ```
-    <key>NSBluetoothAlwaysUsageDescription</key>
-    <string>This permission is not used by the app.</string>
-
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>This permission is not used by the app.</string>
-
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>This permission is not used by the app.</string>
-
-    <key>NSCalendarsUsageDescription</key>
-    <string>This permission is not used by the app.</string>
-
-    <key>NSSiriUsageDescription</key>
-    <string>This permission is not used by the app.</string>
-
-    <key>NSMicrophoneUsageDescription</key>
-    <string>This permission is not used by the app.</string>
-
-    <key>NSContactsUsageDescription</key>
-    <string>This permission is not used by the app.</string>
-
-    <key>NSAppleMusicUsageDescription</key>
-    <string>This permission is not used by the app.</string></dict>
-```
-
 
 ## Asset Compilation Target
 
-Ensure your iOS project includes the asset compilation target:
+Ensure your iOS project includes the asset compilation target. This is currently required for MonoGame projects to get the AppIcons and assets included in the bundle.
 
 ```xml
 <Target Name="CompileAssets" BeforeTargets="_CompileAppManifest" Condition="$([MSBuild]::IsOSPlatform('OSX'))">
@@ -158,13 +159,16 @@ Ensure your iOS project includes the asset compilation target:
 
 ## Creating Game at App Store Connect
 
+Once you're ready to publish your game to TestFlight or the AppStore, following these steps:
+
 1. **Log into App Store Connect** at [appstoreconnect.apple.com](https://appstoreconnect.apple.com)
+
 2. **Create New App:**
-   - Platform: iOS
-   - Name: Your app's marketing name
+   - Platform: **iOS**
+   - Name: _Your app's marketing name_
    - Primary Language: English (or your primary market)
-   - Bundle ID: Must match your project's `BundleIdentifier`
-   - SKU: Unique identifier for your records
+   - Bundle ID: Must match the `BundleIdentifier` of your game.
+   - SKU: Unique identifier if you were to create a series of games.
 
 ## Screenshots and Media
 
@@ -180,15 +184,14 @@ You need screenshots for each of the following devices:
 
 ### App Preview Videos (Optional)
 
-Although optional a video to demo your game will certainly appeal to the audience.
+Although optional, a video to demo your game will certainly appeal to the audience.
 
-- 30 seconds maximum
-- Same dimensions as screenshots
-- Shows actual app gameplay
+- Create a 30 seconds video showing features and market your game.
+- Try and show actual gameplay and advertise features and any unique play.
 
 ## Building and Uploading using Terminal
 
-The creation of an IPA file can be achieved on the terminal. Currently, Rider does **not** support this part of the process.
+The creation of an IPA file can be achieved using the **Terminal** app. Currently, Rider does __not__ support this part of the process.
 
 ```sh
 dotnet clean
@@ -196,9 +199,11 @@ rm -rf bin/ obj/
 dotnet publish -c Release -f net8.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
 ```
 
+This will create an IPA file in your publish folder which you can upload to the AppStore.
+
 ## Upload Method using Transporter
 
-- Standalone upload tool from Apple can be found in the **Applications** folder.
+You can use the **Transporter** tool to upload your IPA file and that can be found in the **Applications** folder.
 
 | ![Figure 4-1: Transporter](images/ios/transporter.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
@@ -226,12 +231,14 @@ The process can take a few moments to happen, but switching to the AppStore to w
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
 |                       **Figure 4-5 Encryption Dialog**    |
 
-**Tip:** If you want to skip the Encryption dialog box altogether because you do not use encryption in your game, simply add this to the **info.plist** file.
+**Tip:** If you want to skip the "Encryption" dialog box altogether and streamline the process and because you do not use encryption in your game, simply add this section to your **info.plist** file.
 
 ```xml
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
+<key>ITSAppUsesNonExemptEncryption</key>
+<false/>
 ```
+
+Finally, add your testers and test information and they will receive your updated game (via Testflight or Store).
 
 | ![Figure 4-6: Assign Testers](images/ios/testflight-build-assign-testers.png) |
 | :----------------------------------------------------------------------------------------------------------------------------------------: |
