@@ -116,6 +116,35 @@ Typical settings for a game:
 <true/>
 ```
 
+API descriptions:
+
+```
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>This permission is not used by the app.</string>
+
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This permission is not used by the app.</string>
+
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This permission is not used by the app.</string>
+
+    <key>NSCalendarsUsageDescription</key>
+    <string>This permission is not used by the app.</string>
+
+    <key>NSSiriUsageDescription</key>
+    <string>This permission is not used by the app.</string>
+
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This permission is not used by the app.</string>
+
+    <key>NSContactsUsageDescription</key>
+    <string>This permission is not used by the app.</string>
+
+    <key>NSAppleMusicUsageDescription</key>
+    <string>This permission is not used by the app.</string></dict>
+```
+
+
 ## Asset Compilation Target
 
 Ensure your iOS project includes the asset compilation target:
