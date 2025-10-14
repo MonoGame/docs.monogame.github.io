@@ -78,15 +78,21 @@ Each instance of `Material` is going to draw a custom debug window. The window w
 
     Currently however, the control is not fully bound to the the `Saturation` parameter of the `greyscale` shader, inputs will always be overridden because the `GameScene` itself keeps setting the value. In order to solve this, we introduce a custom property in the `Material` class that causes the debug UI to override the various `SetParameter()` methods.
 
-2. Next, add this new boolean to the `Material` class:
+2. Add the following `using` statements to the top of the `Material.cs` file:
+
+    ```csharp
+    using ImGuiNET;
+    ```
+
+3. Next, add this new boolean to the `Material` class:
 
     [!code-csharp[](./snippets/snippet-4-08.cs)]
 
-3. Then, modify all of the `SetParameter()` methods (float, matrix, vector2, etc) to exit early when the `DebugOverride` variable is set to `true`:
+4. Then, modify all of the `SetParameter()` methods (float, matrix, vector2, etc) to exit early when the `DebugOverride` variable is set to `true`:
 
     [!code-csharp[](./snippets/snippet-4-09.cs?highlight=3)]
 
-4. Then, in the `DebugDraw()` method, after the `LastUpdated` field gets drawn, add this following:
+5. Then, in the `DebugDraw()` method, after the `LastUpdated` field gets drawn, add this following:
 
     [!code-csharp[](./snippets/snippet-4-10.cs?highlight=14-17)]
 
@@ -122,9 +128,9 @@ We will keep track of all the `Material` instances to draw as a [`static`](https
     ```
 
     > [!TIP]
-    > TO keep things clean, you can also remove the old `using ImGuiNET;` as you will see it is now greyed out because it is not used anymore since we removed the test `ImGui` drawing code.
+    > To keep things clean, you can also remove the old `using ImGuiNET;` as you will see it is now greyed out because it is not used anymore since we removed the test `ImGui` drawing code.
 
-6. Finally, in order to render the debug UI for the `_grayscaleEffect`, just enable the `IsDebugVisible` property to `true` in the `LoadCOntent` method of the `GameScreen` class:
+6. Finally, in order to render the debug UI for the `_grayscaleEffect`, just enable the `IsDebugVisible` property to `true` in the `LoadContent` method of the `GameScreen` class:
 
     [!code-csharp[](./snippets/snippet-4-15.cs?highlight=3)]
 

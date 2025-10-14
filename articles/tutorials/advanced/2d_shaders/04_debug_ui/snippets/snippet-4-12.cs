@@ -9,7 +9,7 @@ public bool IsDebugVisible
 	}
 	set
 	{
-		if (IsDebugVisible)
+		if (!value)
 		{
 			s_debugMaterials.Remove(this);
 		}
