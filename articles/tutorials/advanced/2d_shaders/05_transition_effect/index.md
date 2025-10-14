@@ -15,7 +15,7 @@ Our game is functional, but the jump from the title screen to the game is very s
 
 > All of this prior work is going to finally going to pay off! In this chapter, you will be able to leverage the hot-reload and debug UI to experiment with shader code in realtime without ever needing to restart your game. You can start the game, make changes to the shader, tweak shader parameters, all without needing to recompile your project.
 
-In this chapter, we will dive into our first major pixel shader effect: a classic [Screen Wipe](https://www.youtube.com/watch?v=8NAhAEQUk8M) we will learn how to control an effect over the whole screen, how to create soft edges, and how to use textures to drive our shader logic to create all sorts of interesting patterns.
+In this chapter, we will dive into our first major pixel shader effect: a classic [Screen Wipe](https://www.youtube.com/watch?v=cGqAu9gj_F0) we will learn how to control an effect over the whole screen, how to create soft edges, and how to use textures to drive our shader logic to create all sorts of interesting patterns.
 
 At the end of the chapter, you will have a screen transition effect like the one below.
 
@@ -39,7 +39,7 @@ Start by creating a new `Sprite Effect` from the MonoGame Content Builder Editor
 
 Save and build the content project, just to be sure and switch back to your code editor, and perform the following steps:
 
-1. As the `Core` class has not implemented Materials previously, it will need the `using` statement to the library content features in order to be able to use the `WatchContent` extension we added in ]Chapter 3](../03_the_material_class/index.md), so add a new using to the top of the class:
+1. As the `Core` class has not implemented Materials previously, it will need the `using` statement to the library content features in order to be able to use the `WatchContent` extension we added in [Chapter 3](../03_the_material_class/index.md), so add a new using to the top of the class:
 
     ```csharp
     using MonoGameLibrary.Content;
