@@ -1,9 +1,9 @@
 ---
-title: Migrating from 3.8.0 or later to 3.8.4.1
-description: A guide on migrating a MonoGame v3.8 project to the current 3.8.4 version of MonoGame.
+title: Upgrading MonoGame projects from 3.8.0 or later to 3.8.4.1
+description: A guide on upgrading a MonoGame v3.8 project to the current 3.8.4.1 + versions of MonoGame.
 ---
 
-Migrating from earlier 3.8 releases should be straightforward for most platforms.
+Upgrading existing projects from earlier 3.8 releases should be straightforward for most platforms.
 
 The major difference is that 3.8.4 onward recommends using .NET 9 in your client project (mandatory for Mobile projects by the DotNet Framework). You can follow the [environment setup tutorial](../getting_started/index.md) to make sure that you are not missing any components.
 
