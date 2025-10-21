@@ -94,7 +94,7 @@ items:
         href: migration/migrate_xna.md
       - name: Migrating from 3.7
         href: migration/migrate_37.md
-      - name: Migrating from 3.8.0
+      - name: Upgrading 3.8.x to latest
         href: migration/migrate_38.md
       - name: Updating Versions
         href: migration/updating_versions.md
