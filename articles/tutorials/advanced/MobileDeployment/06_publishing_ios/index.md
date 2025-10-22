@@ -193,10 +193,38 @@ Although optional, a video to demo your game will certainly appeal to the audien
 
 The creation of an IPA file can be achieved using the **Terminal** app. Currently, Rider does __not__ support this part of the process.
 
+If you are building on MacOS Tahoe, you'll need the following in the csproj:
+
+```xml
+<PropertyGroup>
+<TargetPlatformVersion>26.0</TargetPlatformVersion>
+</PropertyGroup>
+```
+
+Using terminal, navigate to the dungeonslime.iOS folder and run the following steps:
+
+For game projects that are targeting .NET 8.0 iOS:
+
 ```sh
 dotnet clean
 rm -rf bin/ obj/
 dotnet publish -c Release -f net8.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
+```
+
+For game projects that are targeting .NET 9.0 iOS:
+
+```sh
+dotnet clean
+rm -rf bin/ obj/
+dotnet publish -c Release -f net9.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
+```
+
+For game projects that are targeting .NET 10.0 iOS:
+
+```sh
+dotnet clean
+rm -rf bin/ obj/
+dotnet publish -c Release -f net10.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
 ```
 
 This will create an IPA file in your publish folder which you can upload to the AppStore.
