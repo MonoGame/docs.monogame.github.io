@@ -15,6 +15,6 @@ public override void LoadContent()
         [255] = Color.Tomato  
     });  
     
-    _colorSwapMaterial.SetParameter("ColorMap", temp.ColorMap);
+    _colorSwapMaterial.SetParameter("ColorMap", _slimeColorMap.ColorMap);
 
 }

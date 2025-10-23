@@ -50,7 +50,7 @@ Switch back to your code editor, and in the `GameScene`, we need to do the follo
 
     [!code-csharp[](./snippets/snippet-6-03.cs)]
 
-4. Finally, we need to _use_ the `colorSwapMaterial` when drawing the sprites for the `GameScene`. For now, as we explore the color swapping effect, we are going to disable the `grayscaleEffect` functionality. In the `Draw()` method and replace it with the new Color Swap method, to that end update the `SpriteBatch` like this:
+4. Finally, we need to _use_ the `colorSwapMaterial` when drawing the sprites for the `GameScene`. For now, as we explore the color swapping effect, we are going to disable the `grayscaleEffect` functionality. In the `Draw()` method replace the `_grayscaleEffect` for the `_colorSwapMaterial`. Also, add the effect to the `else` block, like this:
 
     [!code-csharp[](./snippets/snippet-6-04.cs?highlight=12,17)]
 
@@ -111,6 +111,9 @@ And here they are written out,
 Our goal is to treat those colors as `keys` into a table that results in a final color `value`. Fortunately, all of the `red` channels are unique across all 4 input colors. The `red` channels are `32`, `115`, `255`, and `214`.
 
 As a demonstration, if we were using C# to create a table, it might look like this:
+
+> [!NOTE]
+> You do not need to add this to your project. This code is just for conversation. 
 
 [!code-csharp[](./snippets/snippet-6-08.cs)]
 
@@ -208,6 +211,11 @@ To help visualize the effect, it will be helpful to visualize the original color
 
 One final glitch becomes apparent if you stare at that long enough, which is that the center pixel in the torch is changing color from its original _white_, to our mapped orange color. In a way, that is _by design_, because the white values are being mapped. Fixing this would require modifying the original assets to change the color of the torch center; that is left as an exercise for the reader.
 
+> [!TIP]
+> Color `lerp()` is a short-cut
+>
+> In the example, we are using linear interpolation to find a color between `swappedColor` and `originalColor`. It works okay, but, the interpolation is happening in RGB color space. RGB is just _one_ possible way to represent a color. It turns out that converting the colors to a different color space, like HSL, interpolating there, and then converting the result _back_ to RGB can produce more visually pleasing results. Check out this great in depth [article](https://www.makingsoftware.com/chapters/color-spaces-models-and-gamuts) on the topic.
+
 ### Nicer Colors
 
 The colors used above are not the nicest. They were used for demonstration purposes. For you to experiment with, here are some nicer textures to use that produce better results.
@@ -232,7 +240,7 @@ To get started, we first need to devise a way to create a custom color map and p
 
 2. Add another property to store the reference to the Color mapping code from `RedColorMap` in the `GameScene` class:
 
-    [!code-csharp[](./snippets/snippet-6-14.cs)]
+    [!code-csharp[](./snippets/snippet-6-14-2.cs)]
 
 3. Add we are going to use a `Dictionary` for the new mapping structure, we will also need an additional using, so add the following to the top of the `GameScene` class:
 
@@ -274,6 +282,9 @@ However, you can change the `sortMode` to `Immediate` to change the `SpriteBatch
 
 Now the slime appears with one color swap configuration and the rest of the scene uses the color swap configured via the content.
 
+> [!NOTE]
+> The [pink](./images/color-map-pink.png) color map is being used instead of the `color-map-1.png` from earlier.
+
 | ![Figure 6-20: The slime is a different color configuration than the game](./images/example-multi.png) |
 | :----------------------------------------------------------------------------------------------------: |
 |              **Figure 6-20: The slime is a different color configuration than the game**               |
@@ -298,7 +309,7 @@ If we want to swap the color of the slime between two color maps, we need a way 
 
 Ultimately, it would be nice to control the color value _per_ slime segment, not the entire slime. When the player eats a bat, the slime segments should change color in an animated way so that it looks like the color is "moving" down the slime segments.
 
-1. To do this, modify the `Slime.Draw()` method in the `Slime.cs` class in the _MonoGameLibrary/GameObjects_ folder to look like this:
+1. To do this, modify the `Slime.Draw()` method in the `Slime.cs` class in the _DungeonSlime/GameObjects_ folder to look like this:
 
     [!code-csharp[](./snippets/snippet-6-21.cs)]
 
@@ -344,6 +355,9 @@ Ultimately, it would be nice to control the color value _per_ slime segment, not
 | :---------------------------------------------------------------------------------: |
 |               **Figure 6-22: The slime's color changes when it eats**               |
 
+> [!NOTE]
+> The[dark-purple](./images/color-map-dark-purple.png) color map is being used instead of the pink from earlier.
+
 ## Fixing the GrayScale
 
 The color swap shader is working well, but to experiment with it, we had previously _removed_ the pause screen's grayscale effect. Both effects are trying to modify the color of the game, so they naturally conflict with each other. To solve the problem, the shaders can be merged together into a single effect.
@@ -388,6 +402,13 @@ The last thing to do is remove the old `grayscaleEffect` and re-write the game l
 | ![Figure 6-24: The grayscale effect has been restored](./gifs/grayscale.gif) |
 | :--------------------------------------------------------------------------: |
 |           **Figure 6-24: The grayscale effect has been restored**            |
+
+At this point, you can remove the `_grayscaleEffect` from the `GameScene`. 
+- Remove the declaration, 
+- Remove where it was loaded in the `LoadContent()` method,
+- Remove where it was used in the `Update()` method.
+
+You can also remove the shader itself from MGCB. 
 
 ## Color Look-Up Textures (LUTs)
 
