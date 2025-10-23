@@ -229,6 +229,44 @@ dotnet publish -c Release -f net10.0-ios -r ios-arm64 -p:ArchiveOnBuild=true
 
 This will create an IPA file in your publish folder which you can upload to the AppStore.
 
+Some other options for the project file that have helped make an ipa.
+
+### **UseInterpreter** setting
+
+If you encounter an exit code of 134 during (Ahead of Time) AOT compilation during the **dotnet publish** phase, then set this property to **true**.
+
+e.g.
+
+```sh
+/usr/local/share/dotnet/packs/Microsoft.iOS.Sdk.net9.0_26.0/26.0.9752/targets/Xamarin.Shared.Sdk.targets(1387,3): error : Failed to AOT compile aot-instances.dll, the AOT compiler exited with code 134.
+```
+
+This setting tells the build system to disable full Ahead-Of-Time (AOT) compilation and instead rely on the Mono Interpreter for the managed C# code.
+
+Setting the csproj file:
+
+```xml
+<PropertyGroup>
+    <UseInterpreter>true</UseInterpreter>
+</PropertyGroup>
+```
+
+### End of Life Target warning
+
+Suppressing the End of Life (EoL) warning can be done with the **CheckEolTargetFramework** setting.
+
+```sh
+error NETSDK1202: The workload 'net8.0-ios' is out of support and will not receive security updates in the future.
+```
+
+Setting in the csproj file to suppress the warning:
+
+```xml
+<PropertyGroup>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+</PropertyGroup>
+```
+
 ## Upload Method using Transporter
 
 You can use the **Transporter** tool to upload your IPA file and that can be found in the **Applications** folder.
