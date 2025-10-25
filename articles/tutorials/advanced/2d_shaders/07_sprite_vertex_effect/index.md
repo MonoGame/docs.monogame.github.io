@@ -21,7 +21,7 @@ So far in this series, we have only dealt with pixel shaders. To recap, the job 
 
 There has been a second shader function running all along behind the scenes, called the vertex shader. The vertex shader runs _before_ the pixel shader whose job is to convert world-space vertex data into clip-space vertex data. Technically every call in MonoGame that draws data to the screen must provide a vertex shader function and a pixel shader function. However, the `SpriteBatch` class has a default implementation of the vertex shader that runs automatically.
 
-The default `SpriteBatch` vertex shader takes the vertices that make up the sprite's corners, and applies an [_orthographic projection_](https://en.wikipedia.org/wiki/Orthographic_projection), the orthographic projection creates a 2d (flat) effect where shapes have no perspective, even when they are closer or further away from the origin.
+The default `SpriteBatch` vertex shader takes the vertices that make up the sprite's corners, and applies an [_orthographic projection_](https://en.wikipedia.org/wiki/Orthographic_projection). The orthographic projection creates a 2d (flat) effect where shapes have no perspective, even when they are closer or further away from the origin.
 
 The vertex shader that is being used can be found [here](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Platform/Graphics/Effect/Resources/SpriteEffect.fx#L29), and is detailed below:
 
@@ -43,7 +43,7 @@ The inputs to the vertex shader mirror the information that the [`SpriteBatchIte
 > [!NOTE]
 > The `SpriteBatchItem` is part of the implementation of `SpriteBatch`, but `SpriteBatchItem` is not part of the public MonoGame API.
 
-The [`VertexPositionColorTexture`](xhref:Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture) class is a standard MonoGame implementation of the `IVertexType`, and it defines a `Position`, a `Color`, and a `TextureCoordinate` for each vertex. These should look familiar, because they align with the inputs to the vertex shader function. The alignment is not happenstance, it is enforced by ["semantics"](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics) that are applied to each field in the vertex.
+The [`VertexPositionColorTexture`](https://docs.monogame.net/api/Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture) class is a standard MonoGame implementation of the `IVertexType`, and it defines a `Position`, a `Color`, and a `TextureCoordinate` for each vertex. These should look familiar, because they align with the inputs to the vertex shader function. The alignment is not happenstance, it is enforced by ["semantics"](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics) that are applied to each field in the vertex.
 
 > [!NOTE]
 > A `VertexPositionColorTexture` contains:
@@ -53,7 +53,7 @@ The [`VertexPositionColorTexture`](xhref:Microsoft.Xna.Framework.Graphics.Vertex
 > - A Color
 > - A Texture
 >
-> Just as the name states, you can check the other [VertexDeclaration](https://docs.monogame.net/api/Microsoft.Xna.Framework.Graphics.VertexDeclaration.html) types in the API documentation for reference.  You can always create your own Custom Declarations if any of the built in ones do not suffice.
+> Just as the name states, you can check the other [VertexDeclaration](https://docs.monogame.net/api/Microsoft.Xna.Framework.Graphics.VertexDeclaration.html) types in the API documentation for reference. You can always create your own custom declarations if any of the built in ones do not suffice, but you would not be able to use it with `SpriteBatch` by default.
 
 This snippet from the `VertexPositionColorTexture` class defines the semantics for each field in the vertex by specifying the `VertexElementUsage`:
 
@@ -77,9 +77,7 @@ The semantics align with the values from the `VertexElementUsage` values. The ta
 These semantics are responsible for mapping the values written into the `VertexPositionColorTexture` to the corresponding inputs in the shader file.
 
 >[!warning]
-> You cannot change the `SpriteBatch` vertex shader.
->
-> The `SpriteBatch` class does not offer any way to change the vertex semantics that are passed to the shader function.
+> The `SpriteBatch` class does not offer any way to change the vertex semantics that are passed to the vertex shader function.
 
 ### Output Semantics
 
@@ -120,7 +118,7 @@ The `MatrixTransform` is computed by the [`SpriteEffect`](xref:Microsoft.Xna.Fra
 
 [!code-csharp[](./snippets/snippet-7-08.cs)]
 
-There are two common types of project matrices,
+There are two common types of projection matrices,
 
 1. Orthographic (The default used by `SpriteBatch`),
 2. Perspective
@@ -197,21 +195,28 @@ Follow along with the steps to set up the effect.
     using MonoGameLibrary.Content;
     ```
 
-9. Then, in the `Draw` method, use the effect when drawing the title text:
+10. Make sure to enable the hot-reload for the shader by adding this to the `Update` method:
+
+    ```csharp
+    // Enable hot reload
+    _3dMaterial.Update();
+    ```
+
+10. Then, in the `Draw` method, use the effect when drawing the title text:
 
     [!code-csharp[](./snippets/snippet-7-16.cs?highlight=4)]
 
-10. When the game runs, the text will be missing because we never created a projection matrix to assign to the `MatrixTransform` shader parameter for the new effect (remember, we are overriding the default `SpriteBatch` behaviour with our own implementation).
+11. When the game runs, the text will be missing because we never created a projection matrix to assign to the `MatrixTransform` shader parameter for the new effect (remember, we are overriding the default `SpriteBatch` behaviour with our own implementation).
 
     | ![Figure 7-4: The main menu title is missing](./images/missing-text.png) |
     | :----------------------------------------------------------------------------------------: |
     |          **Figure 7-4: The main menu title is missing**           |
 
-11. Replace the original `_3dMaterial` parameter initialization with the following code when loading the material in the `LoadContent` method:
+12. Replace the original `_3dMaterial` parameter initialization with the following code when loading the material in the `LoadContent` method:
 
     [!code-csharp[](./snippets/snippet-7-17.cs)]
 
-12. And now you should see the text normally again.
+13. And now you should see the text normally again.
 
 | ![Figure 7-5: The main menu, but rendered with a custom vertex shader](./images/basic.png) |
 | :----------------------------------------------------------------------------------------: |
@@ -235,12 +240,12 @@ The sprites now move around as we adjust the shader parameter values.
 
 It is important to build intuition for the different coordinate systems involved. Instead of adding the `DebugOffset` _after_ the clip-space conversion, if you try to add it _before_, like in the code below:
 
-[!code-hlsl[](./snippets/snippet-7-20.hlsl?highlight=7)]
+[!code-hlsl[](./snippets/snippet-7-20.hlsl?highlight=6-8)]
 
 Then you will not see much movement at all. This is because the `DebugOffset` values only go from `0` to `1`, and in world space, this really only amounts to a single pixel. In fact, exactly how much an addition of _`1`_ happens to make is entirely defined _by_ the conversion to clip-space. The `projection` matrix we created treats world space coordinates with an origin around the screen's center, where 1 unit maps to 1 pixel.
 
 > [!NOTE]
-> Sometimes this is exactly what you want, and sometimes it can be just confusing.
+> Sometimes this is exactly what you want, and sometimes it can be just confusing. The important thing to remember is which coordinate space you are doing your math in.
 
 | ![Figure 7-7: Changing coordinates before clip-space conversion](./gifs/basic-2.gif) |
 | :----------------------------------------------------------------------------------: |

@@ -1,3 +1,9 @@
+// ...
+
+float4x4 MatrixTransform    _vs(c0) _cb(c0);
+
+// ...
+
 struct VSOutput
 {
 	float4 position		: SV_Position;
