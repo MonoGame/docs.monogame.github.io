@@ -262,7 +262,7 @@ To check, try to modify the shader code to adjust the `z` value based on one of 
 > [!TIP]
 > Near and Far plane clipping.
 >
-> Keep in mind that if you modify the `z` value _too_ much, it will likely step outside of the near and far planes of the orthographic projection matrix. If this happens, the sprite will vanish, because it the projection matrix does not handle coordinates outside of the near and far planes. In the example above, they were defined as `0` and `-1`.
+> Keep in mind that if you modify the `z` value _too_ much, it will likely step outside of the near and far planes of the orthographic projection matrix. If this happens, the sprite will vanish, because it the projection matrix does not handle coordinates outside of the near and far planes. The value must be between the near and far plane of the matrix we created a few steps ago. We set the values in the `CreateOrthographicOffCenter()` function to `0` and `1`. 
 >
 > [!code-csharp[](./snippets/snippet-7-22.cs)]
 >
@@ -282,16 +282,6 @@ To fix this, we need to use a _perspective_ projection matrix instead of an orth
 3. Moving the `z` value uniformly in the shader will not be visually stimulating. A more impressive demonstration of the _perspective_ projection would be to rotate the vertices around the center of the sprite, back in thr `3dEffect.fx` shader, replace the `MainVS` function with the following:
 
     [!code-hlsl[](./snippets/snippet-7-25.hlsl?highlight)]
-
-> [!NOTE]
-> What does `output.Position /= output.Position.w` do?
->
-> Long story short, the `w` component of the `.Position` must be `_1_`. Dividing any number by itself results in _1_, so the dividing `output.Position` by its own `w` component does two things,
->
-> 1. sets the `w` component to _1_,
-> 2. uniformly adjusts the other components to accomodate the change.
->
-> The math to fully explain why this is required is beyond the scope of this tutorial series. Read about [homogenous coordinates](https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/) and the [perspective divide](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrix-GPU-rendering-pipeline-clipping.html)
 
 And now when the debug `X` parameter is adjusted (y does nothing at this point), the text spins in a way that was not possible with the default `SpriteBatch` vertex shader.
 
@@ -356,9 +346,9 @@ It was helpful to use the `TitleScene` to build intuition for the vertex shader,
 
 ### Making One Big Shader
 
-A problem emerges right away. The `GameScene` is already using the color swapping effect to draw the sprites, and `SpriteBatch` can only use a single per batch.
+A problem emerges right away. The `GameScene` is already using the color swapping effect to draw the sprites, and `SpriteBatch` can only use a single shader per batch.
 
-To solve this problem, we will collapse our shaders into a single shader that does it all, _both_ the color swapping _and_ the vertex manipulation. Writing code to be re-usable is a challenge for all programming languages, and shader languages are no different.
+To solve this problem, we will collapse our shaders into a single shader that does it all, _both_ the color swapping _and_ the vertex manipulation. Writing code to be re-usable is a challenge for all programming languages, and shader languagess are no different.
 
 > [!NOTE]
 > The _Uber_ Shader
@@ -383,7 +373,12 @@ Follow the steps below to refactor the shader code, and to use the `#include` sy
 
 2. Time to start factoring out some shared components into a few different `.fxh` files.
 
-   Create a file in the _MonoGameLibrary_'s `SharedContent/effects` folder called `common.fxh`. This file will contain utilities that can be shared for all effects, such as the `struct` types that define the inputs and outputs of the vertex and pixel shaders:
+   Create a file in the _MonoGameLibrary_'s `SharedContent/effects` folder called `common.fxh`. 
+   
+   > [!TIP]
+   > `.fxh` files do not be added to your MonoGame Content Builder file.
+
+   This file will contain utilities that can be shared for all effects, such as the `struct` types that define the inputs and outputs of the vertex and pixel shaders:
 
     [!code-hlsl[](./snippets/snippet-7-31.hlsl)]
 
@@ -401,9 +396,9 @@ Follow the steps below to refactor the shader code, and to use the `#include` sy
     [!code-hlsl[](./snippets/snippet-7-32.hlsl)]
 
     > [!NOTE]
-    > If you recall what was stated earlier about the processing order of the shader, the file is read in sequence, so the include MUST be defined BEFORE its contents are used.  You can put it at the top of the file (like a using) but only if it does not interfere with the shader processing.  THere is no hard and fast rule, so just use common sense, if it does not compile or it errors, then you need to change it.
+    > If you recall what was stated earlier about the processing order of the shader, the file is read in sequence, so the include MUST be defined BEFORE its contents are used.  You can put it at the top of the file (like a using) but only if it does not interfere with the shader processing.  There is no hard and fast rule, so just use common sense, if it does not compile or it errors, then you need to change it.
 
-4. If you run the game, nothing should change, except that the shader code is more modular. To continue, create another header file next to accompany the `3dEffect.fx` shader called `3dEffect.fxh` in the same folder.
+4. If you run the game, nothing should change, except that the shader code is more modular. To continue, create another header file next to the `3dEffect.fx` shader called `3dEffect.fxh` in the same folder.
    Paste the contents:
 
     [!code-hlsl[](./snippets/snippet-7-33.hlsl)]
@@ -425,7 +420,10 @@ Follow the steps below to refactor the shader code, and to use the `#include` sy
 
     Now most of the components we would like to combine into a single effect have been split into various `.fxh` header files, but their relative location is **CRUCIAL** when refering to related functionality, to demonstrate this, we will "break" a shader and show how to fix it.
 
-8. Create a new "sprite effect" using the MGCB editor in the `_DungeonSlime_`'s content `effects` folder called `gameEffect.fx`, and simply add `#include "common.fxh"` to refer to the previously created common header file, you will see an error like this:
+8. Create a new "sprite effect" using the MGCB editor in the **`_DungeonSlime_`'s** content `effects` folder called `gameEffect.fx`, and simply add `#include "common.fxh"` to refer to the previously created common header file, you will see an error like this:
+
+    > [!WARNING]
+    > We have been adding a lot of files to the _MonoGameLibrary_, but this shader should go into the _DungeonSlime_ project, because it is a game specific shader. 
 
     ```text
     error PREPROCESS01: File not found: common.fxh in .(MonoGame.Effect.Preprocessor+MGFile)
@@ -461,6 +459,8 @@ Follow the steps below to refactor the shader code, and to use the `#include` sy
 12. Finally, apply all of the parameters to the new single material in the `LoadContent` method:
 
     [!code-csharp[](./snippets/snippet-7-42.cs)]
+
+13. Somewhat optionally, remember to add the `rasterizerState: RasterizerState.CullNone` to the `SpriteBatch.Draw()` call if you do not want the game to vanish when the `SpinAmount` goes beyond half a rotation. In practice, we will not be be spinning the game world that much, so it does not really matter. 
 
 Any remaining places where the old `_colorSwapMaterial` is being referenced should be changed to use the `_gameMaterial` instead, including in the `Update` and `Draw` methods. (if you still have any old references to the `_grayscaleEffect` make sure to remove those as well as they are no longer used).
 

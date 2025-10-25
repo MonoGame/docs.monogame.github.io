@@ -1,2 +1,1 @@
-> zNearPlane: 0, zFarPlane: -1,
->
+zNearPlane: 0, zFarPlane: -1

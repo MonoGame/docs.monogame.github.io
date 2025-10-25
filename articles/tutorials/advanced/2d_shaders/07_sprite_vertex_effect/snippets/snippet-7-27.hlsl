@@ -1,7 +1,7 @@
 // ...
 
 float2 ScreenSize;
-float SpinAngle;
+float SpinAmount;
 
 // ...
 

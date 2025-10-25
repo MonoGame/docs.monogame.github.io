@@ -32,9 +32,7 @@ VertexShaderOutput MainVS(VertexShaderInput input)
     // shift the position away from the center of rotation
     pos.xz += centerXZ;
     
-    
     output.Position = mul(pos, MatrixTransform);
-    output.Position /= output.Position.w; // re-normalize the position vector.
     output.Color = input.Color;
     output.TextureCoordinates = input.TexCoord;
     return output;
