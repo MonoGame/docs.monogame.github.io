@@ -20,7 +20,7 @@ In the earlier days of computer graphics, forward rendering was ubiquitous. Imag
 
 In the 2000's, the deferred rendering strategy was [introduced](https://sites.google.com/site/richgel99/the-early-history-of-deferred-shading-and-lighting) and popularized by games like [S.T.A.L.K.E.R](https://developer.nvidia.com/gpugems/gpugems2/part-ii-shading-lighting-and-shadows/chapter-9-deferred-shading-stalker). In deferred rendering, each object is drawn _once_ without _any_ lights to an off-screen texture. Then, each light is drawn on top of the off-screen texture. To make that possible, the initial rendering pass draws extra data about the scene into additional off-screen textures. Theoretically, a deferred renderer can handle more lights and objects because the work is roughly approximate to the sprites (`S`) _added_ to the lights (`L`), or `S + L`.
 
-Deferred rendering was popular for several years. MonoGame is an adaptation of XNA, which came out in the era of deferred rendering. However, deferred renderers are not a silver bullet for performance and graphics programming. The crux of a deferred renderer is to bake data into off-screen textures, and as monitor resolutions have gotten larger and larger, the 4k resolutions making off-screen texture more expensive than before. Also, deferred renderers cannot handle transparent materials. Many big game projects use deferred rendering for _most_ of the scene, and a forward renderer for the final transparent components of the scene. As with all things, which type of rendering to use is a nuanced decision. There are new types of forward rendering strategies (see, [clustered rendering](https://github.com/DaveH355/clustered-shading), or [forward++](https://www.gdcvault.com/play/1017627/Advanced-Visual-Effects-with-DirectX) rendering) that can out perform deferred renderers. However, for our use cases, the deferred rendering technique is sufficient.
+Deferred rendering was popular for several years. MonoGame is an adaptation of XNA, which came out in the era of deferred rendering. However, deferred renderers are not a silver bullet for performance and graphics programming. The crux of a deferred renderer is to bake data into off-screen textures, and as monitor resolutions have gotten larger and larger, the 4k resolutions makimakeng off-screen texture more expensive than before. Also, deferred renderers cannot handle transparent materials. Many big game projects use deferred rendering for _most_ of the scene, and a forward renderer for the final transparent components of the scene. As with all things, which type of rendering to use is a nuanced decision. There are new types of forward rendering strategies (see, [clustered rendering](https://github.com/DaveH355/clustered-shading), or [forward++](https://www.gdcvault.com/play/1017627/Advanced-Visual-Effects-with-DirectX) rendering) that can out perform deferred renderers. However, for our use cases, the deferred rendering technique is sufficient.
 
 If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/2dShaders/src/07-Sprite-Vertex-Effect).
 
@@ -30,10 +30,15 @@ Writing a simple deferred renderer can be worked out in a few steps,
 
 1. take the scene as we are drawing it currently, and store it in an off-screen texture. This texture is often called the diffuse texture, or color texture.
 2. render the scene again, but instead of drawing the sprites normally, draw their _Normal_ maps to an off-screen texture, called the normal texture.
-3. create a new off-screen texture, called the light texture, where each light is layered on-top of each other,
+3. create yet another off-screen texture, called the light texture, where lights are layered on top of each other using the normal texture,
 4. finally, create a rendering to the screen based on the lighting texture and the color texture.
 
-The second stage references a new term, called the _Normal_ Map. We will come back to this later in the chapter. For now, we will focus on the other steps.
+The second stage references a new term, called the _Normal_ texture. We will come back to this later in the chapter. For now, we will focus on the other steps.
+
+> [!TIP]
+> _Texture_ vs _Map_ vs _Buffer_
+> 
+> It is very common for people to refer to textures as _maps_ or _buffers_ in computer graphics, so if you see the terms "color map", "color texture", or "color buffer"; they very likely refer to the same thing. The terms are synonmous. 
 
 ### Drawing to an off-screen texture
 
@@ -45,7 +50,7 @@ The second stage references a new term, called the _Normal_ Map. We will come ba
 
 2. The `ColorBuffer` property is a [`RenderTarget2D`](xref:Microsoft.Xna.Framework.Graphics.RenderTarget2D), which is a special type of [`Texture2D`](xref:Microsoft.Xna.Framework.Graphics.Texture2D) that MonoGame can draw into. In order for MonoGame to draw anything into the `ColorBuffer`, it needs to be bound as the current render target. Add the following function to the `DeferredRenderer` class.
 
-   The `SetRenderTarget()` function instructs all future MonoGame draw operations to render into the `ColorBuffer`:
+   The `SetRenderTarget()` function instructs all future MonoGame draw operations to render into the `ColorBuffer`. Add this function to the `DeferredRenderer` class:
 
     [!code-csharp[](./snippets/snippet-8-02.cs)]
 
@@ -184,6 +189,42 @@ The next task is to write the `pointLightEffect.fx` shader file so that the whit
 
     > [!NOTE]
     > For the sake of clarity, these screenshots show only the `LightBuffer` as full screen, that way we can focus on the distance based return value.
+    > 
+    > If you want to do that too, change the `DebugDraw()` method to use the entire viewport for the `lightBorderRect`, like this:
+    >
+    > [!code-hlsl[](./snippets/snippet-8-22-2.cs)]
+    > 
+    > Just do not forget to revert this change later!
+
+
+    > [!TIP]
+    > Add a pause mechanic!
+    > 
+    > It can be really hard to debug the graphics stuff while the game is being played. Earlier in the series, we just added an early-return in the `GameScene`'s `Update()` method. We could do that again, or we could add a debug key to pause the game.
+    > Add a class variable called ``:
+    >
+    > ```csharp
+    > private bool _debugPause = false;
+    > ```
+    > 
+    > And then add this snippet to the top of the `Update()` method:
+    >
+    > ```csharp
+    >   if (Core.Input.Keyboard.WasKeyJustPressed(Keys.P))
+    >   {
+    >        _debugPause = !_debugPause;
+    >   }
+    >   if (_debugPause) return;
+    > ```
+    > 
+    > And do not forget to add the `using` statement:
+    > 
+    > ```csharp
+    > using Microsoft.Xna.Framework.Input;
+    > ```
+    >
+    > Now you will be able to hit the `p` key to pause the game without showing the menu. Remember to take this out before shipping your game!
+
 
     | ![Figure 8-6: Showing the distance from the center of the light in the red channel](./images/point-light-dist.png) |
     | :----------------------------------------------------------------------------------------------------------------: |
@@ -228,13 +269,16 @@ The next task is to write the `pointLightEffect.fx` shader file so that the whit
 
     [!code-hlsl[](./snippets/snippet-8-27.hlsl?highlight=13-15)]
 
-7. In the `GameScene` we can replace the initialization of the light to change its color in C# to `CornflowerBlue` in the `Initialize` method:
+    > [!WARNING]
+    > Wait, the light broke! If you run the project at this state, the light seems to revert back to a fully opaque square! That is because of the `blendState` of the `SpriteBatch`. Even though the `a` (or alpha) channel of the color in the shader is being set to a nice `falloff`, the default `blendState` sees any positive alpha as "fully opaque". We are going to fix this right away!
 
-    [!code-csharp[](./snippets/snippet-8-28.cs)]
-
-8. And change the `blendState` of the light's `SpriteBatch` draw call in the `PointLight` class to additive for effect:
+7. And change the `blendState` of the light's `SpriteBatch` draw call in the `PointLight` class to additive for effect:
 
     [!code-csharp[](./snippets/snippet-8-29.cs)]
+
+8. In the `GameScene` we can replace the initialization of the light to change its color in C# to `CornflowerBlue` in the `Initialize` method:
+
+    [!code-csharp[](./snippets/snippet-8-28.cs)]
 
 9. Finally, in the `Core` class `LoadContent` method, set the default shader parameter values for brightness and sharpness to something you like:
 
@@ -244,7 +288,7 @@ The next task is to write the `pointLightEffect.fx` shader file so that the whit
 | :-------------------------------------------------------------------------------: |
 |                **Figure 8-11: The point light in the light buffer**                |
 
-The light looks good! When we revert the full-screen `LightBuffer` and render the `LightBuffer` next to the `ColorBuffer`, a graphical bug will become clear. The world in the `ColorBuffer` is rotating with the vertex shader from the previous chapter, but the `LightBuffer` does not have the same effect, so the light appears broken.
+The light looks good! When we revert the full-screen `LightBuffer` and render the `LightBuffer` next to the `ColorBuffer`, a graphical bug will become clear. The world in the `ColorBuffer` is rotating with the vertex shader from the previous chapter, but the `LightBuffer` does not have the same effect, so the light appears broken. We will fix this later on in the chapter. But for now, we are going to accept this visual glitch for the next few sections. 
 
 ### Combining Light and Color
 
@@ -286,15 +330,15 @@ Now that the light and color buffers are being drawn to separate off screen text
 
     [!code-hlsl[](./snippets/snippet-8-38.hlsl)]
 
-    | ![Figure 8-13: The light and color composited](./images/composite-1.png) |
-    | :----------------------------------------------------------------------: |
-    |             **Figure 8-13: The light and color composited**              |
-
 9. Back in the `DeferredRenderer` class, in the `DrawComposite` function before the sprite batch starts, make sure to pass the `LightBuffer` to the material:
 
     [!code-csharp[](./snippets/snippet-8-37.cs?highlight=3)]
 
     The light is working! However, the whole scene is too dark to see what is going on or play the game.
+
+    | ![Figure 8-13: The light and color composited](./images/composite-1.png) |
+    | :----------------------------------------------------------------------: |
+    |             **Figure 8-13: The light and color composited**              |
 
 10. To solve this, we can add a small amount of ambient light to the `deferredCompositeEffect` shader:
 
@@ -336,6 +380,9 @@ For reference, the existing texture atlas is on the left, and a version of the a
 | :------------------------------------------------------------: | :-----------------------------------------------------------------: |
 |          **Figure 8-17: The existing texture atlas**           |                **Figure 8-18: The normal texture atlas**            |
 
+> [!WARNING]
+> This is not the most efficient way to integrate normal maps into your game, because now there are _two_ texture atlases. Another approach would be to add the normal maps to existing sprite atlas, and modify the `Sprite` code to have two regions. That is an exercise for the reader. 
+
 Download the [atlas-normal.png](./images/atlas-normal.png) texture, add it to the _DungeonSlime_'s `Content/Images` folder and include it in the mgcb content file.
 
 Now that we have the art assets, it is time to work the normal maps into the code.
@@ -364,7 +411,7 @@ Now that we have the art assets, it is time to work the normal maps into the cod
 
 5. And do not forget to update the `technique` to reference the new `MainPS` function:
 
-        [!code-hlsl[](./snippets/snippet-8-45.hlsl?highlight=6)]
+    [!code-hlsl[](./snippets/snippet-8-45.hlsl?highlight=6)]
 
 6. In C#, when the `GraphicsDevice.SetRenderTarget()` function is called, it sets the texture that the `COLOR0` semantic will be sent to. However, there is an overload called `SetRenderTargets()` that accepts _multiple_ `RenderTarget2D`s, and each additional texture will be assigned to the next `COLOR` semantic.
 
@@ -448,6 +495,18 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
 6. Next, create a new vertex function that uses the new `LightVertexShaderOutput`. This function will call to the existing `MainVS` function that does the 3D effect, and add the screen coordinates afterwards:
 
     [!code-hlsl[](./snippets/snippet-8-58.hlsl)]
+
+    > [!NOTE]
+    > What does `float4 normalized = output.Position / output.Position.w;` do?
+    >
+    > Long story short, the `w` component of the `.Position` must be `_1_`. Dividing any number by itself results in _1_, so the dividing `output.Position` by its own `w` component does two things,
+    >
+    > 1. sets the `w` component to _1_,
+    > 2. uniformly adjusts the other components to accomodate the change.
+    >
+    > Remember that the purpose of the matrix projection is to convert the coordinates into clip space. The graphics card silently normalizes the coordinates using this math, but since we are not actually passing the data through the rest of the graphics pipeline, we need to do the normalization ourselves. 
+    >
+    > The math to fully explain why this is required is beyond the scope of this tutorial series. Read about [homogenous coordinates](https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/) and the [perspective divide](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrix-GPU-rendering-pipeline-clipping.html)
 
 7. Make sure to update the `technique` to use the new vertex function:
 

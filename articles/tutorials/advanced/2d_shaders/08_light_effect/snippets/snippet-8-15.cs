@@ -5,4 +5,5 @@ protected override void LoadContent()
     // ...
 
     PointLightMaterial = SharedContent.WatchMaterial("effects/pointLightEffect");
+    PointLightMaterial.IsDebugVisible = true;
 }
