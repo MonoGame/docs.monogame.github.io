@@ -543,16 +543,17 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
 
      _Most_ of the time when `SpriteBatch` is being used, there is a single `Texture` and `Sampler` being used to draw a sprite to the screen. The `SpriteBatch`'s draw function passes the given `Texture2D` to the shader by setting it in the `GraphicsDevice.Textures` array [directly](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatcher.cs#L212). The texture is not being passed _by name_, it is being passed by _index_. In the lighting case, the `SpriteBatch` is being drawn with the `Core.Pixel` texture (a white 1x1 image we generated in the earlier chapters).
 
-    However, the shader compiler will aggressively optimize away data that is not being used in the shader, the current `pointLightEffect.fx` does not _use_ the default texture or sampler that `SpriteBatch` expects by default. The default texture is _removed_ from the shader during compilation, because it is not used anywhere and has no effect. The only texture that is left is the `NormalBuffer`, which now becomes the first indexable texture.
+    However, the shader compiler will aggressively optimize away data that is not being used in the shader. The current `pointLightEffect.fx` does not _use_ the default texture or sampler that `SpriteBatch` expects by default. The default texture is _removed_ from the shader during compilation, because it is not used anywhere and has no effect. The only texture that is left is the `NormalBuffer`, which now becomes the first indexable texture.
 
     Despite passing the `NormalBuffer` texture to the named `NormalTexture` `Texture2D` parameter in the shader before calling `SpriteBatch.Draw()`, the `SpriteBatch` code itself then overwrites whatever is in texture slot `0` with the texture passed to the `Draw()` call, the white pixel.
 
     There are two workarounds:
 
-    1. Modify the shader code to read data from the main `SpriteTextureSampler` and use the resulting color "_somehow_" in the computation for the final result of the shader.
+    - Modify the shader code to read data from the main `SpriteTextureSampler` and use the resulting color "_somehow_" in the computation for the final result of the shader.
         > [!NOTE]
-        > For example, You could multiple the color by a very small constant, like `.00001`, and then add the product to the final color. It would have no perceivable effect, but the shader compiler would not be optimize the sampler away. However, this is useless and silly work. Worse, it will likely confuse anyone who looks at the shader in the future.
-    2. The better approach is to pass the `NormalBuffer` to the `Draw()` function directly, and not bother sending it as a shader parameter at all.
+        > For example, You could multiply the color by a very small constant, like `.00001`, and then add the product to the final color. It would have no perceivable effect, but the shader compiler would not be able to optimize the sampler away. However, this is useless and silly work. Worse, it will likely confuse anyone who looks at the shader in the future.
+    - The better approach is to pass the `NormalBuffer` to the `Draw()` function directly, and not bother sending it as a shader parameter at all.
+    
 
 12. Change the `Draw()` method in the `PointLight` class to pass the `normalBuffer` to the `SpriteBatch.Draw()` method _instead_ of passing it in as a parameter to the `PointLightMaterial`.
 
