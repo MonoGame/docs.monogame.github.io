@@ -1,13 +1,19 @@
 float4 MainPS(LightVertexShaderOutput input) : COLOR {
     float dist = length(input.TextureCoordinates - .5);   
-
     float range = 5; // arbitrary maximum. 
 
     float falloff = saturate(.5 - dist) * (LightBrightness * range + 1);
     falloff = pow(abs(falloff), LightSharpness * range + 1);
 
-    float4 normal = tex2D(NormalBufferSampler,input.ScreenCoordinates);
-    // flip the y of the normals, because the art assets have them backwards.
+	// correct the perspective divide. 
+	input.ScreenData /= input.ScreenData.z;
+
+	// put the clip-space coordinates into screen space.
+	float2 screenCoords = .5*(input.ScreenData.xy + 1);
+	screenCoords.y = 1 - screenCoords.y;
+
+    float4 normal = tex2D(NormalBufferSampler,screenCoords);
+	// flip the y of the normals, because the art assets have them backwards.
     normal.y = 1 - normal.y;
 
     // convert from [0,1] to [-1,1]

@@ -356,6 +356,9 @@ Now that the light and color buffers are being drawn to separate off screen text
     | :--------------------------------------------------------------------------: |
     |                  **Figure 8-15: A constant ambient value**                   |
 
+    > [!WARNING]
+    > The light is not moving with the rest of the game as the world rotates around the camera. It does not look too bad because the light effect is just being applied statically over the top of the screen. We are going to fix this soon.
+
 ### Normal Textures
 
 The lighting is working, but it still feels a bit flat. Ultimately, the light is being applied to our flat 2D sprites uniformly, so there the sprites do not feel like they have any depth. Normal mapping is a technique designed to help make flat surfaces appear 3D by changing how much the lighting affects each pixel depending on the "Normal" of the surface at the given pixel.
@@ -478,9 +481,9 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
 
     The challenge here is to find the normal value of the pixel that the light is currently shading in the pixel shader. However, the shader's `uv` coordinate space is relative to the light itself. The `NormalBuffer` is relative to the entire screen, not the light.
 
-    We need to be able to convert the light's `uv` coordinate space into screen space, which can be done in a custom vertex shader. The vertex shader's job is to convert the world space into clip space, which in a 2D game like _Dungeon Slime_, essentially _is_ screen space. The screen coordinates can be calculated in the vertex function and then passed along to the pixel shader by extending the outputs of the vertex shader struct.
+    We need to be able to convert the light's `uv` coordinate space into screen space, which can be done in a custom vertex shader. The vertex shader's job is to convert the world space into clip space, which in a 2D game like _Dungeon Slime_, essentially _is_ screen space. We need a way to calculate the screen coordinate for each pixel being drawn for the `pointLightEffect` pixel shader. To achieve this, we are going to send the output from the projection matrix multiplication from the vertex shader to the pixel shader. Then, the pixel shader can convert the result into a screen space coordinate
 
-   In order to override the vertex shader function, we will need to repeat the `MatrixTransform` work from the previous chapter. However, it would be better to _re-use_ the work from the previous chapter so that the lights also tilt and respond to the `MatrixTransform` that the rest of the game world uses.
+    In order to override the vertex shader function, we will need to repeat the `MatrixTransform` work from the previous chapter. However, it would be better to _re-use_ the work from the previous chapter so that the lights also tilt and respond to the `MatrixTransform` that the rest of the game world uses.
 
 4. Add a reference to the `3dEffect.fxh` file in the `pointLightEffect.fx` shader:
 
@@ -497,22 +500,22 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
     [!code-hlsl[](./snippets/snippet-8-58.hlsl)]
 
     > [!NOTE]
-    > What does `float4 normalized = output.Position / output.Position.w;` do?
+    > Why are we using the `w` component?
     >
-    > Long story short, the `w` component of the `.Position` must be `_1_`. Dividing any number by itself results in _1_, so the dividing `output.Position` by its own `w` component does two things,
+    > Long story short, when we output the `.Position`, it is a _4_ dimensional vector so it includes the understandable `x`, `y`, and `z` components of the position... But it _also_ includes a 4th component, _`w`_. The `w` component is used by the graphics pipeline between the vertex shader and the pixel shader to handle perspective correction. There is a lot of math to dig into, but the core issue at play is how the graphics pipeline delivers interpolated values to your pixel shader at _every_ pixel between all of the vertices being rendered. We are not going to cover the mathematics here, but please read about [homogenous coordinates](https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/) and [perspective divide](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrix-GPU-rendering-pipeline-clipping.html).
+    > 
+    > If you like to learn from videos, then [this video by Acerola](https://www.youtube.com/watch?v=y84bG19sg6U) is a great exploration of the topic as well. At first the video is about simulating _Playstation 1_ graphics, but later, the video discusses how the interpolation between graphics stages can cause strange visual artifacts. 
     >
-    > 1. sets the `w` component to _1_,
-    > 2. uniformly adjusts the other components to accomodate the change.
-    >
-    > Remember that the purpose of the matrix projection is to convert the coordinates into clip space. The graphics card silently normalizes the coordinates using this math, but since we are not actually passing the data through the rest of the graphics pipeline, we need to do the normalization ourselves. 
-    >
-    > The math to fully explain why this is required is beyond the scope of this tutorial series. Read about [homogenous coordinates](https://www.tomdalling.com/blog/modern-opengl/explaining-homogenous-coordinates-and-projective-geometry/) and the [perspective divide](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/projection-matrix-GPU-rendering-pipeline-clipping.html)
+    > We need the `w` component because the graphics pipeline is not going to automatically perform the _perspective divide_ correctly in this case, so we will need to re-create it ourselves later in the pixel shader. And to do that, we will need the `w` component value.
 
 7. Make sure to update the `technique` to use the new vertex function:
 
     [!code-hlsl[](./snippets/snippet-8-59.hlsl?highlight=5)]
 
-8. In the pixel function, to visualize the screen coordinates, we will short-circuit the existing light code and just render out the screen coordinates by replacing the `MainPS` function with one that accepts the new `LightVertexShaderOutput` struct and make the function immediately return the screen coordinates in the red and green channel:
+8. In the pixel function, to visualize the screen coordinates, we will short-circuit the existing light code and just render out the screen coordinates by replacing the `MainPS` function with one that accepts the new `LightVertexShaderOutput` struct and make the function immediately calculate and return the screen coordinates in the red and green channel:
+
+    > [!NOTE]
+    > Remember, the `.ScreenData.xy` carries a coordinate in _clip_ space. However, the graphics card did not receive it in a `POSITION` semantic, so it did not automatically noramlize the values by the `w` channel. Therefor, we need to do that ourselves. The range of clip space is from `-1` to `1`, so we need to convert it back to normalized `0` to `1` coordinates.
 
     [!code-hlsl[](./snippets/snippet-8-61.hlsl)]
 
@@ -553,7 +556,7 @@ When each individual light is drawn into the `LightBuffer`, it needs to use the 
         > [!NOTE]
         > For example, You could multiply the color by a very small constant, like `.00001`, and then add the product to the final color. It would have no perceivable effect, but the shader compiler would not be able to optimize the sampler away. However, this is useless and silly work. Worse, it will likely confuse anyone who looks at the shader in the future.
     - The better approach is to pass the `NormalBuffer` to the `Draw()` function directly, and not bother sending it as a shader parameter at all.
-    
+
 
 12. Change the `Draw()` method in the `PointLight` class to pass the `normalBuffer` to the `SpriteBatch.Draw()` method _instead_ of passing it in as a parameter to the `PointLightMaterial`.
 

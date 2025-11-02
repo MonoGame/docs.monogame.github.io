@@ -6,6 +6,6 @@ public override void LoadContent()
     _colorSwapMaterial = Core.SharedContent.WatchMaterial("effects/colorSwapEffect");
     _colorSwapMaterial.IsDebugVisible = true;
 
-    _colorMap = Core.SharedContent.Load<Texture2D>("images/color-map-1");
+    _colorMap = Core.Content.Load<Texture2D>("images/color-map-1");
     _colorSwapMaterial.SetParameter("ColorMap", _colorMap);
 }

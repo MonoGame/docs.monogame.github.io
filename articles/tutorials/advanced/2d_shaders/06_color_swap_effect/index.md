@@ -131,7 +131,7 @@ We could produce a second texture that puts different color values in the same k
 | :----------------------------------------------------------------------------: |
 |             **Figure 6-11: An abstract view of a 255 x 1 texture**              |
 
-Here is the actual texture with the swapped colors. Download [this image](./images/color-map-1.png) and add it to your MonoGame SharedContent in the MonoGameLibrary project in the "images" folder.
+Here is the actual texture with the swapped colors. Download [this image](./images/color-map-1.png) and add it to your DungeonSlime Content's "images" folder.
 
 > [!note]
 > This image is not to scale. Remember, it is a 256x1 pixel image. This preview is being scaled up to a height of 32 pixels just for visualization.
@@ -193,7 +193,7 @@ To help visualize the effect, it will be helpful to visualize the original color
 
     That looks pretty good, but changing between original and swap colors reveals a visual glitch. The color table did not account for _some_ of the original colors. All of the colors get mapped, and our default color in the map was _white_, so some of the game's art is just turning white. For example, look at the torches on the top-wall.
 
-3. To fix this, we can adjust the color look-up map to use transparent values by default. Use [this texture](./images/color-map-2.png) instead, saving over the original `color-map-1.png` in the SharedContent to avoid having to change anything else.
+3. To fix this, we can adjust the color look-up map to use transparent values by default. Use [this texture](./images/color-map-2.png) instead, saving over the original `color-map-1.png` in the DungeonSlime's Content image folder to avoid having to change anything else.
 
     | <img src="./images/color-map-2.png" alt="Figure 6-14: The color map with a transparent default color" style=" height: 32px; image-rendering: pixelated;"/> |
     | :-------------------------------------------------------------------------------------: |
