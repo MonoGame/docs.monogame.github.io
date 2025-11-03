@@ -58,9 +58,9 @@ The mystery to unpack is step 1, how to render the `ShadowBuffer` in the first p
 
 To build some intuition, we will start by considering a shadow caster that is a single line segment. If we can generate a shadow for a single line segment, then we could compose multiple line segments to replicate the shape of the slime sprite. In the image below, there is a single light source at position `L`, and a line segment between points `A`, and `B`.
 
-| ![Figure 9-4: A diagram of a simple light and line segment](./images/light_math.png) |
+| ![Figure 9-7: A diagram of a simple light and line segment](./images/light_math.png) |
 | :----------------------------------------------------------------------------------: |
-|             **Figure 9-4: A diagram of a simple light and line segment**             |
+|             **Figure 9-7: A diagram of a simple light and line segment**             |
 
 The shape we need to draw is the non-regular quadrilateral defined by `A`, `a`, `b`, and `B`. It is shaded in pink. These points are in world space. Given that we know where the line segment is, we know where `A` and `B` are, but we do not _yet_ know `a` and `b`'s location.
 
