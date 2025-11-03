@@ -104,7 +104,7 @@ public class Tilemap
     }
 
     /// <summary>
-    /// Gets the texture region of the tile frm this tilemap at the specified
+    /// Gets the texture region of the tile from this tilemap at the specified
     /// column and row.
     /// </summary>
     /// <param name="column">The column of the tile in this tilemap.</param>
