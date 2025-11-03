@@ -44,13 +44,13 @@ This resource is called the `ShadowBuffer`.
 | :------------------------------------------------------: |
 |               **Figure 9-3: A shadow map**               |
 
-We would need to have a `ShadowBuffer` for each light source, but if we did, then when the light was being rendered, we could pass in the `ShadowBuffer` as an additional texture resource to the `_pointLightEffect.fx`, and use the pixel value of the `ShadowBuffer` to mask the light source.
+We would need to have a `ShadowBuffer` for each light source, and if we did, then when the light was being rendered, we could pass in the `ShadowBuffer` as an additional texture resource to the `_pointLightEffect.fx`, and use the pixel value of the `ShadowBuffer` to mask the light source.
 
 In the sequence below, the left image is just the `LightBuffer`. The middle image is the `ShadowBuffer`, and the right image is the product of the two images. Any pixel in the `ShadowBuffer` that was `white` means the final image uses the color from the `LightBuffer`, and any `black` pixel from the `ShadowBuffer` becomes black in the final image as well. The multiplication of the `LightBuffer` and `ShadowBuffer` complete the shadow effect.
 
-| The `LightBuffer`                                         | The `ShadowBuffer`                                       | The multiplication of the two images                                     |
+| ![Figure 9-4: a light buffer](./images/dbg_light_map.png) | ![Figure 9-5: A shadow map](./images/dbg_shadow_map.png) | ![Figure 9-6: The multiplication](./images/dbg_light_map_multiplied.png) |
 | --------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------ |
-| ![Figure 9-4: a light buffer](./images/dbg_light_map.png) | ![Figure 9-3: A shadow map](./images/dbg_shadow_map.png) | ![Figure 9-4: The multiplication](./images/dbg_light_map_multiplied.png) |
+| **Figure 9-4: The `LightBuffer`**                         | **Figure 9-5: The `ShadowBuffer`**                       | **Figure 9-6: The multiplication of the two images**                     |
 
 The mystery to unpack is step 1, how to render the `ShadowBuffer` in the first place.
 
