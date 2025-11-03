@@ -73,9 +73,9 @@ However, the `SpriteBatch` usually only renders rectangular shapes. By default, 
 
 This diagram shows an abstract pixel being drawn at some position `P`. The corners of the pixel may be defined as `G`, `S`, `D`, and `F`.
 
-| ![Figure 9-4: A diagram showing a pixel](./images/pixel_math.png) |
+| ![Figure 9-8: A diagram showing a pixel](./images/pixel_math.png) |
 | :---------------------------------------------------------------: |
-|             **Figure 9-4: A diagram showing a pixel**             |
+|             **Figure 9-8: A diagram showing a pixel**             |
 
 Our goal is to define a function that transforms the positions `S`, `D`, `F`, and `G` _into_ the positions, `A`, `a`, `b`, and `B`. The table below shows the desired mapping.
 
@@ -170,9 +170,9 @@ To start implementing the effect, create a new Sprite Effect in the `MonoGameLib
 > [!NOTE]
 > As we did back in [Chapter 6](../06_color_swap_effect/index.md#hard-coding-color-swaps), temporarily disable the `GameScene` update by adding a `return;` statement AFTER setting all the material properties.  Just to make it easier when looking at the shadow effect
 
-| ![Figure 9-5: Create the `shadowHullEffect` in MGCB](./images/mgcb.png) |
+| ![Figure 9-9: Create the `shadowHullEffect` in MGCB](./images/mgcb.png) |
 | :---------------------------------------------------------------------: |
-|          **Figure 9-5: Create the `shadowHullEffect` in MGCB**          |
+|          **Figure 9-9: Create the `shadowHullEffect` in MGCB**          |
 
 1. Add the following `ShadowHullMaterial` property to the `Core.cs` class in the `MonoGameLibrary` project and replace its contents with the following:
 
@@ -238,9 +238,9 @@ To represent the shadow casting objects in the game, we will create a new class 
 
 When you run the game, you will see a totally blank game (other than the GUI). This is because the shadow map is currently being cleared to `black` to start, and the debug view renders that on top of everything else.
 
-| ![Figure 9-6: A blank shadow buffer](./images/shadow_map_blank.png) |
+| ![Figure 9-10: A blank shadow buffer](./images/shadow_map_blank.png) |
 | :-----------------------------------------------------------------: |
-|                **Figure 9-6: A blank shadow buffer**                |
+|                **Figure 9-10: A blank shadow buffer**                |
 
 ### Bit Packing
 
@@ -289,9 +289,9 @@ We cannot implement the vertex shader theory until we can pack the `(B-A)` vecto
 
 Now if you run the game, you will see the white shadow hull.
 
-| ![Figure 9-7: A shadow hull](./images/shadow_map.png) |
+| ![Figure 9-11: A shadow hull](./images/shadow_map.png) |
 | :---------------------------------------------------: |
-|             **Figure 9-7: A shadow hull**             |
+|             **Figure 9-11: A shadow hull**             |
 
 ### Integrating the shadow with the lighting
 
@@ -329,9 +329,9 @@ To get the basic shadow effect working with the rest of the renderer, we need to
 
 And now the shadow appears correctly for our simple single line segment!
 
-| ![Figure 9-9: A working shadow!](./images/shadow_map_working.png) |
+| ![Figure 9-12: A working shadow!](./images/shadow_map_working.png) |
 | :----------------------------------------------------------------: |
-|                 **Figure 9-9: A working shadow!**                 |
+|                 **Figure 9-12: A working shadow!**                 |
 
 ## More Segments
 
@@ -388,9 +388,9 @@ So far, we have built up an implementation for the shadow caster system using a 
 
 Now the slime looks well lit and shadowed! In the next section, we will line up the lights and shadows with the rest of the level.
 
-| ![Figure 9-12: The slime is well lit](./images/shadow_map_hex_3.png) |
+| ![Figure 9-13: The slime is well lit](./images/shadow_map_hex_3.png) |
 | :------------------------------------------------------------------: |
-|                **Figure 9-12: The slime is well lit**                |
+|                **Figure 9-13: The slime is well lit**                |
 
 ## Gameplay
 
@@ -417,9 +417,9 @@ And now the slime has shadows around the segments!
 > [!NOTE]
 > You can remove the `return;` from the `Update` method in the `GameScene` class to resume normal gameplay and see the shadows in operation.
 
-| ![Figure 9-13: The slime has shadows](./gifs/snake_shadow.gif) |
+| ![Figure 9-14: The slime has shadows](./gifs/snake_shadow.gif) |
 | :------------------------------------------------------------: |
-|             **Figure 9-13: The slime has shadows**             |
+|             **Figure 9-14: The slime has shadows**             |
 
 Next up, the bat needs some shadows!
 
@@ -441,18 +441,18 @@ Next up, the bat needs some shadows!
 
 And now the bat is casting a shadow as well!
 
-| ![Figure 9-14: The bat casts a shadow](./gifs/bat_shadow.gif) |
+| ![Figure 9-15: The bat casts a shadow](./gifs/bat_shadow.gif) |
 | :-----------------------------------------------------------: |
-|            **Figure 9-14: The bat casts a shadow**            |
+|            **Figure 9-15: The bat casts a shadow**            |
 
 Lastly, the walls should cast shadows to help ground the lighting in the world.
 Add a shadow caster in the `InitializeLights()` function to represent the edge of the playable tiles:
 
 [!code-csharp[](./snippets/snippet-9-49.cs)]
 
-| ![Figure 9-15: The walls have shadows](./gifs/wall_shadow.gif) |
+| ![Figure 9-16: The walls have shadows](./gifs/wall_shadow.gif) |
 | :------------------------------------------------------------: |
-|            **Figure 9-15: The walls have shadows**             |
+|            **Figure 9-16: The walls have shadows**             |
 
 ## The Stencil Buffer
 
@@ -502,9 +502,9 @@ The stencil buffer can be cleared and re-used between each light, so there is no
 
 If you run the game now, you will not see any of the lights anymore.
 
-| ![Figure 9-16: Back to square one](./images/stencil_blank.png) |
+| ![Figure 9-17: Back to square one](./images/stencil_blank.png) |
 | :------------------------------------------------------------: |
-|              **Figure 9-16: Back to square one**               |
+|              **Figure 9-17: Back to square one**               |
 
 In the new `DrawLights()` method of the `DeferredRenderer` class, we need to iterate over all the lights, and draw them.
 
@@ -596,9 +596,9 @@ And now the shadows are working again! The current state of the new `DrawLights(
 
 [!code-csharp[](./snippets/snippet-9-66.cs)]
 
-| ![Figure 9-21: Lights using the stencil buffer](./gifs/stencil_working.gif) |
+| ![Figure 9-18: Lights using the stencil buffer](./gifs/stencil_working.gif) |
 | :-------------------------------------------------------------------------: |
-|              **Figure 9-21: Lights using the stencil buffer**               |
+|              **Figure 9-18: Lights using the stencil buffer**               |
 
 We can now remove a lot of unnecessary code.
 
@@ -638,9 +638,9 @@ The first thing to do is make _fewer_ lights. This is a personal choice, but I f
 
 Now there is less visual shadow noise going on.
 
-| ![Figure 9-22: Fewer lights mean fewer shadows](./gifs/less-is-more.gif) |
+| ![Figure 9-19: Fewer lights mean fewer shadows](./gifs/less-is-more.gif) |
 | :----------------------------------------------------------------------: |
-|            **Figure 9-22: Fewer lights mean fewer shadows**              |
+|            **Figure 9-19: Fewer lights mean fewer shadows**              |
 
 ### Blur the Shadows
 
@@ -684,9 +684,9 @@ The next visual puzzle is that sometimes the shadow projections look unnatural. 
 
 There is a technique called [dithering](https://surma.dev/things/ditherpunk/), which fakes a gradient by alternativing pixels on and off. The image below is from [Wikipedia](https://en.wikipedia.org/wiki/Dither)'s article on dithering. The image only has two colors, _white_ and _black_. The image _looks_ shaded, but it is just in the art of spacing the black pixels further and further away in the brighter areas.
 
-| ![Figure 9-24: An example of a dithered image](https://upload.wikimedia.org/wikipedia/commons/e/ef/Michelangelo%27s_David_-_Bayer.png) |
+| ![Figure 9-20: An example of a dithered image](https://upload.wikimedia.org/wikipedia/commons/e/ef/Michelangelo%27s_David_-_Bayer.png) |
 | :------------------------------------------------------------------------------------------------------------------------------------: |
-|                                             **Figure 9-24: An example of a dithered image**                                            |
+|                                             **Figure 9-20: An example of a dithered image**                                            |
 
 We can use the same dithering technique in the `shadowHullEffect.fx` file. If we had a gradient value, we could dither that value to decide if the fragment should be clipped or not.
 
@@ -770,9 +770,9 @@ The shadows are mostly solid, except for the blurring effect. However, that can 
 
     Now you can experiment with different intensity values and fade out the entire shadow.
 
-    | ![Figure 9-26: Controlling shadow intensity](./gifs/shadow-intensity.gif) |
+    | ![Figure 9-21: Controlling shadow intensity](./gifs/shadow-intensity.gif) |
     | :-----------------------------------------------------------------------: |
-    |             **Figure 9-26: Controlling shadow intensity**                 |
+    |             **Figure 9-21: Controlling shadow intensity**                 |
 
 2. Pick a value that looks good to you, but I like `.85` and enter it in the `Core` class `Update` method.
 
@@ -848,9 +848,9 @@ Follow the steps to modify the code so that the snake appears stenciled out of t
 
 Now even when the snake character is heading directly into a light, the segments in the back do not receive any shadows.
 
-| ![Figure 9-27: No self shadows](./gifs/overview.gif) |
+| ![Figure 9-21: No self shadows](./gifs/overview.gif) |
 | :--------------------------------------------------------: |
-|             **Figure 9-26: No self shadows**               |
+|             **Figure 9-21: No self shadows**               |
 
 ## Conclusion
 
