@@ -3,9 +3,8 @@ public void DrawShadowBuffer(List<ShadowCaster> shadowCasters)
 	Core.GraphicsDevice.SetRenderTarget(ShadowBuffer);
 	Core.GraphicsDevice.Clear(Color.Black);
  
-	Core.ShadowHullMaterial.SetParameter("LightPos", Position);
+	Core.ShadowHullMaterial.SetParameter("LightPosition", Position);
 	var screenSize = new Vector2(ShadowBuffer.Width, ShadowBuffer.Height);
-	Core.ShadowHullMaterial.SetParameter("ScreenSize", screenSize);
 	Core.SpriteBatch.Begin(
 			effect: Core.ShadowHullMaterial.Effect, 
 			rasterizerState: RasterizerState.CullNone

@@ -48,6 +48,8 @@ We would need to have a `ShadowBuffer` for each light source, and if we did, the
 
 In the sequence below, the left image is just the `LightBuffer`. The middle image is the `ShadowBuffer`, and the right image is the product of the two images. Any pixel in the `ShadowBuffer` that was `white` means the final image uses the color from the `LightBuffer`, and any `black` pixel from the `ShadowBuffer` becomes black in the final image as well. The multiplication of the `LightBuffer` and `ShadowBuffer` complete the shadow effect.
 
+<div class="fixed-table"></div>
+
 | ![Figure 9-4: a light buffer](./images/dbg_light_map.png) | ![Figure 9-5: A shadow map](./images/dbg_shadow_map.png) | ![Figure 9-6: The multiplication](./images/dbg_light_map_multiplied.png) |
 | --------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **Figure 9-4: The `LightBuffer`**                         | **Figure 9-5: The `ShadowBuffer`**                       | **Figure 9-6: The multiplication of the two images**                     |
@@ -112,7 +114,7 @@ The unique value is important, because it gives the vertex shader the ability to
 
 Additionally, the default `TexCoord` values allow the vertex shader to take any arbitrary positions, (`S`, `D`, `F`, and `G`), and produce the point `P` where the `SpriteBatch` is drawing the sprite in world space. If you recall from the previous chapter, MonoGame uses the screen size as a basis for generating world space positions, and then the default projection matrix transforms those world space positions into clip space. Given a shader parameter, `float2 ScreenSize`,  the vertex shader can convert back from the world-space positions  (`S`, `D`, `F`, and `G`)  to the `P` position by subtracting `.5 * ScreenSize * TexCoord` from the current vertex.
 
-The `Color` data is used to tint the resulting sprite in the pixel shader, but in our use case, for a shadow hull we do not really need a color whatsoever. Instead, we can use this `float4` field as arbitrary data. The trick is that we will need to pack whatever data we need into a `float4` and pass it via the `Color` type in MonoGame. This color comes from the `Color` value passed to the `SpriteBatch`'s `Draw()` call.
+The `Color` data is _usually_ used to tint the resulting sprite in the pixel shader, but in our use case, for a shadow hull we do not really need a color whatsoever. Instead, we can use this `float4` field as arbitrary data. The trick is that we will need to pack whatever data we need into a `float4` and pass it via the `Color` type in MonoGame. This color comes from the `Color` value passed to the `SpriteBatch`'s `Draw()` call.
 
 The `Position` and `Color` both use `float4` in the standard vertex shader input, and it _may_ appear as though they should have the same precision, however, they are not passed from MonoGame's `SpriteBatch` as the same type. When `SpriteBatch` goes to draw a sprite, it uses a `Color` for the `Color`, and a `Vector3` for the `Position`. A `Color` has 4 `bytes`, but a `Vector3` has 12 `bytes`. This can be seen in the [`VertexPositionColorTexture`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Vertices/VertexPositionColorTexture.cs#L103) class. The takeaway is that we can only pack a third as much data into the `Color` semantic as the `Position` gets, and that may limit the types of values we want to pack into the `Color` value.
 
@@ -138,8 +140,8 @@ Every point (`S`, `D`, `F`, and `G`) needs to find `P`. To do that, the `TexCoor
 Next, we pack the `Color` value as the vector `(B - A)`:
 
 * The `x` component of the vector can live in the `red` and `green` channels of the `Color`.
-* The `y` component will live in the `blue` and `alpha` channels. In the vertex shader
-* The `B` can be derived by unpacking the `(B - A)` vector from the `COLOR` semantic and _adding_ it to the `A`.
+* The `y` component will live in the `blue` and `alpha` channels. 
+* In the vertex shader, the `B` can be derived by unpacking the `(B - A)` vector from the `COLOR` semantic and _adding_ it to the `A`.
 
 The reason we pack the _difference_ between `B` and `A` into the `Color`, and not `B` itself is due to the lack of precision in the `Color` type. There are only 4 `bytes` to pack all the information, which means 2 `bytes` per `x` and `y`. Likely, the line segment will be small, so the values of `(B - A)` will fit easier into a 2-`byte` channel:
 
@@ -168,7 +170,9 @@ Once all of the positions are mapped, our goal is complete! We have a vertex fun
 To start implementing the effect, create a new Sprite Effect in the `MonoGameLibrary`'s _SharedContent_ effect folder called `shadowHullEffect.fx`. Load it into the `Core` class as before in the previous chapters.
 
 > [!NOTE]
-> As we did back in [Chapter 6](../06_color_swap_effect/index.md#hard-coding-color-swaps), temporarily disable the `GameScene` update by adding a `return;` statement AFTER setting all the material properties.  Just to make it easier when looking at the shadow effect
+> As we did back in [Chapter 6](../06_color_swap_effect/index.md#hard-coding-color-swaps), temporarily disable the `GameScene` update by adding a `return;` statement AFTER setting all the material properties. Just to make it easier when looking at the shadow effect. Or, add the game pause mechanic from [Chapter 8](../08_light_effect/index.md), and make it start paused. 
+> 
+> Otherwise, the shadows are going to be hard to develop, because they will be moving around as the game plays out.
 
 | ![Figure 9-9: Create the `shadowHullEffect` in MGCB](./images/mgcb.png) |
 | :---------------------------------------------------------------------: |
@@ -190,7 +194,7 @@ To start implementing the effect, create a new Sprite Effect in the `MonoGameLib
 
 To represent the shadow casting objects in the game, we will create a new class called `ShadowCaster` in the _MonoGameLibrary_'s graphics folder. For now, keep the `ShadowCaster` class as simple as possible while we build the basics. It will just hold the positions of the line segment from the theory section, `A`, and `B`. Create the class and follow the steps to integrate it with the rest of the project.
 
-1. Create a new class called `ShadowCaster.cs` in the `MonoGameLibrary` project under the `graphics` folder:
+1. Create a new class called `ShadowCaster.cs` in the `MonoGameLibrary` project under the `Graphics` folder:
 
     [!code-csharp[](./snippets/snippet-9-11.cs)]
 
@@ -202,9 +206,12 @@ To represent the shadow casting objects in the game, we will create a new class 
 
     [!code-csharp[](./snippets/snippet-9-13.cs)]
 
-    Every `PointLight` needs its own `ShadowBuffer`. If you recall, the `ShadowBuffer` is an off-screen texture that will have _white_ pixels where the light is visible, and _black_ pixels where light is not visible due to a shadow.
+    > [!TIP]
+    > If you are not pausing the game logic, make sure to comment out the `MoveLightsAround()` function, because it assumes there will be more than 1 light.  
 
-4. Open the `PointLight` class in the `MonoGameLibrary` project and add a new `RenderTarget2D` field:
+4. Every `PointLight` needs its own `ShadowBuffer`. If you recall, the `ShadowBuffer` is an off-screen texture that will have _white_ pixels where the light is visible, and _black_ pixels where light is not visible due to a shadow. 
+    
+    Open the `PointLight` class in the `MonoGameLibrary` project and add a new `RenderTarget2D` field:
 
     [!code-csharp[](./snippets/snippet-9-14.cs)]
 
@@ -212,9 +219,9 @@ To represent the shadow casting objects in the game, we will create a new class 
 
     [!code-csharp[](./snippets/snippet-9-15.cs)]
 
-    Now, we need to find a place to render the `ShadowBuffer` _per_ `PointLight` before the deferred renderer draws the light itself.
-
-6. Copy this function into the `PointLight` class:
+6. Now, we need to find a place to render the `ShadowBuffer` _per_ `PointLight` before the deferred renderer draws the light itself.
+    
+    Copy this function into the `PointLight` class:
 
     [!code-csharp[](./snippets/snippet-9-16.cs)]
 
@@ -234,7 +241,7 @@ To represent the shadow casting objects in the game, we will create a new class 
 
 9. For debug visualization purposes, also add this snippet to the end of the `GameScene`'s `Draw()` just so you can see the `ShaderBuffer` as we debug it:
 
-    [!code-csharp[](./snippets/snippet-9-19.cs)]
+    [!code-csharp[](./snippets/snippet-9-19.cs?hightlight=5-7)]
 
 When you run the game, you will see a totally blank game (other than the GUI). This is because the shadow map is currently being cleared to `black` to start, and the debug view renders that on top of everything else.
 
@@ -242,11 +249,19 @@ When you run the game, you will see a totally blank game (other than the GUI). T
 | :-----------------------------------------------------------------: |
 |                **Figure 9-10: A blank shadow buffer**                |
 
+> [!WARNING]
+> If you have set your project back to the `<OutputType>Exe</OutputType>` in the `.csproj` file, then you will see some warnings like these:
+> ```
+> Warning: cannot set shader parameter=[LightPosition] because it does not exist in the compiled shader=[effects/shadowHullEffect]
+> ```
+>
+> Do not worry, we will be cleaning this up soon! The reason these appear is because we have not implemented the shader yet.
+
 ### Bit Packing
 
 We cannot implement the vertex shader theory until we can pack the `(B-A)` vector into the `Color` argument for the `SpriteBatch`. For this we will use a technique called _bit-packing_.
 
-> For the sake of brevity, we will skip over the derivation of these functions.
+For the sake of brevity, we will skip over the derivation of these functions.
 
 > [!TIP]
 > _Bit-packing_ is a broad category of algorithms that change the underlying bit representation of some variable. The most basic idea is that all of your variables are just _bits_, and its up to you how you want to arrange them. To learn more, check out the following articles,
@@ -259,7 +274,7 @@ We cannot implement the vertex shader theory until we can pack the `(B-A)` vecto
 
     [!code-csharp[](./snippets/snippet-9-20.cs)]
 
-2. Next we consume the packing function in the `DrawShadowBuffer` function in the `PointLight` class instead of passing `Color.White`, to do that we need to create the `bToA` vector, pack it a `Color`, and then pass it to the `SpriteBatch`:
+2. Next we consume the packing function in the `DrawShadowBuffer` function in the `PointLight` class instead of passing `Color.White`. To do that we need to create the `bToA` vector, pack it inside a `Color` instance, and then pass it to the `SpriteBatch`:
 
     [!code-csharp[](./snippets/snippet-9-21.cs)]
 
@@ -287,6 +302,9 @@ We cannot implement the vertex shader theory until we can pack the `(B-A)` vecto
 
     [!code-csharp[](./snippets/snippet-9-25.cs?highlight=11-12)]
 
+    > [!WARNING]
+    > If you added a pause mechanic to the game for development, **make sure** the `Update()` is able to set all the shader parameters before the early `return` statement. Otherwise you may **see a black screen** instead of the expected effect.
+
 Now if you run the game, you will see the white shadow hull.
 
 | ![Figure 9-11: A shadow hull](./images/shadow_map.png) |
@@ -303,7 +321,7 @@ To get the basic shadow effect working with the rest of the renderer, we need to
 
 2. Then, in the `MainPS` of the light effect, read the current value from the shadow buffer and use it as a multiplier at the end when calculating the final light color:
 
-    [!code-hlsl[](./snippets/snippet-9-29.hlsl?highlight=5,8)]
+    [!code-hlsl[](./snippets/snippet-9-29.hlsl?highlight=7,14)]
 
 3. Before running the game, we need to pass the `ShadowBuffer` to the point light's draw invocation.
 
@@ -355,7 +373,7 @@ So far, we have built up an implementation for the shadow caster system using a 
 
     [!code-csharp[](./snippets/snippet-9-37.cs)]
 
-        When you run the game, you will see a larger shadow shape.
+    When you run the game, you will see a larger shadow shape.
 
     | ![Figure 9-10: A shadow hull from a hexagon](./images/shadow_map_hex.png) |
     | :-----------------------------------------------------------------------: |
@@ -384,7 +402,7 @@ So far, we have built up an implementation for the shadow caster system using a 
 
 7. Then in the pixel shader function, add this line to the top. The [`clip`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-clip) function will completely discard the fragment and not draw anything to the `ShadowBuffer`:
 
-    [!code-hlsl[](./snippets/snippet-9-40.hlsl?highlight=3)]
+    [!code-hlsl[](./snippets/snippet-9-40.hlsl?highlight=2)]
 
 Now the slime looks well lit and shadowed! In the next section, we will line up the lights and shadows with the rest of the level.
 
