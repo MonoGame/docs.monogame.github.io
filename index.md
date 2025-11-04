@@ -18,7 +18,7 @@ description: MonoGame Documentation Hub
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/images/learn/2d-tutorial.webp">
+                <a href="/articles/tutorials/building_2d_games/index.html"><img src="/images/learn/2d-tutorial.webp"></a>
                 <div class="container">
                     <div class="carousel-caption text-start">
                         <h1>Build Your First 2D Game</h1>
