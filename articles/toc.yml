@@ -5,8 +5,8 @@ items:
     href: /roadmap/
   - name: What's New
     href: whats_new.md
-  - name: Getting Started - build your first 2D game
-    href: tutorials/building_2d_games/index.md
+  - name: Getting Started
+    href: getting_started/index.md
     items:
       - name: Setting up MacOS
         href: /articles/getting_started/1_setting_up_your_os_for_development_macos.html
@@ -56,7 +56,6 @@ items:
           - name: Input
             href: getting_to_know/howto/input/index.md
   - name: Advanced Topics
-    href: getting_started/index.md
     items:
       - name: Packaging
         href: getting_started/packaging_games.md
