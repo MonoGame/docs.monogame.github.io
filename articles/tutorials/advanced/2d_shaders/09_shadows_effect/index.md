@@ -546,7 +546,7 @@ In the new `DrawLights()` method of the `DeferredRenderer` class, we need to ite
     | :-----------------------------------------------------: |
     |             **Figure 9-18: Worse shadows**              |
 
-    Instead of writing the shadow hulls as _color_ into the color portion of the `LightBuffer`, we only need to render the `1` or `0` to the stencil buffer portion of the `LightBuffer`. To do this, we need to create a new `DepthStencilState` variable. The `DepthStencilState` is a MonoGame primitive that describes how draw call operations should interact with the stencil buffer.
+    Instead of writing the shadow hulls as _color_ into the color portion of the `LightBuffer`, we only need to render the `1` or `0` to the stencil buffer portion of the `LightBuffer`. To do this, we need to create a new [`DepthStencilState`](https://docs.monogame.net/api/Microsoft.Xna.Framework.Graphics.DepthStencilState) variable. The `DepthStencilState` is a MonoGame primitive that describes how draw call operations should interact with the stencil buffer.
 
 3. Create a new variable in the `DeferredRenderer` class:
 
@@ -580,7 +580,7 @@ In the new `DrawLights()` method of the `DeferredRenderer` class, we need to ite
     | :----------------------------------------------------------------------: |
     |              **Figure 9-19: The shadows still look funky**               |
 
-    This happens because the shadow hulls are _still_ being drawn as colors into the `LightBuffer`. The shadow hull shader is rendering a black pixel, so those black pixels are drawing on top of the `LightBuffer`'s previous point lights. To solve this, we need to create a custom `BlendState` that ignores all color channel writes.
+    This happens because the shadow hulls are _still_ being drawn as colors into the `LightBuffer`. The shadow hull shader is rendering a black pixel, so those black pixels are drawing on top of the `LightBuffer`'s previous point lights. To solve this, we need to create a custom [`BlendState`](https://docs.monogame.net/api/Microsoft.Xna.Framework.Graphics.BlendState) that ignores all color channel writes.
 
 9. Create another new variable in the `DeferredRenderer`:
 
@@ -608,7 +608,7 @@ In the new `DrawLights()` method of the `DeferredRenderer` class, we need to ite
 
 12. To fix this, we just need to clear the stencil buffer data in the `DrawLights` method before rendering the shadow hulls:
 
-    [!code-csharp[](./snippets/snippet-9-65.cs?highlight=9)]
+    [!code-csharp[](./snippets/snippet-9-65.cs?highlight=14)]
 
 And now the shadows are working again! The current state of the new `DrawLights()` method is written below:
 
@@ -674,21 +674,24 @@ We will be using a simple blur technique called [box blur](https://en.wikipedia.
 
     [!code-hlsl[](./snippets/snippet-9-71.hlsl?highlight=4)]
 
+    > [!WARNING]
+    > Remember that function declaration order matters in shader languages. Make sure the `Blur()` function is defined _above_ the `MainPS()` function, otherwise you will get a compiler error.
+
 3. Notice that the box blur needs access to the `ScreenSize`, which we need to set in the `Core`'s `Update()` method:
 
     [!code-csharp[](./snippets/snippet-9-70.cs?highlight=5)]
 
 Now, as we adjust the `BoxBlurStride` size, we can see the shadows blur in and out.
 
-    > [!NOTE]
-    > We could get higher quality blur by increasing the `kernelSize` in the shadow, but that comes at the cost of runtime performance.
-    
-    | ![Figure 9-23: Bluring the shadows](./gifs/box-blur-extreme.gif) |
-    | :--------------------------------------------------------------: |
-    |              **Figure 9-23: Bluring the shadows**                |
+> [!NOTE]
+> We could get higher quality blur by increasing the `kernelSize` in the shadow, but that comes at the cost of runtime performance.
 
-    > [!NOTE]
-    > If you are not seeing the ImGui window for the `deferredCompositeEffect`, make sure to add back in the `DeferredCompositeMaterial.IsDebugVisible = true;` setting in the `Core`'s `LoadContent` method.
+| ![Figure 9-23: Bluring the shadows](./gifs/box-blur-extreme.gif) |
+| :--------------------------------------------------------------: |
+|              **Figure 9-23: Bluring the shadows**                |
+
+> [!NOTE]
+> If you are not seeing the ImGui window for the `deferredCompositeEffect`, make sure to add back in the `DeferredCompositeMaterial.IsDebugVisible = true;` setting in the `Core`'s `LoadContent` method.
 
 4. It is up to you to find a `BoxBlurStride` value that fits your preference, but I like something around `.18`, set the value just after the `ScreenSize` parameter in the `Update` method:
 
@@ -778,6 +781,11 @@ We can use the same dithering technique in the `shadowHullEffect.fx` file. If we
     >
     > Keep in mind that the debug UI only sets shader parameters from `0` to `1`, so you will need to set these values from code.
 
+    > [!NOTE]
+    > There are other dithering techniques, too!
+    >
+    > Using a bayer matrix is perhaps the most "standard" way to perform dithering, but it may not be the best suited to the design challenge at hand. Check out [this article](https://tannerhelland.com/2012/12/28/dithering-eleven-algorithms-source-code.html) that details several different algorithms, and this article from [frost kiwi](https://blog.frost.kiwi/GLSL-noise-and-radial-gradient/) about using dithering to escape color banding.
+
 ### Shadow Intensity
 
 The shadows are mostly solid, except for the blurring effect. However, that can create a very stark atmosphere. It would be nice if we could simply "lighten" all of the shadows. This is a fairly easy extension from the previous [shadow length](#shadow-length) technique. We could set a max value that the shadow is allowed to be before it is forcibly dithered.
@@ -808,11 +816,11 @@ In this section, we are going to write the snake segments to the stencil buffer,
 
 In this new edition, the values of the stencil buffer are outlined below,
 
-| Stencil Value | Description                       |
-| :------------ | :-------------------------------- |
-| `0`           | The snake is occupying this pixel |
-| `1`           | An empty pixel                    |
-| `2+`          | A pixel "in shadow"               |
+| Stencil Value    | Description                       |
+| :--------------- | :-------------------------------- |
+| `0`              | The snake is occupying this pixel |
+| `1`              | An empty pixel                    |
+| `2` (or greater) | A pixel "in shadow"               |
 
 Follow the steps to modify the code so that the snake appears stenciled out of the shadows.
 
@@ -849,7 +857,7 @@ Follow the steps to modify the code so that the snake appears stenciled out of t
     using System;
     ```
 
-7. Finally, the `GameScene`'s `Draw()` method should be updated to re-draw the snake segments in this callback:
+7. Then, the `GameScene`'s `Draw()` method should be updated to re-draw the snake segments in this callback:
 
     ```csharp
     // start rendering the lights
@@ -863,6 +871,12 @@ Follow the steps to modify the code so that the snake appears stenciled out of t
        Core.SpriteBatch.End();
     });
     ```
+
+8. Finally, there is a quick change to the `gameEffect.fx` in the _DungeonSlime_ project's _Content/effects_ folder. The stencil buffer will be set to `0` anywhere the slime textures are drawn, even if the pixel in the slime's sprite happens to be completely transparent. That creates an artifact where the whole slime's texture rectangle is excluded from receiving shadows, instead of _just_ the slime art. To fix that, we can `clip` the pixels in the `gameEffect.fx` file that have an empty alpha value.
+
+    Add this line to the `gameEffect.fx` shader to avoid writing the pixels to the stencil buffer:
+
+    [!code-csharp[](./snippets/snippet-9-78.hlsl?highlight=6-7)]
 
 Now even when the snake character is heading directly into a light, the segments in the back do not receive any shadows.
 

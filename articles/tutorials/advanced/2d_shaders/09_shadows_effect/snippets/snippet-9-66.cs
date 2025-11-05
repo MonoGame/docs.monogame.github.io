@@ -11,6 +11,8 @@ public void DrawLights(List<PointLight> lights, List<ShadowCaster> shadowCasters
 			(int)(light.Position.Y - light.Radius),
 			diameter, diameter);
 
+		Core.GraphicsDevice.Clear(ClearOptions.Stencil, Color.Black, 0, 0);
+
 		Core.ShadowHullMaterial.SetParameter("LightPosition", light.Position);
 		Core.SpriteBatch.Begin(
 			depthStencilState: _stencilWrite,
@@ -43,6 +45,4 @@ public void DrawLights(List<PointLight> lights, List<ShadowCaster> shadowCasters
 		Core.SpriteBatch.Draw(NormalBuffer, rect, light.Color);
 		Core.SpriteBatch.End();
 	}
-
-	Core.GraphicsDevice.Clear(ClearOptions.Stencil, Color.Black, 0, 0);
 }
