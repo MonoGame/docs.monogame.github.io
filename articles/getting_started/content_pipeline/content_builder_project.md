@@ -33,7 +33,7 @@ Instead of an installed dotnet tool (which historically generated issues), the n
 > [!TIP]
 > When designing the builder for your content, try to focus on building patterns for your content to reduce the need to rebuild the `Builder` itself.
 >
-> In an ideal scenario, you build the `Builder` once, then just keep adding assets and running the builder to produce the runtime content, identifying "early on" any issus with your assets and simplifying production.
+> In an ideal scenario, you build the `Builder` once, then just keep adding assets and running the builder to produce the runtime content, identifying "early on" any issues with your assets and simplifying production.
 
 In addition, due to content now being built through your own console application, it is easily distributable and can even be used in automation pipelines in source control.
 
