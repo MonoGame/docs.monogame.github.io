@@ -107,7 +107,7 @@ This is the default (recommended) layout for a Content Builder project, but you 
 
 ## Basic Builder Project Structure
 
-The default `Builder.cs` file looks like this, which contains everything needed to build all content in the designated Assets/Content folder using the default [Importers]() and [Processors]() (how MonoGame compiles content) into processed `.XNB` files for consumption by your runtime project:
+The default `Builder.cs` file looks like this, which contains everything needed to build all content in the designated Assets/Content folder using the default [Importers and Processors](/articles/getting_to_know/whatis/content_pipeline/CP_StdImpsProcs) (how MonoGame compiles content) into processed `.XNB` files for consumption by your runtime project:
 
 ```csharp
 using Microsoft.Xna.Framework.Content.Pipeline;
@@ -258,7 +258,7 @@ Any additional `ContentCollection` commands provided after the global include si
 **Important:** Rules are evaluated in order, and the **last matching rule wins**!
 
 > [!NOTE]
-> Rules are simply update the processing order for each file. Whatever the last rule applied to affect the file/folder definition is, is the final state in which a file will be processed.  If you are not getting the output you expect, you can output the collection to file and examine it for reference, then check WHY a files was in its final state.
+> Rules simply update the processing order for each file. Whatever the last rule applied to affect the file/folder definition is, is the final state in which a file will be processed.  If you are not getting the output you expect, you can output the collection to file and examine it for reference, then check WHY a file was in its final state.
 
 For example, the following rule order shows that all `png` files are included for processing initially, but then a later rule updates this and specifically excludes `png` files from processing. The result, no `png` files are processed and they are ignored:
 
