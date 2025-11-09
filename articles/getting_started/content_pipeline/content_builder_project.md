@@ -657,7 +657,7 @@ using System.Diagnostics;
 Debugger.Launch();
 
 // Launch point
-builder.Run(args)
+builder.Run(args);
 ```
 
 ### Scenario 4: Conditional Debug Content
