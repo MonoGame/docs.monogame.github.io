@@ -390,7 +390,7 @@ contentCollection.Exclude<RegexRule>(@".*~$");
 As stated, it is recommended to define patterns for your content, defining rules for processing your content (and preventing changing/rebuilding the Content Builder exe), the following are examples of such patterns, grouping specific content into specific folders.
 
 > [!NOTE]
-> There are no predefined rules for how you organise your content, it is completely up to you and the needs of your project to determine how it is best organized.  Just make sure to include decisions on how to ease the burden of managing the importing content in those decisions so that you do not need to frequently keep updating your Builder.
+> There are no predefined rules for how you organize your content, it is completely up to you and the needs of your project to determine how it is best organized.  Just make sure to include decisions on how to ease the burden of managing the importing content in those decisions so that you do not need to frequently keep updating your Builder.
 >
 > Set it once, and then you have strict rules for how content is processed and errors should be easily identifiable.
 
