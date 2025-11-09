@@ -93,6 +93,8 @@ To create a Content Builder project using the `MonoGame Content Builder` project
 2. Enter the command `dotnet new mgcb -o MyContentBuilder` to create the project, placing it in a folder next to your game project.
 3. (optional) Enter the command `dotnet sln <your solution>.sln add ./MyContentBuilder/MyContentBuilder.csproj` to add the newly created Content Builder project to your game's solution file.
 
+---
+
 This creates a project with the following structure:
 
 ```text
