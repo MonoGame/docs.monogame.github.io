@@ -139,7 +139,7 @@ public class Builder : ContentBuilder
 
 The default `Include` rule simply builds a list of content to process from the target folder when the program is executed.
 
-> [IMPORTANT]
+> [!IMPORTANT]
 > We recommend keeping this default structure of getting all files and then specifying overrides.  You can alter this if you so wish to only use specific includes, but that it would require more maintenance as your content grows.  Try to be generic, design rules based on the structure of your content rather than being too specific.
 >
 > Although check the details later about providing parameters, while samples are currently "hard coding" importer/processor values, this would be improved through your own configuration.
