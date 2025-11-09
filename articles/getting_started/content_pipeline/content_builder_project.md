@@ -103,7 +103,7 @@ This is the default (recommended) layout for a Content Builder project, but you 
 - A default `Assets` folder to host your content, but you content can be in any location you need it to be, simply update the parameters used to run the console application to point to the source directory and folder for your content.
 
 > [!TIP]
-> While it is possible to include the builder as part of your game code, rather than a separate project, at this time we do not recommend this.  Based on experience, it is always better to build your content separate from your runtime game to avoid collisions or issues arising in game projection/deployment.
+> While it is possible to include the builder as part of your game code, rather than a separate project, at this time we do not recommend this.  Based on experience, it is always better to build your content separate from your runtime game to avoid collisions or issues arising in game production/deployment.
 
 ## Basic Builder Project Structure
 
