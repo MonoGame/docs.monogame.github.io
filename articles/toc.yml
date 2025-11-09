@@ -79,6 +79,8 @@ items:
             href: getting_started/content_pipeline/index.md
           - name: Why use the Content Pipeline
             href: getting_started/content_pipeline/why_content_pipeline.md
+          - name: Using the Content Builder Project
+            href: getting_started/content_pipeline/content_builder_project.md
           - name: Using MGCB Editor
             href: getting_started/content_pipeline/using_mgcb_editor.md
           - name: Custom Effects
