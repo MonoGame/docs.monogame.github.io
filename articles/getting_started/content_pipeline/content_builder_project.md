@@ -80,7 +80,7 @@ To add the class library using the `MonoGame Content Builder` project template i
 
 ### [dotnet CLI](#tab/dotnetcli)
 
-To Create a ontent Builder project using the `MonoGame Content Builder` project template with the dotnet CLI, perform the following:
+To create a Content Builder project using the `MonoGame Content Builder` project template with the dotnet CLI, perform the following:
 
 1. Open a new Command Prompt or Terminal window in the same folder as your Game solution file. (or in an empty folder if it is separate from your Game)
 2. Enter the command `dotnet new mgcb -o MyContentBuilder` to create the project, placing it in a folder next to your game project.
