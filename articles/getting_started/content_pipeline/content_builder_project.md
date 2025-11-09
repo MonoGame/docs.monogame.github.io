@@ -3,6 +3,13 @@ title: Working with new Content Builder Projects
 description: Learn how to use the newest approach to building content in MonoGame without the legacy MGCB-Editor.
 ---
 
+> [!NOTE]
+> These intructions **REQUIRE** you to use the latest `MonoGame Develop` release (currently `3.8.5-develop.13)
+>
+> See the [instructions here](https://docs.monogame.net/articles/getting_to_know/howto/HowTo_Install_Preview_Release.html) for how to install the preview project templates and update your project to use `3.8.5-develop` (preview) releases.
+>
+> [How to install MonoGame Preview packages](https://docs.monogame.net/articles/getting_to_know/howto/HowTo_Install_Preview_Release.html)
+
 The [MonoGame Content Pipeline](/articles/getting_started/content_pipeline/why_content_pipeline) is a powerful tool for packaging and managing all the complex needs for working with and distributing assets in your MonoGame projects, solving all the complexities surrounding the use of assets on all the platforms that MonoGame supports.
 
 From MonoGame `3.8.5` we are making a new `Console Project Style` solution to more effectively manage your content in source to reduce complexity (and installation demands) and put control of your source assets fully within your control.
