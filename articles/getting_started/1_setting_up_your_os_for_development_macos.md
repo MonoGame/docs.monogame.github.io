@@ -3,15 +3,18 @@ title: Setting up your OS for development on MacOS
 description: This section provides a step-by-step guide for setting up your development environment on Mac.
 ---
 
-To develop with MonoGame in C#, you will need to install the .NET SDK. As of MonoGame 3.8.2 the minimum supported version is .NET 8.
+To develop with MonoGame in C#, you will need to install the .NET SDK. As of MonoGame 3.8.4.1 the recommended version is .NET 9.
 
-## Install .NET 8 SDK
+> [!TIP]
+> You can still continue to use .NET 8 if you wish, you will just need to downgrade your client project .NET version in the `csproj` setup for your project (if using the default templates)
 
-1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+## Install .NET 9 SDK
+
+1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 2. Download the `.NET SDK` Installer for your current platform of `macOS`
 3. Once the **.pkg** file finishes downloading, run it and follow the prompts to install the .NET SDK
 
-    ![Download .NET For Windows](./images/1_setting_up_your_development_environment/dotnet_8_download_page.png)
+    ![Download .NET For Windows](./images/1_setting_up_your_development_environment/dotnet_9_download_page.png)
 
 ## Install additional workloads
 
@@ -52,7 +55,7 @@ If you intend to also work with platforms such as `Android` or `iOS`, you will n
 
  For the time being, MonoGame requires that you install the x64 version of the .NET runtime if you are running on an Apple Silicon mac in order to be able to build content. It is also required that [Rosetta](https://support.apple.com/en-us/HT211861) is enabled. 
 
- 1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+ 1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
  1. Download the .NET Runtime Installer for macOS x64
  1. Once the **.pkg** file finishes downloading, run it and follow the prompts to install the .NET Runtime
 
@@ -72,7 +75,7 @@ MonoGame provides a setup script that can be executed to setup the Wine environm
 1. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net9_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
 
     ```sh
-    wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
+    wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
     ```
 
 This will create new directory called `.winemonogame` in your home directory.  If you ever wish to undo the setup this script performed, just simply delete that directory.
