@@ -111,7 +111,7 @@ To add the game library project as a reference to the game project in Visual Stu
 To add the game library project as a reference to the game project with the dotnet CLI:
 
 1. Open a new Command Prompt or Terminal window in the same folder as the *DungeonSlime.csproj* C# project file.
-2. Enter the command `dotnet add ./DungeonSlime.csproj reference ../MonoGameLibrary/MonoGameLibrary.csproj`.  This will add the *MonoGameLibrary* reference to the *DungeonSlime* game project.
+2. Enter the command `dotnet add ./DungeonSlime.csproj reference ./MonoGameLibrary/MonoGameLibrary.csproj`.  This will add the *MonoGameLibrary* reference to the *DungeonSlime* game project.
 
 ---
 
