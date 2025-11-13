@@ -31,6 +31,14 @@ From MonoGame `3.8.5` we are making a new `Console Project Style` solution to mo
 
 ---
 
+If you prefer, the MonoGame Foundation recorded a short video demonstrating how to get setup with the new Content Builder Project.
+
+<div class="embeddedvideo">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QB43LgRmdNM/" title="New Content Builder Project - Getting Started" frameborder="0" allowfullscreen></iframe>
+</div>
+
+---
+
 ## What is the ContentBuilder?
 
 The `ContentBuilder` is a powerful tool that allows you to build game content (like images, sounds, fonts, and models) programmatically using C# code instead of manually configuring content files. Think of it as your own personal content pipeline that you control entirely through code!
