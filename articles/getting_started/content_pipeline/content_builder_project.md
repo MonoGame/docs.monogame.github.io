@@ -23,11 +23,12 @@ From MonoGame `3.8.5` we are making a new `Console Project Style` solution to mo
 
 1. [What is the ContentBuilder?](#what-is-the-contentbuilder)
 2. [Getting Started](#getting-started)
-3. [Understanding ContentBuilderParams](#understanding-contentbuilderparams)
-4. [Creating Your ContentCollection](#creating-your-contentcollection)
-5. [Including and Excluding Content](#including-and-excluding-content)
-6. [Working with Importers and Processors](#working-with-importers-and-processors)
-7. [Advanced Scenarios](#advanced-scenarios)
+3. [Adding the Content Builder Project to your Game](#adding-the-content-builder-project-to-your-game)
+4. [Understanding ContentBuilderParams](#understanding-contentbuilderparams)
+5. [Creating Your ContentCollection](#creating-your-contentcollection)
+6. [Including and Excluding Content](#including-and-excluding-content)
+7. [Working with Importers and Processors](#working-with-importers-and-processors)
+8. [Advanced Scenarios](#advanced-scenarios)
 
 ---
 
@@ -121,6 +122,61 @@ This is the default (recommended) layout for a Content Builder project, but you 
 
 > [!TIP]
 > While it is possible to include the builder as part of your game code, rather than a separate project, at this time we do not recommend this.  Based on experience, it is always better to build your content separate from your runtime game to avoid collisions or issues arising in game production/deployment.
+
+## Adding the Content Builder Project to your Game
+
+Once you have created your `Builder` project, you have two options:
+
+1. After building your game, you need to copy the build output from the Builder to the output of the Game, so the `exe` and the `content` folder are in the same output folder.
+2. Add a `Target` definition to your `csproj` to automatically copy the Builder output to the game output when the project is built (like how the current MGCB solution works)
+
+This section will focus on Option 2 to replicate what happens in `3.8.4` projects.
+
+### 1. Clean up redundant files
+
+As the Content Builder project is **NOT** a DotNet tool, you no longer need the `dotnet-tools.json` configuration.
+
+1. Remove any `.config` folders from your solution that contain `dotnet-tools.json` files.
+
+### 2. Remove legacy MGCB references from your `csproj`
+
+As you would expect, we no longer need any old `Content` references or tools for building that content, aka, the `MonoGame.Content.Builder.Task` reference.
+
+Per platform/game project:
+
+1. Remove any `MonoGameContentReference` elements from your game's `csproj`.
+2. Remove references to `MonoGame.Content.Builder.Task`.
+3. Update the MonoGame version to match the Builder (not essential, but recommended)
+
+### 3. Add the Builder task
+
+To complete the process, add the following `Target` section to your `csproj` (before the final ```</Project>``` entry):
+
+```xml
+  <Target Name="BuildContent" BeforeTargets="Build">
+    <PropertyGroup>
+      <ContentOutput>$(ProjectDir)$(OutputPath)</ContentOutput>
+      <ContentTemp>$(ProjectDir)$(IntermediateOutputPath)</ContentTemp>
+      <ContentArgs>build -p $(MonoGamePlatform) -s Assets -o $(ContentOutput) -i $(ContentTemp)</ContentArgs>
+    </PropertyGroup>
+    <MSBuild Projects="..\Content\Content.csproj" Targets="Build;Run"
+      Properties="RunArguments=$(ContentArgs);" />
+  </Target>
+</Project>
+```
+
+Of note, you should take care with the following elements:
+
+- `-s Assets` - this assumes you are using the default "Assets" source folder in the builder project.  If your source content is elsewhere you will need to provide the path to it.
+- `-i $(ContentTemp)` - this uses the default `obj` folder for building the content, if you are short on space, you can provide an alternate path for temp storage.
+- `Projects="..\Content\Content.csproj"` - This should **MATCH** the folder and project name of your Builder.  If you called your Builder something else or renamed the folder/csproj, make sure it matches.
+
+You should not need to touch anything else.
+
+> [!NOTE]
+> Additionally, if you want to control HOW and WHEN your content is built/rebuilt, then you can change the `Targets="Build;Run"` options to only execute the last on Build OR Run, or a different action.
+>
+> See the [MS Documentation on Built targets](https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild-targets) for reference.
 
 ## Basic Builder Project Structure
 
