@@ -159,7 +159,7 @@ To complete the process, add the following `Target` section to your `csproj` (be
       <ContentTemp>$(ProjectDir)$(IntermediateOutputPath)</ContentTemp>
       <ContentArgs>build -p $(MonoGamePlatform) -s Assets -o $(ContentOutput) -i $(ContentTemp)</ContentArgs>
     </PropertyGroup>
-    <MSbuild Projects="..\Content\Content.csproj" Targets="Build;Run"
+    <MSBuild Projects="..\Content\Content.csproj" Targets="Build;Run"
       Properties="RunArguments=$(ContentArgs);" />
   </Target>
 </Project>
