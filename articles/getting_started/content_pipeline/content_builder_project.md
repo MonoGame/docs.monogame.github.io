@@ -144,7 +144,7 @@ As you would expect, we no longer need any old `Content` references or tools for
 
 Per platform/game project:
 
-1. Remove any `MonoGameContentReference` elements from your games `csproj`.
+1. Remove any `MonoGameContentReference` elements from your game's `csproj`.
 2. Remove references to `MonoGame.Content.Builder.Task`.
 3. Update the MonoGame version to match the Builder (not essential, but recommended)
 
