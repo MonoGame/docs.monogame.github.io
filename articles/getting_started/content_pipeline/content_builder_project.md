@@ -134,7 +134,7 @@ This section will focus on Option 2 to replicate what happens in `3.8.4` project
 
 ### 1. Clean up redundant files
 
-As the Content Builder project is **NOT** a DotNet tool, you no longer need the `dotnet-tools.json` configuraton.
+As the Content Builder project is **NOT** a DotNet tool, you no longer need the `dotnet-tools.json` configuration.
 
 1. Remove any `.config` folders from your solution that contain `dotnet-tools.json` files.
 
