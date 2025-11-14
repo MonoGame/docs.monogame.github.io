@@ -168,7 +168,7 @@ To complete the process, add the following `Target` section to your `csproj` (be
 Of note, you should take care with the following elements:
 
 - `-s Assets` - this assumes you are using the default "Assets" source folder in the builder project.  If your source content is elsewhere you will need to provide the path to it.
-- `-i $(ContentTemp` - this uses the default `obj` folder for building the content, if you are short on space, you can provide an alternate path for temp storage.
+- `-i $(ContentTemp)` - this uses the default `obj` folder for building the content, if you are short on space, you can provide an alternate path for temp storage.
 - `Projects="..\Content\Content.csproj"` - This should **MATCH** the folder and project name of your Builder.  If you called your Builder something else or renamed the folder/csproj, make sure it matches.
 
 You should not need to touch anything else.
