@@ -3,7 +3,7 @@ title: Setting up your OS for development on Windows
 description: This section provides a step-by-step guide for setting up your development environment on Windows.
 ---
 
-To develop with MonoGame in C#, you must install the .NET SDK. As of MonoGame 3.8.4.1 the minimum supported version is .NET 9.
+To develop with MonoGame in C#, you must install the .NET SDK. As of MonoGame {{mgVersion}} the minimum supported version is .NET 9.
 
 > [!IMPORTANT]
 > If your chosen IDE for development is [Visual Studio](https://visualstudio.microsoft.com/) then you can skip this step as .NET 8 is included with the Visual Studio Installer.

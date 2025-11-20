@@ -1,6 +1,6 @@
 ---
 title: Upgrading MonoGame from 3.8.x to latest
-description: A guide on upgrading a MonoGame v3.8 project to the current 3.8.4.1+ releases of MonoGame.
+description: A guide on upgrading a MonoGame v3.8 project to the current {{mgVersion}}+ releases of MonoGame.
 ---
 
 Upgrading existing projects from earlier 3.8 releases should be straightforward for most platforms.
@@ -10,7 +10,7 @@ Upgrading existing projects from earlier 3.8 releases should be straightforward 
 
 - The critical difference from pre 3.8.2 builds, [is that the MGCB Editor is no longer a global .NET tool](#addupdate-dotnet-toolsjson-configuration) and the MGCB editor is now included as part of the specific project through the use of the dotnet tooling configuration `dotnet-tools.json` file located in the `.config` folder in your solution/project.
 
-- The major difference from 3.8.4 onwards is that we recommend using .NET 9 in your client project, but it is not mandatory, we are also simplifying the `csproj` configuration to reduce management for developers from 3.8.4.1.
+- The major difference from {{mgVersion}} onwards is that we recommend using .NET 9 in your client project, but it is not mandatory, we are also simplifying the `csproj` configuration to reduce management for developers from {{mgVersion}}.
 
     > For iOS/Android however, DotNet 9 at a minimum is Mandatory, [see details here](#iosipados-and-android-considerations).
 
@@ -58,8 +58,8 @@ Make sure you update the MonoGame references to the latest version, this can be 
 - Use the [Updating NuGet package dependencies](../getting_to_know/howto/HowTo_Install_Preview_Release.md#updating-nuget-package-dependencies) documentation as part of the "Preview Release installation instructions", which states you should run the following commands (the example is for `DesktopGL`, use other platforms accordingly):
 
     ```dotnetcli
-    dotnet add package MonoGame.Framework.DesktopGL -v 3.8.4.1
-    dotnet add package MonoGame.Content.Builder.Task -v 3.8.4.1
+    dotnet add package MonoGame.Framework.DesktopGL -v {{mgVersion}}
+    dotnet add package MonoGame.Content.Builder.Task -v {{mgVersion}}
     ```
 
     > [!NOTE]
@@ -95,31 +95,31 @@ or alternatively you can do the following:
   "isRoot": true,
   "tools": {
     "dotnet-mgcb": {
-      "version": "3.8.4.1",
+      "version": "{{mgVersion}}",
       "commands": [
         "mgcb"
       ]
     },
     "dotnet-mgcb-editor": {
-      "version": "3.8.4.1",
+      "version": "{{mgVersion}}",
       "commands": [
         "mgcb-editor"
       ]
     },
     "dotnet-mgcb-editor-linux": {
-      "version": "3.8.4.1",
+      "version": "{{mgVersion}}",
       "commands": [
         "mgcb-editor-linux"
       ]
     },
     "dotnet-mgcb-editor-windows": {
-      "version": "3.8.4.1",
+      "version": "{{mgVersion}}",
       "commands": [
         "mgcb-editor-windows"
       ]
     },
     "dotnet-mgcb-editor-mac": {
-      "version": "3.8.4.1",
+      "version": "{{mgVersion}}",
       "commands": [
         "mgcb-editor-mac"
       ]
