@@ -6,15 +6,15 @@ description: This section provides a step-by-step guide for setting up your deve
 > [!TIP]
 > The minimum version of Ubuntu that is supported by MonoGame is `20.04`.
 
-To develop with MonoGame in C#, you will need to install the .NET SDK. As of MonoGame 3.8.2 the minimum supported version is .NET 8.
+To develop with MonoGame in C#, you will need to install the .NET SDK. As of MonoGame 3.8.4.1 the minimum supported version is .NET 9.
 
-## Install .NET 8 SDK
+## Install .NET 9 SDK
 
 1. Open a new **Terminal** window.
-2. Enter the following command in the terminal to install the latest .NET 8 SDK:
+2. Enter the following command in the terminal to install the latest .NET 9 SDK:
 
     ```sh
-    sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
+    sudo apt-get update && sudo apt-get install -y dotnet-sdk-9.0
     ```
 
 ## Install additional workloads
@@ -75,10 +75,10 @@ MonoGame provides a setup script that can be executed to setup the Wine environm
     >
     > Then try installing the packages again.
 
-3. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net8_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
+3. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net9_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
 
     ```sh
-    wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
+    wget -qO- https://monogame.net/downloads/net9_mgfxc_wine_setup.sh | bash
     ```
 
 This will create new directory called `.winemonogame` in your home directory.  If you ever wish to undo the setup this script performed, just simply delete that directory.

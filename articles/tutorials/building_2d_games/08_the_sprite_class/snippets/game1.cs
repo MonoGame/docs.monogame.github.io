@@ -59,7 +59,7 @@ public class Game1 : Core
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
         // Draw the slime sprite.
-        _slime.Draw(SpriteBatch, Vector2.One);
+        _slime.Draw(SpriteBatch, Vector2.Zero);
 
         // Draw the bat sprite 10px to the right of the slime.
         _bat.Draw(SpriteBatch, new Vector2(_slime.Width + 10, 0));

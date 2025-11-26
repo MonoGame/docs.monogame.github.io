@@ -86,9 +86,3 @@ To get you started with Visual Studio, here are the steps for setting up a new M
     ![Game](images/vswin_mg_new_5.png)
 
 ---
-
-## Next Steps
-
-Next, get to know MonoGame's code structure and project layout:
-
-- [Understanding the code](3_understanding_the_code.md)

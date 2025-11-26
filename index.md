@@ -10,6 +10,59 @@ description: MonoGame Documentation Hub
         Whether you are just starting out with MonoGame or you have been using it for years, you can find all documentation and
         tutorials here.
     </p>
+    <div id="learnCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#learnCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="2D Tutorial Slide"></button>
+            <!-- <button type="button" data-bs-target="#learnCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button> -->
+            <!-- <button type="button" data-bs-target="#learnCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="/articles/tutorials/building_2d_games/index.html"><img src="/images/learn/2d-tutorial.webp"></a>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Build Your First 2D Game</h1>
+                        <p class="opacity-75">
+                            Follow our step-by-step guide to create your first MonoGame 2D project.
+                        </p>
+                        <p>
+                            <a class="btn btn-lg btn-primary" href="/articles/tutorials/building_2d_games/index.html">Start Tutorial</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="carousel-item">
+                <img src="/images/learn/shader-tutrial.png">
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Master Shaders</h1>
+                        <p class="opacity-75">
+                            Learn how to bring your graphics to life with custom effects
+                        </p>
+                        <p>
+                            <a class="btn btn-lg btn-pirmary" href="#">Coming Soon</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/learn/mobile-tutorial.png">
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Deploy to Mobile</h1>
+                        <p class="opacity-75">
+                            Take your MonoGame project to Android and iOS.
+                        </p>
+                        <p>
+                            <a class="btn btn-lg btn-pirmary" href="#">Coming Soon</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            -->        
+        </div>
+    </div>
 </section>
 <section class="container-xxl mb-5" >
     <div class="row">

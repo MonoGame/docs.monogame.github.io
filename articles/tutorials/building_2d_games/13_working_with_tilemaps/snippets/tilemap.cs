@@ -104,7 +104,7 @@ public class Tilemap
     }
 
     /// <summary>
-    /// Gets the texture region of the tile frm this tilemap at the specified
+    /// Gets the texture region of the tile from this tilemap at the specified
     /// column and row.
     /// </summary>
     /// <param name="column">The column of the tile in this tilemap.</param>
@@ -229,9 +229,6 @@ public class Tilemap
                     {
                         // Get the tileset index for this location
                         int tilesetIndex = int.Parse(columns[column]);
-
-                        // Get the texture region of that tile from the tileset
-                        TextureRegion region = tileset.GetTile(tilesetIndex);
 
                         // Add that region to the tilemap at the row and column location
                         tilemap.SetTile(column, row, tilesetIndex);

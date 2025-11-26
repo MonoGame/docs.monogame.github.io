@@ -5,8 +5,8 @@ items:
     href: /roadmap/
   - name: What's New
     href: whats_new.md
-  - name: Getting Started - build your first 2D game
-    href: tutorials/building_2d_games/index.md
+  - name: Getting Started
+    href: getting_started/index.md
     items:
       - name: Setting up MacOS
         href: /articles/getting_started/1_setting_up_your_os_for_development_macos.html
@@ -56,7 +56,6 @@ items:
           - name: Input
             href: getting_to_know/howto/input/index.md
   - name: Advanced Topics
-    href: getting_started/index.md
     items:
       - name: Packaging
         href: getting_started/packaging_games.md
@@ -80,6 +79,8 @@ items:
             href: getting_started/content_pipeline/index.md
           - name: Why use the Content Pipeline
             href: getting_started/content_pipeline/why_content_pipeline.md
+          - name: Using the Content Builder Project
+            href: getting_started/content_pipeline/content_builder_project.md
           - name: Using MGCB Editor
             href: getting_started/content_pipeline/using_mgcb_editor.md
           - name: Custom Effects
@@ -94,7 +95,7 @@ items:
         href: migration/migrate_xna.md
       - name: Migrating from 3.7
         href: migration/migrate_37.md
-      - name: Migrating from 3.8.0
+      - name: Upgrading 3.8.x to latest
         href: migration/migrate_38.md
       - name: Updating Versions
         href: migration/updating_versions.md

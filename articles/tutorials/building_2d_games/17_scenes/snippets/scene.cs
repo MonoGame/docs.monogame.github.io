@@ -112,6 +112,7 @@ public abstract class Scene : IDisposable
             UnloadContent();
             Content.Dispose();
         }
+        IsDisposed = true; 
     }
     #endregion
 }

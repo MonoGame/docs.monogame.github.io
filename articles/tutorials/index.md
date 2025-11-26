@@ -230,10 +230,6 @@ A collection of tutorials in other languages:
 
 - [Desenvolvimento de jogos para Windows 8 com XNA - Alexandre Chohfi (Portuguese)](https://www.youtube.com/watch?v=gM5pRnYV1tA)
 
-#### French
-
-- [French articles about MonoGame on Linux, Windows and Windows 8](http://www.demonixis.net/blog/category/tutoriels/tuto-xna/)
-
 ## We Need Your Help
 
 MonoGame is an open-source project maintained by its community. Great open source projects require high-quality documentation. This is a call for volunteers to continue to help us make the MonoGame documentation truly great. If you can create tutorials, feature guides, code snippets, reference docs, video walkthroughs, or make any improvement to the current documentation, we could use your help!
