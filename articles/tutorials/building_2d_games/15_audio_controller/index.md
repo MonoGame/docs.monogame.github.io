@@ -117,7 +117,7 @@ Now that we have the audio controller class complete, we can update the game to 
 
 The `Core` class serves as our base game class, so we will update it first to add and expose the `AudioController` globally. Open the `Core.cs` file in the *MonoGameLibrary* project and update it to the following:
 
-[!code-csharp[](./snippets/core.cs?highlight=6,50-53,115–116,119–125,132–133)]
+[!code-csharp[](./snippets/core.cs?highlight=6,50-53,115-116,119-125,132-133)]
 
 The key changes made here are:
 
@@ -131,7 +131,7 @@ The key changes made here are:
 
 Next, update the `Game1` class to use the audio controller for audio playback. Open `Game1.cs` and make the following updates:
 
-[!code-csharp[](./snippets/game1.cs?highlight=45-46,77-78,104-105,195–196,214–215,268–286)]
+[!code-csharp[](./snippets/game1.cs?highlight=45-46,77-78,104-105,195-196,214-215,268-286)]
 
 > [!NOTE]
 > Note there were a lot of replacements in the `LoadContent` method, switching from loading and initializing the background Song and replacing it with a call to the new `AudioController` to do all the work managing the Song reference. Much cleaner.
