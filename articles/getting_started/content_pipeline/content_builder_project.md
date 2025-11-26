@@ -162,7 +162,6 @@ To complete the process, add the following `Target` section to your `csproj` (be
     <MSBuild Projects="..\Content\Content.csproj" Targets="Build;Run"
       Properties="RunArguments=$(ContentArgs);" />
   </Target>
-</Project>
 ```
 
 Of note, you should take care with the following elements:
