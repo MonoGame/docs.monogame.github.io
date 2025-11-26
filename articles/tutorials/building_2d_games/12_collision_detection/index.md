@@ -311,7 +311,7 @@ If you run the game right now and move the slime around, you will notice a few i
 
 We can now implement these features using collision detection and response in our game. In the *DungeonSlime* project (your main game project), open the `Game1.cs` file and make the following changes to the `Game1` class:
 
-[!code-csharp[](./snippets/game1.cs?highlight=1,5,25-29,40-45,76–177,182–194,294–295)]
+[!code-csharp[](./snippets/game1.cs?highlight=1,5,25-29,40-45,76-177,182-194,294-295)]
 
 The key changes made here are:
 
