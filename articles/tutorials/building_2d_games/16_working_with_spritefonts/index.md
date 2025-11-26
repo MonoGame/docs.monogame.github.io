@@ -217,7 +217,7 @@ The key changes here are:
 
 Finally, open the `Game1.cs` file and make the following changes:
 
-[!code-csharp[](./snippets/game1.cs?highlight=48-58,93-99,129-130,241-242,386-397)]
+[!code-csharp[](./snippets/game1.cs?highlight=48-58,93-99,128-129,241-242,386-397)]
 
 The key changes made are:
 
