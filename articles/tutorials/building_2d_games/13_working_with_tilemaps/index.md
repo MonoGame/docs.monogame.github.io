@@ -186,7 +186,7 @@ This tilemap configuration creates a simple dungeon layout with walls around the
 
 With all of the assets now in place and configured, we can update the `Game1` class to load the tilemap and draw it. We will also need to update the collision logic so that the boundary is no longer the edge of the screen, but instead the edges of the wall tiles of the tilemap. Open `Game1.cs` and make the following updates:
 
-[!code-csharp[](./snippets/game1.cs?highlight=31-35,46-61,80-82,109,111,113,125,118,120,122,124,142,145,147,150,153,156,158,161,177–179,301–302)]
+[!code-csharp[](./snippets/game1.cs?highlight=31-35,46-61,80-82,109,111,113,125,118,120,122,124,142,145,147,150,153,156,158,161,177-179,301-302)]
 
 The key changes to the `Game1` class include:
 
