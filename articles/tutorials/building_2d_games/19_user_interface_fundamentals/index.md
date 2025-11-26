@@ -98,7 +98,7 @@ Creating accessible user interfaces is an essential aspect of inclusive game des
 
 The most effect way to ensure accessibility is through testing under different circumstances and with diverse users:
 
-- Test your Ui using only keyboard navigation.
+- Test your UI using only keyboard navigation.
 - Try playing without sound.
 - Check your UI with a color blindness simulator.
 - Adjust the display scale to simulate low vision.
