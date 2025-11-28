@@ -1,5 +1,4 @@
-private void CreateOptionsPanel()
-{
+private void CreateOptionsPanel() {
     _optionsPanel = new Panel();
     _optionsPanel.Dock(Gum.Wireframe.Dock.Fill);
     _optionsPanel.IsVisible = false;
@@ -10,6 +9,12 @@ private void CreateOptionsPanel()
     optionsText.Y = 10;
     optionsText.Text = "OPTIONS";
     _optionsPanel.AddChild(optionsText);
+
+    var musicLabel = new Label();
+    musicLabel.Text = "Music";
+    musicLabel.X = 35;
+    musicLabel.Y = 35;
+    optionsPanel.AddChild(musicLabel);
 
     var musicSlider = new Slider();
     musicSlider.Anchor(Gum.Wireframe.Anchor.Top);
@@ -22,6 +27,12 @@ private void CreateOptionsPanel()
     musicSlider.ValueChanged += HandleMusicSliderValueChanged;
     musicSlider.ValueChangeCompleted += HandleMusicSliderValueChangeCompleted;
     _optionsPanel.AddChild(musicSlider);
+
+    var sfxLabel = new Label();
+    sfxLabel.Text = "SFX";
+    sfxLabel.X = 20;
+    sfxLabel.Y = 80;
+    optionsPanel.AddChild(sfxLabel);
 
     var sfxSlider = new Slider();
     sfxSlider.Anchor(Gum.Wireframe.Anchor.Top);
