@@ -11,6 +11,12 @@ private void CreateOptionsPanel()
     optionsText.Text = "OPTIONS";
     _optionsPanel.AddChild(optionsText);
 
+           Label musicLabel = new Label();
+        musicLabel.Text = "Music";
+        musicLabel.X = 35;
+        musicLabel.Y = 35;
+        optionsPanel.AddChild(musicLabel);
+
     var musicSlider = new Slider();
     musicSlider.Anchor(Gum.Wireframe.Anchor.Top);
     musicSlider.Visual.Y = 30f;
@@ -23,6 +29,13 @@ private void CreateOptionsPanel()
     musicSlider.ValueChangeCompleted += HandleMusicSliderValueChangeCompleted;
     _optionsPanel.AddChild(musicSlider);
 
+        Label soundEffectsLabel = new Label();
+        soundEffectsLabel.Text = "Sound Effects";
+        soundEffectsLabel.X = 20;
+        soundEffectsLabel.Y = 80;
+        optionsPanel.AddChild(soundEffectsLabel);
+
+    
     var sfxSlider = new Slider();
     sfxSlider.Anchor(Gum.Wireframe.Anchor.Top);
     sfxSlider.Visual.Y = 93;
