@@ -42,6 +42,7 @@ If you intend to also work with platforms such as `Android` or `iOS`, you will n
 ```
 
 ### [Maui](#tab/maui)
+
 ```cli
     dotnet workload install maui
 ```
