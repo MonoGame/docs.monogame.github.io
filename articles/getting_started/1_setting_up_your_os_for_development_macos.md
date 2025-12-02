@@ -36,6 +36,7 @@ If you intend to also work with platforms such as `Android` or `iOS`, you will n
 ```
 
 ### [Maui](#tab/maui)
+
 ```cli
     dotnet workload install maui
 ```
@@ -50,14 +51,6 @@ If you intend to also work with platforms such as `Android` or `iOS`, you will n
 
 > [!NOTE]
 > You can use `dotnet workload search` to detect any other available workloads you wish to use.
-
-## Apple Silicon Known Issues
-
- For the time being, MonoGame requires that you install the x64 version of the .NET runtime if you are running on an Apple Silicon mac in order to be able to build content. It is also required that [Rosetta](https://support.apple.com/en-us/HT211861) is enabled. 
-
- 1. Navigate to [https://dotnet.microsoft.com/en-us/download/dotnet/9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
- 1. Download the .NET Runtime Installer for macOS x64
- 1. Once the **.pkg** file finishes downloading, run it and follow the prompts to install the .NET Runtime
 
 ## Setup Wine For Effect Compilation
 
