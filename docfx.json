@@ -59,6 +59,7 @@
       }
     ],
     "output": "_site",
+    "globalMetadataFiles": ["mgversion.json"],
     "globalMetadata": {
       "_appLogoUrl": "https://monogame.net",
       "_appFaviconPath": "/images/favicon.png",

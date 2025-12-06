@@ -24,8 +24,8 @@ To use the preview packages delivered via NuGet you need to update or replace yo
 The simplest way is from the command line in the folder where your `csproj` is located (if you have multiple projects, please repeat for each) using the following syntax:
 
 ```dotnetcli
-dotnet add package MonoGame.Framework.DesktopGL -v 3.8.4-preview.1
-dotnet add package MonoGame.Content.Builder.Task -v 3.8.4-preview.1
+dotnet add package MonoGame.Framework.DesktopGL -v {{mgDevelopVersion}}
+dotnet add package MonoGame.Content.Builder.Task -v {{mgDevelopVersion}}
 ```
 
 **Replacing the preview version with the specific version you wish to install.**
@@ -42,11 +42,11 @@ To ensure symmetry between the project version and the Content Pipeline Editor (
 This is simply a matter of updating the tools references, again from the command line in the projects folder, as follows:
 
 ```dotnetcli
-dotnet tool install dotnet-mgcb --version 3.8.4-preview.1
-dotnet tool install dotnet-mgcb-editor --version 3.8.4-preview.1
-dotnet tool install dotnet-mgcb-editor-linux --version 3.8.4-preview.1
-dotnet tool install dotnet-mgcb-editor-windows --version 3.8.4-preview.1
-dotnet tool install dotnet-mgcb-editor-mac --version 3.8.4-preview.1
+dotnet tool install dotnet-mgcb --version {{mgDevelopVersion}}
+dotnet tool install dotnet-mgcb-editor --version {{mgDevelopVersion}}
+dotnet tool install dotnet-mgcb-editor-linux --version {{mgDevelopVersion}}
+dotnet tool install dotnet-mgcb-editor-windows --version {{mgDevelopVersion}}
+dotnet tool install dotnet-mgcb-editor-mac --version {{mgDevelopVersion}}
 ```
 
 **Replacing the preview version with the specific version you wish to install.**
@@ -65,7 +65,7 @@ This step is optional, if you intend to generate a new project using the latest 
 1. Simply run the following from the command line:
 
 ```dotnetcli
-dotnet new install MonoGame.Templates.CSharp::3.8.4-preview.1
+dotnet new install MonoGame.Templates.CSharp::{{mgDevelopVersion}}
 ```
 
 **Replacing the preview version of MonoGame at the end of the command with the specific version you wish to install.**
@@ -77,7 +77,7 @@ At this time, the Visual Studio marketplace does not support preview versions of
 The Extension can be downloaded from the latest `GitHub Actions` build used to generate the preview build.
 
 1. Go to the [MonoGame GitHub repository](https://github.com/MonoGame/MonoGame/actions) and select the "Actions" tab.
-1. Find the build with the associated tag, e.g. [`v3.8.4-preview.1`](https://github.com/MonoGame/MonoGame/actions/runs/14713318149)
+1. Find the build with the associated tag, e.g. [`{{mgDevelopVersion}}`](https://github.com/MonoGame/MonoGame/actions/runs/14713318149)
 1. In the `Artifacts` for the build, you should see the extensions installer `MonoGame.Templates.VSExtension.vsix`
 1. Click on the "Download Icon" on the far right-hand side of the row.
 1. Once downloaded, run the `vsix` which will update your installation of the extensions package.
