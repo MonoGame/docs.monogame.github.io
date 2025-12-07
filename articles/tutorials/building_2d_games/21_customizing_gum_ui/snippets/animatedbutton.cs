@@ -23,7 +23,7 @@ internal class AnimatedButton : Button
     /// <param name="atlas">The texture atlas containing button graphics and animations</param>
     public AnimatedButton(TextureAtlas atlas)
     {
-        // Each Forms conrol has a general Visual property that
+        // Each Forms control has a general Visual property that
         // has properties shared by all control types. This Visual
         // type matches the Forms type. It can be casted to access
         // controls-specific properties.
