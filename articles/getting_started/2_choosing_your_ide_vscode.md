@@ -154,7 +154,7 @@ The .NET MAUI extension adds features for building mobile apps, including:
 
 ## Update Project Tool references
 
-The MonoGame Content Editor (MGCB) it a tool delivered through NuGet for your project using the tools configuration held in your `dotnet-tools.json` file (located in the `.config` folder of your project).
+The MonoGame Content Editor (MGCB) is a tool delivered through NuGet for your project using the tools configuration held in your `dotnet-tools.json` file (located in the `.config` folder of your project).
 
 Once you have created your project you should run the following terminal/command-line command to ensure the tool (and the pipeline) is setup and read for your project:
 
