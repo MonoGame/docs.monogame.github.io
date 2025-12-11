@@ -204,10 +204,10 @@ For Android, a specific `Include` section is needed in the project's `csproj` pr
 > [!NOTE]
 > If you change the location where the Content Builder project outputs content to, the paths above will need to be updated to the new location to find the content to include.
 
-At build time, the "BuildContent" task will run and execute the Content Builder, then with the output from the builder, the Android solution will automatically identify and package the content within the `APK` as per Google's packaging requirements.
+At build time, the "BuildContent" task will run and execute the Content Builder, then with the output from the builder, the Android solution will automatically identify and package the content as per Google's packaging requirements, generating an `APK` for sideloading and an `AAB` for publishing to the Google Play Store.
 
 > [!NOTE]
-> If your content is too large to fit within the maximum size of an `APK`, you will need to alternatively use Asset Bundles to package your content, as demonstrated here:
+> If your content is too large to fit within the maximum size of the base application, you will need to use Asset Bundles to package your content, as demonstrated here:
 >
 > ```xml
 > <ItemGroup>
@@ -217,11 +217,11 @@ At build time, the "BuildContent" task will run and execute the Content Builder,
 >    <AndroidAsset Update="Content\Path\SomeLargeFile.xnb" AssetPack="foo" />
 > </ItemGroup>
 >
-> However your game project will also need to be aware and update its strategy for loading the content to take the asset packs into account.
+> However, your game project will also need to be aware and update its strategy for loading the content to take the asset packs into account.
 >
 > For more details, see the [Microsoft Documentation](https://devblogs.microsoft.com/dotnet/android-asset-packs-in-dotnet-android/).
 >
-> Additionally Dean has provided [some helper scripts to assist with the implementation here](https://gist.github.com/dellis1972/8a16abceb3b4b2222b38f8bee221534b).
+> Additionally, [some helper scripts are available to assist with the implementation here](https://gist.github.com/dellis1972/8a16abceb3b4b2222b38f8bee221534b).
 
 ### iOS
 
@@ -841,7 +841,7 @@ public override IContentCollection GetContentCollection()
 
 At times you might need to debug your Content Builder, and while you can just run it manually in debug mode and attach your IDE to it, sometimes it is also valuable to FORCE the application to pause and let you step through importing and processing, especially when working with Content Pipeline Extensions.
 
-Alternatively, you may simply want to inject additional assets into your project for debugging purposes (such as overlays, etc) which are only consumed in a `Debug` build of your project (using '#if DEBUG` in your runtime too).
+Alternatively, you may simply want to inject additional assets into your project for debugging purposes (such as overlays, etc) which are only consumed in a `Debug` build of your project (using `#if DEBUG` in your runtime too).
 
 > [!NOTE]
 > This is a rather advanced area which for most situations you do not need to go to these lengths.

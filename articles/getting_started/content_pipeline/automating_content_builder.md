@@ -78,7 +78,7 @@ jobs:
           dotnet-version: '9.0.x'
       
       - name: Process content
-        uses: ./.github/actions/build-content
+        uses: MonoGame/monogame-actions/build-content@v1
         with:
           content-builder-path: './Content/Builder'
           assets-path: './Content/Assets'
@@ -400,7 +400,7 @@ jobs:
         platform: [DesktopGL, iOS, Android]
     steps:
       - name: Process content
-        uses: ./.github/actions/build-content
+        uses: MonoGame/monogame-actions/build-content@v1
         with:
           monogame-platform: ${{ matrix.platform }}
           upload-output: 'true'
@@ -425,7 +425,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Process content
-        uses: ./.github/actions/build-content
+        uses: MonoGame/monogame-actions/build-content@v1
       
       - name: Build game
         run: dotnet build

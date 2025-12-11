@@ -82,7 +82,7 @@ items:
           - name: Using the Content Builder Project
             href: getting_started/content_pipeline/content_builder_project.md
           - name: Automating the Content Builder
-            href: getting_started/content_pipeline/automating_content_builder.md            
+            href: getting_started/content_pipeline/automating_content_builder.md
           - name: Using MGCB Editor
             href: getting_started/content_pipeline/using_mgcb_editor.md
           - name: Custom Effects
