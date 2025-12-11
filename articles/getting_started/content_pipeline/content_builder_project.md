@@ -4,7 +4,7 @@ description: Learn how to use the newest approach to building content in MonoGam
 ---
 
 > [!NOTE]
-> These intructions **REQUIRE** you to use the latest `MonoGame Develop` release (currently `3.8.5-develop.13)
+> These instructions **REQUIRE** you to use the latest `MonoGame Develop` release (currently `3.8.5-develop.13`)
 >
 > See the [instructions here](https://docs.monogame.net/articles/getting_to_know/howto/HowTo_Install_Preview_Release.html) for how to install the preview project templates and update your project to use `3.8.5-develop` (preview) releases.
 >
@@ -117,7 +117,7 @@ MyContentBuilder/
 
 This is the default (recommended) layout for a Content Builder project, but you can customize its use how you wish:
 
-- There is single "entry point" (command line launch point) contained in the `builder.cs` which contains all the instructions to build content.
+- There is a single "entry point" (command line launch point) contained in the `builder.cs` which contains all the instructions to build content.
 - A default `Assets` folder to host your content, but your content can be in any location you need it to be, simply update the parameters used to run the console application to point to the source directory and folder for your content.
 
 > [!TIP]
@@ -177,6 +177,70 @@ You should not need to touch anything else.
 >
 > See the [MS Documentation on Built targets](https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild-targets) for reference.
 
+## Platform specific additions - Android / iOS
+
+For platforms where the content is required to be packaged inside the output bundle, there are some additional steps required to ensure the built content is included during the Build/Publish step.
+
+Each platform has specific requirements and requires the built content to be available prior to processing the project itself.
+
+> [!NOTE]
+> Also check out the dedicated [Packaging Games advice](../packaging_games.md) published by the MonoGame team.
+
+### Android
+
+For Android, a specific `Include` section is needed in the project's `csproj` project definition, as follows:
+
+> [!NOTE]
+> Android uses a special `AndroidAsset` tag to identify content to include.
+
+```xml
+<ItemGroup>
+    <AndroidAsset Include="$(OutputPath)Content\**\*">
+        <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </AndroidAsset>
+</ItemGroup>
+```
+
+> [!NOTE]
+> If you change the location where the Content Builder project outputs content to, the paths above will need to be updated to the new location to find the content to include.
+
+At build time, the "BuildContent" task will run and execute the Content Builder, then with the output from the builder, the Android solution will automatically identify and package the content as per Google's packaging requirements, generating an `APK` for sideloading and an `AAB` for publishing to the Google Play Store.
+
+> [!NOTE]
+> If your content is too large to fit within the maximum size of the base application, you will need to use Asset Bundles to package your content, as demonstrated here:
+>
+> ```xml
+> <ItemGroup>
+>    <AndroidAsset Include="$(OutputPath)Content\**\*">
+>        <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
+>    </AndroidAsset>
+>    <AndroidAsset Update="Content\Path\SomeLargeFile.xnb" AssetPack="foo" />
+> </ItemGroup>
+>
+> However, your game project will also need to be aware and update its strategy for loading the content to take the asset packs into account.
+>
+> For more details, see the [Microsoft Documentation](https://devblogs.microsoft.com/dotnet/android-asset-packs-in-dotnet-android/).
+
+### iOS
+
+For iOS, a specific `Include` section is needed in the project's `csproj` project definition, as follows:
+
+> [!NOTE]
+> iOS uses a special `BundleResource` tag to identify content to include.
+
+```xml
+<ItemGroup>
+    <BundleResource  Include="$(OutputPath)Content\**\*">
+        <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </BundleResource >
+</ItemGroup>
+```
+
+> [!NOTE]
+> If you change the location where the Content Builder project outputs content to, the paths above will need to be updated to the new location to find the content to include.
+
+At build time, the "BuildContent" task will run and execute the Content Builder, then with the output from the builder, the Android solution will automatically identify and package the content within the App as per Apple's packaging standards.
+
 ## Basic Builder Project Structure
 
 The default `Builder.cs` file looks like this, which contains everything needed to build all content in the designated Assets/Content folder using the default [Importers and Processors](/articles/getting_to_know/whatis/content_pipeline/CP_StdImpsProcs) (how MonoGame compiles content) into processed `.XNB` files for consumption by your runtime project:
@@ -224,7 +288,7 @@ The default `Include` rule simply builds a list of content to process from the t
 
 ### Core Properties
 
-Here are the main properties available work with:
+Here are the main properties available to work with:
 
 | Property | Description | Default Value |
 |----------|-------------|---------------|
@@ -561,7 +625,7 @@ contentCollection.Include("explosion.wav", audioImporter, audioProcessor);
 > [!NOTE]
 > As can be seen in the updated examples using the new Content Builder Project system, this can also be simplified to just:
 >
-> `contentCollection.Include("hero.png", new TextureImporter(), new TextureProcessor());
+> `contentCollection.Include("hero.png", new TextureImporter(), new TextureProcessor());`
 >
 > It just depends on which pattern you are more comfortable with.
 
@@ -588,6 +652,27 @@ contentCollection.Include<WildcardRule>(
     contentProcessor: fontProcessor
 );
 ```
+
+### Handling Custom Importer / Processor caching
+
+The caching validation process that determines whether the Content Builder re-processes content by default is decided by:
+
+- The comparison between the last state of the built asset and the source
+- It will also take into account the "Version" of the Content Importer and Processor that was used at the time the content was built.
+
+The cache is only invalidated when either of these conditions are met, else it will skip over processing of the asset for performance as it has not detected a change.
+
+> [!NOTE]
+> MonoGame manages the versions of the [built-in Importers and Processors](../../getting_to_know/whatis/content_pipeline/CP_StdImpsProcs.md), so unless MonoGame makes changes to these elements, the cache will not be invalidated unless you [Force a rebuild](#understanding-contentbuilderparams).
+
+If you want content to be rebuilt when a Custom Importer or Processor has changed (content that uses the custom entities in its builder configuration), then the version of the Custom Content Pipeline Extension has to change, to do this, simply update the "Version" property on the respective Importer or Processor as follows:
+
+```csharp
+public override string Version { get; set; } = "new Version";
+```
+
+> [!NOTE]
+> The version can be anything you like, so long as it is a recognisable and readable string.  Preferably something you can increment.
 
 ### Configuring Processor Parameters
 
@@ -650,6 +735,8 @@ contentCollection.Include<WildcardRule>(
 ---
 
 ## Advanced Scenarios
+
+The following scenarios are of a more advanced nature for scenarios where you need specific customisation to suit your delivery needs.
 
 ### Scenario 1: Platform-Specific Content
 
@@ -714,47 +801,7 @@ public override IContentCollection GetContentCollection()
 }
 ```
 
-### Scenario 3: Debugging the Builder
-
-If you wish to inject a `Debugger` breakpoint to determine the cause of any issues when building content, you can add the following before the `Builder` runs in your `ContentBuilder` project, this will cause DotNet to request to launch the default debugger and automatically attach it to the project when it is run:
-
-```csharp
-#if DEBUG
-using System.Diagnostics;
-#endif
-
-// If you need to debug the content build process you can enable
-// this, build the game, then attach the debugger when prompted.
-#if DEBUG
-Debugger.Launch();
-
-// Launch point
-builder.Run(args);
-```
-
-### Scenario 4: Conditional Debug Content
-
-Include extra content in debug builds:
-
-```csharp
-public override IContentCollection GetContentCollection()
-{
-    var contentCollection = new ContentCollection();
-    
-    // Always include game content
-    contentCollection.Include<WildcardRule>("GameAssets/*");
-    
-    #if DEBUG
-    // Include debug visualizations only in debug builds
-    contentCollection.SetContentRoot("Debug");
-    contentCollection.Include<WildcardRule>("DebugAssets/*");
-    #endif
-    
-    return contentCollection;
-}
-```
-
-### Scenario 5: Dynamic Content from External Sources
+### Scenario 3: Dynamic Content from External Sources
 
 Process content from multiple sources:
 
@@ -781,6 +828,60 @@ public override IContentCollection GetContentCollection()
         contentCollection.SetContentRoot("Mods");
         contentCollection.Include<WildcardRule>("Mods/*");
     }
+    
+    return contentCollection;
+}
+```
+
+---
+
+## Debugging
+
+At times you might need to debug your Content Builder, and while you can just run it manually in debug mode and attach your IDE to it, sometimes it is also valuable to FORCE the application to pause and let you step through importing and processing, especially when working with Content Pipeline Extensions.
+
+Alternatively, you may simply want to inject additional assets into your project for debugging purposes (such as overlays, etc) which are only consumed in a `Debug` build of your project (using `#if DEBUG` in your runtime too).
+
+> [!NOTE]
+> This is a rather advanced area which for most situations you do not need to go to these lengths.
+
+The following scenarios outline these options as they pertain to the Content Builder solution:
+
+### Scenario 1: Debugging the Builder
+
+If you wish to inject a `Debugger` breakpoint to determine the cause of any issues when building content, you can add the following before the `Builder` runs in your `ContentBuilder` project, this will cause DotNet to request to launch the default debugger and automatically attach it to the project when it is run:
+
+```csharp
+#if DEBUG
+using System.Diagnostics;
+#endif
+
+// If you need to debug the content build process you can enable
+// this, build the game, then attach the debugger when prompted.
+#if DEBUG
+Debugger.Launch();
+#endif
+
+// Launch point
+builder.Run(args);
+```
+
+### Scenario 2: Conditional Debug Content
+
+Useful when you need to include extra content in debug only builds for testing, e.g. texture overlays or additional fonts:
+
+```csharp
+public override IContentCollection GetContentCollection()
+{
+    var contentCollection = new ContentCollection();
+    
+    // Always include game content
+    contentCollection.Include<WildcardRule>("GameAssets/*");
+    
+    #if DEBUG
+    // Include debug visualizations only in debug builds
+    contentCollection.SetContentRoot("Debug");
+    contentCollection.Include<WildcardRule>("DebugAssets/*");
+    #endif
     
     return contentCollection;
 }
