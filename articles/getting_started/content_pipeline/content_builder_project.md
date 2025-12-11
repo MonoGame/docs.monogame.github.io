@@ -220,8 +220,6 @@ At build time, the "BuildContent" task will run and execute the Content Builder,
 > However, your game project will also need to be aware and update its strategy for loading the content to take the asset packs into account.
 >
 > For more details, see the [Microsoft Documentation](https://devblogs.microsoft.com/dotnet/android-asset-packs-in-dotnet-android/).
->
-> Additionally, [some helper scripts are available to assist with the implementation here](https://gist.github.com/dellis1972/8a16abceb3b4b2222b38f8bee221534b).
 
 ### iOS
 
