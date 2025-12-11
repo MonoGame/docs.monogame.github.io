@@ -181,7 +181,7 @@ You should not need to touch anything else.
 
 For platforms where the content is required to be packaged inside the output bundle, there are some additional steps required to ensure the built content is including during the Build/Publish step.
 
-Each platform has specific requirements and require the built content to be available prior to processing the project itself.
+Each platform has specific requirements and requires the built content to be available prior to processing the project itself.
 
 > [!NOTE]
 > Also check out the dedicated [Packaging Games advice](../packaging_games.md) published by the MonoGame team.
