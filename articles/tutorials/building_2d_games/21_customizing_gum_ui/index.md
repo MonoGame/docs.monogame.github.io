@@ -3,9 +3,9 @@ title: "Chapter 21: Customizing Gum UI"
 description: "Learn how to create custom UI components with animations and visual styling in Gum."
 ---
 
-In the [previous chapter](../20_implementing_ui_with_gum/index.md), we implemented a functional UI system for our game using the Gum framework. While the UI is now fully operational, it uses Gum's default styling.  This default styling is good for quickly iterating when building the UI, but it does not match the game's visuals.  A well designed UI should not only be functional but also complement the game's overall visual style to create a cohesive experience.
+In the [previous chapter](../20_implementing_ui_with_gum/index.md), we implemented a functional UI system for our game using the Gum framework. While the UI is now fully operational, it uses Gum's default styling.  This default styling is good for quickly iterating when building the UI, but it does not match the game's visuals.  A well-designed UI should not only be functional but also complement the game's overall visual style to create a cohesive experience.
 
-In this chapter you will:
+In this chapter, you will:
 
 - Learn about Gum's visual customization system and component hierarchy.
 - Understand how animation chains and visual states work in Gum.
@@ -160,7 +160,7 @@ Next, add this font file to your content project using the MGCB Editor:
 |             **Figure 21-2: The MGCB Editor with the 04b_30.fnt added to the fonts folder and the Build property set to Copy**              |
 
 > [!NOTE]
-> When the *.fnt* font file was generated using the [AngelCode Bitmap Font Generator](https://www.angelcode.com/products/bmfont/), the graphics from the *.png* file that it produces was copied over into our existing texture atlas. By doing this, it allows Gum to render the visuals for elements and the text from the same atlas, reducing texture swapping.
+> When the *.fnt* font file was generated using the [AngelCode Bitmap Font Generator](https://www.angelcode.com/products/bmfont/), the graphics from the *.png* file that it produces were copied over into our existing texture atlas. By doing this, it allows Gum to render the visuals for elements and the text from the same atlas, reducing texture swapping.
 >
 > The font file references our existing texture atlas using a relative path that points to the atlas image.
 >
@@ -184,9 +184,9 @@ Now that we have all our resources prepared, we can create custom versions of th
 
 Our first custom component is an `AnimatedButton` that inherits from Gum's base `Button` class. This button uses the game's existing texture atlas for its visual appearance and animates when focused.
 
-By default all Gum components provide a Visual property which can be cast to a type specific to the particular control. By convention the visual type is named the same as the component with the word `Visual` appened. For example, we will be casting the AnimatedButton's Visual property to `ButtonVisual` to access button-specific properties.
+By default, all Gum components provide a Visual property which can be cast to a type specific to the particular control. By convention, the visual type is named the same as the component with the word `Visual` appended. For example, we will be casting the AnimatedButton's Visual property to `ButtonVisual` to access button-specific properties.
 
-This new `AnimatedButton` class casts the Visual property to `ButtonVisual` and modifies the button-specific properties such as background and text.
+This new `AnimatedButton` class casts the Visual property to `ButtonVisual` and modifies the button-specific properties, such as background and text.
 
 First, in the *DungeonSlime* project (your main game project), create a new folder named `UI` to store our custom UI components.  Next, in that `UI` folder, create a new file called `AnimatedButton.cs` and add the following code to it:
 
@@ -196,7 +196,7 @@ Next, we will examine the key aspects of this new `AnimatedButton` implementatio
 
 #### ButtonVisual
 
-As mentioned earlier, we first access the `Visual` object and cast it to a `ButtonVisual`. Doing so gives us access to button-specific properties including individual elements (such as the text and background visuals) as well as the states that are applied when the button is hovered or pressed.
+As mentioned earlier, we first access the `Visual` object and cast it to a `ButtonVisual`. Doing so gives us access to button-specific properties, including individual elements (such as the text and background visuals) as well as the states that are applied when the button is hovered or pressed.
 
 We can modify the Visual to give it the appropriate size.
 
@@ -206,7 +206,7 @@ The `WidthUnits` property set to `RelativeToChildren` means the container  autom
 
 #### Nine-slice Background
 
-`ButtonVisual` provides a `Background` which we can modify. This is of type `NineSliceRuntime` which is a special graphic that can be stretch while preserving its corners and edges:
+`ButtonVisual` provides a `Background` which we can modify. This is of type `NineSliceRuntime`, which is a special graphic that can be stretched while preserving its corners and edges:
 
 [!code-csharp[](./snippets/animatedbutton.cs?start=39&end=42)]
 
@@ -214,7 +214,7 @@ The `TextureAddress` property is set to `Custom` so we can specify exactly which
 
 #### Text
 
-`ButtonVisual` also provides a customizable `Text` property. In this case we assign the font, color, and size.
+`ButtonVisual` also provides a customizable `Text` property. In this case, we assign the font, color, and size.
 
 [!code-csharp[](./snippets/animatedbutton.cs?start=45&end=55)]
 
@@ -231,7 +231,7 @@ Each animation frame specifies the coordinates within our texture atlas to displ
 
 #### States and Categories
 
-In Gum, each control type has a specific category name that identifies its state collection. `ButtonVisual` provides access to ready-made states and catgories which we can modify. Before we speicfy how a state should modify the button's appearance, we clear out all existing functionality so that we can fully control the states:
+In Gum, each control type has a specific category name that identifies its state collection. `ButtonVisual` provides access to ready-made states and categories which we can modify. Before we specify how a state should modify the button's appearance, we clear out all existing functionality so that we can fully control the states:
 
 [!code-csharp[](./snippets/animatedbutton.cs?start=104&end=104)]
 
@@ -446,3 +446,4 @@ The principles you have learned in this chapter extend beyond the specific compo
     - Makes it easier to create controls that work with mouse, keyboard, and gamepad input.
 
     :::
+
