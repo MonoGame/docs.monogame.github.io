@@ -272,7 +272,7 @@ Now that your development environment is setup and ready to go, you can dive in 
 2. What is the primary reason that game applications implement a *game loop* structure instead of using an event-based approach like traditional desktop applications?
 
     :::question-answer
-    Game applications implement a *game loop* structure because games need to continuously update and render, event when there is no user input.  In games, objects might be moving, animations playing, and physics calculating regardless of user interaction, requiring constant updating and rendering until the game is told to exit.
+    Game applications implement a *game loop* structure because games need to continuously update and render, even when there is no user input.  In games, objects might be moving, animations playing, and physics calculating regardless of user interaction, requiring constant updating and rendering until the game is told to exit.
     :::
 
 3. What is the color of the game window when you run a MonoGame project for the first time?
@@ -280,3 +280,4 @@ Now that your development environment is setup and ready to go, you can dive in 
     :::question-answer
     Cornflower Blue
     :::
+
