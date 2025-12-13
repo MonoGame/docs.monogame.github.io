@@ -66,5 +66,35 @@ function slugify(value) {
  * This method will be called at the end of exports.transform in conceptual.html.primary.js
  */
 exports.postTransform = function (model) {
+    applyMonoGameVersion(model);
     return model;
+}
+
+function applyMonoGameVersion(model) {
+    if (model.mgVersion) {
+        replaceInModel(model, '{{mgVersion}}', model.mgVersion);
+    }
+
+    if (model.mgDevelopVersion) {
+        replaceInModel(model, '{{mgDevelopVersion}}', model.mgDevelopVersion)
+    }
+}
+
+
+function replaceInModel(model, token, value) {
+    if (model.conceptual) {
+        model.conceptual = model.conceptual.split(token).join(value);
+    }
+
+    if (model.title) {
+        model.title = model.title.split(token).join(value);
+    }
+
+    if (model.rawTitle) {
+        model.rawTitle = model.rawTitle.split(token).join(value);
+    }
+
+    if (model.description) {
+        model.description = model.description.split(token).join(value);
+    }
 }

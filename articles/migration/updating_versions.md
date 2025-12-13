@@ -62,7 +62,7 @@ dotnet restore
 Regardless of the development environment, users will need to update the dotnet tools manifest file manually to use the newest version of the *MonoGame Content Builder*. To do this:
 
 1. Open the *.config/dotnet-tools.json* manifest file located in the project root directory
-2. Update the version specified for each tool to the current version of MonoGame (currently this is `3.8.4`).
+2. Update the version specified for each tool to the current version of MonoGame (currently this is `{{mgVersion}}`).
 3. Save the changes
 
 Once these changes are made, open a command prompt or terminal at the root of the project directory and enter the following commands
