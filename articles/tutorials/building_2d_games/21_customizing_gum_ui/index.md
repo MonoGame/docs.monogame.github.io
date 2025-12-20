@@ -84,18 +84,12 @@ To convert from pixel coordinates to normalized values, you divide the pixel pos
 
 #### Visual States
 
-Rather than directly modifying properties when UI elements change state (like when a button is focused), Gum uses a state-based system. Each control type has a specific category name that identifies its collection of states:
+When UI elements change state (like when a button is focused), Gum uses a state-based system. A control's visual can be casted to a type specific to that control to access its states. Each control-specific visual has a type name matching its control, with the word Visual appended. For example, a button's `Visual` can be casted to type `ButtonVisual` to access button-specific properties and states. Once casted, the visual provides a `States` property containing all available states for that control type. Most control visuals, including `ButtonVisual`, provide the following States properties:
 
-- Buttons use `Button.ButtonCategoryName`.
-- Sliders use `Slider.SliderCategoryName`.
-- Other control types have their own category names.
-
-Within each category, you define named states that correspond to the control's possible conditions:
-
-- "Enabled" (the normal, unfocused state).
-- "Focused" (when the control has focus).
-- "Highlighted" (when the mouse hovers over the control).
-- "Disabled" (when the control cannot be interacted with).
+- States.Enabled (the normal, unfocused state).
+- States.Focused (when the control has focus).
+- States.Highlighted (when the mouse hovers over the control).
+- States.Disabled (when the control cannot be interacted with).
 
 Each state contains an `Apply` action that defines what visual changes occur when that state becomes active. For example, when a button becomes focused, its state might change the background color or switch to an animated version.
 
@@ -301,6 +295,8 @@ The slider uses color changes to provide visual feedback:
 
 When the slider is focused, all its elements change from gray to white, making it clear to the player which UI element currently has focus.
 
+Notice that unlike the button which used existing states, we create the slider's states from scratch. These states must use specific names so that Gum knows to use them when the slider gains or loses focus. These names can be obtained through the `FrameworkElement` class. Our slider only needs to handle focused and unfocused (which returns to the `enabled` state), bug Gum provides additional states if needed.
+
 #### Fill Visualization
 
 One of the most important aspects of a slider is the visual representation of its value.  We achieve this by updating the width of the `_fillRectangle` element:
@@ -397,7 +393,7 @@ The principles you have learned in this chapter extend beyond the specific compo
     :::question-answer
     The two main approaches are:
 
-    - **Direct property assignment**: Setting properties directly in code (like `button.Visual.Width = 100`). This approach is best for initial setup of UI elements and static properties that do not change during gameplay.
+    - **Direct property assignment**: Setting properties directly in code (like `button.Width = 100`). This approach is best for initial setup of UI elements and static properties that do not change during gameplay.
     - **States (StateSave objects)**: Defining different visual states that are applied automatically in response to interactions. This approach is best for dynamic changes that happen during gameplay, like highlighting a button when it is focused or changing colors when a slider is adjusted.
 
     :::
@@ -434,8 +430,7 @@ The principles you have learned in this chapter extend beyond the specific compo
     :::question-answer
     Gum's state system links with Forms controls through specifically named categories and states:
 
-    - Each Forms control type has a reserved category name (e.g., Button.ButtonCategoryName)
-    - Within that category, the control looks for states with specific names (Enabled, Focused, Highlighted, etc.)
+    - Each Forms control type has states specific to that type which are accessed through a casted visual (e.g., `buttonVisual.States.Enabled`)
     - When the control's state changes (like gaining focus), it automatically applies the corresponding visual state
 
     This relationship is important because it:
