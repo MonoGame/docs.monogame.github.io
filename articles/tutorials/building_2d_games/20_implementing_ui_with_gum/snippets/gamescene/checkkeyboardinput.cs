@@ -7,6 +7,7 @@
         if (Core.Input.Keyboard.WasKeyJustPressed(Keys.Escape))
         {
             PauseGame();
+            return;
         }
 
         // Existing keyboard input code
