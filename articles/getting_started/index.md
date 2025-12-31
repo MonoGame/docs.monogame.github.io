@@ -21,7 +21,7 @@ MonoGame supports the following platforms by default:
 - Nintendo Switch*
 
 > [!IMPORTANT]
-> Platforms marked with a *"*"* require developer access from their host vendor platforms.
+> Platforms marked with a *"\*"* require developer access from their host vendor platforms.
 
 See [Supported Platforms](./platforms.md) for more information.
 
