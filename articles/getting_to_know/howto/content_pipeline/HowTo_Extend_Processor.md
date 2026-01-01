@@ -6,6 +6,11 @@ requireMSLicense: true
 
 MonoGame lets you modify or extend the behavior of any standard Content Pipeline processor that ships with the product. See [Standard Content Importers and Content Processors](../../whatis/content_pipeline/CP_StdImpsProcs.md) for a description of standard processors.
 
+> [!IMPORTANT]
+> For the MGCB system (MGCB Editor), all custom pipeline extension libraries **MUST** target `.NET 8` or lower, this is due to the Editor and Command-line project only supporting `.NET 8` currently.  If you get errors with an Extension at build time, the `.NET` version of the library is the most likely cause.
+>
+> This will be resolved with the introduction of the new [Content Builder Project](/articles/getting_started/content_pipeline/content_builder_project.md) solution, which removes such limitations.
+
 Because there are so many asset variants supported by different digital content creation (DCC) tools, it is often useful to be able to modify how one of the standard processors operates. The following examples illustrate some of the kinds of things you might want to do.
 
 > [!TIP]
