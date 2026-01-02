@@ -12,12 +12,18 @@ Unlike game engines (such as Unity, Unreal or Godot), MonoGame is a *framework*.
 
 While the environment setup process is similar to the standard setup process for C# development, there are some MonoGame specific steps. These can vary slightly depending on your operating system and the *Integrated Development Environment* (IDE).
 
+## Chapter Video
+
+|<iframe style="max-width: 50%; aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/Otx-8ON90cc?si=3q9i4vJQGba9UA9B" title="Live Recording" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>|
+|:-:|
+|**Live Recording**|
+
 ## Installing the .NET SDK
 
 The first thing we need to do is install the .NET *Software Development Kit* (SDK). To install it, follow the instructions based on your operating system below:
 
 > [!IMPORTANT]
-> As of MonoGame 3.8.2, the minimum supported version of the .NET SDK is .NET 8.
+> As of MonoGame 3.8.4, the recommended minimum version of the .NET SDK is .NET 9, .NET 10 is also supported.
 
 ### [Windows](#tab/windows)
 
@@ -25,7 +31,7 @@ The first thing we need to do is install the .NET *Software Development Kit* (SD
 2. Choose the version of the .NET SDK to install and click the **Download .NET SDK x64** button to start the download.
 
     > [!NOTE]
-    > The minimum supported version is .NET 8
+    > The minimum recommended version is a minimum of .NET 9, .NET 10 is also supported.
 
 3. Once the download finishes, run the installer.
 
@@ -35,7 +41,7 @@ The first thing we need to do is install the .NET *Software Development Kit* (SD
 2. Choose the version of the .NET SDK to install and click the *Download .NET SDK x64 (Intel)* button start the download of the .NET SDK Installer.
 
     > [!NOTE]
-    > The minimum supported version is .NET 8
+    > The minimum recommended version is a minimum of .NET 9, .NET 10 is also supported.
 
 3. Once the download finishes, run the installer.  
 
@@ -52,7 +58,7 @@ sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
 ```
 
 > [!NOTE]
-> The minimum supported version is .NET 8
+> The minimum recommended version is a minimum of .NET 9, .NET 10 is also supported.
 
 ---
 
