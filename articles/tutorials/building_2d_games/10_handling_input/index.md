@@ -14,6 +14,12 @@ Each of these input types has a `GetState` method that, when called, checks what
 
 In this chapter, you will learn how to use each of these dedicated input classes to handle player input.
 
+## Chapter Video
+
+|<iframe style="max-width: 50%; aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/z8Dd_OblV-g?si=aqeyQDAyyEbfTAZf" title="Live Recording" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>|
+|:-:|
+|**Live Recording**|
+
 ## Keyboard Input
 
 The keyboard is often the primary input device for PC games, used for everything from character movement to menu navigation. MonoGame provides the [**Keyboard**](xref:Microsoft.Xna.Framework.Input.Keyboard) class to handle keyboard input, making it easy to detect which keys are being pressed at any time.  Calling [**Keyboard.GetState**](xref:Microsoft.Xna.Framework.Input.Keyboard.GetState) will retrieve the current state of the keyboard as a [**KeyboardState**](xref:Microsoft.Xna.Framework.Input.KeyboardState) struct.
