@@ -13,6 +13,12 @@ In this chapter you will:
 - Structure your library for reusability.
 - Set up the foundation for creating shared game components.
 
+## Chapter Video
+
+|<iframe style="max-width: 50%; aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/HdG-a7OFDeQ?si=i4knFHIw-NRdxuRO" title="Live Recording" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>|
+|:-:|
+|**Live Recording**|
+
 ## What Is a Class Library
 
 Think of a class library like a toolbox for your game development. Just as a mechanic keeps their most-used tools in a toolbox they bring to every job, a class library stores code components you will want to use in multiple game projects. Instead of recreating these tools for each new game (or copying and pasting code), you organize them in one place where they are easy to find, use, and improve over time.

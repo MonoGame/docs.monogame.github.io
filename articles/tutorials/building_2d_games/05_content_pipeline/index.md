@@ -5,6 +5,12 @@ description: Learn the advantages of using the Content Pipeline to load assets a
 
 Every game has assets: images to represent the visual graphics to players, audio to provide sound effects and background music, fonts to render text with, and much more.  These assets start out as raw files (e.g. *.png* image files or *.mp3* audio files), which you will need to load into the game to use.
 
+## Chapter Video
+
+|<iframe style="max-width: 50%; aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/7Q9xZScrrCg?si=xicd9mSs3d90YzvK" title="Live Recording" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>|
+|:-:|
+|**Live Recording**|
+
 ## Loading Assets
 
 Loading assets can be done during runtime directly from file, or it can be loaded through the **Content Pipeline**.  Both of these methods are two sides of the same coin, and there are trade offs to each approach.

@@ -5,6 +5,12 @@ description: Explore the contents of the Game1 file generated when creating a ne
 
 After you created a new MonoGame project using the *MonoGame Cross-Platform Desktop Application* template in [Chapter 02](../02_getting_started/index.md#creating-your-first-monogame-application), you will notice the generated files and project structure that serve as a starting point for your game application.  While MonoGame offers different templates based on target platform, all projects will contain the `Game1.cs` file.
 
+## Chapter Video
+
+|<iframe style="max-width: 50%; aspect-ratio: 16 / 9; width: 100%;" src="https://www.youtube.com/embed/urrmbSrL3KM?si=vbEtaFXdgbf16Ut5" title="Live Recording" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>|
+|:-:|
+|**Live Recording**|
+
 ## Exploring the Game1 Class
 
 At the core of a MonoGame project is the [**Game**](xref:Microsoft.Xna.Framework.Game) class.  This class handles the initialization of graphics services, initialization of the game, loading content, updating, and rendering the game.  When you create a new MonoGame project, this [**Game**](xref:Microsoft.Xna.Framework.Game) class is implemented as the `Game1` class that you can customize as needed for your specific game.

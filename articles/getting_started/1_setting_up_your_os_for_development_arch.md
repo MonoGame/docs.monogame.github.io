@@ -6,7 +6,7 @@ description: This section provides a step-by-step guide for setting up your deve
 > [!TIP]
 > Arch Linux is a rolling release distribution. This guide was tested in October 2025 with kernel `version 6.15.9-arch1-1`.
 
-To develop with MonoGame in C#, you will need to install the .NET 9 SDK. As of MonoGame 3.8.4.1 the recommended version is .NET 9.
+To develop with MonoGame in C#, you will need to install the .NET 9 SDK. As of MonoGame 3.8.4.1 the recommended version is .NET 9, .NET 10 is also supported.
 
 > [!TIP]
 > You can still continue to use .NET 8 if you wish, you will just need to downgrade your client project .NET version in the `csproj` setup for your project (if using the default templates)

@@ -6,6 +6,11 @@ requireMSLicense: true
 
 In a font description (.spritefont) file, the `<CharacterRegions>` area can be used to add additional characters to a font description. This enables you to use a [SpriteFont](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) to render an additional range of characters.
 
+> [!IMPORTANT]
+> For the MGCB system (MGCB Editor), all custom pipeline extension libraries **MUST** target `.NET 8` or lower, this is due to the Editor and Command-line project only supporting `.NET 8` currently.  If you get errors with an Extension at build time, the `.NET` version of the library is the most likely cause.
+>
+> This will be resolved with the introduction of the new [Content Builder Project](/articles/getting_started/content_pipeline/content_builder_project.md) solution, which removes such limitations.
+
 For some languages, this approach is not ideal. For example, Chinese and Japanese both have many thousands of characters. Adding the full range of characters to `<CharacterRegions>` dramatically increases the size of the font asset and the time required to build the font asset. A better solution adds individual characters whenever the specific characters are needed. You can create a custom content processor to implement this solution.
 
 In this example, a file called _messages.txt_ contains all the text rendered by the game. The custom processor adds all the characters contained in the text in this file to a [FontDescription](xref:Microsoft.Xna.Framework.Content.Pipeline.Graphics.FontDescription). Then it processes the object in the standard way using the base [FontDescriptionProcessor](xref:Microsoft.Xna.Framework.Content.Pipeline.Processors.FontDescriptionProcessor) functionality. All the characters in messages.txt will then be available to the [SpriteFont](xref:Microsoft.Xna.Framework.Graphics.SpriteFont) object at run time.
