@@ -54,6 +54,7 @@
           "**/videos/**",
           "**/files/**",
           "**/snippets/**",
+          "**/*.docx",
           "CNAME"
         ]
       }
