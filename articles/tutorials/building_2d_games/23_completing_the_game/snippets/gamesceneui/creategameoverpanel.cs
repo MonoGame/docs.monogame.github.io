@@ -2,10 +2,10 @@ private Panel CreateGameOverPanel(TextureAtlas atlas)
 {
     Panel panel = new Panel();
     panel.Anchor(Gum.Wireframe.Anchor.Center);
-    panel.WidthUnits = DimensionUnitType.Absolute;
-    panel.HeightUnits = DimensionUnitType.Absolute;
-    panel.Width = 264.0f;
-    panel.Height = 70.0f;
+    panel.Visual.WidthUnits = DimensionUnitType.Absolute;
+    panel.Visual.HeightUnits = DimensionUnitType.Absolute;
+    panel.Visual.Width = 264.0f;
+    panel.Visual.Height = 70.0f;
     panel.IsVisible = false;
 
     TextureRegion backgroundRegion = atlas.GetRegion("panel-background");
