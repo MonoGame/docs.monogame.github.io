@@ -39,7 +39,7 @@ Gum addresses these challenges with ready-made solutions, allowing us to focus o
 >
 > Keep in mind that while it is possible to build a full UI system without any external dependencies, creating a layout engine is complicated and beyond the scope of this tutorial. Instead, we will be taking advantage of the Gum NuGet package.
 >
-> Gum is a powerful system enabling the creation of virtually any game UI, and we will be covering some of the basics of its use in this tutorial. The full Gum documentation can be found here: [https://docs.flatredball.com/gum/code/monogame](https://docs.flatredball.com/gum/code/monogame)
+> Gum is a powerful system enabling the creation of virtually any game UI, and we will be covering some of the basics of its use in this tutorial. The full Gum documentation can be found here: [https://docs.flatredball.com/gum/code/about](https://docs.flatredball.com/gum/code/about)
 
 ## Gum Concepts
 
@@ -218,8 +218,8 @@ startButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
 
 // Set the X and Y position so it is 20px from the left edge
 // and 20px from the bottom edge.
-startButton.Visual.X = 20;
-startButton.Visual.Y = -20;
+startButton.X = 20;
+startButton.Y = -20;
 ```
 
 The `Click` event is raised whenever the button is activated and provides a standard way to respond regardless of input device:
@@ -291,7 +291,7 @@ Gum allows you to customize visuals in two ways:
 With simple property changes, you can directly assign values in code.  For example, the following code example changes the width of a button:
 
 ```cs
-startButton.Visual.Width = 100;
+startButton.Width = 100;
 ```
 
 Direct property assignment works well for initial setup, such as positioning elements or setting their dimensions when first creating your UI.  However, when you need visual elements to respond to user interactions (like highlighting a button when it is focused), a different approach is required.
@@ -321,7 +321,7 @@ To add the Gum NuGet package in Visual Studio Code:
 2. Choose `Add NuGet Package` from the context menu.
 3. Enter `Gum.MonoGame` in the `Add NuGet Package` search prompt and press Enter.
 4. When the search finishes, select the `Gum.MonoGame` package in the results
-5. When prompted for a version choose version `2025.8.3.3`.
+5. When prompted for a version choose version `2025.12.9.1`.
 
 #### [Visual Studio 2022](#tab/vs2022)
 
@@ -332,7 +332,7 @@ To Add the Gum NuGet package in Visual Studio 2022:
 3. In the NuGet Package Manager window, select the `Browse` tab if it is not already selected.
 4. In the search box, enter `Gum.MonoGame`.
 5. Select the "Gum.MonoGame" package from the search results.
-6. On the right, in the version dropdown, select version `2025.8.3.3` and click the "Install" button.
+6. On the right, in the version dropdown, select version `2025.12.9.1` and click the "Install" button.
 
 #### [dotnet CLI](#tab/dotnetcli)
 
@@ -342,7 +342,7 @@ To add the Gum NuGet package using the dotnet CLI:
 2. Enter the following command:
 
     ```sh
-    dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2025.8.3.3
+    dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2025.12.9.1
     ```
 
 ---
@@ -351,11 +351,11 @@ To add the Gum NuGet package using the dotnet CLI:
 > You can verify the package was successfully added by examining your `DungeonSlime.csproj` file, which should now contain a reference like:
 >
 > ```xml
-> <PackageReference Include="Gum.MonoGame" Version="2025.8.3.3" />
+> <PackageReference Include="Gum.MonoGame" Version="2025.12.9.1" />
 > ```
 
 > [!IMPORTANT]
-> This tutorial uses version `2025.8.3.3` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/upgrading) before updating in case there are any breaking changes from the code that is presented in this tutorial.
+> This tutorial uses version `2025.12.9.1` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/upgrading) before updating in case there are any breaking changes from the code that is presented in this tutorial.
 
 ### Adding UI Sound Effect
 
@@ -397,7 +397,7 @@ Finally, update the [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initializ
 
 The following is a breakdown of this initialization process:
 
-1. **Basic Initialization**: `GumService.Default.Initialize(this, DefaultVisualsVersion.V2)` sets up the Gum system with our game instance.  This is required for any gum project. The second parameter specifies the default visual styling. V2 is the latest version which makes it easy to style the default controls.
+1. **Basic Initialization**: `GumService.Default.Initialize(this, DefaultVisualsVersion.V3)` sets up the Gum system with our game instance.  This is required for any gum project. The second parameter specifies the default visual styling. V3 is the latest version which makes it easy to style the default controls.
 
     > [!NOTE]
     > We only need to pass our [**Game**](xref:Microsoft.Xna.Framework.Game) instance and the visuals version since we are using Gum as a code-first approach.  Gum also offers a visual editor that creates Gum project files. When using the editor, you will need to also pass the Gum Project file to `Initialize`. For more information on how to use the Gum visual editor, see the [Gum Project Forms Tutorial](https://docs.flatredball.com/gum/code/monogame/tutorials/gum-project-forms-tutorial).
@@ -668,7 +668,7 @@ While this UI is now functional, you may have noticed that it uses Gum's default
     :::question-answer
     The two ways to customize Gum UI elements are:
 
-    1. **Direct property assignment**: Setting properties directly in code (like `MyButton.Visual.Width = 100`). This works well for initial setup and static properties.
+    1. **Direct property assignment**: Setting properties directly in code (like `MyButton.Width = 100`). This works well for initial setup and static properties.
     2. **States**: Using Gum's state system (`StateSave` objects) to define different visual states that can be applied in response to specific conditions or events. States are automatically applied by Forms controls in response to user interactions (like focus or highlighting).
 
     States are useful for dynamic changes that occur during gameplay, as they separate visual response logic from game logic.

@@ -40,6 +40,8 @@ The managed code objects created by the Content Processor are serialized into a 
 
 The format of data in the .XNB file is tightly coupled to the MonoGame Framework. It is not designed for use by other runtime libraries.
 
+If you are intested in the format of the .XNB files you can view the [XNB specification](XNB Format.docx).
+
 ### Runtime Components
 
 Runtime components of the Content Pipeline support loading and using the transformed game asset by your MonoGame game. These components use the [MonoGame library](../monogame_class_library/index.md), which can be extended to create custom components.

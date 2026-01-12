@@ -18,7 +18,7 @@ private void CreateOptionsPanel() {
 
     var musicSlider = new Slider();
     musicSlider.Anchor(Gum.Wireframe.Anchor.Top);
-    musicSlider.Visual.Y = 30f;
+    musicSlider.Y = 30f;
     musicSlider.Minimum = 0;
     musicSlider.Maximum = 1;
     musicSlider.Value = Core.Audio.SongVolume;
@@ -36,7 +36,7 @@ private void CreateOptionsPanel() {
 
     var sfxSlider = new Slider();
     sfxSlider.Anchor(Gum.Wireframe.Anchor.Top);
-    sfxSlider.Visual.Y = 93;
+    sfxSlider.Y = 93;
     sfxSlider.Minimum = 0;
     sfxSlider.Maximum = 1;
     sfxSlider.Value = Core.Audio.SoundEffectVolume;

@@ -7,6 +7,7 @@ private void CheckGamePadInput()
     if (gamePadOne.WasButtonJustPressed(Buttons.Start))
     {
         PauseGame();
+        return;
     }
 
     // Existing gamepad input code
