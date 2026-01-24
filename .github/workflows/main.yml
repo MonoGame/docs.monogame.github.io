@@ -45,6 +45,15 @@ jobs:
       - name: Run Build
         run: dotnet docfx ci.docfx.json
 
+      - name: Generate PDF
+        run: dotnet docfx pdf ci.docfx.json
+
+      - name: Copy PDF to downloads and clean up
+        run: |
+          mkdir -p _site/downloads
+          cp _site/pdf/MonoGameGuide.pdf _site/downloads/
+          rm -rf _site/pdf
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

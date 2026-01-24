@@ -422,3 +422,168 @@ td > .xref {
     margin-bottom: 3rem;
   }
 }
+
+/*******************************************************************************
+*** Section: Print Styles
+*** Styles applied when printing or generating PDF
+*******************************************************************************/
+
+@media print {
+  /* Hide site footer in PDF */
+  footer,
+  .footer,
+  #footer {
+    display: none !important;
+  }
+
+  /* Hide navigation elements */
+  .navbar,
+  nav.navbar,
+  header nav {
+    display: none !important;
+  }
+
+  /* Hide sidebar/TOC navigation */
+  .toc-offcanvas,
+  .sidetoc {
+    display: none !important;
+  }
+
+  /* Hide contribution/edit buttons */
+  .contribution,
+  .edit-this-page {
+    display: none !important;
+  }
+
+  /* Hide video elements */
+  video,
+  iframe[src*="youtube"],
+  iframe[src*="vimeo"],
+  .video-container,
+  .embed-responsive {
+    display: none !important;
+  }
+
+  /* Force question-answer elements to be revealed in PDF */
+  .question-answer,
+  .question-answer:not(.revealed) {
+    color: var(--bs-body-color) !important;
+    background-color: var(--bs-body-bg) !important;
+    user-select: auto !important;
+  }
+
+  .question-answer:not(.revealed)::before {
+    display: none !important;
+  }
+
+  .question-answer *,
+  .question-answer:not(.revealed) * {
+    opacity: 1 !important;
+  }
+
+  /* Prevent page breaks inside question-answer blocks */
+  .question-answer {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Prevent page breaks inside paragraphs and common block elements */
+  /* Exclude TOC navigation which needs to allow breaks for long lists */
+  p, blockquote, .alert {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Allow page breaks in TOC navigation lists */
+  .toc ul,
+  .toc li,
+  .toc .nav,
+  .sidetoc ul,
+  .sidetoc li {
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  /* Keep content list items together, but not TOC */
+  article ul,
+  article ol,
+  article li,
+  main > ul,
+  main > l,
+  main > li {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Ensure proper page breaks */
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+  }
+
+  pre, code, table {
+    page-break-inside: avoid;
+  }
+
+  /* Flatten tabs for PDF - show all tab content */
+  .tabGroup {
+    border: none !important;
+  }
+
+  .tabGroup > ul[role="tablist"] {
+    display: none !important;
+  }
+
+  .tabGroup > section,
+  .tabGroup > .tabpanel,
+  .tabGroup .tab-pane,
+  .tabGroup [role="tabpanel"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid #ddd !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Base label styling for tab panels */
+  .tabGroup > section::before,
+  .tabGroup > .tabpanel::before,
+  .tabGroup [role="tabpanel"]::before {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    color: #e73c00;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    border-left: 3px solid #e73c00;
+  }
+
+  /* OS-specific tab labels - scoped to tabGroup */
+  .tabGroup [id*="_windows"]::before { content: "Windows" !important; }
+  .tabGroup [id*="_macos"]::before { content: "macOS" !important; }
+  .tabGroup [id*="_ubuntu"]::before { content: "Ubuntu" !important; }
+  .tabGroup [id*="_linux"]:not([id*="_arch"])::before { content: "Linux" !important; }
+  .tabGroup [id$="_arch"]::before,
+  .tabGroup [id*="_arch_"]::before { content: "Arch Linux" !important; }
+
+  /* IDE-specific tab labels - scoped to tabGroup */
+  .tabGroup [id*="_vscode"]::before { content: "Visual Studio Code" !important; }
+  .tabGroup [id*="_rider"]::before { content: "JetBrains Rider" !important; }
+
+  /* Other common tab labels - scoped to tabGroup */
+  .tabGroup [id*="_csharp"]::before { content: "C#" !important; }
+  .tabGroup [id*="_opengl"]::before { content: "OpenGL" !important; }
+  .tabGroup [id*="_directx"]::before { content: "DirectX" !important; }
+  .tabGroup [id*="_desktopgl"]::before { content: "DesktopGL" !important; }
+
+  /* Remove last border */
+  .tabGroup > section:last-child,
+  .tabGroup > .tabpanel:last-child,
+  .tabGroup [role="tabpanel"]:last-child {
+    border-bottom: none !important;
+  }
+}

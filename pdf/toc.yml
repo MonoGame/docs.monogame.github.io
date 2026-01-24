@@ -1,0 +1,11 @@
+pdf: true
+pdfFileName: MonoGameGuide.pdf
+pdfTocPage: true
+pdfCoverPage: pdf/cover.html
+pdfPrintBackground: true
+order: 200
+items:
+- name: Articles
+  href: articles/toc.yml
+- name: API Reference
+  href: ../api/toc.yml

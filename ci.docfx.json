@@ -41,6 +41,8 @@
           "roadmap/**/*.md",
           "roadmap/**/*.yml",
           "errors/**/*.md",
+          "pdf/**/*.md",
+          "pdf/**/*.yml",
           "toc.yml",
           "*.md"
         ],
@@ -69,7 +71,8 @@
       "_openGraphImage": "images/social_embed_image.png",
       "_description": "One framework for creating powerful cross-platform games.",
       "_appTitle": "MonoGame",
-      "_enableSearch": true
+      "_enableSearch": true,
+      "pdfFooterTemplate": "<div style='width: 100%; font-size: 10px; border-top: 1px solid #ccc; padding-top: 5px;'><div style='float: left;'>MonoGame Documentation</div><div style='float: right;'><span class='pageNumber'></span> / <span class='totalPages'></span></div></div>"
     },
     "template": [
       "default",

@@ -1,0 +1,163 @@
+items:
+  - name: Introduction
+    href: ../index.md
+  - name: Getting Started
+    href: ../../articles/getting_started/index.md
+    items:
+      - name: Setting up MacOS
+        href: ../../articles/getting_started/1_setting_up_your_os_for_development_macos.md
+      - name: Setting up Linux
+        items:
+          - name: Setting up Arch Linux
+            href: ../../articles/getting_started/1_setting_up_your_os_for_development_arch.md
+          - name: Setting up Ubuntu
+            href: ../../articles/getting_started/1_setting_up_your_os_for_development_ubuntu.md
+      - name: Setting up Windows
+        href: ../../articles/getting_started/1_setting_up_your_os_for_development_windows.md
+      - name: Using Visual Studio
+        href: ../../articles/getting_started/2_choosing_your_ide_visual_studio.md
+      - name: Using Rider
+        href: ../../articles/getting_started/2_choosing_your_ide_rider.md
+      - name: Using Visual Studio Code
+        href: ../../articles/getting_started/2_choosing_your_ide_vscode.md
+  - name: Getting to know MonoGame
+    href: ../../articles/getting_to_know/index.md
+    items:
+      - name: What is
+        href: ../../articles/getting_to_know/whatis/index.md
+        items:
+          - name: Audio
+            href: ../../articles/getting_to_know/whatis/audio/index.md
+          - name: Content Pipeline
+            href: ../../articles/getting_to_know/whatis/content_pipeline/index.md
+          - name: Graphics
+            href: ../../articles/getting_to_know/whatis/graphics/index.md
+          - name: Input
+            href: ../../articles/getting_to_know/whatis/input/index.md
+          - name: The Game Loop
+            href: ../../articles/getting_to_know/whatis/game_loop/index.md
+          - name: Vector / Matrix / Quaternions
+            href: ../../articles/getting_to_know/whatis/vector_matrix_quat/index.md
+          - name: MonoGame Class Library
+            href: ../../articles/getting_to_know/whatis/monogame_class_library/index.md
+      - name: How to
+        href: ../../articles/getting_to_know/howto/index.md
+        items:
+          - name: Audio
+            href: ../../articles/getting_to_know/howto/audio/index.md
+          - name: Content Pipeline
+            href: ../../articles/getting_to_know/howto/content_pipeline/index.md
+          - name: Graphics
+            href: ../../articles/getting_to_know/howto/graphics/index.md
+          - name: Input
+            href: ../../articles/getting_to_know/howto/input/index.md
+  - name: Advanced Topics
+    items:
+      - name: Packaging
+        href: ../../articles/getting_started/packaging_games.md
+      - name: Preparing for consoles
+        href: ../../articles/getting_started/preparing_for_consoles.md
+      - name: Using Development Nuget Packages
+        href: ../../articles/getting_started/using_development_nuget_packages.md
+      - name: Tools
+        items:
+          - name: Introduction
+            href: ../../articles/getting_started/tools/index.md
+          - name: MGCB
+            href: ../../articles/getting_started/tools/mgcb.md
+          - name: MGCB Editor
+            href: ../../articles/getting_started/tools/mgcb_editor.md
+          - name: MGFXC
+            href: ../../articles/getting_started/tools/mgfxc.md
+      - name: Content Pipeline
+        items:
+          - name: Introduction
+            href: ../../articles/getting_started/content_pipeline/index.md
+          - name: Why use the Content Pipeline
+            href: ../../articles/getting_started/content_pipeline/why_content_pipeline.md
+          - name: Using the Content Builder Project
+            href: ../../articles/getting_started/content_pipeline/content_builder_project.md
+          - name: Automating the Content Builder
+            href: ../../articles/getting_started/content_pipeline/automating_content_builder.md
+          - name: Using MGCB Editor
+            href: ../../articles/getting_started/content_pipeline/using_mgcb_editor.md
+          - name: Custom Effects
+            href: ../../articles/getting_started/content_pipeline/custom_effects.md
+          - name: TrueType fonts
+            href: ../../articles/getting_started/content_pipeline/adding_ttf_fonts.md
+          - name: Localization
+            href: ../../articles/getting_started/content_pipeline/localization.md
+  - name: Migration
+    items:
+      - name: Migrating from XNA
+        href: ../../articles/migration/migrate_xna.md
+      - name: Migrating from 3.7
+        href: ../../articles/migration/migrate_37.md
+      - name: Upgrading 3.8.x to latest
+        href: ../../articles/migration/migrate_38.md
+      - name: Updating Versions
+        href: ../../articles/migration/updating_versions.md
+  - name: Tutorials
+    href: ../../articles/tutorials/index.md
+    items:
+      - name: Building 2D Games
+        href: ../../articles/tutorials/building_2d_games/index.md
+        items:
+          - name: "01: What Is MonoGame?"
+            href: ../../articles/tutorials/building_2d_games/01_what_is_monogame/index.md
+          - name: "02: Getting Started"
+            href: ../../articles/tutorials/building_2d_games/02_getting_started/index.md
+          - name: "03: The Game1 File"
+            href: ../../articles/tutorials/building_2d_games/03_the_game1_file/index.md
+          - name: "04: Creating a Class Library"
+            href: ../../articles/tutorials/building_2d_games/04_creating_a_class_library/index.md
+          - name: "05: Content Pipeline"
+            href: ../../articles/tutorials/building_2d_games/05_content_pipeline/index.md
+          - name: "06: Working with Textures"
+            href: ../../articles/tutorials/building_2d_games/06_working_with_textures/index.md
+          - name: "07: Optimizing Texture Rendering"
+            href: ../../articles/tutorials/building_2d_games/07_optimizing_texture_rendering/index.md
+          - name: "08: The Sprite Class"
+            href: ../../articles/tutorials/building_2d_games/08_the_sprite_class/index.md
+          - name: "09: The AnimatedSprite Class"
+            href: ../../articles/tutorials/building_2d_games/09_the_animatedsprite_class/index.md
+          - name: "10: Handling Input"
+            href: ../../articles/tutorials/building_2d_games/10_handling_input/index.md
+          - name: "11: Input Management"
+            href: ../../articles/tutorials/building_2d_games/11_input_management/index.md
+          - name: "12: Collision Detection"
+            href: ../../articles/tutorials/building_2d_games/12_collision_detection/index.md
+          - name: "13: Working With Tilemaps"
+            href: ../../articles/tutorials/building_2d_games/13_working_with_tilemaps/index.md
+          - name: "14: Sound Effects and Music"
+            href: ../../articles/tutorials/building_2d_games/14_soundeffects_and_music/index.md
+          - name: "15: Audio Controller"
+            href: ../../articles/tutorials/building_2d_games/15_audio_controller/index.md
+          - name: "16: Working with SpriteFonts"
+            href: ../../articles/tutorials/building_2d_games/16_working_with_spritefonts/index.md
+          - name: "17: Scenes"
+            href: ../../articles/tutorials/building_2d_games/17_scenes/index.md
+          - name: "18: Texture Sampling"
+            href: ../../articles/tutorials/building_2d_games/18_texture_sampling/index.md
+          - name: "19: User Interface Fundamentals"
+            href: ../../articles/tutorials/building_2d_games/19_user_interface_fundamentals/index.md
+          - name: "20: Implementing UI with Gum"
+            href: ../../articles/tutorials/building_2d_games/20_implementing_ui_with_gum/index.md
+          - name: "21: Customizing Gum UI"
+            href: ../../articles/tutorials/building_2d_games/21_customizing_gum_ui/index.md
+          - name: "22: Snake Game Mechanics"
+            href: ../../articles/tutorials/building_2d_games/22_snake_game_mechanics/index.md
+          - name: "23: Completing the Game"
+            href: ../../articles/tutorials/building_2d_games/23_completing_the_game/index.md
+          - name: "24: Shaders"
+            href: ../../articles/tutorials/building_2d_games/24_shaders/index.md
+          - name: "25: Packaging Your Game for Distribution"
+            href: ../../articles/tutorials/building_2d_games/25_packaging_game/index.md
+          - name: "26: Publishing Your Game to itch.io"
+            href: ../../articles/tutorials/building_2d_games/26_publish_to_itch/index.md
+          - name: "27: Conclusion and Next Steps"
+            href: ../../articles/tutorials/building_2d_games/27_conclusion/index.md
+  - name: Console Access
+    href: ../../articles/console_access.md
+  - name: Help and Support
+    href: ../../articles/help_and_support.md

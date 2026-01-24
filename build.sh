@@ -21,4 +21,14 @@ fi
 echo "Building DocFx..."
 dotnet docfx docfx.json
 
+# Generate PDF
+echo "Generating PDF..."
+dotnet docfx pdf docfx.json
+
+# Copy PDF to downloads folder and clean up
+echo "Copying PDF to downloads folder..."
+mkdir -p _site/downloads
+cp _site/pdf/MonoGameGuide.pdf _site/downloads/
+rm -rf _site/pdf
+
 echo "Build and documentation generation completed successfully!"
