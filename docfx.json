@@ -10,6 +10,7 @@
         }
       ],
       "dest": "api",
+      "filter": "filterConfig.yml",
       "includePrivateMembers": false,
       "disableGitFeatures": false,
       "disableDefaultFilter": false,
@@ -41,6 +42,8 @@
           "roadmap/**/*.md",
           "roadmap/**/*.yml",
           "errors/**/*.md",
+          "pdf/**/*.md",
+          "pdf/**/*.yml",
           "toc.yml",
           "*.md"
         ],
@@ -69,7 +72,8 @@
       "_openGraphImage": "images/social_embed_image.png",
       "_description": "One framework for creating powerful cross-platform games.",
       "_appTitle": "MonoGame",
-      "_enableSearch": true
+      "_enableSearch": true,
+      "pdfFooterTemplate": "<div style='width: 100%; font-size: 11px; font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif; border-top: 2px solid #e73c00; padding: 8px 20px 0 20px; display: flex; justify-content: space-between; align-items: center;'><span style='color: #e73c00; font-weight: 600;'>MonoGame Complete Reference Guide</span><span style='color: #666;'>Page <span class='pageNumber'></span> of <span class='totalPages'></span></span></div>"
     },
     "template": [
       "default",

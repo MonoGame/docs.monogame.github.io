@@ -40,7 +40,7 @@ The managed code objects created by the Content Processor are serialized into a 
 
 The format of data in the .XNB file is tightly coupled to the MonoGame Framework. It is not designed for use by other runtime libraries.
 
-If you are intested in the format of the .XNB files you can view the [XNB specification](XNB Format.docx).
+If you are intested in the format of the .XNB files you can view the [XNB specification](XNB%20Format.docx).
 
 ### Runtime Components
 
