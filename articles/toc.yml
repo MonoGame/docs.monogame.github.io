@@ -24,6 +24,8 @@ items:
         href: /articles/getting_started/2_choosing_your_ide_rider.html
       - name: Using Visual Studio Code
         href: /articles/getting_started/2_choosing_your_ide_vscode.html
+      - name: How to install MonoGame Preview packages
+        href: /articles/getting_to_know/howto/HowTo_Install_Preview_Release.html
   - name: Getting to know MonoGame
     href: getting_to_know/index.md
     items:
