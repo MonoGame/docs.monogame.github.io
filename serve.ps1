@@ -5,4 +5,4 @@ $ErrorActionPreference = "Stop"
 .\build.ps1
 
 # Start DocFx serve
-dotnet docfx docfx.json --serve
+dotnet docfx serve .\_site

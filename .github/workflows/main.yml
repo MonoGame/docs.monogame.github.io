@@ -42,17 +42,24 @@ jobs:
       - name: Restore dotnet tools
         run: dotnet tool restore
 
+      - name: Run Metadata Build
+        run: dotnet docfx metadata ci.docfx.json
+
       - name: Run Build
-        run: dotnet docfx ci.docfx.json
+        run: dotnet docfx build ci.docfx.json
+
+      - name: Create PDF build folder
+        run: |
+          mkdir -p _pdf
 
       - name: Generate PDF
-        run: dotnet docfx pdf ci.docfx.json
+        run: dotnet docfx pdf docfx.pdf.json --output _pdf
 
       - name: Copy PDF to downloads and clean up
         run: |
           mkdir -p _site/downloads
-          cp _site/pdf/MonoGameGuide.pdf _site/downloads/
-          rm -rf _site/pdf
+          cp _pdf/pdf/MonoGameGuide.pdf _site/downloads/
+          rm -rf _pdf
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
