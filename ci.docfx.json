@@ -41,8 +41,6 @@
           "roadmap/**/*.md",
           "roadmap/**/*.yml",
           "errors/**/*.md",
-          "pdf/**/*.md",
-          "pdf/**/*.yml",
           "toc.yml",
           "*.md"
         ],
