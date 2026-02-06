@@ -53,7 +53,9 @@ jobs:
           mkdir -p _pdf
 
       - name: Generate PDF
-        run: dotnet docfx pdf docfx.pdf.json --output _pdf
+        run: |
+          dotnet docfx build docfx.pdf.json --output _pdf
+          dotnet docfx pdf docfx.pdf.json --output _pdf
 
       - name: Copy PDF to downloads and clean up
         run: |
@@ -71,4 +73,5 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
+
         uses: actions/deploy-pages@v4
