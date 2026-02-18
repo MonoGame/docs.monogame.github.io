@@ -6,4 +6,4 @@ set -e
 ./build.sh
 
 # Start DocFx serve
-dotnet docfx docfx.json --serve
+dotnet docfx serve _site

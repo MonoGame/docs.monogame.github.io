@@ -19,16 +19,22 @@ if (-not (Test-Path $FrameworkDll) -or -not (Test-Path $PipelineDll)) {
 
 # Build documentation
 Write-Host "Building DocFx..." -ForegroundColor Green
-dotnet docfx docfx.json
+dotnet docfx metadata docfx.json
 
-# Generate PDF
+# Build documentation
+Write-Host "Building DocFx..." -ForegroundColor Green
+dotnet docfx build docfx.json
+
+New-Item -ItemType Directory -Force -Path "_pdf" | Out-Null
+
+# Generate PDF (using PDF-specific config that includes pdf/** files)
 Write-Host "Generating PDF..." -ForegroundColor Green
-dotnet docfx pdf docfx.json
+dotnet docfx pdf docfx.pdf.json --output _pdf
 
 # Copy PDF to downloads folder and clean up
 Write-Host "Copying PDF to downloads folder..." -ForegroundColor Green
 New-Item -ItemType Directory -Force -Path "_site/downloads" | Out-Null
-Copy-Item "_site/pdf/MonoGameGuide.pdf" "_site/downloads/"
-Remove-Item -Path "_site/pdf" -Recurse -Force
+Copy-Item "_pdf/pdf/MonoGameGuide.pdf" "_site/downloads/"
+Remove-Item -Path "_pdf" -Recurse -Force
 
 Write-Host "Build and documentation generation completed successfully!" -ForegroundColor Green
