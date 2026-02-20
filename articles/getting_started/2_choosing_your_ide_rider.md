@@ -124,6 +124,11 @@ This way both Rider and installed plugins will always be up to date with the new
 
 ### Troubleshooting
 
+> [!NOTE]
+> In case you need any further assistance or problem troubleshooting, please drop a message into the 
+> [#help-rider](https://discord.com/channels/355231098122272778/1468243299855761543) channel on the
+> [MonoGame Discord server](https://discord.com/invite/monogame).
+
 #### ContentBuilder doesn't detect changes in content files in subsequent runs
 
 It is a bug with ReSharper Solution Builder used by default in Rider. Un-check the "Use ReSharper Build" checkbox
