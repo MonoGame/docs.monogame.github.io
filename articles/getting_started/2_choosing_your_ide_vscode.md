@@ -78,9 +78,9 @@ The official Microsoft version includes proprietary features like settings sync,
 
 ## Setting up VS Code for development with MonoGame
 
-1. Open Visual Studio Code
-1. Open up its terminal window (`Ctrl` + `` ` ``)
-1. Run the following command to install MonoGame Templates
+1. Open Visual Studio Code.
+1. Open up its terminal window (`Ctrl` + `` ` ``).
+1. Run the following command to install MonoGame Templates:
 
     ```sh
     dotnet new install MonoGame.Templates.CSharp
@@ -141,15 +141,15 @@ The .NET MAUI extension adds features for building mobile apps, including:
 
 ## Creating a new MonoGame project
 
-1. Open up an empty folder in Visual Studio Code
-2. Open up its terminal window (`Ctrl` + `` ` ``)
+1. Open up an empty folder in Visual Studio Code.
+2. Open up its terminal window (`Ctrl` + `` ` ``).
 3. Run the following command to create an empty project for desktop platforms:
 
     ```sh
     dotnet new mgdesktopgl
     ```
 
-4. Once the files are created, open up the `Game1.cs` file and wait a second for the C# extension to load
+4. Once the files are created, open up the `Game1.cs` file and wait a second for the C# extension to load.
 5. You can now press F5, select C# and then your projects name if Visual Studio Code asks you, and it should start up your brand new game!
 
 ## Update Project Tool references
@@ -159,8 +159,8 @@ The MonoGame Content Editor (MGCB) it a tool delivered through NuGet for your pr
 Once you have created your project you should run the following terminal/command-line command to ensure the tool (and the pipeline) is setup and read for your project:
 
 ```dotnetcli
-    dotnet tool restore
+dotnet tool restore
 ```
 
 > [!NOTE]
-> If you ever change the version of the tools or want to upgrade them by editing the `dotnet-tools.json` configuration, you MUST run this command again to update te tools.
+> If you ever change the version of the tools or want to upgrade them by editing the `dotnet-tools.json` configuration, you MUST run this command again to update the tools.
