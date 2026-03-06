@@ -76,7 +76,7 @@ The following conventions are used in this documentation.
 
 ### Inline Code Blocks
 
-`Inline code` blocks are used for methods, functions, and variable names when they are discussed within the paragraphs of text.  For example, when referring to a method such as `Foo` in a sentence,it will appear with this formatting.
+`Inline code` blocks are used for methods, functions, and variable names when they are discussed within the paragraphs of text.  For example, when referring to a method such as `Foo` in a sentence, it will appear with this formatting.
 
 ### Code Blocks
 
@@ -124,3 +124,4 @@ This documentation stands on the shoulders of a vibrant community that continues
 ## Get Started
 
 - [Chapter 1 - What is MonoGame](./01_what_is_monogame/index.md)
+
