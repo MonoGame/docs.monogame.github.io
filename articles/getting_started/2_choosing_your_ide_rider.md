@@ -131,12 +131,22 @@ This way both Rider and installed plugins will always be up to date with the new
 
 #### ContentBuilder doesn't detect changes in content files in subsequent runs
 
-It is a bug with ReSharper Solution Builder used by default in Rider. Un-check the "Use ReSharper Build" checkbox
-under **Settings** > **Build, Execution, Deployment** > **Toolset and Build** > **Build** section:
+ReSharper Solution Builder tries to proactively optimize MSBuild targets building, which means some targets that doesn't 
+support incremental compilation would essentially be ignored. About ReSharper build feature: https://www.jetbrains.com/help/rider/Build_Process.html
+
+There is an option under **Settings** > **Build, Execution, Deployment** > **Toolset and Build** > **Build** section 
+called "Invoke BeforeBuild and AfterBuild targets for skipped projects" to force Rider to call targets that depend on
+`BeforeBuild` and `AfterBuild`, which solves this problem:
+
+![Fix the Use ReSharper Build behaviour](./images/1_setting_up_your_development_environment/rider/rider_resharper_build_fix.png)
+
+Enable it and click "Save".
+
+If even after that change a Content Builder project doesn't get executed, you can completely disable ReSharper build under the same section:
 
 ![Uncheck the Use ReSharper Build checkbox](./images/1_setting_up_your_development_environment/rider/rider_resharper_build_uncheck.png)
 
-and click "Save".
+Don't forget to save changes.
 
 #### Issues with compiling MGFX effects under Linux
 
