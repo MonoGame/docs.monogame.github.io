@@ -3,23 +3,88 @@ title: Setting up your development environment for Rider
 description: A step-by-step guide for setting up your development IDE for Rider
 ---
 
-This is a guide on setting up your development environment for creating games with MonoGame using Rider by JetBrains. By following this guide, you will learn how to install the tools for developing C# applications and configure Rider with recommended extensions for C# development.
+This is a guide on setting up your development environment for creating games with MonoGame using JetBrains Rider.
+By following this guide, you will learn how to install and configure Rider with the recommended extension for MonoGame development.
 
-By the end, you will be fully equipped to start creating games with MonoGame using Rider.
-
-## Install Rider
-
-You can download and install Rider from: [https://www.jetbrains.com/rider/download](https://www.jetbrains.com/rider/download)
-
-![Rider download](./images/2_chosing_your_ide_rider_download.png)
+## Installing Rider
 
 > [!NOTE]
-> Rider is free for personal use, you do have to register and create an account, but otherwise all features will be unlocked.
+> Rider is [free for non-commercial use](https://www.jetbrains.com/non-commercial/), you do have to register and create an account, but otherwise all features will be unlocked.
 >
 
-## Setting up Rider for development with MonoGame
+### Toolbox App
 
-1. Open up terminal (or Powershell on Windows)
+The JetBrains Toolbox App is the recommended tool to install JetBrains products. It allows instant rollbacks, 
+having multiple Rider instances, auto-updating to the latest version, and unifies the setup experience across OSes.
+
+[Install Rider using JetBrains Toolbox](https://www.jetbrains.com/help/rider/Installation_guide.html#toolbox)
+
+![JetBrains Toolbox screenshot](./images/1_setting_up_your_development_environment/rider/toolbox_app.png)
+
+### Standalone installation
+
+In case you prefer manual installation, please follow the corresponding guide that is relevant to your operating system:
+- [Windows](https://www.jetbrains.com/help/rider/Installation_guide.html#standalone_windows)
+- [macOS](https://www.jetbrains.com/help/rider/Installation_guide.html#standalone_macOS)
+- [Linux](https://www.jetbrains.com/help/rider/Installation_guide.html#standalone_linux)
+
+## Configuring MonoGame development environment
+
+It is recommended to use the [MonoGame plugin for JetBrains Rider](https://plugins.jetbrains.com/plugin/18415-monogame) when working under your project in Rider to unlock the most available IDE features. The plugin is free, [open-source](https://github.com/seclerp/rider-monogame), and distributed under the MIT license. However, this step is still optional.
+
+To explore all available features of the MonoGame plugin for Rider, you can refer to the [rider-monogame/README.md](https://github.com/seclerp/rider-monogame?tab=readme-ov-file#monogame-plugin-for-jetbrains-rider).
+
+### [With plugin](#tab/plugin)
+
+#### Installing MonoGame plugin
+
+1. Click on the "Plugins" menu item on the Welcome screen:
+
+    ![Rider plugins menu item](./images/1_setting_up_your_development_environment/rider/rider_plugins_menu_item.png)
+
+1. Under the "Marketplace" tab, search for the "MonoGame" in the search bar
+1. Click on the "Install" button next to the MonoGame plugin:
+
+    ![Rider install MonoGame plugin](./images/1_setting_up_your_development_environment/rider/rider_plugins_monogame_install.png)
+
+1. Don't forget to restart Rider after installation, when prompted:
+
+    ![Confirm restarting Rider](./images/1_setting_up_your_development_environment/rider/rider_restart_after_installation.png)
+
+#### Installing project templates
+
+1. Click on the "New Solution" button
+1. On the left sidebar of the New Project Wizard, find the MonoGame section:
+
+    ![MonoGame section in the New Project Wizard](./images/1_setting_up_your_development_environment/rider/rider_install_templates.png)
+
+1. Click "Install MonoGame Templates".
+
+> [!WARNING]
+> As of Rider 2025.3, due to a [known bug](https://youtrack.jetbrains.com/issue/RIDER-135465), the `MonoGame.Templates.CSharp` package that Rider installs globally will not be automatically visible to the `dotnet new` from the terminal. You need to install them manually too.
+
+#### Creating a new MonoGame project
+
+1. Click on the "New Solution" button
+1. On the left sidebar of the New Project Wizard, select the MonoGame section
+1. Fill the "Solution name" and "Solution directory"
+1. Choose the project type:
+
+   ![Selection of the project type in the New Project Wizard](./images/1_setting_up_your_development_environment/rider/rider_choose_project_type.png)
+
+1. Click "Create"
+1. You can now press `F5` to compile and debug your game!
+
+> [!NOTE]
+> In case you want to use the different versions of the project templates, including preview packages, you can select another available package version under the "Available packages" field:
+> 
+> ![Selection of the templates package version in the New Project Wizard](./images/1_setting_up_your_development_environment/rider/rider_choose_template_version.png)
+
+### [Without plugin](#tab/no-plugin)
+
+#### Installing project templates
+
+1. Open up your favorite terminal
 1. Run the following command to install templates:
 
     ```sh
@@ -31,35 +96,58 @@ You can download and install Rider from: [https://www.jetbrains.com/rider/downlo
 >
 > * [How to install MonoGame Preview packages](../getting_to_know/howto/HowTo_Install_Preview_Release.md)
 
-## Creating a new MonoGame project
+#### Creating a new MonoGame project
 
-To get you started with Rider, here are the steps for setting up a new Rider MonoGame project.
+1. Click on the "New Solution" button
+1. On the left sidebar of the New Project Wizard, find the MonoGame template under the "Custom Templates" section
+1. Fill the "Solution name" and "Solution directory"
+1. Choose the project type:
 
-1. Open up Rider
-2. Click on the "New Solution" button
+   ![MonoGame templates under Custom templates in the New Project Wizard](./images/1_setting_up_your_development_environment/rider/rider_choose_template_nonplugin.png)
 
-    ![Rider new project](./images/1_setting_up_your_development_environment/rider_new_solution_button.png)
+1. Click "Create"
+1. You can now press `F5` to compile and debug your game!
 
-3. Select "MonoGame Cross-Platform Desktop Application" on the list on the left
+---
 
-    ![Rider MonoGame template](./images/1_setting_up_your_development_environment/rider_new_solution_dialog.png)
+### Keeping your environment up to date
 
-4. Press "Create"
-5. You can now press `F5` to compile and debug your game, happy coding  :)
+A couple of advice to keep your development setup up to date:
 
-> [!NOTE]
-> If you are experiencing issues with compiling effects under Linux for JetBrains Rider,
-> you might need to add the `MGFXC_WINE_PATH` environment variable to `/etc/environment` for it to be picked up.  See [5777151094034-Rider-cannot-see-all-Environmental-Variables](https://rider-support.jetbrains.com/hc/en-us/community/posts/5777151094034-Rider-cannot-see-all-Environmental-Variables) for details.
+1. Always use the latest stable version of Rider. 
+   Configure the update policy [for the Rider installed via installer](https://www.jetbrains.com/help/rider/Update.html#update-settings) 
+   or [for the Rider installed via the Toolbox App](https://www.jetbrains.com/help/rider/Update.html#update-all-tools).
 
-## Update Project Tool references
+1. It is recommended to enable [the plugins auto-update feature](https://www.jetbrains.com/help/rider/Managing_Plugins.html#update-plugins-automatically).
 
-The MonoGame Content Editor (MGCB) it a tool delivered through NuGet for your project using the tools configuration held in your `dotnet-tools.json` file (located in the `.config` folder of your project).
+This way both Rider and installed plugins will always be up to date with the newest fixes and features available.
 
-Once you have created your project you should run the following terminal/command-line command to ensure the tool (and the pipeline) is setup and read for your project:
-
-```dotnetcli
-    dotnet tool restore
-```
+### Troubleshooting
 
 > [!NOTE]
-> If you ever change the version of the tools or want to upgrade them by editing the `dotnet-tools.json` configuration, you MUST run this command again to update the tools.
+> In case you need any further assistance or problem troubleshooting, please drop a message into the 
+> [#help-rider](https://discord.com/channels/355231098122272778/1468243299855761543) channel on the
+> [MonoGame Discord server](https://discord.com/invite/monogame).
+
+#### ContentBuilder doesn't detect changes in content files in subsequent runs
+
+ReSharper Solution Builder tries to proactively optimize MSBuild targets building, which means some targets that doesn't 
+support incremental compilation would essentially be ignored. About ReSharper build feature: https://www.jetbrains.com/help/rider/Build_Process.html
+
+There is an option under **Settings** > **Build, Execution, Deployment** > **Toolset and Build** > **Build** section 
+called "Invoke BeforeBuild and AfterBuild targets for skipped projects" to force Rider to call targets that depend on
+`BeforeBuild` and `AfterBuild`, which solves this problem:
+
+![Fix the Use ReSharper Build behaviour](./images/1_setting_up_your_development_environment/rider/rider_resharper_build_fix.png)
+
+Enable it and click "Save".
+
+If even after that change a Content Builder project doesn't get executed, you can completely disable ReSharper build under the same section:
+
+![Uncheck the Use ReSharper Build checkbox](./images/1_setting_up_your_development_environment/rider/rider_resharper_build_uncheck.png)
+
+Don't forget to save changes.
+
+#### Issues with compiling MGFX effects under Linux
+
+You might need to add the `MGFXC_WINE_PATH` environment variable to `/etc/environment` for it to be picked up. See [5777151094034-Rider-cannot-see-all-Environmental-Variables](https://rider-support.jetbrains.com/hc/en-us/community/posts/5777151094034-Rider-cannot-see-all-Environmental-Variables) for details.
