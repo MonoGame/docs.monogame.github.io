@@ -20,6 +20,9 @@ This documentation [helps you to get started](getting_started/index.md) by provi
 
 Please use the links at the top and left to navigate the documentation sections.
 
+> [!TIP]
+> Looking for an offline version? [Download the PDF documentation](/downloads/MonoGameGuide.pdf).
+>
 > This documentation assumes that the reader has a basic knowledge of the C# programming language.
 
 ## What is MonoGame exactly?

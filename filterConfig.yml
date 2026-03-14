@@ -1,0 +1,4 @@
+apiRules:
+- exclude:
+    uidRegex: ^CppNet
+    type: Namespace

@@ -59,11 +59,11 @@ Effect (shader) compilation requires access to DirectX.  This means it will not 
 
 MonoGame provides a setup script that can be executed to setup the Wine environment for Effect (shader) compilation.
 
-1. Open a terminal window
-2. Enter the following command
+1. Download the latest wine for your version of Ubuntu from: https://gitlab.winehq.org/wine/wine/-/wikis/Debian-Ubuntu
+2. Open a terminal window and enter the following command
 
     ```sh
-    sudo apt install wget curl p7zip-full wine64
+    sudo apt install wget curl p7zip-full
     ```
 
     > [!TIP]
