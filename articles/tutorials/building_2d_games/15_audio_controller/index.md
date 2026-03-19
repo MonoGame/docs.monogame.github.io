@@ -51,7 +51,7 @@ Add the following constructor and finalizer:
 [!code-csharp[](./snippets/audiocontroller.cs#ctors)]
 
 > [!NOTE]
-> The `AudioController` class implements a [finalizer](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers) method `~AudioManager()`. This method is called when an instance of the class is collected by the garbage collector and is here as part of the `IDisposable` implementation.
+> The `AudioController` class implements a [finalizer](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers) method `~AudioController()`. This method is called when an instance of the class is collected by the garbage collector and is here as part of the `IDisposable` implementation.
 
 ### AudioController Methods
 
