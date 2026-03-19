@@ -1,7 +1,7 @@
 private void InitializeGum()
 {
     // Initialize the Gum service. The second parameter specifies
-    // the version of the default visuals to use. V2 is the latest
+    // the version of the default visuals to use. V3 is the latest
     // version.
     GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
 
