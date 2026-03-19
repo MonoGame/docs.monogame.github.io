@@ -14,7 +14,7 @@ private void CreateOptionsPanel() {
     musicLabel.Text = "Music";
     musicLabel.X = 35;
     musicLabel.Y = 35;
-    optionsPanel.AddChild(musicLabel);
+    _optionsPanel.AddChild(musicLabel);
 
     var musicSlider = new Slider();
     musicSlider.Anchor(Gum.Wireframe.Anchor.Top);
@@ -32,7 +32,7 @@ private void CreateOptionsPanel() {
     sfxLabel.Text = "SFX";
     sfxLabel.X = 20;
     sfxLabel.Y = 80;
-    optionsPanel.AddChild(sfxLabel);
+    _optionsPanel.AddChild(sfxLabel);
 
     var sfxSlider = new Slider();
     sfxSlider.Anchor(Gum.Wireframe.Anchor.Top);
