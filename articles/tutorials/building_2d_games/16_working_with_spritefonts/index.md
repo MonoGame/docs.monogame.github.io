@@ -206,12 +206,13 @@ Next, right-click the following TTF font and choose "Save Link as...". Save the 
 
 Next, open the *04B_30.spritefont* file in your code editor and make the following changes:
 
-[!code-csharp[](./snippets/04B_30.spritefont?highlight=4,5)]
+[!code-csharp[](./snippets/04B_30.spritefont?highlight=4,5,12)]
 
 The key changes here are:
 
 1. The `<FontName>` element was updated to `04B_30.ttf`, the exact filename with extension of the TTF font we just downloaded.
 2. The `<Size>` element was updated to be `17.5`.
+3. The `<CharacterRegion>`'s `<End>` element was updated to include commonly displayed characters.
 
 ### Updating the Game
 
