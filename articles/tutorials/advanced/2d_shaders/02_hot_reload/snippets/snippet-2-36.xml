@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- ... -->
+
+  <PropertyGroup>
+    <RunWorkingDirectory>bin/$(Configuration)/$(TargetFramework)</RunWorkingDirectory>
+  </PropertyGroup>
+
+  <!-- ... -->
+</Project>
