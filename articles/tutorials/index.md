@@ -48,7 +48,7 @@ description: Tutorials provided by MonoGame community members.
         <div class="col-12 col-lg-4 mb-5">
             <div class="mg-card mg-box-shadow h-100">
                 <a target="_self"
-                    href="/articles/tutorials/advanced/2d_shaders/index.md"
+                    href="/articles/tutorials/advanced/2d_shaders/"
                     class="mg-no-link">
                     <div class="mg-card-body d-flex flex-column h-100">
                         <div class="mg-card-title"><i class="bi bi-shadows"></i> Advanced 2D Shaders</div>

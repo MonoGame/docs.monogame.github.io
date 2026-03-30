@@ -13,6 +13,7 @@ description: MonoGame Documentation Hub
     <div id="learnCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#learnCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="2D Tutorial Slide"></button>
+            <button type="button" data-bs-target="#learnCarousel" data-bs-slide-to="1" class="active" aria-current="true" aria-label="2D Advanced Shaders Tutorial Slide"></button>
             <!-- <button type="button" data-bs-target="#learnCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button> -->
             <!-- <button type="button" data-bs-target="#learnCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
         </div>
