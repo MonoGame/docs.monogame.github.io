@@ -53,6 +53,7 @@
         "files": [
           "**/images/**",
           "**/videos/**",
+          "**/gifs/**",
           "**/files/**",
           "**/snippets/**",
           "**/*.docx",

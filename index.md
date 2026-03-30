@@ -31,21 +31,21 @@ description: MonoGame Documentation Hub
                     </div>
                 </div>
             </div>
-            <!--
-            <div class="carousel-item">
-                <img src="/images/learn/shader-tutrial.png">
+            <div class="carousel-item active">
+                <a href="/articles/tutorials/advanced/2d_shaders/index.html"><video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Advanced 2D shader tutorial"><source src="/images/learn/2d-shader-banner.webm" type="video/webm"></video></a>
                 <div class="container">
                     <div class="carousel-caption text-start">
-                        <h1>Master Shaders</h1>
+                        <h1>Advanced 2D Shaders</h1>
                         <p class="opacity-75">
-                            Learn how to bring your graphics to life with custom effects
+                            Learn about and create advanced shading techniques for your 2D game, from transitions, perspective and light/shadow!
                         </p>
                         <p>
-                            <a class="btn btn-lg btn-pirmary" href="#">Coming Soon</a>
+                            <a class="btn btn-lg btn-primary" href="/articles/tutorials/advanced/2d_shaders/index.html">Start Tutorial</a>
                         </p>
                     </div>
                 </div>
             </div>
+            <!--
             <div class="carousel-item">
                 <img src="/images/learn/mobile-tutorial.png">
                 <div class="container">

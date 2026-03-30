@@ -1,0 +1,1 @@
+private TimeSpan _lastGrowTime;
