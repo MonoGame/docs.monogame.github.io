@@ -199,6 +199,11 @@ First, we will explore creating the texture atlas and defining the texture regio
 
 [!code-csharp[](./snippets/game1/textureatlas_usage.cs?highlight=5,11-15,31-47,65-75)]
 
+> [!NOTE]
+> This example uses `SamplerState.PointClamp` in `SpriteBatch.Begin(...)`. `PointClamp` keeps scaled pixel art sharp.
+>
+> For more details, see <xref:Microsoft.Xna.Framework.Graphics.SamplerState>.
+
 The key changes in this implementation are:
 
 1. The `_logo` field was removed.
