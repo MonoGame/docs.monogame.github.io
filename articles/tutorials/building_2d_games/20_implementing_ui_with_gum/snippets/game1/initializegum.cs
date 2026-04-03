@@ -5,7 +5,7 @@ private void InitializeGum()
     // version.
     GumService.Default.Initialize(this, DefaultVisualsVersion.V3);
 
-    // Tell the Gum service which content manager to use.  We will tell it to
+    // Tell the Gum service which content manager to use. We will tell it to
     // use the global content manager from our Core.
     GumService.Default.ContentLoader.XnaContentManager = Core.Content;
 

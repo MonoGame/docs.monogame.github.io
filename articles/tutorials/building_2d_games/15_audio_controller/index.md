@@ -104,7 +104,7 @@ Think of `IDisposable` like a cleanup checklist that runs when you are finished 
 For our `AudioController`, implementing `IDisposable` means we can ensure all sound effect instances are properly stopped and disposed when our game ends, preventing resource leaks.
 
 > [!NOTE]
-> Fore more information on `IDisposable` and the `Dispose` method, check out the [Implementing a Dispose Method](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose) article on Microsoft Learn.
+> For more information on `IDisposable` and the `Dispose` method, check out the [Implementing a Dispose Method](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose) article on Microsoft Learn.
 
 ## Implementing the AudioController Class
 

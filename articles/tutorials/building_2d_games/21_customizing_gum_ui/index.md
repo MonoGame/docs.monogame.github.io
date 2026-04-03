@@ -353,7 +353,7 @@ Finally, update the `CreatePausePanel` method so that
 
 1. Instead of using a [`ColoredRectangleRuntime`](#visual-elements) for the background of the pause panel, it now uses a [`NineSliceRuntime`](#visual-elements) that uses the sprite from the texture atlas.
 2. The `textInstance` is updated so that it uses the custom bitmap font file.
-3. The `_resumeButton` and `quiteButton` are updated to use our custom [`AnimatedButton`](#the-animatedbutton-class) control instead of the default Gum `Button` Forms control.
+3. The `_resumeButton` and `quitButton` are updated to use our custom [`AnimatedButton`](#the-animatedbutton-class) control instead of the default Gum `Button` Forms control.
 
 [!code-csharp[](./snippets/gamescene/createpausepanel.cs?highlight=12-22,26-28,33,41)]
 

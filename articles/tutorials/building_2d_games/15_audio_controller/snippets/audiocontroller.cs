@@ -27,7 +27,7 @@ public class AudioController : IDisposable
     /// </summary>
     public bool IsMuted { get; private set; }
 
-/// <summary>
+    /// <summary>
     /// Gets or Sets the global volume of songs.
     /// </summary>
     /// <remarks>
