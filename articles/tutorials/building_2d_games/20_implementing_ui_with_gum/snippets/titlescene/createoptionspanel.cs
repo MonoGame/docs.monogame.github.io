@@ -1,4 +1,5 @@
-private void CreateOptionsPanel() {
+private void CreateOptionsPanel()
+{
     _optionsPanel = new Panel();
     _optionsPanel.Dock(Gum.Wireframe.Dock.Fill);
     _optionsPanel.IsVisible = false;

@@ -160,7 +160,7 @@ Before we can add audio to our game, we need some sound files to work with. Down
 >
 > - *bounce.wav* is "Retro Impact Punch 07" by Davit Masia (<https://kronbits.itch.io/retrosfx>).
 > - *collect.wav* is "Retro Jump Classic 08" by Davit Masia (<https://kronbits.itch.io/retrosfx>).
-> - *theme.mp3* is "Exploration" by Luis Zuno ([@ansimuz](https://twitter.com/ansimuz)).
+> - *theme.ogg* is "Exploration" by Luis Zuno ([@ansimuz](https://twitter.com/ansimuz)).
 
 Add these files to your content project using the MGCB Editor:
 
@@ -170,7 +170,7 @@ Add these files to your content project using the MGCB Editor:
 4. Navigate to and select the audio files you downloaded.
 5. For each file that is added, check its properties in the Properties panel:
    - For `.wav` files, ensure the *Processor* is set to `Sound Effect`.
-   - For `.mp3` files, ensure the *Processor* is set to `Song`.
+   - For `.ogg` files, ensure the *Processor* is set to `Song`.
 6. Save the changes and close the MGCB Editor.
 
 Next, open the `Game1.cs` file and update it to the following:

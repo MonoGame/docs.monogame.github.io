@@ -65,14 +65,14 @@ For structured learning, several community members have created comprehensive ed
 
 - [RB Whitaker's](http://rbwhitaker.wikidot.com/MonoGame-getting-started-tutorials) provides in-depth coverage of MonoGame fundamentals and advanced topics.
 - [Learn MonoGame](https://learn-MonoGame.github.io/) by community member [Jean-David Moisan (Apos)](https://github.com/Apostolique) provides a collection of focused tutorials on specific MonoGame topics.
-- [Dark Genesis Blog](https://darkgenesis.zenithmoon.com/tag.html?tag=MonoGame) by foundation member [Simon Jackson](https://github.com/SimonDarksideJ) offers a range of articles on MonoGame development.
+- [Dark Genesis Blog](https://darkgenesis.zenithmoon.com/tag/monogame/) by foundation member [Simon Jackson](https://github.com/SimonDarksideJ) offers a range of articles on MonoGame development.
 - [GameDevQuickie](https://www.youtube.com/@GameDevQuickie/) offers video tutorials focused on practical game development techniques with MonoGame.
 - [Darkside of MonoGame video series](https://www.youtube.com/@DarksideofMonoGame) provides comprehensive tutorials on getting started with MonoGame across different platforms and scenarios.
 
 The [MonoGame Samples](https://github.com/MonoGame/MonoGame.Samples) repository offers practical examples of features implemented in working code. Similarly, the archived [XNA Game Studio educational resources](https://github.com/SimonDarksideJ/XNAGameStudio) maintained by Simon Jackson provide a wealth of examples that remain relevant despite XNA's official discontinuation.
 
 > [!TIP]
-> **REMEMBER**, if you see content written for XNA, then it is more than likely it will still work for MonoGame due to MonoGame's commitment for backwards compatibility.  There may be a few bumps, minor changes (especially with earlier versions of XNA, like XNA 2) or differences with shaders (the biggest pain).  But remember the community is here to help, so just ASK!.
+> **REMEMBER**, if you see content written for XNA, then it is more than likely it will still work for MonoGame due to MonoGame's commitment for backwards compatibility.  There may be a few bumps, minor changes (especially with earlier versions of XNA, like XNA 2) or differences with shaders (the biggest pain).  But remember the community is here to help, so just ASK!
 
 ## Your First Original Project
 

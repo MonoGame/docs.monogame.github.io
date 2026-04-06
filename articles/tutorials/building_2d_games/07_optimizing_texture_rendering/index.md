@@ -80,7 +80,7 @@ We are going to add this class to the class library we created in [Chapter 04](.
 [!code-csharp[](./snippets/textureregion.cs#declaration)]
 
 > [!NOTE]
-> The `TextureRegion.cs` class file is placed in the *MonoGame/Graphics* folder and the class uses the `MonoGameLibrary.Graphics` [namespace](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview) to keep graphics-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
+> The `TextureRegion.cs` class file is placed in the *MonoGameLibrary/Graphics* folder and the class uses the `MonoGameLibrary.Graphics` [namespace](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview) to keep graphics-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
 
 We will add several components to this class in sequence. Each section below should be added to the `TextureRegion` class in the order presented between the brackets ` { } ` of the class definition. As we go through each part, the class will gradually take shape to handle all the texture handling behavior we need.
 
