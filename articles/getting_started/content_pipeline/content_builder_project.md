@@ -153,14 +153,14 @@ Per platform/game project:
 To complete the process, add the following `Target` section to your `csproj` (before the final ```</Project>``` entry):
 
 ```xml
-  <Target Name="BuildContent" BeforeTargets="Build">
+  <Target Name="BuildContent" BeforeTargets="BeforeCompile">
     <PropertyGroup>
       <ContentOutput>$(ProjectDir)$(OutputPath)</ContentOutput>
       <ContentTemp>$(ProjectDir)$(IntermediateOutputPath)</ContentTemp>
       <ContentArgs>build -p $(MonoGamePlatform) -s Assets -o $(ContentOutput) -i $(ContentTemp)</ContentArgs>
     </PropertyGroup>
-    <MSBuild Projects="..\Content\Content.csproj" Targets="Build;Run"
-      Properties="RunArguments=$(ContentArgs);" />
+    <MSBuild Projects="..\Content\Content.csproj" Targets="Build" RemoveProperties="Configuration;TargetFramework;RuntimeIdentifier;RuntimeIdentifiers" />
+    <Exec Command="$(ContentCommand) $(ContentArgs)" WorkingDirectory="$(MSBuildThisFileDirectory)..\" CustomErrorRegularExpression="\[E\] .+" CustomWarningRegularExpression="\[W\] .+" />
   </Target>
 ```
 
