@@ -256,7 +256,7 @@ This method checks for three types of collisions:
 
 ### GameScene PositionBatAwayFromSlime Method
 
-The `CollisionCheck` method makes a call to `PositionBatAwayFromSlime`, previously, when we needed to set the position of the bat when it respawns, we simply chose a random tile within the tilemap to move it to.  However, by choosing a completely random location it could be on top fo the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which is not challenging for the player.  To ensure the bat appears in a random, but strategic location, we can instead set it to position away from the slime on the opposite side of the room.
+The `CollisionCheck` method makes a call to `PositionBatAwayFromSlime`, previously, when we needed to set the position of the bat when it respawns, we simply chose a random tile within the tilemap to move it to.  However, by choosing a completely random location it could be on top of the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which is not challenging for the player.  To ensure the bat appears in a random, but strategic location, we can instead set it to position away from the slime on the opposite side of the room.
 
 Add the following method to the `GameScene` class after the `CollisionCheck` method:
 

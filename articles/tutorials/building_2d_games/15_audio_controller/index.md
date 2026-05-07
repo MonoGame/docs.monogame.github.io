@@ -51,7 +51,7 @@ Add the following constructor and finalizer:
 [!code-csharp[](./snippets/audiocontroller.cs#ctors)]
 
 > [!NOTE]
-> The `AudioController` class implements a [finalizer](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers) method `~AudioManager()`. This method is called when an instance of the class is collected by the garbage collector and is here as part of the `IDisposable` implementation.
+> The `AudioController` class implements a [finalizer](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/finalizers) method `~AudioController()`. This method is called when an instance of the class is collected by the garbage collector and is here as part of the `IDisposable` implementation.
 
 ### AudioController Methods
 
@@ -104,7 +104,7 @@ Think of `IDisposable` like a cleanup checklist that runs when you are finished 
 For our `AudioController`, implementing `IDisposable` means we can ensure all sound effect instances are properly stopped and disposed when our game ends, preventing resource leaks.
 
 > [!NOTE]
-> Fore more information on `IDisposable` and the `Dispose` method, check out the [Implementing a Dispose Method](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose) article on Microsoft Learn.
+> For more information on `IDisposable` and the `Dispose` method, check out the [Implementing a Dispose Method](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose) article on Microsoft Learn.
 
 ## Implementing the AudioController Class
 

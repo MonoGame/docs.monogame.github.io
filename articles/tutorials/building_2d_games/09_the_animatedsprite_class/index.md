@@ -92,7 +92,7 @@ Now that we have a fully configured XML configuration for the atlas, we need to 
 
     [!code-csharp[](./snippets/textureatlas/add_animation_management.cs)]
 
-5. Update the `FromFile` method to parse the new `<Animation>` animation definitions from the XML configuration file
+5. Update the `FromFile` method to parse the new `<Animation>` animation definitions from the XML configuration file:
 
     [!code-csharp[](./snippets//textureatlas/update_from_file.cs?highlight=55-95)]
 
@@ -106,7 +106,7 @@ The updated `FromFile` method now handles both region and animation definitions 
 
 ## The AnimatedSprite Class
 
-With our `Animation` class handling animation data, and the `TextureAtlas` updated to store the animation data, we can now create a class that represents an animated sprites. Since an animated sprite is essentially a sprite that changes its texture region over time, we can build upon our existing `Sprite` class through [inheritance](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/inheritance).
+With our `Animation` class handling animation data, and the `TextureAtlas` updated to store the animation data, we can now create a class that represents animated sprites. Since an animated sprite is essentially a sprite that changes its texture region over time, we can build upon our existing `Sprite` class through [inheritance](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/inheritance).
 
 > [!NOTE]
 > By inheriting from `Sprite`, our `AnimatedSprite` class automatically gets all the rendering properties (position, rotation, scale, etc.) while adding new animation-specific functionality.

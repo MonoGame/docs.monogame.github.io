@@ -80,7 +80,7 @@ We are going to add this class to the class library we created in [Chapter 04](.
 [!code-csharp[](./snippets/textureregion.cs#declaration)]
 
 > [!NOTE]
-> The `TextureRegion.cs` class file is placed in the *MonoGame/Graphics* folder and the class uses the `MonoGameLibrary.Graphics` [namespace](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview) to keep graphics-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
+> The `TextureRegion.cs` class file is placed in the *MonoGameLibrary/Graphics* folder and the class uses the `MonoGameLibrary.Graphics` [namespace](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/namespaces#namespaces-overview) to keep graphics-related classes organized together.  As we add more functionality to the library, we will continue to use directories and namespaces to maintain a clean structure.
 
 We will add several components to this class in sequence. Each section below should be added to the `TextureRegion` class in the order presented between the brackets ` { } ` of the class definition. As we go through each part, the class will gradually take shape to handle all the texture handling behavior we need.
 
@@ -198,6 +198,11 @@ Add this texture atlas to your content project using the MGCB Editor:
 First, we will explore creating the texture atlas and defining the texture regions directly in code.  Replace the contents of `Game1.cs` with the following:
 
 [!code-csharp[](./snippets/game1/textureatlas_usage.cs?highlight=5,11-15,31-47,65-75)]
+
+> [!NOTE]
+> This example uses `SamplerState.PointClamp` in `SpriteBatch.Begin(...)`. `PointClamp` keeps scaled pixel art sharp.
+>
+> For more details, see <xref:Microsoft.Xna.Framework.Graphics.SamplerState>.
 
 The key changes in this implementation are:
 

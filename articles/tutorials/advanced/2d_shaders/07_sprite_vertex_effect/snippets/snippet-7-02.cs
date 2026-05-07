@@ -1,0 +1,4 @@
+public VertexPositionColorTexture vertexTL;
+public VertexPositionColorTexture vertexTR;
+public VertexPositionColorTexture vertexBL;
+public VertexPositionColorTexture vertexBR;

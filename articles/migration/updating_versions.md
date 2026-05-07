@@ -46,7 +46,7 @@ Alternatively, regardless of the development environment, developers can manuall
 To do this:
 
 1. Open your project's *.csproj* file
-2. Locate the `<PacakgeReference>` elements for any MonoGame referenced packages.
+2. Locate the `<PackageReference>` elements for any MonoGame referenced packages.
 3. Change the `Version=` attribute for each one to the current version of MonoGame (currently this is `3.8.2.1105`)
 4. Save the *.csproj* file.
 

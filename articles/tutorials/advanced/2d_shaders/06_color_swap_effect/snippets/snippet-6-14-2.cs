@@ -1,0 +1,1 @@
+private RedColorMap _slimeColorMap;

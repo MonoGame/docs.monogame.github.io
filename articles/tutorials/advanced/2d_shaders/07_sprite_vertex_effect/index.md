@@ -1,0 +1,530 @@
+---
+title: "Chapter 07: Sprite Vertex Shaders"
+description: "Learn about vertex shaders and how to use them on sprites"
+---
+
+Every shader has two main parts: the pixel shader, which we have been using to change the colors of our sprites, and the vertex shader. The vertex shader runs first, and its job is to determine the final shape and position of our geometry. Up until now, we have been using MonoGame's default vertex shader, which just draws our sprites as flat 2D rectangles.
+
+In this chapter, we are going to unlock the power of the vertex shader. We will write our own custom vertex shader from scratch, which will allow us to break out of the 2D plane. We will learn how to use a perspective projection to give our flat world a cool, dynamic 3D feel.
+
+At the end of this chapter, we will be able to make our sprites appear with 3d perspective.
+
+| <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 7-1: The main menu will have a 3d-esque title"><source src="./gifs/overview-1.webm" type="video/webm"></video> | <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 7-2: The game will have a 3d-esque world"><source src="./gifs/overview-2.webm" type="video/webm"></video> |
+| :-----------------------------------------------------------------------------: | :------------------------------------------------------------------------: |
+|          **Figure 7-1: The main menu will have a 3d-esque title**               |           **Figure 7-2: The game will have a 3d-esque world**              |
+
+If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/blob/3.8.5/Tutorials/2dShaders/src/06-Color-Swap-Effect).
+
+## Default Vertex Shader
+
+So far in this series, we have only dealt with pixel shaders. To recap, the job of a pixel shader is to convert some input `(u,v)` coordinate into an output color `(r,g,b,a)` value.
+
+There has been a second shader function running all along behind the scenes, called the vertex shader. The vertex shader runs _before_ the pixel shader whose job is to convert world-space vertex data into clip-space vertex data. Technically every call in MonoGame that draws data to the screen must provide a vertex shader function and a pixel shader function. However, the `SpriteBatch` class has a default implementation of the vertex shader that runs automatically.
+
+The default `SpriteBatch` vertex shader takes the vertices that make up the sprite's corners, and applies an [_orthographic projection_](https://en.wikipedia.org/wiki/Orthographic_projection). The orthographic projection creates a 2d (flat) effect where shapes have no perspective, even when they are closer or further away from the origin.
+
+The vertex shader that is being used can be found [here](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Platform/Graphics/Effect/Resources/SpriteEffect.fx#L29), and is detailed below:
+
+[!code-hlsl[](./snippets/snippet-7-01.hlsl)]
+
+The `SpriteVertexShader` looks different from our pixel shaders in a few important ways,
+
+1. The inputs and outputs are different.
+    - The return type is not just a `float4`, it is an entire struct, `VSOutput`,
+    - The inputs are not the same as the pixel shader. The pixel shader got a `Color` and `TextureCoordinates`, but this vertex shader has a `position`, a `color`, and a `texCoord`.
+2. There is a `MatrixTransform` shader parameter available to this shader.
+
+### Input Semantics
+
+The inputs to the vertex shader mirror the information that the [`SpriteBatchItem`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/SpriteBatchItem.cs) class bundles up for each vertex. If you look at the `SpriteBatchItem`, you will see that each sprite is made up of 4 `VertexPositionColorTexture` instances (one vertex/index for each corner):
+
+[!code-csharp[](./snippets/snippet-7-02.cs)]
+
+> [!NOTE]
+> The `SpriteBatchItem` is part of the implementation of `SpriteBatch`, but `SpriteBatchItem` is not part of the public MonoGame API.
+
+The [`VertexPositionColorTexture`](https://docs.monogame.net/api/Microsoft.Xna.Framework.Graphics.VertexPositionColorTexture) class is a standard MonoGame implementation of the `IVertexType`, and it defines a `Position`, a `Color`, and a `TextureCoordinate` for each vertex. These should look familiar, because they align with the inputs to the vertex shader function. The alignment is not happenstance, it is enforced by ["semantics"](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics) that are applied to each field in the vertex.
+
+> [!NOTE]
+> A `VertexPositionColorTexture` contains:
+>
+> - A Vertex (corner)
+> - A Position (world-space coordinates)
+> - A Color
+> - A Texture
+>
+> Just as the name states, you can check the other [VertexDeclaration](https://docs.monogame.net/api/Microsoft.Xna.Framework.Graphics.VertexDeclaration.html) types in the API documentation for reference. You can always create your own custom declarations if any of the built in ones do not suffice, but you would not be able to use it with `SpriteBatch` by default.
+
+This snippet from the `VertexPositionColorTexture` class defines the semantics for each field in the vertex by specifying the `VertexElementUsage`:
+
+[!code-csharp[](./snippets/snippet-7-03.cs)]
+
+> [!TIP]
+> MonoGame is free and open source, so you can always go read the full source code for the [`VertexPositionColorTexture`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Vertices/VertexPositionColorTexture.cs))
+
+The vertex shader declares a semantic for each input using the `:` syntax:
+
+[!code-hlsl[](./snippets/snippet-7-04.hlsl)]
+
+The semantics align with the values from the `VertexElementUsage` values. The table shows the correlation of the common semantics.
+
+| Shader Semantic | `VertexElementUsage` Value             |
+| :-------------- | :------------------------------------- |
+| `POSITION`      | `VertexElementUsage.Position`          |
+| `COLOR`         | `VertexElementUsage.Color`             |
+| `TEXCOORD`      | `VertexElementUsage.TextureCoordinate` |
+
+These semantics are responsible for mapping the values written into the `VertexPositionColorTexture` to the corresponding inputs in the shader file.
+
+>[!warning]
+> The `SpriteBatch` class does not offer any way to change the vertex semantics that are passed to the vertex shader function.
+
+### Output Semantics
+
+The same concept of semantics applies to the output of the shader. Here is the output type of the vertex shader function. Notice that the fields also have the `:` semantic syntax. These semantics instruct the graphics pipeline how to use the data:
+
+[!code-hlsl[](./snippets/snippet-7-05.hlsl)]
+
+This is the _input_ struct for the standard pixel shaders from previous chapters. Notice how the fields are named slightly differently, but the _semantics_ are identical:
+
+[!code-hlsl[](./snippets/snippet-7-06.hlsl)]
+
+<span id="sv-position"></span>
+
+> [!TIP]
+> What is the difference between `SV_Position` and `POSITION0` ?
+>
+> In various places in the shader code, you may notice semantics using `SV_Position` and `POSITION` interchangeably. The `SV_Position` semantic is actually specific to [Direct3D 10's System-Value Semantics](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics?redirectedfrom=MSDN#system-value-semantics). In fact, `SV_Position` is _not_ a valid semantic in DesktopGL targets, so _how_ can it be used interchangeably with `POSITION`?
+>
+> MonoGame's default shader has a trick to re-map `SV_Position` to `POSITION` only when the target is `OPENGL`:
+> [!code-hlsl[](./snippets/snippet-7-sv.hlsl?highlight=2)]
+>
+> The `#define` line tells the shader parser to replace any instance of `SV_POSITION` with `POSITION`.
+> This implies that `SV_POSITION` is converted to `POSITION` when you are targetting `OPENGL` platforms, and left "as is" when targeting DirectX.
+
+### Matrix Transform
+
+The default sprite vertex shader uses a [`mul()`](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-mul) expression:
+
+[!code-hlsl[](./snippets/snippet-7-07.hlsl?highlight=8)]
+
+The reason this line exists is to convert the vertices from world-space to clip-space.
+
+> [!TIP]
+> A vertex is a 3d coordinate in "world-space". But a monitor is a 2d display. Often, the screen's 2d coordinate system is called "clip-space". The vertex shader is converting the 3d world-space coordinate into a 2d clip-space coordinate. That conversion is a vector and matrix multiplication, using the `MatrixTransform`.
+>
+> Read more about clip space on [Wikipedia](https://en.wikipedia.org/wiki/Clip_coordinates).
+> We will cover more about _how_ the conversion happens later in this chapter, in the perspective projection section.
+
+The `MatrixTransform` is computed by the [`SpriteEffect`](xref:Microsoft.Xna.Framework.Graphics.SpriteEffect) class. The full source is available, [`here`](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Graphics/Effect/SpriteEffect.cs#L63). The relevant lines are copied below:
+
+[!code-csharp[](./snippets/snippet-7-08.cs)]
+
+There are two common types of projection matrices,
+
+1. Orthographic (The default used by `SpriteBatch`),
+2. Perspective
+
+The orthographic projection matrix produces the classic 2d sprite effect, where sprites have no perspective when they are on the sides of the screen.
+
+> [!TIP]
+> Read more about these projection matrixes on [MonoGame's Camera Article](https://docs.monogame.net/articles/getting_to_know/whatis/graphics/WhatIs_Camera.html).
+>
+> Along with many other "How To" and "What Is" articles explaining MonoGame architecture.
+
+## Custom Vertex Shader
+
+Now that you understand the default vertex shader being used by `SpriteBatch`, we can replace the shader with a custom shader. The new shader must accomplish the basic requirements,
+
+1. convert the vertices from world-space to clip-space
+2. provide the input semantics required for the pixel shader.
+
+To experiment with this, create a new Sprite Effect called `3dEffect` in the _MonoGameLibrary_'s shared content effects folder.
+
+| ![Figure 7-3: Adding the `3dEffect` to MGCB](./images/mgcb.png) |
+| :----------------------------------------------------------------------------------------: |
+|          **Figure 7-3: Adding the `3dEffect` to MGCB**           |
+
+Follow along with the steps to set up the effect.
+
+1. We need to add a vertex shader function. To do that, we need to add a new `struct` that holds all the input semantics passed from `SpriteBatch`:
+
+    [!code-hlsl[](./snippets/snippet-7-09.hlsl)]
+
+    > [!TIP]
+    > Use a struct for inputs and outputs.
+    >
+    > The default vertex shader accepts all 3 inputs (`position`, `color`, and `texCoord`) as direct parameters. However, when you have more than 1 semantic, it is helpful to organize all of the inputs in a `struct`, it is simply best practice and avoids common mistakes with "magic numbers" or "random variables".
+    >
+    > If you look through other shaders, you may see shader functions using individual parameters which works, but it is not a good practice.
+
+2. Now add the stub for the vertex shader function:
+
+    [!code-hlsl[](./snippets/snippet-7-10.hlsl)]
+
+    > [!WARNING]
+    > Constructs and parameters **MUST** appear or be defined **BEFORE** they are used, so if you add the above function BEFORE the struct for the `VertexShaderOutput`, the struct will not be recognized.
+    >
+    > So be sure to place the function AFTER the struct and it will work as intended.
+
+3. Now, modify the `technique` to _include_ the vertex shader function. Until now, the `MainVS()` function is just considered as any average function in your shader, and because it was not used by the `MainPS` pixel shader, it would be compiled out of the shader.
+
+    > [!IMPORTANT]
+    > When you specify the `MainVS()` vertex shader function, you are overriding the default `SpriteBatch` vertex shader function:
+
+    [!code-hlsl[](./snippets/snippet-7-11.hlsl?highlight=6)]
+
+4. The shader will not compile yet, because the `VertexShaderOutput` has not been completely initialized. We need to replicate the `MatrixTransform` step to convert the vertices from world-space to clip-space.
+ Add the `MatrixTransform` shader parameter:
+
+    [!code-hlsl[](./snippets/snippet-7-12.hlsl)]
+
+5. And then assign all of the output semantics in the vertex shader, replacing the `MainVS` stub we added earlier:
+
+    [!code-hlsl[](./snippets/snippet-7-13.hlsl)]
+
+6. To validate this is working, we should try to use the new effect. For now, we will experiment in the `TitleScene` class in the `DungeonSlime` project. Create a class member for the new `Material`:
+
+    [!code-csharp[](./snippets/snippet-7-14.cs)]
+
+7. Load the shader using the hot reload system in the `LoadContent` method:
+
+    [!code-csharp[](./snippets/snippet-7-15.cs)]
+
+8. Add the using statement to the `MonoGame.Content` namespace at the top of the class, to access where the `WatchMaterial` extension is defined:
+
+    ```csharp
+    using MonoGameLibrary.Content;
+    ```
+
+9. Make sure to enable the hot-reload for the shader by adding this to the `Update` method:
+
+    ```csharp
+    // Enable hot reload
+    _3dMaterial.Update();
+    ```
+
+10. Then, in the `Draw` method, use the effect when drawing the title text:
+
+    [!code-csharp[](./snippets/snippet-7-16.cs?highlight=4)]
+
+11. When the game runs, the text will be missing because we never created a projection matrix to assign to the `MatrixTransform` shader parameter for the new effect (remember, we are overriding the default `SpriteBatch` behaviour with our own implementation).
+
+    | ![Figure 7-4: The main menu title is missing](./images/missing-text.png) |
+    | :----------------------------------------------------------------------------------------: |
+    |          **Figure 7-4: The main menu title is missing**           |
+
+    > [!NOTE]
+    > If you still see the Title text but not the background, go back and check, you replaced the WRONG `SpriteBatch.Begin` call.
+
+12. Replace the original `_3dMaterial` parameter initialization with the following code when loading the material in the `LoadContent` method:
+
+    [!code-csharp[](./snippets/snippet-7-17.cs)]
+
+13. And now you should see the text normally again.
+
+| ![Figure 7-5: The main menu, but rendered with a custom vertex shader](./images/basic.png) |
+| :----------------------------------------------------------------------------------------: |
+|          **Figure 7-5: The main menu, but rendered with a custom vertex shader**           |
+
+### Making it Move
+
+As a quick experiment, we can show that the vertex shader can indeed modify the vertex positions further if we want to. For now, add a temporary shader parameter called `DebugOffset` in the `3dEffect.fx` shader:
+
+[!code-hlsl[](./snippets/snippet-7-18.hlsl)]
+
+And change the vertex shader (`MainVS`), add the `DebugOffset` to the `output.Position` after the clip-space conversion:
+
+[!code-hlsl[](./snippets/snippet-7-19.hlsl?highlight=7)]
+
+The sprites now move around as we adjust the shader parameter values.
+
+| <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 7-6: We can control the vertex positions"><source src="./gifs/basic.webm" type="video/webm"></video> |
+| :------------------------------------------------------------------: |
+|         **Figure 7-6: We can control the vertex positions**          |
+
+It is important to build intuition for the different coordinate systems involved. Instead of adding the `DebugOffset` _after_ the clip-space conversion, if you try to add it _before_, like in the code below:
+
+[!code-hlsl[](./snippets/snippet-7-20.hlsl?highlight=6-8)]
+
+Then you will not see much movement at all. This is because the `DebugOffset` values only go from `0` to `1`, and in world space, this really only amounts to a single pixel. In fact, exactly how much an addition of _`1`_ happens to make is entirely defined _by_ the conversion to clip-space. The `projection` matrix we created treats world space coordinates with an origin around the screen's center, where 1 unit maps to 1 pixel.
+
+> [!NOTE]
+> Sometimes this is exactly what you want, and sometimes it can be just confusing. The important thing to remember is which coordinate space you are doing your math in.
+
+| <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 7-7: Changing coordinates before clip-space conversion"><source src="./gifs/basic-2.webm" type="video/webm"></video> |
+| :----------------------------------------------------------------------------------: |
+|          **Figure 7-7: Changing coordinates before clip-space conversion**           |
+
+### Perspective Projection
+
+The world-space vertices can have their `x` and `y` values modified in the vertex shader, but what about the `z` component? The orthographic projection essentially _ignores_ the `z` component of a vertex and treats all vertices as though they are an equal distance away from the camera. If you change the `z` value, you may _expect_ the sprite to appear closer or further away from the camera, but the orthographic projection matrix prevents that from happening.
+
+To check, try to modify the shader code to adjust the `z` value based on one of the debug values:
+
+[!code-hlsl[](./snippets/snippet-7-21.hlsl?highlight=7)]
+
+> [!TIP]
+> Near and Far plane clipping.
+>
+> Keep in mind that if you modify the `z` value _too_ much, it will likely step outside of the near and far planes of the orthographic projection matrix. If this happens, the sprite will vanish, because the projection matrix does not handle coordinates outside of the near and far planes. The value must be between the near and far plane of the matrix we created a few steps ago. We set the values in the `CreateOrthographicOffCenter()` function to `0` and `1`.
+>
+> [!code-csharp[](./snippets/snippet-7-22.cs)]
+>
+
+Nothing happens!
+
+To fix this, we need to use a _perspective_ projection matrix instead of an orthographic projection matrix. MonoGame has a built in method called `Matrix.CreatePerspectiveFieldOfView()` that will do most of the heavy lifting for us. Once we have a perspective matrix, it would also be helpful to control _where_ the camera is looking. The math is easy, but it would be helpful to put it in a new helper class.
+
+1. Create a new file in the _MonoGameLibrary_'s graphics folder called `SpriteCamera3d.cs`, and paste the following code. We are going to skip over the math internals:
+
+    [!code-csharp[](./snippets/snippet-7-23.cs)]
+
+2. Now, instead of creating an orthographic matrix in the `TitleScene`, we can use the new class (getting rid of the old dusty `CreateOrthographicOffCenter` function):
+
+    [!code-csharp[](./snippets/snippet-7-24.cs?highlight=9-10)]
+
+3. Moving the `z` value uniformly in the shader will not be visually stimulating. A more impressive demonstration of the _perspective_ projection would be to rotate the vertices around the center of the sprite, back in the `3dEffect.fx` shader, replace the `MainVS` function with the following:
+
+    [!code-hlsl[](./snippets/snippet-7-25.hlsl?highlight)]
+
+And now when the debug `X` parameter is adjusted (y does nothing at this point), the text spins in a way that was not possible with the default `SpriteBatch` vertex shader.
+
+| <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 7-8: A spinning text"><source src="./gifs/spin-1.webm" type="video/webm"></video> |
+| :-----------------------------------------------: |
+|          **Figure 7-8: A spinning text**          |
+
+The text disappears for half of the rotation. That happens because as the vertices are rotated, the triangle itself started to point _away_ from the camera. By default, `SpriteBatch` will cull (remove) any faces that point away from the camera.
+
+Change the `rasterizerState` to `CullNone` when beginning the sprite batch of the `TitleScreen`'s `Draw` method:
+
+[!code-csharp[](./snippets/snippet-7-26.cs?highlight=4)]
+
+And voilà, the text no longer disappears on its flip side.
+
+| <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 7-9: A spinning text with reverse sides"><source src="./gifs/spin-2.webm" type="video/webm"></video> |
+| :------------------------------------------------------------------: |
+|          **Figure 7-9: A spinning text with reverse sides**          |
+
+> [!NOTE]
+> What is _Culling_?
+>
+> The term, "Culling", is used to describe a scenario when some triangles are not drawn due to some sort of optimization. There are many _types_ of culling, but in this case, we are discussing a specific type of optimization called "Back-face Culling". Learn more about it on [wikipedia](https://en.wikipedia.org/wiki/Back-face_culling).
+
+You may find that the field of view is too high for your taste. Try lowering the field of view to 60 (in the `SpriteCamera3d.cs` properties), and you will see something similar to this,
+
+| <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 7-10: A spinning text with reverse sides with smaller fov"><source src="./gifs/spin-3.webm" type="video/webm"></video> |
+| :-----------------------------------------------------------------------------------: |
+|          **Figure 7-10: A spinning text with reverse sides with smaller fov**          |
+
+As a final touch, we should remove the hard-coded `screenSize` variable from the shader, and extract it as a shader parameter. While we are at it, clean up and remove the debug parameters as well.
+
+1. Remove the old hardcoded/debug variables from the `3dEffect.fx` shader:
+
+    [!code-hlsl[](./snippets/snippet-7-27-remove.hlsl)]
+
+2. Add the following two parameters so we can do things more dynamically:
+
+    [!code-hlsl[](./snippets/snippet-7-27.hlsl)]
+
+3. Update the `MainVS` function to utilize the two new shader parameters:
+
+    [!code-hlsl[](./snippets/snippet-7-27-add.hlsl?highlight=7-12)]
+
+4. Then back in the `TitleScreen.cs` `LoadContent` method, make sure to set the new `ScreenSize` parameter correctly from C#:
+
+    [!code-csharp[](./snippets/snippet-7-28.cs?highlight=3)]
+
+5. And instead of manually controlling the spin angle, we can make the title spin gentle following the mouse position. In the `Update()` function, add the following snippet:
+
+    [!code-csharp[](./snippets/snippet-7-29.cs?highlight=5-7)]
+
+| <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 7-11: Spin controlled by the mouse"><source src="./gifs/spin-4.webm" type="video/webm"></video> |
+| :------------------------------------------------------------: |
+|          **Figure 7-11: Spin controlled by the mouse**          |
+
+Now when ever you move your Mouse left to right, the title will spin accordingly.
+
+## Applying it to the Game
+
+It was helpful to use the `TitleScene` to build intuition for the vertex shader, but now it is time to apply the perspective vertex shader to the game itself to add immersion and a sense of depth to the gameplay. The goal is to use the same effect in the `GameScene`.
+
+### Making One Big Shader
+
+A problem emerges right away. The `GameScene` is already using the color swapping effect to draw the sprites, and `SpriteBatch` can only use a single shader per batch.
+
+To solve this problem, we will collapse our shaders into a single shader that does it all the effects, the color swapping, greyscale _and_ the vertex manipulation. Writing code to be re-usable is a challenge for all programming languages, and shader languages are no different.
+
+> [!NOTE]
+> The _Uber_ Shader
+>
+> Sometimes when people collapse lots of shaders into a single shader, it is called an _"Uber"_ shader. For _Dungeon Slime_, that term is premature, but the spirit is the same.
+> Finding ways to collapse code into simpler code pathways is helpful for keeping your code easy to understand, but it can also keep your shader's compilation times faster, and runtime performance higher.
+>
+> For an insightful read, check out this article on [shader permutations](https://therealmjp.github.io/posts/shader-permutations-part1/).
+
+MonoGame shaders can reference code from multiple files by using the `#include` syntax. MonoGame itself [uses](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Platform/Graphics/Effect/Resources/SpriteEffect.fx#L8) this technique itself in the default vertex shader for `SpriteBatch`. We can move some of the code from our existing `.fx` files into a _new_ `.fxh` file, re-write the existing shaders to `#include` the new `.fxh` file, and then be able to write additional `.fx` files that `#include` multiple of our files and compose the functions into a single effect.
+
+> [!TIP]
+> `.fxh` vs `.fx`.
+>
+> `.fxh` is purely convention. Technically you can use whatever file extension you want, but `.fxh` implies the usage of the file is for shared code, and does not contain a standalone effect itself. The `h` is simply referred to as a `header` file.
+
+Follow the steps below to refactor the shader code, and to use the `#include` syntax for referring to the new `.fxh` files.
+
+1. Before we get started, we are going to be editing `.fxh` files, so it would be nice if the hot-reload system also listened to these `.fxh` file changes. Update the `Watch` configuration in the `DungeonSlime.csproj` file to include the `.fxh` file type:
+
+    [!code-xml[](./snippets/snippet-7-30.xml?highlight=3)]
+
+2. Time to start factoring out some shared components into a few different `.fxh` files.
+
+   Create a file in the _MonoGameLibrary_'s `SharedContent/effects` folder called `common.fxh`.
+
+   > [!TIP]
+   > `.fxh` files do not need to be added to your MonoGame Content Project.
+
+   This file will contain utilities that can be shared for all effects, such as the `struct` types that define the inputs and outputs of the vertex and pixel shaders:
+
+    [!code-hlsl[](./snippets/snippet-7-31.hlsl)]
+
+    >[!tip]
+    > Include Guards.
+    >
+    > The `#include` syntax is taking the referenced file and inserting it into the code. If the same file was included twice, then the contents that file would be written out as code _twice_. Defining a `struct` or function this way would cause the compiler to fail, because the `struct` would be declared twice, which is illegal.
+    >
+    > To work around this, _a_ solution is to use a practice called "include guards", where the file itself defines a symbol (in the case above, the symbol is `COMMON`). The file only compiles to anything if the symbol has not yet been defined. The `#ifndef` stands for "if not yet defined".
+    >
+    > Once the `COMMON` symbol is defined once, any future inclusions of the file will not match the `#ifndef` clause.
+
+3. Then, in the `3dEffect.fx` file, remove the `VertexShaderInput` and `VertexShaderOutput` structs and replace them with this line:
+
+    [!code-hlsl[](./snippets/snippet-7-32.hlsl)]
+
+    > [!NOTE]
+    > If you recall what was stated earlier about the processing order of the shader, the file is read in sequence, so the include MUST be defined BEFORE its contents are used.  You can put it at the top of the file (like a using) but only if it does not interfere with the shader processing.  There is no hard and fast rule, so just use common sense, if it does not compile or it errors, then you need to change it.
+
+4. If you run the game, nothing should change, except that the shader code is more modular. To continue, create another header file next to the `3dEffect.fx` shader called `3dEffect.fxh` in the same folder.
+   Paste the contents:
+
+    [!code-hlsl[](./snippets/snippet-7-33.hlsl)]
+
+5. Now in the `3dEffect.fx`, instead of `#include common.fxh`, we can directly reference `3dEffect.fxh` instead. We should also remove the code that was just pasted into the new common header file. Here is the slimmed down `3dEffect.fx` file (much cleaner):
+
+    [!code-hlsl[](./snippets/snippet-7-34.hlsl)]
+
+6. It is time to do the same thing for the `colorSwapEffect.fx` file. The goal is to split the file apart into a header file that defines the components of the effect, and leave the `fx` file itself without much _implementation_. Create a new file called `colors.fxh`, and paste the following:
+
+    [!code-hlsl[](./snippets/snippet-7-35.hlsl)]
+
+    > [!NOTE]
+    > Ignore any red squiggles in the editor, this header is not being written to run independently like the `3dEffect.fxh` header, it is just a code template to be used in the main shader.  How you break up your shader code is always a preference.
+
+7. Then, the `colorSwapEffect.fx` file can be replaced with the following code:
+
+    [!code-hlsl[](./snippets/snippet-7-36.hlsl)]
+
+    Now most of the components we would like to combine into a single effect have been split into various `.fxh` header files, but their relative location is **CRUCIAL** when refering to related functionality, to demonstrate this, we will "break" a shader and show how to fix it.
+
+8. Create a new "sprite effect" using the MGCB editor in the **`_DungeonSlime_`'s** content `effects` folder called `gameEffect.fx`, and simply add the following:
+
+    ```hlsl
+    #include "common.fxh"
+    ```
+
+    This refers to the previously created common header file, you should now see an error like this:
+
+    > [!WARNING]
+    > We have been adding a lot of files to the _MonoGameLibrary_, but this shader should go into the _DungeonSlime_ project, because it is a game specific shader.
+
+    ```text
+    error PREPROCESS01: File not found: common.fxh in .(MonoGame.Effect.Preprocessor+MGFile)
+    ```
+
+    This happens because the `gameEffect.fx` file is in a different folder than the `common.fxh` file, and the `"common.fxh"`  is treated as a relative _file path_ lookup.&nbsp;
+    Instead, in the `gameEffect.fx` file, use this line:
+
+    [!code-hlsl[](./snippets/snippet-7-37.hlsl)]
+
+    > [!NOTE]
+    > You should see errors in the editor or when building the shader now because the `common.fxh` already contains the `VertexShaderOutput` struct, hence the version in `gameeffect.fx` is now a duplicate.
+
+9. `gameEffect.fx` file can also reference the other two `.fxh` files we just created, so now add the following additional includes:
+
+    [!code-hlsl[](./snippets/snippet-7-38.hlsl)]
+
+    > [!NOTE]
+    > These replace the `common.fxh` you just added for test, as the other effect headers already reference `common.fxh`, even shaders have inheritance.  You "could" still include it because the `fxh` files use the `#ifndef` check, meaning it will ignore duplicates, but why make it more complicated?
+
+10. And the only thing the `gameEffect.fx` file needs to specify is which functions to use for the vertex shader and pixel shader functions, so you can safely remove the rest (except for the `#if` test):
+
+    [!code-hlsl[](./snippets/snippet-7-39.hlsl)]
+
+    To keep things simple, the entire contents of the `gameEffect.fx` is shown below:
+
+    [!code-hlsl[](./snippets/snippet-7-40.hlsl)]
+
+11. To load it into the `GameScene`, we need to **_delete_** the old class member for `_colorSwapMaterial`, and replace it with the following, adding a `SpriteCamera3d` definition as well:
+
+    [!code-csharp[](./snippets/snippet-7-41.cs)]
+
+12. Next, apply all of the parameters to the new single material in the `LoadContent` method, replacing the `_colorSwapMaterial` and `_colorMap` sections as follows:
+
+    [!code-csharp[](./snippets/snippet-7-42.cs)]
+
+13. In the `Update` method to also swap out the `_colorSwapMaterial.Update()` update call:
+
+    ```csharp
+            // Update the colorSwap material if it was changed
+            _gameMaterial.Update();
+    ```
+
+14. Any remaining places where the old `_colorSwapMaterial` is being referenced should be swapped to use the `_gameMaterial` instead, including:
+
+    - Update - 1 reference.
+    - Draw - 4 references.
+
+15. Somewhat optionally, remember to add the `rasterizerState: RasterizerState.CullNone` to the `SpriteBatch.Draw()` call if you do not want the game to vanish when the `SpinAmount` goes beyond half a rotation. In practice, we will not be be spinning the game world that much, so it does not really matter.
+
+> if you still have any old references to the `_grayscaleEffect` make sure to remove those as well as they are no longer used.
+
+The code now compiles and everything runs, but we are not spinning yet, so let us update that show off the new feature.
+
+### Adjusting the Game
+
+Now that the 3d effect can be applied to the game objects, it would be good to make the world tilt slightly towards the player character to give the movement more weight. Instead of spinning the entire map, an easier approach will be to modify the `MatrixTransform` that is being passed to the shader.
+
+Add this snippet to the top of the `GameScene`'s `Update()` method:
+
+[!code-csharp[](./snippets/snippet-7-43.cs?highlight=6-12)]
+
+Now the project should compile and give you the following effect, pretty cool!
+
+| <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 7-12: Camera follows the slime"><source src="./gifs/cam-follow.webm" type="video/webm"></video> |
+| :------------------------------------------------------------: |
+|            **Figure 7-12: Camera follows the slime**            |
+
+The clear color of the scene can be seen in the corners (the `CornflowerBlue`). Pick whatever clear color you think looks good for the color swapping:
+
+[!code-csharp[](./snippets/snippet-7-44.cs)]
+
+And to finish this chapter, the game looks like this,
+
+| <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 7-13: vertex shaders make it pop"><source src="./gifs/final.webm" type="video/webm"></video> |
+| :---------------------------------------------------------: |
+|         **Figure 7-13: vertex shaders make it pop**          |
+
+## Conclusion
+
+Our game has a whole new dimension! In this chapter, you accomplished the following:
+
+- Learned the difference between a vertex shader and a pixel shader.
+- Wrote a custom vertex shader to override the `SpriteBatch` default.
+- Replaced the default orthographic projection with a perspective projection to create a 3D effect.
+- Refactored shader logic into modular `.fxh` header files for better organization.
+- Combined vertex and pixel shader effects into a single "uber shader".
+
+The world feels much more alive now that it tilts and moves with the player. In the next chapter, we will build on this sense of depth by tackling a 2D dynamic lighting system.
+
+You can find the [complete code sample for this chapter - here](https://github.com/MonoGame/MonoGame.Samples/blob/3.8.5/Tutorials/2dShaders/src/07-Sprite-Vertex-Effect/).
+
+Continue to the next chapter, [Chapter 08: Light Effect](../08_light_effect/index.md)

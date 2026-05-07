@@ -53,6 +53,7 @@
           "**/images/**",
           "**/videos/**",
           "**/files/**",
+          "**/gifs/**",
           "**/snippets/**",
           "**/*.docx",
           "CNAME"

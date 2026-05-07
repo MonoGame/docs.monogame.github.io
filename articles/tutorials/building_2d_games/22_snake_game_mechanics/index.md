@@ -3,7 +3,7 @@ title: "Chapter 22: Snake Game Mechanics"
 description: "Learn how to implement classic snake-like game mechanics and organize game objects into reusable components."
 ---
 
-In the previous chapters, we have built all the fundamental systems needed for our game: [graphics](../07_optimizing_texture_rendering/index.md), [input](../11_input_management/index.md), [collision detection](../12_collision_detection/index.md), [audio](../15_audio_controller/index.md), [scene management](../17_scenes/index.md), and a [user interface](../19_user_interface_fundamentals/index.md).  Now it is time to transform our demo into a complete experience by implementing classic snake-like game mechanics. Before we do that, we first need to define what mechanics make a snake game.
+In the previous chapters, we have built all the fundamental systems needed for our game: [graphics](../07_optimizing_texture_rendering/index.md), [input](../11_input_management/index.md), [collision detection](../12_collision_detection/index.md), [audio](../15_audio_controller/index.md), [scene management](../17_scenes/index.md), and a [user interface](../19_user_interface_fundamentals/index.md). Now it is time to transform our demo into a complete experience by implementing classic snake-like game mechanics. Before we do that, we first need to define what mechanics make a snake game.
 
 In this chapter, you will:
 
@@ -36,13 +36,13 @@ In snake, players input a cardinal direction (up, down, left, and right), to ind
 
 For example, if the snake is moving to the right, an invalid input would allow a player to move it to the left.  Doing so would cause the head of the snake to reverse direction and immediately collide with the first body segment. This means the only valid inputs are those where the next direction would be the same as the current direction or perpendicular to the current direction.
 
-| ![Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right.  Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right.](./images/snake_directions.png) |
+| ![Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right. Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right.](./images/snake_directions.png) |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                **Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right.  Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right.**                |
+|                **Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right. Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right.**                |
 
 ### Movement Cycle
 
-Instead of moving every update frame while a directional input is being pressed,  the snake moves only at fixed time intervals.  A timer is used to determine how much time has passed since the last movement cycle, and when it reaches a set threshold, the next movement cycle occurs.  During this movement cycle, the snake should move forward in the direction that was input by the player between the last and current movement cycles.  This creates the grid-based movement system typically found in snake-like games.
+Instead of moving every update frame while a directional input is being pressed, the snake moves only at fixed time intervals.  A timer is used to determine how much time has passed since the last movement cycle, and when it reaches a set threshold, the next movement cycle occurs.  During this movement cycle, the snake should move forward in the direction that was input by the player between the last and current movement cycles.  This creates the grid-based movement system typically found in snake-like games.
 
 There are various methods for handling the movement, such as iterating through each segment of the snake and updating the position of that segment to move forward.  Methods such as this though are wasteful, since visually the only parts of the snake that move on the screen are the head and the tail.  
 
@@ -284,7 +284,7 @@ This update method:
 > - If we reset to zero, we lose 0.04ms.
 > - Over time, these small losses can add up and cause inconsistent movement.
 >
-> By subtracting the threshold instead of resetting to zero, we "bank" the excess time (0.06ms in this example) for the next movement cycle.  This ensures that:
+> By subtracting the threshold instead of resetting to zero, we "bank" the excess time (0.04ms in this example) for the next movement cycle.  This ensures that:
 >
 > 1. Movement happens exactly at the intended frequency, maintaining consistent game speed.
 > 2. The visual smoothness of movement remains intact even if the game occasionally drops frames.
@@ -345,7 +345,7 @@ In the `GameObjects` folder of the *DungeonSlime* project (your main game projec
 
 This code establishes the foundation for our `Bat` class. We have included the necessary using statements for MonoGame components, audio functionality, and our library references. The class is placed in the same `DungeonSlime.GameObjects` namespace as our Slime class to maintain a consistent organization.
 
-Now we will build this class step by step, adding all the functionality needed for the bat to serve as the collectible object in our game.  Add each of the following sections to the `Bat` class in the order they are presented.
+Now we will build this class step by step, adding all the functionality needed for the bat to serve as the collectible object in our game. Add each of the following sections to the `Bat` class in the order they are presented.
 
 > [!NOTE]
 > As with the Slime class, you may encounter compiler errors until all sections are in place. These errors will be resolved once all components of the class have been added.
@@ -381,7 +381,7 @@ This is a simple constructor that requires the bat to be given the `AnimatedSpri
 
 #### Bat Randomize Velocity
 
-Currently, we have the `AssignRandomVelocity` method in the `GameScene` that we call to randomize the velocity of the bat after it has been eaten by the slime.  We can take this method out of the `GameScene` class and put it directly into the `Bat` class itself.
+Currently, we have the `AssignRandomVelocity` method in the `GameScene` that we call to randomize the velocity of the bat after it has been eaten by the slime. We can take this method out of the `GameScene` class and put it directly into the `Bat` class itself.
 
 Add the following method to the `Bat` class after the constructor:
 
@@ -433,9 +433,9 @@ With the `Bat` class complete, we have now encapsulated all the behavior needed 
 ## Conclusion
 
 > [!NOTE]
-> To the observant, you should notice that the main game screen has not been updated and therefore nothing has changed if we run the game at this point.  In the next chapter we will finalize the gameplay.
+> To the observant, you should notice that the main game screen has not been updated and therefore nothing has changed if we run the game at this point. In the next chapter we will finalize the gameplay.
 
-In this chapter, we have learned about and implemented the core mechanics of a class snake-like game.  We created:
+In this chapter, we have learned about and implemented the core mechanics of a class snake-like game. We created:
 
 - A [`GameController`](#the-gamecontroller-class) class that provides a unified input interface, separating game actions from specific input devices.
 - A [`SlimeSegment`](#the-slimesegment-struct) struct to efficiently store and manage individual segments of our snake-like character.
