@@ -143,7 +143,7 @@ Now that we have a folder structure, we can add our first image asset to the pro
 Now that we have added our first asset, we can take a moment to understand what happens to this asset in the Content Pipeline workflow:
 
 1. You create source files for your game assets such as images, audio, fonts, effects, and 3D models.
-2. Using the MGCB Editor, add these assets your content project (the `Content.mgcb` file).
+2. Using the MGCB Editor, add these assets to your content project (the `Content.mgcb` file).
 3. When you perform a build of your project, the `MonoGame.Content.Builder.Task` NuGet reference will:
    1. Compile the assets defined in the content project using the **MonoGame Content Builder (MGCB)** tool into `.xnb` files.
    2. Copy the compiled `.xnb` files from the content project's build folder to your game project's build folder.
