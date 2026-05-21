@@ -6,7 +6,7 @@ requireMSLicense: true
 
 ## Overview
 
-In this example, you will walk through the basics of dynamic sounds, using the more advanced [SoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance) cl;ass over the basic [SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play) method used in [Playing a Sound](HowTo_PlayASound.md).
+In this example, you will walk through the basics of dynamic sounds, using the more advanced [SoundEffectInstance](xref:Microsoft.Xna.Framework.Audio.SoundEffectInstance) class over the basic [SoundEffect.Play](xref:Microsoft.Xna.Framework.Audio.SoundEffect.Play) method used in [Playing a Sound](HowTo_PlayASound.md).
 
 ## Using SoundEffectInstance
 
