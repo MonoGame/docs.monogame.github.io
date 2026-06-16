@@ -256,7 +256,7 @@ public class AudioController : IDisposable
     /// </summary>
     public void MuteAudio()
     {
-        // Store the volume so they can be restored during ResumeAudio
+        // Store the volume so they can be restored during UnmuteAudio
         _previousSongVolume = MediaPlayer.Volume;
         _previousSoundEffectVolume = SoundEffect.MasterVolume;
 
