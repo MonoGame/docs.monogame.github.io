@@ -24,6 +24,14 @@ This documentation is for intermediate MonoGame users. It assumes that you have 
 > [!IMPORTANT]
 > The concepts and code from the original tutorial, especially the [Shaders](https://docs.monogame.net/articles/tutorials/building_2d_games/24_shaders/index.html) chapter, are a mandatory prerequisite. We will be building directly on top of the final project from that series.
 
+## Sample Source
+
+The full source for this tuturial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
+As shown below:
+
+### [https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
 ## Table of Contents
 
 This documentation is organized to be read sequentially, as each chapter builds upon the techniques and code from the previous one.

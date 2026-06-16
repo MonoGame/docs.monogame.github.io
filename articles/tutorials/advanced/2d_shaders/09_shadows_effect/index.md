@@ -19,6 +19,14 @@ By the end of this chapter, your game will look something like this:
 
 If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/blob/3.8.5/Tutorials/2dShaders/src/08-Light-Effect).
 
+## Sample Source
+
+The full source for this tuturial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
+As shown below:
+
+### [https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
 ## 2D Shadows
 
 Take a look at the current lighting in _Dungeon Slime_. In this screenshot, there is a single light source. The bat and the slime do not cast shadows, and without these shadows, it is hard to visually identify where the light's position is.

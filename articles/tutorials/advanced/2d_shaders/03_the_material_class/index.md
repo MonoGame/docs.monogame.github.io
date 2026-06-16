@@ -17,6 +17,14 @@ If you are following along with code, here is the code from the end of the [prev
 >
 > ```dotnet build -t:WatchContent --tl:off```
 
+## Sample Source
+
+The full source for this tuturial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
+As shown below:
+
+### [https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
 ## The Material Class
 
 The `_grayscaleEffect` serves a very specific purpose, but imagine instead of just _decreasing_ the saturation, the effect could also _increase_ the saturation. In that hypothetical, then calling it a "grayscale" effect only captures _some_ of the shader's value. Setting the `Saturation` to `0` would configure the shader to be a grayscale effect, but setting the `Saturation` really high would configure the shader to be a super-saturation effect. A single shader can be configured to create multiple distinct visuals. Many game engines use the term, _Material_, to recognize each _configuration_ of a shader effect.

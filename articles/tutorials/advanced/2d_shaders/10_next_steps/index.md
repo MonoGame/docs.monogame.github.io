@@ -44,6 +44,14 @@ This tutorial series was an exploration of various shader topics, with a focus o
   - [Acerola](https://www.youtube.com/playlist?list=PLUKV95Q13e_U5g00d5M5MOacpVMiEbW9u) has great case study videos recreating effects from existing games.
   - [Freya Holmér](https://www.youtube.com/watch?v=MOYiVLEnhrw) has many great videos that delve into mathematics for game developers.
 
+## Sample Source
+
+The full source for this tuturial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
+As shown below:
+
+### [https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
 ## A Final Note From The Author
 
 Hey friend,

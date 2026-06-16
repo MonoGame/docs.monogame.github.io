@@ -25,6 +25,14 @@ At the end of the chapter, you will have a screen transition effect like the one
 
 If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/blob/3.8.5/Tutorials/2dShaders/src/04-Debug-UI).
 
+## Sample Source
+
+The full source for this tuturial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
+As shown below:
+
+### [https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
 ## The Scene Transition Effect
 
 Screen wipes are the bread and butter of transitions, you see them everywhere from Presentations, to window washers and even games (ok, I made the middle one up).  The basic principle is sound, control what you draw and use a pattern to only draw part of an image, this is a useful technique for almost anything in game development, so let us get started with what you came here for, **BUILDING SHADERS**.
