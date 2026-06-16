@@ -10,7 +10,7 @@ description: This tutorial will go over adding content such as images or sounds 
 
 The [MGCB Editor](./tools/mgcb_editor.md) is used to organize and build content for use with MonoGame. It is accessed by either:
 
-- Double-clicking a "`.mgcb`" file from within the Visual Studio solution explorer (providing that you installed [MonoGame's Visual Studio extension](./2_choosing_your_ide_visual_studio.md#install-monogame-extension-for-visual-studio-2022)).
+- Double-clicking a "`.mgcb`" file from within the Visual Studio solution explorer (providing that you installed [MonoGame's Visual Studio extension](./2_choosing_your_ide_visual_studio.md#install-monogame-extension-for-visual-studio-2026)).
 - Right-clicking a "`.mgcb`" file from within the Visual Studio code and selecting "Open in MGCB Editor" (provided you have installed the [VSCode extension](./2_choosing_your_ide_vscode.md#optional-install-the-monogame-for-vscode-extension))
 - Use 'dotnet mgcb-editor' to open Editor, than open "`.mgcb`" file from menu.
 
