@@ -19,6 +19,14 @@ A hot-reload system allows you to get to step 4, fix whatever bug appeared, and 
 > [!note]
 > The hot-reload feature will be enabled during the _development_ of your game, but this system will not allow shaders to be dynamically reloaded in the final built game.
 
+## Sample Source
+
+The full source for this tuturial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
+As shown below:
+
+### [https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
 ## Time to get started!
 
 If you are following along with code, here is the code from the end of the previous tutorial series, [Starting Code](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.4/Tutorials/learn-monogame-2d/src/27-Conclusion/)

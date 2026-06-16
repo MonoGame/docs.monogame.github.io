@@ -15,6 +15,14 @@ At the end of this chapter, we will be able to fine-tune the colors of the game.
 
 If you are following along with code, here is the code from the end of the [previous chapter](https://github.com/MonoGame/MonoGame.Samples/blob/3.8.5/Tutorials/2dShaders/src/05-Transition-Effect).
 
+## Sample Source
+
+The full source for this tuturial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
+As shown below:
+
+### [https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+
 ## The Basic Color Swap Effect
 
 At the moment, the game uses a lot of blue and gray textures. A common feature in retro-style games is to be able to change the color palette of the game. Another feature is to change the character's color during certain in-game events. For example, maybe the character flashes white when taking damage, or sparkles a gold color when picking up a combo. There are a few broad categories for implementing these styles of features:
