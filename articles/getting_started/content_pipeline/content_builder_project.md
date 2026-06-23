@@ -4,9 +4,9 @@ description: Learn how to use the newest approach to building content in MonoGam
 ---
 
 > [!NOTE]
-> These instructions **REQUIRE** you to use the latest `MonoGame Develop` release (currently `3.8.5-develop.13`)
+> These instructions **REQUIRE** you to use the latest `MonoGame Preview` release (currently `3.8.5-preview.6`)
 >
-> See the [instructions here](https://docs.monogame.net/articles/getting_to_know/howto/HowTo_Install_Preview_Release.html) for how to install the preview project templates and update your project to use `3.8.5-develop` (preview) releases.
+> See the [instructions here](https://docs.monogame.net/articles/getting_to_know/howto/HowTo_Install_Preview_Release.html) for how to install the preview project templates and update your project to use `3.8.5-preview` (preview) releases.
 >
 > [How to install MonoGame Preview packages](https://docs.monogame.net/articles/getting_to_know/howto/HowTo_Install_Preview_Release.html)
 
@@ -21,7 +21,7 @@ From MonoGame `3.8.5` we are making a new `Console Project Style` solution to mo
 
 ## Table of Contents
 
-1. [What is the ContentBuilder?](#what-is-the-contentbuilder)
+1. [What is the Content Builder?](#what-is-the-content-builder)
 2. [Getting Started](#getting-started)
 3. [Adding the Content Builder Project to your Game](#adding-the-content-builder-project-to-your-game)
 4. [Understanding ContentBuilderParams](#understanding-contentbuilderparams)
@@ -32,7 +32,7 @@ From MonoGame `3.8.5` we are making a new `Console Project Style` solution to mo
 
 ---
 
-If you prefer, the MonoGame Foundation recorded a short video demonstrating how to get setup with the new Content Builder Project.
+If you prefer, the MonoGame Foundation recorded a short video demonstrating how to get set up with the new Content Builder Project.
 
 <div class="embeddedvideo">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QB43LgRmdNM/" title="New Content Builder Project - Getting Started" frameborder="0" allowfullscreen></iframe>
@@ -40,11 +40,11 @@ If you prefer, the MonoGame Foundation recorded a short video demonstrating how 
 
 ---
 
-## What is the ContentBuilder?
+## What is the Content Builder?
 
-The `ContentBuilder` is a powerful tool that allows you to build game content (like images, sounds, fonts, and models) programmatically using C# code instead of manually configuring content files. Think of it as your own personal content pipeline that you control entirely through code!
+The `Content Builder` is a powerful tool that allows you to build game content (like images, sounds, fonts, and models) programmatically using C# code instead of manually configuring content files. Think of it as your own personal content pipeline that you control entirely through code!
 
-Instead of an installed dotnet tool (which historically generated issues), the new approach uses a simple `Console` application you manage, which is simply executed to build and generate your content.  By default, the project template pulls all the content from the designated "**Assets**" folder and compiles it using the default importers used by MonoGame.  To customize this, you only need to specify additional commands to override this default behaviour with your customizations.
+Instead of an installed dotnet tool (which historically generated issues), the new approach uses a simple `Console` application you manage, which is simply executed to build and generate your content.  It builds all configured content from the designated "**Assets**" folder and compiles it using the default importers used by MonoGame.  To customize this, you only need to specify additional commands to override this default behaviour with your customizations.
 
 > [!TIP]
 > When designing the builder for your content, try to focus on building patterns for your content to reduce the need to rebuild the `Builder` itself.
@@ -70,7 +70,7 @@ In addition, due to content now being built through your own console application
 
 ## Getting Started
 
-To start using the ContentBuilder, you will need to create a console project using the MonoGame ContentBuilder template. Here are instructions to create your own Content Builder Project:
+To start using the Content Builder, you will need to create a console project using the MonoGame Content Builder template. Here are instructions to create your own Content Builder Project:
 
 ### [Visual Studio Code](#tab/vscode)
 
@@ -109,15 +109,16 @@ This creates a project with the following structure:
 ```text
 MyContentBuilder/
 ├── Builder/
-│   └── Builder.cs          # Your custom builder class
+│   └── Builder.cs            # Your custom builder class
 ├── Assets/
-│   └── readme.txt          # Placeholder text file to be replaced with your content
-└── MyContentBuilder.csproj  # Project file with required packages
+│   └── readme.txt            # Placeholder text file to be replaced with your content
+├── BuildContent.targets      # Shared .targets file for content building
+└── MyContentBuilder.csproj   # Project file with required packages
 ```
 
 This is the default (recommended) layout for a Content Builder project, but you can customize its use how you wish:
 
-- There is a single "entry point" (command line launch point) contained in the `builder.cs` which contains all the instructions to build content.
+- There is a single "entry point" (command line launch point) contained in the `Builder.cs` which contains all the instructions to build content.
 - A default `Assets` folder to host your content, but your content can be in any location you need it to be, simply update the parameters used to run the console application to point to the source directory and folder for your content.
 
 > [!TIP]
@@ -148,102 +149,23 @@ Per platform/game project:
 2. Remove references to `MonoGame.Content.Builder.Task`.
 3. Update the MonoGame version to match the Builder (not essential, but recommended)
 
-### 3. Add the Builder task
+### 3. Add the Builder Import task
 
-To complete the process, add the following `Target` section to your `csproj` (before the final ```</Project>``` entry):
+To complete the process, add the following `Import` section to your `csproj` (before the final `</Project>` entry):
 
 ```xml
-  <Target Name="BuildContent" BeforeTargets="BeforeCompile">
-    <PropertyGroup>
-      <ContentOutput>$(ProjectDir)$(OutputPath)</ContentOutput>
-      <ContentTemp>$(ProjectDir)$(IntermediateOutputPath)</ContentTemp>
-      <ContentArgs>build -p $(MonoGamePlatform) -s Assets -o $(ContentOutput) -i $(ContentTemp)</ContentArgs>
-    </PropertyGroup>
-    <MSBuild Projects="..\Content\Content.csproj" Targets="Build" RemoveProperties="Configuration;TargetFramework;RuntimeIdentifier;RuntimeIdentifiers" />
-    <Exec Command="$(ContentCommand) $(ContentArgs)" WorkingDirectory="$(MSBuildThisFileDirectory)..\" CustomErrorRegularExpression="\[E\] .+" CustomWarningRegularExpression="\[W\] .+" />
-  </Target>
+  <Import Project="..\Content\BuildContent.targets" />
 ```
-
-Of note, you should take care with the following elements:
-
-- `-s Assets` - this assumes you are using the default "Assets" source folder in the builder project.  If your source content is elsewhere you will need to provide the path to it.
-- `-i $(ContentTemp)` - this uses the default `obj` folder for building the content, if you are short on space, you can provide an alternate path for temp storage.
-- `Projects="..\Content\Content.csproj"` - This should **MATCH** the folder and project name of your Builder.  If you called your Builder something else or renamed the folder/csproj, make sure it matches.
-
-You should not need to touch anything else.
-
-> [!NOTE]
-> Additionally, if you want to control HOW and WHEN your content is built/rebuilt, then you can change the `Targets="Build;Run"` options to only execute the last on Build OR Run, or a different action.
->
-> See the [MS Documentation on Built targets](https://learn.microsoft.com/en-us/visualstudio/msbuild/msbuild-targets) for reference.
 
 ## Platform specific additions - Android / iOS
 
-For platforms where the content is required to be packaged inside the output bundle, there are some additional steps required to ensure the built content is included during the Build/Publish step.
+For platforms where the content is required to be packaged inside the output bundle, which require additional steps to ensure the built content is included during the Build/Publish step.
 
-Each platform has specific requirements and requires the built content to be available prior to processing the project itself.
-
-> [!NOTE]
-> Also check out the dedicated [Packaging Games advice](../packaging_games.md) published by the MonoGame team.
-
-### Android
-
-For Android, a specific `Include` section is needed in the project's `csproj` project definition, as follows:
-
-> [!NOTE]
-> Android uses a special `AndroidAsset` tag to identify content to include.
-
-```xml
-<ItemGroup>
-    <AndroidAsset Include="$(OutputPath)Content\**\*">
-        <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </AndroidAsset>
-</ItemGroup>
-```
-
-> [!NOTE]
-> If you change the location where the Content Builder project outputs content to, the paths above will need to be updated to the new location to find the content to include.
-
-At build time, the "BuildContent" task will run and execute the Content Builder, then with the output from the builder, the Android solution will automatically identify and package the content as per Google's packaging requirements, generating an `APK` for sideloading and an `AAB` for publishing to the Google Play Store.
-
-> [!NOTE]
-> If your content is too large to fit within the maximum size of the base application, you will need to use Asset Bundles to package your content, as demonstrated here:
->
-> ```xml
-> <ItemGroup>
->    <AndroidAsset Include="$(OutputPath)Content\**\*">
->        <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
->    </AndroidAsset>
->    <AndroidAsset Update="Content\Path\SomeLargeFile.xnb" AssetPack="foo" />
-> </ItemGroup>
->
-> However, your game project will also need to be aware and update its strategy for loading the content to take the asset packs into account.
->
-> For more details, see the [Microsoft Documentation](https://devblogs.microsoft.com/dotnet/android-asset-packs-in-dotnet-android/).
-
-### iOS
-
-For iOS, a specific `Include` section is needed in the project's `csproj` project definition, as follows:
-
-> [!NOTE]
-> iOS uses a special `BundleResource` tag to identify content to include.
-
-```xml
-<ItemGroup>
-    <BundleResource  Include="$(OutputPath)Content\**\*">
-        <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </BundleResource >
-</ItemGroup>
-```
-
-> [!NOTE]
-> If you change the location where the Content Builder project outputs content to, the paths above will need to be updated to the new location to find the content to include.
-
-At build time, the "BuildContent" task will run and execute the Content Builder, then with the output from the builder, the Android solution will automatically identify and package the content within the App as per Apple's packaging standards.
+Thankfully, these steps are now handled inside the `BuildContent.targets` task, replicating how the legacy MGCB build process handled it.  No action needed on your part.
 
 ## Basic Builder Project Structure
 
-The default `Builder.cs` file looks like this, which contains everything needed to build all content in the designated Assets/Content folder using the default [Importers and Processors](/articles/getting_to_know/whatis/content_pipeline/CP_StdImpsProcs) (how MonoGame compiles content) into processed `.XNB` files for consumption by your runtime project:
+The default `Builder.cs` file looks as follows, which demonstrates how to selectively add content from the designated Assets folder using the default [Importers and Processors](/articles/getting_to_know/whatis/content_pipeline/CP_StdImpsProcs) (how MonoGame compiles content) into processed `.XNB` files for consumption by your runtime project:
 
 ```csharp
 using Microsoft.Xna.Framework.Content.Pipeline;
@@ -261,30 +183,53 @@ public class Builder : ContentBuilder
     {
         var contentCollection = new ContentCollection();
         
+        // By default, no content will be imported from the Assets folder using the default importer for their file type.
+        // Please define your content collection rules here.
+
+        /* Examples
+
+        // Import all content in the Assets folder using the default importer for their file type.
         contentCollection.Include<WildcardRule>("*");
-        
-        // Add your content rules here
+
+        // Only copy content from the assets folder rather than build it with the pipeline.
+        contentCollection.IncludeCopy<WildcardRule>("*.json");
+
+        // Exclude assets that match the pattern., only required overriding a default import behaviour.
+        contentCollection.Exclude<WildcardRule>("Font/*.txt");
+
+        // Include a specific asset with processor parameters.
+        contentCollection.Include("Models/character.glb", new FbxImporter(),
+            new MeshAnimatedModelProcessor()
+            {
+                Scale = 100.0f
+            }
+        );
+        */
 
         return contentCollection;
     }
 }
 ```
 
-> [!NOTE]
-> The example above has been simplified for reference.  The default template includes options to run the Content Builder project without parameters using default configuration to aid testing.
+The comments are a basic guide to walk you through the basics for identifying content in your projects `Assets` folder and queuing them up for processing during the Content Build phase.
 
-The default `Include` rule simply builds a list of content to process from the target folder when the program is executed.
+### Recommendations
+
+- Try to group assets with similar processing together, e.g. All audio in the same folder
+- Any assets requiring special processing or specific content importers should be grouped together in the same folder.
+- Make sure any files that require copying rather than building use the `IncludeCopy` command.
+- Any content that cannot or should not be processed, needs to be either outside one of the folders configured, or specifically excluded using the `Exclude` command.
 
 > [!IMPORTANT]
-> We recommend keeping this default structure of getting all files and then specifying overrides.  You can alter this if you so wish to only use specific includes, but that it would require more maintenance as your content grows.  Try to be generic, design rules based on the structure of your content rather than being too specific.
+> Rule - Last one at the door stands
 >
-> Although check the details later about providing parameters, while samples are currently "hard coding" importer/processor values, this would be improved through your own configuration.
+> Whatever the state of a file is by the END of the Content Collection configuration, wins.  You can do a broad Include for Everything and then exclude items after it, updating those items queue state.  (If you do it the other way round, then with Include being last, everything is included)
 
 ---
 
 ## Understanding ContentBuilderParams
 
-`ContentBuilderParams` defines the operational configuration that tells the ContentBuilder where to find your content, where to output it, and how to process it. Think of it as the "settings panel" for your content building operation.
+`ContentBuilderParams` defines the operational configuration that tells the Content Builder where to find your content, where to output it, and how to process it. Think of it as the "settings panel" for your content building operation.
 
 ### Core Properties
 
@@ -310,7 +255,7 @@ Here are the main properties available to work with:
 var contentParams = new ContentBuilderParams()
 {
     Mode = ContentBuilderMode.Builder,
-    WorkingDirectory = $"{AppContext.BaseDirectory}../../../",
+    WorkingDirectory = $"{AppContext.BaseDirectory}../../",
     SourceDirectory = "Assets",
     OutputDirectory = "bin/DesktopGL/Content",
     Platform = TargetPlatform.DesktopGL,
@@ -357,7 +302,7 @@ WorkingDirectory/           # Your project root
 
 ## Creating Your ContentCollection
 
-The `ContentCollection` is where you define the rules for how your content should be handled. It is like creating a recipe book that tells the ContentBuilder what to do with each file.
+The `ContentCollection` is where you define the rules for how your content should be handled. It is like creating a recipe book that tells the Content Builder what to do with each file.
 
 ### Basic ContentCollection Setup
 
@@ -366,28 +311,44 @@ public override IContentCollection GetContentCollection()
 {
     var contentCollection = new ContentCollection();
     
-    contentCollection.Include<WildcardRule>("*");
+    // Only effect files from the Effects folder
+    contentCollection.Include<WildcardRule>("Effects/*.fx");
 
-    // Your rules go here
+    // Only spritefonts from the Fonts folder (not ttf)
+    contentCollection.Include<WildcardRule>("Fonts/*.spritefont");
+
+    // Only import PNG files from the Textures Folder
+    contentCollection.Include<WildcardRule>("Textures/*.png");
+    contentCollection.Include("splash-screen.png");
     
     return contentCollection;
 }
 ```
 
-The default process queries your target assets folder and builds a list of all content, this ensures that **EVERYTHING** contained within that folder is available for processing, making it easy to simply add new content files to the structure without having to rebuild the `ContentBuilder`.  Only when you need to change the rules or specify different processing logic for various asset types or folders should you need to change this.
+By default nothing is imported via the builder, like the MGCB editor before it, you need to selectively add content to your assets folder and then update the Builder.  But to make it easy on yourself, organise content by rules:
+
+- Textures in one folder
+- Audio in another
+- Files needing special processing or custom importers in their own folder
+
+Then configure the builder to look for that kind of content in those folders.  By that rule, any content you add will not require you to rebuild your Content Builder exe and you can just run it to process your asset folder for your game.
+
+> [!NOTE]
+> If in doubt, you can always just use the following default "include everything" rule and then exclude anything that cannot be processed:
+>
+> ```csharp
+> contentCollection.Include<WildcardRule>("*");
+> ```
+>
+> But we recommend managing your content, like you manage your game, so that everything is always where you expect it.
 
 ---
 
 ## Including and Excluding Content
 
-The ContentCollection provides flexible ways to specify which files should be processed and how, by default in the template, "All content" is included and processed using the defaults.  Any files that cannot be compiled will be reported in the console output.
+The ContentCollection provides flexible ways to specify which files should be processed and how, any files that cannot be compiled will be reported in the console output.
 
 Any additional `ContentCollection` commands provided after the global include simply update the "processing" list, as all content is only built ONCE (per folder).
-
-> [!TIP]
-> The recommended approach is to leave the default "include" rule to gather all assets, and then provide overrides to the assets collected below.  You "Can" remove the default include and just write specific inclusion commands if you wish instead, the choice is completely up to you and how you want to manage your content.
->
-> Just make sure to use a path that reduces the need to rebuild the "Builder" application using policies or patterns for your content to minimise friction when building content!
 
 ### Understanding Rule Order
 
@@ -474,7 +435,7 @@ contentCollection.Include<WildcardRule>("*.{png,jpg,bmp}");
 For more complex patterns, use [regular expressions](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference):
 
 > [!NOTE]
-> Be wary, RexEx expressions are a dark art and may behave differently depending on the language used.  Use tools like [regex101](https://regex101.com/) (an online regex tester tool) to verify and check your search results, but note they have been known to operate differently based on OS/Language at runtime.
+> Be wary, RegEx expressions are a dark art and may behave differently depending on the language used.  Use tools like [regex101](https://regex101.com/) (an online regex tester tool) to verify and check your search results, but note they have been known to operate differently based on OS/Language at runtime.
 
 ```csharp
 // Match files ending with _diffuse.png
@@ -684,7 +645,7 @@ Many processors have configurable parameters that control how they process conte
 var textureImporter = new TextureImporter();
 var textureProcessor = new TextureProcessor
 {
-    ColorKeyColor = Color.Magenta,           // Transparent color
+    ColorKeyColor = Color.Magenta,            // Transparent color
     ColorKeyEnabled = true,                   // Enable color keying
     GenerateMipmaps = true,                   // Create mipmaps
     PremultiplyAlpha = true,                  // Premultiply alpha
@@ -848,7 +809,7 @@ The following scenarios outline these options as they pertain to the Content Bui
 
 ### Scenario 1: Debugging the Builder
 
-If you wish to inject a `Debugger` breakpoint to determine the cause of any issues when building content, you can add the following before the `Builder` runs in your `ContentBuilder` project, this will cause DotNet to request to launch the default debugger and automatically attach it to the project when it is run:
+If you wish to inject a `Debugger` breakpoint to determine the cause of any issues when building content, you can add the following before the `Builder` runs in your `Content Builder` project, this will cause DotNet to request to launch the default debugger and automatically attach it to the project when it is run:
 
 ```csharp
 #if DEBUG
@@ -891,7 +852,7 @@ public override IContentCollection GetContentCollection()
 
 ## Summary
 
-The MonoGame ContentBuilder provides a powerful, flexible way to build your game content programmatically. Here are the key takeaways:
+The MonoGame Content Builder provides a powerful, flexible way to build your game content programmatically. Here are the key takeaways:
 
 1. **ContentBuilderParams** configures where and how content is built.
 2. **ContentCollection** defines rules for which files to process.
@@ -901,7 +862,7 @@ The MonoGame ContentBuilder provides a powerful, flexible way to build your game
 
 With these tools, you can create sophisticated content build pipelines that adapt to different platforms, languages, build configurations, and project structures.
 
-Happy content building! 🎮✨
+Happy content building!
 
 ---
 
