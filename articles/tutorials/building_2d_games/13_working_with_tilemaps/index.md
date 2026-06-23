@@ -70,7 +70,7 @@ In the `Graphics` folder of the *MonoGameLibrary* project, create a new file nam
 
 ### Tileset Properties and Fields
 
-The `Tileset` class needs to store a `TextureRegion` for each of the individual tiles in the tile set and provide the dimensions (width and height) of the tiles. It should also offers additional properties that provide the total number of rows and columns in the tileset and the total number of tiles. Add the following fields and properties:
+The `Tileset` class needs to store a `TextureRegion` for each of the individual tiles in the tile set and provide the dimensions (width and height) of the tiles. It should also offer additional properties that provide the total number of rows and columns in the tileset and the total number of tiles. Add the following fields and properties:
 
 [!code-csharp[](./snippets/tileset.cs#properties)]
 
