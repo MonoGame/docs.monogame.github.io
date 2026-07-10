@@ -284,7 +284,7 @@ So far, we have passed `uv.x` and `uv.y` along as the argument to compare agains
 
 For example, here is a wipe that comes in from the left and right towards the center:
 
-[!code-hlsl[](./snippets/snippet-5-21.hlsl?highlight=6-8)]
+[!code-hlsl[](./snippets/snippet-5-21.hlsl?highlight=5-7)]
 
 | <video autoplay loop muted style="max-width: 100%; height: auto;" aria-label="Figure 5-13: A more interesting wipe"><source src="./gifs/center-wipe.webm" type="video/webm"></video> |
 | :-------------------------------------------------------------: |
