@@ -397,11 +397,15 @@ We will create a new class called `SceneTransition` that holds all the data for 
 
     [!code-csharp[](./snippets/snippet-5-32.cs?highlight=3)]
 
-6. Then we need to actually _set_ the `Progress` shader parameter given the current scene transition value. In the `Update()` method:
+6. Before changing scene, we need to wait for the closing transition to be done:
+
+    [!code-csharp[](./snippets/snippet-5-40.cs?highlight=7)]
+
+7. Then we need to actually _set_ the `Progress` shader parameter given the current scene transition value. In the `Update()` method:
 
     [!code-csharp[](./snippets/snippet-5-33.cs?highlight=6)]
 
-7. Finally, the scene material needs to be drawn with the right texture:
+8. Finally, the scene material needs to be drawn with the right texture:
 
 [!code-csharp[](./snippets/snippet-5-34.cs?highlight=11)]
 
