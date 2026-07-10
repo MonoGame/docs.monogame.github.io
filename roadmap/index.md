@@ -103,15 +103,15 @@ This is a list of all known bounties currently [being worked on](https://github.
 
 * **A first-person 3D game sample/starter-kit**
 
-    A reusable sample / starter-kit for developers to build a first person style game.
+    A reusable sample / starter-kit for developers to build a first-person style game.
 
 * **A third-person 3D game sample/starter-kit**
 
-    A reusable sample / starter-kit for developers to build a third person style game.
+    A reusable sample / starter-kit for developers to build a third-person style game.
 
 * **A network starter sample**
 
-    Building an example framework for building local or networked multi-player games.
+    Building an example framework for building local or networked multiplayer games.
 
 * **A graphical/shader starter-kit**
 
@@ -119,13 +119,13 @@ This is a list of all known bounties currently [being worked on](https://github.
 
 * **A custom editor sample**
 
-    A starter solution showing how to build an editor for MonoGame showcasing multiple editor windows, multiple viewports (in a single window), custom dialogs, docking windows?, rebuilding content and a simple undo/redo framework (which we may have one available for use).
+    A starter solution showing how to build an editor for MonoGame showcasing multiple editor windows, multiple viewports in a single window, custom dialogs, docking windows, rebuilding content and a simple undo/redo framework (which we may have one available for use).
 
 * **A GUI integration tutorial**
-    With so many great GUI systems available for MonoGame, we could do with a tutorial showing how to integrate or build on teh best of them, such as IMGUI, NEX and so on.
+    With so many great GUI systems available for MonoGame, we could do with a tutorial showing how to integrate or build on the best of them, such as IMGUI, NEX and so on.
 
 * **Texture Compression Content Pipeline**
-    The current texture compression systems does not work on `arm` based machines like the Apple M1/M2/M3. This bounty will upgrade the system to use [Basis Universal](https://github.com/BinomialLLC/basis_universal) which works across all supported Desktop plaforms.
+    The current texture compression systems does not work on `arm` based machines such as Apple Silicon Macs. This bounty will upgrade the system to use [Basis Universal](https://github.com/BinomialLLC/basis_universal) which works across all supported Desktop plaforms.
 
 > [!NOTE]
 > Have an idea for another bounty / sample or something that can make MonoGame even better, or a guide that you feel the community needs, then let us know on GitHub by raising a [Feature Request](https://github.com/MonoGame/MonoGame/issues/new?assignees=&labels=Feature+Request&projects=&template=02_feature_request.yml) and give us the details.
