@@ -17,7 +17,7 @@ If you are following along with code, here is the code from the end of the [prev
 
 ## Sample Source
 
-The full source for this tuturial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+The full source for this tutorial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
 
 As shown below:
 
@@ -108,7 +108,7 @@ This is the _input_ struct for the standard pixel shaders from previous chapters
 > [!code-hlsl[](./snippets/snippet-7-sv.hlsl?highlight=2)]
 >
 > The `#define` line tells the shader parser to replace any instance of `SV_POSITION` with `POSITION`.
-> This implies that `SV_POSITION` is converted to `POSITION` when you are targetting `OPENGL` platforms, and left "as is" when targeting DirectX.
+> This implies that `SV_POSITION` is converted to `POSITION` when you are targeting `OPENGL` platforms, and left "as is" when targeting DirectX.
 
 ### Matrix Transform
 
@@ -343,7 +343,7 @@ As a final touch, we should remove the hard-coded `screenSize` variable from the
 
     [!code-csharp[](./snippets/snippet-7-28.cs?highlight=3)]
 
-5. And instead of manually controlling the spin angle, we can make the title spin gentle following the mouse position. In the `Update()` function, add the following snippet:
+5. And instead of manually controlling the spin angle, we can make the title spin gently following the mouse position. In the `Update()` function, add the following snippet:
 
     [!code-csharp[](./snippets/snippet-7-29.cs?highlight=5-7)]
 
@@ -351,7 +351,7 @@ As a final touch, we should remove the hard-coded `screenSize` variable from the
 | :------------------------------------------------------------: |
 |          **Figure 7-11: Spin controlled by the mouse**          |
 
-Now when ever you move your Mouse left to right, the title will spin accordingly.
+Now whenever you move your Mouse left to right, the title will spin accordingly.
 
 ## Applying it to the Game
 
@@ -361,7 +361,7 @@ It was helpful to use the `TitleScene` to build intuition for the vertex shader,
 
 A problem emerges right away. The `GameScene` is already using the color swapping effect to draw the sprites, and `SpriteBatch` can only use a single shader per batch.
 
-To solve this problem, we will collapse our shaders into a single shader that does it all the effects, the color swapping, greyscale _and_ the vertex manipulation. Writing code to be re-usable is a challenge for all programming languages, and shader languages are no different.
+To solve this problem, we will collapse our shaders into a single shader that does all the effects, the color swapping, grayscale _and_ the vertex manipulation. Writing code to be re-usable is a challenge for all programming languages, and shader languages are no different.
 
 > [!NOTE]
 > The _Uber_ Shader
@@ -371,7 +371,7 @@ To solve this problem, we will collapse our shaders into a single shader that do
 >
 > For an insightful read, check out this article on [shader permutations](https://therealmjp.github.io/posts/shader-permutations-part1/).
 
-MonoGame shaders can reference code from multiple files by using the `#include` syntax. MonoGame itself [uses](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Platform/Graphics/Effect/Resources/SpriteEffect.fx#L8) this technique itself in the default vertex shader for `SpriteBatch`. We can move some of the code from our existing `.fx` files into a _new_ `.fxh` file, re-write the existing shaders to `#include` the new `.fxh` file, and then be able to write additional `.fx` files that `#include` multiple of our files and compose the functions into a single effect.
+MonoGame shaders can reference code from multiple files by using the `#include` syntax. MonoGame itself [uses](https://github.com/MonoGame/MonoGame/blob/develop/MonoGame.Framework/Platform/Graphics/Effect/Resources/SpriteEffect.fx#L8) this technique in the default vertex shader for `SpriteBatch`. We can move some of the code from our existing `.fx` files into a _new_ `.fxh` file, re-write the existing shaders to `#include` the new `.fxh` file, and then be able to write additional `.fx` files that `#include` multiple of our files and compose the functions into a single effect.
 
 > [!TIP]
 > `.fxh` vs `.fx`.
@@ -398,7 +398,7 @@ Follow the steps below to refactor the shader code, and to use the `#include` sy
     >[!tip]
     > Include Guards.
     >
-    > The `#include` syntax is taking the referenced file and inserting it into the code. If the same file was included twice, then the contents that file would be written out as code _twice_. Defining a `struct` or function this way would cause the compiler to fail, because the `struct` would be declared twice, which is illegal.
+    > The `#include` syntax is taking the referenced file and inserting it into the code. If the same file was included twice, then the contents of that file would be written out as code _twice_. Defining a `struct` or function this way would cause the compiler to fail, because the `struct` would be declared twice, which is illegal.
     >
     > To work around this, _a_ solution is to use a practice called "include guards", where the file itself defines a symbol (in the case above, the symbol is `COMMON`). The file only compiles to anything if the symbol has not yet been defined. The `#ifndef` stands for "if not yet defined".
     >
@@ -431,7 +431,7 @@ Follow the steps below to refactor the shader code, and to use the `#include` sy
 
     [!code-hlsl[](./snippets/snippet-7-36.hlsl)]
 
-    Now most of the components we would like to combine into a single effect have been split into various `.fxh` header files, but their relative location is **CRUCIAL** when refering to related functionality, to demonstrate this, we will "break" a shader and show how to fix it.
+    Now most of the components we would like to combine into a single effect have been split into various `.fxh` header files, but their relative location is **CRUCIAL** when referring to related functionality, to demonstrate this, we will "break" a shader and show how to fix it.
 
 8. Create a new "sprite effect" using the MGCB editor in the **`_DungeonSlime_`'s** content `effects` folder called `gameEffect.fx`, and simply add the following:
 
@@ -479,7 +479,7 @@ Follow the steps below to refactor the shader code, and to use the `#include` sy
 
     [!code-csharp[](./snippets/snippet-7-42.cs)]
 
-13. In the `Update` method to also swap out the `_colorSwapMaterial.Update()` update call:
+13. In the `Update` method also swap out the `_colorSwapMaterial.Update()` update call:
 
     ```csharp
             // Update the colorSwap material if it was changed
@@ -491,11 +491,11 @@ Follow the steps below to refactor the shader code, and to use the `#include` sy
     - Update - 1 reference.
     - Draw - 4 references.
 
-15. Somewhat optionally, remember to add the `rasterizerState: RasterizerState.CullNone` to the `SpriteBatch.Draw()` call if you do not want the game to vanish when the `SpinAmount` goes beyond half a rotation. In practice, we will not be be spinning the game world that much, so it does not really matter.
+15. Somewhat optionally, remember to add the `rasterizerState: RasterizerState.CullNone` to the `SpriteBatch.Draw()` call if you do not want the game to vanish when the `SpinAmount` goes beyond half a rotation. In practice, we will not be spinning the game world that much, so it does not really matter.
 
 > if you still have any old references to the `_grayscaleEffect` make sure to remove those as well as they are no longer used.
 
-The code now compiles and everything runs, but we are not spinning yet, so let us update that show off the new feature.
+The code now compiles and everything runs, but we are not spinning yet, so let us update that to show off the new feature.
 
 ### Adjusting the Game
 
