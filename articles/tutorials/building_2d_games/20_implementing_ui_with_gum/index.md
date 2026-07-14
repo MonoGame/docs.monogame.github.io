@@ -317,11 +317,15 @@ To add the Gum NuGet package to our game project, follow the instructions below 
 
 To add the Gum NuGet package in Visual Studio Code:
 
-1. In the [*Solution Explorer*](../02_getting_started/index.md#install-the-c-dev-kit-extension) panel, right-click the `DungeonSlime` project.
-2. Choose `Add NuGet Package` from the context menu.
-3. Enter `Gum.MonoGame` in the `Add NuGet Package` search prompt and press Enter.
-4. When the search finishes, select the `Gum.MonoGame` package in the results
-5. When prompted for a version choose version `2026.5.8.1`.
+1. In the [*Explorer*](../02_getting_started/index.md#install-the-c-dev-kit-extension) panel, right-click the `DungeonSlime.csproj` file.
+2. Choose `C# Package Management > Add NuGet Package` from the context menu.
+3. Enter `Gum.MonoGame` in the search prompt, then press Enter to search NuGet.
+4. When the search finishes, select the `Gum.MonoGame` package in the results.
+5. When prompted for a version, choose version `2026.5.8.1`.
+
+| ![Figure 20-1: Adding a NuGet package from the DungeonSlime.csproj file in Visual Studio Code](./images/add-nuget-package.png) |
+| :--------------------------------------------------------------------------------------------------------------------------: |
+|                       **Figure 20-1: Adding a NuGet package from the DungeonSlime.csproj file in Visual Studio Code**                        |
 
 #### [Visual Studio 2022](#tab/vs2022)
 
@@ -373,9 +377,9 @@ Next, add this sound effect to your content project using the MGCB Editor:
 4. In the Properties panel, verify that the `Processor` is set to `Sound Effect`.
 5. Save the changes and close the MGCB Editor.
 
-| ![Figure 20-1: The MGCB Editor with ui.wav added to the audio folder](./images/mgcb-editor.png) |
+| ![Figure 20-2: The MGCB Editor with ui.wav added to the audio folder](./images/mgcb-editor.png) |
 | :---------------------------------------------------------------------------------------------: |
-|             **Figure 20-1: The MGCB Editor with ui.wav added to the audio folder**              |
+|             **Figure 20-2: The MGCB Editor with ui.wav added to the audio folder**              |
 
 We will load and use this sound effect in our UI implementation to provide auditory feedback when players interact with buttons and sliders.
 
@@ -537,9 +541,9 @@ Update the `Draw` method to the following:
 
 With these changes, our UI system is now fully integrated into the scene's game loop.  Gum updates its controls in the `Update` method and draws them in the `Draw` method.  This produces a fully functional title screen with buttons that allows players to start the game or adjust audio settings.  
 
-| ![Figure 20-2: Title screen with default Gum buttons](./images/title-unstyled.png) |
+| ![Figure 20-3: Title screen with default Gum buttons](./images/title-unstyled.png) |
 | :--------------------------------------------------------------------------------: |
-|               **Figure 20-2: Title screen with default Gum buttons**               |
+|               **Figure 20-3: Title screen with default Gum buttons**               |
 
 > [!NOTE]
 > You may notice that the UI elements currently use Gum's default styling, which does not match our game's visual theme.  We will explore customizing these controls to match our game's visual style in the next chapter.
@@ -619,9 +623,9 @@ Finally, add Gum's drawing call to the end fo the `Draw` method:
 
 With these changes, the pause menu is now fully integrated into the game scene's game loop.  Gum updates its controls during the `Update` method and draws them during the `Draw` method.  If the game is paused, as determined by the `IsVisible` property of the pause menu, then updating the actual game logic is skipped.
 
-| ![Figure 20-3: The pause menu during the game scene with default Gum buttons](./images/pause-unstyled.png) |
+| ![Figure 20-4: The pause menu during the game scene with default Gum buttons](./images/pause-unstyled.png) |
 | :---------------------------------------------------------------------------------------------------------: |
-|               **Figure 20-3: The pause menu during the game scene with default Gum buttons**               |
+|               **Figure 20-4: The pause menu during the game scene with default Gum buttons**               |
 
 ## Conclusion
 
