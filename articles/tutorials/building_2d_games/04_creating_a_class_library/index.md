@@ -57,12 +57,15 @@ To use the template to add the class library, perform the following based on whi
 
 To add the class library using the MonoGame Game Library project template in Visual Studio Code, perform the following:
 
-1. In the [*Solution Explorer*](../02_getting_started/index.md#install-the-c-dev-kit-extension) panel, right-click the *DungeonSlime* solution.
-2. Choose *New Project* from the context menu.
-3. Enter "MonoGame Game Library" and select it as the template to use.
-4. Name the project "MonoGameLibrary".
-5. When prompted for a location, use the default option, which will put the new project in a folder next to your game project.
-6. Select "Create Project".
+1. Open the *Command Palette* using `CTRL+SHIFT+P` (`CMD+SHIFT+P` on macOS).
+2. Enter `.NET New Project` and choose that command.
+3. Enter `MonoGame Game Library` as the search term, then choose that template.
+4. Name the project `MonoGameLibrary`.
+5. When prompted for a location, you can use the default location or choose a different folder if you prefer a different project layout.
+6. Select `Create Project`.
+
+> [!TIP]
+> If C# Dev Kit already has your `DungeonSlime.sln` solution loaded, it should automatically add the newly created `MonoGameLibrary` project to that solution.
 
 ### [Visual Studio 2022](#tab/vs2022)
 
@@ -93,15 +96,18 @@ Now that the game library project has been created, a reference to it needs to b
 
 To add the game library project as a reference to the game project in Visual Studio Code:
 
-1. In the Solution Explorer panel, right-click the *DungeonSlime* project.
-2. Choose "Add Project Reference" from the context menu.
-3. Choose *MonoGameLibrary* from the available options.
+1. In the *Explorer* panel, right-click the `DungeonSlime.csproj` file.
+2. Choose `Add Project Reference` from the context menu.
+3. Choose `MonoGameLibrary` from the available options.
+
+| ![Figure 4-3: Adding a project reference from the DungeonSlime.csproj file in Visual Studio Code](./images/add-project-reference.png) |
+| :-------------------------------------------------------------------------------------------------------------------------------: |
+|                        **Figure 4-3: Adding a project reference from the DungeonSlime.csproj file in Visual Studio Code**                         |
 
 > [!TIP]
-> The Solution Explorer panel in VSCode is provided by the C# Dev Kit extension that was installed in [Chapter 02](../02_getting_started/index.md#install-the-c-dev-kit-extension).  If you do not see this panel, you can open it by
+> The project commands in VSCode are provided by the C# Dev Kit extension that was installed in [Chapter 02](../02_getting_started/index.md#install-the-c-dev-kit-extension). If you do not see C#-specific commands when right-clicking the `.csproj` file, make sure the project folder is open in VSCode and give C# Dev Kit a moment to finish loading the workspace.
 >
-> 1. Opening the *Command Palette* (View > Command Palette).
-> 2. Enter "Explorer: Focus on Solution Explorer View" and select the command.
+> Depending on your version of the extension, you may also see related information in the *C# Project Details* view.
 
 ### [Visual Studio 2022](#tab/vs2022)
 
@@ -181,9 +187,9 @@ Running the game now will show the same window as before, only now it is at a 12
 > [!NOTE]
 > If you get any additional prompts when starting the project, simply accept the defaults.  Adding the Game Library gives the compiler more projects to choose from when starting the project, however, we can only "run" the Game Project, libraries are not executables.
 
-| ![Figure 4-3: The game window at 1280x720 with the title Dungeon Slime](./images/game-window.png) |
+| ![Figure 4-4: The game window at 1280x720 with the title Dungeon Slime](./images/game-window.png) |
 | :-----------------------------------------------------------------------------------------------: |
-|             **Figure 4-3: The game window at 1280x720 with the title Dungeon Slime**              |
+|             **Figure 4-4: The game window at 1280x720 with the title Dungeon Slime**              |
 
 > [!IMPORTANT]
 > If you receive an error stating the following:

@@ -108,19 +108,19 @@ To install VSCode, follow the instructions for your operating system below:
 
 ## Install the C# Dev Kit Extension
 
-For C# development using VSCode, it is recommended to use the official *[C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)* extension provided by Microsoft. Installing this extension will add additional features to VSCode such as a project system and *Solution Explorer* for C# projects. It also provides code editing features such as syntax highlighting, code completion, code navigation, refactoring, NuGet package management, and debugging tools.
+For C# development using VSCode, it is recommended to use the official *[C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)* extension provided by Microsoft. Installing this extension adds C# project tooling to VSCode, including project actions in the *Explorer* panel, the *C# Project Details* view, and status bar integration for loaded solutions. It also provides code editing features such as syntax highlighting, code completion, code navigation, refactoring, NuGet package management, and debugging tools.
 
 > [!NOTE]  
-> The *Solution Explorer* panel is a hierarchical view provided by the C# Dev Kit extension that displays your solution structure similar  to Visual Studio's Solution Explorer.
+> The C# Dev Kit extension adds C#-specific project tooling to VSCode. Depending on the version of the extension and whether a solution file is loaded, you may see project actions on `.csproj` files in the *Explorer* panel, a *C# Project Details* view, and status bar text showing which solution file is currently open.
 >
-> When you open a workspace in Visual Studio Code containing a .NET solution file (*.sln*), the *Solution Explorer* panel automatically appears and loads your solution.  From this panel, you can perform common operations like:
+> When you open a workspace in Visual Studio Code containing a .NET solution file (*.sln*), C# Dev Kit can load that solution and expose common project actions. Common tasks you can perform include:
 >
-> * Adding new files.
+> * Creating new projects.
 > * Managing project references.
-> * Viewing dependencies.
-> * Executing build commands.
+> * Managing NuGet packages.
+> * Building and debugging projects from the `.csproj` file in *Explorer*.
 >
-> For more information about the *Solution Explorer* panel in Visual Studio Code offered through the C# Dev Kit extension, you can view the official documentation in the [Project Management](https://code.visualstudio.com/docs/csharp/project-management) documentation.
+> Microsoft is still updating some of their own documentation to match the current C# Dev Kit experience, so exact panel names and screenshots may differ. For general background on C# project tooling in VSCode, you can still refer to the [Project Management](https://code.visualstudio.com/docs/csharp/project-management) documentation.
 
 To install the C# Dev Kit extension, perform the following:
 
@@ -154,7 +154,7 @@ The .NET MAUI extension adds features for building mobile apps, including:
 
 - F5 debugging support - Debug your MonoGame mobile apps on emulators, simulators, and physical devices
 - Easy target switching - Change debug/deploy targets between different mobile platforms
-- Enhanced C# Dev Kit integration - Leverages Solution Explorer, Test Explorer, and advanced language features
+- Enhanced C# Dev Kit integration - Leverages C# project tooling, Test Explorer, and advanced language features
 
 | ![Figure 2-2: The .NET MAUI Extension listed in Visual Studio Code](./images/maui-extension.png) |
 | :-------------------------------------------------------------------------------------------------: |
@@ -227,7 +227,7 @@ After selecting *Create Project*, a new C# project will be generated based on th
 | :--------------------------------------------------------------------------------------------------: |
 |           **Figure 2-3: A new MonoGame project after being created in Visual Studio Code**           |
 
-Now that we have the project created, press the `F5` key on your keyboard, or choose *Run > Start Debugging* from the top menu. If prompted for a configuration, choose *C#*. The project will compile and run, displaying a screen similar to the following:
+Now that we have the project created, locate the `DungeonSlime.csproj` file in the *Explorer* panel, right-click it, then choose *Debug > Start New Instance*. The project will compile and run, displaying a screen similar to the following:
 
 | ![Figure 2-4: The default MonoGame cornflower blue game window](./images/game-window.png) |
 | :---------------------------------------------------------------------------------------: |
