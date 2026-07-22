@@ -27,14 +27,19 @@ dotnet docfx build docfx.json
 
 New-Item -ItemType Directory -Force -Path "_pdf" | Out-Null
 
-# Generate PDF (using PDF-specific config that includes pdf/** files)
+# Generate PDF (using PDF-specific config that includes pdf/** files), if available
 Write-Host "Generating PDF..." -ForegroundColor Green
 dotnet docfx pdf docfx.pdf.json --output _pdf
 
-# Copy PDF to downloads folder and clean up
-Write-Host "Copying PDF to downloads folder..." -ForegroundColor Green
-New-Item -ItemType Directory -Force -Path "_site/downloads" | Out-Null
-Copy-Item "_pdf/pdf/MonoGameGuide.pdf" "_site/downloads/"
-Remove-Item -Path "_pdf" -Recurse -Force
+if (Test-Path "_pdf/pdf/MonoGameGuide.pdf") {
+    # Copy PDF to downloads folder and clean up
+    Write-Host "Copying PDF to downloads folder..." -ForegroundColor Green
+    New-Item -ItemType Directory -Force -Path "_site/downloads" | Out-Null
+    Copy-Item "_pdf/pdf/MonoGameGuide.pdf" "_site/downloads/"
+}
+else {
+    Write-Host "PDF was not generated. Skipping copy to downloads folder." -ForegroundColor Yellow
+}
+Remove-Item -Path "_pdf" -Recurse -Force -ErrorAction SilentlyContinue
 
 Write-Host "Build and documentation generation completed successfully!" -ForegroundColor Green

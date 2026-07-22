@@ -58,3 +58,7 @@ This section details some general aspects of the operation of a MonoGame Framewo
 * [What Is MonoGame Class Library](./monogame_class_library/index.md)
 
   An overview of the MonoGame Class Library reference, containing all the API calls available to the MonoGame Framework.
+
+* [What Is the MonoGame Hub](./monogame_hub/index.md)
+
+  An overview of the MonoGame Hub tool, a new launcher and project generator hub for managing MonoGame projects.

@@ -46,6 +46,8 @@ items:
             href: getting_to_know/whatis/vector_matrix_quat/index.md
           - name: MonoGame Class Library
             href: getting_to_know/whatis/monogame_class_library/index.md
+          - name: MonoGame Hub
+            href: getting_to_know/whatis/monogame_hub/index.md
       - name: How to
         href: getting_to_know/howto/index.md
         items:
