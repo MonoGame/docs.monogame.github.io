@@ -84,6 +84,9 @@ public class Game1 : Core
 
     protected override void Update(GameTime gameTime)
     {
+        // Update the InputManger inside base.Update() right away.
+        base.Update(gameTime);
+        
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 
@@ -185,8 +188,6 @@ public class Game1 : Core
             // Assign a new random velocity to the bat
             AssignRandomBatVelocity();
         }
-
-        base.Update(gameTime);
     }
 
     private void AssignRandomBatVelocity()
