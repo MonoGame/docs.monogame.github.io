@@ -50,6 +50,9 @@ public class Game1 : Core
 
     protected override void Update(GameTime gameTime)
     {
+        // Update the InputManger inside base.Update() right away.
+        base.Update(gameTime);
+
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 
@@ -61,8 +64,6 @@ public class Game1 : Core
 
         // Check for gamepad input and handle it.
         CheckGamePadInput();
-
-        base.Update(gameTime);
     }
 
     private void CheckKeyboardInput()

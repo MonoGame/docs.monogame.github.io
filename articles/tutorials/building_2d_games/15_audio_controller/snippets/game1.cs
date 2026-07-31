@@ -107,6 +107,9 @@ public class Game1 : Core
 
     protected override void Update(GameTime gameTime)
     {
+        // Update the InputManger inside base.Update() right away.
+        base.Update(gameTime);
+
         // Update the slime animated sprite.
         _slime.Update(gameTime);
 
@@ -214,8 +217,6 @@ public class Game1 : Core
             // Play the collect sound effect.
             Audio.PlaySoundEffect(_collectSoundEffect);
         }
-
-        base.Update(gameTime);
     }
 
     private void AssignRandomBatVelocity()
