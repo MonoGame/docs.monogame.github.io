@@ -13,11 +13,11 @@ This plan gives the MonoGame Foundation, Inc. ("the Foundation") a documented, r
 
 | Role | Holder | Responsibilities |
 |---|---|---|
-| Incident Lead (Data Protection Officer-equivalent) | [NAME / OFFICE, e.g. a designated Board officer] | Owns this plan; declares incidents; decides notification; signs regulator filings |
-| Technical Lead | [NAME — forum/infrastructure admin] | Containment, forensics, log preservation, recovery |
-| Communications Lead | [NAME] | User notices, transparency posts, press/community questions |
-| Legal Counsel | [FIRM / CONTACT — retain in advance] | Notification-duty analysis, regulator liaison |
-| Board liaison | [PRESIDENT / CHAIR] | Board notification, resource decisions |
+| Incident Lead (Data Protection Officer-equivalent) | Foundation President | Owns this plan; declares incidents; decides notification; signs regulator filings |
+| Technical Lead | Foundation Board Chairman | Containment, forensics, log preservation, recovery |
+| Communications Lead | Foundation Corporate Secretary | User notices, transparency posts, press/community questions |
+| Legal Counsel | Foundation Treasurer | Notification-duty analysis, regulator liaison |
+| Board liaison | Foundation Corporate Secretary | Board notification, resource decisions |
 
 Standing mailboxes: **`privacy@monogame.net`** (rights requests and privacy queries), **`privacy@monogame.net`** (vulnerability and incident reports), **`admin@monogame.net`** (copyright notices). Each must route to at least two named people.
 
@@ -124,7 +124,7 @@ Quarterly calendar task (Technical Lead):
 - MFA mandatory on: Discourse admin, DNS registrar, hosting consoles, GitHub organization owners, mail provider admin.
 - Admin access list reviewed quarterly; offboard departing volunteers same week.
 - TLS everywhere; HSTS on Foundation domains.
-- Forum software updated within [14] days of security releases; critical patches ASAP.
+- Forum software updated within **`14`** days of security releases; critical patches ASAP.
 - Backups encrypted at rest, access-restricted, restore-tested annually.
 - Secrets (API keys, tokens) stored in a password manager/secret store, never in repositories.
 - `privacy@monogame.net` monitored; good-faith vulnerability reports acknowledged within 5 business days (consider publishing a security.txt and simple safe-harbor disclosure policy).
