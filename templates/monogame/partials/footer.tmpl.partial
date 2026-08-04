@@ -1,5 +1,4 @@
-<section class="container-xxl">
-    <footer class="border-top my-5 pt-5">
+    <footer class="mg-docs-footer border-top my-5 pt-5">
         <div class="row justify-content-between">
             <div class="col-6 col-lg-3 mb-3">
                 <h5>MonoGame</h5>
@@ -117,4 +116,3 @@
             </div>
         </div>
     </footer>
-</section>

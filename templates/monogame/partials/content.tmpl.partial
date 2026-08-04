@@ -42,6 +42,7 @@
         {{^_disableNextArticle}}
             <div class="next-article d-print-none border-top" id="nextArticle"></div>
         {{/_disableNextArticle}}
+        {{>partials/footer}}
     </div>
 
     <div class="affix">
@@ -52,5 +53,4 @@
 {{#_enableSearch}}
     <div class="container-xxl search-results" id="search-results"></div>
 {{/_enableSearch}}
-{{>partials/footer}}
 </div>
