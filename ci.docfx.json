@@ -38,6 +38,7 @@
           "articles/**/*.md",
           "articles/**/*.yml",
           "foundation/**/*.md",
+          "policies/**/*.md",
           "roadmap/**/*.md",
           "roadmap/**/*.yml",
           "errors/**/*.md",

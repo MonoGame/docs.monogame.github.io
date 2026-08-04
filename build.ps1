@@ -29,12 +29,25 @@ New-Item -ItemType Directory -Force -Path "_pdf" | Out-Null
 
 # Generate PDF (using PDF-specific config that includes pdf/** files)
 Write-Host "Generating PDF..." -ForegroundColor Green
-dotnet docfx pdf docfx.pdf.json --output _pdf
+try {
+    dotnet docfx pdf docfx.pdf.json --output _pdf
+    if ($LASTEXITCODE -ne 0) {
+        throw "docfx pdf exited with code $LASTEXITCODE"
+    }
 
-# Copy PDF to downloads folder and clean up
-Write-Host "Copying PDF to downloads folder..." -ForegroundColor Green
-New-Item -ItemType Directory -Force -Path "_site/downloads" | Out-Null
-Copy-Item "_pdf/pdf/MonoGameGuide.pdf" "_site/downloads/"
-Remove-Item -Path "_pdf" -Recurse -Force
+    # Copy PDF to downloads folder
+    Write-Host "Copying PDF to downloads folder..." -ForegroundColor Green
+    New-Item -ItemType Directory -Force -Path "_site/downloads" | Out-Null
+    Copy-Item "_pdf/pdf/MonoGameGuide.pdf" "_site/downloads/" -ErrorAction Stop
+}
+catch {
+    Write-Warning "PDF generation failed: $_"
+    Write-Warning "Continuing without PDF - the site will be served/built without the downloadable guide."
+}
+finally {
+    if (Test-Path "_pdf") {
+        Remove-Item -Path "_pdf" -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
 
 Write-Host "Build and documentation generation completed successfully!" -ForegroundColor Green
