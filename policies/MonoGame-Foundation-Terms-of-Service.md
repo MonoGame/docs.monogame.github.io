@@ -5,6 +5,14 @@ _disableToc: true
 _disableBreadcrumb: true
 ---
 
+||
+|-|
+|**Version 1.0**|
+|**Effective date:** 1st August 2026|
+|**Classification:** Public|
+|**Review cadence:** Annually, and after every activation|
+---
+
 # MonoGame Foundation Terms of Service
 
 These Terms of Service ("Terms") govern your use of websites and online services operated by **MonoGame Foundation, Inc.**, a Texas nonprofit corporation recognized as tax-exempt under Section 501(c)(3) of the Internal Revenue Code (EIN 93-3803929) ("the Foundation", "we", "us"). The services covered by these Terms (together, the "Services") include:

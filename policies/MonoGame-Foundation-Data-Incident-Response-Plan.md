@@ -5,6 +5,14 @@ _disableToc: true
 _disableBreadcrumb: true
 ---
 
+||
+|-|
+|**Version 1.0**|
+|**Effective date:** 1st August 2026|
+|**Classification:** Public|
+|**Review cadence:** Annually, and after every activation|
+---
+
 # Data Incident Response & Data Protection Operations Plan
 
 This plan gives the MonoGame Foundation, Inc. ("the Foundation") a documented, rehearsable procedure for (a) responding to data security incidents and breaches, including the notification duties under Texas Business & Commerce Code § 521.053 and GDPR Articles 33–34, and (b) handling day-to-day data protection operations: rights requests, privacy queries, retention and destruction, and vendor management. It is the internal counterpart to the public commitments in the Foundation's Privacy Policy.

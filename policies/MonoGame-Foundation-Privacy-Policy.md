@@ -5,6 +5,14 @@ _disableToc: true
 _disableBreadcrumb: true
 ---
 
+||
+|-|
+|**Version 1.0**|
+|**Effective date:** 1st August 2026|
+|**Classification:** Public|
+|**Review cadence:** Annually, and after every activation|
+---
+
 # MonoGame Foundation Privacy Policy
 
 This Privacy Policy explains how **MonoGame Foundation, Inc.**, a Texas nonprofit corporation (501(c)(3), EIN 93-3803929) ("the Foundation", "we", "us"), collects, uses, shares, and protects personal information when you use **monogame.net**, **community.monogame.net**, **docs.monogame.net**, and any other service we operate that links to this policy (the "Services").
