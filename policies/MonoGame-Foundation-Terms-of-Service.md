@@ -5,12 +5,13 @@ _disableToc: true
 _disableBreadcrumb: true
 ---
 
-||
+| |
 |-|
 |**Version 1.0**|
 |**Effective date:** 1st August 2026|
 |**Classification:** Public|
 |**Review cadence:** Annually, and after every activation|
+
 ---
 
 # MonoGame Foundation Terms of Service

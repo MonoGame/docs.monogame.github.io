@@ -11,6 +11,7 @@ _disableBreadcrumb: true
 |**Effective date:** 1st August 2026|
 |**Classification:** Public|
 |**Review cadence:** Annually, and after every activation|
+
 ---
 
 # Data Incident Response & Data Protection Operations Plan
