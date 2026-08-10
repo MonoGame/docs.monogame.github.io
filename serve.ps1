@@ -1,3 +1,8 @@
+param (
+    # Accepts an optional port number as the first argument.
+    [int]$Port
+)
+
 # Exit on any error
 $ErrorActionPreference = "Stop"
 
@@ -5,4 +10,9 @@ $ErrorActionPreference = "Stop"
 .\build.ps1
 
 # Start DocFx serve
-dotnet docfx serve .\_site
+if ($Port) {
+    dotnet docfx serve .\_site -p $Port
+}
+else {
+    dotnet docfx serve .\_site
+}

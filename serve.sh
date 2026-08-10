@@ -6,4 +6,8 @@ set -e
 ./build.sh
 
 # Start DocFx serve
-dotnet docfx serve _site
+if [ -n "$1" ]; then
+    dotnet docfx serve _site -p "$1"
+else
+    dotnet docfx serve _site
+fi
