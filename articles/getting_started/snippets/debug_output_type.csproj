@@ -1,0 +1,2 @@
+<OutputType Condition="'$(Configuration)' == 'Debug'">Exe</OutputType>
+<OutputType Condition="'$(Configuration)' != 'Debug'">WinExe</OutputType>

@@ -53,6 +53,8 @@ items:
             href: ../../articles/getting_to_know/howto/input/index.md
   - name: Advanced Topics
     items:
+      - name: Debugging
+        href: ../../articles/getting_started/debugging.md
       - name: Packaging
         href: ../../articles/getting_started/packaging_games.md
       - name: Preparing for consoles
