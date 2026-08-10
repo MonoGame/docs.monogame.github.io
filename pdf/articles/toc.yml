@@ -54,7 +54,9 @@ items:
   - name: Advanced Topics
     items:
       - name: Debugging
-        href: ../../articles/getting_started/debugging.md
+        items:
+          - name: Logging
+            href: ../../articles/getting_started/debugging.md
       - name: Packaging
         href: ../../articles/getting_started/packaging_games.md
       - name: Preparing for consoles

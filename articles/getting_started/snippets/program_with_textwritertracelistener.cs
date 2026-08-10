@@ -20,21 +20,16 @@ public class Program
         AppDomain.CurrentDomain.UnhandledException += (sender, exArgs) =>
         {
             var ex = exArgs.ExceptionObject as Exception;
-            LogFatalException($"Unhandled Exception from sender: {sender}\nException: {ex?.Message}\n{ex?.StackTrace}");
+            Trace.TraceError($"Unhandled Exception from sender: {sender}\nException: {ex?.Message}\n{ex?.StackTrace}");
         };
 
         // Catch exceptions from background tasks/threads.
         TaskScheduler.UnobservedTaskException += (sender, exArgs) =>
         {
-            LogFatalException($"Unobserved Task Exception from sender: {sender}\nException: {exArgs.Exception.Message}\n{exArgs.Exception.StackTrace}");
+            Trace.TraceError($"Unobserved Task Exception from sender: {sender}\nException: {exArgs.Exception.Message}\n{exArgs.Exception.StackTrace}");
         };
         
         using var game = new GameClass();
         game.Run();
-    }
-
-    private static void LogFatalException(string errorMessage)
-    {
-        Trace.TraceError(errorMessage);
     }
 }

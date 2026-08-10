@@ -9,6 +9,6 @@ protected void ConnectToHost()
     }
     else
     {
-        Debug.WriteLine($"{DateTime.UtcNow:s}::User failed to connect to host {connectionResult.Host}.\nConnection state: {connectionResult.State}\nState: {connectionResult.State}, Exception: {connectionResult.Exception}");
+        Debug.WriteLine($"{DateTime.UtcNow:s}::User failed to connect to host {connectionResult.Host}.\nConnection state: {connectionResult.State}, Exception: {connectionResult.Exception}");
     }
 }
