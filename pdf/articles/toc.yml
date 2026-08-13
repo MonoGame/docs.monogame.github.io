@@ -56,7 +56,7 @@ items:
       - name: Debugging
         items:
           - name: Logging
-            href: ../../articles/getting_started/debugging.md
+            href: ../../articles/getting_started/logging.md
       - name: Packaging
         href: ../../articles/getting_started/packaging_games.md
       - name: Preparing for consoles
