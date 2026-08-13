@@ -59,6 +59,10 @@ items:
             href: getting_to_know/howto/input/index.md
   - name: Advanced Topics
     items:
+      - name: Debugging
+        items:
+          - name: Logging
+            href: getting_started/logging.md
       - name: Packaging
         href: getting_started/packaging_games.md
       - name: Preparing for consoles
@@ -187,7 +191,7 @@ items:
           - name: "09: Shadow Effect"
             href: tutorials/advanced/2d_shaders/09_shadows_effect/index.md
           - name: "10: Next Steps"
-            href: tutorials/advanced/2d_shaders/10_next_steps/index.md 
+            href: tutorials/advanced/2d_shaders/10_next_steps/index.md
   - name: Console Access
     href: console_access.md
   - name: Help and Support

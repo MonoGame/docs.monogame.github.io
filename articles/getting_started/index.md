@@ -47,5 +47,6 @@ By the end of this tutorial set, you will have a working project to build for yo
 
 ### 4. Advanced Topics
 
+- [Debugging](logging.md)
 - [Preparing for Consoles](preparing_for_consoles.md)
 - [Using Development Nuget Packages](using_development_nuget_packages.md)
