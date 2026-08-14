@@ -147,7 +147,7 @@ The key changes made here are:
    2. If the + key is pressed, the song and sound effect volumes are increased by `0.1f`.
    3. If the - key is pressed, the song and sound effect volumes are decreased by `0.1f`.
 
-Running the game now will produce the same result as the previous chapter, only now the lifetime of sound effects and the state management of audio is done through the new audio controller. You can also mute and unumte the audio with the M key and increase and decrease the volume using the + and - keys.
+Running the game now will produce the same result as the previous chapter, only now the lifetime of sound effects and the state management of audio is done through the new audio controller. You can also mute and unmute the audio with the M key and increase and decrease the volume using the + and - keys.
 
 | ![Figure 15-1: Gameplay with audio.](./videos/gameplay.webm) |
 | :----------------------------------------------------------: |
