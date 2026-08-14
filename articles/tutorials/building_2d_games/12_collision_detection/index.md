@@ -107,7 +107,7 @@ Complex polygon collision detection uses a method called *Separating Axis Theore
 
 Implementing SAT is out-of-scope for this tutorial. If you are interested in further reading about this, please see the following articles as a good starting point:
 
-- [Separating Axis Theorem (SAT) Explanation](https://www.sevenson.com.au/actionscript/sat/).
+- [Separating Axis Theorem (SAT) Explanation](https://www.sevenson.com.au/blog/sat/).
 - [Collision Detection Using the Separating Axis Theorem](https://gamedevelopment.tutsplus.com/tutorials/collision-detection-using-the-separating-axis-theorem--gamedev-169) by Kah Shiu Chong.
 - [N Tutorial A - Collision Detection and Response](http://www.metanetsoftware.com/technique/tutorialA.html).
 
