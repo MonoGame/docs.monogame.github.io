@@ -3,6 +3,7 @@ title: MonoGame Roadmap
 description: The forecasted roadmap for MonoGame development/improvement.
 _disableToc: true
 _disableBreadcrumb: true
+_openGraphImage: "roadmap/images/roadmap.png"
 ---
 
 ![MonoGame Roadmap](./images/roadmap.svg)
