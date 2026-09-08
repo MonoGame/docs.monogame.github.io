@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1520 150" role="img" aria-labelledby="roadmapTitle">
+  <title id="roadmapTitle">MonoGame release roadmap</title>
+  <style>
+    text {
+      font-family: "Segoe UI", -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 52px;
+      font-weight: 600;
+      fill: #ffffff;
+      text-anchor: middle;
+    }
+  </style>
+
+  <!-- 3.8.6 -->
+  <g transform="translate(10,0)">
+    <rect x="30" y="104" width="270" height="24" fill="#5B9BD5" opacity="0.25"/>
+    <path d="M0,0 L280,0 L325,50 L280,100 L0,100 L45,50 Z" fill="#5B9BD5"/>
+    <text x="176" y="68">3.8.6</text>
+  </g>
+
+  <!-- 3.8.7 -->
+  <g transform="translate(300,0)">
+    <rect x="30" y="104" width="270" height="24" fill="#4EC5C1" opacity="0.25"/>
+    <path d="M0,0 L280,0 L325,50 L280,100 L0,100 L45,50 Z" fill="#4EC5C1"/>
+    <text x="176" y="68">3.8.7</text>
+  </g>
+
+  <!-- 3.8.8 -->
+  <g transform="translate(590,0)">
+    <rect x="30" y="104" width="270" height="24" fill="#4FBE8F" opacity="0.25"/>
+    <path d="M0,0 L280,0 L325,50 L280,100 L0,100 L45,50 Z" fill="#4FBE8F"/>
+    <text x="176" y="68">3.8.8</text>
+  </g>
+
+  <!-- 4.x -->
+  <g transform="translate(880,0)">
+    <rect x="30" y="104" width="270" height="24" fill="#4CBB4F" opacity="0.25"/>
+    <path d="M0,0 L280,0 L325,50 L280,100 L0,100 L45,50 Z" fill="#4CBB4F"/>
+    <text x="176" y="68">4.x</text>
+  </g>
+
+  <!-- 5.x -->
+  <g transform="translate(1170,0)">
+    <rect x="30" y="104" width="270" height="24" fill="#70AD47" opacity="0.25"/>
+    <path d="M0,0 L280,0 L325,50 L280,100 L0,100 L45,50 Z" fill="#70AD47"/>
+    <text x="176" y="68">5.x</text>
+  </g>
+</svg>
