@@ -63,6 +63,7 @@ MonoGame provides a setup script that can be executed to setup the Wine environm
 
     ```sh
     brew install wget p7zip curl
+    brew install --cask xquartz
     ```
 
 1. Download and install Wine manually because the Homebrew `wine-stable` cask is no longer available:
@@ -70,10 +71,10 @@ MonoGame provides a setup script that can be executed to setup the Wine environm
     ```sh
     WINE_VERSION="11.0_1"
     WINE_DIR="$HOME/.winemonogame/wine-stable"
-    WINE_ARCHIVE="${TMPDIR:-/tmp}/wine-stable.tar.gz"
+    WINE_ARCHIVE="${TMPDIR:-/tmp}/wine-stable.tar.xz"
     mkdir -p "$WINE_DIR"
     curl --fail --location --output "$WINE_ARCHIVE" "https://github.com/Gcenx/macOS_Wine_builds/releases/download/${WINE_VERSION}/wine-stable-${WINE_VERSION}-osx64.tar.xz"
-    tar -xzf "$WINE_ARCHIVE" -C "$WINE_DIR"
+    tar -xf "$WINE_ARCHIVE" -C "$WINE_DIR"
     xattr -dr com.apple.quarantine "$WINE_DIR/Wine Stable.app"
     echo "export PATH=\"\$PATH:$WINE_DIR/Wine Stable.app/Contents/Resources/wine/bin\"" >> "$HOME/.zprofile"
     export PATH="$PATH:$WINE_DIR/Wine Stable.app/Contents/Resources/wine/bin"
