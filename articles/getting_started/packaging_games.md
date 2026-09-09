@@ -210,8 +210,8 @@ If you need to reduce the footprint of your game, please refer to ```PublishAot`
 
 ## Mobile games
 
-Please refer to the Xamarin documentation:
+Please refer to the .net documentation:
 
-- [Android](https://docs.microsoft.com/en-us/xamarin/android/deploy-test/publishing/)
+- [Android](https://learn.microsoft.com/en-us/dotnet/maui/android/deployment)
 
-- [iOS](https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store?tabs=windows)
+- [iOS](https://learn.microsoft.com/en-us/dotnet/maui/ios/deployment/)
