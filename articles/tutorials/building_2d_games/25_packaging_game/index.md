@@ -523,8 +523,8 @@ For the Dungeon Slime game, adapting to mobile would require:
 
 If you are interested in extending the Dungeon Slime game, or future games, to mobile platforms after completing this tutorial series, these resources provide a good starting point:
 
-- [Android Deployment Guide](https://learn.microsoft.com/en-us/previous-versions/xamarin/android/deploy-test/publishing/)
-- [iOS App Store Distribution](https://learn.microsoft.com/en-us/previous-versions/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store?tabs=windows)
+- [Android Deployment Guide](https://learn.microsoft.com/en-us/dotnet/maui/android/deployment)
+- [iOS App Store Distribution](https://learn.microsoft.com/en-us/dotnet/maui/ios/deployment/)
 
 ## Third-Party Packaging Tools
 
