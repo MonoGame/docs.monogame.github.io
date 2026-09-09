@@ -37,7 +37,6 @@ Beside these target platforms, MonoGame provides additional templates for shared
   - [iOS](#ios)
 - [Other templates](#other-templates)
   - [.NET Class Library](#net-class-library)
-  - [Shared Project](#shared-project)
   - [Content Pipeline Extension](#content-pipeline-extension)
 
 ## Platform details
