@@ -178,8 +178,14 @@ Open a new *Terminal* window and execute the following commands:
 
 ```sh
 brew install p7zip
-brew install --cask wine-stable
-xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
+brew install --cask xquartz
+curl -L -o wine.tar.xz "https://github.com/Gcenx/macOS_Wine_builds/releases/download/11.0_1/wine-stable-11.0_1-osx64.tar.xz"
+tar -xJf wine.tar.xz
+sudo mv "Wine Stable.app" /Applications/
+sudo xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
+echo "export PATH="/Applications/Wine Stable.app/Contents/Resources/wine/bin:$PATH"" > ~/.zprofile
+source ~/.zprofile
+wine --version
 wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
 ```
 
