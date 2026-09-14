@@ -104,7 +104,7 @@ The `Tilemap` class needs to store a reference to the tileset being used, along 
 
 ### Tilemap Constructor
 
-The `Tilemap` constructor requires the `Tilemap` to reference for each tile, the total number of columns and rows in the map, and the size (width and height) of each tile.
+The `Tilemap` constructor requires the `Tileset` to reference for each tile, the total number of columns and rows in the map, and the size (width and height) of each tile.
 
 Add the following constructor:
 
