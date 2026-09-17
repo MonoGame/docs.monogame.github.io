@@ -571,11 +571,11 @@ To pause the game, first we will create a method that makes the pause panel visi
 
 Next, update the `CheckKeyboardInput` method so that when the escape key is pressed, instead of returning to the title scene, we now pause the game:
 
-[!code-csharp[](./snippets/gamescene/checkkeyboardinput.cs?highlight=6-10)]
+[!code-csharp[](./snippets/gamescene/checkkeyboardinput.cs?highlight=6-11)]
 
 Finally, update the `CheckGamePadInput` method so that when the start button is pressed, it pauses the game:
 
-[!code-csharp[](./snippets/gamescene/checkgamepadinput.cs?highlight=6-10)]
+[!code-csharp[](./snippets/gamescene/checkgamepadinput.cs?highlight=6-11)]
 
 #### Creating the Pause Panel
 

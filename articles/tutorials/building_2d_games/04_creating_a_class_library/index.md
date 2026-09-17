@@ -173,7 +173,7 @@ Now that we have our `Core` class, we can modify our game project to use it.  Do
 
 Open the `Game1.cs` file and make the following changes:
 
-[!code-csharp[](./snippets/game1.cs?highlight=4,8,10,22-25)]
+[!code-csharp[](./snippets/game1.cs?highlight=4,8,10,22,24)]
 
 The key changes made here are:
 
