@@ -28,7 +28,7 @@ In this mode, if the game is launched from an existing console window, no new co
 * When the game is run in `Release` mode, the game window will be the only window that opens up, and no interaction with the console will take place.
 
 > [!NOTE]
-> Leaving the `OutputType` as `Exe` for a release build is generally a bad idea. This will cause the game to open up a console window in addition to the actual game window, which is generally not a wanted behavior for most games from the perspective of the player. This is why, the default behavior for any `Release` build should be to set it to `WinExe`.
+> Leaving the `OutputType` as `Exe` for a release build is generally a bad idea. This will cause the game to open up a console window in addition to the actual game window, which is generally not a desired behavior for most games from the perspective of the player. This is why, the default behavior for any `Release` build should be to set it to `WinExe`.
 
 ## Adding Additional Logging
 
