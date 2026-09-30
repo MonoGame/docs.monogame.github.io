@@ -59,10 +59,18 @@ Effect (shader) compilation requires access to DirectX.  This means it will not 
 MonoGame provides a setup script that can be executed to setup the Wine environment for Effect (shader) compilation.
 
 1. Install [brew.sh](https://brew.sh)
-1. Enter the following command:
+1. Enter the following commands:
 
     ```sh
-    brew install wget p7zip curl && brew install --cask wine-stable && xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
+    brew install wget p7zip curl
+    brew install --cask xquartz
+    curl -L -o wine.tar.xz "https://github.com/Gcenx/macOS_Wine_builds/releases/download/11.0_1/wine-stable-11.0_1-osx64.tar.xz"
+    tar -xJf wine.tar.xz
+    sudo mv "Wine Stable.app" /Applications/
+    sudo xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
+    echo "export PATH="/Applications/Wine Stable.app/Contents/Resources/wine/bin:$PATH"" > ~/.zprofile
+    source ~/.zprofile
+    wine --version
     ```
 
 1. Now that the prerequisites are installed, download the [mgfxc_wine_setup.sh](https://monogame.net/downloads/net9_mgfxc_wine_setup.sh) script and execute it by entering the following command in the terminal:
