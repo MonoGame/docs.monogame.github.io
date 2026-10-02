@@ -9,7 +9,7 @@ In a font description (.spritefont) file, the `<CharacterRegions>` area can be u
 > [!IMPORTANT]
 > For the MGCB system (MGCB Editor), all custom pipeline extension libraries **MUST** target `.NET 8` or lower, this is due to the Editor and Command-line project only supporting `.NET 8` currently.  If you get errors with an Extension at build time, the `.NET` version of the library is the most likely cause.
 >
-> This will be resolved with the introduction of the new [Content Builder Project](/articles/getting_started/content_pipeline/content_builder_project.md) solution, which removes such limitations.
+> The [Content Builder](/articles/getting_started/content_pipeline/content_builder/index.md) removes this limitation. See [Migrating from MGCB](/articles/getting_started/content_pipeline/content_builder/migrating_from_mgcb.md#custom-importers-and-processors) for how to move your extensions to it.
 
 For some languages, this approach is not ideal. For example, Chinese and Japanese both have many thousands of characters. Adding the full range of characters to `<CharacterRegions>` dramatically increases the size of the font asset and the time required to build the font asset. A better solution adds individual characters whenever the specific characters are needed. You can create a custom content processor to implement this solution.
 

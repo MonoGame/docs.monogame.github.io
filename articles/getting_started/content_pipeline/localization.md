@@ -100,6 +100,9 @@ You should end up with a .spritefont file like this
 Once that is done you then need to change the **.mgcb file** so that the **SpriteFontProcessor** is replaced with the **LocalizedFontProcessor**. This can be done by editing the .mgcb file or using the MGCB Editor. After that you can just compile your content as normal. If the processor has any trouble resolving or reading the
 resx files you will get an error.
 
+> [!NOTE]
+> When you build content with the Content Builder, there is no `.mgcb` file. Pass the `LocalizedFontProcessor` to the rule for the font instead. See [Localized fonts](content_builder/setup.md#localized-fonts).
+
 ## Loading the Font
 
 Loading the font can be done in the normal way. The end result of the process is an .xnb file containing a normal SpriteFont.

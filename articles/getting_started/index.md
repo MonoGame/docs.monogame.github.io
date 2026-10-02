@@ -19,6 +19,7 @@ MonoGame supports the following platforms by default:
 - PlayStation 4*
 - PlayStation 5*
 - Nintendo Switch*
+- Nintendo Switch 2*
 
 > [!IMPORTANT]
 > Platforms marked with a *"\*"* require developer access from their host vendor platforms.
@@ -27,7 +28,7 @@ See [Supported Platforms](./platforms.md) for more information.
 
 ## Setting up and creating your first MonoGame Project
 
-By the end of this tutorial set, you will have a working project to build for your target platform and will be ready to tackle your next steps.
+Step by step instructions to get your development environment ready for MonoGame and build your first game..
 
 ### 1. Setting up your OS for development
 
@@ -35,13 +36,26 @@ By the end of this tutorial set, you will have a working project to build for yo
 - [macOS](./1_setting_up_your_os_for_development_macos.md)
 - [Ubuntu](./1_setting_up_your_os_for_development_ubuntu.md)
 
-### 2. Choosing your IDE for development
+### 2. Choosing your IDE
 
 - [Visual Studio for Windows](./2_choosing_your_ide_visual_studio.md)
 - [VS Code](./2_choosing_your_ide_vscode.md)
 - [Rider](./2_choosing_your_ide_rider.md)
 
-### 3. Packaging Games
+### 3. Building a title with MonoGame
+
+- [MonoGame Learn resources](../tutorials/index.md)
+- [Your first 2D Game](../tutorials/building_2d_games/index.md)
+- [Understanding 2D Shaders](../tutorials/advanced/2d_shaders/index.md)
+
+### 4. Building Content/Assets
+
+- [MonoGame Content Pipeline](./content_pipeline/index.md)
+- [Why use the Content Pipeline?](./content_pipeline/why_content_pipeline.md)
+- [Content Builder walkthrough](./content_pipeline/content_builder/index.md)
+- [(Legacy) The MGCB editor)](./content_pipeline/using_mgcb_editor.md)
+
+### 5. Packaging Games
 
 - [Packaging Games for Distribution](packaging_games.md)
 

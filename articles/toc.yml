@@ -24,6 +24,30 @@ items:
         href: /articles/getting_started/2_choosing_your_ide_rider.html
       - name: Using Visual Studio Code
         href: /articles/getting_started/2_choosing_your_ide_vscode.html
+      - name: Content Pipeline
+        href: getting_started/content_pipeline/index.md
+        items:
+          - name: Why use the Content Pipeline
+            href: getting_started/content_pipeline/why_content_pipeline.md
+          - name: Content Builder
+            href: getting_started/content_pipeline/content_builder/index.md
+            items:
+              - name: Setting up the Content Builder
+                href: getting_started/content_pipeline/content_builder/setup.md
+              - name: Advanced scenarios and automation
+                href: getting_started/content_pipeline/content_builder/advanced.md
+              - name: Migrating from MGCB
+                href: getting_started/content_pipeline/content_builder/migrating_from_mgcb.md
+          - name: Legacy MGCB
+            items:
+              - name: Using MGCB Editor
+                href: getting_started/content_pipeline/using_mgcb_editor.md
+              - name: Custom Effects
+                href: getting_started/content_pipeline/custom_effects.md
+              - name: TrueType fonts
+                href: getting_started/content_pipeline/adding_ttf_fonts.md
+              - name: Localization
+                href: getting_started/content_pipeline/localization.md
       - name: How to install MonoGame Preview packages
         href: /articles/getting_to_know/howto/HowTo_Install_Preview_Release.html
   - name: Getting to know MonoGame
@@ -79,24 +103,6 @@ items:
             href: getting_started/tools/mgcb_editor.md
           - name: MGFXC
             href: getting_started/tools/mgfxc.md
-      - name: Content Pipeline
-        items:
-          - name: Introduction
-            href: getting_started/content_pipeline/index.md
-          - name: Why use the Content Pipeline
-            href: getting_started/content_pipeline/why_content_pipeline.md
-          - name: Using the Content Builder Project
-            href: getting_started/content_pipeline/content_builder_project.md
-          - name: Automating the Content Builder
-            href: getting_started/content_pipeline/automating_content_builder.md
-          - name: Using MGCB Editor
-            href: getting_started/content_pipeline/using_mgcb_editor.md
-          - name: Custom Effects
-            href: getting_started/content_pipeline/custom_effects.md
-          - name: TrueType fonts
-            href: getting_started/content_pipeline/adding_ttf_fonts.md
-          - name: Localization
-            href: getting_started/content_pipeline/localization.md
   - name: Migration
     items:
       - name: Migrating from XNA

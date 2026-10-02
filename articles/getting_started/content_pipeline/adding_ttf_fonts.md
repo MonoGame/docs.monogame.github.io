@@ -5,6 +5,9 @@ description: Learn how to use TrueType fonts in MonoGame.
 
 MonoGame supports more than one method of using fonts, the following is an explanation of how to use TrueType fonts.
 
+> [!NOTE]
+> When you build content with the Content Builder, use the `mgsf` item template to create the `.spritefont` file. See [SpriteFonts](content_builder/setup.md#spritefonts).
+
 ## Using TrueType Fonts with MonoGame
 
 To be able to use a TrueType font, MonoGame requires the **TrueType font file** and a **.spritefont** file.
