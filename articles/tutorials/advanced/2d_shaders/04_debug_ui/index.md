@@ -68,7 +68,7 @@ To get started, we need to have an instance of `ImGuiRenderer`. Similar to how t
 
     [!code-csharp[](./snippets/snippet-4-04.cs?highlight=18-20)]
 
-4. Similar to `SpriteBatch`'s `.Begin()` and `.End()` calls, the `ImGuiRenderer` has a start and end function call. In the `GameScene` class, add these lines to end of the `.Draw()` method:
+4. Similar to `SpriteBatch`'s `.Begin()` and `.End()` calls, the `ImGuiRenderer` has a start and end function call. In the `Core` class, add these lines to end of the `.Draw()` method:
 
     [!code-csharp[](./snippets/snippet-4-05.cs?highlight=9-12)]
 
