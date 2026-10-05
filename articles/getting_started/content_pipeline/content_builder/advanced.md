@@ -40,7 +40,7 @@ public override IContentCollection GetContentCollection()
 ```
 
 > [!NOTE]
->`TextureProcessor` and `TextureProcessorOutputFormat` are in the `Microsoft.Xna.Framework.Content.Pipeline.Processors` namespace.
+> `TextureProcessor` and `TextureProcessorOutputFormat` are in the `Microsoft.Xna.Framework.Content.Pipeline.Processors` namespace.
 
 ## Optional content folders
 
@@ -70,7 +70,7 @@ The content root keeps the extra files inside the `Content` folder, in a folder 
 
 ## Custom importers and processors
 
-When your game uses a data format that the pipeline does not know, a custom importer and processor lets the builder check the file during the build. Problems are then found when you build, not when the game starts and fails.  An importer reads a file into a type, and a processor converts that type into the final content.
+When your game uses a data format that the pipeline does not know, a custom importer and processor lets the builder check the file during the build. Problems are then found when you build, not when the game starts and fails. An importer reads a file into a type, and a processor converts that type into the final content.
 
 This example reads a text file and converts it to upper case:
 
@@ -123,7 +123,7 @@ Update the `Version` of an importer or processor whenever you change its behavio
 
 ## Automating content builds with GitHub Actions
 
-The **Build-Content** action provided by MonoGame, builds the content of a project in a GitHub Actions workflow. It executes your Content Builder project, so everything in the earlier parts of this course applies unchanged.
+The **Build-Content** action provided by MonoGame builds the content of a project in a GitHub Actions workflow. It executes your Content Builder project, so everything in the earlier parts of this course applies unchanged.
 
 Automating content builds has several advantages:
 
@@ -147,7 +147,7 @@ The action supports several arrangements. Choose the one that fits how your team
 MonoGame hosts several actions in the [monogame-actions](https://github.com/MonoGame/monogame-actions) repository:
 
 | Action | Purpose |
-|--------|---------|
+| -------- | --------- |
 | `build-content` | Runs a Content Builder project to build content. |
 | `install-wine` | Installs Wine, for running Windows tools on Linux or macOS. |
 | `install-fonts` | Installs fonts that your assets need. |
@@ -157,13 +157,13 @@ MonoGame hosts several actions in the [monogame-actions](https://github.com/Mono
 ### Build-Content inputs and outputs
 
 | Input | Required | Default | Description |
-|-------|----------|---------|-------------|
+| ------- | ---------- | --------- | ------------- |
 | `content-builder-path` | No | `./CBPlatformTest/Content` | Path to the Content Builder project. When `content-builder-repo` is set, this is the folder inside that repository. |
 | `content-builder-repo` | No | empty | A repository that holds the builder, as `owner/repo`. |
 | `assets-path` | No | `./Assets` | Path to the assets. When `assets-repo` is set, this is the folder inside that repository. |
 | `assets-repo` | No | empty | A repository that holds the assets, as `owner/repo`. |
 | `monogame-platform` | Yes | none | The platform to build for, such as `DesktopGL`, `Android` or `iOS`. |
-| `output-folder` | Yes | none | Where the built content is written, relative to the repository root. |
+| `output-folder` | Yes | none | The folder to build the content into, relative to the repository root. The builder writes a `Content` folder inside it. |
 | `additional-args` | No | empty | Extra arguments for the builder, separated by spaces. |
 | `upload-output` | No | `false` | Upload the built content as a workflow artifact. |
 | `configuration` | No | `Release` | The build configuration for the Content Builder project. |
@@ -172,7 +172,7 @@ MonoGame hosts several actions in the [monogame-actions](https://github.com/Mono
 The action returns these outputs:
 
 | Output | Description |
-|--------|-------------|
+| -------- | ------------- |
 | `output-folder` | The full path of the folder that holds the built content. |
 | `log-file` | The full path of the build log. |
 | `success` | `true` when the content built without failures. |
@@ -180,6 +180,9 @@ The action returns these outputs:
 The path inputs mean different things for local and remote sources. For a local builder, set only `content-builder-path`, from the repository root. For a remote builder, set `content-builder-repo` to the repository and `content-builder-path` to the folder inside it, or to an empty string for the root. The same pattern applies to the assets.
 
 The action does not install .NET. Add a `setup-dotnet` step before it.
+
+> [!IMPORTANT]
+> The `output-folder` is the output folder of your game project, not its `Content` folder. For example, use `./MyGame/bin/Release/net10.0` and not `./MyGame/bin/Release/net10.0/Content`. The builder adds the `Content` folder itself, so a path that ends in `Content` produces `Content/Content` and the game cannot find its assets.
 
 ### A basic workflow
 
@@ -195,12 +198,12 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '10.0.x'
 
       - name: Process content
         uses: MonoGame/monogame-actions/build-content@v1
@@ -208,21 +211,31 @@ jobs:
           content-builder-path: './Content/Builder'
           assets-path: './Content/Assets'
           monogame-platform: 'DesktopGL'
-          output-folder: './MyGame/bin/Release/net9.0/Content'
+          output-folder: './MyGame/bin/Release/net10.0'
           configuration: Release
 
       - name: Build game
-        run: dotnet build -c Release MyGame/MyGame.csproj
+        run: dotnet build -c Release MyGame/MyGame.csproj -p:WorkflowMode=true
 ```
 
 > [!IMPORTANT]
-> The `output-folder` must be where the game project expects to find its `Content` folder. For the full list of options and more examples, see the [Build-Content documentation](https://github.com/MonoGame/monogame-actions/blob/main/build-content/README.md).
+> The `output-folder` must be where the game project expects to find its `Content` folder.
+
+The `-p:WorkflowMode=true` argument tells the game build that the content is already built. It only has an effect when your project uses the `WorkflowMode` property, which is described in [project changes for automated builds](#project-changes-for-automated-builds).
+
+> [!TIP]
+> For the full list of options and more examples, see the [Build-Content documentation](https://github.com/MonoGame/monogame-actions/blob/main/build-content/README.md).
 
 ### Sample repositories
 
 MonoGame provides sample repositories that show the different arrangements:
 
-- [MonoGame-CBPlatform-Test](https://github.com/MonoGame/MonoGame-CBPlatform-Test) holds a complete platformer with the game, the builder and the assets together. Its [build.yml](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main/.github/workflows/build.yml) builds the game for DesktopGL, Android and iOS with a matrix. Its [build-remote.yml](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main/.github/workflows/build-remote.yml) builds with a builder and assets taken from other repositories.
+- [MonoGame-CBPlatform-Test](https://github.com/MonoGame/MonoGame-CBPlatform-Test) holds a complete platformer with the game, the builder and the assets together, for .NET 10. It has three workflows:
+  - [build.yml](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main/.github/workflows/build.yml) builds the content and the game in one job for each platform, in a matrix of DesktopGL (Windows, Linux and macOS), DesktopVK, WindowsDX12, Android and iOS.
+  - [build-content-separate.yml](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main/.github/workflows/build-content-separate.yml) builds the content for every platform first, then passes it to the game build jobs as an artifact.
+  - [build-remote.yml](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main/.github/workflows/build-remote.yml) builds with a builder and assets taken from other repositories. The repositories are workflow inputs, so you can leave them empty to use the ones in the same repository.
+
+  The repository also has a `test-build.ps1` script that runs the same steps on your own machine for one platform.
 - [MonoGame-CBPlatform-BuilderTest](https://github.com/MonoGame/MonoGame-CBPlatform-BuilderTest) holds only a Content Builder project. It is useful when you want a builder that artists can use, and its workflow builds assets from a remote repository.
 - [MonoGame-CBPlatform-TestAssets](https://github.com/MonoGame/MonoGame-CBPlatform-TestAssets) holds only assets. Its workflow builds them with a builder from another repository. The assets do not have to be at the root, so one repository can hold several sets of assets for different targets.
 
@@ -231,30 +244,68 @@ MonoGame provides sample repositories that show the different arrangements:
 
 ### A multi-platform workflow
 
-A matrix runs the same steps for each platform. Each entry sets the runner, the runtime identifier, the .NET workload and the target framework:
+A matrix runs the same steps for each platform. Each entry sets the platform, the runner, the project, the runtime identifier, the .NET workload and the target framework.
+
+This is an extract from the sample, and `build.yml` has the full list:
 
 ```yaml
 strategy:
+  fail-fast: false
   matrix:
     include:
-      - platform: iOS
-        os: macos-26
-        runtime: ios-arm64
-        workload: ios
-        tfm: net10.0-ios
-      - platform: Android
-        os: windows-latest
-        runtime: android-arm64
-        workload: android
-        tfm: net10.0-android
       - platform: DesktopGL
         os: windows-latest
+        project: CBPlatformTest.DesktopGL/CBPlatformTest.DesktopGL.csproj
         runtime: win-x64
         workload: ''
         tfm: net10.0
+      - platform: DesktopGL
+        os: ubuntu-latest
+        project: CBPlatformTest.DesktopGL/CBPlatformTest.DesktopGL.csproj
+        runtime: linux-x64
+        workload: ''
+        tfm: net10.0
+      - platform: Android
+        os: windows-latest
+        project: CBPlatformTest.Android/CBPlatformTest.Android.csproj
+        runtime: android-arm64
+        workload: android
+        tfm: net10.0-android
+      - platform: iOS
+        os: macos-26
+        project: CBPlatformTest.iOS/CBPlatformTest.iOS.csproj
+        runtime: ios-arm64
+        workload: ios
+        tfm: net10.0-ios
 ```
 
-Each platform writes its output to a different folder, so the content output path needs to be calculated for each entry. The sample repository does this in a step before the content build:
+The first steps of each job pin the .NET SDK with a `global.json` file, install it, and install the workload when the platform needs one:
+
+```yaml
+env:
+  DotnetVersion: 10.0.401
+  Configuration: ${{ inputs.configuration || 'Release' }}
+
+steps:
+  - uses: actions/checkout@v7
+
+  - name: Generate global.json
+    shell: bash
+    run: |
+      echo '{ "sdk": { "version": "${{ env.DotnetVersion }}" } }' > global.json
+
+  - name: Setup .NET SDK
+    uses: actions/setup-dotnet@v6
+    with:
+      dotnet-version: ${{ env.DotnetVersion }}
+      global-json-file: ./global.json
+
+  - name: Install workload
+    if: ${{ matrix.workload != '' }}
+    run: dotnet workload install ${{ matrix.workload }}
+```
+
+Each platform writes its output to a different folder, so the content output path is calculated for each matrix entry. It must be the folder that the game build will use as its output folder, so it has to match the configuration and runtime identifier of the build step. iOS builds do not use a runtime identifier folder:
 
 ```yaml
 - name: Set output paths
@@ -263,87 +314,91 @@ Each platform writes its output to a different folder, so the content output pat
   run: |
     PROJECT_DIR=$(dirname "${{ matrix.project }}")
     if [ "${{ matrix.platform }}" == "iOS" ]; then
-      RID_PATH="bin/${{ env.Configuration }}/${{ matrix.tfm }}"
+      OUTPUT_DIR="bin/${{ env.Configuration }}/${{ matrix.tfm }}"
     else
-      RID_PATH="bin/${{ env.Configuration }}/${{ matrix.tfm }}/${{ matrix.runtime }}"
+      OUTPUT_DIR="bin/${{ env.Configuration }}/${{ matrix.tfm }}/${{ matrix.runtime }}"
     fi
-    echo "content_output=./MyGame/$PROJECT_DIR/$RID_PATH/Content" >> $GITHUB_OUTPUT
+    echo "project_dir=$PROJECT_DIR" >> $GITHUB_OUTPUT
+    echo "output_dir=$OUTPUT_DIR" >> $GITHUB_OUTPUT
+    echo "content_output=./CBPlatformTest/$PROJECT_DIR/$OUTPUT_DIR" >> $GITHUB_OUTPUT
 ```
 
-The later steps install the workload when there is one, build the content, then build and publish the game. The `WorkflowMode` property is explained in the next section.
+The later steps build the content, restore and build the game, upload the build, and publish. Every game build must pass `-p:WorkflowMode=true`, which is explained in the next section:
 
 ```yaml
-- name: Install workload
-  if: ${{ matrix.workload != '' }}
-  run: dotnet workload install ${{ matrix.workload }}
-
-- name: Process content
+- name: Build content
   uses: MonoGame/monogame-actions/build-content@v1
   with:
-    content-builder-path: './Content'
-    assets-path: './Content/Assets'
+    content-builder-path: ./CBPlatformTest/Content
+    assets-path: ./CBPlatformTest/Content/Assets
     monogame-platform: ${{ matrix.platform }}
     output-folder: ${{ steps.paths.outputs.content_output }}
     configuration: ${{ env.Configuration }}
 
+- name: Restore
+  working-directory: ./CBPlatformTest
+  run: dotnet restore ${{ matrix.project }} -r ${{ matrix.runtime }}
+
 - name: Build (iOS)
   if: ${{ matrix.platform == 'iOS' }}
+  working-directory: ./CBPlatformTest
   run: dotnet build -c ${{ env.Configuration }} ${{ matrix.project }} -p:WorkflowMode=true
 
-- name: Build (other platforms)
+- name: Build
   if: ${{ matrix.platform != 'iOS' }}
+  working-directory: ./CBPlatformTest
   run: dotnet build -c ${{ env.Configuration }} ${{ matrix.project }} -r ${{ matrix.runtime }} -p:WorkflowMode=true
+
+- name: Upload build artifact
+  uses: actions/upload-artifact@v7
+  with:
+    name: ${{ matrix.platform }}-${{ matrix.runtime }}-build
+    path: CBPlatformTest/${{ steps.paths.outputs.project_dir }}/${{ steps.paths.outputs.output_dir }}/
 
 - name: Publish
   if: ${{ matrix.platform != 'iOS' }}
-  run: dotnet publish ${{ matrix.project }} -c ${{ env.Configuration }} -r ${{ matrix.runtime }} --self-contained
+  working-directory: ./CBPlatformTest
+  run: dotnet publish ${{ matrix.project }} -c ${{ env.Configuration }} -r ${{ matrix.runtime }} -p:WorkflowMode=true --self-contained
 ```
 
 ### Project changes for automated builds
 
-Android and iOS bundle the content inside the application, so the content must be in the right place before the project builds. The platform projects from the templates look for content in the output folder of a local build. A workflow puts the content somewhere else, so the project needs to look in both places.
-
-For Android, the sample project includes content from the runtime identifier folder when a runtime identifier is set, and from the normal output folder otherwise:
-
-```xml
-<ItemGroup>
-  <!-- CI/CD builds with a RuntimeIdentifier -->
-  <AndroidAsset Include="$(ProjectDir)bin\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)\Content\**\*" Condition="'$(RuntimeIdentifier)' != '' AND Exists('$(ProjectDir)bin\$(Configuration)\$(TargetFramework)\$(RuntimeIdentifier)\Content')">
-    <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
-  </AndroidAsset>
-  <!-- Local builds without a RuntimeIdentifier -->
-  <AndroidAsset Include="$(ProjectDir)$(OutputPath)Content\**\*" Condition="'$(RuntimeIdentifier)' == '' AND Exists('$(ProjectDir)$(OutputPath)Content')">
-    <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
-  </AndroidAsset>
-</ItemGroup>
-```
-
-For iOS, the sample project uses a `WorkflowMode` property. The property is not part of MonoGame. It is a property that the sample project defines to tell a workflow build from a local build. The project sets it to `false`, and the workflow turns it on with `-p:WorkflowMode=true` on the `dotnet build` command:
+The platform projects and `BuildContent.targets` in the sample are written to work both from an IDE and from a workflow. The `WorkflowMode` property is used to distinguish the mode of operation. The property is not part of MonoGame. It is a property that the sample defines. Each game project sets it to `false`, and the workflows turn it on with `-p:WorkflowMode=true` on the `dotnet build` and `dotnet publish` commands:
 
 ```xml
 <PropertyGroup>
+  <MonoGamePlatform>Android</MonoGamePlatform>
+  <!-- Set to true by the workflows after the Build-Content action has already built the content. -->
   <WorkflowMode>false</WorkflowMode>
 </PropertyGroup>
 
 <ItemGroup>
-  <!-- Workflow builds -->
-  <BundleResource Include="$(ProjectDir)bin\$(Configuration)\$(TargetFramework)\Content\**\*" Condition="'$(WorkflowMode)' == 'true' AND Exists('$(ProjectDir)bin\$(Configuration)\$(TargetFramework)\Content')">
-    <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
-  </BundleResource>
-  <!-- Local builds -->
-  <BundleResource Include="$(ProjectDir)$(OutputPath)Content\**\*" Condition="'$(WorkflowMode)' != 'true' AND Exists('$(ProjectDir)$(OutputPath)Content')">
-    <Link>Content\%(RecursiveDir)%(Filename)%(Extension)</Link>
-  </BundleResource>
+  <UpToDateCheckInput Include="..\Content\Assets\**\*" />
 </ItemGroup>
+
+<Import Project="..\Content\BuildContent.targets" />
 ```
 
-If your workflow has already built the content, you can stop `BuildContent.targets` from building it a second time when the game project builds. Add a condition to the target, and pass the property from the workflow:
+> [!NOTE]
+> The `UpToDateCheckInput` item makes Visual Studio treat any change to an asset as a change that needs a content rebuild.
+
+In `BuildContent.targets`, the `BuildContent` target has a condition so that it is skipped when the workflow has already built the content. The target also restores the Content Builder project first, so that a game project builds on a fresh clone:
 
 ```xml
 <Target Name="BuildContent" BeforeTargets="BeforeCompile" Condition="'$(WorkflowMode)' != 'true'">
+  <!-- Restore first, so a platform project builds on a fresh clone. Restore needs its own evaluation, hence the unique session property. -->
+  <MSBuild Projects="$(MSBuildThisFileDirectory)Content.csproj" Targets="Restore" Properties="MSBuildRestoreSessionId=$([System.Guid]::NewGuid())" RemoveProperties="Configuration;TargetFramework;RuntimeIdentifier;RuntimeIdentifiers" />
+  <MSBuild Projects="$(MSBuildThisFileDirectory)Content.csproj" Targets="Build" RemoveProperties="Configuration;TargetFramework;RuntimeIdentifier;RuntimeIdentifiers">
+    <Output TaskParameter="TargetOutputs" ItemName="_ContentBuilderAssembly" />
+  </MSBuild>
+  <!-- ... the properties and the Exec task that run the builder ... -->
+</Target>
 ```
 
-See the [Android](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main/CBPlatformTest/CBPlatformTest.Android/CBPlatformTest.Android.csproj) and [iOS](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main/CBPlatformTest/CBPlatformTest.iOS/CBPlatformTest.iOS.csproj) project files in the sample repository for the complete files.
+The `AddGeneratedContentAssets` target has no condition, so it runs in a workflow build too. It reads the `Content` folder from the output folder of the game project, which is where the Build-Content action wrote it, and adds those files to the Android assets, the iOS bundle resources or the publish folder, depending on the platform. This is why the Android and iOS projects do not need any content items of their own, and why the `output-folder` in the workflow must match the output folder of the game build.
+
+> [!NOTE]
+> See the complete [BuildContent.targets](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main/CBPlatformTest/Content/BuildContent.targets) and the [Android](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main/CBPlatformTest/CBPlatformTest.Android/CBPlatformTest.Android.csproj) and [iOS](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main/CBPlatformTest/CBPlatformTest.iOS/CBPlatformTest.iOS.csproj) project files in the sample repository.
 
 ### Platform requirements
 
@@ -353,26 +408,35 @@ See the [Android](https://github.com/MonoGame/MonoGame-CBPlatform-Test/blob/main
 ```json
 {
   "sdk": {
-    "version": "9.0.307"
+    "version": "10.0.401"
   }
 }
 ```
 
+The sample generates this file in the workflow from the `DotnetVersion` setting, so the version is set in one place.
+
+Choose the runner for each platform by what that platform needs to build. Where a platform can build on any operating system, use the cheapest runner, which is Linux:
+
 | Platform | Runner | Notes |
-|----------|--------|-------|
-| iOS | A macOS runner such as `macos-26` | Needs `dotnet workload install ios`. Use `ios-arm64` for devices. The sample skips publishing in CI. |
-| Android | `windows-latest` or `ubuntu-latest` | Needs `dotnet workload install android`. Add keystore signing for release builds. |
-| Windows | `windows-latest` | Use a runtime such as `win-x64`. |
+| ---------- | -------- | ------- |
+| Android | Any runner. Use `ubuntu-latest`. | The cheapest option, because Android builds do not depend on the operating system. Needs `dotnet workload install android`. Add keystore signing for release builds. |
+| iOS | A macOS runner such as `macos-26` | iOS builds only run on macOS. Needs `dotnet workload install ios`. Use `ios-arm64` for devices. The sample skips publishing in CI. |
+| macOS | A macOS runner | Build the macOS runtimes, such as `osx-arm64`, on macOS. |
+| Windows (WindowsDX12) | `windows-latest` | Windows builds only run on Windows. Use a runtime such as `win-x64`. |
 | Linux | `ubuntu-latest` | Use a runtime such as `linux-x64`. |
-| DesktopGL | Any runner | The content builds on any operating system. |
+| DesktopGL and DesktopVK | The runner for the operating system of the runtime | For example `win-x64` on `windows-latest`, `linux-x64` on `ubuntu-latest` and `osx-arm64` on a macOS runner, as the DesktopGL entries in the sample do. |
+
+The Build-Content step itself does not depend on the target operating system. When you build the content in a separate job, use the cheapest runner that suits your builder and assets.
 
 ### Logs and artifacts
 
-The action uploads the build logs as an artifact named `content-build-logs-<platform>-<run_id>`, even when the build fails. The logs are `restore.log`, `build.log` and `content-pipeline.log`. The artifact is kept for 30 days. Set `upload-output` to `true` to upload the built content too, in an artifact named `content-output-<platform>-<run_id>`.
+The action uploads the build logs as an artifact named `content-build-logs-<platform>-<run_id>-<run_attempt>-<job_index>`, even when the build fails. The logs are `restore.log`, `build.log` and `content-pipeline.log`. The artifact is kept for 30 days. Set `upload-output` to `true` to upload the built content too, in an artifact named `content-output-<platform>-<run_id>-<run_attempt>-<job_index>`.
+
+The artifact holds the `Content` folder and its files. When you download it into the output folder of a game build, the files end up in `<output folder>/Content`, which is where the game build expects them.
 
 ### Workflow patterns
 
-**Build content separately.** Build the content once for each platform, upload it, and download it in the game build jobs:
+**Build content separately.** Build the content once for each platform and upload it. The game build jobs then download the content into their output folder before they build. This is the `build-content-separate.yml` workflow in the sample, shortened here:
 
 ```yaml
 jobs:
@@ -380,30 +444,38 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        platform: [DesktopGL, iOS, Android]
+        platform: [DesktopGL, DesktopVK, WindowsDX12, Android, iOS]
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-dotnet@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '9.0.x'
-      - name: Process content
+          dotnet-version: '10.0.x'
+      - name: Build content
         uses: MonoGame/monogame-actions/build-content@v1
         with:
-          content-builder-path: './Content'
-          assets-path: './Content/Assets'
+          content-builder-path: ./CBPlatformTest/Content
+          assets-path: ./CBPlatformTest/Content/Assets
           monogame-platform: ${{ matrix.platform }}
-          output-folder: './Output/${{ matrix.platform }}'
+          output-folder: ./Output/${{ matrix.platform }}
           upload-output: 'true'
 
   build-game:
     needs: build-content
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
+    # strategy and matrix as in the multi-platform workflow
     steps:
+      # ... checkout, SDK, workload and "Set output paths" steps ...
       - name: Download content
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v8
         with:
-          name: content-output-DesktopGL-${{ github.run_id }}
+          pattern: content-output-${{ matrix.platform }}-${{ github.run_id }}-*
+          merge-multiple: true
+          path: ${{ steps.paths.outputs.content_output }}
+
+      # ... restore, build with -p:WorkflowMode=true, upload and publish steps ...
 ```
+
+The artifact name ends with the run attempt and job number, so the download uses a `pattern` with a wildcard instead of a fixed `name`.
 
 **Build content with the game.** Run the Build-Content step in each platform job, before the game build, as in the multi-platform workflow above.
 
@@ -420,8 +492,10 @@ on:
 ### Troubleshooting
 
 | Problem | What to check |
-|---------|---------------|
+| --------- | --------------- |
 | The builder or assets are not found | Paths are relative to the repository root. Use a `./` prefix and forward slashes. Check the `content-builder-path` and `assets-path` rules for remote repositories. |
+| The game cannot find its content, and the output has `Content/Content` | The `output-folder` ends in `Content`. Use the output folder of the game project, and the builder adds the `Content` folder. |
+| The game builds but has no content | The `output-folder` does not match the output folder of the game build. Check that the configuration, target framework and runtime identifier are the same in both. |
 | A build fails for one platform only | Check that the workload is installed and that the runtime identifier matches the platform. Read the logs for that platform. |
 | The build works locally but fails in the workflow | The .NET SDK versions differ. Add a `global.json`. Run `dotnet --list-sdks` locally to check your version. |
 | Assets fail to build | Download the `content-build-logs` artifact and read `content-pipeline.log`. Run the same build locally with the same platform. |

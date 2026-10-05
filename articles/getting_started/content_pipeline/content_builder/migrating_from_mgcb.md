@@ -170,7 +170,7 @@ contentCollection.Include("Textures/hero.png", new TextureImporter(), new Textur
 If your `.mgcb` file has `/reference` lines, your project has a pipeline extension library. You have two options:
 
 - Move the importer and processor classes into the Content Builder project. They are found by the extensions in their `ContentImporter` attribute, or you can pass them to `Include` yourself.
-- Keep the library, and add a project reference to it from the Content Builder project. Retarget the library to .NET 9, the same version as the builder. The older limit to .NET 8 for extensions in the Editor no longer applies.
+- Keep the library, and add a project reference to it from the Content Builder project. Retarget the library to .NET 10, the same version as the builder (or .NET 9 if you prefer). The older limit to .NET 8 for extensions in the Editor no longer applies.
 
 See [part 3](advanced.md#custom-importers-and-processors) for an example. If a custom importer or processor uses the same name as before, the asset names of your built content do not change.
 

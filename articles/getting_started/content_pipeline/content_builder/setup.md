@@ -18,7 +18,7 @@ MyGame.Content/
 └── MyGame.Content.csproj    # Project file with the pipeline packages
 ```
 
-The project is a console application. It references the MonoGame content pipeline package and the native tools the pipeline uses to process content, such as FreeType for fonts, FFmpeg for audio and video, Assimp for models, and the shader and texture compression tools. 
+The project is a console application. It references the MonoGame content pipeline package and the native tools the pipeline uses to process content, such as FreeType for fonts, FFmpeg for audio and video, Assimp for models, and the shader and texture compression tools.
 
 > [!NOTE]
 > Unlike the MGCB tooling, it is not a `dotnet` tool, so you do not need a `dotnet-tools.json` file.
@@ -35,7 +35,7 @@ Each game project needs to import the `BuildContent.targets`, as follows:
 ```
 
 > [!IMPORTANT]
-> If your content is not building, the most likely reason is that your platforms `.csproj` is missing the above import definition to instruct the Content Builder to generate the content.  This might actually be desired for automation scenarios where you build the game and content separately.
+> If your content is not building, the most likely reason is that your platform's `.csproj` is missing the above import definition to instruct the Content Builder to generate the content.  This might actually be desired for automation scenarios where you build the game and content separately.
 >
 > It is not required to build the content and game at the same time (especially for development), but content is REQUIRED to be present in the Game's runtime folder to run the game!
 
@@ -56,7 +56,7 @@ The built files are written to a `Content` folder inside the output of the game 
 You can also run the builder directly. From the folder that contains your solution:
 
 ```bash
-dotnet run --project MyGame.Content -- build -s MyGame.Content/Assets -o MyGame.DesktopGL/bin/Content -i MyGame.DesktopGL/obj/Content -p DesktopGL
+dotnet run --project MyGame.Content -- build -s MyGame.Content/Assets -o MyGame.DesktopGL/bin -i MyGame.DesktopGL/obj/Content -p DesktopGL
 ```
 
 Everything after the `--` is passed to the builder. This is useful when you want to check your rules without building the whole game.
@@ -114,7 +114,7 @@ The exit code is `-1` if any asset failed to build, so build servers and scripts
 `ContentBuilderParams` holds the settings for a build.
 
 | Property | Command line | Description | Default |
-|----------|--------------|-------------|---------|
+| ---------- | -------------- | ------------- | --------- |
 | `Mode` | `build` command | `ContentBuilderMode.Builder` builds content. `ContentBuilderMode.None` prints the help text. | `None` |
 | `WorkingDirectory` | `--workingDir` | The folder that the other directories are relative to. | The current directory |
 | `SourceDirectory` | `-s`, `--src` | The folder that contains your source assets. | `Content` |
@@ -143,7 +143,7 @@ The `ContentCollection` holds the rules that decide which files are built, copie
 ### Including and excluding content
 
 | Method | What it does |
-|--------|--------------|
+| -------- | -------------- |
 | `Include` | Builds the file with the pipeline. The importer and processor are chosen from the file extension unless you supply them. |
 | `IncludeCopy` | Copies the file to the output without processing it. |
 | `Exclude` | Removes the file from the build. |
@@ -191,7 +191,7 @@ If a rule for a file that already has a rule uses the same path, the new rule re
 `WildcardRule` uses the same pattern syntax as the Visual Basic `Like` operator, matched against the path relative to the `Assets` folder.
 
 | Pattern | Matches |
-|---------|---------|
+| --------- | --------- |
 | `*` | Any sequence of characters, including `/`. |
 | `?` | Any single character. |
 | `[abc]` | Any one of the characters in the set. |
@@ -262,6 +262,9 @@ For a DesktopGL project this is:
 MyGame.DesktopGL/bin/Debug/net10.0/Content/ball.xnb
 ```
 
+> [!NOTE]
+> The above path assumes your project targets .NET 10, if you are using a different version, make sure to update the path appropriately.
+
 The .NET SDK has an alternative layout called `artifacts` output. It collects the output of every project in the solution into one `artifacts` folder, which keeps the project folders clean and gives you a single folder to ignore in source control or to upload from a build server.
 
 To turn it on, add a `Directory.Build.props` file next to your solution file:
@@ -294,11 +297,14 @@ The folder name uses the lower case configuration name, and it adds the runtime 
 
 The Content Builder follows the output of the game project. `BuildContent.targets` passes the output and intermediate folders of the game project to the builder, so the built content moves with the game and the build cache moves to `artifacts/obj`. The content is still written to a `Content` folder next to the game executable, so `Content.RootDirectory` stays `"Content"` and you do not need to change your game code.
 
-What can need changing is anything outside the game code that refers to the old `bin` path:
+What can need changing is anything outside the game code that refers to the old `bin` path, such as:
 
 - Scripts, installers and packaging steps that copy or zip `bin/Debug/net10.0`.
 - The `output-folder` input of the Build-Content action, if your workflow builds the content before the game. See [part 3](advanced.md#automating-content-builds-with-github-actions).
-- Platform project files with a fixed `bin\$(Configuration)` path for content, such as the Android and iOS examples in [part 3](advanced.md#project-changes-for-automated-builds). Use `$(OutputPath)` there, as it follows the artifacts layout.
+- Any project file with a fixed `bin\$(Configuration)` path for content.
+
+> [!NOTE]
+> The sample projects in [part 3](advanced.md#project-changes-for-automated-builds) are not affected, because `BuildContent.targets` reads the content from `$(OutputPath)`, which follows the artifacts layout.
 
 ### If the build fails after enabling it
 
