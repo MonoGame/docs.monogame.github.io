@@ -617,7 +617,7 @@ Next, modify the `Update` method to include Gum's update logic and to only updat
 
 [!code-csharp[](./snippets/gamescene/update.cs?highlight=3-10)]
 
-Finally, add Gum's drawing call to the end fo the `Draw` method:
+Finally, add Gum's drawing call to the end of the `Draw` method:
 
 [!code-csharp[](./snippets/gamescene/draw.cs?highlight=9-10)]
 
