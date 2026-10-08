@@ -113,9 +113,11 @@ dotnet new mgpipelineitem -n Note -o Note
 ```
 
 > [!IMPORTANT]
-> If you create a separate library for use with the Content Pipeline, be it a custom pipeline project or even a class library, it **MUST** target **.NET 8**.  This is a known limitation with the content pipeline currently and will be addressed in a future release.  Although in practice, for the work needed for most custom Content Importers, this has not caused an issue to date.
+> For the MGCB editor, if you created a separate library for use with the Content Pipeline it **MUST** target **.NET 8**.
+>
+> With the Content Builder, this is no longer an issue and you can use .NET 9 or 10 for all projects.
 
-The item template creates placeholder types that you replace with your own. To use a library, add a project reference from the Content Builder project to the library. The library should target .NET 8 only.
+The item template creates placeholder types that you replace with your own. To use a library, add a project reference from the Content Builder project to the library.  Just be sure to use the same `Types` reference for your content in both the Builder and the Game, create the type in the Game or associated library to be safe (but do not duplicate them for the Content Project).
 
 The built-in importers read the data your game needs from standard formats. A custom type that you write to a built file also needs a `ContentTypeWriter` in the pipeline and a `ContentTypeReader` in your game. See [Adding a Custom Importer/Processor](../../../getting_to_know/whatis/content_pipeline/CP_AddCustomProcImp.md) for the full process.
 

@@ -277,7 +277,7 @@ To turn it on, add a `Directory.Build.props` file next to your solution file:
 </Project>
 ```
 
-The setting needs the .NET 8 SDK or later. The output of every project, including the Content Builder project, then moves to the `artifacts` folder, grouped by project name and build configuration:
+The setting needs .NET 8 SDK or later. The output of every project, including the Content Builder project, then moves to the `artifacts` folder, grouped by project name and build configuration:
 
 ```text
 artifacts/
@@ -495,7 +495,9 @@ To create a new extension, you can use the `mgpipelineitem` item template to cre
 Alternatively, you can use the `mgpipeline` project template to create a separate library for them.
 
 > [!IMPORTANT]
-> If you create a separate library for use with the Content Pipeline, be it a custom pipeline project or even a class library, it **MUST** target **.NET 8**.  This is a known limitation with the content pipeline currently and will be addressed in a future release.  Although in practice, for the work needed for most custom Content Importers, this has not caused an issue to date.
+> For the MGCB editor, if you created a separate library for use with the Content Pipeline it **MUST** target **.NET 8**.
+>
+> With the Content Builder, this is no longer an issue and you can use .NET 9 or 10 for all projects.
 
 See [part 3](advanced.md#custom-importers-and-processors) for how to use them with the builder.
 
