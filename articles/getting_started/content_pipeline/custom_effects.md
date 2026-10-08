@@ -85,6 +85,9 @@ As an example, you can conditionally set shader models depending on the platform
 
 Custom symbols can be defined from the [MGCB Editor](../tools/mgcb_editor.md) or via [MGFXC](../tools/mgfxc.md).
 
+> [!NOTE]
+> When you build content with the Content Builder, set the `Defines` property of the `EffectProcessor` instead. See [Effects](content_builder/setup.md#effects).
+
 * Make sure the pixel shaders inputs **exactly match** the vertex shader outputs so the parameters are passed in the correct registers. The parameters need to have the same size and order. Omitting parameters might not break compilation, but can cause unexpected results.
 * Note that on GL platforms default values on Effect parameters do not work.  Either set the parameter from code or use a real constant like a #define.
 * The effect compiler is aggressive about removing unused parameters, be sure the parameters you are setting are actually used.

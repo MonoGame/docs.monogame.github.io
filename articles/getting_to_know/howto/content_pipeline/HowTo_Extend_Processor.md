@@ -9,7 +9,7 @@ MonoGame lets you modify or extend the behavior of any standard Content Pipeline
 > [!IMPORTANT]
 > For the MGCB system (MGCB Editor), all custom pipeline extension libraries **MUST** target `.NET 8` or lower, this is due to the Editor and Command-line project only supporting `.NET 8` currently.  If you get errors with an Extension at build time, the `.NET` version of the library is the most likely cause.
 >
-> This will be resolved with the introduction of the new [Content Builder Project](/articles/getting_started/content_pipeline/content_builder_project.md) solution, which removes such limitations.
+> The [Content Builder](/articles/getting_started/content_pipeline/content_builder/index.md) removes this limitation. See [Migrating from MGCB](/articles/getting_started/content_pipeline/content_builder/migrating_from_mgcb.md#custom-importers-and-processors) for how to move your extensions to it.
 
 Because there are so many asset variants supported by different digital content creation (DCC) tools, it is often useful to be able to modify how one of the standard processors operates. The following examples illustrate some of the kinds of things you might want to do.
 
