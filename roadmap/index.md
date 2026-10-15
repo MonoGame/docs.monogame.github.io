@@ -17,15 +17,6 @@ MonoGame continues to evolve as a modern game framework, while maintaining XNA c
 
 ## Roadmap
 
-### [3.8.6 - Q3 2026](https://github.com/MonoGame/MonoGame/milestone/24)
-
-This milestone continues our focus on adding new graphics backends, new major systems to improve portability, and further stability to the framework.
-
-- [Storage API Modernisation](https://github.com/MonoGame/MonoGame/issues/8518)
-- [DesktopGL4 Platform](https://github.com/MonoGame/MonoGame/pull/9491)
-- Content Builder Improvements
-- Stabilising DesktopVK / DesktopDX12
-
 ### [3.8.7 - Q4 2026](https://github.com/MonoGame/MonoGame/milestone/26)
 
 This milestone lays the foundations for future growth, by unifying our shader format and making the framework more accessible to new developers and players.
@@ -42,15 +33,21 @@ In this milestone we plan to improve on old XNA standards and address some long-
 - [Native Video Support](https://github.com/MonoGame/MonoGame/issues/7170)
 - Add Console Target Support to the MonoGame Hub
 
+### [3.9.0 - Q2 2027](https://github.com/MonoGame/MonoGame/milestone/17)
+
+The final move of all platforms to use unified native platform code as well as other helpful game APIs.
+
+- Metal Support
+- Move Mobile to Native
+- Unified Achievement API
+
 ### [4.x - TBD](https://github.com/MonoGame/MonoGame/milestone/10)
 
 The 4.x releases are intended to be the final releases that enforce the original XNA APIs while adding in new modern features and the next iteration of our mobile support.
 
 - Compute Shaders
 - Command Buffers
-- Metal Support
-- Vulkan on Android
-- Unified Achievement API
+- TBD
 
 ### [5.x - TBD](https://github.com/MonoGame/MonoGame/milestone/15)
 
