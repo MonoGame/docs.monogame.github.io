@@ -91,7 +91,7 @@ The remaining parts render the model and add some user control of the model. All
 At this point, the rendering code for the model is complete, but the user control code still needs implementation.
 
 > [!IMPORTANT]
-> The project will not run as this point as there is more to add.
+> The project will not run at this point as there is more to add.
 
 ## Moving the model
 
