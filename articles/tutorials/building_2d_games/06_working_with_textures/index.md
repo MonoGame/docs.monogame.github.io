@@ -229,7 +229,7 @@ This produces the following result:
 |               **Figure 6-12: The MonoGame logo with a green color tint applied**                |
 
 > [!NOTE]
-> The icon and the word "GAME" in the logo look black after using [**Color.Green**](xref:Microsoft.Xna.Framework.Color.Green) because the Red, Blue and Green components of that color are (`0.0f`, `0.5f`, `0.0f`).  The Orange color used in the logo is [**Color.MonoGameOrange**](xref:Microsoft.Xna.Framework.Color.MonoGameOrange), which has the component values of (`0.9f`, `0.23f`, `0.0f`).  When multiplying the component values, the result is (`0.0f`, `0.125f`, `0.0f`) which would be Red 0, Green 31, Blue 0 in byte values.  So it is not quite fully black, but it is very close.
+> The icon and the word "GAME" in the logo look black after using [**Color.Green**](xref:Microsoft.Xna.Framework.Color.Green) because the Red, Green, and Blue components of that color are (`0.0f`, `0.5f`, `0.0f`).  The Orange color used in the logo is [**Color.MonoGameOrange**](xref:Microsoft.Xna.Framework.Color.MonoGameOrange), which has the component values of (`0.9f`, `0.23f`, `0.0f`).  When multiplying the component values, the result is (`0.0f`, `0.125f`, `0.0f`) which would be Red 0, Green 31, Blue 0 in byte values.  So it is not quite fully black, but it is very close.
 >
 > This is why it is important to understand how the `color` parameter values are applied to the sprite when it is rendered.
 
