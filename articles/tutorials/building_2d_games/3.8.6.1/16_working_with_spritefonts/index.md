@@ -8,7 +8,7 @@ In [Chapter 06](../06_working_with_textures/index.md), you learned how to load a
 In this chapter, you will:
 
 - Learn how MonoGame handles text rendering with SpriteFonts.
-- Create `SpriteFont` description using the MGCB Editor.
+- Create a `SpriteFont` description using the Content Builder application.
 - Load custom fonts for use in your game.
 - Render text using various parameters to control appearance.
 - Implement text rendering in our game.
@@ -17,7 +17,7 @@ We will first start by understanding how text rendering works in MonoGame.
 
 ## Understanding SpriteFonts
 
-MonoGame processes fonts through the content pipeline to create a texture atlas of font characters.  MonoGame uses the texture atlas approach rather than directly using system fonts for several important reasons:
+MonoGame processes fonts through the content pipeline to create a texture atlas of font characters. MonoGame uses the texture atlas approach rather than directly using system fonts for several important reasons:
 
 - **Cross-platform Compatibility**: System fonts cannot be guaranteed to exist on all platforms.
 - **Consistency**: Ensures that the text appears the same across all platforms.
@@ -34,15 +34,24 @@ The texture atlas approach means fonts are rendered as sprites, using the same [
 
 ## Creating a SpriteFont Description
 
-To use text in your game, you first need to create a SpriteFont Description file and process it through the Content Pipeline, thankfully the MGCB Editor makes this process straightforward.  
+To use text in your game, you first need to create a SpriteFont Description (*.spritefont*) file and process it through the content pipeline. To do this, we'll use the .NET *MonoGame SpriteFont Template* (`mgsf`).
 
-For example, in the MGCB Editor:
+> [!NOTE]
+> For more information on the `mgsf` template and creating SpriteFont Description files, see [Setting Up the Content Builder > SpriteFonts](../../../../getting_started/content_pipeline/content_builder/setup.md#spritefonts).
 
-1. Right-click the content project node where the SpriteFont Description will be created and choose *Add* > *New Item...*.
-2. Select `SpriteFont Description (.spritefont)` from the options.
-3. Specify a name for the SpriteFont Description file and click `Create`.
+For example, you can create a new SpriteFont Description file by opening a terminal and running the following command:
 
-This will create a default SpriteFont Description file that look something like this:
+```sh
+dotnet new mgsf -n MySpriteFont -o SpriteFonts --IncludeFont
+```
+
+This command performs the following actions:
+
+1. Creates a new folder in the current directory called `SpriteFonts` (the `-o` option).
+2. Creates a new SpriteFont Description file called `MySpriteFont.spritefont` (the `-n` option) and adds it to the `SpriteFonts` directory.
+3. Creates a *.ttf* file for the default font (the `--IncludeFont` option). In the `mgsf` template, the default font is Roboto-Bold, so passing `--IncludeFont` creates `Roboto-Bold.ttf` and adds it in the `SpriteFonts` folder.
+
+The default SpriteFont Description file created by the *MonoGame SpriteFont Template* looks something like this:
 
 [!code-xml[](./snippets/spritefont_description.spritefont)]
 
@@ -54,20 +63,20 @@ The SpriteFont Description file allows you to customize various aspects of how t
 
 #### FontName
 
-The `<FontName>` element specifies which font to use. By default, it references "Arial".  When a font name is specified just by name like this, it is required that the font be installed on the system where the content is built.
+The `<FontName>` element specifies which font to use. The *MonoGame SpriteFont Template* references "Roboto-Bold". When a font name is specified just by name like this, the font must be installed on the system where the content is built.
 
-> [!IMPORTANT]
-> MonoGame recommends changing the default Arial font if you are targeting any platforms other than Windows. Arial is a legacy from XNA and is only guaranteed to be available in Windows builds.  As an alternative, MonoGame currently recommends using [Roboto](https://fonts.google.com/specimen/Roboto).
+Alternatively, for better portability across development environments, it is recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.
 
-Alternatively, for better portability across development environments, it is recommended instead to directly reference a TrueType (.ttf) or OpenType (.otf) font file.  To do this
+> [!NOTE]
+> If you pass the `--IncludeFont` option when using the *MonoGame SpriteFont Template*, the *.ttf* version of Roboto-Bold is automatically added next to your *.spritefont* file. However, to use the TrueType font rather than the system font, you still need to edit the `<FontName>` element of the *.spritefont* file to reference `Roboto-Bold.ttf` (with the extension).
+> 
+> If you want to use a font other than Roboto-Bold (as we'll show later in this tutorial), don't use the `--IncludeFont` option.
+
+To directly reference a TrueType or OpenType font file in your *.spritefont* file:
 
 1. Download or locate a TTF or OTF font file.
 2. Place it in the **same folder** as the `.spritefont` file.
-
-    > [!IMPORTANT]
-    > You place the font file in the **same folder** as the `.spritefont` file directly, not through the MGCB Editor.
-
-3. Update the `<FontName>` element to include the exact filename with extension.
+3. Update the `<FontName>` element to include the exact filename with extension. For example, to use the Roboto-Bold TrueType font, use `Roboto-Bold.ttf` as your `<FontName>`.
 
 > [!TIP]
 > Use fonts with permissive licenses (like [SIL Open Font License](https://openfontlicense.org/)) to ensure you can **legally** use them in your game.
@@ -76,7 +85,7 @@ Alternatively, for better portability across development environments, it is rec
 
 #### Size
 
-The `<Size>` element controls the font size in points. While it might seem straightforward, font sizing requires consideration and can be dependent on several factors.  When choosing a font size, consider:
+The `<Size>` element controls the font size in points. While it might seem straightforward, font sizing requires consideration and can be dependent on several factors. When choosing a font size, consider:
 
 - **Resolution impact**: Fonts that look good at 1080p may appear too small at 4K or too large at 720p.
 - **Font style**: Pixel fonts look best with small sizes to preserve crispness.
@@ -172,33 +181,42 @@ The returned [**Vector2**](xref:Microsoft.Xna.Framework.Vector2) contains:
 - `X`: The width of the text in pixels
 - `Y`: The height of the text in pixels
 
-Below is an example of centering text on the screen by drawing the text at the center of the screen and using [**MeasureString**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont.MeasureString(System.String)) to calculate the center origin or the text
+Below is an example of centering text on the screen by drawing the text at the center of the screen and using [**MeasureString**](xref:Microsoft.Xna.Framework.Graphics.SpriteFont.MeasureString(System.String)) to calculate the center origin of the text:
 
 [!code-csharp[](./snippets/center_example.cs)]
 
 ## Implementing Text in Our Game
 
-To explore implementing text, we will add text to our game to display information to the player.  We will add a score counter that increases when the slime eats the bat.
+To explore implementing text, we will add text to our game to display information to the player. We will add a score counter that increases when the slime eats the bat.
 
 ### Adding the SpriteFont Description
 
-First, we will need to create a SpriteFont Definition.  Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
+First, we will need to create a SpriteFont Description. To do this, we'll use the *MonoGame SpriteFont Template* we covered in the [Creating a SpriteFont Description](#creating-a-spritefont-description) section of this tutorial. 
 
-1. Create a new folder called `fonts` (right-click *Content* > *Add* > *New Folder*).
-2. Right-click the new `fonts` folder and choose `Add > New Item...`.
-3. Select `SpriteFont Description (.spritefont)` from the options.
-4. Name the file `04B_30` and click `Create`.
+1. Open a new terminal window, either in VSCode or your shell of choice.
+2. Set the current directory to your `Content/Assets` directory. For example:
 
-| ![Figure 16-1: The 04B_30.spritefont file created in the MGCB Editor](./images/font_added.png) |
-| :--------------------------------------------------------------------------------------------: |
-|             **Figure 16-1: The 04B_30.spritefont file created in the MGCB Editor**             |
+```sh
+cd .\DungeonSlime\Content\Assets
+```
+
+3. Run the following command:
+
+```sh
+dotnet new mgsf -n fonts -o 04B_30
+```
+
+This command:
+
+1. Creates a new `fonts` folder inside your `Assets` directory
+2. Creates a new *04B_30.spritefont* file inside the `fonts` folder.
 
 > [!NOTE]
-> We have named the SpriteFont Description file with the same name as the font we will be using.  This makes it easier to remember when updating the code later.
+> We have named the SpriteFont Description file with the same name as the font we will be using. This makes it easier to remember when updating the code later.
 
 ### Download the Font File
 
-Next, right-click the following TTF font and choose "Save Link as...". Save the file in the same folder where you created the *04B_30.spriteFont* file using the MGCB Editor. This ensures the font is correctly linked and available for your SpriteFont configuration.
+Next, right-click the following TTF font and choose "Save Link as...". Save the file in the same folder where you created the *04B_30.spritefont* file. This ensures the font is correctly linked and available for your SpriteFont configuration.
 
 - [04B_30.ttf](./files/04B_30.ttf){download}
 
@@ -213,11 +231,25 @@ The key changes here are:
 1. The `<FontName>` element was updated to `04B_30.ttf`, the exact filename with extension of the TTF font we just downloaded.
 2. The `<Size>` element was updated to be `17.5`.
 
-### Updating the Game
+### Update the Content Builder
+
+Next, we need to update the Content Builder to properly import the SpriteFont Description file and include it in our build.
+
+1. Open *Builder.cs* (`Content\Builder\Builder.cs`).
+2. Edit the **GetContentCollection** method to include the following code:
+
+[!code-csharp[](./snippets/builder.cs?highlight=17-21)]
+
+This code tells the Content Builder to include any *.spritefont* files inside the `fonts` folder, and to exclude any *.ttf* fonts inside the `fonts` folder. When you build the game, the SpriteFont Description file is compiled and added to your output directory.
+
+> [!IMPORTANT]
+> Even though we excluded TrueType fonts from our build, you still need to keep the *04B_30.ttf* file in your `Assets/fonts` directory. The SpriteFont Description still needs this file to generate the font atlas. See [Setting Up the Content Builder > SpriteFonts](/articles/getting_started/content_pipeline/content_builder/setup.md#spritefonts) for more information.
+
+### Update the Game
 
 Finally, open the `Game1.cs` file and make the following changes:
 
-[!code-csharp[](./snippets/game1.cs?highlight=48-58,93-99,128-129,241-242,386-397)]
+[!code-csharp[](./snippets/game1.cs?highlight=48-58,93-99,128-129,244-245,386-397)]
 
 The key changes made are:
 
@@ -225,10 +257,10 @@ The key changes made are:
 2. The `_score` field was added to track the player's score.
 3. The `_scoreTextPosition` field was added to store the precalculated position to draw the score text at.
 4. The `_scoreTextOrigin` field was added to store the origin to use when drawing the score text.
-5. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize)
+5. In [**Initialize**](xref:Microsoft.Xna.Framework.Game.Initialize):
    1. The position to draw the score text is precalculated to align with the left side of the room bounds horizontally and to vertically be at the center of the first tile at the top.
    2. The origin for the score text is precalculated by measuring the string `"Score"` and multiplying the `Y` component to get the vertical center of the text, then the origin is set so that it is at the left-center.
-6. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the font is loaded using the content manager.
+6. In [**LoadContent**](xref:Microsoft.Xna.Framework.Game.LoadContent), the font is loaded using the Content Manager.
 7. In [**Update**](xref:Microsoft.Xna.Framework.Game.Update(Microsoft.Xna.Framework.GameTime)), the player's score is increased by `100` each time the slime eats the bat.
 8. In [**Draw**](xref:Microsoft.Xna.Framework.Game.Draw(Microsoft.Xna.Framework.GameTime)), the score text is drawn at the precalculated position using the precalculated origin so that it aligns in the center of the tile on the blue strip using the sprite batch.
 
@@ -240,7 +272,8 @@ The key changes made are:
 
 In this chapter, you accomplished the following:
 
-- Learned how to create SpriteFont definitions with the MGCB Editor.
+- Learned how to create SpriteFont Definition files using the *MonoGame SpriteFont Template*.
+- Learned how to edit the Content Builder to build SpriteFont files.
 - Learned how to reference font files for better cross-platform compatibility.
 - Learned how to load SpriteFonts through the content pipeline.
 - Learned how to draw text with various parameters to control appearance.
