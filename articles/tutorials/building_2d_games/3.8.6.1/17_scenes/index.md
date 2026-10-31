@@ -115,15 +115,19 @@ The key changes here are:
 
 ## Updating the Game
 
-With the scene architecture in place, we are now ready to update the game by breaking it into separate scenes. We will create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. Open the *Content.mgcb* content project file in the MGCB Editor and perform the following:
+With the scene architecture in place, we are now ready to update the game by breaking it into separate scenes. We will create two scenes; a title scene and a gameplay scene.  First, however, we need to add an additional SpriteFont Description that will be used during the title scene to display the title of the game. 
 
-1. Right-click the `fonts` folder and choose `Add > New Item...`.
-2. Select `SpriteFont Description (.spritefont)` from the options.
-3. Name the file `04B_30_5x` and click `Create`.
+1. Open a terminal and set the current directory to the `Content\Assets` directory.
+2. Run the following command:
 
-| ![Figure 17-1: The *04B_30_5x.spritefont* file created in the MGCB Editor](./images/font_added.png) |
-| :-------------------------------------------------------------------------------------------------: |
-|             **Figure 17-1: The *04B_30_5x.spritefont* file created in the MGCB Editor**             |
+```sh
+dotnet new mgsf -n 04B_30_5x -o fonts
+```
+
+This creates a new *04B_30_5x.spritefont* file in the `fonts` directory. 
+
+> [!NOTE]
+> For more information on creating *.spritefont* files, see [Chapter 16: Working with SpriteFonts](/articles/tutorials/building_2d_games/3.8.6.1/16_working_with_spritefonts/index.md).
 
 Next, open the *04B_30_5x.spritefont* file in your code editor and make the following changes:
 
@@ -140,7 +144,7 @@ The title scene serves as the game's initial starting point; the first impressio
 
 To get started, first:
 
-1. In your Game project, create a new folder named `Scenes`.  We will put all of our game specific scenes here.
+1. In your game project's `Source` directory, create a new folder named `Scenes`. We will put all of our game specific scenes here.
 2. Add a new class file named `TitleScene.cs` to the `Scenes` folder you just created.
 3. Add the following code as the initial structure for the class.
 
@@ -221,7 +225,7 @@ With our Title screen in place, it is time to get started with the Game Scene, l
 
 The Game Scene will contain our actual gameplay logic. This scene will handle updating and rendering the slime that the player controls, the bat the slime can eat, collision detection, score tracking, and input handling. Most of this logic has already been implemented in our `Game1` class in previous chapters, but now we will move it into a dedicated scene class. In the *Scenes* folder:
 
-1. Add a new class file named `GameScene.cs` in the Game projects `Scenes` folder.
+1. In your game project's `Source\Scenes` folder, add a new class file named `GameScene.cs`.
 2. Add the following code as the initial structure for the class:
 
     [!code-csharp[](./snippets/gamescene.cs#declaration)]
