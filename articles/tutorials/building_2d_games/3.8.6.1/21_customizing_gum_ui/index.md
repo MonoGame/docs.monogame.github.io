@@ -116,13 +116,13 @@ First need to update the *atlas.png* texture atlas file for the game. This new v
 - The characters for the font, generated using Bitmap Font Generator (BMFont)
 - The sprites for the UI components we will create
 
-Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/images* folder of the game project, overwriting the existing one.
+Download the new texture atlas below by right-clicking the following image and saving it as *atlas.png* in the *Content/Assets/images* folder of the game project, overwriting the existing one.
 
-| ![Figure 21-1: The texture atlas for the game updated to include the UI sprites](./images/atlas.png) |
+| ![Figure 21-1: The texture atlas for the game, updated to include the UI sprites](./images/atlas.png) |
 | :--------------------------------------------------------------------------------------------------: |
-|          **Figure 21-1: The texture atlas for the game updated to include the UI sprites**           |
+|          **Figure 21-1: The texture atlas for the game updated, to include the UI sprites**           |
 
-The slime and bat sprites are no longer in the same position, and we have some new regions to define for our UI sprites. This means we need to update the texture atlas XML configuration file as well. Open the *atlas-definition.xml* configuration file and update it to the following:
+The slime and bat sprites are no longer in the same position, and we have some new regions to define for our UI sprites. This means we need to update the texture atlas XML configuration file as well. Open the `atlas-definition.xml` configuration file and update it to the following:
 
 [!code-csharp[](./snippets/atlas-definition.xml?highlight=5-16,29-32)]
 
@@ -137,21 +137,16 @@ While MonoGame natively uses [**SpriteFont**](xref:Microsoft.Xna.Framework.Graph
 > [!NOTE]
 > For this tutorial, a pregenerated *.fnt* file is supplied below.  For more information on creating *.fnt* files for Gum, see the [Create Fonts with BitmapFontGenerator](https://docs.flatredball.com/gum/gum-tool/gum-elements/text/use-custom-font#creating-fonts-with-bitmapfontgenerator) section of the Gum documentation. 
 
-Download the *.fnt* file below by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/fonts* folder:
+Download the *.fnt* file below by right-clicking the following link and saving it as *04b_30.fnt* in the game project's *Content/Assets/fonts* folder:
 
 - [04b_30.fnt](./files/04b_30.fnt){download}
 
-Next, add this font file to your content project using the MGCB Editor:
+Next, we need to modify the Content Builder to copy the *04b_30.fnt* file to the output directory, similar to how we modified it to copy XML files in [Chapter 07](../07_optimizing_texture_rendering/index.md):
 
-1. Open the `Content.mgcb` content project file in the MGCB Editor.
-2. Right-click the `fonts` folder and choose `Add > Existing Item...`.
-3. Navigate to and select the `04b_30.fnt` file you just downloaded.
-4. In the Properties panel, change the `Build Action` to `Copy`. The MonoGame Content Pipeline cannot process *.fnt* files; we just need it to copy it so we can give it to Gum.
-5. **Save the changes and close the MGCB Editor.**
+1. Open the *Builder.cs* file in the `Content\Builder` directory.
+2. Modify the **GetContentCollection** method with the following code:
 
-| ![Figure 21-2: The MGCB Editor with the 04b_30.fnt added to the fonts folder and the Build property set to Copy](./images/mgcb-editor.png) |
-| :----------------------------------------------------------------------------------------------------------------------------------------: |
-|             **Figure 21-2: The MGCB Editor with the 04b_30.fnt added to the fonts folder and the Build property set to Copy**              |
+[!code-csharp[](./snippets/builder.cs?highlight=23-24)]
 
 > [!NOTE]
 > When the *.fnt* font file was generated using the [AngelCode Bitmap Font Generator](https://www.angelcode.com/products/bmfont/), the graphics from the *.png* file that it produces were copied over into our existing texture atlas. By doing this, it allows Gum to render the visuals for elements and the text from the same atlas, reducing texture swapping.
@@ -182,7 +177,7 @@ By default, all Gum components provide a Visual property which can be cast to a 
 
 This new `AnimatedButton` class casts the Visual property to `ButtonVisual` and modifies the button-specific properties, such as background and text.
 
-First, in the *DungeonSlime* project (your main game project), create a new folder named `UI` to store our custom UI components.  Next, in that `UI` folder, create a new file called `AnimatedButton.cs` and add the following code to it:
+First, in the `Source` directory of the *DungeonSlime* project (your main game project), create a new folder named `UI` to store our custom UI components. Next, in that `UI` folder, create a new file called `AnimatedButton.cs` and add the following code to it:
 
 [!code-csharp[](./snippets/animatedbutton.cs)]
 
@@ -255,11 +250,11 @@ This creates a more responsive interface by immediately focusing elements that t
 
 ### The OptionsSlider Class
 
-Now we will create a custom `OptionsSlider` class to style the volume sliders.  This class inherits from Gum's base `Slider` class and provides a styled appearance consistent with the game's visual theme.
+Now we will create a custom `OptionsSlider` class to style the volume sliders. This class inherits from Gum's base `Slider` class and provides a styled appearance consistent with the game's visual theme.
 
-Unlike `AnimatedButton`, the `OptionsSlider` creates a Visual completely from scratch. This class provides an example for how to completely customize a Forms control by recreating its Visual object entirely. We do this because the desired appearance and behavior of our `OptionsSlider` is differs enough from the existing Slider that it is easier to replace its `Visual` entirely.
+Unlike `AnimatedButton`, the `OptionsSlider` creates a Visual completely from scratch. This class provides an example for how to completely customize a Forms control by recreating its Visual object entirely. We do this because the desired appearance and behavior of our `OptionsSlider` is different enough from the existing Slider that it is easier to replace its `Visual` entirely.
 
-In the `UI` folder of the *DungeonSlime* project (your main game project), create a new file called `OptionsSlider.cs` and add the following code to it:
+In the `Source\UI` folder of the *DungeonSlime* project (your main game project), create a new file called `OptionsSlider.cs` and add the following code to it:
 
 [!code-csharp[](./snippets/optionsslider.cs)]
 
