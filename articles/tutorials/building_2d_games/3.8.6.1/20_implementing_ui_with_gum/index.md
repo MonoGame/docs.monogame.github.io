@@ -309,77 +309,41 @@ For now we will use the default styling in Gum to quickly iterate and build the 
 
 ### Adding the Gum NuGet Package
 
-Before we can use Gum in our project, we first need to add it using NuGet.  NuGet is a package manager for .NET projects that allows you to add third-party libraries into your project, similar to how we [created and added our own class library](../04_creating_a_class_library/index.md).
+Before we can use Gum in our project, we first need to add it using NuGet. NuGet is a package manager for .NET projects that allows you to add third-party libraries into your project, similar to how we [created and added our own class library](../04_creating_a_class_library/index.md).
 
-To add the Gum NuGet package to our game project, follow the instructions below based on your development environment:
+To add the Gum NuGet package to our game project, we will use the [Central Package Management (CPM)](https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management) setup that comes with the MonoGame Empty Game Template we used to create the game way back in [Chapter 2](/articles/tutorials/building_2d_games/3.8.6.1/02_getting_started/index.md):
 
-#### [Visual Studio Code](#tab/vscode)
+1. In your code editor, open the *Directory.Packages.props* file in the `DungeonSlime` directory.
+2. Add the following lines to your *Directory.Packages.props* file:
 
-To add the Gum NuGet package in Visual Studio Code:
+[!code-xml[](./snippets/directory.packages.props?highlight=38-41)]
 
-1. In the [*Explorer*](../02_getting_started/index.md#install-the-c-dev-kit-extension) panel, right-click the `DungeonSlime.csproj` file.
-2. Choose `C# Package Management > Add NuGet Package` from the context menu.
-3. Enter `Gum.MonoGame` in the search prompt, then press Enter to search NuGet.
-4. When the search finishes, select the `Gum.MonoGame` package in the results.
-5. When prompted for a version, choose version `2026.5.8.1`.
-
-| ![Figure 20-1: Adding a NuGet package from the DungeonSlime.csproj file in Visual Studio Code](./images/add-nuget-package.png) |
-| :--------------------------------------------------------------------------------------------------------------------------: |
-|                       **Figure 20-1: Adding a NuGet package from the DungeonSlime.csproj file in Visual Studio Code**                        |
-
-#### [Visual Studio 2022](#tab/vs2022)
-
-To Add the Gum NuGet package in Visual Studio 2022:
-
-1. In the *Solution Explorer* panel, right-click the *DungeonSlime* project.
-2. Choose `Manage Nuget Packages...` from the context menu.
-3. In the NuGet Package Manager window, select the `Browse` tab if it is not already selected.
-4. In the search box, enter `Gum.MonoGame`.
-5. Select the "Gum.MonoGame" package from the search results.
-6. On the right, in the version dropdown, select version `2026.5.8.1` and click the "Install" button.
-
-#### [dotnet CLI](#tab/dotnetcli)
-
-To add the Gum NuGet package using the dotnet CLI:
-
-1. Open a Command Prompt or Terminal window in the same folder as the `DungeonSlime.csproj` project file.
-2. Enter the following command:
-
-    ```sh
-    dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2026.5.8.1
-    ```
-
----
-
-> [!TIP]
-> You can verify the package was successfully added by examining your `DungeonSlime.csproj` file, which should now contain a reference like:
->
-> ```xml
-> <PackageReference Include="Gum.MonoGame" Version="2026.5.8.1" />
-> ```
+These lines declare the `Gum.MonoGame` NuGet package and the version number that all the projects in our game will use. 
 
 > [!IMPORTANT]
-> This tutorial uses version `2026.5.8.1` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/upgrading) before updating in case there are any breaking changes from the code that is presented in this tutorial.
+> This tutorial uses version `2026.5.8.1` of Gum. That exact version is used when installing the NuGet package to ensure compatibility throughout this tutorial. If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/upgrading) before updating in case there are any breaking changes from the code that is presented in this tutorial.
 
-### Adding UI Sound Effect
+Next, we need to reference this package in our *.csproj* file:
+
+3. Open the *DungeonSlime.DesktopGL.csproj* file in the `DungeonSlime\Platforms\DesktopGL` directory.
+4. Add the following line at the bottom of the *DungeonSlime.DesktopGL.csproj* file, before the final `</Project>` tag:
+
+```xml
+<!-- Imports the Gum.MonoGame package into this project. -->
+  <ItemGroup>
+    <PackageReference Include="Gum.MonoGame" />
+  </ItemGroup>
+```
+
+This tells the *DungeonSlime.DesktopGL* project to use the `Gum.MonoGame` package that we declared in the *Directory.Packages.props* file.
+
+### Adding the UI Sound Effect
 
 To make our UI more responsive and engaging, we will add audio feedback that plays when players interact with buttons and other UI elements. Sound effects provide immediate confirmation that an input has been recognized, creating a more engaging experience.
 
-First, download the UI sound effect by right-clicking the following link and saving it as `ui.wav` in the game project's `Content/audio` folder:
+Download the UI sound effect by right-clicking the following link and saving it as `ui.wav` in the game project's `Content/Assets/audio` folder:
 
 * [ui.wav](./files/ui.wav){download}
-
-Next, add this sound effect to your content project using the MGCB Editor:
-
-1. Open the `Content.mgcb` content project file in the MGCB Editor.
-2. Right-click the `audio` folder and choose `Add > Existing Item...`.
-3. Navigate to and select the `ui.wav` file you just downloaded.
-4. In the Properties panel, verify that the `Processor` is set to `Sound Effect`.
-5. Save the changes and close the MGCB Editor.
-
-| ![Figure 20-2: The MGCB Editor with ui.wav added to the audio folder](./images/mgcb-editor.png) |
-| :---------------------------------------------------------------------------------------------: |
-|             **Figure 20-2: The MGCB Editor with ui.wav added to the audio folder**              |
 
 We will load and use this sound effect in our UI implementation to provide auditory feedback when players interact with buttons and sliders.
 
@@ -389,7 +353,7 @@ With the Gum NuGet package added to our project, we need to initialize Gum in ou
 
 First, open the `Game1.cs` file and add the following new using statements to the top:
 
-[!code-csharp[](./snippets/game1/usings.cs?highlight=2-5)]
+[!code-csharp[](./snippets/game1/usings.cs?highlight=2-4)]
 
 Next, add the following method to the `Game1` class to encapsulate the initializations of the Gum UI service:
 
@@ -528,7 +492,7 @@ Next, update the `LoadContent` method to load the sound effect that will be used
 
 Next modify the `Update` method to include Gum's update logic:
 
-[!code[](./snippets/titlescene/update.cs?highlight=14)]
+[!code[](./snippets/titlescene/update.cs?highlight=20)]
 
 Finally, the `Draw` method needs to be updated to:
 
