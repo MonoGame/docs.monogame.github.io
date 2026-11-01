@@ -146,24 +146,15 @@ spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
 ## Adding a Scrolling Background to the Title Scene
 
-We will now update the title scene of our game by adding a scrolling background pattern using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap).  By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  By adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.
+We will now update the title scene of our game by adding a scrolling background pattern using [**SamplerState.PointWrap**](xref:Microsoft.Xna.Framework.Graphics.SamplerState.PointWrap). By using the Wrap addressing mode, we can create a large scrolling background using only a small texture.  When the texture is drawn with a destination rectangle larger than the texture itself, the Wrap mode will automatically tile the texture to fill the space.  By adjusting the source rectangle over time, we can create a scrolling effect with minimal effort.
 
-First, download the following image of a repeatable background pattern by right-clicking it and saving it as `background-pattern.png` in the `Content/images` folder of the game project:
+First, download the following image of a repeatable background pattern by right-clicking it and saving it as `background-pattern.png` in the `Content/Assets/images` folder of the game project:
+
 
 | ![Figure 18-9: The repeatable background pattern we will use for the title screen](./images/background-pattern.png) |
 | :---------------------------------------------------------------------------------------------------------------:   |
 |                 **Figure 18-9: The repeatable background pattern we will use for the title screen**                 |
 
-Next, add this texture to your content project using the MGCB Editor:
-
-1. Open the `Content.mgcb` content project file in the MGCB Editor.
-2. Right-click the images folder and choose `Add > Existing item...`.
-3. Navigate to and select the `background-pattern.png` file.
-4. Save the changes and close the MGCB Editor.
-
-| ![Figure 18-10: The MGCB Editor with the *background-pattern* image added](./images/mgcb-editor.png) |
-| :-------------------------------------------------------------------------------------------------: |
-|             **Figure 18-10: The MGCB Editor with the *background-pattern* image added**              |
 
 ### Updating the Title Scene
 
