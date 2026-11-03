@@ -32,9 +32,9 @@ The mechanics create an increasingly challenging experience as the snake grows l
 
 ### Directions
 
-In snake, players input a cardinal direction (up, down, left, and right), to indicate which direction the snake will move during the next movement cycle.  When direction input occurs, it must be checked against the current direction to determine if the move is valid.
+In snake, players input a cardinal direction (up, down, left, and right), to indicate which direction the snake will move during the next movement cycle. When direction input occurs, it must be checked against the current direction to determine if the move is valid.
 
-For example, if the snake is moving to the right, an invalid input would allow a player to move it to the left.  Doing so would cause the head of the snake to reverse direction and immediately collide with the first body segment. This means the only valid inputs are those where the next direction would be the same as the current direction or perpendicular to the current direction.
+For example, if the snake is moving to the right, an invalid input would allow a player to move it to the left. Doing so would cause the head of the snake to reverse direction and immediately collide with the first body segment. This means the only valid inputs are those where the next direction would be the same as the current direction or perpendicular to the current direction.
 
 | ![Figure 22-1: An example snake with four segments, the head segment highlighted in orange, moving to the right. Arrows show that the only valid movements for the head segment are up or down (perpendicular) or to continue to the right.](./images/snake_directions.png) |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -42,9 +42,9 @@ For example, if the snake is moving to the right, an invalid input would allow a
 
 ### Movement Cycle
 
-Instead of moving every update frame while a directional input is being pressed, the snake moves only at fixed time intervals.  A timer is used to determine how much time has passed since the last movement cycle, and when it reaches a set threshold, the next movement cycle occurs.  During this movement cycle, the snake should move forward in the direction that was input by the player between the last and current movement cycles.  This creates the grid-based movement system typically found in snake-like games.
+Instead of moving every update frame while a directional input is being pressed, the snake moves only at fixed time intervals. A timer is used to determine how much time has passed since the last movement cycle, and when it reaches a set threshold, the next movement cycle occurs. During this movement cycle, the snake should move forward in the direction that was input by the player between the last and current movement cycles. This creates the grid-based movement system typically found in snake-like games.
 
-There are various methods for handling the movement, such as iterating through each segment of the snake and updating the position of that segment to move forward.  Methods such as this though are wasteful, since visually the only parts of the snake that move on the screen are the head and the tail.  
+There are various methods for handling the movement, such as iterating through each segment of the snake and updating the position of that segment to move forward. Methods such as this though are wasteful, since visually the only parts of the snake that move on the screen are the head and the tail.  
 
 Instead, a more common approach is to:
 
@@ -96,7 +96,7 @@ Currently, we have two methods dedicated to handling input in the game scene, `C
 
 To simplify input handling for the game, we can create a dedicated class that consolidates the input methods, providing a unified input profile for the game.  This pattern is widely used in game development to separate the "what" (game actions) from the "how" (specific input devices and buttons).
 
-Create a new file named `GameController.cs` in the root of the `DungeonSlime` project (your main game project) and add the following code:
+Create a new file named `GameController.cs` in the `Source` directory of the *DungeonSlime* project (your main game project) and add the following code:
 
 [!code-csharp[](./snippets/gamecontroller.cs)]
 
@@ -118,7 +118,7 @@ With our input handling system in place, now we can turn our attention to implem
 
 We will need to implement a structure that can represent each segment of the slime, this structure will store the position and movement data for each segment.
 
-In the *DungeonSlime* project (your main game project), create a new folder named `GameObjects`. We will be putting all of our code related to the objects within the game here.
+In the `Source` directory of the *DungeonSlime* project (your main game project), create a new folder named `GameObjects`. We will be putting all of our code related to the objects within the game here.
 Then create a new file named `SlimeSegment.cs` inside the `GameObjects` folder you just created and add the following code:
 
 [!code-csharp[](./snippets/slimesegment.cs)]

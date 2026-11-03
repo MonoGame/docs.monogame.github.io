@@ -3,7 +3,7 @@ title: "Chapter 23: Completing the Game"
 description: "Finalize game mechanics by updating our current demo into a snake-like inspired game."
 ---
 
-In [Chapter 22](../22_snake_game_mechanics/index.md) we implemented the core mechanics of a snake-like game by creating the [`Slime`](../22_snake_game_mechanics/index.md#the-slime-class), [`Bat`](../22_snake_game_mechanics/index.md#the-bat-class) and [`GameController`](../22_snake_game_mechanics/index.md#the-gamecontroller-class) classes.  While these classes handle the foundational gameplay, a complete game needs additional elements to provide player feedback, manage game states, and create a polished experience.
+In [Chapter 22](../22_snake_game_mechanics/index.md) we implemented the core mechanics of a snake-like game by creating the [`Slime`](../22_snake_game_mechanics/index.md#the-slime-class), [`Bat`](../22_snake_game_mechanics/index.md#the-bat-class) and [`GameController`](../22_snake_game_mechanics/index.md#the-gamecontroller-class) classes. While these classes handle the foundational gameplay, a complete game needs additional elements to provide player feedback, manage game states, and create a polished experience.
 
 In this chapter, you will:
 
@@ -18,7 +18,7 @@ In this chapter, you will:
 
 Currently, the `GameScene` class contains the methods for initializing and creating the pause menu.  However, now that we have a defined condition for game over, we need to create a game-over menu as well.  To do this, we will take the opportunity to refactor the current code and pull the UI-specific code into its own class.
 
-In the `UI` folder of the *DungeonSlime* project, create a new file named `GameSceneUI.cs` and add the following initial code:
+In the `Source\UI` folder of the _DungeonSlime_ project, create a new file named `GameSceneUI.cs` and add the following initial code:
 
 [!code-csharp[](./snippets/gamesceneui/definition.cs)]
 
@@ -78,7 +78,7 @@ To keep the code more organized, we will create separate functions to build the 
 
 To display the player's score, we will begin by adding a method to create a `TextRuntime` element.
 
-Add the following method to the `GameSceneUI`  after the constructor:
+Add the following method to the `GameSceneUI` after the constructor:
 
 [!code-csharp[](./snippets/gamesceneui/createscoretext.cs)]
 
@@ -98,7 +98,7 @@ Add the following method to the `GameSceneUI` class after the `CreatePausePanel`
 
 [!code-csharp[](./snippets/gamesceneui/creategameoverpanel.cs)]
 
-Both the pause panel and the game over panel use event handlers for their buttons.  We will add those next.
+Both the pause panel and the game over panel use event handlers for their buttons. We will add those next.
 
 ### GameSceneUI Event Handlers
 
@@ -131,7 +131,7 @@ Now that we have created the encapsulated [`Slime`](../22_snake_game_mechanics/i
 
 We will rebuild/replace the existing `GameScene` class to coordinate the interactions between the components.
 
-In the `Scenes` folder of the *DungeonSlime* project (your main game project), open the `GameScene.cs` file and replace **ALL** of the code with the following replacement code (starting fresh):
+In the `Scenes` folder of the _DungeonSlime_ project (your main game project), open the `GameScene.cs` file and replace **ALL** of the code with the following replacement code (starting fresh):
 
 [!code-csharp[](./snippets/gamescene/definition.cs)]
 
@@ -182,7 +182,7 @@ This method creates the UI components and subscribes to its events to respond to
 
 ### GameScene UI Event Handlers
 
-In the `InitializeUI` method we just added, we subscribe to the events from the `GameSceneUI` class that are triggered when buttons are clicked.  Now we need to add those methods that would be called when the events are triggered.
+In the `InitializeUI` method we just added, we subscribe to the events from the `GameSceneUI` class that are triggered when buttons are clicked. Now we need to add those methods that would be called when the events are triggered.
 
 Add the following methods to the `GameScene` class after the `InitializeUI` method:
 
@@ -256,7 +256,7 @@ This method checks for three types of collisions:
 
 ### GameScene PositionBatAwayFromSlime Method
 
-The `CollisionCheck` method makes a call to `PositionBatAwayFromSlime`, previously, when we needed to set the position of the bat when it respawns, we simply chose a random tile within the tilemap to move it to.  However, by choosing a completely random location it could be on top of the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which is not challenging for the player.  To ensure the bat appears in a random, but strategic location, we can instead set it to position away from the slime on the opposite side of the room.
+The `CollisionCheck` method makes a call to `PositionBatAwayFromSlime`, previously, when we needed to set the position of the bat when it respawns, we simply chose a random tile within the tilemap to move it to. However, by choosing a completely random location it could be on top of the head segment of the slime, forcing an instant collision, or it could spawn very close to the head segment, which is not challenging for the player. To ensure the bat appears in a random, but strategic location, we can instead set it to position away from the slime on the opposite side of the room.
 
 Add the following method to the `GameScene` class after the `CollisionCheck` method:
 
@@ -315,7 +315,7 @@ Implementing the input buffering technique we introduced in [Chapter 10](../10_h
 
 ### Implementing Input Buffering in the Slime Class
 
-For the `Slime` class, we will implement input buffering based on the example given using a `Queue<T>` in [Chapter 10](../10_handling_input/index.md#implementing-a-simple-input-buffer).  In the `GameObject` folder of the *DungeonSlime* project (your main game project), open the `Slime.cs` file so we can make the changes.
+For the `Slime` class, we will implement input buffering based on the example given using a `Queue<T>` in [Chapter 10](../10_handling_input/index.md#implementing-a-simple-input-buffer). In the `GameObject` folder of the _DungeonSlime_ project (your main game project), open the `Slime.cs` file so we can make the changes.
 
 First, update the using statements at the top of the `Slime` class to add the `System.Linq` using statement:
 
@@ -325,7 +325,7 @@ Next, add the following fields to the `Slime` class after the `_sprite` field:
 
 [!code-csharp[](./snippets/slime/fields.cs)]
 
-The queue will store the directional vectors (up, down, left, right) that we will apply to the slime's movement in the order they were received.  Next, we need to initialize the queue.
+The queue will store the directional vectors (up, down, left, right) that we will apply to the slime's movement in the order they were received. Next, we need to initialize the queue.
 
 In the `Slime` class, locate the `Initialize` method and and update it to the following:
 
@@ -340,7 +340,7 @@ In the `Slime` class, locate the `HandleInput` method and update it to the follo
 1. The `potentialNewDirection` is now given the initial value of [**Vector2.Zero**](xref:Microsoft.Xna.Framework.Vector2.Zero).
 2. A check is made to see if the player has pressed a direction key and if the input buffer is not already at maximum capacity.
 3. If a new direction key is pressed and the buffer has space:
-   1. The validation is made using [**Vector2.Dot**](xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)) just like before to ensure it is a valid direction
+   1. The validation is made using [**Vector2.Dot**](<xref:Microsoft.Xna.Framework.Vector2.Dot(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)>) just like before to ensure it is a valid direction
    2. If it is a valid direction, then it is added to the queue.
 
 Finally, we need to modify how we apply the movement direction during the movement update cycle.
@@ -399,42 +399,42 @@ The refactoring process we undertook demonstrates an important game development 
 
 1. How does the game handle different states (playing, paused, game over), and why is this state management important?
 
-    :::question-answer
-    The game uses an enum (`GameState`) to track its current state and implements different behavior based on that state:
+   :::question-answer
+   The game uses an enum (`GameState`) to track its current state and implements different behavior based on that state:
 
-    - During the `Playing` state, the game updates all objects and checks for collisions
-    - During the `Paused` state, the game shows the pause menu and stops updating game objects
-    - During the `GameOver` state, the game shows the game over menu and prevents further gameplay
+   - During the `Playing` state, the game updates all objects and checks for collisions
+   - During the `Paused` state, the game shows the pause menu and stops updating game objects
+   - During the `GameOver` state, the game shows the game over menu and prevents further gameplay
 
-    This state management is important because it:
+   This state management is important because it:
 
-    - Prevents inappropriate updates during non-gameplay states
-    - Creates a clear flow between different game conditions
-    - Simplifies conditional logic by using explicit states rather than multiple boolean flags
-    - Makes the game's behavior more predictable and easier to debug
+   - Prevents inappropriate updates during non-gameplay states
+   - Creates a clear flow between different game conditions
+   - Simplifies conditional logic by using explicit states rather than multiple boolean flags
+   - Makes the game's behavior more predictable and easier to debug
 
-    :::
+   :::
 
 2. Why is it important to position the bat away from the slime after it has been eaten rather than at a completely random location?
 
-    :::question-answer
-    Positioning the bat away from the slime after it has been eaten rather than at a completely random location is important because:
+   :::question-answer
+   Positioning the bat away from the slime after it has been eaten rather than at a completely random location is important because:
 
-    - It prevents unfair situations where the bat might spawn right on top of the slime causing an immediate collision
-    - It creates a more strategic gameplay experience by forcing the player to navigate toward the bat
-    - It ensures the player faces an appropriate level of challenge that increases as the slime grows longer
-    - It prevents potential frustration from random spawns that might be either too easy or too difficult to reach
-    - It creates a more balanced and predictable game experience while still maintaining variety
-    :::
+   - It prevents unfair situations where the bat might spawn right on top of the slime causing an immediate collision
+   - It creates a more strategic gameplay experience by forcing the player to navigate toward the bat
+   - It ensures the player faces an appropriate level of challenge that increases as the slime grows longer
+   - It prevents potential frustration from random spawns that might be either too easy or too difficult to reach
+   - It creates a more balanced and predictable game experience while still maintaining variety
+     :::
 
 3. What problem does input buffering solve and how does our implementation address it?
 
-    :::question-answer
-    Input buffering solves the timing disconnect between when players press buttons and when the game can actually process those inputs in games with fixed movement cycles. Without buffering, inputs that occur between movement cycles are lost, especially when players make rapid sequential inputs like navigating corners.
+   :::question-answer
+   Input buffering solves the timing disconnect between when players press buttons and when the game can actually process those inputs in games with fixed movement cycles. Without buffering, inputs that occur between movement cycles are lost, especially when players make rapid sequential inputs like navigating corners.
 
-    Our implementation addresses this by:
+   Our implementation addresses this by:
 
-    - Using a queue data structure to store up to two directional inputs
-    - Processing inputs in First-In-First-Out order to preserve the player's intended sequence
-    - Validating each input against the previous one to prevent impossible movements
-    :::
+   - Using a queue data structure to store up to two directional inputs
+   - Processing inputs in First-In-First-Out order to preserve the player's intended sequence
+   - Validating each input against the previous one to prevent impossible movements
+     :::
