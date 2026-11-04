@@ -5,7 +5,7 @@ private void CreateOptionsPanel()
     _optionsPanel.IsVisible = false;
     _optionsPanel.AddToRoot();
 
-    TextRuntime optionsText = new TextRuntime();
+    Gum.GueDeriving.TextRuntime optionsText = new Gum.GueDeriving.TextRuntime();
     optionsText.X = 10;
     optionsText.Y = 10;
     optionsText.Text = "OPTIONS";

@@ -1,6 +1,6 @@
-private TextRuntime CreateScoreText()
+private Gum.GueDeriving.TextRuntime CreateScoreText()
 {
-    TextRuntime text = new TextRuntime();
+    Gum.GueDeriving.TextRuntime text = new Gum.GueDeriving.TextRuntime();
     text.Anchor(Gum.Wireframe.Anchor.TopLeft);
     text.WidthUnits = DimensionUnitType.RelativeToChildren;
     text.X = 20.0f;
