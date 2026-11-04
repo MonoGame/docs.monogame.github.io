@@ -9,9 +9,11 @@ private void CreatePausePanel()
     _pausePanel.IsVisible = false;
     _pausePanel.AddToRoot();
 
-    var background = new ColoredRectangleRuntime();
+    var background = new RectangleRuntime();
+    background.IsFilled = true;
+    background.StrokeWidth = 0;
     background.Dock(Dock.Fill);
-    background.Color = Color.DarkBlue;
+    background.FillColor = Color.DarkBlue;
     _pausePanel.AddChild(background);
 
     var textInstance = new TextRuntime();
