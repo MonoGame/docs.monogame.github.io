@@ -3,6 +3,9 @@ title: Setting up your development environment for Rider
 description: A step-by-step guide for setting up your development IDE for Rider
 ---
 
+> [!IMPORTANT]
+> The new [Getting Started with MonoGame](../tutorials/getting_started/index.md) guide replaces this page. For MonoGame 3.8.6 and later, use [Step 2: Choose Your IDE](../tutorials/getting_started/02_choosing_your_ide/index.md?tabs=rider) instead.
+
 This is a guide on setting up your development environment for creating games with MonoGame using JetBrains Rider.
 By following this guide, you will learn how to install and configure Rider with the recommended extension for MonoGame development.
 

@@ -9,6 +9,31 @@ description: Tutorials provided by MonoGame community members.
 > Have a tutorial suggestion, article or series that really helped you? Then please [log an issue](https://github.com/MonoGame/docs.monogame.github.io/issues) to get it included.
 
 <section class="container-xxl my-5">
+    <h1 id="learn-getting-started" class="fw-bold"><a href="#learn-getting-started">Getting Started</a></h1>
+    <p>Start here if you are new to MonoGame.</p>
+</section>
+
+<section class="container-xxl mb-5">
+    <div class="row">
+        <div class="col-12 col-lg-4 mb-5">
+            <div class="mg-card mg-box-shadow h-100">
+                <a target="_self"
+                    href="/articles/tutorials/getting_started/"
+                    class="mg-no-link">
+                    <div class="mg-card-body d-flex flex-column h-100">
+                        <div class="mg-card-title"><i class="bi bi-rocket-takeoff"></i> Getting Started with MonoGame</div>
+                        <p>
+                            A short six step guide. Prepare your computer, create a project, add content and make a two player bat and ball game.
+                        </p>
+                        <p class="mt-auto">Click to view the guide</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container-xxl my-5">
     <h1 id="learn-2d" class="fw-bold"><a href="#learn-2d">2D</a></h1>
     <p>A selection of 2D focused content and tutorials.</p>
 </section>

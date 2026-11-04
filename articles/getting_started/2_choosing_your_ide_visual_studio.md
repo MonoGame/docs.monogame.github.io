@@ -3,6 +3,9 @@ title: Setting up Visual Studio on Windows
 description: This section provides a step-by-step guide for setting up your development IDE on Windows for Visual Studio.
 ---
 
+> [!IMPORTANT]
+> The new [Getting Started with MonoGame](../tutorials/getting_started/index.md) guide replaces this page. For MonoGame 3.8.6 and later, use [Step 2: Choose Your IDE](../tutorials/getting_started/02_choosing_your_ide/index.md?tabs=vs) instead.
+
 MonoGame can work with most .NET compatible tools, but we recommend [Visual Studio 2026](https://visualstudio.microsoft.com/vs/)
 
 > [!NOTE]

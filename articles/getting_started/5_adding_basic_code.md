@@ -3,6 +3,9 @@ title: Adding Basic Code
 description: This tutorial will go over adding basic logic to your game
 ---
 
+> [!IMPORTANT]
+> The new [Getting Started with MonoGame](../tutorials/getting_started/index.md) guide replaces this page. For MonoGame 3.8.6 and later, use [Step 6: Make a Basic Game](../tutorials/getting_started/06_a_basic_game/index.md) instead.
+
 > [!NOTE]
 > this tutorial continues from where [5. Adding Content](4_adding_content.md) left off.
 

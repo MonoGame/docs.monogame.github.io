@@ -3,6 +3,9 @@ title: Setting up your development environment for VSCode
 description: A step-by-step guide for setting up your development IDE using VSCode
 ---
 
+> [!IMPORTANT]
+> The new [Getting Started with MonoGame](../tutorials/getting_started/index.md) guide replaces this page. For MonoGame 3.8.6 and later, use [Step 2: Choose Your IDE](../tutorials/getting_started/02_choosing_your_ide/index.md?tabs=vscode) instead.
+
 This is a guide on setting up your development IDE for creating games with MonoGame using Visual Studio Code. By following this guide, you will learn how to install the necessary tools for developing C# applications and configure Visual Studio Code with recommended extensions for C# development.
 
 By the end, you will be fully equipped to start creating games with MonoGame using Visual Studio Code.

@@ -28,38 +28,34 @@ See [Supported Platforms](./platforms.md) for more information.
 
 ## Setting up and creating your first MonoGame Project
 
-Step by step instructions to get your development environment ready for MonoGame and build your first game..
+The [Getting Started with MonoGame](../tutorials/getting_started/index.md) guide gives step by step instructions to prepare your computer and make your first game:
 
-### 1. Setting up your OS for development
+1. [Prepare Your Operating System](../tutorials/getting_started/01_setting_up_your_os/index.md)
+2. [Choose Your IDE](../tutorials/getting_started/02_choosing_your_ide/index.md)
+3. [Create a New Project](../tutorials/getting_started/03_creating_a_project/index.md)
+4. [Add Content with the Content Builder](../tutorials/getting_started/04_adding_content/index.md)
+5. [Understand the Code](../tutorials/getting_started/05_understanding_the_code/index.md)
+6. [Make a Basic Game](../tutorials/getting_started/06_a_basic_game/index.md)
+7. [Appendix: Going Mobile](../tutorials/getting_started/appendix_going_mobile/index.md)
 
-- [Windows](./1_setting_up_your_os_for_development_windows.md)
-- [macOS](./1_setting_up_your_os_for_development_macos.md)
-- [Ubuntu](./1_setting_up_your_os_for_development_ubuntu.md)
-
-### 2. Choosing your IDE
-
-- [Visual Studio for Windows](./2_choosing_your_ide_visual_studio.md)
-- [VS Code](./2_choosing_your_ide_vscode.md)
-- [Rider](./2_choosing_your_ide_rider.md)
-
-### 3. Building a title with MonoGame
+### Building a title with MonoGame
 
 - [MonoGame Learn resources](../tutorials/index.md)
 - [Your first 2D Game](../tutorials/building_2d_games/index.md)
 - [Understanding 2D Shaders](../tutorials/advanced/2d_shaders/index.md)
 
-### 4. Building Content/Assets
+### Building Content/Assets
 
 - [MonoGame Content Pipeline](./content_pipeline/index.md)
 - [Why use the Content Pipeline?](./content_pipeline/why_content_pipeline.md)
 - [Content Builder walkthrough](./content_pipeline/content_builder/index.md)
 - [(Legacy) The MGCB editor)](./content_pipeline/using_mgcb_editor.md)
 
-### 5. Packaging Games
+### Packaging Games
 
 - [Packaging Games for Distribution](packaging_games.md)
 
-### 4. Advanced Topics
+### Advanced Topics
 
 - [Debugging](logging.md)
 - [Preparing for Consoles](preparing_for_consoles.md)

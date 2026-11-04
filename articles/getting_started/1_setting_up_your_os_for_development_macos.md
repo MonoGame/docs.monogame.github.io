@@ -3,6 +3,9 @@ title: Setting up your OS for development on MacOS
 description: This section provides a step-by-step guide for setting up your development environment on Mac.
 ---
 
+> [!IMPORTANT]
+> The new [Getting Started with MonoGame](../tutorials/getting_started/index.md) guide replaces this page. For MonoGame 3.8.6 and later, use [Step 1: Prepare Your Operating System](../tutorials/getting_started/01_setting_up_your_os/index.md?tabs=macos) instead.
+
 To develop with MonoGame in C#, you will need to install the .NET SDK. As of MonoGame 3.8.4.1 the recommended version is .NET 9, .NET 10 is also supported.
 
 > [!TIP]
