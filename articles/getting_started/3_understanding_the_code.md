@@ -3,6 +3,9 @@ title: Understanding the Code
 description: This tutorial will go over the code that is generated when you start a blank project.
 ---
 
+> [!IMPORTANT]
+> The new [Getting Started with MonoGame](../tutorials/getting_started/index.md) guide replaces this page. For MonoGame 3.8.6 and later, use [Step 5: Understand the Code](../tutorials/getting_started/05_understanding_the_code/index.md) instead.
+
 > [!NOTE]
 > For help with creating a project, please look at the Creating a New Project section of the [Getting Started guide](index.md).
 

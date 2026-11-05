@@ -3,6 +3,9 @@ title: Adding Content
 description: This tutorial will go over adding content such as images or sounds to your game.
 ---
 
+> [!IMPORTANT]
+> The new [Getting Started with MonoGame](../tutorials/getting_started/index.md) guide replaces this page. This page uses the legacy MGCB Editor. For MonoGame 3.8.6 and later, use [Step 4: Add Content with the Content Builder](../tutorials/getting_started/04_adding_content/index.md) instead.
+
 > [!NOTE]
 > this tutorial continues from where [3. Understanding the Code](3_understanding_the_code.md) left off.
 

@@ -3,6 +3,9 @@ title: Setting up your OS for development on Ubuntu
 description: This section provides a step-by-step guide for setting up your development environment on Ubuntu.
 ---
 
+> [!IMPORTANT]
+> The new [Getting Started with MonoGame](../tutorials/getting_started/index.md) guide replaces this page. For MonoGame 3.8.6 and later, use [Step 1: Prepare Your Operating System](../tutorials/getting_started/01_setting_up_your_os/index.md?tabs=linux) instead.
+
 > [!TIP]
 > The minimum version of Ubuntu that is supported by MonoGame is `20.04`.
 
