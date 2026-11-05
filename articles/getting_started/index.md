@@ -37,13 +37,13 @@ The [Getting Started with MonoGame](../tutorials/getting_started/index.md) guide
 6. [Make a Basic Game](../tutorials/getting_started/06_a_basic_game/index.md)
 7. [Appendix: Going Mobile](../tutorials/getting_started/appendix_going_mobile/index.md)
 
-### Building a title with MonoGame
+### Further learning
 
 - [MonoGame Learn resources](../tutorials/index.md)
 - [Your first 2D Game](../tutorials/building_2d_games/index.md)
 - [Understanding 2D Shaders](../tutorials/advanced/2d_shaders/index.md)
 
-### Building Content/Assets
+### Building Content/Assets learning
 
 - [MonoGame Content Pipeline](./content_pipeline/index.md)
 - [Why use the Content Pipeline?](./content_pipeline/why_content_pipeline.md)
