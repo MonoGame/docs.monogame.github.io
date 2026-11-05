@@ -20,11 +20,10 @@ MonoGame supports the following platforms by default:
 - PlayStation 5*
 - Nintendo Switch*
 - Nintendo Switch 2*
+- Web (Coming soon)
 
 > [!IMPORTANT]
 > Platforms marked with a *"\*"* require developer access from their host vendor platforms.
-
-See [Supported Platforms](./platforms.md) for more information.
 
 ## Setting up and creating your first MonoGame Project
 
