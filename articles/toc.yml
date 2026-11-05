@@ -104,6 +104,8 @@ items:
             href: getting_started/tools/mgcb_editor.md
           - name: MGFXC
             href: getting_started/tools/mgfxc.md
+          - name: Wine setup
+            href: getting_started/tools/wine_setup.md
   - name: Migration
     items:
       - name: Migrating from XNA

@@ -8,10 +8,54 @@ description: Learn how to use the MGCB Editor to organize and build content for 
 
 The [MGCB Editor](../tools/mgcb_editor.md) is used to organize and build content for use with MonoGame. It is accessed by either:
 
-* Double-clicking a "**.mgcb**" file from within the Visual Studio solution explorer (providing that you installed [MonoGame's Visual Studio extension](../2_choosing_your_ide_visual_studio.md#install-monogame-extension-for-visual-studio-2026)).
-* Right-clicking a "**.mgcb**" file from within the Visual Studio code and selecting "Open in MGCB Editor" (provided you have installed the [VSCode extension](../2_choosing_your_ide_vscode.md#install-visual-studio-code-c-extensions))
+* Double-clicking a "**.mgcb**" file from within the Visual Studio solution explorer (providing that you installed [MonoGame's Visual Studio extension](#install-the-ide-extension)).
+* Right-clicking a "**.mgcb**" file from within the Visual Studio code and selecting "Open in MGCB Editor" (provided you have installed the [VSCode extension](#install-the-ide-extension))
 
 Alternatively, you can build it [directly from source](https://github.com/MonoGame/MonoGame/tree/develop/Tools/MonoGame.Content.Builder.Editor) if needed.
+
+## Install the IDE extension
+
+The extension for your IDE lets you open a "**.mgcb**" file in the MGCB Editor from inside the IDE. Follow the steps for the IDE you use.
+
+### [Visual Studio](#tab/vs)
+
+Install the **MonoGame Framework C# project templates** extension:
+
+1. Launch Visual Studio.
+2. Select **Continue without code**. This will launch Visual Studio without any project or solution opened.
+
+    ![Visual Studio Launcher Continue Without Code](../images/1_continue_without_code.png)
+
+3. Click **Extensions -> Manage Extensions** in the Visual Studio menu bar. This will open the Manage Extensions dialog window.
+
+    ![Extensions -> Manage Extensions Menu Selection](../images/1_visual_studio_extension_menu.png)
+
+4. Use the search box in the top-right corner of the Manage Extensions dialog window to search for **MonoGame**. Then click the **MonoGame Framework C# project templates** extension as shown below and download it.
+
+    ![Visual Studio Extension Manager](../images/1_visual_studio_extension_manager.png)
+
+5. After it is downloaded, an alert will appear at the bottom of the Manage Extensions window that states "Your changes will be scheduled. The modifications will begin when all Microsoft Visual Studio windows are closed." Click the **Close** button, then close Visual Studio.
+
+6. After closing Visual Studio, a VSIX Installer window will open confirming that you want to install the **MonoGame Framework C# project templates** extension. Click the **Modify** button to accept the install.
+
+    ![VSIX Installer Window](../images/1_vsix_installer_window.png)
+
+### [Visual Studio Code](#tab/vscode)
+
+Install the **MonoGame for VSCode** extension:
+
+1. Open Visual Studio Code.
+2. Click the **Extensions** icon in the **Activity Bar** on the left.
+
+    ![Click Extensions](../images/1_setting_up_your_development_environment/vscode/click-extensions.png)
+
+3. In the **Search Box** type `MonoGame for VSCode`.
+4. Click **Install** for the **MonoGame for VSCode** extension by r88.
+
+> [!NOTE]
+> While not built by the MonoGame team, we regularly use this extension ourselves and fully support it.
+
+---
 
 ## Create A Project
 

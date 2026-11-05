@@ -277,7 +277,7 @@ If you used the MGCB Editor every day, this table shows what each action becomes
 | A font fails to build | The `.spritefont` file names a font that is not installed, or the `.ttf` file is built on its own. Keep the `.ttf` file in the same folder and exclude it with `Exclude`. |
 | Built content differs in format from before | Check the settings that the `.mgcb` file listed for the asset, including the graphics profile. |
 | A custom importer is not used | Check that the library is referenced from the Content Builder project and targets the same .NET version, then pass the importer and processor to `Include`. |
-| The builder does not run in Rider | See the build settings in [Setting up Rider](../../2_choosing_your_ide_rider.md). |
+| The builder does not run in Rider | See the Rider build settings in [Step 2: Choose Your IDE](../../../tutorials/getting_started/02_choosing_your_ide/index.md?tabs=rider). |
 
 ## Next steps
 

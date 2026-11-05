@@ -133,11 +133,7 @@ dotnet workload install ios
 
 The shader compiler uses DirectX tools that operate only on Windows. To compile shaders (effects) on macOS or Linux, you must install [WINE](https://www.winehq.org/). This guide does not use shaders.
 
-For the WINE instructions, refer to the page for your operating system:
-
-- [WINE on macOS](../../../getting_started/1_setting_up_your_os_for_development_macos.md#setup-wine-for-effect-compilation)
-- [WINE on Ubuntu](../../../getting_started/1_setting_up_your_os_for_development_ubuntu.md#setup-wine-for-effect-compilation)
-- [WINE on Arch Linux](../../../getting_started/1_setting_up_your_os_for_development_arch.md#setup-wine-for-effect-compilation)
+For the WINE instructions, refer to [Setting up Wine for effect compilation](../../../getting_started/tools/wine_setup.md). That page has steps for macOS, Ubuntu and Arch Linux.
 
 ## Conclusion
 

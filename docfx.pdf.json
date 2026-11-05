@@ -48,7 +48,11 @@
           "toc.yml",
           "*.md"
         ],
-        "exclude": [ "_site/**", "README.md" ]
+        "exclude": [
+          "_site/**",
+          "README.md",
+          "articles/getting_started/[0-9]_*.md"
+        ]
       }
     ],
     "resource": [

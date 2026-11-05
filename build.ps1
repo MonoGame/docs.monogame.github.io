@@ -30,6 +30,7 @@ New-Item -ItemType Directory -Force -Path "_pdf" | Out-Null
 # Generate PDF (using PDF-specific config that includes pdf/** files)
 Write-Host "Generating PDF..." -ForegroundColor Green
 try {
+    dotnet docfx build docfx.pdf.json --output _pdf
     dotnet docfx pdf docfx.pdf.json --output _pdf
     if ($LASTEXITCODE -ne 0) {
         throw "docfx pdf exited with code $LASTEXITCODE"

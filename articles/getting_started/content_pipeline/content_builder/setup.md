@@ -516,7 +516,7 @@ System.Diagnostics.Debugger.Launch();
 You can also run the builder as a normal console application from your IDE, with the arguments you would pass on the command line, and place breakpoints in your own importers and processors.
 
 > [!NOTE]
-> If a Content Builder project does not run when you build in Rider, see the build settings described in [Setting up Rider](../../2_choosing_your_ide_rider.md).
+> If a Content Builder project does not run when you build in Rider, see the Rider build settings described in [Step 2: Choose Your IDE](../../../tutorials/getting_started/02_choosing_your_ide/index.md?tabs=rider).
 
 ## Next steps
 
