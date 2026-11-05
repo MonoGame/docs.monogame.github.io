@@ -17,7 +17,7 @@ If you are following along with code, here is the code from the end of the [prev
 
 ## Sample Source
 
-The full source for this tuturial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
+The full source for this tutorial can be located on the `3.8.5` branch of the main [MonoGame.Samples repository](https://github.com/MonoGame/MonoGame.Samples/tree/3.8.5/Tutorials/2dShaders)
 
 As shown below:
 
@@ -439,7 +439,7 @@ Color LUTs are used in post-processing to adjust the final look and feel of game
 
 If you are interested in Color LUTs, check out the following articles,
 
-1. [GPU Gems 2: Chapter 24](https://developer.nvidia.com/gpugems/gpugems2/part-iii-high-quality-rendering/chapter-24-using-look-up-tables-accelerate-color) offers a sweeping overview of 3D Color LUTs.
+1. [GPU Gems 2: Chapter 24](https://developer.nvidia.com/gpugems/gpugems2/part-iii-high-quality-rendering/chapter-24-using-lookup-tables-accelerate-color) offers a sweeping overview of 3D Color LUTs.
 2. [Frost Kiwi's Color LUT Article](https://blog.frost.kiwi/WebGL-LUTS-made-simple/) is a fantastic exploration of the topic with lots of additional sources to explore.
 
 ## Conclusion
