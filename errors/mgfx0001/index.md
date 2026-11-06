@@ -19,5 +19,5 @@ This error indicates that `Wine` is not installed on the development machine. `W
 
 ## Solution
 
-You need to make sure you have installed `Wine` on your machine. 
-Please look at the following [link](https://docs.monogame.net/articles/tutorials/building_2d_games/02_getting_started/?tabs=macos#setup-wine-for-effect-compilation-macos-and-linux-only) for detailed instructions on how to install `Wine` and configure it for use with MonoGame.
+You need to make sure you have installed `Wine` on your machine.
+Please look at the following [link](https://docs.monogame.net/articles/getting_started/tools/wine_setup.html?tabs=macos) for detailed instructions on how to install `Wine` and configure it for use with MonoGame.
