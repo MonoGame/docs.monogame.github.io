@@ -163,48 +163,11 @@ The .NET MAUI extension adds features for building mobile apps, including:
 > [!NOTE]
 > This extension is recommended if you wish to do iOS or Android development. It is required for debugging support when working on mobile games. 
 
-## Setup WINE for Effect Compilation (macOS and Linux Only)
+### WINE for shader compilation on macOS and Linux
 
-*Effect* (shader) compilation requires access to DirectX. This means it will not work natively on macOS and Linux systems, but it can be used through [WINE](https://www.winehq.org/). MonoGame provides a setup script that can be executed to setup the WINE environment. Below you can find the steps based on your operating system. To do this, follow the instructions for your operating system below:
+The shader compiler uses DirectX tools that operate only on Windows. To compile shaders (effects) on macOS or Linux, you must install [WINE](https://www.winehq.org/). This guide does not use shaders.
 
-### [Windows](#tab/windows)
-
-> [!NOTE]
-> Setting up WINE for effect compilation is not required for Windows
-
-### [macOS](#tab/macos)
-
-Open a new *Terminal* window and execute the following commands:
-
-```sh
-brew install p7zip
-brew install --cask xquartz
-curl -L -o wine.tar.xz "https://github.com/Gcenx/macOS_Wine_builds/releases/download/11.0_1/wine-stable-11.0_1-osx64.tar.xz"
-tar -xJf wine.tar.xz
-sudo mv "Wine Stable.app" /Applications/
-sudo xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
-echo "export PATH="/Applications/Wine Stable.app/Contents/Resources/wine/bin:$PATH"" > ~/.zprofile
-source ~/.zprofile
-wine --version
-wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash
-```
-
-> [!NOTE]
-> After performing these steps, a new folder called *.winemonogame* will be created in your home folder. If you ever wish to undo the setup performed by this script, you can simply delete this folder.
-
-### [Linux](#tab/linux)
-
-Open a new *Terminal* window and execute the following commands:
-
-```sh
-sudo apt-get update && sudo apt-get install -y curl p7zip-full wine64
-wget -qO- https://monogame.net/downloads/net8_mgfxc_wine_setup.sh | bash  
-```
-
-> [!NOTE]
-> After performing these steps, a new folder called *.winemonogame* will be created in your home folder. If you ever wish to undo the setup performed by this script, you can simply delete this folder.
-
----
+For the WINE instructions, refer to [Setting up Wine for effect compilation](../../../getting_started/tools/wine_setup.md). That page has steps for macOS, Ubuntu and Arch Linux.
 
 ## Creating Your First MonoGame Application
 

@@ -16,7 +16,7 @@ Follow the steps for your operating system.
 
 ### [macOS](#tab/macos)
 
-1. Install [brew.sh](https://brew.sh)
+1. Install [Homebrew](https://brew.sh)
 2. Open a terminal window and enter the following commands:
 
     ```sh
@@ -26,7 +26,7 @@ Follow the steps for your operating system.
     tar -xJf wine.tar.xz
     sudo mv "Wine Stable.app" /Applications/
     sudo xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
-    echo "export PATH="/Applications/Wine Stable.app/Contents/Resources/wine/bin:$PATH"" > ~/.zprofile
+    echo "export PATH="/Applications/Wine Stable.app/Contents/Resources/wine/bin:$PATH"" >> ~/.zprofile
     source ~/.zprofile
     wine --version
     ```
@@ -39,6 +39,9 @@ Follow the steps for your operating system.
 
 This will create a new directory called `.winemonogame` in your home directory. If you ever wish to undo the setup this script performed, delete that directory.
 
+> [!NOTE]  
+> For the time being, MonoGame requires that you install the **Intel** version even if you are using an Apple Silicon (M1/M2) Mac. For Apple Silicon Macs, it also requires that [Rosetta](https://support.apple.com/en-us/HT211861) be enabled.
+
 ### [Ubuntu](#tab/ubuntu)
 
 1. Download the latest Wine for your version of Ubuntu from the [WineHQ Debian and Ubuntu page](https://gitlab.winehq.org/wine/wine/-/wikis/Debian-Ubuntu).
@@ -49,7 +52,7 @@ This will create a new directory called `.winemonogame` in your home directory. 
     ```
 
     > [!TIP]
-    > If you receive an error stating that either of the packages do not have an install candidate, you may need to enable the universe apt repository. To do this, enter the following commands in the terminal:
+    > If you receive an error stating that any of the packages do not have an install candidate, you may need to enable the universe apt repository. To do this, enter the following commands in the terminal:
     >
     > ```sh
     > sudo add-apt-repository universe
@@ -134,7 +137,7 @@ If the setup script fails with `wine64 not found`, ensure you created the symlin
 sudo ln -s /usr/bin/wine /usr/local/bin/wine64
 ```
 
-### Issue: Shader compilation fails with "MGFXC effect compiler requires a valid wine installation"
+### Issue: Shader compilation fails with "MGFXC effect compiler requires a valid Wine installation"
 
 This means the `MGFXC_WINE_PATH` environment variable is not set. On Arch Linux, ensure you:
 
