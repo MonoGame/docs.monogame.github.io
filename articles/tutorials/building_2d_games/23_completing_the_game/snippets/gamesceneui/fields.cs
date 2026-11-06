@@ -19,4 +19,4 @@ private Panel _gameOverPanel;
 private AnimatedButton _retryButton;
 
 // The text runtime used to display the players score on the game screen.
-private TextRuntime _scoreText;
+private Gum.GueDeriving.TextRuntime _scoreText;

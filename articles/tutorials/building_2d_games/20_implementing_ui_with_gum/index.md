@@ -165,7 +165,7 @@ Two concepts are important when working with Gum: **Forms** and **Visuals**.
 
 * **Forms** controls are typical interactive UI elements such as buttons, sliders, and text boxes that handle user interaction through mouse, gamepad, and keyboard inputs.  These controls come with built-in functionality; a button responds visually when focused, while a slider changes its value when clicked on its *track*.  By using these standardized components, you can maintain consistency throughout your UI implementation.
 
-* **Visuals** are the graphical display elements that render the actual appearance of UI components. In Gum, Visual elements have the *Runtime suffix (like TextRuntime, ColoredRectangleRuntime, and NineSliceRuntime) and are used to render graphics. They handle the visual representation but have no built-in interaction behavior on their own.
+* **Visuals** are the graphical display elements that render the actual appearance of UI components. In Gum, Visual elements have the *Runtime suffix (like TextRuntime, RectangleRuntime, and NineSliceRuntime) and are used to render graphics. They handle the visual representation but have no built-in interaction behavior on their own.
 
 Forms controls provide customization through their `Visual` property, which serves as a gateway to modifying their appearance and layout. With this property, you can move, resize, restyle, and even completely replace visuals through code.  As we will see when building our UI in the next chapter, this separation between functionality and presentation allows us to create consistent behaviors while adapting the visual style to match our game's aesthetic.
 
@@ -321,7 +321,7 @@ To add the Gum NuGet package in Visual Studio Code:
 2. Choose `C# Package Management > Add NuGet Package` from the context menu.
 3. Enter `Gum.MonoGame` in the search prompt, then press Enter to search NuGet.
 4. When the search finishes, select the `Gum.MonoGame` package in the results.
-5. When prompted for a version, choose version `2026.5.8.1`.
+5. When prompted for a version, choose version `2026.11.2.1`.
 
 | ![Figure 20-1: Adding a NuGet package from the DungeonSlime.csproj file in Visual Studio Code](./images/add-nuget-package.png) |
 | :--------------------------------------------------------------------------------------------------------------------------: |
@@ -336,7 +336,7 @@ To Add the Gum NuGet package in Visual Studio 2022:
 3. In the NuGet Package Manager window, select the `Browse` tab if it is not already selected.
 4. In the search box, enter `Gum.MonoGame`.
 5. Select the "Gum.MonoGame" package from the search results.
-6. On the right, in the version dropdown, select version `2026.5.8.1` and click the "Install" button.
+6. On the right, in the version dropdown, select version `2026.11.2.1` and click the "Install" button.
 
 #### [dotnet CLI](#tab/dotnetcli)
 
@@ -346,7 +346,7 @@ To add the Gum NuGet package using the dotnet CLI:
 2. Enter the following command:
 
     ```sh
-    dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2026.5.8.1
+    dotnet add DungeonSlime.csproj package Gum.MonoGame --version 2026.11.2.1
     ```
 
 ---
@@ -355,11 +355,11 @@ To add the Gum NuGet package using the dotnet CLI:
 > You can verify the package was successfully added by examining your `DungeonSlime.csproj` file, which should now contain a reference like:
 >
 > ```xml
-> <PackageReference Include="Gum.MonoGame" Version="2026.5.8.1" />
+> <PackageReference Include="Gum.MonoGame" Version="2026.11.2.1" />
 > ```
 
 > [!IMPORTANT]
-> This tutorial uses version `2026.5.8.1` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/upgrading) before updating in case there are any breaking changes from the code that is presented in this tutorial.
+> This tutorial uses version `2026.11.2.1` of Gum, which is the latest version of Gum as of this writing.  That exact version is specified to use in the section above when installing the NuGet package to ensure compatibility throughout this tutorial.  If there are newer versions of Gum available, please consult the [Gum documentation](https://docs.flatredball.com/gum/gum-tool/upgrading) before updating in case there are any breaking changes from the code that is presented in this tutorial.
 
 ### Adding UI Sound Effect
 
@@ -649,7 +649,7 @@ While this UI is now functional, you may have noticed that it uses Gum's default
     The two main types are:
 
     * **Forms**: Interactive UI elements like buttons, sliders, and panels that handle user input. They provide built-in functionality for common UI interactions.
-    * **Visuals**: Display elements like TextRuntime, ColoredRectangleRuntime, and NineSliceRuntime that are used to render graphics. They have no built-in interaction behavior but can be customized visually.
+    * **Visuals**: Display elements like TextRuntime, RectangleRuntime, and NineSliceRuntime that are used to render graphics. They have no built-in interaction behavior but can be customized visually.
   
     Forms controls contain Visuals, accessible through the `Visual` property, creating a separation between functionality and presentation.
     :::

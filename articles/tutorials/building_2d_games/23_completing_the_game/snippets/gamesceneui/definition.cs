@@ -4,15 +4,14 @@ using Gum.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using MonoGameGum;
 using Gum.Forms.Controls;
-using MonoGameGum.GueDeriving;
+using Gum.GueDeriving;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 
 namespace DungeonSlime.UI;
 
-public class GameSceneUI : ContainerRuntime
+public class GameSceneUI : Gum.GueDeriving.ContainerRuntime
 {
 
 }

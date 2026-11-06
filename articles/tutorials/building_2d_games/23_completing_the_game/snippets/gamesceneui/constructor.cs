@@ -1,6 +1,6 @@
 public GameSceneUI()
 {
-    // The game scene UI inherits from ContainerRuntime, so we set its
+    // The game scene UI inherits from Gum.GueDeriving.ContainerRuntime, so we set its
     // doc to fill so it fills the entire screen.
     Dock(Gum.Wireframe.Dock.Fill);
 
@@ -8,8 +8,8 @@ public GameSceneUI()
     this.AddToRoot();
 
     // Get a reference to the content manager that was registered with the
-    // GumService when it was original initialized.
-    ContentManager content = GumService.Default.ContentLoader.XnaContentManager;
+    // Gum.GumService when it was original initialized.
+    ContentManager content = Gum.GumService.Default.ContentLoader.XnaContentManager;
 
     // Use that content manager to load the sound effect and atlas for the
     // user interface elements
