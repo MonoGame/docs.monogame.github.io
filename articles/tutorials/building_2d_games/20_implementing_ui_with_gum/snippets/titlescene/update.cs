@@ -11,5 +11,5 @@ public override void Update(GameTime gameTime)
     _backgroundOffset.X %= _backgroundPattern.Width;
     _backgroundOffset.Y %= _backgroundPattern.Height;
 
-    GumService.Default.Update(gameTime);
+    Gum.GumService.Default.Update(gameTime);
 }

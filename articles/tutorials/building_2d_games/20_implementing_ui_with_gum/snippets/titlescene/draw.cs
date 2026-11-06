@@ -33,5 +33,5 @@ public override void Draw(GameTime gameTime)
         Core.SpriteBatch.End();
     }
 
-    GumService.Default.Draw();
+    Gum.GumService.Default.Draw();
 }

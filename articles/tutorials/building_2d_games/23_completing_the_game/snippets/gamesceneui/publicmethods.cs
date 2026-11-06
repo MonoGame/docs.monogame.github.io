@@ -57,7 +57,7 @@ public void HideGameOverPanel()
 /// <param name="gameTime">A snapshot of the timing values for the current update cycle.</param>
 public void Update(GameTime gameTime)
 {
-    GumService.Default.Update(gameTime);
+    Gum.GumService.Default.Update(gameTime);
 }
 
 /// <summary>
@@ -65,5 +65,5 @@ public void Update(GameTime gameTime)
 /// </summary>
 public void Draw()
 {
-    GumService.Default.Draw();
+    Gum.GumService.Default.Draw();
 }

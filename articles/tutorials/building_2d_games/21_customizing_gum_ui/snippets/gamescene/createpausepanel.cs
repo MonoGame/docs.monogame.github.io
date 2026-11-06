@@ -11,7 +11,7 @@ private void CreatePausePanel()
 
     TextureRegion backgroundRegion = _atlas.GetRegion("panel-background");
 
-    NineSliceRuntime background = new NineSliceRuntime();
+    Gum.GueDeriving.NineSliceRuntime background = new Gum.GueDeriving.NineSliceRuntime();
     background.Dock(Dock.Fill);
     background.Texture = backgroundRegion.Texture;
     background.TextureAddress = TextureAddress.Custom;
@@ -21,7 +21,7 @@ private void CreatePausePanel()
     background.TextureWidth = backgroundRegion.Width;
     _pausePanel.AddChild(background);
 
-    TextRuntime textInstance = new TextRuntime();
+    Gum.GueDeriving.TextRuntime textInstance = new Gum.GueDeriving.TextRuntime();
     textInstance.Text = "PAUSED";
     textInstance.CustomFontFile = @"fonts/04b_30.fnt";
     textInstance.UseCustomFont = true;

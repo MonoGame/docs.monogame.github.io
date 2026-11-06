@@ -7,5 +7,5 @@ public override void Draw(GameTime gameTime)
     Core.SpriteBatch.End();
     
     // Draw the Gum UI
-    GumService.Default.Draw();
+    Gum.GumService.Default.Draw();
 }

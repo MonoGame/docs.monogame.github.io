@@ -57,7 +57,7 @@ Gum provides several visual element types that we can use to build our custom co
 - **ContainerRuntime**: An invisible container for organizing other elements.
 - **NineSliceRuntime**: A special graphic that can stretch while preserving its corners and edges.
 - **TextRuntime**: An element for displaying text with custom fonts.
-- **ColoredRectangleRuntime**: A simple colored rectangle for backgrounds or fills.
+- **RectangleRuntime**: A simple colored rectangle for backgrounds or fills.
 
 The `NineSliceRuntime` is particularly useful for UI elements that need to resize dynamically. It divides a graphic into nine sections (four corners, four edges, and a center), allowing the element to stretch without distorting its borders.
 
@@ -351,7 +351,7 @@ Next, in the `LoadContent` method, we need to update it so that it stores the te
 
 Finally, update the `CreatePausePanel` method so that
 
-1. Instead of using a [`ColoredRectangleRuntime`](#visual-elements) for the background of the pause panel, it now uses a [`NineSliceRuntime`](#visual-elements) that uses the sprite from the texture atlas.
+1. Instead of using a [`RectangleRuntime`](#visual-elements) for the background of the pause panel, it now uses a [`NineSliceRuntime`](#visual-elements) that uses the sprite from the texture atlas.
 2. The `textInstance` is updated so that it uses the custom bitmap font file.
 3. The `_resumeButton` and `quitButton` are updated to use our custom [`AnimatedButton`](#the-animatedbutton-class) control instead of the default Gum `Button` Forms control.
 

@@ -20,7 +20,7 @@ public override void Initialize()
 
     // Create any UI elements from the root element created in previous
     // scenes.
-    GumService.Default.Root.Children.Clear();
+    Gum.GumService.Default.Root.Children.Clear();
 
     // Initialize the user interface for the game scene.
     InitializeUI();

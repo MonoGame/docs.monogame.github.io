@@ -1,6 +1,6 @@
 private void InitializeUI()
 {
-    GumService.Default.Root.Children.Clear();
+    Gum.GumService.Default.Root.Children.Clear();
 
     CreatePausePanel();
 }
