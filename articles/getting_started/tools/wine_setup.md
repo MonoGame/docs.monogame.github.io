@@ -26,7 +26,7 @@ Follow the steps for your operating system.
     tar -xJf wine.tar.xz
     sudo mv "Wine Stable.app" /Applications/
     sudo xattr -dr com.apple.quarantine "/Applications/Wine Stable.app"
-    echo "export PATH="/Applications/Wine Stable.app/Contents/Resources/wine/bin:$PATH"" >> ~/.zprofile
+    echo 'export PATH="/Applications/Wine Stable.app/Contents/Resources/wine/bin:$PATH"' >> ~/.zprofile
     source ~/.zprofile
     wine --version
     ```
