@@ -1,0 +1,42 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageFloatingVersionsEnabled>true</CentralPackageFloatingVersionsEnabled>
+  </PropertyGroup>
+
+  <!-- Single version for MonoGame packages. -->
+  <PropertyGroup>
+    <MonoGameVersion>3.8.*</MonoGameVersion>
+  </PropertyGroup>
+
+  <!-- MonoGame framework / runtimes -->
+  <ItemGroup>
+    <PackageVersion Include="MonoGame.Framework.Native" Version="$(MonoGameVersion)" />
+    <PackageVersion Include="MonoGame.Framework.DesktopGL" Version="$(MonoGameVersion)" />
+    <PackageVersion Include="MonoGame.Framework.WindowsDX" Version="$(MonoGameVersion)" />
+    <PackageVersion Include="MonoGame.Framework.Android" Version="$(MonoGameVersion)" />
+    <PackageVersion Include="MonoGame.Framework.iOS" Version="$(MonoGameVersion)" />
+    <PackageVersion Include="MonoGame.Framework.Content.Pipeline" Version="$(MonoGameVersion)" />
+    <PackageVersion Include="MonoGame.Runtime.Windows.DX12" Version="$(MonoGameVersion)" />
+    <PackageVersion Include="MonoGame.Runtime.Windows.Vulkan" Version="$(MonoGameVersion)" />
+    <PackageVersion Include="MonoGame.Runtime.Mac.Vulkan" Version="$(MonoGameVersion)" />
+    <PackageVersion Include="MonoGame.Runtime.Linux.Vulkan" Version="$(MonoGameVersion)" />
+  </ItemGroup>
+
+  <!-- Content pipeline dependencies -->
+  <ItemGroup>
+    <PackageVersion Include="MonoGame.Library.FreeType" Version="2.13.2.*" />
+    <PackageVersion Include="MonoGame.Library.MojoShader" Version="1.0.0.*" />
+    <PackageVersion Include="MonoGame.Tool.Basisu" Version="2.0.2.*" />
+    <PackageVersion Include="MonoGame.Tool.Crunch" Version="1.0.4.*" />
+    <PackageVersion Include="MonoGame.Tool.Dxc" Version="1.9.2607.*" />
+    <PackageVersion Include="MonoGame.Tool.FFmpeg" Version="7.0.0.*" />
+    <PackageVersion Include="MonoGame.Tool.FFprobe" Version="7.0.0.*" />
+    <PackageVersion Include="AssimpNetter" Version="6.0.5.0" />
+    <PackageVersion Include="MonoGame.Library.Assimp" Version="6.0.5.1" />
+  </ItemGroup>
+  <!-- Gum.MonoGame Package -->
+  <ItemGroup>
+    <PackageVersion Include="Gum.MonoGame" Version="2026.5.8.1" />
+  </ItemGroup>
+</Project>
