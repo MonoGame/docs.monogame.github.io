@@ -355,7 +355,7 @@ Finally, update the `CreatePausePanel` method so that
 2. The `textInstance` is updated so that it uses the custom bitmap font file.
 3. The `_resumeButton` and `quitButton` are updated to use our custom [`AnimatedButton`](#the-animatedbutton-class) control instead of the default Gum `Button` Forms control.
 
-[!code-csharp[](./snippets/gamescene/createpausepanel.cs?highlight=12-22,26-28,33,41)]
+[!code-csharp[](./snippets/gamescene/createpausepanel.cs?highlight=12-22,24,26-28,33,37-38,41,45-46)]
 
 ## Testing the Styled UI
 
