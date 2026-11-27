@@ -32,7 +32,11 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: |
+            # 8.0 runs DocFX and builds MonoGame.
+            8.0.x
+            #  10.0 runs the single file tool in tools/.
+            10.0.x
 
       - name: Setup Premake5
         uses: abel0b/setup-premake@v2.4
@@ -44,6 +48,10 @@ jobs:
 
       - name: Run Metadata Build
         run: dotnet docfx metadata ci.docfx.json
+
+      # Process generated meta data to identify Native only API elements
+      - name: Mark Native only API entries
+        run: dotnet run tools/ApiPlatformMarker.cs -- api _generated/api-desktopgl _generated/api-overwrite/native-only.md
 
       - name: Run Build
         run: dotnet docfx build ci.docfx.json

@@ -4,12 +4,31 @@
       "src": [
         {
           "files": [
-            "external/MonoGame/Artifacts/MonoGame.Framework/DesktopGL/Debug/MonoGame.Framework.dll",
+            "external/MonoGame/Artifacts/MonoGame.Framework/Native/Debug/MonoGame.Framework.dll",
             "external/MonoGame/Artifacts/MonoGame.Framework.Content.Pipeline/Debug/MonoGame.Framework.Content.Pipeline.dll"
           ]
         }
       ],
       "dest": "api",
+      "filter": "filterConfig.yml",
+      "includePrivateMembers": false,
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false,
+      "noRestore": false,
+      "namespaceLayout": "flattened",
+      "memberLayout": "samePage",
+      "EnumSortOrder": "alphabetic"
+    },
+    {
+      "src": [
+        {
+          "files": [
+            "external/MonoGame/Artifacts/MonoGame.Framework/DesktopGL/Debug/MonoGame.Framework.dll",
+            "external/MonoGame/Artifacts/MonoGame.Framework.Content.Pipeline/Debug/MonoGame.Framework.Content.Pipeline.dll"
+          ]
+        }
+      ],
+      "dest": "_generated/api-desktopgl",
       "filter": "filterConfig.yml",
       "includePrivateMembers": false,
       "disableGitFeatures": false,
@@ -53,6 +72,11 @@
           "README.md",
           "articles/getting_started/[0-9]_*.md"
         ]
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [ "_generated/api-overwrite/**/*.md" ]
       }
     ],
     "resource": [
