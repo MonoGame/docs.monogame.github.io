@@ -92,6 +92,8 @@ items:
         href: getting_started/packaging_games.md
       - name: Preparing for consoles
         href: getting_started/preparing_for_consoles.md
+      - name: Saving Game Data
+        href: getting_started/saving_game_data.md
       - name: Using Development Nuget Packages
         href: getting_started/using_development_nuget_packages.md
       - name: Tools
