@@ -22,6 +22,12 @@ node_modules/
 /api/*
 !/api/index.md
 
+###############################################################################
+### Files generated during the docs build: the DesktopGL API baseline and the
+### "Native only" overwrite file.
+###############################################################################
+/_generated/
+
 
 ###############################################################################
 ### OS Specific

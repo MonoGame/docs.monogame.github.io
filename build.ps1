@@ -2,6 +2,7 @@
 $ErrorActionPreference = "Stop"
 
 $FrameworkDll = "external/MonoGame/Artifacts/MonoGame.Framework/DesktopGL/Debug/MonoGame.Framework.dll"
+$NativeFrameworkDll = "external/MonoGame/Artifacts/MonoGame.Framework/Native/Debug/MonoGame.Framework.dll"
 $PipelineDll = "external/MonoGame/Artifacts/MonoGame.Framework.Content.Pipeline/Debug/MonoGame.Framework.Content.Pipeline.dll"
 
 # Check if submodules are initialized
@@ -12,14 +13,23 @@ if ($submoduleStatus -match '^-') {
 }
 
 # Check if dlls are already built
-if (-not (Test-Path $FrameworkDll) -or -not (Test-Path $PipelineDll)) {
+if (-not (Test-Path $FrameworkDll) -or -not (Test-Path $NativeFrameworkDll) -or -not (Test-Path $PipelineDll)) {
     Write-Host "Required Assemblies for documentation not found. Building assemblies..." -ForegroundColor Yellow
     dotnet build external/MonoGame/MonoGame.Framework.Content.Pipeline/MonoGame.Framework.Content.Pipeline.csproj -p:DisableNativeBuild=true
+    dotnet build external/MonoGame/MonoGame.Framework/MonoGame.Framework.Native.csproj -p:DisableNativeBuild=true
 }
 
 # Build documentation
 Write-Host "Building DocFx..." -ForegroundColor Green
 dotnet docfx metadata docfx.json
+
+# Mark the API entries that only exist in the Native platform. Needs the .NET 10 SDK.
+# The API reference is generated from the Native assembly, with DesktopGL as the baseline.
+Write-Host "Marking Native only API entries..." -ForegroundColor Green
+dotnet run tools/ApiPlatformMarker.cs -- api _generated/api-desktopgl _generated/api-overwrite/native-only.md
+if ($LASTEXITCODE -ne 0) {
+    throw "ApiPlatformMarker exited with code $LASTEXITCODE"
+}
 
 # Build documentation
 Write-Host "Building DocFx..." -ForegroundColor Green

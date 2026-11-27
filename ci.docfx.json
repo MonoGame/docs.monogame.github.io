@@ -4,12 +4,30 @@
       "src": [
         {
           "files": [
-            "external/MonoGame/MonoGame.Framework/MonoGame.Framework.DesktopGL.csproj",
+            "external/MonoGame/MonoGame.Framework/MonoGame.Framework.Native.csproj",
             "external/MonoGame/MonoGame.Framework.Content.Pipeline/MonoGame.Framework.Content.Pipeline.csproj"
           ]
         }
       ],
       "dest": "api",
+      "includePrivateMembers": false,
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false,
+      "noRestore": false,
+      "namespaceLayout": "flattened",
+      "memberLayout": "samePage",
+      "EnumSortOrder": "alphabetic"
+    },
+    {
+      "src": [
+        {
+          "files": [
+            "external/MonoGame/MonoGame.Framework/MonoGame.Framework.DesktopGL.csproj",
+            "external/MonoGame/MonoGame.Framework.Content.Pipeline/MonoGame.Framework.Content.Pipeline.csproj"
+          ]
+        }
+      ],
+      "dest": "_generated/api-desktopgl",
       "includePrivateMembers": false,
       "disableGitFeatures": false,
       "disableDefaultFilter": false,
@@ -46,6 +64,11 @@
           "*.md"
         ],
         "exclude": [ "_site/**", "README.md" ]
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [ "_generated/api-overwrite/**/*.md" ]
       }
     ],
     "resource": [
